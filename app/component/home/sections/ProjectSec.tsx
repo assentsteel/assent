@@ -130,7 +130,7 @@ export default function ProjectsSection() {
         setActiveCategory(category as keyof typeof projectCategories);
         setViewAll(false);
       }}
-      className={`px-[17px] py-5 text-xs rounded-[5px] h-[40px] lg:h-[48px] hover:text-white hover:border-primary duration-300 ease-in-out transition-all ${
+      className={`px-[17px] py-5 text-xs rounded-[5px] h-[40px] lg:h-[48px] hover:text-white hover:border-primary duration-300 ease-in-out transition-all uppercase ${
         activeCategory === category && !viewAll
           ? "bg-secondary text-white border border-secondary"
           : "bg-white text-black border border-territory"
@@ -148,7 +148,7 @@ export default function ProjectsSection() {
                viewport={{ once: true, amount: 0.5 }}>
             <Button
               variant="outline"
-              className="px-[17px] py-5 text-xs rounded-[5px] h-[40px] lg:h-[48px] text-black border border-secondary "
+              className="px-[17px] py-5 text-xs rounded-[5px] h-[40px] lg:h-[48px] text-black border border-secondary uppercase"
               onClick={() => setViewAll(!viewAll)}
             >
               {viewAll ? "Back" : "View All"}
