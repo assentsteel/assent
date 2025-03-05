@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 import "../globals.css";
 import Navbar from "../component/common/NavBars/Navbar";
 import Footer from "../component/common/Footer";
+import SmoothScroll from "../component/common/SmoothScroll";
 
 
 const poppins = Poppins({
@@ -23,10 +24,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.variable} font-poppins antialiased`}>
+      <SmoothScroll/>
      <Navbar />
         {children}
         <Footer />
-        
       </body>
     </html>
   );
