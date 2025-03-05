@@ -9,11 +9,26 @@ const logos = [
   "/assets/img/clients/lgs-03.jpg",
   "/assets/img/clients/lgs-04.jpg",
   "/assets/img/clients/lgs-05.jpg",
+  "/assets/img/clients/lgs-06.jpg",
   "/assets/img/clients/lgs-01.jpg",
   "/assets/img/clients/lgs-02.jpg",
   "/assets/img/clients/lgs-03.jpg",
   "/assets/img/clients/lgs-04.jpg",
   "/assets/img/clients/lgs-05.jpg",
+  "/assets/img/clients/lgs-06.jpg",
+  "/assets/img/clients/lgs-01.jpg",
+  "/assets/img/clients/lgs-02.jpg",
+  "/assets/img/clients/lgs-03.jpg",
+  "/assets/img/clients/lgs-04.jpg",
+  "/assets/img/clients/lgs-05.jpg",
+  "/assets/img/clients/lgs-06.jpg",
+  "/assets/img/clients/lgs-01.jpg",
+  "/assets/img/clients/lgs-02.jpg",
+  "/assets/img/clients/lgs-03.jpg",
+  "/assets/img/clients/lgs-04.jpg",
+  "/assets/img/clients/lgs-05.jpg",
+  "/assets/img/clients/lgs-06.jpg",
+ 
 ];
 
 const LogoTicker = () => {
@@ -25,7 +40,7 @@ const LogoTicker = () => {
             className="flex gap-[50px] lg:gap-[150px] flex-none min-w-max"
             animate={{ x: "-50%" }}
             transition={{
-              duration: 100,
+              duration: 230,
               repeat: Infinity,
               ease: "linear",
             }}
