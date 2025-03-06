@@ -16,8 +16,8 @@ const slides = [
   {
     id: 1,
     type: "video",
-    videoSrc: "/assets/video/banner-v1.mp4", // Replace with your video path
-    poster: "/assets/img/banner-v1.jpg", // Poster image
+    videoSrc: "/assets/video/Assent_Video.mp4", // Replace with your video path
+    poster: "/assets/img/home/banner.jpg", // Poster image
     title: "ASSENT STEEL INDUSTRIES LLC leading Steel Fabricator",
     subtitle: "",
     imageSrc: "/assets/img/slide1.jpg", // Add imageSrc property
@@ -52,7 +52,7 @@ const HeroSection = () => {
     videoRefs.current = videoRefs.current.slice(0, slides.length);
   }, [slides.length]);
 
-  useEffect(() => {
+/*   useEffect(() => {
     gsap.from(containerRef.current, {
       opacity: 0,
       width: 100,
@@ -60,7 +60,7 @@ const HeroSection = () => {
       ease: "power3.out",
     });
   }, []);
-
+ */
   return (
     <section className="relative w-full h-[90vh] overflow-hidden">
       <Swiper

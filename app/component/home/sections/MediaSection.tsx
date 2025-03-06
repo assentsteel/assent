@@ -96,7 +96,7 @@ const MediaSection = () => {
 
           {/* News List on the right */}
           <div className="flex flex-col overflow-hidden">
-            <motion.div initial={{ opacity: 0, x: -50 }}
+            <motion.div className="flex flex-col h-full" initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay:  0.3 }}
                 viewport={{ once: true, amount: 0.5 }}>
