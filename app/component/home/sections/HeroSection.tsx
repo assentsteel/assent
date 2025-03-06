@@ -18,7 +18,7 @@ const slides = [
     type: "video",
     videoSrc: "/assets/video/banner-v1.mp4", // Replace with your video path
     poster: "/assets/img/banner-v1.jpg", // Poster image
-    title: "ASSENT STEEL Industries L.L.C leading Steel Fabricator",
+    title: "ASSENT STEEL INDUSTRIES LLC leading Steel Fabricator",
     subtitle: "",
     imageSrc: "/assets/img/slide1.jpg", // Add imageSrc property
   },
