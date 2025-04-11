@@ -100,13 +100,13 @@ p {
 ::-webkit-scrollbar-thumb
 {
 	background-color: #18355f;
-	
+
 	background-image: -webkit-gradient(linear, 0 0, 0 100%,
 	                   color-stop(.5, rgba(255, 255, 255, .2)),
 					   color-stop(.5, transparent), to(transparent));
 }
 
-/* 
+/*
 @layer base {
   * {
     @apply border-border;
@@ -259,4 +259,31 @@ p {
  */
 @media (min-width: 1800px) {
 
+}
+
+.overlaybanner::after{
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  background: linear-gradient(0deg, #000000 0%, rgba(0, 0, 0, 0) 71.42%);
+
+}
+.sepses{border-left: 1px solid #f6f6f6;}
+.hrgr:hover{background: linear-gradient(180deg, #D9D9D9 0%, rgba(217, 217, 217, 0) 100%);}
+.tabmns p{padding: 13px 0px;}
+.tabmns div p{
+  @apply text-sm;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #000000;
+  margin-bottom: 0px;
+}
+.tabmns div p:hover{
+  font-weight: 700;
+  border-top: 3px solid #5BA646;
+  position: relative;
+  z-index: 1;
+  top: -2px;
 }

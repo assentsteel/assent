@@ -40,7 +40,7 @@ export default {
         secondary: "#5BA646",
         territory: "#1F1F1F",
         /* primary: {
-				primary: '#FE6601',   
+				primary: '#FE6601',
   				DEFAULT: 'hsl(var(--primary))',
   				foreground: 'hsl(var(--primary-foreground))'
   			},
@@ -82,14 +82,16 @@ export default {
           "5": "hsl(var(--chart-5))",
         },
       },
-     
+
       fontSize: {
-        xxl: 'clamp(2.5rem, 4vw, 4.0625rem)',  // 56px - 65px  
-        xl: 'clamp(2rem, 3vw, 3.4375rem)',     // 48px - 55px  
-        lg: 'clamp(1.5625rem, 3vw, 1.875rem)', // **25px - 30px**  
-        md: 'clamp(1.2rem, 2vw, 1.5rem)',    // 22px - 24px  
-        sm: 'clamp(1.0625rem, 1.5vw, 1.1875rem)', // 17px - 19px  
-        xs: 'clamp(0.875rem, 1.2vw, 0.9375rem)', // 14px - 15px               
+        xxl: 'clamp(2.5rem, 4vw, 4.0625rem)',  // 56px - 65px
+        xl: 'clamp(2rem, 3vw, 3.4375rem)',     // 48px - 55px
+        lg: 'clamp(1.5625rem, 3vw, 1.875rem)', // **25px - 30px**
+        md: 'clamp(1.2rem, 2vw, 1.5rem)',    // 22px - 24px
+        sm: 'clamp(1.0625rem, 1.5vw, 1.1875rem)', // 17px - 19px
+        xs: 'clamp(0.875rem, 1.2vw, 0.9375rem)', // 14px - 15px
+        40: 'clamp(1.5625rem, 3vw, 40px)', // **25px - 40px**
+
       },
       borderRadius: {
         custom: "20px",
