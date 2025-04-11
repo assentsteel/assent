@@ -100,8 +100,8 @@ export const Menu = ({
           <Link
             href="contact"
             className="self-start text-white bg-secondary hover:bg-primary group rounded-full text-xs font-normal transition duration-300 ease-in-out uppercase flex items-center justify-center gap-[15px] py-[11px] px-[19px] h-48px">
-  
-            Contact <div className="w-[18.5px] h-[20px] text-secondary bg-primary group-hover:bg-secondary group-hover:text-primary flex items-center text-[14px] justify-center transition duration-300 ease-in-out"><FaChevronRight /></div>
+
+            Contact <div className="rounded-full w-[18.5px] h-[20px] text-secondary bg-primary group-hover:bg-secondary group-hover:text-primary flex items-center text-[14px] justify-center transition duration-300 ease-in-out"><FaChevronRight /></div>
           </Link>
         </div>
       </div>
