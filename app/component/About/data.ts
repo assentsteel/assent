@@ -52,7 +52,7 @@ export const singletextimg = {
         "At ASSENT STEEL INDUSTRIES L.L.C, we understand that our Structural Steel is central to the success of important, complex and prestigious projects.",
   "All of our actions are to be the best support to the project and be recognized as an Excellent Structural Steel Fabricator preferred for the next project"
       ],
-      image: assets.mn3
+      image: assets.abtsi
     }
   ],
 };
@@ -60,11 +60,79 @@ export const tabcnts = {
   data: [
     {
       id: 1,
-      title: "Integrity",
+      title: "Safety",
+      tab: "Safety",
       paragraphs: [
          "We report transparently. We overcome our challenges in an open manner because we value integrity, and we recognize that all will benefit from open discussion and group awareness"
       ],
       image: assets.tabim
     }
+    ,{
+      id: 2,
+      title: "Quality",
+      tab: "Quality",
+      paragraphs: [
+         "We report transparently. We overcome our challenges in an open manner because we value integrity, and we recognize that all will benefit from open discussion and group awareness"
+      ],
+      image: assets.tabim
+    },{
+      id: 3,
+      title: "We Deliver",
+      tab: "We Deliver",
+      paragraphs: [
+         "We report transparently. We overcome our challenges in an open manner because we value integrity, and we recognize that all will benefit from open discussion and group awareness"
+      ],
+      image: assets.tabim
+    },{
+      id: 4,
+      title: "Integrity",
+      tab: "Integrity",
+      paragraphs: [
+         "We report transparently. We overcome our challenges in an open manner because we value integrity, and we recognize that all will benefit from open discussion and group awareness"
+      ],
+      image: assets.tabim
+    },{
+      id: 5,
+      title: "Financial Responsibility",
+      tab: "Financial Responsibility",
+      paragraphs: [
+         "We report transparently. We overcome our challenges in an open manner because we value integrity, and we recognize that all will benefit from open discussion and group awareness"
+      ],
+      image: assets.tabim
+    },{
+      id: 6,
+      title: "Learning",
+      tab: "Learning",
+      paragraphs: [
+         "We report transparently. We overcome our challenges in an open manner because we value integrity, and we recognize that all will benefit from open discussion and group awareness"
+      ],
+      image: assets.tabim
+    },{
+      id: 7,
+      title: "Sustainability",
+      tab: "Sustainability",
+      paragraphs: [
+         "We report transparently. We overcome our challenges in an open manner because we value integrity, and we recognize that all will benefit from open discussion and group awareness"
+      ],
+      image: assets.tabim
+    },{
+      id: 8,
+      title: "Relationships",
+      tab: "Relationships",
+      paragraphs: [
+         "We report transparently. We overcome our challenges in an open manner because we value integrity, and we recognize that all will benefit from open discussion and group awareness"
+      ],
+      image: assets.tabim
+    },{
+      id: 9,
+      title: "Data",
+      tab: "Data",
+      paragraphs: [
+         "We report transparently. We overcome our challenges in an open manner because we value integrity, and we recognize that all will benefit from open discussion and group awareness"
+      ],
+      image: assets.tabim
+    }
+
   ],
 };
+

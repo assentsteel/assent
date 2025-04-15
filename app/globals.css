@@ -287,3 +287,27 @@ p {
   z-index: 1;
   top: -2px;
 }
+figure.roverlay::after {
+  content: "";
+  background: linear-gradient(90deg, #092348 0%, rgba(24, 53, 95, 0.8) 39.22%, rgba(24, 53, 95, 0) 85%);
+
+  position: absolute;
+  top: 0;
+  inset: 0;
+}
+figure.rtroverlay::after {
+  content: "";
+  background: linear-gradient(90deg, #fefefe00 0%, rgb(24 53 95 / 54%) 39.22%, #18355f 85%);
+  position: absolute;
+  top: 0;
+  inset: 0;
+}
+
+.overlayclr::after {
+  content: "";
+  background: linear-gradient(180deg, rgba(29, 37, 45, 0) 43.29%, rgba(29, 37, 45, 0.56758) 60.3%, #1D252D 91.49%);
+border-radius: 15px;
+  position: absolute;
+  top: 0;
+  inset: 0;
+}
