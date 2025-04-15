@@ -1,5 +1,5 @@
 "use client";
-
+ ;
 import Image, { StaticImageData } from "next/image";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
@@ -14,10 +14,9 @@ interface PlatformsItem {
 }
 
 interface PlatformsSectionProps {
-  leftzero: boolean;
   data: PlatformsItem[];
 }
-const SingleImageText: React.FC<PlatformsSectionProps> = ({data,leftzero
+const TextByImg: React.FC<PlatformsSectionProps> = ({data
 }) => {
 
   const containerRef = useRef(null);
@@ -42,24 +41,35 @@ const SingleImageText: React.FC<PlatformsSectionProps> = ({data,leftzero
   return (
     <section className="py-[50px] md:py-[70px] xl:py-[100px]   overflow-hidden relative ">
       <div className="container">
-        {data.map((item) => (
-          <div className="relative " key={item.id}>
-            <figure className="image-wrapper rtroverlay">
-              <Image src={item.image} width={1920} height={100} alt="A beautiful view" className="rounded-[15px]" />
-            </figure>
-            <div className={`w-full lg:w-1/2 xl:w-1/3 absolute top-0 p-4 lg:pr-[100px] flex flex-col justify-center   h-full ${leftzero ? 'md:left-[90px]' : 'right-0'}`}>
-            <h2 className="text-xl  text-white font-[600] leading-[1.2] mb-3 lg:mb-[30px]">{item.title}</h2>
-              {item.paragraphs.map((paragraph, index) => (
-                <p key={index} className="mb-4 text-white text-base font-[400] leading-[1.8]">
-                  {paragraph}
-                </p>
-              ))}
+        <div className="lg:flex items-center">
+
+        <div className="w-full lg:w-1/2 pr-0 lg:pr-[44px]">
+
+          {data.map((item) => (
+            <div className=" " key={item.id}>
+              <figure className="image-wrapper ">
+                <Image src={item.image} alt="A beautiful view" className="rounded-[15px]" />
+              </figure>
             </div>
+          ))}
           </div>
-        ))}
+          <div className="w-full lg:w-1/2 pr-0 lg:pr-[44px]">
+            {data.map((item) => (
+              <div className="mb-8 lg:mb-0" key={item.id}>
+                <h2 className="text-xl  text-primary font-[600] leading-[1.2] mb-4 lg:mb-10">{item.title}</h2>
+
+                <div className="text-territory text-base font-[400] leading-[1.8] mb-6 lg:mb-10">
+                  {item.paragraphs.map((paragraph, index) => (
+                    <p key={index} className="mb-4">{paragraph}</p>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
 };
 
-export default SingleImageText;
+export default TextByImg;

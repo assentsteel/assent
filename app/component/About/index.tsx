@@ -25,7 +25,7 @@ export default function Index() {
       <Achievements AreaExpertise={AreaExpertise.data} />
       <SingleImage />
       <TextByImg data={textimg.data} />
-      <SingleImageText data={singletextimg.data} />
+      <SingleImageText data={singletextimg.data} leftzero={false}   />
       <Tabsection data={tabcnts.data}  />
 
     </>
