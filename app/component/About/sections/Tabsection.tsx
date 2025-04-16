@@ -71,7 +71,7 @@ const Tabsection: React.FC<PlatformsSectionProps> = ({ data }) => {
                 onClick={() => setActiveTab(index)}
                 className={`py-2 text-sm font-[400] relative top-[-1.9px] ${
                   activeTab === index
-                    ? "font-[700] border-t-2 border-[#5BA646]"
+                    ? "font-[700] border-t-2 border-secondary"
                     : "text-black"
                 }`}
               >

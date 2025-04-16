@@ -57,8 +57,8 @@ const HeadingText: React.FC<PlatformsSectionProps> = ({ data }) => {
                     {item.title}
                   </p>
                   <div className="flex gap-2 items-center transform opacity-0 group-hover:opacity-100  transition-all duration-500 h-0 group-hover:h-[30px] md:group-hover:h-[48px]">
-                  <div className="w-full border-b-2 border-white transition-all duration-500 group-hover:border-[#5BA646]"></div>
-                  <div className="min-w-[30px] min-h-[30px] lg:min-w-[48px] lg:min-h-[48px] bg-[#5BA646] rounded-full flex items-center justify-center translate-x-[-20px] group-hover:translate-x-0  transition-all duration-500">
+                  <div className="w-full border-b-2 border-white transition-all duration-500 group-hover:border-secondary"></div>
+                  <div className="min-w-[30px] min-h-[30px] lg:min-w-[48px] lg:min-h-[48px] bg-secondary rounded-full flex items-center justify-center translate-x-[-20px] group-hover:translate-x-0  transition-all duration-500">
                     <svg
                       stroke="#fff"
                       fill="#fff"
@@ -79,7 +79,7 @@ const HeadingText: React.FC<PlatformsSectionProps> = ({ data }) => {
           ))}
         </div>
         <div className="text-center">
-        <button className="border whitespace-nowrap font-[500] border-[#5BA646] text-xs text-territory uppercase rounded-full py-[8px] px-[20px] mt-5 md:mt-[60px] w-fit">Load More</button>
+        <button className="border whitespace-nowrap font-[500] border-secondary text-xs text-territory uppercase rounded-full py-[8px] px-[20px] mt-5 md:mt-[60px] w-fit">Load More</button>
 
        </div>
       </div>

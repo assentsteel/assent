@@ -18,7 +18,7 @@ export default function Index() {
       <Herotext  breadcrumbs={breadcrumb} title={"Steel Erection"} />
       <SingleImage />
       <ContentText />
-      <SingleImageText data={singletextimg.data} leftzero={true} />
+      <SingleImageText data={singletextimg.data}  />
       <HeadingText data={boxcontent.data} />
 
     </>

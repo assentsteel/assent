@@ -1,18 +1,30 @@
 import React from "react";
-import HeroSection from "../common/Banner/Hero";
-import OpenPositions from "./OpenPositions";
-import ApplicationForm from "./ApplicationForm";
-
+import {textimg,singletextimg,career} from "./data";
+import HeroInner from "../common/Banner/HeroInner";
+import TextByImg from "./sections/TextByImg";
+import SingleImageText from "./sections/SingleImageText";
+import Openings from "./sections/Openings";
+import JoinTeam from "./sections/JoinTeam";
 export default function Index() {
+  const breadcrumb = [
+    { label: "Home", href: "/" },
+    { label: "Careers", href: "" },
+
+  ];
+
   return (
     <>
-      <HeroSection
+<HeroInner
         imageSrc="/assets/img/careers/banner.jpg"
         title="Careers"
-        breadcrumb=""
+        breadcrumbs={breadcrumb}
       />
-      <OpenPositions />
-      <ApplicationForm />
+
+<TextByImg data={textimg.data} />
+<SingleImageText  data={singletextimg.data} />
+<Openings   data={career.data}  />
+<JoinTeam   data={career.data}  />
+
     </>
   );
 }

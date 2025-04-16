@@ -1,22 +1,22 @@
 import React from "react";
+import {boxcontent} from "./data";
+import HeadingText from "./sections/AccreditationsList";
 import HeroInner from "../common/Banner/HeroInner";
-import Certificates from "./Certificates";
-
 export default function Index() {
   const breadcrumb = [
     { label: "Home", href: "/" },
-    { label: "News and Events", href: "" },
-    // { label: `${data && data.data.sector}`, href: "#" },
+    { label: "Awards and Accreditation", href: "" },
+
   ];
 
   return (
     <>
-      <HeroInner
-        imageSrc="/assets/img/story/banner.jpg"
-        title="Accreditations"
+<HeroInner
+        imageSrc="/assets/img/accreditations/accrbanner.jpg"
+        title="Awards and Accreditation"
         breadcrumbs={breadcrumb}
       />
-<Certificates />
+      <HeadingText data={boxcontent.data} />
 
     </>
   );
