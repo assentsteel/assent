@@ -78,10 +78,24 @@ import gr1 from "./img/careers/gr1.svg";
 import gr2 from "./img/careers/gr2.svg";
 import gr3 from "./img/careers/gr3.svg";
 import gr4 from "./img/careers/gr4.svg";
+import cbanner from "./img/contact/cbanner.jpg";
+import email from "./img/contact/email.svg";
+import fax from "./img/contact/fax.svg";
+import phn from "./img/contact/phn.svg";
+import location from "./img/contact/location.png";
+import greenarrow from "./img/icons/greenarrow.svg";
+import slideimage from "./img/about/slideimage.jpg";
 
 
 
 export const assets = {
+  slideimage,
+  greenarrow,
+  cbanner,
+  email,
+  fax,
+  phn,
+  location,
   gr1,
   gr2,
   gr3,

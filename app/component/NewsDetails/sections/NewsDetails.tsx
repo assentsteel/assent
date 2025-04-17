@@ -7,8 +7,16 @@ import { news} from "../data";
 import { assets } from "@/public/assets/assets";
 import MoreNews from "./MoreNews";
 gsap.registerPlugin(ScrollTrigger);
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import { Navigation } from "swiper/modules";
 
-const NewsDetails = ({}) => {
+const images = [assets.ren1, assets.ren1];
+const NewsDetails = ({ }) => {
+
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -31,16 +39,69 @@ const NewsDetails = ({}) => {
     <section className="pb-[50px] md:pb-[70px] xl:pb-[100px] overflow-hidden relative ">
       <div className="container">
 
-        <div className="flex gap-4 lg:gap-6 xxl:gap-[135px] ">
-          <div className="w-4/5">
-            <div className="relative group h-[300px] lg:h-[570px] overflow-hidden rounded-[15px]">
-              <figure className=" h-full ">
+        <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 xxl:gap-[135px] ">
+          <div className="lg:w-4/5">
+            <div className=" ">
+
+              <div className="relative w-full  ">
+            <Swiper
+              modules={[Navigation]}
+              navigation={{
+                prevEl: prevRef.current,
+                nextEl: nextRef.current,
+              }}
+              onInit={(swiper) => {
+                if (typeof swiper.params.navigation === "object") {
+                  swiper.params.navigation.prevEl = prevRef.current;
+                  swiper.params.navigation.nextEl = nextRef.current;
+                }
+                swiper.navigation.init();
+                swiper.navigation.update();
+              }}
+              loop
+              slidesPerView={1}
+              spaceBetween={20}
+              className="rounded-xl overflow-hidden"
+            >
+              {images.map((src, index) => (
+                <SwiperSlide key={index}>
+                  <Image
+                    src={src}
+                    alt={`Slide ${index + 1}`}
+                    className="w-full h-[300px] md:h-[400px] lg:h-[570px] object-cover"
+                  />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+
+            {/* Custom Navigation Buttons */}
+            <div className="absolute bottom-4 right-4 flex gap-2 lg:gap-[30px] z-10">
+              <button
+                ref={prevRef}
+                className="bg-white text-black px-3 py-1 rounded-full w-[48px] h-[48px] hover:bg-secondary group transition flex items-center justify-center"
+              >
                 <Image
-                  src={assets.ren1}
+                  src={assets.greenarrow}
                   alt=""
-                  className="rounded-[15px]  h-full w-full object-cover"
+                  width={11}
+                  height={18}
+                  className="group-hover:brightness-0 group-hover:invert "
                 />
-              </figure>
+              </button>
+              <button
+                ref={nextRef}
+                className="bg-white text-black px-3 py-1 rounded-full w-[48px] h-[48px] hover:bg-secondary group transition flex items-center justify-center"
+              >
+                <Image
+                  src={assets.greenarrow}
+                  alt=""
+                  width={11}
+                  height={18}
+                  className="group-hover:brightness-0 group-hover:invert rotate-180"
+                />
+              </button>
+            </div>
+          </div>
             </div>
             <div className="flex justify-between items-center mt-4 md:mt-5 mb-4 md:mb-5">
               <p className="text-sm font-[500] text-territory">Jan 19, 2024</p>
@@ -64,7 +125,7 @@ const NewsDetails = ({}) => {
                         </div>
           </div>
 
-          <div className="w-1/5 ">
+          <div className="lg:w-1/5 ">
             <div className="flex justify-between mb-5 lg:mb-10">
               <div className="overflow-hidden ">
                 <p className="text-md uppercase text-[#595959] font-medium border-b inline-flex border-secondary pb-2 lg:pb-[12px] leading-[1.46] ">
