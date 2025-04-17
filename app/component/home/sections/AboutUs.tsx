@@ -21,7 +21,7 @@ const AboutUs = () => {
       transition: { staggerChildren: 0.3, delayChildren: 0.5 },
     },
   };
-  
+
   const textItemVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
@@ -73,7 +73,7 @@ const AboutUs = () => {
             <motion.div variants={textItemVariants}>
               <Link
                 href="#"
-                className="text-xs border-b border-[#5BA646] uppercase group pb-[16px] inline-flex items-center gap-[18px] text-territory font-medium"
+                className="text-xs border-b border-secondary uppercase group pb-[16px] inline-flex items-center gap-[18px] text-territory font-medium"
               >
                 About ASSENT
                 <div className="w-[20px] h-[20px] text-secondary bg-territory group-hover:bg-secondary group-hover:text-primary flex items-center text-[14px] justify-center transition duration-300 ease-in-out">

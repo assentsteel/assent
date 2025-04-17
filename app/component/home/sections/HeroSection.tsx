@@ -162,7 +162,7 @@ const HeroSection = () => {
                       <motion.div variants={textItemVariants}>
                         <Link
                           href="#"
-                          className="text-xs border-b border-[#5BA646] text-white uppercase group pb-[16px] inline-flex mt-[50px] items-center gap-[18px]"
+                          className="text-xs border-b border-secondary text-white uppercase group pb-[16px] inline-flex mt-[50px] items-center gap-[18px]"
                         >
                           Read More{" "}
                           <div className="w-[20px] h-[20px] text-secondary bg-white group-hover:bg-secondary group-hover:text-primary flex items-center text-[14px] justify-center transition duration-300 ease-in-out">

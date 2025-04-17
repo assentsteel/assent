@@ -94,7 +94,7 @@ const HeadingText: React.FC<PlatformsSectionProps> = ({data
           />
         </figure>
         <div className="absolute bottom-0 px-5 pb-5">
-          <p className="text-md text-white font-[600] pb-5 border-b-2 border-white transform transition-transform duration-500 group-hover:border-[#5BA646] tran">
+          <p className="text-md text-white font-[600] pb-5 border-b-2 border-white transform transition-transform duration-500 group-hover:border-secondary tran">
             {item.title}
           </p>
         </div>

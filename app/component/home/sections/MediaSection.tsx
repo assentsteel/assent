@@ -83,7 +83,7 @@ const MediaSection = () => {
                 </h3>
                 <Link
                   href="#"
-                  className="text-xs border-b border-[#5BA646] text-white uppercase group pb-[16px] inline-flex items-center gap-[18px]"
+                  className="text-xs border-b border-secondary text-white uppercase group pb-[16px] inline-flex items-center gap-[18px]"
                 >
                   Read More{" "}
                   <div className="w-[20px] h-[20px] text-secondary bg-white group-hover:bg-secondary group-hover:text-primary flex items-center text-[14px] justify-center transition duration-300 ease-in-out">
@@ -102,7 +102,7 @@ const MediaSection = () => {
                 viewport={{ once: true, amount: 0.5 }}>
             {otherMedia.map((item, index) => (
               <div
-                
+
                 key={item.id}
                 className={`border-b  ${
                   index === otherMedia.length - 1
@@ -124,7 +124,7 @@ const MediaSection = () => {
                 </h3>
                 <Link
                   href="#"
-                  className="text-xs border-b border-[#5BA646] uppercase group pb-[16px] inline-flex items-center gap-[18px] text-territory font-medium"
+                  className="text-xs border-b border-secondary uppercase group pb-[16px] inline-flex items-center gap-[18px] text-territory font-medium"
                 >
                   About ASSENT{" "}
                   <div className="w-[20px] h-[20px] text-secondary bg-territory group-hover:bg-secondary group-hover:text-primary flex items-center text-[14px] justify-center transition duration-300 ease-in-out">

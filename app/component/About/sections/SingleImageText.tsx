@@ -1,6 +1,6 @@
 "use client";
 
-import Image, { StaticImageData } from "next/image";
+import  { StaticImageData } from "next/image";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -14,10 +14,9 @@ interface PlatformsItem {
 }
 
 interface PlatformsSectionProps {
-  leftzero: boolean;
   data: PlatformsItem[];
 }
-const SingleImageText: React.FC<PlatformsSectionProps> = ({data,leftzero
+const SingleImageText: React.FC<PlatformsSectionProps> = ({data
 }) => {
 
   const containerRef = useRef(null);
@@ -43,11 +42,10 @@ const SingleImageText: React.FC<PlatformsSectionProps> = ({data,leftzero
     <section className="py-[50px] md:py-[70px] xl:py-[100px]   overflow-hidden relative ">
       <div className="container">
         {data.map((item) => (
-          <div className="relative " key={item.id}>
-            <figure className="image-wrapper rtroverlay">
-              <Image src={item.image} width={1920} height={100} alt="A beautiful view" className="rounded-[15px]" />
-            </figure>
-            <div className={`w-full lg:w-1/2 xl:w-1/3 absolute top-0 p-4 lg:pr-[100px] flex flex-col justify-center   h-full ${leftzero ? 'md:left-[90px]' : 'right-0'}`}>
+             <div className="rounded-[15px] p-10 lg:py-[120px] lg:px-[100px] blueoverlayrt relative  " key={item.id} style={{background:`url(${typeof item.image === 'string' ? item.image : item.image.src})`, backgroundSize:'cover'}}>
+
+
+            <div className={`  max-w-[58ch] lg:ml-auto    lg:pr-[100px] flex flex-col justify-center relative z-10  h-full `}>
             <h2 className="text-xl  text-white font-[600] leading-[1.2] mb-3 lg:mb-[30px]">{item.title}</h2>
               {item.paragraphs.map((paragraph, index) => (
                 <p key={index} className="mb-4 text-white text-base font-[400] leading-[1.8]">

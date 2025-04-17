@@ -1,9 +1,10 @@
-import Index from "@/app/component/Accreditations";
+import Index from "@/app/component/Accreditations/Index";
 
-export default function ProjectsDetails() {
+const Contact = () => {
   return (
     <>
       <Index />
     </>
   );
-}
+};
+export default Contact;

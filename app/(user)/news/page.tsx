@@ -1,10 +1,10 @@
-import Index from "@/app/component/news/Index";
+import Index from "@/app/component/News/Index";
 
-const News = () => {
+const Contact = () => {
   return (
     <>
       <Index />
     </>
   );
 };
-export default News;
+export default Contact;

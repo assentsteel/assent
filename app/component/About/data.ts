@@ -135,4 +135,50 @@ export const tabcnts = {
 
   ],
 };
+export const sliderdata = {
+  data: [
+    {
+      id: 1,
+      title: "2008",
+      image: assets.slideimage,
+      heading: "Advanced Technology",
+      desc:"ASSENT STEEL INDUSTRIES L.L.C Manufacturing Facility is located at Dubai Industrial City – UAE, having a production capacity of up to 120,000 tons/year. As one of the largest steel manufacturing companies in Dubai, UAE, we are equipped with state-of-art equipment and technology to produce quality and durable material."
+    },
+    {
+      id: 2,
+      title: "2010",
+      image: assets.slideimage,
+      heading: "Advanced Technology2",
+      desc:"ASSENT STEEL INDUSTRIES L.L.C Manufacturing Facility is located at Dubai Industrial City – UAE, having a production capacity of up to 120,000 tons/year. As one of the largest steel manufacturing companies in Dubai, UAE, we are equipped with state-of-art equipment and technology to produce quality and durable material."
+    },
+    {
+      id: 3,
+      title: "2012",
+      image: assets.slideimage,
+      heading: "Advanced Technology3",
+      desc:"ASSENT STEEL INDUSTRIES L.L.C Manufacturing Facility is located at Dubai Industrial City – UAE, having a production capacity of up to 120,000 tons/year. As one of the largest steel manufacturing companies in Dubai, UAE, we are equipped with state-of-art equipment and technology to produce quality and durable material."
+    },
+    {
+      id: 4,
+      title: "2014",
+      image: assets.slideimage,
+      heading: "Advanced Technology4",
+      desc:"ASSENT STEEL INDUSTRIES L.L.C Manufacturing Facility is located at Dubai Industrial City – UAE, having a production capacity of up to 120,000 tons/year. As one of the largest steel manufacturing companies in Dubai, UAE, we are equipped with state-of-art equipment and technology to produce quality and durable material."
+    },
+    {
+      id: 5,
+      title: "2016",
+      image: assets.slideimage,
+      heading: "Advanced Technology5",
+      desc:"ASSENT STEEL INDUSTRIES L.L.C Manufacturing Facility is located at Dubai Industrial City – UAE, having a production capacity of up to 120,000 tons/year. As one of the largest steel manufacturing companies in Dubai, UAE, we are equipped with state-of-art equipment and technology to produce quality and durable material."
+    },
+    {
+      id: 6,
+      title: "2018",
+      image: assets.slideimage,
+      heading: "Advanced Technology6",
+      desc:"ASSENT STEEL INDUSTRIES L.L.C Manufacturing Facility is located at Dubai Industrial City – UAE, having a production capacity of up to 120,000 tons/year. As one of the largest steel manufacturing companies in Dubai, UAE, we are equipped with state-of-art equipment and technology to produce quality and durable material."
+    }
+  ],
+};
 
