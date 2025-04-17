@@ -7,11 +7,11 @@ export type MenuItem = {
 export const menuItems: MenuItem[] = [
   {
     title: "About",
-    url: "",
+    url: "/about",
   },
   {
     title: "Services",
-    url: "",
+    url: "/services",
   },
 /*   {
     title: "Projects",
@@ -46,7 +46,7 @@ export const menuItems: MenuItem[] = [
 
   {
     title: "Projects",
-    url: "",
+    url: "/projects-list",
   },
   {
     title: "How We Work",
@@ -58,10 +58,10 @@ export const menuItems: MenuItem[] = [
   },
   {
     title: "Media",
-    url: "",
+    url: "gallery",
   },
   {
     title: "Careers",
-    url: "",
+    url: "/careers",
   },
 ];
