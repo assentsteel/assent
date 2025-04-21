@@ -1,3 +1,4 @@
+
 import Index from "@/app/component/News/Index";
 
 const Contact = () => {
