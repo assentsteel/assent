@@ -1,4 +1,5 @@
-import Index from "@/app/component/News/Index";
+
+import Index from "@/app/component/NewsList/Index";
 
 const Contact = () => {
   return (

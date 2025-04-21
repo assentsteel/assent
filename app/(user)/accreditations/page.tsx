@@ -1,4 +1,4 @@
-import Index from "@/app/component/Accreditations/Index";
+ import Index from "@/app/component/AccreditationsList/Index";
 
 const Contact = () => {
   return (
