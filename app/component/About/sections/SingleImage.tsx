@@ -5,13 +5,23 @@ import { assets } from "@/public/assets/assets";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
-
+import { motion } from "framer-motion";
 
 
 const SingleImage = ({
 }) => {
   const containerRef = useRef(null);
-
+  const imageVariants = {
+    hidden: { opacity: 0, x: 30 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut",
+      },
+    },
+  };
 
   useEffect(() => {
     if (containerRef.current) {
@@ -30,16 +40,25 @@ const SingleImage = ({
   }, []);
 
   return (
-    <section className="py-[50px] md:py-[70px] xl:py-[100px]   overflow-hidden relative ">
-      <div className="container">
-        <div className=" ">
-
-        <figure className="image-wrapper ">
-          <Image src={assets.single} alt="A beautiful view" className="rounded-[15px]" />
-        </figure>
-        </div>
+    <section className="py-0 md:py-[70px] xl:py-[100px] overflow-hidden relative">
+    <div className="container">
+      <div>
+        <motion.figure
+          className="image-wrapper"
+          initial="hidden"
+          whileInView="visible"
+          variants={imageVariants}
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          <Image
+            src={assets.single}
+            alt="A beautiful view"
+            className="rounded-[15px]"
+          />
+        </motion.figure>
       </div>
-    </section>
+    </div>
+  </section>
   );
 };
 

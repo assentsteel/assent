@@ -19,7 +19,7 @@ export default function Index() {
     <>
 
 <HeroInner
-        imageSrc="/assets/img/story/banner.jpg"
+        imageSrc="/assets/img/projects-details/bnr.jpg"
         title="Dubai International Airport Expansion"
         breadcrumbs={breadcrumb}
       />

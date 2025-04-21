@@ -20,7 +20,7 @@ export default function Index() {
         breadcrumbs={breadcrumb}
       />
 
-<TextByImg data={textimg.data} />
+<TextByImg data={textimg.data} heading={"Build Your Future with Assent Steel"} description={"Join ASSENT STEEL and take your career to new heights. We are committed to fostering talent, innovation, and excellence in the steel industry. Whether you're an experienced professional or just starting out, we offer opportunities for growth, learning, and success in a dynamic work environment. Build your future with us and be part of something strong."}  />
 <SingleImageText  data={singletextimg.data} />
 <Openings   data={career.data}  />
 <JoinTeam   data={career.data}  />

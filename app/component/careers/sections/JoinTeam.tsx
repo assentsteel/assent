@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { motion } from "framer-motion";
 gsap.registerPlugin(ScrollTrigger);
 
 interface jobarray {
@@ -68,123 +69,95 @@ const JoinTeam: React.FC<PlatformsSectionProps> = () => {
   return (
     <section className="py-[50px] md:py-[70px] xl:py-[100px]   overflow-hidden relative ">
       <div className="container">
-        <div>
-          <h2 className="text-xl  text-primary font-[600] leading-[1.2] mb-3 lg:mb-[30px]">
-            Join Our Team
-          </h2>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-4 lg:gap-x-6 xxl:gap-x-10 mb-4 lg:mb-7">
-            <div className="relative w-full mb-2 md:mb-0 mt-2 md:mt-0">
-              <input
-                type="text"
-                placeholder="First Name"
-                className=" px-1 appearance-none bg-transparent border-0 border-b border-[#ieieie] focus:outline-none focus:ring-0 focus:border-[black] text-[#595959] text-xs py-2 pr-6 w-full"
-              />
-            </div>
-            <div className="relative w-full mb-2 md:mb-0 mt-2 md:mt-0">
-              <input
-                type="text"
-                placeholder="Last Name"
-                className=" px-1 appearance-none bg-transparent border-0 border-b border-[#ieieie] focus:outline-none focus:ring-0 focus:border-[black] text-[#595959] text-xs py-2 pr-6 w-full"
-              />
-            </div>
-          </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-4 lg:gap-x-6 xxl:gap-x-10 mb-4 lg:mb-7">
-            <div className="relative w-full mb-2 md:mb-0 mt-2 md:mt-0">
-              <input
-                type="email"
-                placeholder="Email"
-                className=" px-1 appearance-none bg-transparent border-0 border-b border-[#ieieie] focus:outline-none focus:ring-0 focus:border-[black] text-[#595959] text-xs py-2 pr-6 w-full"
-              />
-            </div>
-            <div className="relative w-full mb-2 md:mb-0 mt-2 md:mt-0">
-              <input
-                type="number"
-                placeholder="Phone Number"
-                className=" px-1 appearance-none bg-transparent border-0 border-b border-[#ieieie] focus:outline-none focus:ring-0 focus:border-[black] text-[#595959] text-xs py-2 pr-6 w-full"
-              />
-            </div>
-          </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-4 lg:gap-x-6 xxl:gap-x-10 mb-4 lg:mb-7">
-            <div className="relative w-full mb-2 md:mb-0 mt-2 md:mt-0 flex gap-4">
-            <p className="text-[16px] text-[#595959]">Gender</p>
-              <div>
-              <label className="inline-flex items-center cursor-pointer mr-3">
-              <input
-                type="radio"
-                name="option"
-                value="yes"
-                className="appearance-none w-5 h-5 border-2 border-green-500 rounded-full checked:bg-green-500 checked:border-green-500 transition duration-200"
-              />
-              <span className="ml-2 text-[#595959]">Male</span>
-              </label>
-              <label className="inline-flex items-center cursor-pointer mr-3">
-              <input
-                type="radio"
-                name="option"
-                value="yes"
-                className="appearance-none w-5 h-5 border-2 border-green-500 rounded-full checked:bg-green-500 checked:border-green-500 transition duration-200"
-              />
-              <span className="ml-2 text-[#595959]">Female</span>
-              </label>
-              <label className="inline-flex items-center cursor-pointer mr-3">
-              <input
-                type="radio"
-                name="option"
-                value="yes"
-                className="appearance-none w-5 h-5 border-2 border-green-500 rounded-full checked:bg-green-500 checked:border-green-500 transition duration-200"
-              />
-              <span className="ml-2 text-[#595959]">Others</span>
-            </label>
-              </div>
+  <motion.div
+    initial={{ opacity: 0, y: 40 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.6 }}
+  >
+    <motion.h2
+      className="text-xl text-primary font-[600] leading-[1.2] mb-3 lg:mb-[30px]"
+      initial={{ opacity: 0, x: -20 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      Join Our Team
+    </motion.h2>
 
-            </div>
+    {/* Reusable animation wrapper for fields */}
+    {[
+      ["First Name", "Last Name"],
+      ["Email", "Phone Number"],
+      ["Date of Birth", "Nationality"],
+      ["Current Location", "Work Experience"],
+    ].map((pair, idx) => (
+      <motion.div
+        key={idx}
+        className="grid grid-cols-1 lg:grid-cols-2 gap-x-4 lg:gap-x-6 xxl:gap-x-10 mb-4 lg:mb-7"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.1 * idx, duration: 0.6 }}
+        viewport={{ once: true }}
+      >
+        {pair.map((placeholder, i) => (
+          <div key={i} className="relative w-full mt-2">
+            <input
+              type={placeholder.includes("Email") ? "email" : placeholder.includes("Phone") ? "number" : "text"}
+              placeholder={placeholder}
+              className="px-1 appearance-none bg-transparent border-0 border-b border-[#ieieie] focus:outline-none focus:ring-0 focus:border-[black] text-[#595959] text-xs py-2 pr-6 w-full"
+            />
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-4 lg:gap-x-6 xxl:gap-x-10 mb-4 lg:mb-7">
-            <div className="relative w-full mb-2 md:mb-0 mt-2 md:mt-0">
+        ))}
+      </motion.div>
+    ))}
+
+    {/* Gender */}
+    <motion.div
+      className="grid grid-cols-1 lg:grid-cols-2 mb-4 lg:mb-7"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.4, duration: 0.6 }}
+      viewport={{ once: true }}
+    >
+      <div className="relative w-full flex gap-4 mt-2">
+        <p className="text-[16px] text-[#595959]">Gender</p>
+        <div className="flex gap-4">
+          {["Male", "Female", "Others"].map((gender, i) => (
+            <label key={i} className="inline-flex items-center cursor-pointer mr-3">
               <input
-                type="text"
-                placeholder="Date of Birth"
-                className=" px-1 appearance-none bg-transparent border-0 border-b border-[#ieieie] focus:outline-none focus:ring-0 focus:border-[black] text-[#595959] text-xs py-2 pr-6 w-full"
+                type="radio"
+                name="gender"
+                value={gender.toLowerCase()}
+                className="appearance-none w-5 h-5 border-2 border-green-500 rounded-full checked:bg-green-500 checked:border-green-500 transition duration-200"
               />
-            </div>
-            <div className="relative w-full mb-2 md:mb-0 mt-2 md:mt-0">
-              <input
-                type="text"
-                placeholder="Nationality"
-                className=" px-1 appearance-none bg-transparent border-0 border-b border-[#ieieie] focus:outline-none focus:ring-0 focus:border-[black] text-[#595959] text-xs py-2 pr-6 w-full"
-              />
-            </div>
-          </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-4 lg:gap-x-6 xxl:gap-x-10 mb-4 lg:mb-7">
-            <div className="relative w-full mb-2 md:mb-0 mt-2 md:mt-0">
-              <input
-                type="text"
-                placeholder="Current Location"
-                className=" px-1 appearance-none bg-transparent border-0 border-b border-[#ieieie] focus:outline-none focus:ring-0 focus:border-[black] text-[#595959] text-xs py-2 pr-6 w-full"
-              />
-            </div>
-            <div className="relative w-full mb-2 md:mb-0 mt-2 md:mt-0">
-              <input
-                type="text"
-                placeholder="Work Experience"
-                className=" px-1 appearance-none bg-transparent border-0 border-b border-[#ieieie] focus:outline-none focus:ring-0 focus:border-[black] text-[#595959] text-xs py-2 pr-6 w-full"
-              />
-            </div>
-          </div>
-          <div className="w-full lg:w-1/2">
+              <span className="ml-2 text-[#595959]">{gender}</span>
+            </label>
+          ))}
+        </div>
+      </div>
+    </motion.div>
+
+    {/* File Upload + Submit */}
+    <motion.div
+      className="w-full lg:w-1/2"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.5, duration: 0.6 }}
+      viewport={{ once: true }}
+    >
       <label
         htmlFor="file-upload"
         className="cursor-pointer bg-[#1E1E1E1A] p-6 rounded-2xl shadow-sm flex items-center space-x-4 w-full"
       >
-        <div className="text-2xl text-gray-700"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="28" viewBox="0 0 22 28" fill="none">
-<path d="M13.8571 1V6.77778C13.8571 7.16087 14.0077 7.52827 14.2756 7.79915C14.5435 8.07004 14.9068 8.22222 15.2857 8.22222H21M13.8571 1H3.85714C3.09938 1 2.37266 1.30436 1.83684 1.84614C1.30102 2.38791 1 3.12271 1 3.88889V24.1111C1 24.8773 1.30102 25.6121 1.83684 26.1539C2.37266 26.6956 3.09938 27 3.85714 27H18.1429C18.9006 27 19.6273 26.6956 20.1632 26.1539C20.699 25.6121 21 24.8773 21 24.1111V8.22222M13.8571 1L21 8.22222M6.71429 9.66667H8.14286M6.71429 15.4444H15.2857M6.71429 21.2222H15.2857" stroke="#1F1F1F" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg></div>
+        <div className="text-2xl text-gray-700">
+          {/* Your SVG icon here */}
+        </div>
         <div className="text-sm text-[gray-700]">
           <p>
             {fileName || (
-              <>
-                  <span className="text-[1F1F1FB5] font-400 text-[16px]">Max. 10 MB.  pdf, doc, docx</span>
-              </>
+              <span className="text-[1F1F1FB5] font-400 text-[16px]">
+                Max. 10 MB. pdf, doc, docx
+              </span>
             )}
           </p>
         </div>
@@ -197,13 +170,16 @@ const JoinTeam: React.FC<PlatformsSectionProps> = () => {
         />
       </label>
 
-      <button className="mt-6 min-w-[173px] bg-[#0A2657] text-white text-[16px] font-[400] px-8 py-4 rounded-full shadow-md hover:bg-primary transition duration-300">
+      <motion.button
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        className="mt-6 min-w-[173px] bg-[#0A2657] text-white text-[16px] font-[400] px-8 py-4 rounded-full shadow-md hover:bg-primary transition duration-300"
+      >
         SUBMIT
-      </button>
-    </div>
-
-        </div>
-      </div>
+      </motion.button>
+    </motion.div>
+  </motion.div>
+</div>
     </section>
   );
 };

@@ -30,6 +30,14 @@ const HeroInner: React.FC<HeroSectionProps> = ({
       transition: { duration: 0.8, ease: "easeOut" },
     },
   };
+  const textVariantsleft = {
+    hidden: { opacity: 0, x: -20 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.8, ease: "easeOut" },
+    },
+  };
 
   return (
     <section className="relative w-full md:h-[500px] h-[400px] overflow-hidden  ovrbanner">
@@ -43,6 +51,7 @@ const HeroInner: React.FC<HeroSectionProps> = ({
             fill
             objectFit="cover"
             alt={title}
+            priority
           />
         </figure>
 
@@ -61,6 +70,8 @@ const HeroInner: React.FC<HeroSectionProps> = ({
               {title && title}
             </span>
           </motion.h1>
+          <motion.div
+            variants={textVariantsleft}>
           <ul className="flex items-center flex-wrap gap-2 mb-5 lg:mb-[70px]">
             {breadcrumbs.map((breadcrumb, index) => (
               <li
@@ -93,6 +104,7 @@ const HeroInner: React.FC<HeroSectionProps> = ({
               </li>
             ))}
           </ul>
+          </motion.div>
         </motion.div>
       </div>
     </section>

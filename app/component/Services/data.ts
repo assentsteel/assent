@@ -37,3 +37,9 @@ export const boxcontent = {
     },
   ],
 };
+export const textrts =
+    {
+
+      title: "Safe & Efficient Steel Erection Solutions",
+      desc: "With over a decade of experience, ASSENT STEEL INDUSTRIES L.L.C is a trusted steel erection company in Dubai, UAE. We provide complete, integrated erection and construction solutions, capable of installing up to 4,000 tonnes of structural steel per month. Our skilled team ensures efficient planning, from material delivery to installation, optimizing cost, time, and safety. Working alongside industry experts, we deliver customized, stable, and high-quality erection solutions tailored to project needs.",
+    }

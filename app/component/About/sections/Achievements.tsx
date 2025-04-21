@@ -20,14 +20,26 @@ const Achievements: React.FC<PlatformsSectionProps> = ({AreaExpertise
 }) => {
   const containerRef = useRef(null);
 
-  const textContainerVariants = {
-    hidden: { opacity: 0 },
+  const containerVariants = {
+    hidden: {},
     visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.3, delayChildren: 0.5 },
+      transition: {
+        staggerChildren: 0.2,
+      },
     },
   };
 
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    },
+  };
   useEffect(() => {
     if (containerRef.current) {
       gsap.from(containerRef.current, {
@@ -45,35 +57,45 @@ const Achievements: React.FC<PlatformsSectionProps> = ({AreaExpertise
   }, []);
 
   return (
-    <section className="py-[50px] md:py-[70px] xl:py-[100px]   overflow-hidden relative ">
-      <div className="container">
-        <div className="left-spacing border-t">
+    <section className="py-0 md:py-[70px] xl:py-[100px]   overflow-hidden relative ">
 
-          <div className="grid grid-cols-12    ">
-            {AreaExpertise.map((item) => (
-              <div className="col-span-12 md:col-span-6 xl:col-span-3  py-10  group hrgr" key={item.id}>
-                <div className=" sepses px-4 py-2 md:px-10  md:py-4">
-                  <motion.div
-                    variants={textContainerVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, amount: 0.3 }}
-                  >
-                    <div className="overflow-hidden ">
-                      <motion.p className="  text-primary font-[600] text-40 mb-[4px]  ">
-                        {item.title}<span className="text-sm">{item.smalltext}</span>
-                      </motion.p>
-                      <motion.p className="text-md text-territory leading-[1.6]">
-                        {item.subtitle}
-                      </motion.p>
-                    </div>
-                  </motion.div>
-                </div>
-              </div>
-             ))}
+<div className="container">
+  <div className="border-t">
+    <motion.div
+      className="grid grid-cols-12"
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+    >
+      {AreaExpertise.map((item) => (
+        <motion.div
+          key={item.id}
+          className="col-span-12 md:col-span-6 xl:col-span-3 py-7 md:py-10 group hrgr"
+          variants={cardVariants}
+        >
+          <div className="sepses px-4 py-2 md:px-10 md:py-4 group-hover:border-0">
+            <div className="overflow-hidden">
+              <motion.p
+                className="text-primary font-[600] text-40 mb-[4px]"
+                variants={cardVariants}
+              >
+                {item.title}
+                <span className="text-sm">{item.smalltext}</span>
+              </motion.p>
+              <motion.p
+                className="text-md text-territory leading-[1.6]"
+                variants={cardVariants}
+              >
+                {item.subtitle}
+              </motion.p>
+            </div>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      ))}
+    </motion.div>
+  </div>
+</div>
     </section>
   );
 };

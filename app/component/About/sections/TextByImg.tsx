@@ -4,6 +4,7 @@ import Image, { StaticImageData } from "next/image";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { motion } from "framer-motion";
 gsap.registerPlugin(ScrollTrigger);
 
 interface PlatformsItem {
@@ -20,7 +21,29 @@ const TextByImg: React.FC<PlatformsSectionProps> = ({data
 }) => {
 
   const containerRef = useRef(null);
+  const textVariants = {
+    hidden: { opacity: 0, x: -30 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    },
+  };
 
+  const imageVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut",
+      },
+    },
+  };
 
   useEffect(() => {
     if (containerRef.current) {
@@ -41,32 +64,59 @@ const TextByImg: React.FC<PlatformsSectionProps> = ({data
   return (
     <section className="py-[50px] md:py-[70px] xl:py-[100px]   overflow-hidden relative ">
       <div className="container">
-        <div className="lg:flex items-center">
-          <div className="w-full lg:w-1/2 pr-0 lg:pr-[44px]">
-            {data.map((item) => (
-              <div className="mb-8 lg:mb-0" key={item.id}>
-                <h2 className="text-xl  text-primary font-[600] leading-[1.2] mb-4 lg:mb-10">{item.title}</h2>
+  <div className="lg:flex items-center">
+    {/* Text Section */}
+    <div
+      className="w-full lg:w-1/2 pr-0 lg:pr-[44px]"
 
-                <div className="text-territory text-base font-[400] leading-[1.8] mb-6 lg:mb-10">
-                  {item.paragraphs.map((paragraph, index) => (
-                    <p key={index} className="mb-4">{paragraph}</p>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="w-full lg:w-1/2 pl-0 lg:pl-[44px]">
 
-            {data.map((item) => (
-              <div className=" " key={item.id}>
-                <figure className="image-wrapper ">
-                  <Image src={item.image} alt="A beautiful view" className="rounded-[15px]" />
-                </figure>
-              </div>
+
+    >
+      {data.map((item) => (
+        <div className="mb-8 lg:mb-0" key={item.id}>
+          <motion.h2 className="text-xl text-primary font-[600] leading-[1.2] mb-4 lg:mb-10"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={textVariants}
+            initial="hidden"
+            whileInView="visible">
+            {item.title}
+          </motion.h2>
+
+          <motion.div className="text-territory text-base font-[400] leading-[1.8] mb-6 lg:mb-10"
+          initial="hidden"
+          whileInView="visible"
+          variants={imageVariants}
+          viewport={{ once: true, amount: 0.2 }}>
+            {item.paragraphs.map((paragraph, index) => (
+              <p key={index} className="mb-4">{paragraph}</p>
             ))}
-          </div>
+          </motion.div>
         </div>
-      </div>
+      ))}
+    </div>
+
+    {/* Image Section */}
+    <motion.div
+      className="w-full lg:w-1/2 pl-0 lg:pl-[44px]"
+      initial="hidden"
+      whileInView="visible"
+      variants={imageVariants}
+      viewport={{ once: true, amount: 0.2 }}
+    >
+      {data.map((item) => (
+        <div key={item.id}>
+          <figure className="image-wrapper">
+            <Image
+              src={item.image}
+              alt="A beautiful view"
+              className="rounded-[15px]"
+            />
+          </figure>
+        </div>
+      ))}
+    </motion.div>
+  </div>
+</div>
     </section>
   );
 };

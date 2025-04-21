@@ -7,8 +7,16 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 
+interface PlatformsItem {
+  id: number;
+  heading: string;
+  paragraphs: string[];
+}
 
-const AboutUs = () => {
+interface PlatformsSectionProps {
+  data: PlatformsItem[];
+}
+const AboutUs: React.FC<PlatformsSectionProps> = ({ data }) => {
    const containerRef = useRef(null);
 
    const textContainerVariants = {
@@ -38,7 +46,18 @@ const AboutUs = () => {
       });
     }
   }, []);
-
+  const textVariants = {
+    hidden: (direction = "x") => ({
+      opacity: 0,
+      [direction]: direction === "x" ? -30 : 20,
+    }),
+    visible: {
+      opacity: 1,
+      x: 0,
+      y: 0,
+      transition: { duration: 0.5 },
+    },
+  };
   return (
     <section className="section-spacing   overflow-hidden relative  ">
       <div className="container">
@@ -62,22 +81,43 @@ const AboutUs = () => {
 
           </motion.div>
         </div>
-        <div className="col-span-12 lg:col-span-8 right-0 pl-[0px] lg:pl-[50px]">
-          <div >
-          <div className="overflow-hidden pb-2">
-            <motion.h2
-              className="text-xl  text-primary font-[600] leading-[1.2] mb-4 lg:mb-6"
-            >
-              Leading Steel Fabrication & Engineering Excellence in the GCC
-              </motion.h2>
-              <p className="text-sm font-normal mb-3 lg-mb-6 text-territory leading-[1.6]">A prominent member company of the ASGC Group, ASSENT STEEL INDUSTRIES L.L.C started in 2008 with a fully equipped and highly advanced Steel manufacturing company in Dubai and the GCC Region.</p>
 
-              <p className="text-sm font-normal text-territory leading-[1.6]">Today, ASSENT STEEL INDUSTRIES L.L.C is a leading Steel Fabrication and Erection company in the region, supported by a large steel engineering services facility to serve the requirements of industrial and commercial projects. Our team of industry experts focuses on delivering high-quality products and services to serve the high global demand for steel construction products.
+<motion.div
+  className="col-span-12 lg:col-span-8 right-0 pl-[0px] lg:pl-[50px]"
+>
+  <div>
+  <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
+      className=""
+              >
+                    {data.map((tes, index) => (
+                  <div key={index}>
+                 <motion.h2
+        className="text-xl text-primary font-[600] leading-[1.2] mb-4 lg:mb-6"
+        custom="x"
+        variants={textVariants}
+      >
+        {tes.heading}
+      </motion.h2>
 
-              </p>
-            </div>
-          </div>
-        </div>
+      {tes.paragraphs.map((text, index) => (
+        <motion.p
+          key={index}
+          className="text-sm font-normal mb-3 lg:mb-6 text-territory leading-[1.6]"
+          custom="y"
+          variants={textVariants}
+          transition={{ delay: 0.2 * (index + 1), duration: 0.5 }}
+        >
+          {text}
+        </motion.p>
+      ))}
+     </div>
+    ))}
+    </motion.div>
+  </div>
+</motion.div>
         </div>
         </div>
     </section>

@@ -5,14 +5,14 @@ import mn3 from "./img/about/mn3.jpg";
 import tabim from "./img/about/tabim.jpg";
 import abtsi from "./img/services/abtsi.jpg";
 import ser from "./img/services/ser.jpg";
-import slide from "./img/services/slide.jpg";
+import slide from "./img/services/slides.jpg";
 import tiles1 from "./img/services/tiles1.jpg";
 import tiles2 from "./img/services/tiles2.jpg";
 import tiles3 from "./img/services/tiles3.jpg";
 import tiles4 from "./img/services/tiles4.jpg";
 import pjt1 from "./img/project/pjt1.jpg";
 import pjt2 from "./img/project/pjt2.jpg";
-import pjt4 from "./img/project/pjt4.jpg";
+import pjt3 from "./img/project/pjt3.jpg";
 import pjt5 from "./img/project/pjt5.jpg";
 import pjt6 from "./img/project/pjt6.jpg";
 import pjt7 from "./img/project/pjt7.jpg";
@@ -60,7 +60,7 @@ import news8 from "./img/news/news8.jpg";
 import news9 from "./img/news/news9.jpg";
 import share from "./img/icons/share.svg";
 import linkedin from "./img/icons/ln.svg";
-import accbanner from "./img/accreditations/accrbanner.jpg";
+import accbanner from "./img/accreditations/banner.jpg";
 import cer1 from "./img/accreditations/cer1.jpg";
 import cer2 from "./img/accreditations/cer2.jpg";
 import cer3 from "./img/accreditations/cer3.jpg";
@@ -85,10 +85,36 @@ import phn from "./img/contact/phn.svg";
 import location from "./img/contact/location.png";
 import greenarrow from "./img/icons/greenarrow.svg";
 import slideimage from "./img/about/slideimage.jpg";
+import newsimg1 from "./img/news/new/news1.jpg";
+import newsimg2 from "./img/news/new/news2.jpg";
+import newsimg3 from "./img/news/new/news3.jpg";
+import newsimg4 from "./img/news/new/news4.jpg";
+import newsimg5 from "./img/news/new/news5.jpg";
+import newsimg6 from "./img/news/new/news6.jpg";
+import newsimg7 from "./img/news/new/news7.jpg";
+import newsimg8 from "./img/news/new/news8.jpg";
+import newsimg9 from "./img/news/new/news9.jpg";
+import newsimg10 from "./img/news/new/news10.jpg";
+import newsimg11 from "./img/news/new/news11.jpg";
+import newsimg12 from "./img/news/new/news12.jpg";
+
+
 
 
 
 export const assets = {
+  newsimg1,
+  newsimg2,
+  newsimg3,
+  newsimg4,
+  newsimg5,
+  newsimg6,
+  newsimg7,
+  newsimg8,
+  newsimg9,
+  newsimg10,
+  newsimg11,
+  newsimg12,
   slideimage,
   greenarrow,
   cbanner,
@@ -155,7 +181,7 @@ export const assets = {
   spec6,
   pjt1,
   pjt2,
-  pjt4,
+  pjt3,
   pjt5,
   pjt6,
   pjt7,

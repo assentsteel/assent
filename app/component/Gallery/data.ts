@@ -7,73 +7,73 @@ export const boxcontent = {
       id: 1,
       title: "Dubai International Airport Expansion",
       sector:"Airport",
-      image: assets.pjt1
+      image: assets.newsimg1
     },
     {
       id: 2,
       title: "Coca-Cola Arena",
       sector:"Arena/Stadiums",
-      image: assets.pjt2
+      image: assets.newsimg2
     },
     {
       id: 3,
       title: "Blue Water Residetial",
       sector:"Arena/Stadiums",
-      image: assets.pjt4
+      image: assets.newsimg3
     },
     {
       id: 4,
       title: "Cargo Mega Terminal",
       sector:"Airport",
-      image: assets.pjt4
+      image: assets.newsimg4
     },
     {
       id: 5,
       title: "Tennis Complex",
       sector:"Arena/Stadiums",
-      image: assets.pjt5
+      image: assets.newsimg5
     },
     {
       id: 6,
       title: "Deria Waterfront Development",
       sector:"Retail/Residential Building",
-      image: assets.pjt6
+      image: assets.newsimg6
     },
     {
       id: 7,
       title: "Kuwait International Airport",
       sector:"Arena/Stadiums",
-      image: assets.pjt7
+      image: assets.newsimg7
     },
     {
       id: 8,
       title: "AL Maktoum Stadium",
       sector:"Arena/Stadiums",
-      image: assets.pjt8
+      image: assets.newsimg8
     },
     {
       id: 9,
       title: "Dubai Terminal Building",
       sector:"Retail/Residential Building",
-      image: assets.pjt9
+      image: assets.newsimg9
     },
     {
       id: 10,
       title: "Emirate International School",
       sector:"Education",
-      image: assets.pjt10
+      image: assets.newsimg10
     },
     {
       id: 11,
       title: "Route 2020 Metro",
       sector:"Metro Rail- Stations",
-      image: assets.pjt11
+      image: assets.newsimg11
     },
     {
       id: 12,
       title: "Dubai Harbor Views",
       sector:"High Rise Tower",
-      image: assets.pjt12
+      image: assets.newsimg12
     },
   ],
 };
