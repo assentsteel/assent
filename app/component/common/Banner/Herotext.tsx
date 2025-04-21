@@ -1,5 +1,7 @@
 "use client";
 
+import { motion } from "framer-motion";
+
 
 interface HeroSectionProps {
   breadcrumbs: { label: string; href: string }[];
@@ -11,13 +13,36 @@ title,
   breadcrumbs,
 }) => {
 
-
+  const slideInLeft = {
+    hidden: { opacity: 0, x: -30 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+    exit: { opacity: 0, x: -30, transition: { duration: 0.4 } },
+  };
+  const slideInTop = {
+    hidden: { opacity: 0, y: 15 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+    exit: { opacity: 0, y: 15, transition: { duration: 0.4 } },
+  };
   return (
-     <section className="py-[50px] md:py-[70px] xl:py-[100px]   overflow-hidden relative ">
+     <section className="py-[30px] md:py-[70px] xl:py-[100px]   overflow-hidden relative ">
          <div className="container">
            <div className=" ">
-              <h1 className="text-xxl font-[600] text-territory mb-3 lg:mb-10 leading-[1]">{title}</h1>
-              <ul className="flex items-center flex-wrap gap-2 ">
+              <motion.h1  variants={slideInLeft}
+    initial="hidden"
+    animate="visible"
+    exit="exit" className="text-xxl font-[600] text-territory mb-3 lg:mb-10 leading-[1]">{title}</motion.h1>
+              <motion.ul className="flex items-center flex-wrap gap-2 " variants={slideInTop}
+    initial="hidden"
+    animate="visible"
+    exit="exit">
             {breadcrumbs.map((breadcrumb, index) => (
               <li
                 key={index}
@@ -43,7 +68,7 @@ title,
                 {index < breadcrumbs.length - 1 &&   <svg stroke="#5BA646" fill="#5BA646" strokeWidth="0" viewBox="0 0 320 512" height="12px" width="7px" xmlns="http://www.w3.org/2000/svg"><path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"></path></svg> }
               </li>
             ))}
-          </ul>
+          </motion.ul>
            </div>
          </div>
        </section>

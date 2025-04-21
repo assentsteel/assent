@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import Image, { StaticImageData } from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { motion } from "framer-motion";
 gsap.registerPlugin(ScrollTrigger);
 
 interface PlatformsItem {
@@ -34,19 +35,39 @@ const HeadingText: React.FC<PlatformsSectionProps> = ({ data }) => {
       });
     }
   }, []);
-
+  const containerVariants = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  };
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+  };
   return (
-    <section className="pb-[50px] md:pb-[70px] xl:pb-[100px]  overflow-hidden relative  ">
+    <section className="pb-[50px] md:pb-[70px] xl:pb-[100px]    relative  ">
       <div className="container">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 ">
+        <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 "
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}>
           {data.map((item, index) => (
-            <div key={index}>
-              <div className="relative group">
+    <motion.div key={index} variants={itemVariants}>
+               <motion.div
+        className="relative group"
+        whileHover={{ scale: 1.015 }}
+        transition={{ type: "spring", stiffness: 300 }}
+      >
                 <figure className="overlayclr">
                   <Image
                     src={item.image}
                     alt=""
                     className="rounded-[15px]   w-full object-cover"
+                    priority
                   />
                 </figure>
                 <div className="absolute top-5 right-5   text-white">
@@ -74,10 +95,10 @@ const HeadingText: React.FC<PlatformsSectionProps> = ({ data }) => {
                 </div>
 
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
         <div className="text-center">
         <button className="border whitespace-nowrap font-[500] border-secondary text-xs text-territory uppercase rounded-full py-[8px] px-[20px] mt-5 md:mt-[60px] w-fit">Load More</button>
 

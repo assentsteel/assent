@@ -1,6 +1,7 @@
 import React from "react";
 import Herotext from "../common/Banner/Herotext";
 import NewsDetails from "./sections/NewsDetails";
+import { newsdtails } from "./data";
 export default function Index() {
   const breadcrumb = [
     { label: "Home", href: "/" },
@@ -14,7 +15,7 @@ export default function Index() {
     <>
 
       <Herotext breadcrumbs={breadcrumb} title={"Team Outings"} />
-      <NewsDetails />
+      <NewsDetails data={newsdtails.data} />
 
 
     </>

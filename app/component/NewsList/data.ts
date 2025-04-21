@@ -68,3 +68,28 @@ export const news = {
     },
   ],
 };
+
+export const newsData = {
+  data: [{
+    id: 1,
+    image: assets.ren1,
+    date: "Jan 19, 2024",
+    title: "ASSENT STEEL’s Commitment to Employee Well-Being and Team Bonding Through..",
+    linkText: "Read More"
+  },
+  {
+    id: 2,
+    image: assets.ren2,
+    date: "Jan 19, 2024",
+    title: "Connecting Continents with Steel Excellence!",
+    linkText: "Read More"
+  },
+  {
+    id: 3,
+    image: assets.ren3,
+    date: "Jan 19, 2024",
+    title: "Cleaners Appreciation Award",
+    linkText: "Read More"
+  },
+  ],
+};

@@ -1,5 +1,5 @@
 import React from "react";
-import { news } from "./data";
+import { news,newsData } from "./data";
 
 import Herotext from "../common/Banner/Herotext";
 import Fillters from  "./sections/Fillters";
@@ -16,7 +16,7 @@ export default function Index() {
     <>
 
       <Herotext breadcrumbs={breadcrumb} title={"News"} />
-      <RecentNews />
+      <RecentNews data={newsData.data} />
       <Fillters />
       <NewsList data={news.data} />
 

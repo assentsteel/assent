@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 import Image, { StaticImageData } from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { motion } from "framer-motion";
 gsap.registerPlugin(ScrollTrigger);
 interface PlatformsItem {
   id: number;
@@ -33,23 +34,39 @@ const NewsList: React.FC<PlatformsSectionProps> = ({ data }) => {
       });
     }
   }, []);
+  const cardVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
 
   return (
-    <section className="pb-[50px] md:pb-[70px] xl:pb-[100px] overflow-hidden relative ">
+    <section className="pb-[50px] md:pb-[70px] xl:pb-[100px]   relative ">
       <div className="container">
-
         <div className="grid grid-cols-1 lg:grid-cols-2  xl:grid-cols-3 gap-x-4 lg:gap-x-6 xxl:gap-x-10 ">
           {data.map((item, index) => (
-
-            <div key={index} className="itemsmn">
-              <div className="relative group lg:h-auto  rounded-[15px]">
-                <figure className=" h-full  ">
+           <motion.div
+           key={index}
+           className="itemsmn"
+           variants={cardVariants}
+           initial="hidden"
+           whileInView="visible"
+           whileHover={{ y: -7 }}  // <-- This moves it up 10px on hover
+           transition={{ type: "spring", stiffness: 200 }}
+           viewport={{ once: true, amount: 0.2 }}
+         >
+              <div className="relative group lg:h-auto  rounded-[15px]"
+              >
+                <figure className=" h-full  " >
                   <Image
                     src={item.image}
                     alt=""
                     className="rounded-[15px]  h-full w-full object-cover"
                   />
-                </figure>
+                  </figure>
 
                 <div className=" pt-[10px] w-full">
                   <div className="flex justify-between items-center">
@@ -68,7 +85,8 @@ const NewsList: React.FC<PlatformsSectionProps> = ({ data }) => {
                       <p className="text-xs uppercase text-black font-[500] inline-flex  leading-[1] ">
                         Read More
                       </p>
-                      <div className="min-w-[20px] min-h-[20px]   bg-black rounded-full flex items-center justify-center translate-x-0 group-hover:translate-x-[5px] transition-all duration-500">
+                      <motion.div whileHover={{ x: 5 }}
+  transition={{ type: "spring", stiffness: 300 }} className="min-w-[20px] min-h-[20px]   bg-black rounded-full flex items-center justify-center translate-x-0 group-hover:translate-x-[5px] transition-all duration-500">
                         <svg
                           stroke="#5BA646"
                           fill="#5BA646"
@@ -80,31 +98,31 @@ const NewsList: React.FC<PlatformsSectionProps> = ({ data }) => {
                         >
                           <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"></path>
                         </svg>
-                      </div>
+                      </motion.div>
                     </div>
                   </div>
                 </div>
               </div>
               <div className="locks  lg:block lg:col-span-2 xl:col-span-3 h-[1px] bg-[#ccc] my-8 xl:my-[60px]"></div>
-            </div>
+            </motion.div>
           ))}
         </div>
         <div className="text-center mt-5 md:mt-[60px]">
-          <button className="border flex gap-3 items-center justify-center m-auto whitespace-nowrap font-[500] border-secondary text-xs text-territory uppercase rounded-full py-[8px] px-[20px]  w-fit">Load More
-          <svg
-                          stroke="#000"
-                          fill="#000"
-                          strokeWidth="0"
-                          viewBox="0 0 320 512"
-                          height="10px"
-                          width="8px"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"></path>
-                        </svg>
-        </button>
-
-       </div>
+          <button className="border flex gap-3 items-center justify-center m-auto whitespace-nowrap font-[500] border-secondary text-xs text-territory uppercase rounded-full py-[8px] px-[20px]  w-fit">
+            Load More
+            <svg
+              stroke="#000"
+              fill="#000"
+              strokeWidth="0"
+              viewBox="0 0 320 512"
+              height="10px"
+              width="8px"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"></path>
+            </svg>
+          </button>
+        </div>
       </div>
     </section>
   );

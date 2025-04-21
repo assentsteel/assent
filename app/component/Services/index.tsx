@@ -1,5 +1,5 @@
 import React from "react";
-import {singletextimg,boxcontent} from "./data";
+import {singletextimg,boxcontent,textrts} from "./data";
 import SingleImage from "./sections/SingleImage";
 import Herotext from "../common/Banner/Herotext";
 import ContentText from "./sections/ContentText";
@@ -17,7 +17,7 @@ export default function Index() {
 
       <Herotext  breadcrumbs={breadcrumb} title={"Steel Erection"} />
       <SingleImage />
-      <ContentText />
+      <ContentText data={textrts} />
       <SingleImageText data={singletextimg.data}  />
       <HeadingText data={boxcontent.data} />
 

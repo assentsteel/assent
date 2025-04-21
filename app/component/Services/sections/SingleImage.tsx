@@ -9,6 +9,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
+import { motion } from "framer-motion";
 
 const images = [assets.slide, assets.slide];
 
@@ -32,12 +33,24 @@ const SingleImage = ({}) => {
       });
     }
   }, []);
-
+  const slideInLeft = {
+    hidden: { opacity: 0, x: -30 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+    exit: { opacity: 0, x: -30, transition: { duration: 0.4 } },
+  };
   return (
     <section className="overflow-hidden relative ">
       <div className="container">
         <div className=" ">
           <div className="relative w-full  ">
+            <motion.div  variants={slideInLeft}
+    initial="hidden"
+    animate="visible"
+    exit="exit">
             <Swiper
               modules={[Navigation]}
               navigation={{
@@ -65,6 +78,7 @@ const SingleImage = ({}) => {
                     width={600}
                     height={400}
                     className="w-full h-auto object-cover"
+                    priority
                   />
                 </SwiperSlide>
               ))}
@@ -96,7 +110,8 @@ const SingleImage = ({}) => {
                   className="group-hover:brightness-0 group-hover:invert rotate-180"
                 />
               </button>
-            </div>
+              </div>
+              </motion.div>
           </div>
         </div>
       </div>

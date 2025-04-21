@@ -3,6 +3,7 @@ import { useEffect, useRef,useState } from "react";
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { motion } from "framer-motion";
 gsap.registerPlugin(ScrollTrigger);
 
 const Fillters = ({}) => {
@@ -26,10 +27,21 @@ const Fillters = ({}) => {
       });
     }
   }, []);
-
+  const slideInLeft = {
+    hidden: { opacity: 0, x: -30 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+    exit: { opacity: 0, x: -30, transition: { duration: 0.4 } },
+  };
   return (
     <section className=" pt-[50px] md:pt-[70px] xl:pt-[100px]   overflow-hidden relative ">
-      <div className="container">
+      <motion.div  variants={slideInLeft}
+    initial="hidden"
+    whileInView="visible"
+    exit="exit"className="container">
         <div className="lg:flex gap-20 mb-5 lg:mb-10 pb-5 lg:pb-10 border-b border-#00000015">
         <div className="md:flex w-full items-center uppercase text-md font-[500] gap-3 lg:gap-10 mb-5 lg:mb-0 ">
           <p>Filter</p>
@@ -99,8 +111,8 @@ const Fillters = ({}) => {
 
           <div className="relative w-full flex items-center mb-2 md:mb-0 mt-2 md:mt-0">
           <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none" className="absolute">
-            <path d="M11.1235 20.0516C15.9379 20.0516 19.8407 16.1015 19.8407 11.2289C19.8407 6.35629 15.9379 2.40625 11.1235 2.40625C6.30909 2.40625 2.40625 6.35629 2.40625 11.2289C2.40625 16.1015 6.30909 20.0516 11.1235 20.0516Z" stroke="#595959" strokeWidth="1.5" stroke-miterlimit="10"/>
-            <path d="M17.4141 17.3203L23.6072 23.5884" stroke="#595959" strokeWidth="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M11.1235 20.0516C15.9379 20.0516 19.8407 16.1015 19.8407 11.2289C19.8407 6.35629 15.9379 2.40625 11.1235 2.40625C6.30909 2.40625 2.40625 6.35629 2.40625 11.2289C2.40625 16.1015 6.30909 20.0516 11.1235 20.0516Z" stroke="#595959" strokeWidth="1.5" strokeMiterlimit="10"/>
+            <path d="M17.4141 17.3203L23.6072 23.5884" stroke="#595959" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           <input
             type="text"
@@ -112,7 +124,7 @@ const Fillters = ({}) => {
           </div>
           <button className="border whitespace-nowrap font-[500] border-secondary text-xs text-territory uppercase rounded-full py-[8px] px-[20px]">Clear filter</button>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

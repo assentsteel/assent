@@ -12,7 +12,7 @@ export default function Index() {
 
   return (
     <>
-<HeroInner          imageSrc="/assets/img/accreditations/accrbanner.jpg"
+<HeroInner          imageSrc="/assets/img/accreditations/banner.jpg"
         title="Awards and Accreditations"
         breadcrumbs={breadcrumb}
       />

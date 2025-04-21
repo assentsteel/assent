@@ -19,13 +19,13 @@ export const boxcontent = {
       id: 3,
       title: "Blue Water Residetial",
       sector:"Arena/Stadiums",
-      image: assets.pjt4
+      image: assets.pjt3
     },
     {
       id: 4,
       title: "Cargo Mega Terminal",
       sector:"Airport",
-      image: assets.pjt4
+      image: assets.pjt3
     },
     {
       id: 5,

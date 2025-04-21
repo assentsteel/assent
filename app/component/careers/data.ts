@@ -60,20 +60,56 @@ export const boxcontent = {
     }
   ],
 };
+
 export const textimg = {
   data: [
     {
       id: 1,
-      title: "Dubai International Airport Expansion",
+      title: "Sustainability & Ethics",
       paragraphs: [
-        "Dubai International Airport expansion (SP070-Concourse C, B &, T1) will raise the capacity of the airport from 60 million to 90 million passengers per year by 2018. The project also involves construction of additional terminal space in terminal 2 and concourse 4 covering an extra areas of 675,000 square meters of floor space.",
+        "Assent Steel is dedicated to integrating environmental and social considerations into its operations. The company aligns its practices with the UN's Sustainable Development Goals."
+      ],
+      image: assets.cmn1
+    },
 
-        "The project will also extend the arrivals hall to include more food and retail outlets. The arrival immigration hall will be upgraded to reduce processing time for arriving passengers. The renovation will also involve the replacement of all check-in desks and a more spacious departure hall."
+    {
+      id: 2,
+      title: "Strong Core Values",
+      paragraphs: [
+        "Assent Steel is dedicated to integrating environmental and social considerations into its operations. The company aligns its practices with the UN's Sustainable Development Goals."
+      ],
+      image: assets.cmn1
+    },
+
+    {
+      id: 3,
+      title: "Focus on Employee Well-being",
+      paragraphs: [
+        "Assent Steel is dedicated to integrating environmental and social considerations into its operations. The company aligns its practices with the UN's Sustainable Development Goals."
+      ],
+      image: assets.cmn1
+    },
+
+    {
+      id: 4,
+      title: "Opportunities for Professional Development",
+      paragraphs: [
+        "Assent Steel is dedicated to integrating environmental and social considerations into its operations. The company aligns its practices with the UN's Sustainable Development Goals."
+      ],
+      image: assets.cmn1
+    },
+
+    {
+      id: 5,
+      title: "Innovation & Growth-Driven Culture",
+      paragraphs: [
+        "Assent Steel is dedicated to integrating environmental and social considerations into its operations. The company aligns its practices with the UN's Sustainable Development Goals."
       ],
       image: assets.cmn1
     }
-  ],
+  ]
 };
+
 export const singletextimg = {
   data: [
     {
