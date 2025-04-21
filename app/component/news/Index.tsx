@@ -1,7 +1,8 @@
 import React from "react";
-import { news} from "./data";
+import { news } from "./data";
+
 import Herotext from "../common/Banner/Herotext";
-import Fillters from "./sections/Fillters";
+import Fillters from  "./sections/Fillters";
 import RecentNews from "./sections/RecentNews";
 import NewsList from "./sections/NewsList";
 export default function Index() {
@@ -9,7 +10,6 @@ export default function Index() {
     { label: "Home", href: "/" },
     { label: "News", href: "" },
 
-    // { label: `${data && data.data.sector}`, href: "#" },
   ];
 
   return (
@@ -22,5 +22,6 @@ export default function Index() {
 
 
     </>
+
   );
 }
