@@ -99,12 +99,12 @@ const HeroSection = () => {
       >
         {slides.map((slide, index) => (
           <SwiperSlide key={index}>
-            <div className=" w-full h-full mx-auto">
+            <div className="w-full h-full mx-auto">
+              <div className="overlay absolute w-full h-full bg-gradient-to-t from-black to-transparent z-[1]"></div>
               <div
-                className="relative w-full h-full mx-auto"
+                className="w-full h-full mx-auto"
                 ref={containerRef}
               >
-                <div className="overlay absolute w-full h-full bg-gradient-to-t from-black to-transparent z-[1]"></div>
                 {/* Video Slide with Poster */}
                 {slide.type === "video" ? (
                   <video

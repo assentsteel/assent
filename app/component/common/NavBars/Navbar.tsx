@@ -49,9 +49,9 @@ const Navbar = () => {
       <header
         className={`${
           hasBackground
-            ? "bg-white backdrop-blur-[10px] text-black shadow-md "
+            ? "bg-white backdrop-blur-[10px] text-black shadow-md"
             : "bg-transparent text-white tanspheader"
-        } transition duration-300 ease-in-out w-full  top-0 z-10`}>
+        } transition duration-300 ease-in-out w-full  top-0 z-50 relative`}>
         {/* <div className='flex items-center'>
    <div className="hidden md:flex space-x-6 text-gray-800 text-sm uppercase">
      <Link href="/about">
