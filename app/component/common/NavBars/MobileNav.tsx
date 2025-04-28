@@ -63,7 +63,7 @@ const MobileNav = () => {
         <div className="min-h-full px-6 pt-[30px] pb-[40px] flex flex-col relative">
           {/* Close Button */}
           <button
-            className="absolute top-8 right-4 text-[25px] text-primary font-600"
+            className="absolute top-8 right-4 text-[25px] text-primary font-[600]"
             onClick={() => setMenuOpen(false)}>
             ✕
           </button>

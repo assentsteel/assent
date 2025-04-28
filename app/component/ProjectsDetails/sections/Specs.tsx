@@ -52,7 +52,7 @@ const Specs: React.FC<PlatformsSectionProps> = ({ data }) => {
         viewport={{ once: true, amount: 0.4 }}
       >
       <div className="py-[50px] md:py-[70px] xl:py-[100px] bg-[#18355F] rounded-[15px]">
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-6 md:gap-y-[80px] gap-x-6 xxl:gap-x-[30px] px-6 md:px-10 lg:px-[200px]">
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-6 md:gap-y-[80px] gap-x-6 xxl:gap-x-[60px] px-6 md:px-10 lg:px-[150px]">
     {data.map((item, index) => (
       <motion.div
         key={index}

@@ -72,7 +72,7 @@ const AccreditationsList: React.FC<PlatformsSectionProps> = ({ data }) => {
                 <p className="text-md text-white font-[600] pr-0 lg:pr-6">
                   {item.title}
                 </p>
-                <div className="flex gap-2 items-center transform opacity-0 group-hover:opacity-100 transition-all duration-500 h-0 group-hover:h-[30px] md:group-hover:h-[48px]">
+                <div className="flex gap-2 items-center transform opacity-0 group-hover:opacity-100 transition-all duration-300 h-0 group-hover:h-[30px] md:group-hover:h-[48px]">
                   <div className="w-full border-b-2 border-white transition-all duration-500 group-hover:border-secondary"></div>
                   <div className="min-w-[30px] min-h-[30px] lg:min-w-[48px] lg:min-h-[48px] bg-secondary rounded-full flex items-center justify-center translate-x-[-20px] group-hover:translate-x-0 transition-all duration-500">
                     {/* SVG Icon */}

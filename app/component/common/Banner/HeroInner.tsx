@@ -64,7 +64,7 @@ const HeroInner: React.FC<HeroSectionProps> = ({
 
           <motion.h1
             variants={textVariants}
-            className="text-white text-xxl leading-none  font-600 mb-5 lg:mb-9">
+            className="text-white text-xxl leading-none  font-[600] mb-5 lg:mb-9">
             <span
              >
               {title && title}
