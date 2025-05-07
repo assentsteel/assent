@@ -101,7 +101,7 @@ const HeadingText: React.FC<PlatformsSectionProps> = ({data
             </div>
           </div>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-5 lg:mt-[60px]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[30px] mt-5 lg:mt-[60px]">
         {data.map((item, index) => (
   <motion.div
     key={index}
@@ -119,9 +119,9 @@ const HeadingText: React.FC<PlatformsSectionProps> = ({data
         />
       </motion.figure>
 
-      <div className="absolute bottom-0 px-5 pb-5">
+      <div className="absolute bottom-0 px-4 pb-4 lg:px-[30px] lg:pb-[30px]">
         <motion.p
-          className="text-md text-white font-[600] pb-5 border-b-2 border-white transform transition-transform duration-500 group-hover:border-secondary"
+          className="text-md xl:text-[23px] text-white font-[600] pb-5 border-b-2 border-white transform transition-transform duration-500 group-hover:border-secondary"
           whileHover={{ x: 5 }}
           transition={{ type: "spring", stiffness: 300 }}
         >

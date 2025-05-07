@@ -5,6 +5,7 @@ import Image, { StaticImageData } from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
+import Link from "next/link";
 gsap.registerPlugin(ScrollTrigger);
 
 interface PlatformsItem {
@@ -12,6 +13,7 @@ interface PlatformsItem {
   title: string;
   sector: string;
   image: string | StaticImageData;
+  urldata: string;
 }
 
 interface PlatformsSectionProps {
@@ -62,6 +64,7 @@ const HeadingText: React.FC<PlatformsSectionProps> = ({ data }) => {
         whileHover={{ scale: 1.015 }}
         transition={{ type: "spring", stiffness: 300 }}
       >
+                <Link href={item.urldata}>
                 <figure className="overlayclr">
                   <Image
                     src={item.image}
@@ -94,7 +97,8 @@ const HeadingText: React.FC<PlatformsSectionProps> = ({ data }) => {
                   </div>
                 </div>
 
-                </div>
+                  </div>
+                </Link>
               </motion.div>
             </motion.div>
           ))}

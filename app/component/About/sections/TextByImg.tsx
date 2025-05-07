@@ -15,9 +15,10 @@ interface PlatformsItem {
 }
 
 interface PlatformsSectionProps {
+  kmbtn?: boolean;
   data: PlatformsItem[];
 }
-const TextByImg: React.FC<PlatformsSectionProps> = ({data
+const TextByImg: React.FC<PlatformsSectionProps> = ({data,kmbtn
 }) => {
 
   const containerRef = useRef(null);
@@ -62,7 +63,7 @@ const TextByImg: React.FC<PlatformsSectionProps> = ({data
   }, []);
 
   return (
-    <section className="py-[50px] md:py-[70px] xl:py-[100px]   overflow-hidden relative ">
+    <section className="py-[50px] md:py-[70px] xl:py-[100px] pts  overflow-hidden relative ">
       <div className="container">
   <div className="lg:flex items-center">
     {/* Text Section */}
@@ -91,6 +92,11 @@ const TextByImg: React.FC<PlatformsSectionProps> = ({data
               <p key={index} className="mb-4">{paragraph}</p>
             ))}
           </motion.div>
+          {kmbtn &&
+            <button className="mt-auto border border-secondary py-2 px-6 rounded-full hover:bg-secondary hover:text-white transition text-xs h-[40px] lg:h-[48px] text-territory max-w-[315px] w-[315px] font-medium uppercase">
+              view more
+            </button>
+          }
         </div>
       ))}
     </div>
@@ -108,7 +114,7 @@ const TextByImg: React.FC<PlatformsSectionProps> = ({data
           <figure className="image-wrapper">
             <Image
               src={item.image}
-              alt="A beautiful view"
+              alt=""
               className="rounded-[15px]"
             />
           </figure>

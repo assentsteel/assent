@@ -3,11 +3,12 @@ import HeroInner from "../common/Banner/HeroInner";
 import AboutUs from "./sections/AboutUs";
 import Achievements from "./sections/Achievements";
 import {AreaExpertise,textimg,singletextimg,tabcnts,sliderdata,about} from "./data";
-import SingleImage from "./sections/SingleImage";
 import TextByImg from "./sections/TextByImg";
-import SingleImageText from "./sections/SingleImageText";
 import Tabsection from "./sections/Tabsection";
 import Aboutslider from "./sections/Aboutslider";
+import SingleImageText from "../common/SingleImageText";
+import { assets } from "@/public/assets/assets";
+import SingleImage from "./sections/SingleImage";
 export default function Index() {
   const breadcrumb = [
     { label: "Home", href: "/" },
@@ -22,13 +23,13 @@ export default function Index() {
         title="Our Journey Forward"
         breadcrumbs={breadcrumb}
       />
-      <AboutUs data={about.data} />
+      <AboutUs data={about} />
       <Achievements AreaExpertise={AreaExpertise.data} />
-      <SingleImage />
+      <SingleImage secimage={assets.single}/>
       <TextByImg data={textimg.data} />
       <Aboutslider data={sliderdata.data} />
-      <SingleImageText data={singletextimg.data}    />
-      <Tabsection data={tabcnts.data}  />
+      <SingleImageText data={singletextimg.data} textright={true}  maxwidth={'max-w-[56ch]'} />
+      <Tabsection data={tabcnts}  />
 
     </>
   );

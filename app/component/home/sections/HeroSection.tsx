@@ -65,7 +65,7 @@ const HeroSection = () => {
     <section className="relative w-full h-[90vh] overflow-hidden">
       <Swiper
         modules={[Autoplay, Pagination]}
-        autoplay={{ delay: 10000, disableOnInteraction: false }}
+        autoplay={{ delay: 3000, disableOnInteraction: false }}
         pagination={{
           el: ".custom-pagination",
           clickable: true,

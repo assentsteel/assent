@@ -5,12 +5,14 @@ import Image, { StaticImageData } from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
+import Link from "next/link";
 gsap.registerPlugin(ScrollTrigger);
 
 interface PlatformsItem {
   id: number;
   title: string;
   sector: string;
+  urlss: string;
   image: string | StaticImageData;
 }
 
@@ -66,6 +68,7 @@ const HeadingText: React.FC<PlatformsSectionProps> = ({ data }) => {
         whileHover={{ scale: 1.015 }}
         transition={{ type: "spring", stiffness: 300 }}
       >
+         <Link href={item.urlss}>
         <figure className="overlayclr">
           <Image
             src={item.image}
@@ -75,12 +78,13 @@ const HeadingText: React.FC<PlatformsSectionProps> = ({ data }) => {
           />
         </figure>
 
-        <div className="absolute bottom-0 px-5 pb-5 w-full">
+        <div className="absolute bottom-0 px-5 pb-5 lg:px-[30px] lg:pb-[30px] w-full">
           <p className="text-md text-white font-[600] pr-0 lg:pr-6">
             {item.title}
           </p>
           <div className="flex gap-2 items-center transform opacity-0 group-hover:opacity-100 transition-all duration-500 h-0 group-hover:h-[30px] md:group-hover:h-[48px]">
-            <div className="w-full border-b-2 border-white transition-all duration-500 group-hover:border-secondary"></div>
+
+              <div className="w-full border-b-2 border-white transition-all duration-500 group-hover:border-secondary"></div>
             <div className="min-w-[30px] min-h-[30px] lg:min-w-[48px] lg:min-h-[48px] bg-secondary rounded-full flex items-center justify-center translate-x-[-20px] group-hover:translate-x-0 transition-all duration-500">
               <svg
                 stroke="#fff"
@@ -93,9 +97,11 @@ const HeadingText: React.FC<PlatformsSectionProps> = ({ data }) => {
               >
                 <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"></path>
               </svg>
-            </div>
+              </div>
           </div>
-        </div>
+          </div>
+
+          </Link>
       </motion.div>
     </motion.div>
   ))}

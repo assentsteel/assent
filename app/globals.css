@@ -209,3 +209,14 @@ border-radius: 15px;
     background: #5BA646;
     border-radius: 100%;
     left: 18%;}
+.overimg::after{
+  content: url('/assets/img/engineering/afterimg.png');
+  position: absolute;
+    right: 0;
+    bottom: 0;
+
+}
+.growslide.swiper-slide-active .border-l{border-left: none !important;}
+.ptst0 .pts{padding-top: 0px !important;}
+.grabg{background: linear-gradient(90.51deg, #D9D9D9 0.47%, rgba(217, 217, 217, 0) 99.63%);
+}

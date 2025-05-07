@@ -93,7 +93,7 @@ const TextByImg: React.FC<PlatformsSectionProps> = ({
                 <figure className="image-wrapper h-full ">
                   <Image
                     src={item.image}
-                    alt="A beautiful view"
+                    alt=""
                     className="rounded-[15px] w-full object-cover "
                     priority
                   />
@@ -112,10 +112,13 @@ const TextByImg: React.FC<PlatformsSectionProps> = ({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: index * 0.1 }}
     >
-      <h3 className="font-[600] text-md text-primary group-hover:text-secondary transition-all duration-300 cursor-pointer leading-[1]">
-        {da.title}
-      </h3>
 
+      <h3
+          className={`  text-md   group-hover:text-secondary transition-all duration-300 cursor-pointer leading-[1]
+            ${activeIndex === index ? 'text-secondary font-[600]' : 'text-primary font-[400] '}
+          `}
+        > {da.title}
+        </h3>
       <AnimatePresence mode="wait">
         {activeIndex === index && (
           <motion.div
