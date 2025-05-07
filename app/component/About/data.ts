@@ -57,6 +57,7 @@ export const singletextimg = {
   ],
 };
 export const tabcnts = {
+  title:"Core Values",
   data: [
     {
       id: 1,
@@ -183,14 +184,13 @@ export const sliderdata = {
 };
 
 export const about = {
-  data: [
-    {
+
       id: 1,
+      title:"About Company",
       heading: "Leading Steel Fabrication & Engineering Excellence in the GCC",
       paragraphs: [
         "A prominent member company of the ASGC Group, ASSENT STEEL INDUSTRIES L.L.C started in 2008 with a fully equipped and highly advanced Steel manufacturing company in Dubai and the GCC Region.",
         "Today, ASSENT STEEL INDUSTRIES L.L.C is a leading Steel Fabrication and Erection company in the region, supported by a large steel engineering services facility to serve the requirements of industrial and commercial projects. Our team of industry experts focuses on delivering high-quality products and services to serve the high global demand for steel construction products."
-      ]
-    }
+
   ]
 };

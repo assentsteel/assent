@@ -97,12 +97,104 @@ import newsimg9 from "./img/news/new/news9.jpg";
 import newsimg10 from "./img/news/new/news10.jpg";
 import newsimg11 from "./img/news/new/news11.jpg";
 import newsimg12 from "./img/news/new/news12.jpg";
+import qtmain from "./img/quality/qtmain.jpg";
+import qtbanner from "./img/quality/qtbanner.jpg";
+import qtftbanner from "./img/quality/qtftbanner.jpg";
+import engbanner from "./img/engineering/eng-banner.jpg";
+import engser1 from "./img/engineering/eng-ser1.svg";
+import engser2 from "./img/engineering/eng-ser2.svg";
+import engser3 from "./img/engineering/eng-ser3.svg";
+import engser4 from "./img/engineering/eng-ser4.svg";
+import engser5 from "./img/engineering/eng-ser5.svg";
+import engser6 from "./img/engineering/eng-ser6.svg";
+import engser7 from "./img/engineering/eng-ser7.svg";
+import modelslide from "./img/engineering/modelslide.png";
+import ftbanner from "./img/engineering/ftbanner.jpg";
+import spcic1 from "./img/engineering/icn1.png";
+import spcic2 from "./img/engineering/icn2.png";
+import spcic3 from "./img/engineering/icn3.png";
+import spcic4 from "./img/engineering/icn4.png";
+import spcic5 from "./img/engineering/icn5.png";
+import spcic6 from "./img/engineering/icn6.png";
+import spcic7 from "./img/engineering/icn7.png";
+import spcic8 from "./img/engineering/icn8.png";
+import fabbanner from "./img/fabrication/fabbanner.jpg";
+import fabmn from "./img/fabrication/fabmn.jpg";
+import cnc1 from "./img/fabrication/cnc1.svg";
+import cnc2 from "./img/fabrication/cnc2.svg";
+import cnc3 from "./img/fabrication/cnc3.svg";
+import cnc4 from "./img/fabrication/cnc4.svg";
+import cnc5 from "./img/fabrication/cnc5.svg";
+import cnc6 from "./img/fabrication/cnc6.svg";
+import cnc7 from "./img/fabrication/cnc7.svg";
+import cnc8 from "./img/fabrication/cnc8.svg";
+import cnc9 from "./img/fabrication/cnc9.svg";
+import cnc10 from "./img/fabrication/cnc10.svg";
+import cnc11 from "./img/fabrication/cnc11.svg";
+import cnc12 from "./img/fabrication/cnc12.svg";
+import cnc13 from "./img/fabrication/cnc13.svg";
+import cnc14 from "./img/fabrication/cnc14.svg";
+import fabtype1 from "./img/fabrication/fabtype1.png";
+import blastingbn from "./img/blasting/blastingbn.jpg";
+import blastingmn from "./img/blasting/blastingmn.jpg";
+import blastingmn2 from "./img/blasting/blastingmn2.jpg";
+import hsebanner from "./img/hse/hsebanner.jpg";
+import hsemn from "./img/hse/hsemn.jpg";
+import hsemn2 from "./img/hse/hsemn2.jpg";
+import hseone from "./img/hse/hseone.jpg";
+
+
 
 
 
 
 
 export const assets = {
+  hsemn,
+  hsemn2,
+  hseone,
+  hsebanner,
+  blastingbn,
+  blastingmn,
+  blastingmn2,
+  fabtype1,
+  fabbanner,
+  fabmn,
+  cnc1,
+  cnc2,
+  cnc3,
+  cnc4,
+  cnc5,
+  cnc6,
+  cnc7,
+  cnc8,
+  cnc9,
+  cnc10,
+  cnc11,
+  cnc12,
+  cnc13,
+  cnc14,
+  spcic1,
+  spcic2,
+  spcic3,
+  spcic4,
+  spcic5,
+  spcic6,
+  spcic7,
+  spcic8,
+  ftbanner,
+  modelslide,
+  engser1,
+  engser2,
+  engser3,
+  engser4,
+  engser5,
+  engser6,
+  engser7,
+  engbanner,
+  qtftbanner,
+  qtbanner,
+  qtmain,
   newsimg1,
   newsimg2,
   newsimg3,

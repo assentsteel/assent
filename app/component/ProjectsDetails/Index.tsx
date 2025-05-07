@@ -2,7 +2,7 @@ import React from "react";
 import { boxcontent,Specss,textimg } from "./data";
 import HeroInner from "../common/Banner/HeroInner";
 import Specs from "./sections/Specs";
-import TextByImg from "./sections/TextByImg";
+import Slidethumb from "../common/Slidethumb";
 import Morepjts from "./sections/Morepjts";
 export default function Index() {
   const breadcrumb = [
@@ -24,7 +24,7 @@ export default function Index() {
         breadcrumbs={breadcrumb}
       />
       <Specs data={Specss.data} />
-      <TextByImg data={textimg.data} />
+      <Slidethumb data={textimg.data} />
       <Morepjts data={boxcontent.data} />
 
     </>

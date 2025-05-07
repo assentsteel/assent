@@ -93,7 +93,7 @@ const TextByImg: React.FC<PlatformsSectionProps> = ({
                 <figure className="image-wrapper h-full ">
                   <Image
                     src={item.image}
-                    alt="A beautiful view"
+                    alt=""
                     className="rounded-[15px] w-full object-cover "
                     priority
                   />

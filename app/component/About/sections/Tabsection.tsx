@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { motion, AnimatePresence } from "framer-motion";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { assets } from "@/public/assets/assets";
 gsap.registerPlugin(ScrollTrigger);
 interface PlatformsItem {
   id: number;
@@ -12,16 +13,21 @@ interface PlatformsItem {
   tab: string;
   paragraphs: string[];
   image: string | StaticImageData;
-}
 
-interface PlatformsSectionProps {
-  data: PlatformsItem[];
 }
-const Tabsection: React.FC<PlatformsSectionProps> = ({ data }) => {
+interface PlatformsItemmn {
+  title: string;
+  data:PlatformsItem[]
+}
+interface PlatformsSectionProps {
+  navigation?: boolean;
+  data: PlatformsItemmn;
+}
+const Tabsection: React.FC<PlatformsSectionProps> = ({ data,navigation }) => {
   const [activeTab, setActiveTab] = useState(0); // default first tab
 
-  const tabs = data.map((item) => item.tab);
-  const activeContent = data[activeTab];
+  const tabs = data.data.map((item) => item.tab);
+  const activeContent = data.data[activeTab];
   const [isMobile, setIsMobile] = useState(false);
 
   const containerRef = useRef(null);
@@ -81,14 +87,68 @@ const fadeInUp = {
   return (
     <section className="pt-0 md:pt-[70px] xl:pt-[100px] pb-[50px] md:pb-[70px] xl:pb-[100px]   overflow-hidden relative ">
       <div className="container">
-        <div className="mb-5 lg:mb-[70px]">
+        <div className="mb-5 lg:mb-[70px] flex justify-between">
           <motion.h2 className="text-xl  text-primary font-[600] leading-[1.2] "
            variants={slideInLeft}
            initial="hidden"
            animate="visible"
            exit="exit">
-            Core Values
+            {data.title}
           </motion.h2>
+          {!isMobile && navigation &&(
+          <div className="flex justify-end items-center gap-4 mb-6">
+                          {/* Prev Button */}
+                          <motion.button
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.95 }}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.3 }}
+                            onClick={() => setActiveTab((prev) => Math.max(prev - 1, 0))}
+                disabled={activeTab === 0}
+
+                            className={`bg-white text-black border px-3 py-1 rounded-full w-[48px] h-[48px] hover:border-white hover:bg-secondary group transition flex items-center justify-center ${
+                              activeTab === 0 ? "opacity-50 cursor-not-allowed hover:bg-[#dddddd]" : ""
+                            }`}
+              >
+                            <Image
+                              src={assets.greenarrow}
+                              alt=""
+                              width={11}
+                              height={18}
+                              className="group-hover:brightness-0 group-hover:invert  "
+
+
+                            />
+                          </motion.button>
+
+                          {/* Next Button */}
+                          <motion.button
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.95 }}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.3, delay: 0.1 }}
+                            onClick={() => setActiveTab((prev) => Math.min(prev + 1, tabs.length - 1))}
+                disabled={activeTab === tabs.length - 1}
+                className={`bg-white text-black border px-3 py-1 rounded-full w-[48px] h-[48px] hover:border-white hover:bg-secondary group transition flex items-center justify-center ${
+                  activeTab === tabs.length - 1
+                    ? "opacity-50 cursor-not-allowed hover:bg-[#dddddd]"
+                    : ""
+                }`}
+
+                          >
+                            <Image
+                              src={assets.greenarrow}
+                              alt=""
+                              width={11}
+                              height={18}
+                              className="group-hover:brightness-0 group-hover:invert rotate-180"
+                            />
+                          </motion.button>
+                        </div>
+          )}
+
         </div>
         <div >
         {!isMobile && (
@@ -156,7 +216,7 @@ const fadeInUp = {
   )}
 </AnimatePresence>
 {isMobile &&
-  data.map((content, index) => (
+  data.data.map((content, index) => (
     <div
       key={index}
       className="mb-6 border border-[#00000020] rounded-[10px] overflow-hidden"

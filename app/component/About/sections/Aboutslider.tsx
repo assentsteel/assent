@@ -94,48 +94,48 @@ const Aboutslider: React.FC<PlatformsSectionProps> = ({ data }) => {
                whileInView="visible" className="text-white text-xl font-[600] ">History
               </motion.h2>
               <div className="flex justify-end gap-4">
-  {/* Prev Button */}
-  <motion.button
-    whileHover={{ scale: 1.1 }}
-    whileTap={{ scale: 0.95 }}
-    initial={{ opacity: 0, y: 10 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.3 }}
-    onClick={() => {
-      mainRef.current?.go("<");
-    }}
-    className="bg-white text-black px-3 py-1 rounded-full w-[48px] h-[48px] hover:bg-secondary group transition flex items-center justify-center"
-  >
-    <Image
-      src={assets.greenarrow}
-      alt=""
-      width={11}
-      height={18}
-      className="group-hover:brightness-0 group-hover:invert"
-    />
-  </motion.button>
+                {/* Prev Button */}
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3 }}
+                  onClick={() => {
+                    mainRef.current?.go("<");
+                  }}
+                  className="bg-white text-black px-3 py-1 rounded-full w-[48px] h-[48px] hover:bg-secondary group transition flex items-center justify-center"
+                >
+                  <Image
+                    src={assets.greenarrow}
+                    alt=""
+                    width={11}
+                    height={18}
+                    className="group-hover:brightness-0 group-hover:invert"
+                  />
+                </motion.button>
 
-  {/* Next Button */}
-  <motion.button
-    whileHover={{ scale: 1.1 }}
-    whileTap={{ scale: 0.95 }}
-    initial={{ opacity: 0, y: 10 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.3, delay: 0.1 }}
-    onClick={() => {
-      mainRef.current?.go(">");
-    }}
-    className="bg-white text-black px-3 py-1 rounded-full w-[48px] h-[48px] hover:bg-secondary group transition flex items-center justify-center"
-  >
-    <Image
-      src={assets.greenarrow}
-      alt=""
-      width={11}
-      height={18}
-      className="group-hover:brightness-0 group-hover:invert rotate-180"
-    />
-  </motion.button>
-</div>
+                {/* Next Button */}
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: 0.1 }}
+                  onClick={() => {
+                    mainRef.current?.go(">");
+                  }}
+                  className="bg-white text-black px-3 py-1 rounded-full w-[48px] h-[48px] hover:bg-secondary group transition flex items-center justify-center"
+                >
+                  <Image
+                    src={assets.greenarrow}
+                    alt=""
+                    width={11}
+                    height={18}
+                    className="group-hover:brightness-0 group-hover:invert rotate-180"
+                  />
+                </motion.button>
+              </div>
           </div>
           <div className=" mt-6 lg:mt-[40px]">
             <div className="border-b relative top-[8px] opacity-35"> </div>

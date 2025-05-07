@@ -7,14 +7,14 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 
-interface PlatformsItem {
-  id: number;
-  heading: string;
-  paragraphs: string[];
-}
+
 
 interface PlatformsSectionProps {
-  data: PlatformsItem[];
+
+  data: {id: number;
+    heading: string;
+    title: string;
+    paragraphs: string[];}
 }
 const AboutUs: React.FC<PlatformsSectionProps> = ({ data }) => {
    const containerRef = useRef(null);
@@ -74,7 +74,7 @@ const AboutUs: React.FC<PlatformsSectionProps> = ({ data }) => {
               variants={textItemVariants}
               className="text-md uppercase text-[#595959] font-medium border-b inline-flex border-secondary pb-[10px] lg:pb-[25px] leading-none "
             >
-              About Company
+             {data.title}
             </motion.p>
             </div>
 
@@ -92,17 +92,17 @@ const AboutUs: React.FC<PlatformsSectionProps> = ({ data }) => {
       viewport={{ once: true, amount: 0.3 }}
       className=""
               >
-                    {data.map((tes, index) => (
-                  <div key={index}>
+
+                  <div >
                  <motion.h2
         className="text-xl text-primary font-[600] leading-[1.2] mb-4 lg:mb-6"
         custom="x"
         variants={textVariants}
       >
-        {tes.heading}
+        {data.heading}
       </motion.h2>
 
-      {tes.paragraphs.map((text, index) => (
+      {data.paragraphs.map((text, index) => (
         <motion.p
           key={index}
           className="text-sm font-normal mb-3 lg:mb-6 text-territory leading-[1.6]"
@@ -114,7 +114,6 @@ const AboutUs: React.FC<PlatformsSectionProps> = ({ data }) => {
         </motion.p>
       ))}
      </div>
-    ))}
     </motion.div>
   </div>
 </motion.div>
