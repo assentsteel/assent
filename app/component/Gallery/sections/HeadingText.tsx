@@ -5,7 +5,6 @@ import Image, { StaticImageData } from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
-import { assets } from "@/public/assets/assets";
 import Link from "next/link";
 gsap.registerPlugin(ScrollTrigger);
 

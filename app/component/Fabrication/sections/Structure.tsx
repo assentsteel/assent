@@ -22,13 +22,7 @@ const Structure: React.FC<ExpertiseSectionProps> = ({
   maxchwidth,
 }) => {
 
-  const swiperRef = useRef<any>(null);
 
-  useEffect(() => {
-    if (swiperRef.current?.swiper?.autoplay) {
-      swiperRef.current.swiper.autoplay.start();
-    }
-  }, []);
   return (
     <section className="  relative">
     <div className="container mx-auto py-0">
@@ -58,7 +52,7 @@ const Structure: React.FC<ExpertiseSectionProps> = ({
 
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-y-[50px] md:gap-y-[70px] xl:gap-y-[130px]">
               {data.slideitems.map((items, index) => (
-              <div className="flex flex-col items-center gap-3 md:gap-5 justify-center">
+              <div  key={index} className="flex flex-col items-center gap-3 md:gap-5 justify-center">
                 <Image src={items.icon} alt="" />
                 <div><p className="text-lg font-medium">{items.title}</p></div>
               </div>

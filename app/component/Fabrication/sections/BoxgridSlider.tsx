@@ -2,13 +2,11 @@
 import Image from "next/image";
 import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import Link from "next/link";
-import { assets } from "@/public/assets/assets";
 
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper as SwiperType } from 'swiper';
 import "swiper/css";
 import "swiper/css/navigation";
-import { Navigation } from "swiper/modules";
 import { Autoplay, Pagination } from "swiper/modules";
 interface ExpertiseItem {
   icon: string;
@@ -28,15 +26,14 @@ interface ExpertiseSectionProps {
 const BoxgridSlider: React.FC<ExpertiseSectionProps> = ({
 
   data,
-  colnum,
   maxchwidth,
 }) => {
 
-  const swiperRef = useRef<any>(null);
+  const swiperRef = useRef<SwiperType | null>(null);
 
   useEffect(() => {
-    if (swiperRef.current?.swiper?.autoplay) {
-      swiperRef.current.swiper.autoplay.start();
+    if (swiperRef.current?.autoplay) {
+      swiperRef.current.autoplay.start();
     }
   }, []);
   return (
@@ -66,7 +63,7 @@ const BoxgridSlider: React.FC<ExpertiseSectionProps> = ({
 
         <div className="my-10 lg:my-[90px]">
           <Swiper
-      ref={swiperRef}
+      onSwiper={(swiper) => (swiperRef.current = swiper)}
               modules={[Autoplay, Pagination]}
                autoplay={{ delay: 3000, disableOnInteraction: false }}
                loop={true}
@@ -94,7 +91,7 @@ const BoxgridSlider: React.FC<ExpertiseSectionProps> = ({
             >
 
           {data.slideitems.map((item, index) => (
-            <SwiperSlide  className="">
+            <SwiperSlide key={index}  className="">
             <div className="flex items-center gap-[12px]">
               <div className="w-[40px] h-[44px] lg:w-[61px] lg:h-[64px] bg-secondary rounded-[5px] flex justify-center items-center">
                 <Image src={item.icon} alt=""/>

@@ -13,7 +13,6 @@ import { assets } from "@/public/assets/assets";
 import { motion } from "framer-motion";
 gsap.registerPlugin(ScrollTrigger);
 
-const images = [assets.slim, assets.slim, assets.slim];
 interface PlatformsItem {
   id: number;
   title: string;

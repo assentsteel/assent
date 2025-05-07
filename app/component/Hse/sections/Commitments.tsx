@@ -19,7 +19,7 @@ interface PlatformsSectionProps {
   heading: string;
   data: PlatformsItem[];
 }
-const Commitments: React.FC<PlatformsSectionProps> = ({ data, kmbtn,heading }) => {
+const Commitments: React.FC<PlatformsSectionProps> = ({ data,heading }) => {
   const containerRef = useRef(null);
   const textVariants = {
     hidden: { opacity: 0, x: -30 },

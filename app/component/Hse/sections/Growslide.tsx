@@ -1,13 +1,10 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
-import Image from "next/image";
-import { Button } from "@/components/ui/button";
+import {  useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperType } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import {motion} from 'framer-motion'
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";

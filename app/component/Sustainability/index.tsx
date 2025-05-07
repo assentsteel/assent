@@ -1,5 +1,5 @@
 import React from "react";
-import {singletextimg,about,textimg,Grsldata,cdata} from "./data";
+import {singletextimg,about,textimg,Grsldata} from "./data";
 import SingleImageText from "../common/SingleImageText";
 import IntroBold from "../common/IntroBold";
 import TextByImg from "../About/sections/TextByImg";

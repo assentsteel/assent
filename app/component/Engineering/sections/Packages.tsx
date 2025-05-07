@@ -3,7 +3,7 @@ import Image, { StaticImageData } from "next/image";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 gsap.registerPlugin(ScrollTrigger);
 
 
@@ -53,15 +53,6 @@ const Packages: React.FC<PackagesProps> = ({ data }) => {
       transition: { duration: 0.6, ease: "easeOut" },
     },
     exit: { opacity: 0, x: -30, transition: { duration: 0.4 } },
-  };
-  const slideIntop = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: "easeOut" },
-    },
-    exit: { opacity: 0, y: 30, transition: { duration: 0.4 } },
   };
   return (
     <section className="pt-0 md:pt-[70px] xl:pt-[100px] pb-[50px] md:pb-[70px] xl:pb-[100px]   overflow-hidden relative ">

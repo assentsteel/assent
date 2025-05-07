@@ -1,7 +1,6 @@
 "use client";
 import Image, { StaticImageData } from "next/image";
 import { useEffect, useRef } from "react";
-import { assets } from "@/public/assets/assets";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);

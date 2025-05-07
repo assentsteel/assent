@@ -1,5 +1,5 @@
 "use client";
-import Image, { StaticImageData } from "next/image";
+import  { StaticImageData } from "next/image";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -47,15 +47,6 @@ const Accordion: React.FC<PlatformsSectionProps> = ({
       transition: { duration: 0.6, ease: "easeOut" },
     },
     exit: { opacity: 0, x: -30, transition: { duration: 0.4 } },
-  };
-  const slideIntop = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: "easeOut" },
-    },
-    exit: { opacity: 0, y: 30, transition: { duration: 0.4 } },
   };
   return (
     <section className="pt-[50px] md:pt-[70px] xl:pt-[100px] pb-[50px] md:pb-[70px] xl:pb-[100px]   overflow-hidden relative ">

@@ -6,7 +6,6 @@ import { assets } from "@/public/assets/assets";
 import IntroBold from "../common/IntroBold";
 import BoxgridSlider from "./sections/BoxgridSlider";
 import Structure from "./sections/Structure";
-import Tabsection from "../About/sections/Tabsection";
 import NavTabsection from "./sections/NavTabsection";
 export default function Index() {
   const breadcrumb = [
