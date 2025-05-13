@@ -63,7 +63,7 @@ const Slidethumb: React.FC<PlatformsSectionProps> = ({ data }) => {
     },
     exit: { opacity: 0, x: -30, transition: { duration: 0.4 } },
   };
-  const slideIntop = {
+  const slideInTop = {
     hidden: { opacity: 0, y: -30 },
     visible: {
       opacity: 1,
@@ -188,7 +188,7 @@ const Slidethumb: React.FC<PlatformsSectionProps> = ({ data }) => {
                 </motion.h2>
 
                 <motion.div className="text-territory text-base font-[400] leading-[1.8] mb-0 lg:mb-10"
-                 variants={slideIntop}
+                 variants={slideInTop}
                  initial="hidden"
                  whileInView="visible"
                  exit="exit">

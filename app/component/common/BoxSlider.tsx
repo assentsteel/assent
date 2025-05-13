@@ -10,10 +10,15 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import { motion } from "framer-motion";
+import {gdVariants, slideInTop } from "./MotionAnimation";
 
 
+interface PlatformsSection {
+  title: string;
+  image: StaticImageData[];
+}
 interface PlatformsSectionProps {
-  data: {image: StaticImageData[]}
+  data:  PlatformsSection
 }
 const BoxSlider: React.FC<PlatformsSectionProps> = ({ data }) => {
   const prevRef = useRef(null);
@@ -57,7 +62,7 @@ const BoxSlider: React.FC<PlatformsSectionProps> = ({ data }) => {
   return (
     <section className="overflow-hidden relative bg-primary py-[50px] md:py-[70px] xl:py-[100px] ">
       <div className="container">
-        <div className="flex justify-between items-center mb-4 lg:mb-[60px]">
+        <div className="flex justify-between items-center mb-6 lg:mb-[60px]">
         <motion.div
             variants={textContainerVariants}
             initial="hidden"
@@ -69,36 +74,37 @@ const BoxSlider: React.FC<PlatformsSectionProps> = ({ data }) => {
               variants={textItemVariants}
               className="text-md uppercase text-white font-medium border-b inline-flex border-secondary pb-[10px] lg:pb-[25px] leading-none "
             >
-            Quality Certificates
+            {data.title}
             </motion.p>
             </div>
             </motion.div>
-          <div className=" flex gap-2 lg:gap-[30px] z-10">
+          <motion.div className=" flex gap-2 lg:gap-[30px] z-10"
+              variants={slideInTop}
+                 initial="hidden"
+                 whileInView="visible"
+                 exit="exit">
               <button
                 ref={prevRef}
-                className="bg-white text-black px-3 py-1 rounded-full w-[48px] h-[48px] hover:bg-secondary group transition flex items-center justify-center"
+                className="bg-white text-black  py-1 rounded-full w-[28px] h-[28px] lg:w-[48px] lg:h-[48px] hover:bg-secondary group transition flex items-center justify-center"
               >
                 <Image
                   src={assets.greenarrow}
                   alt=""
-                  width={11}
-                  height={18}
-                  className="group-hover:brightness-0 group-hover:invert "
+
+                  className="group-hover:brightness-0 group-hover:invert w-[11px] h-[11px]  lg:w-[11px] lg:h-[18px]"
                 />
               </button>
               <button
                 ref={nextRef}
-                className="bg-white text-black px-3 py-1 rounded-full w-[48px] h-[48px] hover:bg-secondary group transition flex items-center justify-center"
+                className="bg-white text-black  py-1 rounded-full w-[28px] h-[28px] lg:w-[48px] lg:h-[48px] hover:bg-secondary group transition flex items-center justify-center"
               >
                 <Image
                   src={assets.greenarrow}
                   alt=""
-                  width={11}
-                  height={18}
-                  className="group-hover:brightness-0 group-hover:invert rotate-180"
+                  className="group-hover:brightness-0 group-hover:invert rotate-180 w-[11px] h-[11px]  lg:w-[11px]  lg:h-[18px]"
                 />
               </button>
-              </div>
+          </motion.div>
         </div>
       </div>
       <div>
@@ -123,12 +129,33 @@ const BoxSlider: React.FC<PlatformsSectionProps> = ({ data }) => {
                 swiper.navigation.update();
               }}
               loop
-              slidesPerView={4.4}
               spaceBetween={20}
-              className="  overflow-hidden"
+                className="  overflow-hidden"
+
+                breakpoints={{
+                  320: {
+                    slidesPerView: 2,
+                  },
+                  640: {
+                    slidesPerView: 2,
+                  },
+                  768: {
+                    slidesPerView: 3,
+                  },
+                  1524: {
+                    slidesPerView:4.4,
+                  },
+
+                }}
+
             >
               {data.image.map((src, index) => (
                 <SwiperSlide key={index} className="">
+                  <motion.div
+                      variants={gdVariants}
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: true, amount: 0.2 }}>
                   <Image
                     src={src}
                     alt={`Slide ${index + 1}`}
@@ -136,7 +163,8 @@ const BoxSlider: React.FC<PlatformsSectionProps> = ({ data }) => {
                     height={400}
                     className="w-full h-auto object-cover rounded-md"
                     priority
-                  />
+                    />
+                    </motion.div>
                 </SwiperSlide>
               ))}
             </Swiper>

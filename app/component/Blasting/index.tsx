@@ -21,7 +21,7 @@ export default function Index() {
       <SingleImage secimage={assets.blastingbn}/>
       <IntroBold data={about} />
       <SingleImageText data={singletextimg.data} maxwidth={'max-w-[68ch]'} textright={false} />
-      <TextByImg data={textimg.data} />
+      <div className="ptst0"><TextByImg data={textimg.data} /></div>
 
 
     </>

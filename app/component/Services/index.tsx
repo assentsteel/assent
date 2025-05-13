@@ -18,7 +18,7 @@ export default function Index() {
       <Herotext  breadcrumbs={breadcrumb} title={"Steel Erection"} />
       <SingleImage data={slideimages}  />
       <ContentText data={textrts} />
-      <SingleImageText data={singletextimg.data} maxwidth={'max-w-[96ch]'}  />
+      <div className="custw"><SingleImageText data={singletextimg.data} maxwidth={'max-w-[96ch]'}  /></div>
       <HeadingText data={boxcontent.data} />
 
     </>

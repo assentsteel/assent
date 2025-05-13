@@ -70,7 +70,7 @@ const SingleImage: React.FC<PlatformsSectionProps> = ({ data }) => {
               loop
               slidesPerView={1}
               spaceBetween={20}
-              className="rounded-xl overflow-hidden"
+              className="rounded-xl overflow-hidden h-[200px] md:h-auto"
             >
               {data.image.map((src, index) => (
                 <SwiperSlide key={index}>
@@ -79,7 +79,7 @@ const SingleImage: React.FC<PlatformsSectionProps> = ({ data }) => {
                     alt={`Slide ${index + 1}`}
                     width={600}
                     height={400}
-                    className="w-full h-auto object-cover"
+                    className="w-full object-cover h-full"
                     priority
                   />
                 </SwiperSlide>
@@ -90,7 +90,7 @@ const SingleImage: React.FC<PlatformsSectionProps> = ({ data }) => {
             <div className="absolute bottom-4 right-4 flex gap-2 lg:gap-[30px] z-10">
               <button
                 ref={prevRef}
-                className="bg-white text-black px-3 py-1 rounded-full w-[48px] h-[48px] hover:bg-secondary group transition flex items-center justify-center"
+                className="bg-white text-black px-3 py-1 rounded-full w-[38px] h-[38px] md:w-[48px] md:h-[48px] hover:bg-secondary group transition flex items-center justify-center"
               >
                 <Image
                   src={assets.greenarrow}
@@ -102,7 +102,7 @@ const SingleImage: React.FC<PlatformsSectionProps> = ({ data }) => {
               </button>
               <button
                 ref={nextRef}
-                className="bg-white text-black px-3 py-1 rounded-full w-[48px] h-[48px] hover:bg-secondary group transition flex items-center justify-center"
+                className="bg-white text-black px-3 py-1 rounded-full w-[38px] h-[38px] md:w-[48px] md:h-[48px] hover:bg-secondary group transition flex items-center justify-center"
               >
                 <Image
                   src={assets.greenarrow}

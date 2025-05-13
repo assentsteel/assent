@@ -153,8 +153,8 @@ export const tabcnts = {
   ],
 };
 export const Structuredata = {
-  title: "CNC Equipment Ranges",
-  subttle:"At ASSENT STEEL, we leverage an advanced CNC equipment ranges to deliver high-precision steel fabrication with efficiency and accuracy. Our capabilities cover a wide range of processes, including sawing, drilling, profiling, shearing, and roll forming, ensuring seamless production tailored to project specifications.",
+  title: "Types of structures",
+  subttle:"At Assent Steels, we specialize in the design, fabrication, and erection of a wide range of steel structures tailored to meet industrial, commercial, and infrastructure needs. Our expertise covers everything from heavy-duty frameworks to lightweight custom installations. Each structure is engineered with precision to ensure safety, durability, and efficiency in every application.",
   slideitems: [
     {
       icon: assets.fabtype1,

@@ -73,10 +73,16 @@ const Commitments: React.FC<PlatformsSectionProps> = ({ data,heading }) => {
       <div className="py-[50px] md:py-[70px] xl:py-[100px] bg-primary  overflow-hidden relative ">
       <div className="container">
 
-<div>
-  <h2 className="text-xl font-semibold text-white mb-3 md:mb-10">
+          <div>
+            <motion.h2
+        className="text-xl font-semibold text-white mb-3 md:mb-10"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={textVariants}
+        initial="hidden"
+        whileInView="visible"
+      >
     {heading}
-  </h2>
+ </motion.h2>
 </div>
 <div className="lg:flex ">
 <motion.div
@@ -124,9 +130,9 @@ const Commitments: React.FC<PlatformsSectionProps> = ({ data,heading }) => {
           </p>
         ))}
       </motion.div>
-      <div className=" flex gap-2 lg:gap-[30px] z-10 mb-4 md:mb-[40px]">
+      <div className=" flex gap-2 lg:gap-[30px] z-10 mb-8 md:mb-[40px] justify-end md:justify-normal">
         <button onClick={handlePrev}
-          className="bg-white text-black px-3 py-1 rounded-full w-[48px] h-[48px] hover:bg-secondary group transition flex items-center justify-center">
+          className="bg-white text-black px-3 py-1 rounded-full w-[38px] h-[38px] md:w-[48px] md:h-[48px] hover:bg-secondary group transition flex items-center justify-center">
           <Image
             src={assets.greenarrow}
             alt=""
@@ -137,7 +143,7 @@ const Commitments: React.FC<PlatformsSectionProps> = ({ data,heading }) => {
         </button>
         <button
           onClick={handleNext}
-          className="bg-white text-black px-3 py-1 rounded-full w-[48px] h-[48px] hover:bg-secondary group transition flex items-center justify-center">
+          className="bg-white text-black px-3 py-1 rounded-full w-[38px] h-[38px] md:w-[48px] md:h-[48px] hover:bg-secondary group transition flex items-center justify-center">
           <Image
             src={assets.greenarrow}
             alt=""

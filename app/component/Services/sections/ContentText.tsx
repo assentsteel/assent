@@ -47,7 +47,7 @@ const ContentText: React.FC<PlatformsSectionProps> = ({data
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
   };
-  const slideIntop = {
+  const slideInTop = {
     hidden: { opacity: 0, x: 20 },
     visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } },
   };
@@ -55,7 +55,7 @@ const ContentText: React.FC<PlatformsSectionProps> = ({data
   return (
     <section className="section-spacing    relative  ">
       <div className="container">
-        <div className="grid grid-cols-12  left-spacing pr-[15px] md:pr-0">
+        <div className="grid grid-cols-12 ">
           <div className="col-span-12 lg:col-span-5">
             <motion.div
               variants={textContainerVariants}
@@ -80,7 +80,7 @@ const ContentText: React.FC<PlatformsSectionProps> = ({data
             <div>
               <div className="  ">
                 <motion.div
-                  variants={slideIntop}
+                  variants={slideInTop}
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true, amount: 0.3 }}

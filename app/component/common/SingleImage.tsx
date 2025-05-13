@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 import { motion } from "framer-motion";
 
+import { imageVariants } from "./MotionAnimation"
 
 
 
@@ -14,17 +15,7 @@ interface PlatformsSectionProps {
 }
 const SingleImage: React.FC<PlatformsSectionProps> = ({ secimage }) => {
   const containerRef = useRef(null);
-  const imageVariants = {
-    hidden: { opacity: 0, x: 30 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut",
-      },
-    },
-  };
+
 
   useEffect(() => {
     if (containerRef.current) {
@@ -47,16 +38,17 @@ const SingleImage: React.FC<PlatformsSectionProps> = ({ secimage }) => {
     <div className="container">
       <div>
         <motion.figure
-          className="image-wrapper"
+          className="image-wrapper h-[200px] md:h-auto"
           initial="hidden"
           whileInView="visible"
           variants={imageVariants}
-          viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.2 }}
+
         >
           <Image
             src={secimage}
             alt=""
-            className="rounded-[15px]"
+            className="rounded-[15px] object-cover h-full"
           />
         </motion.figure>
       </div>

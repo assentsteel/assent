@@ -6,6 +6,7 @@ import gsap from "gsap";
 import { motion, AnimatePresence } from "framer-motion";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { assets } from "@/public/assets/assets";
+import { tabItemVariant } from "../../common/MotionAnimation";
 gsap.registerPlugin(ScrollTrigger);
 interface PlatformsItem {
   id: number;
@@ -20,11 +21,15 @@ interface PlatformsItemmn {
 }
 interface PlatformsSectionProps {
   navigation?: boolean;
+  bgcolor?: string;
+  textwhite?: boolean;
   data: PlatformsItemmn;
 }
 const NavTabsection: React.FC<PlatformsSectionProps> = ({
   data,
   navigation,
+  bgcolor,
+  textwhite,
 }) => {
   const [activeTab, setActiveTab] = useState(0); // default first tab
 
@@ -79,15 +84,7 @@ const NavTabsection: React.FC<PlatformsSectionProps> = ({
     },
     exit: { opacity: 0, x: -30, transition: { duration: 0.4 } },
   };
-  const slideInbottom = {
-    hidden: { opacity: 0, y: -30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: "easeOut" },
-    },
-    exit: { opacity: 0, x: -30, transition: { duration: 0.4 } },
-  };
+
   const tabsPerPage = 6;
   const [currentTabSet, setCurrentTabSet] = useState(0);
   const paginatedTabs = tabs.slice(
@@ -95,14 +92,21 @@ const NavTabsection: React.FC<PlatformsSectionProps> = ({
     (currentTabSet + 1) * tabsPerPage
   );
   return (
-    <section className="pt-0 md:pt-[70px] xl:pt-[100px] pb-[50px] md:pb-[70px] xl:pb-[100px]   overflow-hidden relative ">
+    <section
+      className={`pt-[50px] md:pt-[70px] xl:pt-[100px] pb-[50px] md:pb-[70px] xl:pb-[100px] overflow-hidden relative ${
+        bgcolor ? bgcolor : ""
+      }`}
+    >
       <div className="container">
         <div className="mb-5 lg:mb-[70px] flex justify-between">
           <motion.h2
-            className="text-xl  text-primary font-[600] leading-[1.2] "
+            className={`text-xl   font-[600] leading-[1.2] ${
+              textwhite ? "text-white" : "text-primary"
+            }`}
             variants={slideInLeft}
             initial="hidden"
-            animate="visible"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
             exit="exit"
           >
             {data.title}
@@ -114,9 +118,9 @@ const NavTabsection: React.FC<PlatformsSectionProps> = ({
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.3 }}
-
                 onClick={() => {
                   const newTabSet = Math.max(currentTabSet - 1, 0);
                   setCurrentTabSet(newTabSet);
@@ -143,11 +147,13 @@ const NavTabsection: React.FC<PlatformsSectionProps> = ({
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: 0.1 }}
-
                 onClick={() => {
-                  const newTabSet = Math.min(currentTabSet + 1, Math.ceil(tabs.length / tabsPerPage) - 1);
+                  const newTabSet = Math.min(
+                    currentTabSet + 1,
+                    Math.ceil(tabs.length / tabsPerPage) - 1
+                  );
                   setCurrentTabSet(newTabSet);
                   setActiveTab(newTabSet * tabsPerPage); // First item in the new set
                 }}
@@ -172,10 +178,13 @@ const NavTabsection: React.FC<PlatformsSectionProps> = ({
         <div>
           {!isMobile && (
             <motion.div
-              className="flex border-t border-b border-[#00000025] justify-between flex-wrap tabmns mb-4"
-              variants={slideInbottom}
+              className={`flex border-t border-b    ${
+                textwhite ? "border-[#ffffff85]" : "border-[#00000025]"
+              } justify-between flex-wrap tabmns mb-8 lg:mb-[60px]`}
+               variants={tabItemVariant}
               initial="hidden"
-              animate="visible"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
               exit="exit"
             >
               {paginatedTabs.map((tab, index) => {
@@ -184,10 +193,12 @@ const NavTabsection: React.FC<PlatformsSectionProps> = ({
                   <button
                     key={actualIndex}
                     onClick={() => setActiveTab(actualIndex)}
-                    className={`py-[13px] text-sm font-[400] relative top-[-1.9px] ${
+                    className={`py-[13px] text-sm font-[400] relative top-[-1.9px]  ${
+                      textwhite ? "text-white" : "text-black"
+                    } ${
                       activeTab === actualIndex
                         ? "font-[700] border-t-2 border-secondary"
-                        : "text-black"
+                        : ""
                     }`}
                   >
                     {tab}
@@ -203,18 +214,28 @@ const NavTabsection: React.FC<PlatformsSectionProps> = ({
                 key={activeTab} // triggers reanimation on tab switch
                 variants={fadeInUp}
                 initial="hidden"
-                animate="visible"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
                 exit="hidden"
                 className="lg:flex items-center"
               >
                 <div className="w-full lg:w-2/5 pr-0 lg:pr-[44px]">
                   <div className="mb-8 lg:mb-0">
-                    <h2 className="text-lg text-black font-[600] leading-[1.2] mb-3 lg:mb-[24px]">
+                    <h2
+                      className={`text-lg ${
+                        textwhite ? "text-white" : "text-black"
+                      } font-[600] leading-[1.2] mb-3 lg:mb-[24px]`}
+                    >
                       {activeContent.title}
                     </h2>
                     <div className="text-territory text-sm font-[400] leading-[1.8] mb-6 lg:mb-10">
                       {activeContent.paragraphs.map((p, i) => (
-                        <p key={i} className="mb-4">
+                        <p
+                          key={i}
+                          className={`mb-4 ${
+                            textwhite ? "text-white" : "text-black"
+                          }`}
+                        >
                           {p}
                         </p>
                       ))}

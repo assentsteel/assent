@@ -7,10 +7,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperType } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import {motion} from 'framer-motion'
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { assets } from "@/public/assets/assets";
 gsap.registerPlugin(ScrollTrigger);
 
 
@@ -110,14 +110,14 @@ export default function ProjectsSection() {
                   <h2 className="text-xl font-semibold mb-5 lg:mb-[50px] leading-none text-primary ">
                   Projects
                   </h2>
-               
+
                 </motion.div>
-        
-      
+
+
         <div className="flex justify-between gap-[10px] mb-[40px]">
           <div className="lg:flex lg:flex-row flex flex-col gap-2" >
           {Object.keys(projectCategories).map((category, index) => (
-  <motion.div 
+  <motion.div
     key={category} // Move key here
     className="overflow-hidden"
     initial={{ opacity: 0, y: 50 }}
@@ -130,7 +130,7 @@ export default function ProjectsSection() {
         setActiveCategory(category as keyof typeof projectCategories);
         setViewAll(false);
       }}
-      className={`px-[17px] py-5 text-xs rounded-[5px] h-[40px] lg:h-[48px] hover:text-white hover:border-primary duration-300 ease-in-out transition-all uppercase ${
+      className={`px-[17px] py-5 text-xs rounded-full h-[40px] lg:h-[48px] hover:text-white hover:border-primary duration-300 ease-in-out transition-all uppercase ${
         activeCategory === category && !viewAll
           ? "bg-secondary text-white border border-secondary"
           : "bg-white text-black border border-territory"
@@ -142,32 +142,57 @@ export default function ProjectsSection() {
 ))}
           </div>
           <div className="">
-          <motion.div className="overflow-hidden lg:flex lg:flex-row flex flex-col gap-2 lg:gap-[60px]" initial={{ opacity: 0, y: 50 }}
+          <motion.div className="  lg:flex lg:flex-row flex flex-col gap-2 lg:gap-[60px]" initial={{ opacity: 0, y: 50 }}
                whileInView={{ opacity: 1, y: 0 }}
                transition={{ duration: 0.8, delay:  0.3 }}
-               viewport={{ once: true, amount: 0.5 }}>
-            <Button
-              variant="outline"
-              className="px-[17px] py-5 text-xs rounded-[5px] h-[40px] lg:h-[48px] text-black border border-secondary uppercase"
-              onClick={() => setViewAll(!viewAll)}
-            >
-              {viewAll ? "Back" : "View All"}
-            </Button>
-            <div className="relative flex border border-[#595959] rounded-[5px]">
-            <button
-                className=" text-secondary px-3 py-2"
-                onClick={() => swiperRef.current?.slidePrev()}
-              >
-                <FaChevronLeft />
-              </button>
-              <button
-                className="  text-secondary px-3 py-2 border-l border-[#595959]"
-                onClick={() => swiperRef.current?.slideNext()}
-              >
-                <FaChevronRight />
-              </button>
-             
-            </div>
+              viewport={{ once: true, amount: 0.5 }}>
+              <Button
+                  variant="outline"
+                className="px-[17px] py-5 text-xs rounded-full h-[40px] lg:h-[48px] text-black border border-secondary uppercase"
+                 onClick={() => setViewAll(!viewAll)}
+                >
+                {viewAll ? "Back" : "View All"}
+                </Button>
+   <div className="flex justify-end gap-4">
+                                {/* Prev Button */}
+                                <motion.button
+                                  whileHover={{ scale: 1.1 }}
+                                  whileTap={{ scale: 0.95 }}
+                                  initial={{ opacity: 0, y: 10 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  transition={{ duration: 0.3 }}
+                                  onClick={() => swiperRef.current?.slidePrev()}
+                                  className="bg-white text-black px-3 py-1 border border-[#595959] rounded-full w-[48px] h-[48px] hover:bg-secondary group transition flex items-center justify-center"
+                                >
+                                  <Image
+                                    src={assets.greenarrow}
+                                    alt=""
+                                    width={11}
+                                    height={18}
+                                    className="group-hover:brightness-0 group-hover:invert"
+                                  />
+                                </motion.button>
+
+                                {/* Next Button */}
+                                <motion.button
+                                  whileHover={{ scale: 1.1 }}
+                                  whileTap={{ scale: 0.95 }}
+                                  initial={{ opacity: 0, y: 10 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  transition={{ duration: 0.3, delay: 0.1 }}
+                                  onClick={() => swiperRef.current?.slideNext()}
+                                  className="bg-white text-black px-3 py-1 border border-[#595959] rounded-full w-[48px] h-[48px] hover:bg-secondary group transition flex items-center justify-center"
+                                >
+                                  <Image
+                                    src={assets.greenarrow}
+                                    alt=""
+                                    width={11}
+                                    height={18}
+                                    className="group-hover:brightness-0 group-hover:invert rotate-180"
+                                  />
+                                </motion.button>
+                              </div>
+
             </motion.div>
           </div>
         </div>

@@ -26,8 +26,8 @@ export default function Index() {
         <BoxSlider data={slideimages} />
         </section>
       <TextImg data={Textdata} />
-      <SingleImageText data={singletextimg.data} maxwidth={'max-w-[68ch]'} textright={true} />
-      <Accordion data={accdata.data} heading={accdata.heading}   />
+      <div className="custw"><SingleImageText data={singletextimg.data} maxwidth={'max-w-[68ch]'} textright={true} /></div>
+      <div className="custw"><Accordion data={accdata.data} heading={accdata.heading}   /></div>
 
 
     </>

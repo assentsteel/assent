@@ -59,7 +59,7 @@ const SingleImageText: React.FC<PlatformsSectionProps> = ({data,textright,maxwid
     }
   }, []);
   return (
-    <section className="py-[50px] md:py-[70px] xl:py-[100px]   overflow-hidden relative ">
+    <section className="py-[50px] md:py-[70px] xl:py-[100px] cpt0  overflow-hidden relative cpt0 ">
      <div className="container">
   {data.map((item) => (
     <motion.div
@@ -68,7 +68,7 @@ const SingleImageText: React.FC<PlatformsSectionProps> = ({data,textright,maxwid
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
       variants={fadeUp}
-      className={`rounded-[15px] p-6 lg:pt-[116px] lg:pb-[96px] lg:px-[100px] bg-cover relative ${textright ? `blueoverlayrt` : 'blueoverlay'}`}
+      className={`rounded-[15px] p-4 lg:pt-[116px] lg:pb-[96px] lg:px-[100px] bg-cover relative ${textright ? `blueoverlayrt` : 'blueoverlay'}`}
       style={{
         background: `url(${typeof item.image === 'string' ? item.image : item.image.src})`,
         backgroundSize: 'cover',
