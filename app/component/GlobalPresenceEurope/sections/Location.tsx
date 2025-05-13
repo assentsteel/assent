@@ -62,7 +62,7 @@ const Location: React.FC<PlatformsSectionProps> = ({ data }) => {
   };
 
   return (
-    <section className="pt-[50px] md:pt-[70px] xl:pt-[100px] cpt0    overflow-hidden relative ">
+    <section className="py-[50px] md:py-[70px] xl:py-[100px] cpt0    overflow-hidden relative ">
       <div className="container">
         <div className="xl:flex gap-10">
           {/* Left Side - Tabs */}
