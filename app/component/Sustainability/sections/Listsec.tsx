@@ -1,13 +1,25 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
+import Image, { StaticImageData } from "next/image";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { motion } from "framer-motion";
+import { gdVariants,gdsVariants } from "../../common/MotionAnimation";
 gsap.registerPlugin(ScrollTrigger);
 
 
+interface PlatformsItem {
+  title: string;
+  image: string | StaticImageData;
+  bgimg: string | StaticImageData;
+}
 
-const Listsec = ({   }) => {
+interface PlatformsSectionProps {
+  listitem:PlatformsItem[]
+}
+const Listsec: React.FC<PlatformsSectionProps> = ({listitem
+}) => {
    const containerRef = useRef(null);
 
 
@@ -27,18 +39,54 @@ const Listsec = ({   }) => {
       });
     }
   }, []);
-  return (
-    <section className="pt-10 xl:pt-[42px]   overflow-hidden relative  ">
-      <div className="container">
-      <div className="flex  gap-6 ">
-          <div className="rounded-full grabg w-[350px] h-[120px] flex justify-center items-center">
-            <div className="flex gap-2 items-center">
-              <p>p</p>
-              <p className="text-lg text-territory">Environmental</p>
-            </div>
-          </div>
 
-        </div>
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
+  return (
+    <section className="pt-10 xl:pt-[42px]     relative  ">
+      <div className="container">
+      <motion.div
+  className="grid gap-6 grid-cols-1 md:grid-cols-2 xl:grid-cols-4"
+  variants={gdVariants}
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true, amount: 0.2 }}
+>
+  {listitem.map((Item, index) => (
+    <motion.div
+      key={index}
+      variants={gdsVariants}
+      className={`grabg border border-secondary rounded-full w-full h-[100px] md:h-[120px] xl:h-[151px] flex justify-center items-center group transition-all duration-500 hover:bg-cover hover:bg-center hover:border-white`}
+      onMouseEnter={() => setHoveredIndex(index)}
+      onMouseLeave={() => setHoveredIndex(null)}
+      style={{
+        backgroundImage:
+          hoveredIndex === index
+            ? `url(${
+                typeof Item.bgimg === "object" && "src" in Item.bgimg
+                  ? Item.bgimg.src
+                  : Item.bgimg
+              })`
+            : "linear-gradient(90.51deg, #D9D9D9 0.47%, rgba(217, 217, 217, 0) 99.63%)",
+      }}
+    >
+      <div className="flex gap-2 items-center">
+        <p>
+          <Image
+            src={Item.image}
+            alt=""
+            className="group-hover:brightness-0 group-hover:invert-[1] transition-all duration-400"
+          />
+        </p>
+        <p className="text-lg text-territory group-hover:text-white transition-all duration-400">
+          {Item.title}
+        </p>
+      </div>
+    </motion.div>
+  ))}
+</motion.div>
+
+
         </div>
     </section>
   );

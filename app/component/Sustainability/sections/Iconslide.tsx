@@ -9,10 +9,10 @@ import {motion} from 'framer-motion'
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Autoplay, Pagination } from "swiper/modules";
+import Image, { StaticImageData } from "next/image";
 gsap.registerPlugin(ScrollTrigger);
 interface PlatformsItemss {
-  title: string;
-  desc: string;
+  image: StaticImageData;
 }
 interface PlatformsItem {
   content: PlatformsItemss[];
@@ -22,7 +22,7 @@ interface PlatformsSectionProps {
   data: PlatformsItem;
 }
 
-const Growslide: React.FC<PlatformsSectionProps> = ({data
+const Iconslide: React.FC<PlatformsSectionProps> = ({data
 }) => {
 
   const swiperRef = useRef<SwiperType | null>(null);
@@ -46,20 +46,20 @@ const Growslide: React.FC<PlatformsSectionProps> = ({data
               loop
             slidesPerView={1.2}
             breakpoints={{
-              640: { slidesPerView: 2 },
-              1024: { slidesPerView: 4 },
+              320: { slidesPerView: 3 },
+              640: { slidesPerView: 4 },
+              1024: { slidesPerView: 8.2},
             }}
             className="w-full !overflow-visible"
             onSwiper={(swiper) => (swiperRef.current = swiper)}
           >
             {data.content.map((item, index) => (
               <SwiperSlide key={index} className="growslide" >
-                <motion.div  className="cursor-pointer pl-5 border-l"
+                <motion.div  className="cursor-pointer   "
     whileHover={{ scale: 1.05, rotateY: 10, rotateX: 0 }}
     transition={{ type: "spring", stiffness: 200, damping: 10 }}>
 
-                  <h3 className="text-40 font-semibold text-primary leading-none pt-[25px]">{item.title}</h3>
-                  <p className="text-md text-territory leading-none font-normal py-[25px] ">{item.desc}</p>
+                 <Image src={item.image} alt=""  className="rounded-[15px]"  />
                 </motion.div>
               </SwiperSlide>
             ))}
@@ -70,4 +70,4 @@ const Growslide: React.FC<PlatformsSectionProps> = ({data
     </section>
   );
 };
-export default Growslide;
+export default Iconslide;

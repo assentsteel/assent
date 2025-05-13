@@ -50,7 +50,7 @@ const TextByImg: React.FC<PlatformsSectionProps> = ({
     },
     exit: { opacity: 0, x: -30, transition: { duration: 0.4 } },
   };
-  const slideIntop = {
+  const slideInTop = {
     hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
@@ -73,7 +73,7 @@ const TextByImg: React.FC<PlatformsSectionProps> = ({
             {heading}
           </motion.h2>
           <motion.div
-            variants={slideIntop}
+            variants={slideInTop}
             initial="hidden"
             animate="visible"
             exit="exit"

@@ -35,7 +35,7 @@ const RecentNews: React.FC<PlatformsSectionProps> = ({ data }) => {
     }
   }, []);
 
-  const slideIntop = {
+  const slideInTop = {
     hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
@@ -62,7 +62,7 @@ const RecentNews: React.FC<PlatformsSectionProps> = ({ data }) => {
       <div className="container">
         <div className="flex justify-between mb-[20px] lg:mb-10">
           <div className="  ">
-            <motion.p  variants={slideIntop}
+            <motion.p  variants={slideInTop}
     initial="hidden"
     animate="visible"
     exit="exit" className="text-md uppercase text-[#595959] font-medium border-b inline-flex border-secondary pb-[10px] lg:pb-[18px] leading-[1.46] ">
@@ -72,7 +72,7 @@ const RecentNews: React.FC<PlatformsSectionProps> = ({ data }) => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 xxl:gap-10">
-        <motion.div  variants={slideIntop}
+        <motion.div  variants={slideInTop}
     initial="hidden"
     animate="visible"
     exit="exit">
@@ -109,7 +109,7 @@ const RecentNews: React.FC<PlatformsSectionProps> = ({ data }) => {
       );
     })}
   </motion.div>
-  <motion.div  variants={slideIntop}
+  <motion.div  variants={slideInTop}
     initial="hidden"
     animate="visible"
     exit="exit" className="flex flex-col gap-4 lg:gap-6 xxl:gap-10">

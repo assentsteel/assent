@@ -142,6 +142,47 @@ import hsebanner from "./img/hse/hsebanner.jpg";
 import hsemn from "./img/hse/hsemn.jpg";
 import hsemn2 from "./img/hse/hsemn2.jpg";
 import hseone from "./img/hse/hseone.jpg";
+import susbanner from "./img/sustainability/susbanner.jpg";
+import susmn from "./img/sustainability/susmn.jpg";
+import susmn2 from "./img/sustainability/susmn2.jpg";
+import susmn3 from "./img/sustainability/susmns3.jpg";
+import inic1 from "./img/sustainability/inic1.png";
+import inic2 from "./img/sustainability/inic2.png";
+import inic3 from "./img/sustainability/inic3.png";
+import inic4 from "./img/sustainability/inic4.png";
+import inic5 from "./img/sustainability/inic5.png";
+import inic6 from "./img/sustainability/inic6.png";
+import inic7 from "./img/sustainability/inic7.png";
+import inic8 from "./img/sustainability/inic8.png";
+import hric1 from "./img/sustainability/hric1.svg";
+import hric2 from "./img/sustainability/hric2.svg";
+import hric3 from "./img/sustainability/hric3.svg";
+import hric4 from "./img/sustainability/hric4.svg";
+import bgimg from "./img/sustainability/bgimg.jpg";
+import arrowgreen from "./img/icons/arrowgreen.svg";
+import gpbanner from "./img/gp/gpbanner.jpg";
+import gpslide1 from "./img/gp/gpslide1.jpg";
+import gpslide2 from "./img/gp/gpslide2.jpg";
+import gpslide3 from "./img/gp/gpslide3.jpg";
+import americabanner from "./img/gpdetails/americabanner.jpg";
+import amprofile from "./img/gpdetails/amprofile.jpg";
+import amsingle from "./img/gpdetails/amsingle.jpg";
+import eursecb from "./img/gpdetails/eursecb.jpg";
+import eurbanner from "./img/gpdetails/eurbanner.jpg";
+import afbanner from "./img/gpdetails/afbanner.jpg";
+import afmain from "./img/gpdetails/afmain.jpg";
+import afslide1 from "./img/gpdetails/afslide1.jpg";
+import afslide2 from "./img/gpdetails/afslide2.jpg";
+import afslide3 from "./img/gpdetails/afslide3.jpg";
+import teambanner from "./img/team/teambanner.jpg";
+import lin from "./img/team/linkedin.svg";
+import team1 from "./img/team/team1.png";
+import team2 from "./img/team/team2.png";
+import team3 from "./img/team/team3.png";
+import team4 from "./img/team/team4.png";
+import team5 from "./img/team/team5.png";
+import team6 from "./img/team/team6.png";
+import team7 from "./img/team/team7.png";
 
 
 
@@ -150,6 +191,47 @@ import hseone from "./img/hse/hseone.jpg";
 
 
 export const assets = {
+  lin,
+  teambanner,
+  team1,
+  team2,
+  team3,
+  team4,
+  team5,
+  team6,
+  team7,
+  afbanner,
+  afmain,
+  afslide1,
+  afslide2,
+  afslide3,
+  eursecb,
+  eurbanner,
+  americabanner,
+  amprofile,
+  amsingle,
+  gpbanner,
+  gpslide1,
+  gpslide2,
+  gpslide3,
+  arrowgreen,
+  bgimg,
+  hric1,
+  hric2,
+  hric3,
+  hric4,
+  susbanner,
+  susmn,
+  susmn2,
+  susmn3,
+  inic1,
+  inic2,
+  inic3,
+  inic4,
+  inic5,
+  inic6,
+  inic7,
+  inic8,
   hsemn,
   hsemn2,
   hseone,

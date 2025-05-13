@@ -58,7 +58,7 @@ const IntroBold: React.FC<PlatformsSectionProps> = ({ data }) => {
   return (
     <section className="pt-10 xl:pt-[42px]   overflow-hidden relative  ">
       <div className="container">
-      <div className="grid grid-cols-12  left-spacing pr-[15px] md:pr-0">
+      <div className="grid grid-cols-12   ">
         <div className="col-span-12 lg:col-span-5">
           <motion.div
             variants={textContainerVariants}
@@ -97,8 +97,11 @@ const IntroBold: React.FC<PlatformsSectionProps> = ({ data }) => {
           key={index}
           className="text-sm font-normal mb-5 last:mb-0   text-territory leading-[1.6]"
           custom="y"
-          variants={textVariants}
-          transition={{ delay: 0.2 * (index + 1), duration: 0.5 }}
+  variants={textVariants}
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true, amount: 0.3 }}
+  transition={{ delay: 0.2 * (index + 1), duration: 0.5 }}
         >
           {text}
         </motion.p>

@@ -94,17 +94,17 @@ const TextImg: React.FC<PlatformsSectionProps> = ({data
     {/* Image Section */}
     <motion.div
       className="w-full lg:w-2/5 pl-0 lg:pl-[35px]"
-      initial="hidden"
-      whileInView="visible"
-      variants={imageVariants}
       viewport={{ once: true, amount: 0.2 }}
+            variants={textVariants}
+            initial="hidden"
+            whileInView="visible"
     >
         <div >
           <figure className="image-wrapper">
             <Image
               src={data.image}
               alt=""
-              className="rounded-[15px]"
+              className="rounded-[15px] "
             />
           </figure>
         </div>

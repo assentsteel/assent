@@ -62,7 +62,7 @@ const HeadingText: React.FC<PlatformsSectionProps> = ({data
   return (
     <section className="pb-[50px] md:pb-[70px] xl:pb-[100px]  overflow-hidden relative  ">
       <div className="container">
-        <div className="grid grid-cols-12  left-spacing pr-[15px] md:pr-0">
+        <div className="grid grid-cols-12   ">
           <div className="col-span-12 lg:col-span-12">
             <motion.div
                variants={slideInLeft}

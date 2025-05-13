@@ -1,11 +1,13 @@
 import React from "react";
-import {singletextimg,about,textimg,Grsldata} from "./data";
-import SingleImageText from "../common/SingleImageText";
+import {about,textimg,listsc,policydata,tabcnts,Islideata,focusdata} from "./data";
 import IntroBold from "../common/IntroBold";
 import TextByImg from "../About/sections/TextByImg";
-import Growslide from "./sections/Growslide";
 import HeroInner from "../common/Banner/HeroInner";
 import Listsec from "./sections/Listsec";
+import Policy from "./sections/Policy";
+import NavTabsection from "../Fabrication/sections/NavTabsection";
+import Growslide from "./sections/Iconslide";
+import Initiatives from "./sections/Initiatives";
 export default function Index() {
   const breadcrumb = [
     { label: "Home", href: "/" },
@@ -17,20 +19,21 @@ export default function Index() {
     <>
 
       <HeroInner
-        imageSrc="/assets/img/about/banner.jpg"
+        imageSrc="/assets/img/sustainability/susbanner.jpg"
         title="Sustainability"
         breadcrumbs={breadcrumb}
       />
-        <div className="py-[40px] md:py-[50px] xl:py-[60px]">
+        <div className="py-0   xl:py-[60px]">
         <IntroBold data={about} />
       </div>
-      <Listsec />
-      <SingleImageText data={singletextimg.data} maxwidth={'max-w-[75ch]'} textright={false} />
+      <Listsec listitem={listsc.data} />
+      <Policy data={policydata}/>
       <section className="ptst0">
-      <TextByImg data={textimg.data} kmbtn={true} />
+      <TextByImg data={textimg.data} kmbtn={false} />
       </section>
-      <Growslide data={Grsldata} />
-
+      <NavTabsection data={tabcnts} navigation={false} bgcolor="bg-primary" textwhite={true} />
+      <Initiatives  data={focusdata}  />
+      <Growslide data={Islideata} />
 
     </>
   );

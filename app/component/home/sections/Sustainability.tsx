@@ -95,7 +95,7 @@ const Sustainability = () => {
           </motion.ul>
           <div className="overflow-hidden mt-[50px]">
           <motion.div  variants={textItemVariants}>
-          <Link href="#" className="text-xs border-b border-secondary text-white uppercase group pb-[16px] inline-flex items-center gap-[18px]">Read More <div className="w-[20px] h-[20px] text-secondary bg-white group-hover:bg-secondary group-hover:text-primary flex items-center text-[14px] justify-center transition duration-300 ease-in-out"><FaChevronRight /></div></Link>
+          <Link href="#" className="text-xs border-b  border-secondary text-white uppercase group pb-[16px] inline-flex items-center gap-[18px]">Read More <div className="w-[20px] h-[20px] text-secondary rounded-full bg-white group-hover:bg-secondary group-hover:text-primary flex items-center text-[14px] justify-center transition duration-300 ease-in-out"><FaChevronRight /></div></Link>
           </motion.div>
           </div>
         </motion.div>

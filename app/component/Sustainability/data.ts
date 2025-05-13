@@ -1,17 +1,18 @@
 
 import { assets } from "@/public/assets/assets";
 
-export const singletextimg = {
-  data: [
-    {
-      id: 1,
-      title: "Health & Safety Leadership",
-      paragraphs: [
-        "Our aim is to create a proactive HSE culture through awareness, training, and motivation, as well as to achieve continual improvement in HSE objectives and goals. We are committed to fostering a safe and healthy work environment by promoting accountability at all levels, implementing industry best practices, and ensuring compliance with all relevant regulations."
-      ],
-      image: assets.hseone
-    }
-  ],
+
+
+export const policydata = {
+
+  id: 1,
+  title:"Our Sustainability Policy",
+  heading: "Sustainability & Social Responsibility",
+  paragraphs: [
+    "At Assent Steels, sustainability and corporate social responsibility are at the core of our business philosophy. We integrate environmental and social considerations into every decision, ensuring long-term value for our stakeholders. Aligned with the UN’s Sustainability Vision 2030, we actively minimize our environmental footprint by optimizing resource use, reducing waste, and enhancing energy efficiency. Through continuous improvement, we uphold the highest industry standards, providing eco-efficient solutions while fostering responsible growth within our communities. ",
+"Our sustainability efforts are deeply embedded in our operations — from sourcing raw materials responsibly to adopting low-emission production technologies. We also believe in setting an example for ethical business practices. Transparency, accountability, and compliance are at the foundation of our sustainability governance framework"
+
+]
 };
 export const about = {
       id: 1,
@@ -26,106 +27,209 @@ export const textimg = {
   data: [
     {
       id: 1,
-      title: "HSE Training Impact at a Glance",
+      title: "Social Responsibilities ",
       paragraphs: [
-        "We believe continuous learning is key to maintaining a safe and efficient work environment. Our commitment to health, safety, and environmental excellence is reflected in the extensive internal and external training programs conducted across our organization.",
-         "Explore our progress through the key training metrics below, showcasing the reach, frequency, and impact of our training efforts. Get a glimpse into our learning journey through our dynamic gallery, where moments of engagement, learning, and achievement come to life."
+        "At Assent Steels, we believe our responsibility goes beyond delivering exceptional steel solutions — it extends to the people, communities, and environment we impact every day. As a forward-thinking company, we are committed to creating a positive difference through meaningful social initiatives and sustainable practices. From supporting local communities to promoting environmental stewardship, our efforts are rooted in the belief that business success and social good can go hand in hand.",
+
+        "We actively engage in programs that focus on education, skill development, health and safety awareness, and community upliftment. Our CSR activities include partnerships with local schools and vocational institutions to provide training and career pathways for young talent. We regularly conduct safety workshops for our employees and local workers, ensuring a culture of responsibility and care both within and beyond our facilities.",
+
+        "In our pursuit of sustainability, we continuously invest in eco-friendly technologies and waste-reduction methods across our manufacturing processes. We aim to minimize our environmental footprint while maximizing our positive social impact — because we believe that building a stronger future starts with responsible actions today."
       ],
-      image: assets.hsemn2
+      image: assets.susmn
     }
   ],
 };
-export const cdata = {
-  heading:"Our HSE Commitments",
+export const tabcnts = {
+  title:"MPS Machineries",
   data: [
     {
       id: 1,
-      title: "EHS Policy & Process Management at ASSENT STEEL",
+      title: "Bandsaw Machine-FICEP",
+      tab: "Bandsaw Machine-FICEP",
       paragraphs: [
-        "Develop, implement, and manage Environmental, Health, and Safety-related policies and work processes at all ASSENT STEEL facilities, ensuring compliance with industry regulations, minimizing risks, and fostering a culture of safety and sustainability across all operations.",
-        "Implement proactive risk assessments, safety training programs, and emergency response strategies to enhance workplace safety. Continuously monitor and improve EHS performance through audits, reporting, and adherence to best practices, ensuring a safe working environment and sustainable business growth."
+        "The FICEP bandsaw machine delivers versatile cutting performance. It handles a wide range of material sizes—from small pieces to large sheets for straight 90° cuts. For angled cuts, it processes medium-sized materials at 45° and smaller sections at steeper angles up to 60°.",
+        "Sawing capacity st 90°  Min 80x10mm max 1250x600mm.Sawing capacity at 45° 800x 600mm.Sawing capacity at 60° 500x500m. Toothed band speed 20-100 ."
       ],
-      image: assets.hsemn
-    },
-    {
-      id: 2,
-      title: " at ASSENT STEEL",
-      paragraphs: [
-        " manage Environmental, Health, and Safety-related policies and work processes at all ASSENT STEEL facilities, ensuring compliance with industry regulations, minimizing risks, and fostering a culture of safety and sustainability across all operations.",
-        "Implement proactive risk assessments, safety training programs, and emergency response strategies to enhance workplace safety. Continuously monitor and improve EHS performance through audits, reporting, and adherence to best practices, ensuring a safe working environment and sustainable business growth."
-      ],
-      image: assets.hsemn
-    },
-    {
-      id: 3,
-      title: " Management at ASSENT STEEL",
-      paragraphs: [
-        " Environmental, Health, and Safety-related policies and work processes at all ASSENT STEEL facilities, ensuring compliance with industry regulations, minimizing risks, and fostering a culture of safety and sustainability across all operations.",
-        "Implement proactive risk assessments, safety training programs, and emergency response strategies to enhance workplace safety. Continuously monitor and improve EHS performance through audits, reporting, and adherence to best practices, ensuring a safe working environment and sustainable business growth."
-      ],
-      image: assets.hsemn
+      image: assets.susmn2
     }
-  ],
-};
-export const boxcontent = {
-  data: [
-    {
-      id: 1,
-      title: "Establishing the foundation based on project needs.",
-      image: assets.tiles1
-    },
-    {
+    ,{
       id: 2,
-      title: "Lifting and placing components into position",
-      image: assets.tiles2
-    },
-    {
+      title: "Drilling Machine-FICEP",
+      tab: "Drilling Machine-FICEP",
+      paragraphs: [
+         "We report transparently. We overcome our challenges in an open manner because we value integrity, and we recognize that all will benefit from open discussion and group awareness"
+      ],
+      image: assets.susmn2
+    },{
       id: 3,
-      title: "Aligning the structure and packing in the connection",
-      image: assets.tiles3
-    },
-    {
+      title: "Tipo machine-B254",
+      tab: "Tipo machine-B254",
+      paragraphs: [
+         "We report transparently. We overcome our challenges in an open manner because we value integrity, and we recognize that all will benefit from open discussion and group awareness"
+      ],
+      image: assets.susmn2
+    },{
       id: 4,
-      title: "Secure and impart rigidity to the frame",
-      image: assets.tiles4
-    },
+      title: " Tipo machine-A31",
+      tab: " Tipo machine-A31",
+      paragraphs: [
+         "We report transparently. We overcome our challenges in an open manner because we value integrity, and we recognize that all will benefit from open discussion and group awareness"
+      ],
+      image: assets.susmn2
+    },{
+      id: 5,
+      title: "Laser Machine-Cutlite Penta-Plus-20KW",
+      tab: "Laser Machine-Cutlite Penta-Plus-20KW",
+      paragraphs: [
+         "We report transparently. We overcome our challenges in an open manner because we value integrity, and we recognize that all will benefit from open discussion and group awareness"
+      ],
+      image: assets.susmn2
+    },{
+      id: 6,
+      title: "Portable Machine",
+      tab: "Portable Machine",
+      paragraphs: [
+         "We report transparently. We overcome our challenges in an open manner because we value integrity, and we recognize that all will benefit from open discussion and group awareness"
+      ],
+      image: assets.susmn2
+    }
+    ,{
+      id: 7,
+      title: "Portable Machinenew",
+      tab: "Portable Machinenew",
+      paragraphs: [
+         "We report transparently. We overcome our challenges in an open manner because we value integrity, and we recognize that all will benefit from open discussion and group awareness"
+      ],
+      image: assets.susmn2
+    }
+
   ],
 };
-export const Grsldata = {
+export const Islideata = {
   content: [
     {
-      title: "86+",
-      desc: "Total Internal Trainings"
+      image: assets.inic1,
     },
     {
-      title: "12,074+",
-      desc: "Total Attendees"
+      image: assets.inic2,
     },
     {
-      title: "7,054.5 H",
-      desc: "Total Internal Training Hours"
+      image: assets.inic3,
     },
     {
-      title: "13+",
-      desc: "Total External Trainings"
+      image: assets.inic4,
     },
     {
-      title: "186+",
-      desc: "Total Attendees"
+      image: assets.inic5,
     },
     {
-      title: "12,074+",
-      desc: "Total Attendees"
+      image: assets.inic6,
+    },
+    {
+      image: assets.inic7,
+    },
+    {
+      image: assets.inic8,
+    },
+    {
+      image: assets.inic1,
+    },
+    {
+      image: assets.inic2,
+    },
+    {
+      image: assets.inic3,
+    },
+    {
+      image: assets.inic4,
+    },
+    {
+      image: assets.inic5,
+    },
+    {
+      image: assets.inic6,
+    },
+    {
+      image: assets.inic7,
+    },
+    {
+      image: assets.inic8,
+    },
+  ],
+};
+
+export const listsc = {
+  data: [
+    {
+      title: "Environmental",
+      image: assets.hric1,
+      bgimg: assets.bgimg
+    },
+    {
+      title: "Health & Safety",
+      image: assets.hric2,
+      bgimg: assets.bgimg
+    },
+    {
+      title: "Community",
+      image: assets.hric3,
+      bgimg: assets.bgimg
+    },
+    {
+      title: "Diversity",
+      image: assets.hric4,
+      bgimg: assets.bgimg
     },
   ],
 };
 
 
-export const textrts =
+export const focusdata = {
+  heading: "Our  Initiatives",
+  data: [
     {
+      id: 1,
+      title: "Prioritizing Safety, Rights, and Well-Being",
+      paragraphs: [
+        "A core focus for ASSENT STEEL is to protect its people by continuously improving occupational health and safety programs while upholding the highest standards of worker well-being."
+      ],
+      image: assets.susmn3
+    },
 
-      title: "Safe & Efficient Steel Erection Solutions",
-      desc: "With over a decade of experience, ASSENT STEEL INDUSTRIES L.L.C is a trusted steel erection company in Dubai, UAE. We provide complete, integrated erection and construction solutions, capable of installing up to 4,000 tonnes of structural steel per month. Our skilled team ensures efficient planning, from material delivery to installation, optimizing cost, time, and safety. Working alongside industry experts, we deliver customized, stable, and high-quality erection solutions tailored to project needs.",
-}
+    {
+      id: 2,
+      title: "Supporting Health & Humanitarian Causes",
+      paragraphs: [
+        "Empowering Communities Through Outreach"
+      ],
+      image: assets.susmn3
+    },
 
+    {
+      id: 3,
+      title: "Fostering Learning and Skill Development",
+      paragraphs: [
+        "Assent"
+      ],
+      image: assets.susmn3
+    },
 
+    {
+      id: 4,
+      title: "Reducing Carbon Footprint Through Smart Mobility",
+      paragraphs: [
+        "Assent"
+      ],
+      image: assets.susmn3
+    },
+
+    {
+      id: 5,
+      title: "Building Green With Global Standards",
+      paragraphs: [
+        "Assent"
+      ],
+      image: assets.susmn3
+    }
+  ]
+};

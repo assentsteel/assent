@@ -5,6 +5,7 @@ import Image, { StaticImageData } from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
+import { containerVariants, itemVariants } from "../../common/MotionAnimation"
 import Link from "next/link";
 gsap.registerPlugin(ScrollTrigger);
 
@@ -37,19 +38,7 @@ const HeadingText: React.FC<PlatformsSectionProps> = ({ data }) => {
       });
     }
   }, []);
-  const containerVariants = {
-    hidden: {},
-    show: {
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
-  };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
-  };
   return (
     <section className="pb-[50px] md:pb-[70px] xl:pb-[100px]    relative  ">
       <div className="container">

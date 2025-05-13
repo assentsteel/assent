@@ -49,16 +49,17 @@ const Accordion: React.FC<PlatformsSectionProps> = ({
     exit: { opacity: 0, x: -30, transition: { duration: 0.4 } },
   };
   return (
-    <section className="pt-[50px] md:pt-[70px] xl:pt-[100px] pb-[50px] md:pb-[70px] xl:pb-[100px]   overflow-hidden relative ">
+    <section className="pt-[50px] md:pt-[70px] xl:pt-[100px] pb-[50px] md:pb-[70px] xl:pb-[100px] cpt0  overflow-hidden relative ">
       <div className="container">
 
         <div className="lg:flex lg:items-center xxl:items-start">
           <div className="w-full lg:w-[40%] pr-0 lg:pr-[35px]">
-          <motion.h2
+            <motion.h2
+              viewport={{ once: true, amount: 0.2 }}
             variants={slideInLeft}
             initial="hidden"
-            animate="visible"
-            exit="exit"
+              exit="exit"
+            whileInView="visible"
             className="text-xl  text-primary font-[600] leading-[1.2] mb-4 lg:mb-7"
           >
             {heading}
@@ -68,14 +69,15 @@ const Accordion: React.FC<PlatformsSectionProps> = ({
 
           <div className="w-full lg:w-[60%] pl-0 lg:pl-[35px] mt-6 lg:mt-0">
   {data.map((da, index) => (
-    <motion.div
-      key={index}
-      className="group border-b first:border-t border-[#00000015] py-5  lg:py-[20px] xxl:py-[30px] group transition-all duration-300"
-      onMouseEnter={() => setActiveIndex(index)}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, delay: index * 0.1 }}
-    >
+   <motion.div
+   key={index}
+   className="group border-b first:border-t border-[#00000015] py-5 lg:py-[20px] xxl:py-[30px] transition-all duration-300"
+   onMouseEnter={() => setActiveIndex(index)}
+   initial={{ opacity: 0, y: 20 }}
+   whileInView={{ opacity: 1, y: 0 }}
+   transition={{ duration: 0.4, delay: index * 0.1 }}
+   viewport={{ once: true, amount: 0.2 }} // triggers only once when 20% is in view
+ >
 
       <h3
           className={`  text-md   group-hover:text-secondary transition-all duration-300 cursor-pointer leading-[1]

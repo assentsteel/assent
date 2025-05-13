@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 
+import { slideInLeft, slideInTop } from "../../common/MotionAnimation"
 
 interface HeroSectionProps {
   breadcrumbs: { label: string; href: string }[];
@@ -13,24 +14,7 @@ title,
   breadcrumbs,
 }) => {
 
-  const slideInLeft = {
-    hidden: { opacity: 0, x: -30 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: { duration: 0.6, ease: "easeOut" },
-    },
-    exit: { opacity: 0, x: -30, transition: { duration: 0.4 } },
-  };
-  const slideInTop = {
-    hidden: { opacity: 0, y: 15 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: "easeOut" },
-    },
-    exit: { opacity: 0, y: 15, transition: { duration: 0.4 } },
-  };
+
   return (
      <section className="py-[30px] md:py-[70px] xl:py-[100px]   overflow-hidden relative ">
          <div className="container">

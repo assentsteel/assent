@@ -88,8 +88,8 @@ export const Menu = ({
     if (searchButtonRef.current) {
       return;
     }
-    
-  
+
+
     function handleClickOutside(event: MouseEvent) {
       if (
         searchRef.current &&
@@ -99,7 +99,7 @@ export const Menu = ({
         setSearchActive(false); // close the dropdown
       }
     }
-  
+
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
@@ -131,7 +131,7 @@ export const Menu = ({
               href="contact"
               className="self-start text-white bg-secondary hover:bg-primary group rounded-full text-xs font-normal transition duration-300 ease-in-out uppercase flex items-center justify-center gap-[15px] py-[11px] px-[19px] h-48px">
 
-              Contact <div className="rounded-full w-[18.5px] h-[20px] text-secondary bg-primary group-hover:bg-secondary group-hover:text-primary flex items-center text-[14px] justify-center transition duration-300 ease-in-out"><FaChevronRight /></div>
+              Contact <div className="rounded-full w-[20px] h-[20px] text-secondary bg-territory group-hover:bg-secondary group-hover:text-primary flex items-center text-[14px] justify-center transition duration-300 ease-in-out"><FaChevronRight /></div>
             </Link>
           </div>
         </div>
@@ -141,13 +141,13 @@ export const Menu = ({
           </div>
         </div>
       </nav>
-      
+
         <>
         <div className={`fixed inset-0 bg-black/30 backdrop-blur-sm z-10 h-screen w-full duration-300 ${searchActive ? "translate-y-[0%]" : "translate-y-[-100%]"}`}></div>
         <div  ref={searchRef} className={`w-full bg-white z-10 h-[500px] shadow-xl absolute top-24 right-0 duration-300 ${searchActive ? "translate-y-[0%]" : "translate-y-[-100%]"}`}>
         <div className="container">
           {/* <div className="absolute top-[20px] xxxl:right-[60px] right-[30px]" onClick={() => setSearchActive(!searchActive)}>
-            <IoClose className="text-lg text-green-950 cursor-pointer" />    
+            <IoClose className="text-lg text-green-950 cursor-pointer" />
           </div> */}
 
           <form className="w-[95%] mt-3 px-2">

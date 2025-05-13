@@ -158,6 +158,7 @@ export const textrts =
 }
 
 export const slideimages = {
+  title:"Quality Certificates",
   image: [assets.cer1,assets.cer1,assets.cer2,assets.cer3  ,assets.cer4,assets.cer1  ,assets.cer2,assets.cer3,assets.cer5],
 
 };
