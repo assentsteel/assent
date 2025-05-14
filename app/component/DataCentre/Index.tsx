@@ -2,7 +2,7 @@ import React from "react";
 import {boxcontent} from "./data";
 import Herotext from "../common/Banner/Herotext";
 import HeadingText from "./sections/HeadingText";
-import Fillters from "./sections/Fillters";
+import Fillters from "../Projects/sections/Fillters";
 export default function Index() {
   const breadcrumb = [
     { label: "Home", href: "/" },

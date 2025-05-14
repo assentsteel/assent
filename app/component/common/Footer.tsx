@@ -79,7 +79,7 @@ const Footer = () => {
             <div className="flex md:flex-row flex-col gap-5 md:gap-[70px] justify-between border-t border-white/35 pt-[30px] md:pt-[70px]">
               <div className="flex md:flex-row flex-col gap-4 overflow-hidden">
                 {["DOWNLOAD BROCHURE", "PRE-QUALIFICATION"].map((btn, index) => (
-                  <motion.button key={index} variants={scaleUp} className="border border-secondary py-2 px-4 rounded-[5px] hover:bg-secondary hover:text-primary h-[40px] md:h-[58px] transition-all ease-in-out duration-500">
+                  <motion.button key={index} variants={scaleUp} className="border border-secondary py-2 px-4 rounded-full hover:bg-secondary hover:text-primary h-[40px] md:h-[58px] transition-all ease-in-out duration-500">
                     {btn}
                   </motion.button>
                 ))}
