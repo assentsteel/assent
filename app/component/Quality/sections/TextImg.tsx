@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
+import Link from "next/link";
 gsap.registerPlugin(ScrollTrigger);
 
 
@@ -87,6 +88,7 @@ const TextImg: React.FC<PlatformsSectionProps> = ({data
               <p key={index} className="mb-4">{paragraph}</p>
             ))}
               </motion.div>
+              <Link href="/gallery">
               <motion.button
              initial="hidden"
           whileInView="visible"
@@ -95,6 +97,7 @@ const TextImg: React.FC<PlatformsSectionProps> = ({data
               className="mt-auto m-auto h-[40px] lg:h-[48px] text-territory max-w-[315px] w-[315px] md:m-left border border-secondary py-2 px-6 rounded-full hover:bg-secondary hover:text-white transition text-xs  font-medium uppercase">
               view more
             </motion.button>
+              </Link>
         </div>
 
     </div>
