@@ -72,7 +72,7 @@ const AboutUs = () => {
             <div className="overflow-hidden">
             <motion.div variants={textItemVariants}>
               <Link
-                href="#"
+                href="/about"
                 className="text-xs border-b border-secondary uppercase group pb-[16px] inline-flex items-center gap-[18px] text-territory font-medium"
               >
                 About ASSENT

@@ -76,7 +76,7 @@ const Boxgrid: React.FC<ExpertiseSectionProps> = ({
                     <Link href={`${expertise.url}`}>
                       <div
                         key={expertise.id}
-                        className="group flex flex-col justify-between gap-3 border p-5 transition-all duration-500 hover:bg-primary md:h-[300px]  lg:h-[340px] lg:gap-0 lg:p-10 xl:h-[414px]"
+                        className="group flex flex-col justify-between gap-3 border p-5 transition-all duration-500 hover:bg-secondary md:h-[300px]  lg:h-[340px] lg:gap-0 lg:p-10 xl:h-[414px]"
                       >
                         {/* Image Wrapper */}
                         <div className="align-center flex h-[68px] w-[68px] rounded-[5px] justify-center bg-secondary p-2 transition-colors duration-500 group-hover:bg-white md:h-[50px] md:w-[50px]">

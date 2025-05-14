@@ -183,6 +183,7 @@ import team4 from "./img/team/team4.png";
 import team5 from "./img/team/team5.png";
 import team6 from "./img/team/team6.png";
 import team7 from "./img/team/team7.png";
+import asiaicn from "./img/icns/asia.jpg";
 
 
 
@@ -191,6 +192,7 @@ import team7 from "./img/team/team7.png";
 
 
 export const assets = {
+  asiaicn,
   lin,
   teambanner,
   team1,
