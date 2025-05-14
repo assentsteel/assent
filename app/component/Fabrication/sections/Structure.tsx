@@ -1,6 +1,6 @@
 "use client";
 import Image, { StaticImageData } from "next/image";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 
 interface ExpertiseItem {
@@ -19,22 +19,6 @@ interface ExpertiseSectionProps {
 
 
 const Structure: React.FC<ExpertiseSectionProps> = ({ data, maxchwidth }) => {
-
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [hovered, setHovered] = useState(false);
-
-  useEffect(() => {
-    if (!hovered) return;
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % data.slideitems[0].icon.length);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, [hovered, data.slideitems[0].icon.length]);
-
-  const nextSlide = () =>
-    setCurrentIndex((prev) => (prev + 1) % data.slideitems[0].icon.length);
-  const prevSlide = () =>
-    setCurrentIndex((prev) => (prev - 1 + data.slideitems[0].icon.length) % data.slideitems[0].icon.length);
 
 
   return (

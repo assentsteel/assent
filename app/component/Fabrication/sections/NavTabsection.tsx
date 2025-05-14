@@ -93,7 +93,7 @@ const NavTabsection: React.FC<PlatformsSectionProps> = ({
   };
 
 
-  const [currentTabSet, setCurrentTabSet] = useState(0);
+  const currentTabSet = 0;
   const paginatedTabs = tabs;
   return (
     <section
