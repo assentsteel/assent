@@ -16,7 +16,7 @@ export const singletextimg = {
 export const about = {
       id: 1,
       title:"",
-      heading: "Safety and Sustainability at Assent Steel",
+      heading: "Safety and Sustainability at ASSENT STEEL",
       paragraphs: [
         "ASSENT STEEL is committed to maintaining a safe and sustainable work environment by implementing strict Health, Safety, and Environment (HSE) policies. The company ensures compliance with regulatory standards, conducts regular audits, and continuously improves its safety measures. By fostering awareness and providing training, ASSENT STEEL promotes a proactive safety culture while prioritizing environmental responsibility and workplace well-being."
       ]

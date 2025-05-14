@@ -67,7 +67,7 @@ export const textimg = {
       id: 1,
       title: "Sustainability & Ethics",
       paragraphs: [
-        "Assent Steel is dedicated to integrating environmental and social considerations into its operations. The company aligns its practices with the UN's Sustainable Development Goals."
+        "ASSENT STEEL is dedicated to integrating environmental and social considerations into its operations. The company aligns its practices with the UN's Sustainable Development Goals."
       ],
       image: assets.cmn1
     },
@@ -76,7 +76,7 @@ export const textimg = {
       id: 2,
       title: "Strong Core Values",
       paragraphs: [
-        "Assent Steel is dedicated to integrating environmental and social considerations into its operations. The company aligns its practices with the UN's Sustainable Development Goals."
+        "ASSENT STEEL is dedicated to integrating environmental and social considerations into its operations. The company aligns its practices with the UN's Sustainable Development Goals."
       ],
       image: assets.cmn1
     },
@@ -85,7 +85,7 @@ export const textimg = {
       id: 3,
       title: "Focus on Employee Well-being",
       paragraphs: [
-        "Assent Steel is dedicated to integrating environmental and social considerations into its operations. The company aligns its practices with the UN's Sustainable Development Goals."
+        "ASSENT STEEL is dedicated to integrating environmental and social considerations into its operations. The company aligns its practices with the UN's Sustainable Development Goals."
       ],
       image: assets.cmn1
     },
@@ -94,7 +94,7 @@ export const textimg = {
       id: 4,
       title: "Opportunities for Professional Development",
       paragraphs: [
-        "Assent Steel is dedicated to integrating environmental and social considerations into its operations. The company aligns its practices with the UN's Sustainable Development Goals."
+        "ASSENT STEEL is dedicated to integrating environmental and social considerations into its operations. The company aligns its practices with the UN's Sustainable Development Goals."
       ],
       image: assets.cmn1
     },
@@ -103,7 +103,7 @@ export const textimg = {
       id: 5,
       title: "Innovation & Growth-Driven Culture",
       paragraphs: [
-        "Assent Steel is dedicated to integrating environmental and social considerations into its operations. The company aligns its practices with the UN's Sustainable Development Goals."
+        "ASSENT STEEL is dedicated to integrating environmental and social considerations into its operations. The company aligns its practices with the UN's Sustainable Development Goals."
       ],
       image: assets.cmn1
     }
@@ -116,7 +116,7 @@ export const singletextimg = {
       id: 1,
       title: "Staff Care & Commitment",
       paragraphs: [
-        "Assent Steel is deeply committed to the well-being and professional growth of its staff, recognizing them as the backbone of its success. The company fosters a supportive and inclusive work environment."
+        "ASSENT STEEL is deeply committed to the well-being and professional growth of its staff, recognizing them as the backbone of its success. The company fosters a supportive and inclusive work environment."
       ],
       image: assets.cmn2,
       specs: [{

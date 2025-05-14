@@ -27,6 +27,15 @@ const Tabsection: React.FC<PlatformsSectionProps> = ({ data,navigation }) => {
   const [activeTab, setActiveTab] = useState(0); // default first tab
 
   const tabs = data.data.map((item) => item.tab);
+useEffect(() => {
+  const interval = setInterval(() => {
+    setActiveTab((prev) => (prev + 1) % tabs.length);
+  }, 4000);
+
+  return () => clearInterval(interval); // cleanup on unmount
+}, [tabs.length]);
+
+
   const activeContent = data.data[activeTab];
   const [isMobile, setIsMobile] = useState(false);
 
@@ -238,7 +247,6 @@ const fadeInUp = {
             exit="hidden"
             className="p-4"
           >
-            <h2 className="text-base font-[600] mb-3">{content.title}</h2>
             <div className="text-sm font-[400] leading-[1.8] text-territory mb-4">
               {content.paragraphs.map((p, i) => (
                 <p key={i} className="mb-4">

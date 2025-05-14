@@ -18,7 +18,7 @@ export const about = {
       title:"",
       heading: "Steel Solutions with Unmatched Quality",
       paragraphs: [
-        "Assent Steel delivers top-tier steel services worldwide, balancing exceptional quality with high-volume output. With a strong presence across Asia, Africa, North America, and Australia—and a strategic focus on Europe—we support global growth with timely, trusted delivery, as seen in major projects like the Doha Metro and SeaWorld Abu Dhabi."
+        "ASSENT STEEL delivers top-tier steel services worldwide, balancing exceptional quality with high-volume output. With a strong presence across Asia, Africa, North America, and Australia—and a strategic focus on Europe—we support global growth with timely, trusted delivery, as seen in major projects like the Doha Metro and SeaWorld Abu Dhabi."
       ]
 };
 

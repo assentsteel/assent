@@ -147,10 +147,14 @@ const Aboutslider: React.FC<PlatformsSectionProps> = ({ data }) => {
       gap: "1rem",
       focus: 1,
       pagination: false,
-      cover: true,
+                cover: true,
+                autoplay: true,
+      interval: 3000,
+    pauseOnHover: false,
+    resetProgress: false,
       arrows: false,
       breakpoints: {
-        768: { perPage: 2.5 },
+        768: { perPage: 2 },
       },
     }}
     ref={thumbsRef}
@@ -176,7 +180,11 @@ const Aboutslider: React.FC<PlatformsSectionProps> = ({ data }) => {
       perPage: 1,
       pagination: false,
       gap: "1rem",
-      arrows: false,
+                arrows: false,
+                autoplay: true,
+      interval: 3000,
+    pauseOnHover: false,
+    resetProgress: false,
     }}
     ref={mainRef}
   >

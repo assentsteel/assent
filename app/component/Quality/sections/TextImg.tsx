@@ -86,7 +86,15 @@ const TextImg: React.FC<PlatformsSectionProps> = ({data
             {data.paragraphs.map((paragraph, index) => (
               <p key={index} className="mb-4">{paragraph}</p>
             ))}
-          </motion.div>
+              </motion.div>
+              <motion.button
+             initial="hidden"
+          whileInView="visible"
+          variants={imageVariants}
+              viewport={{ once: true, amount: 0.2 }}
+              className="mt-auto m-auto h-[40px] lg:h-[48px] text-territory max-w-[315px] w-[315px] md:m-left border border-secondary py-2 px-6 rounded-full hover:bg-secondary hover:text-white transition text-xs  font-medium uppercase">
+              view more
+            </motion.button>
         </div>
 
     </div>

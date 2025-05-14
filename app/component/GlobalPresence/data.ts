@@ -14,7 +14,7 @@ export const about = {
 };
 export const reach = {
 
-  heading: "Assent Steel’s Global Reach",
+  heading: "ASSENT STEEL’s Global Reach",
   data: [
     {
       count: "17",

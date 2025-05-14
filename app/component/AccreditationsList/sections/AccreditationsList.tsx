@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image, { StaticImageData } from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -18,7 +18,9 @@ interface PlatformsSectionProps {
 }
 const AccreditationsList: React.FC<PlatformsSectionProps> = ({ data }) => {
   const containerRef = useRef(null);
-
+const [selectedItem, setSelectedItem] = useState<PlatformsItem | null>(null);
+const handleOpen = (item: PlatformsItem) => setSelectedItem(item);
+  const handleClose = () => setSelectedItem(null);
   useEffect(() => {
     if (containerRef.current) {
       gsap.from(containerRef.current, {
@@ -47,19 +49,23 @@ const AccreditationsList: React.FC<PlatformsSectionProps> = ({ data }) => {
     hidden: { opacity: 0, y: 30 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   };
+
   return (
     <section className="py-[50px] md:py-[70px] xl:py-[100px]  xxl:py-[150px]  overflow-hidden relative  ">
       <div className="container">
-      <motion.div
+       <motion.div
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
         variants={containerVariants}
         initial="hidden"
-           animate="visible"
+        animate="visible"
         viewport={{ once: true, amount: 0.2 }}
       >
         {data.map((item, index) => (
           <motion.div key={index} variants={itemVariants}>
-            <div className="relative group overlbl h-full">
+            <div
+              className="relative group overlbl h-full cursor-pointer"
+              onClick={() => handleOpen(item)}
+            >
               <figure className="overlayclr">
                 <Image
                   src={item.image}
@@ -77,8 +83,7 @@ const AccreditationsList: React.FC<PlatformsSectionProps> = ({ data }) => {
                   <div className="min-w-[30px] min-h-[30px] lg:min-w-[48px] lg:min-h-[48px] bg-secondary rounded-full flex items-center justify-center translate-x-[-20px] group-hover:translate-x-0 transition-all duration-500">
                     {/* SVG Icon */}
                     <svg xmlns="http://www.w3.org/2000/svg" width="31" height="32" viewBox="0 0 31 32" fill="none">
-                      <path d="M13.8291 17.6665H3.81445V14.3282H13.8291V4.3136H17.1673V14.3282H27.1819V17.6665H17.1673V27.6811H13.8291V17.6665Z" fill="white"/>
-                      <path d="M3.4268 30.9941..." fill="white" stroke="white" strokeWidth="0.8"/>
+                      <path d="M13.8291 17.6665H3.81445V14.3282H13.8291V4.3136H17.1673V14.3282H27.1819V17.6665H17.1673V27.6811H13.8291V17.6665Z" fill="white" />
                     </svg>
                   </div>
                 </div>
@@ -87,6 +92,27 @@ const AccreditationsList: React.FC<PlatformsSectionProps> = ({ data }) => {
           </motion.div>
         ))}
       </motion.div>
+
+      {/* Popup Modal */}
+      {selectedItem && (
+        <div className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center px-4" onClick={handleClose}>
+          <div className="relative bg-white rounded-xl overflow-hidden max-w-full max-h-full">
+            <button
+              onClick={handleClose}
+              className="absolute top-3 right-3 text-black bg-white border border-black rounded-full w-8 h-8 flex items-center justify-center hover:bg-black hover:text-white transition"
+            >
+              ×
+            </button>
+            <Image
+              src={selectedItem.image}
+              alt={selectedItem.title}
+              width={800}
+              height={600}
+              className="w-full h-auto object-contain"
+            />
+          </div>
+        </div>
+      )}
 
       <motion.div
         className="text-center mt-5 md:mt-[60px]"

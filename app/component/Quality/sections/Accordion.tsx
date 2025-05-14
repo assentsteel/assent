@@ -54,6 +54,7 @@ const Accordion: React.FC<PlatformsSectionProps> = ({
 
         <div className="lg:flex lg:items-center xxl:items-start">
           <div className="w-full lg:w-[40%] pr-0 lg:pr-[35px]">
+
             <motion.h2
               viewport={{ once: true, amount: 0.2 }}
             variants={slideInLeft}
@@ -78,13 +79,18 @@ const Accordion: React.FC<PlatformsSectionProps> = ({
    transition={{ duration: 0.4, delay: index * 0.1 }}
    viewport={{ once: true, amount: 0.2 }} // triggers only once when 20% is in view
  >
-
-      <h3
+      <div className="flex gap-5 md:gap-10 lg:gap-[50px] xl:gap-[100]">
+        <p className="text-[#1F1F1F80] text-md leading-[1]">
+  {String(da.id).padStart(2, '0')}
+</p>
+        <div>
+          <h3
           className={`  text-md   group-hover:text-secondary transition-all duration-300 cursor-pointer leading-[1]
             ${activeIndex === index ? 'text-secondary font-[600]' : 'text-primary font-[400] '}
           `}
         > {da.title}
         </h3>
+
       <AnimatePresence mode="wait">
         {activeIndex === index && (
           <motion.div
@@ -99,6 +105,8 @@ const Accordion: React.FC<PlatformsSectionProps> = ({
           </motion.div>
         )}
       </AnimatePresence>
+      </div>
+     </div>
     </motion.div>
   ))}
 </div>

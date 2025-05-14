@@ -62,7 +62,7 @@ const Achievements: React.FC<PlatformsSectionProps> = ({AreaExpertise
 <div className="container">
   <div className="border-t">
     <motion.div
-      className="grid grid-cols-12"
+      className="grid grid-cols-12 py-6 md:py-0"
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
@@ -71,20 +71,20 @@ const Achievements: React.FC<PlatformsSectionProps> = ({AreaExpertise
       {AreaExpertise.map((item) => (
         <motion.div
           key={item.id}
-          className="col-span-12 md:col-span-6 xl:col-span-3 py-7 md:py-10 group hrgr"
+          className="col-span-6 xl:col-span-3 py-3 md:py-10 group hrgr"
           variants={cardVariants}
         >
-          <div className="sepses px-4 py-2 md:px-10 md:py-4 group-hover:border-0">
+          <div className="border-l border-[#f6f6f6] px-3 py-2 md:px-10 md:py-4 group-hover:border-0">
             <div className="overflow-hidden">
               <motion.p
-                className="text-primary font-[600] text-40 mb-[4px]"
+                className="text-primary font-[600] text-[20px] md:text-40 mb-[4px]"
                 variants={cardVariants}
               >
                 {item.title}
-                <span className="text-sm">{item.smalltext}</span>
+                <span className="text-[15px] md:text-sm">{item.smalltext}</span>
               </motion.p>
               <motion.p
-                className="text-md text-territory leading-[1.6]"
+                className="text-[15px] md:text-md text-territory leading-[1.6]"
                 variants={cardVariants}
               >
                 {item.subtitle}

@@ -34,6 +34,13 @@ const NavTabsection: React.FC<PlatformsSectionProps> = ({
   const [activeTab, setActiveTab] = useState(0); // default first tab
 
   const tabs = data.data.map((item) => item.tab);
+  useEffect(() => {
+  const interval = setInterval(() => {
+    setActiveTab((prev) => (prev + 1) % tabs.length);
+  }, 4000);
+
+  return () => clearInterval(interval); // cleanup on unmount
+}, [tabs.length]);
   const activeContent = data.data[activeTab];
   const [isMobile, setIsMobile] = useState(false);
 
@@ -85,12 +92,9 @@ const NavTabsection: React.FC<PlatformsSectionProps> = ({
     exit: { opacity: 0, x: -30, transition: { duration: 0.4 } },
   };
 
-  const tabsPerPage = 6;
+
   const [currentTabSet, setCurrentTabSet] = useState(0);
-  const paginatedTabs = tabs.slice(
-    currentTabSet * tabsPerPage,
-    (currentTabSet + 1) * tabsPerPage
-  );
+  const paginatedTabs = tabs;
   return (
     <section
       className={`pt-[50px] md:pt-[70px] xl:pt-[100px] pb-[50px] md:pb-[70px] xl:pb-[100px] overflow-hidden relative ${
@@ -121,18 +125,12 @@ const NavTabsection: React.FC<PlatformsSectionProps> = ({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.3 }}
-                onClick={() => {
-                  const newTabSet = Math.max(currentTabSet - 1, 0);
-                  setCurrentTabSet(newTabSet);
-                  setActiveTab(newTabSet * tabsPerPage); // First item in the new set
-                }}
-                disabled={currentTabSet === 0}
-                className={`bg-white text-black border px-3 py-1 rounded-full w-[48px] h-[48px] hover:border-white hover:bg-secondary group transition flex items-center justify-center ${
-                  currentTabSet === 0
-                    ? "opacity-50 cursor-not-allowed hover:bg-[#dddddd]"
-                    : ""
-                }`}
-              >
+onClick={() => setActiveTab((prev) => Math.max(prev - 1, 0))}
+                disabled={activeTab === 0}
+
+                            className={`bg-white text-black border px-3 py-1 rounded-full w-[48px] h-[48px] hover:border-white hover:bg-secondary group transition flex items-center justify-center ${
+                              activeTab === 0 ? "opacity-50 cursor-not-allowed hover:bg-[#dddddd]" : ""
+                            }`}  >
                 <Image
                   src={assets.greenarrow}
                   alt=""
@@ -149,21 +147,13 @@ const NavTabsection: React.FC<PlatformsSectionProps> = ({
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: 0.1 }}
-                onClick={() => {
-                  const newTabSet = Math.min(
-                    currentTabSet + 1,
-                    Math.ceil(tabs.length / tabsPerPage) - 1
-                  );
-                  setCurrentTabSet(newTabSet);
-                  setActiveTab(newTabSet * tabsPerPage); // First item in the new set
-                }}
-                disabled={(currentTabSet + 1) * tabsPerPage >= tabs.length}
+           onClick={() => setActiveTab((prev) => Math.min(prev + 1, tabs.length - 1))}
+                disabled={activeTab === tabs.length - 1}
                 className={`bg-white text-black border px-3 py-1 rounded-full w-[48px] h-[48px] hover:border-white hover:bg-secondary group transition flex items-center justify-center ${
-                  (currentTabSet + 1) * tabsPerPage >= tabs.length
+                  activeTab === tabs.length - 1
                     ? "opacity-50 cursor-not-allowed hover:bg-[#dddddd]"
                     : ""
-                }`}
-              >
+                }`} >
                 <Image
                   src={assets.greenarrow}
                   alt=""
@@ -188,7 +178,7 @@ const NavTabsection: React.FC<PlatformsSectionProps> = ({
               exit="exit"
             >
               {paginatedTabs.map((tab, index) => {
-                const actualIndex = currentTabSet * tabsPerPage + index;
+                const actualIndex = currentTabSet  + index;
                 return (
                   <button
                     key={actualIndex}
@@ -281,11 +271,11 @@ const NavTabsection: React.FC<PlatformsSectionProps> = ({
                       initial="hidden"
                       animate="visible"
                       exit="hidden"
-                      className="p-4"
+                      className={`p-4 ${
+        bgcolor ? 'bg-white' : ""
+      }`}
                     >
-                      <h2 className="text-base font-[600] mb-3">
-                        {content.title}
-                      </h2>
+
                       <div className="text-sm font-[400] leading-[1.8] text-territory mb-4">
                         {content.paragraphs.map((p, i) => (
                           <p key={i} className="mb-4">
