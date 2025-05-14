@@ -1,8 +1,7 @@
 "use client";
 import Image, { StaticImageData } from "next/image";
-import React, { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { assets } from "@/public/assets/assets";
+import React  from "react";
+import {  motion } from "framer-motion";
 
 interface ExpertiseItem {
   icon: StaticImageData[];
@@ -19,33 +18,13 @@ interface ExpertiseSectionProps {
 }
 
 
-const imageSets  = [
-  [assets.cer2, assets.cer1, assets.cer2],
-  [assets.cer2, assets.cer1, assets.cer2],
-  [assets.cer2, assets.cer1, assets.cer2, assets.cer3],
-];
+
 
 const Structure: React.FC<ExpertiseSectionProps> = ({ data, maxchwidth }) => {
 
 
 
-  const [currentIndexes, setCurrentIndexes] = useState(Array(imageSets.length).fill(0));
-  const [hovered, setHovered] = useState<number | null>(null);
 
-  useEffect(() => {
-    if (hovered === null) return;
-
-    const interval = setInterval(() => {
-      setCurrentIndexes((prev) => {
-        const updated = [...prev];
-        const imgs = imageSets[hovered];
-        updated[hovered] = (updated[hovered] + 1) % imgs.length;
-        return updated;
-      });
-    }, 2000); // Slide every 4 seconds
-
-    return () => clearInterval(interval);
-  }, [hovered]);
 
 
 
@@ -146,68 +125,7 @@ const Structure: React.FC<ExpertiseSectionProps> = ({ data, maxchwidth }) => {
 
 
 
-           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {imageSets.map((images, groupIndex) => (
-        <div
-          key={groupIndex}
-          className="relative group w-full aspect-[4/3] overflow-hidden rounded-xl bg-gray-100"
-          onMouseEnter={() => setHovered(groupIndex)}
-          onMouseLeave={() => setHovered(null)}
-        >
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentIndexes[groupIndex]}
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -50 }}
-              transition={{ duration: 0.5 }}
-              className="absolute inset-0"
-            >
-              <Image
-                src={images[currentIndexes[groupIndex]]}
-                alt={`Slide ${currentIndexes[groupIndex]}`}
-                fill
-                className="object-cover rounded-xl"
-              />
-            </motion.div>
-          </AnimatePresence>
 
-          {/* Arrows */}
-          {hovered === groupIndex && (
-            <>
-              <div className="flex gap-2  justify-center  items-center">
-                <button
-                onClick={() =>
-                  setCurrentIndexes((prev) => {
-                    const updated = [...prev];
-                    const imgs = imageSets[groupIndex];
-                    updated[groupIndex] = (updated[groupIndex] - 1 + imgs.length) % imgs.length;
-                    return updated;
-                  })
-                }
-                className="  -translate-y-1/2 bg-black/60 text-white w-8 h-8 rounded-full flex items-center justify-center"
-              >
-                ‹
-              </button>
-              <button
-                onClick={() =>
-                  setCurrentIndexes((prev) => {
-                    const updated = [...prev];
-                    const imgs = imageSets[groupIndex];
-                    updated[groupIndex] = (updated[groupIndex] + 1) % imgs.length;
-                    return updated;
-                  })
-                }
-                className="  top-1/2 -translate-y-1/2 bg-black/60 text-white w-8 h-8 rounded-full flex items-center justify-center"
-              >
-                ›
-              </button>
-              </div>
-            </>
-          )}
-        </div>
-      ))}
-    </div>
 
 
 
