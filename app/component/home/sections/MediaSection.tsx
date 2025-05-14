@@ -133,9 +133,10 @@ const MediaSection = () => {
                 </Link>
               </div>
             ))}
-            <button className="mt-auto border border-secondary py-2 px-6 rounded-[5px] hover:bg-secondary hover:text-white transition text-xs h-[40px] lg:h-[65px] text-territory w-[60%]">
+              <Link href='/news'>
+               <button className="mt-auto border border-secondary py-2 px-6 rounded-[5px] hover:bg-secondary hover:text-white transition text-xs h-[40px] lg:h-[65px] text-territory w-[60%]">
               VIEW ALL
-            </button>
+            </button></Link>
             </motion.div>
           </div>
         </div>

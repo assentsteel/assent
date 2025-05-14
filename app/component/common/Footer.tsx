@@ -52,15 +52,24 @@ const Footer = () => {
           {/* Quick Links */}
           <motion.div variants={fadeIn} className="md:col-span-8 overflow-hidden">
             <motion.h3 variants={fadeInLeft}  className="text-lg font-semibold mb-5 lg:mb-[50px]">Quick Links</motion.h3>
-            <ul className="space-y-2 grid lg:grid-cols-2 lg:w-[75%]">
-              {["Leadership Team", "Global Presence", "Awards & Accreditations", "Careers", "News", "Request for Quotation", "Vendor Registration"].map((link, index) => (
-                <motion.li key={index} variants={fadeInLeft} >
-                  <Link href="#" className="hover:text-secondary transition-all ease-in-out duration-500">
-                    {link}
-                  </Link>
-                </motion.li>
-              ))}
-            </ul>
+           <ul className="space-y-2 grid lg:grid-cols-2 lg:w-[75%]">
+  {[
+    { label: "Leadership Team", href: "/team" },
+    { label: "Global Presence", href: "/global-presence" },
+    { label: "Awards & Accreditations", href: "/accreditations" },
+    { label: "Careers", href: "/careers" },
+    { label: "News", href: "/news" },
+    { label: "Request for Quotation", href: "/rfq" },
+    { label: "Vendor Registration", href: "/vendor" },
+  ].map((link, index) => (
+    <motion.li key={index} variants={fadeInLeft}>
+      <Link href={link.href} className="hover:text-secondary transition-all ease-in-out duration-500">
+        {link.label}
+      </Link>
+    </motion.li>
+  ))}
+</ul>
+
           </motion.div>
         </motion.div>
 

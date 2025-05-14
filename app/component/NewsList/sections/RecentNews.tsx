@@ -4,6 +4,7 @@ import Image, { StaticImageData } from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
+import Link from "next/link";
 gsap.registerPlugin(ScrollTrigger);
 interface PlatformsItem {
   id: number;
@@ -11,6 +12,7 @@ interface PlatformsItem {
   title: string;
   image: string | StaticImageData;
   linkText: string;
+  url: string;
 }
 
 interface PlatformsSectionProps {
@@ -95,6 +97,8 @@ const RecentNews: React.FC<PlatformsSectionProps> = ({ data }) => {
             <motion.p variants={textChild} className="text-xs text-white font-[500] mb-1">{item.date}</motion.p>
             <motion.h3 variants={textChild}  className="line-clamp-2 text-white text-md xxl:text-lg leading-[1.1] xl:leading-[1.5] mb-2 lg:mb-5 font-[600]">{item.title}</motion.h3>
             <motion.div variants={textChild} className="flex justify-between">
+
+                  <Link href={item.url}>
               <div className="flex gap-4 items-center border-b border-secondary pb-[10px] transition-all duration-500">
                 <p className="text-xs uppercase text-white font-[500] inline-flex leading-[1]">{item.linkText}</p>
                 <div className="min-w-[20px] min-h-[20px] bg-white rounded-full flex items-center justify-center translate-x-0 group-hover:translate-x-[5px] transition-all duration-500">
@@ -102,7 +106,8 @@ const RecentNews: React.FC<PlatformsSectionProps> = ({ data }) => {
                           <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
                         </svg>
                 </div>
-              </div>
+                </div>
+              </Link>
             </motion.div>
           </motion.div>
         </motion.div>
@@ -131,6 +136,7 @@ const RecentNews: React.FC<PlatformsSectionProps> = ({ data }) => {
             <motion.p variants={textChild} className="text-xs text-white font-[500] mb-1">{item.date}</motion.p>
             <motion.h3 variants={textChild} className="line-clamp-2 text-white text-md xxl:text-lg leading-[1.1] xl:leading-[1.5] mb-2 lg:mb-5 font-[600]">{item.title}</motion.h3>
             <motion.div variants={textChild} className="flex justify-between">
+                <Link href={item.url}>
               <div className="flex gap-4 items-center border-b border-secondary pb-[10px] transition-all duration-500">
                 <p className="text-xs uppercase text-white font-[500] inline-flex leading-[1]">{item.linkText}</p>
                 <div className="min-w-[20px] min-h-[20px] bg-white rounded-full flex items-center justify-center translate-x-0 group-hover:translate-x-[5px] transition-all duration-500">
@@ -138,7 +144,8 @@ const RecentNews: React.FC<PlatformsSectionProps> = ({ data }) => {
                           <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
                         </svg>
                 </div>
-              </div>
+                </div>
+                </Link>
             </motion.div>
           </div>
         </motion.div>

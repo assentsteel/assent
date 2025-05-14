@@ -4,6 +4,7 @@ import Image, { StaticImageData } from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
+import Link from "next/link";
 gsap.registerPlugin(ScrollTrigger);
 interface PlatformsItem {
   id: number;
@@ -11,6 +12,7 @@ interface PlatformsItem {
   title: string;
   comment: string;
   image: string | StaticImageData;
+  url:string
 }
 
 interface PlatformsSectionProps {
@@ -80,6 +82,7 @@ const NewsList: React.FC<PlatformsSectionProps> = ({ data }) => {
                   <h3 className="line-clamp-2 text-black text-sm mt-2 lg:mt-5  leading-[1.3] xl:leading-[1.8] mb-4 lg:mb-[10px] font-[400]">
                     {item.title}
                   </h3>
+                  <Link href={item.url}>
                   <div className="flex justify-between mb-5 lg:mb-0">
                     <div className=" flex gap-4 items-center w-fit m-0 border-b  border-secondary pb-[10px]   transition-all duration-500 ">
                       <p className="text-xs uppercase text-black font-[500] inline-flex  leading-[1] ">
@@ -100,7 +103,8 @@ const NewsList: React.FC<PlatformsSectionProps> = ({ data }) => {
                         </svg>
                       </motion.div>
                     </div>
-                  </div>
+                    </div>
+                    </Link>
                 </div>
               </div>
               <div className="locks  lg:block lg:col-span-2 xl:col-span-3 h-[1px] bg-[#ccc] my-8 xl:my-[60px]"></div>

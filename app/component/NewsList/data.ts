@@ -8,63 +8,72 @@ export const news = {
       date:"Jan 16, 2024",
       comment: "Project Update",
       title: "We are thrilled to showcase the our new completion of our latest project.",
-      image:assets.news1
+      image: assets.news1,
+      url:'/news-details'
     },
     {
       id: 2,
       date:"Jan 16, 2024",
       comment: "PPE Exhibition",
       title: "Just because something is good doesn't mean that it can’t be improved.",
-      image:assets.news2
+      image:assets.news2,
+      url:'/news-details'
     },
     {
       id: 3,
       date:"Jan 16, 2024",
       comment: "Team Building",
       title: "Set in the vibrant landscape of Cairo, ASSENT STEEL’s Egypt Office.",
-      image:assets.news3
+      image:assets.news3,
+      url:'/news-details'
     },
     {
       id: 4,
       date:"Jan 16, 2024",
       comment: "Happy New Year 2024",
       title: "ASSENT STEEL wishes you a Happy New Year filled with joy and love.",
-      image:assets.news4
+      image:assets.news4,
+      url:'/news-details'
     },
     {
       id: 5,
       date:"Jan 16, 2024",
       comment: "ASSENT STEEL 2023 Year in Review",
       title: "As we stand on the brink of a new year, it's a perfect moment to reflect.",
-      image:assets.news5
+      image:assets.news5,
+      url:'/news-details'
     },
     {
       id: 6,
       date:"Jan 16, 2024",
       comment: "Wonderland Contest",
       title: "ASSENT STEEL wishes everyone a joyous Christmas filled with warmth  and love.",
-      image:assets.news6
+      image:assets.news6,
+      url:'/news-details'
     },
     {
       id: 7,
       date:"Jan 16, 2024",
       comment: "Workforce Beach Outing",
       title: "ASSENT STEEL is thrilled to share yet again the wonderful memories created during our second",
-      image:assets.news7
+      image:assets.news7,
+      url:'/news-details'
     },
     {
       id: 8,
       date:"Jan 16, 2024",
       comment: "Welding Positions",
       title: "At ASSENT STEEL, we go beyond the ordinary to showcase our welding prowess. ",
-      image:assets.news8
+      image:assets.news8,
+      url:'/news-details'
     },
     {
       id: 9,
       date:"Jan 16, 2024",
       comment: "5S Challenge – November Winners",
       title: "ASSENT STEEL’S 5S Challenge, as part of its ongoing LEAN journey, awarded its 3rd and final winners.",
-      image:assets.news9
+      image:assets.news9,
+      url:'/news-details'
     },
   ],
 };
@@ -75,21 +84,24 @@ export const newsData = {
     image: assets.ren1,
     date: "Jan 19, 2024",
     title: "ASSENT STEEL’s Commitment to Employee Well-Being and Team Bonding Through..",
-    linkText: "Read More"
+    linkText: "Read More",
+      url:'/news-details'
   },
   {
     id: 2,
     image: assets.ren2,
     date: "Jan 19, 2024",
     title: "Connecting Continents with Steel Excellence!",
-    linkText: "Read More"
+    linkText: "Read More",
+      url:'/news-details'
   },
   {
     id: 3,
     image: assets.ren3,
     date: "Jan 19, 2024",
     title: "Cleaners Appreciation Award",
-    linkText: "Read More"
+    linkText: "Read More",
+      url:'/news-details'
   },
   ],
 };

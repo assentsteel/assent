@@ -7,61 +7,97 @@ export type MenuItem = {
 export const menuItems: MenuItem[] = [
   {
     title: "About",
-    url: "/about",
+    url: "",
+    children: [
+      {
+        title: "Overview",
+        url: "/about",
+      },
+      {
+        title: "Teams",
+        url: "/team",
+      },
+      {
+        title: "Global Presence",
+        url: "/global-presence",
+      },
+      {
+        title: "Award & Accreditations ",
+        url: "/accreditations",
+      },
+    ],
   },
   {
     title: "Services",
-    url: "/services",
+    url: "",
+    children: [
+      {
+        title: "Engineering ",
+        url: "/engineering",
+      },
+      {
+        title: "Fabrication",
+        url: "/fabrication",
+      },
+      {
+        title: "Blasting painting",
+        url: "/blasting",
+      },
+      {
+        title: "Steel Erection ",
+        url: "/services",
+      },
+    ],
   },
-/*   {
+  {
     title: "Projects",
     url: "",
     children: [
       {
-        title: "Residential",
-        url: "/projects/residential",
-      },
-      {
-        title: "Commercial",
-        url: "/projects/commercial",
+        title: "Commercial  ",
+        url: "/projects-list",
       },
       {
         title: "Industrial",
-        url: "/projects/industrial",
+        url: "/projects-list",
       },
       {
-        title: "Hospitality",
-        url: "/projects/hospitality",
-      },
-      {
-        title: "Retail",
-        url: "/projects/retail",
+        title: "Data centric ",
+        url: "/projects-list",
       },
     ],
-  }, */
-  {
-    title: "Manufacturing",
-    url: "",
   },
 
-  {
-    title: "Projects",
-    url: "/projects-list",
+{
+    title: "Sustainability",
+    url: "/sustainability",
   },
   {
     title: "How We Work",
     url: "",
+    children: [
+      {
+        title: "Quality",
+        url: "/quality",
+      },
+      {
+        title: "HSE",
+        url: "/hse",
+      },
+    ],
   },
-  {
-    title: "Sustainability",
-    url: "",
-  },
-  {
+   {
     title: "Media",
-    url: "gallery",
-  },
-  {
-    title: "Careers",
-    url: "/careers",
+    url: "",
+    children: [
+      {
+        title: "News",
+        url: "/news",
+      },
+      {
+        title: "Gallery",
+        url: "/gallery",
+      },
+    ],
   },
 ];

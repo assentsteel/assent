@@ -39,19 +39,19 @@ export const discover = {
       id: 1,
       title: "North Americ",
       image: assets.gpslide1,
-      urlss:""
+      urlss:"global-presence-america"
     },
     {
       id: 2,
       title: "Europe",
       image: assets.gpslide2,
-      urlss:""
+      urlss:"global-presence-europe"
     },
     {
       id: 3,
       title: "Africa",
       image: assets.gpslide3,
-      urlss:""
+      urlss:"global-presence-africa"
     },
   ],
 };
