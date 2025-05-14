@@ -27,6 +27,12 @@ interface PlatformsSectionProps {
 }
 
 const Location: React.FC<PlatformsSectionProps> = ({ data }) => {
+
+  const [isHoveredAsia, setIsHoveredAsia] = useState(false);
+  const [isHoveredIraq, setIsHoveredIraq] = useState(false);
+  const [isHoveredAfrica, setIsHoveredAfrica] = useState(false);
+  const [isHoveredGcc, setIsHoveredGcc] = useState(false);
+
   const [activeTab, setActiveTab] = useState(data[0]?.tag);
   const containerRef = useRef(null);
 
@@ -141,7 +147,7 @@ const Location: React.FC<PlatformsSectionProps> = ({ data }) => {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <div className="w-full h-[350px]  lg:h-full  relative rounded-xl  ">
+            <div className="w-full    lg:h-full  relative rounded-xl  ">
               <div>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -155,177 +161,202 @@ const Location: React.FC<PlatformsSectionProps> = ({ data }) => {
                     height="532.5"
                     fill="url(#pattern0_641_13978)"
                   />
-                  <path
-                    d="M721.5 195L670.292 189L608.5 114L495 91"
-                    stroke="#18355F"
-                    stroke-opacity="0.7"
-                    stroke-linecap="round"
-                  />
-                  <path
-                    d="M707 179H739V211H707V179Z"
-                    fill="white"
-                    fill-opacity="0.04"
-                  />
+                  {isHoveredAsia && (
+                    <path
+                      d="M721.5 195L670.292 189L608.5 114L495 91"
+                      stroke="#18355F"
+                      stroke-opacity="0.7"
+                      stroke-linecap="round"
+                    />)}
                   <path
                     d="M716.771 203.575H712.111L709.781 199.514L712.111 195.52H716.771L719.035 199.514L716.771 203.575Z"
-                    fill="#18355F"
+                     fill={`${isHoveredAsia ? '#18355F' : '#5BA646'}`}
                   />
                   <path
                     d="M716.771 193.524H712.111L709.781 189.53L712.111 185.469H716.771L719.035 189.53L716.771 193.524Z"
-                    fill="#18355F"
+                     fill={`${isHoveredAsia ? '#18355F' : '#5BA646'}`}
                   />
                   <path
                     d="M725.431 208.567H720.838L718.508 204.572L720.838 200.578H725.431L727.761 204.572L725.431 208.567Z"
-                    fill="#18355F"
+                     fill={`${isHoveredAsia ? '#18355F' : '#5BA646'}`}
                   />
                   <path
                     d="M725.431 188.532H720.838L718.508 184.471L720.838 180.477H725.431L727.761 184.471L725.431 188.532Z"
-                    fill="#18355F"
+                     fill={`${isHoveredAsia ? '#18355F' : '#5BA646'}`}
                   />
                   <path
                     d="M734.154 203.575H729.494L727.164 199.514L729.494 195.52H734.154L736.484 199.514L734.154 203.575Z"
-                    fill="#18355F"
+                     fill={`${isHoveredAsia ? '#18355F' : '#5BA646'}`}
                   />
                   <path
                     d="M734.154 193.524H729.494L727.164 189.53L729.494 185.469H734.154L736.484 189.53L734.154 193.524Z"
-                    fill="#18355F"
+                     fill={`${isHoveredAsia ? '#18355F' : '#5BA646'}`}
                   />
                   <path
                     d="M725.923 198.516H721.33L719 194.522L721.33 190.527H725.923L728.253 194.522L725.923 198.516Z"
                     fill="#5BA646"
                   />
+                  {isHoveredAsia && (
+                    <path
+                      d="M723.212 194.788H721V194.212H723.212V192H723.788V194.212H726V194.788H723.788V197H723.212V194.788Z"
+                      fill="white"
+                    />)}
                   <path
-                    d="M723.212 194.788H721V194.212H723.212V192H723.788V194.212H726V194.788H723.788V197H723.212V194.788Z"
-                    fill="white"
-                  />
-                  <path
-                    d="M778.344 394.973H639.344L600.844 200.473"
-                    stroke="#18355F"
-                    stroke-opacity="0.7"
-                    stroke-linecap="round"
-                  />
-                  <path
-                    d="M584 188H616V220H584V188Z"
+                    d="M707 179H739V211H707V179Z"
                     fill="white"
                     fill-opacity="0.04"
+                    className=" cursor-pointer"
+                    onMouseEnter={() => setIsHoveredAsia(true)}
+        onMouseLeave={() => setIsHoveredAsia(false)}
                   />
+                  {isHoveredIraq && (
+                    <path
+                      d="M778.344 394.973H639.344L600.844 200.473"
+                      stroke="#18355F"
+                      stroke-opacity="0.7"
+                      stroke-linecap="round"
+                    />
+                  )}
+
                   <path
                     d="M593.923 213.035H589.33L587 209.041L589.33 205.047H593.923L596.253 209.041L593.923 213.035Z"
-                    fill="#18355F"
+                     fill={`${isHoveredIraq ? '#18355F' : '#5BA646'}`}
                   />
                   <path
                     d="M593.923 203.047H589.33L587 198.986L589.33 194.992H593.923L596.253 198.986L593.923 203.047Z"
-                    fill="#18355F"
+                     fill={`${isHoveredIraq ? '#18355F' : '#5BA646'}`}
                   />
                   <path
                     d="M602.65 218.094H597.99L595.727 214.1L597.99 210.039H602.65L604.98 214.1L602.65 218.094Z"
-                    fill="#18355F"
+                     fill={`${isHoveredIraq ? '#18355F' : '#5BA646'}`}
                   />
                   <path
                     d="M602.65 197.989H597.99L595.727 193.994L597.99 190H602.65L604.98 193.994L602.65 197.989Z"
-                    fill="#18355F"
+                     fill={`${isHoveredIraq ? '#18355F' : '#5BA646'}`}
                   />
                   <path
                     d="M611.306 213.035H606.713L604.383 209.041L606.713 205.047H611.306L613.636 209.041L611.306 213.035Z"
-                    fill="#18355F"
+                     fill={`${isHoveredIraq ? '#18355F' : '#5BA646'}`}
                   />
                   <path
                     d="M611.306 203.047H606.713L604.383 198.986L606.713 194.992H611.306L613.636 198.986L611.306 203.047Z"
-                    fill="#18355F"
+                     fill={`${isHoveredIraq ? '#18355F' : '#5BA646'}`}
                   />
                   <path
                     d="M602.65 208.039H597.99L595.727 204.045L597.99 200.051H602.65L604.98 204.045L602.65 208.039Z"
                     fill="#5BA646"
                   />
-                  <path
-                    d="M600.055 204.261H597.844V203.684H600.055V201.473H600.632V203.684H602.844V204.261H600.632V206.473H600.055V204.261Z"
-                    fill="white"
-                  />
-                  <path
-                    d="M163.5 529.301H341.5H471.5L575 269.301"
-                    stroke="#18355F"
-                    stroke-opacity="0.7"
-                    stroke-linecap="round"
-                  />
-                  <path
-                    d="M558 254H590V286H558V254Z"
+                  {isHoveredIraq && (
+                    <path
+                      d="M600.055 204.261H597.844V203.684H600.055V201.473H600.632V203.684H602.844V204.261H600.632V206.473H600.055V204.261Z"
+                      fill="white"
+                    />)}
+                   <path
+                    d="M584 188H616V220H584V188Z"
                     fill="white"
                     fill-opacity="0.04"
+                    className=" cursor-pointer"
+                    onMouseEnter={() => setIsHoveredIraq(true)}
+                    onMouseLeave={() => setIsHoveredIraq(false)}
                   />
+                  {isHoveredGcc && (
+                    <path
+                      d="M163.5 529.301H341.5H471.5L575 269.301"
+                      stroke="#18355F"
+                      stroke-opacity="0.7"
+                      stroke-linecap="round"
+                    />)}
                   <path
                     d="M568.06 279.102H563.4L561.07 275.108L563.4 271.047H568.06L570.39 275.108L568.06 279.102Z"
-                    fill="#18355F"
+                     fill={`${isHoveredGcc ? '#18355F' : '#5BA646'}`}
                   />
                   <path
                     d="M568.06 269.051H563.4L561.07 265.057L563.4 261.062H568.06L570.39 265.057L568.06 269.051Z"
-                    fill="#18355F"
+                     fill={`${isHoveredGcc ? '#18355F' : '#5BA646'}`}
                   />
                   <path
                     d="M576.705 284.094H572.111L569.781 280.1L572.111 276.105H576.705L579.035 280.1L576.705 284.094Z"
-                    fill="#18355F"
+                     fill={`${isHoveredGcc ? '#18355F' : '#5BA646'}`}
                   />
                   <path
                     d="M576.705 264.055H572.111L569.781 260.061L572.111 256H576.705L579.035 260.061L576.705 264.055Z"
-                    fill="#18355F"
+                     fill={`${isHoveredGcc ? '#18355F' : '#5BA646'}`}
                   />
                   <path
                     d="M585.431 279.102H580.771L578.508 275.108L580.771 271.047H585.431L587.761 275.108L585.431 279.102Z"
-                    fill="#18355F"
+                     fill={`${isHoveredGcc ? '#18355F' : '#5BA646'}`}
                   />
                   <path
                     d="M585.431 269.051H580.771L578.508 265.057L580.771 261.062H585.431L587.761 265.057L585.431 269.051Z"
-                    fill="#18355F"
+                     fill={`${isHoveredGcc ? '#18355F' : '#5BA646'}`}
                   />
                   <path
                     d="M576.923 273.356H572.33L570 269.295L572.33 265.301H576.923L579.253 269.295L576.923 273.356Z"
                     fill="#5BA646"
                   />
+                  {isHoveredGcc && (
+                    <path
+                      d="M574.212 270.089H572V269.512H574.212V267.301H574.788V269.512H577V270.089H574.788V272.301H574.212V270.089Z"
+                      fill="white"
+                    />
+                  )}
+
                   <path
-                    d="M574.212 270.089H572V269.512H574.212V267.301H574.788V269.512H577V270.089H574.788V272.301H574.212V270.089Z"
-                    fill="white"
-                  />
-                  <path
-                    d="M741.719 516.109H612.223L511.719 323.109"
-                    stroke="#18355F"
-                    stroke-opacity="0.7"
-                    stroke-linecap="round"
-                  />
-                  <path
-                    d="M497 309H529V341H497V309Z"
+                    d="M558 254H590V286H558V254Z"
                     fill="white"
                     fill-opacity="0.04"
+                    className=" cursor-pointer"
+                    onMouseEnter={() => setIsHoveredGcc(true)}
+                    onMouseLeave={() => setIsHoveredGcc(false)}
                   />
+                  {isHoveredAfrica && (
+                    <path
+                      d="M741.719 516.109H612.223L511.719 323.109"
+                      stroke="#18355F"
+                      stroke-opacity="0.7"
+                      stroke-linecap="round"
+                    />)}
+
                   <path
                     d="M506.923 325.047H502.33L500 321.053L502.33 317.059H506.923L509.253 321.053L506.923 325.047Z"
-                    fill="#18355F"
+                     fill={`${isHoveredAfrica? '#18355F' : '#5BA646'}`}
                   />
                   <path
                     d="M515.654 320.055H510.994L508.664 316.061L510.994 312H515.654L517.984 316.061L515.654 320.055Z"
-                    fill="#18355F"
+                     fill={`${isHoveredAfrica? '#18355F' : '#5BA646'}`}
                   />
                   <path
                     d="M506.923 335.098H502.33L500 331.104L502.33 327.043H506.923L509.253 331.104L506.923 335.098Z"
-                    fill="#18355F"
+                     fill={`${isHoveredAfrica? '#18355F' : '#5BA646'}`}
                   />
                   <path
                     d="M524.298 325.047H519.705L517.375 321.053L519.705 317.059H524.298L526.628 321.053L524.298 325.047Z"
-                    fill="#18355F"
+                     fill={`${isHoveredAfrica? '#18355F' : '#5BA646'}`}
                   />
                   <path
                     d="M515.654 340.09H510.994L508.664 336.096L510.994 332.102H515.654L517.984 336.096L515.654 340.09Z"
-                    fill="#18355F"
+                     fill={`${isHoveredAfrica? '#18355F' : '#5BA646'}`}
                   />
                   <path
                     d="M524.298 335.098H519.705L517.375 331.104L519.705 327.043H524.298L526.628 331.104L524.298 335.098Z"
-                    fill="#18355F"
+                    fill={`${isHoveredAfrica? '#18355F' : '#5BA646'}`}
                   />
                   <path
                     d="M515.654 330.106H510.994L508.664 326.045L510.994 322.051H515.654L517.984 326.045L515.654 330.106Z"
                     fill="#5BA646"
                   />
+                  {isHoveredAfrica && (
+                    <path
+                      d="M512.93 325.898H510.719V325.321H512.93V323.109H513.507V325.321H515.719V325.898H513.507V328.109H512.93V325.898Z"
+                      fill="white"
+                    />)}
                   <path
-                    d="M512.93 325.898H510.719V325.321H512.93V323.109H513.507V325.321H515.719V325.898H513.507V328.109H512.93V325.898Z"
+                    d="M497 309H529V341H497V309Z"
                     fill="white"
+                    fill-opacity="0.04"
+                    className=" cursor-pointer"
+                    onMouseEnter={() => setIsHoveredAfrica(true)}
+                    onMouseLeave={() => setIsHoveredAfrica(false)}
                   />
                   <defs>
                     <pattern
@@ -348,66 +379,110 @@ const Location: React.FC<PlatformsSectionProps> = ({ data }) => {
                     />
                   </defs>
                 </svg>
-                <div className="box-asia bg-white rounded-[5px]  p-3  xl:p-4 absolute top-3 right-[35%] shadow-md">
-                  <div className="flex gap-2 items-center">
-                    <div>
-                    <Image src={assets.asiaicn} alt="" className="rounded-[2px] shadow-md" />
-                  </div>
-                  <div>
-                    <div>
-                      <p className="text-[15px]">Asia</p>
-                    </div>
-                    <div>
-                      <table className="text-[12px]">
-                        <tr>
-                          <td>Steel Fabrication</td>
-                          <td>: 33000 Tons</td>
-                        </tr>
-                      </table>
-                    </div>
-                  </div>
-                  </div>
-                </div>
-                <div className="box-iraq bg-white rounded-[5px]  p-3  xl:p-4 absolute bottom-[130px] right-[3%] shadow-md">
-                  <div className="flex gap-2 items-center">
-                    <div>
-                    <Image src={assets.asiaicn} alt="" className="rounded-[2px] shadow-md" />
-                  </div>
-                  <div>
-                    <div>
-                      <p className="text-[15px]">Iraq</p>
-                    </div>
-                    <div>
-                      <table className="text-[12px]">
-                        <tr>
-                          <td>Steel Fabrication </td>
-                          <td>:   19000 Tons</td>
-                        </tr>
-                      </table>
+                {isHoveredAsia && (
+                  <div className="box-asia bg-white rounded-[5px]  p-3  xl:p-4 absolute top-3 right-[35%] shadow-md">
+                    <div className="flex gap-2 items-center">
+                      <div>
+                        <Image src={assets.asiaicn} alt="" className="rounded-[2px] shadow-md" />
+                      </div>
+                      <div>
+                        <div>
+                          <p className="text-[15px]">Asia</p>
+                        </div>
+                        <div>
+                          <table className="text-[12px]">
+                            <tr>
+                              <td>Steel Fabrication</td>
+                              <td>: 33000 Tons</td>
+                            </tr>
+                          </table>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  </div>
-                </div>
-                <div className="box-africa bg-white rounded-[5px]  p-3  xl:p-4 absolute bottom-0 right-[6%] shadow-md">
-                  <div className="flex gap-2 items-center">
-                    <div>
-                    <Image src={assets.asiaicn} alt="" className="rounded-[2px] shadow-md" />
-                  </div>
-                  <div>
-                    <div>
-                      <p className="text-[15px]">Africa</p>
+                )}
+                {isHoveredIraq && (
+                  <div className="box-iraq bg-white rounded-[5px]  p-3  xl:p-4 absolute bottom-[18%] right-[3%] shadow-md">
+                    <div className="flex gap-2 items-center">
+                      <div>
+                        <Image src={assets.asiaicn} alt="" className="rounded-[2px] shadow-md" />
+                      </div>
+                      <div>
+                        <div>
+                          <p className="text-[15px]">Iraq</p>
+                        </div>
+                        <div>
+                          <table className="text-[12px]">
+                            <tr>
+                              <td>Steel Fabrication </td>
+                              <td>:   19000 Tons</td>
+                            </tr>
+                          </table>
+                        </div>
+                      </div>
                     </div>
-                    <div>
-                      <table className="text-[12px]">
-                        <tr>
-                          <td>Steel Fabrication </td>
-                          <td>:   19000 Tons</td>
-                        </tr>
-                      </table>
+                  </div>
+                )}
+                {isHoveredAfrica && (
+                  <div className="box-africa bg-white rounded-[5px]  p-3  xl:p-4 absolute bottom-0 right-[6%] shadow-md">
+                    <div className="flex gap-2 items-center">
+                      <div>
+                        <Image src={assets.asiaicn} alt="" className="rounded-[2px] shadow-md" />
+                      </div>
+                      <div>
+                        <div>
+                          <p className="text-[15px]">Africa</p>
+                        </div>
+                        <div>
+                          <table className="text-[12px]">
+                            <tr>
+                              <td>Steel Fabrication </td>
+                              <td>:   18000 Tons</td>
+                            </tr>
+                          </table>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  </div>
-                </div>
+                )}
+                {isHoveredGcc&& (
+                  <div className="box-gcc bg-white rounded-[5px]  p-3  xl:p-4 absolute bottom-[-10px] left-[6%] shadow-md">
+                    <div className="flex gap-2 ">
+                      <div>
+                        <Image src={assets.asiaicn} alt="" className="rounded-[2px] shadow-md" />
+                      </div>
+                      <div>
+                        <div>
+                          <p className="text-[15px]">GCC</p>
+                        </div>
+                        <div>
+                          <table className="text-[12px] border-separate border-spacing-y-2">
+                            <tr>
+                              <td>UAE</td>
+                              <td>270K Tons</td>
+                            </tr>
+                            <tr>
+                              <td>KSA</td>
+                              <td>103K Tons</td>
+                            </tr>
+                            <tr>
+                              <td>Qatar</td>
+                              <td>38K Tons</td>
+                            </tr>
+                            <tr>
+                              <td>Kuwait</td>
+                              <td>80K Tons</td>
+                            </tr>
+                            <tr>
+                              <td>Bahrain</td>
+                              <td>12K Tons</td>
+                            </tr>
+
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>)}
               </div>
             </div>
           </motion.div>

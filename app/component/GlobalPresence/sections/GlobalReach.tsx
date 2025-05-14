@@ -62,7 +62,7 @@ const GlobalReach: React.FC<PlatformsSectionProps> = ({ data ,bgcolor  }) => {
 >
   {data.data.map((item, index) => (
     <motion.div
-      className="col-span-12 lg:col-span-4"
+      className="col-span-12 lg:col-span-4 lg:px-4 last:pb-0 pb-5 lg:pb-0"
       key={index}
       variants={textItemVariants}
     >
