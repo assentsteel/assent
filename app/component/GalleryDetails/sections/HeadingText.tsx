@@ -107,7 +107,7 @@ const HeadingText: React.FC<PlatformsSectionProps> = ({ data }) => {
             variants={modalVariants}
             onClick={() => setSelectedImage(null)}
           >
-            <div className="relative max-w-2xl w-full">
+            <div className="relative max-w-xl w-full">
               <button
                 className="absolute top-2 right-2 text-white text-2xl z-10 flex justify-center items-center bg-primary rounded-full w-[25px] h-[25px]"
                 onClick={() => setSelectedImage(null)}
