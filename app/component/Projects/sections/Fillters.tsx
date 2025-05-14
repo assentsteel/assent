@@ -1,5 +1,5 @@
 "use client";
-import { SetStateAction, useEffect, useRef, useState } from "react";
+import {  useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
@@ -86,7 +86,7 @@ const Fillters = ({ }) => {
           <p>Filter</p>
 
       {dropdowns.map((dropdown, index) => (
-        <div key={index} className="relative w-full">
+        <div key={index} className="relative w-full my-3 lg:my-0">
           <button
             onClick={() => toggleDropdown(index)}
             className="uppercase w-full text-left text-xs text-primary bg-transparent border-0 border-b border-black py-2 pr-6 appearance-none focus:outline-none focus:ring-0 focus:border-black relative"
