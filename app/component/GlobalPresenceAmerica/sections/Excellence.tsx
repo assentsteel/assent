@@ -56,36 +56,42 @@ const Excellence: React.FC<PlatformsSectionProps> = ({ data }) => {
   </div>
 
   <motion.div
-    className="grid grid-cols-12"
-    variants={gdVariants}
-    initial="hidden"
-    whileInView="visible"
-    viewport={{ once: true, amount: 0.2 }}
-  >
-    {data.data.map((item, index) => (
-      <motion.div
-        className="col-span-12"
-        key={index}
-        variants={gdsVariants}
-      >
-        <div className="border-t border-[#ffffff40]">
-          <div className="md:flex items-center py-9">
-            <div className="w-full md:w-1/2">
-              <div className="mb-4 md:mb-0 lg:flex gap-2 items-baseline">
-                <h3 className="text-xl font-semibold text-white">
-                  {item.title}
-                </h3>
-                <span className="text-md text-white">{item.subtitle}</span>
-              </div>
-            </div>
-            <div className="w-full md:w-1/2">
-              <p className="text-sm text-white">{item.details}</p>
+  className="grid grid-cols-12"
+  variants={gdVariants}
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true, amount: 0.2 }}
+>
+  {data.data.map((item, index) => (
+    <motion.div
+      key={index}
+      variants={gdsVariants}
+      className="col-span-12"
+      whileHover={{
+        scale: 1.02,
+        backgroundColor: "rgba(255, 255, 255, 0.05)",
+        transition: { duration: 0.3 },
+      }}
+    >
+      <div className="border-t border-[#ffffff40]">
+        <div className="md:flex items-center py-9 px-4 md:px-8 transition-all duration-300">
+          <div className="w-full md:w-1/2">
+            <div className="mb-4 md:mb-0 lg:flex gap-2 items-baseline">
+              <h3 className="text-xl font-semibold text-white">
+                {item.title}
+              </h3>
+              <span className="text-md text-white">{item.subtitle}</span>
             </div>
           </div>
+          <div className="w-full md:w-1/2">
+            <p className="text-sm text-white">{item.details}</p>
+          </div>
         </div>
-      </motion.div>
-    ))}
-  </motion.div>
+      </div>
+    </motion.div>
+  ))}
+</motion.div>
+
 </div>
 
     </div>

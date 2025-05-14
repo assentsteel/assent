@@ -66,7 +66,7 @@ const EuReach: React.FC<PlatformsSectionProps> = ({ data }) => {
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.2 }}>
         {data.data.map((item, index) => (
-            <motion.div className="col-span-12 lg:col-span-4 group" key={index}   variants={gdsVariants}>
+            <motion.div className="col-span-12 lg:col-span-4 lg:px-4 last:pb-0 pb-5 lg:pb-0 group" key={index}   variants={gdsVariants}>
               <motion.div
                 variants={textContainerVariants}
                 initial="hidden"
