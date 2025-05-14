@@ -23,7 +23,7 @@ const StatsSection: React.FC = () => {
       ref={ref}
       className="flex justify-center items-center overflow-hidden relative bg-primary"
     >
-      <div className="grid grid-cols-1 md:grid-cols-2 w-full frscfes">
+      <div className="grid grid-cols-1 md:grid-cols-2 w-full frscfes px-3">
         {stats.map((stat, index) => (
           <motion.div
             key={index}
