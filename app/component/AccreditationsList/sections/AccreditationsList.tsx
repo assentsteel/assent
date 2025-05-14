@@ -1,41 +1,39 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import Image, { StaticImageData } from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 gsap.registerPlugin(ScrollTrigger);
 
 interface PlatformsItem {
   id: number;
   title: string;
-  image: string | StaticImageData;
+  image:  StaticImageData;
 }
 
 interface PlatformsSectionProps {
   data: PlatformsItem[];
 }
 const AccreditationsList: React.FC<PlatformsSectionProps> = ({ data }) => {
-  const containerRef = useRef(null);
-const [selectedItem, setSelectedItem] = useState<PlatformsItem | null>(null);
-const handleOpen = (item: PlatformsItem) => setSelectedItem(item);
-  const handleClose = () => setSelectedItem(null);
-  useEffect(() => {
-    if (containerRef.current) {
-      gsap.from(containerRef.current, {
-        opacity: 0,
-        width: 100,
-        duration: 1.5,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 60%", // Starts when the top of the section is 85% in view
-          toggleActions: "play none none none",
-        },
-      });
-    }
-  }, []);
+
+    const [selectedImage, setSelectedImage] = useState<string | StaticImageData | null>(null);
+
+  const modalVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.3 },
+    },
+    exit: {
+      opacity: 0,
+      scale: 0.8,
+      transition: { duration: 0.2 },
+    },
+  };
+
   const containerVariants = {
     hidden: {},
     visible: {
@@ -64,7 +62,7 @@ const handleOpen = (item: PlatformsItem) => setSelectedItem(item);
           <motion.div key={index} variants={itemVariants}>
             <div
               className="relative group overlbl h-full cursor-pointer"
-              onClick={() => handleOpen(item)}
+                onClick={() => setSelectedImage(item.image)}
             >
               <figure className="overlayclr">
                 <Image
@@ -93,26 +91,33 @@ const handleOpen = (item: PlatformsItem) => setSelectedItem(item);
         ))}
       </motion.div>
 
-      {/* Popup Modal */}
-      {selectedItem && (
-        <div className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center px-4" onClick={handleClose}>
-          <div className="relative bg-white rounded-xl overflow-hidden max-w-full max-h-full">
-            <button
-              onClick={handleClose}
-              className="absolute top-3 right-3 text-black bg-white border border-black rounded-full w-8 h-8 flex items-center justify-center hover:bg-black hover:text-white transition"
-            >
-              ×
-            </button>
-            <Image
-              src={selectedItem.image}
-              alt={selectedItem.title}
-              width={800}
-              height={600}
-              className="w-full h-auto object-contain"
-            />
-          </div>
-        </div>
-      )}
+      {/* Modal */}
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            variants={modalVariants}
+            onClick={() => setSelectedImage(null)}
+          >
+            <div className="relative max-w-2xl w-full">
+              <button
+                className="absolute top-2 right-2 text-white text-2xl z-10 flex justify-center items-center bg-primary rounded-full w-[25px] h-[25px]"
+                onClick={() => setSelectedImage(null)}
+              >
+                &times;
+              </button>
+              <Image
+                src={selectedImage}
+                alt="popup"
+                className="w-full h-auto rounded-lg"
+              />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <motion.div
         className="text-center mt-5 md:mt-[60px]"

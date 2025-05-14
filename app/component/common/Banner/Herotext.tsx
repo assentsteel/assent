@@ -22,7 +22,7 @@ title,
               <motion.h1  variants={slideInLeft}
     initial="hidden"
     animate="visible"
-    exit="exit" className="text-xxl font-[600] text-territory mb-3 lg:mb-10 leading-[1]">{title}</motion.h1>
+    exit="exit" className="text-xxl font-[600] text-territory mb-4 lg:mb-10 leading-[1]">{title}</motion.h1>
               <motion.ul className="flex items-center flex-wrap gap-2 " variants={slideInTop}
     initial="hidden"
     animate="visible"
