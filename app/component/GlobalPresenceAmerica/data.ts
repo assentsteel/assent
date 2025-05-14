@@ -16,7 +16,7 @@ export const singletextimg = {
 export const about = {
       id: 1,
       title:"",
-      heading: "Assent Steel, Crafted for America",
+      heading: "ASSENT STEEL, Crafted for America",
       paragraphs: [
         "ASSENT STEEL we deliver top-tier steel engineering services across the United States, combining precision, innovation, and industry expertise. Our team of skilled engineers and fabricators is committed to providing customized solutions that meet the highest standards of quality, safety, and efficiency. Whether for infrastructure, industrial, or commercial projects, we are your trusted partner for reliable and cost-effective steel solutions."
       ]
@@ -78,12 +78,12 @@ export const reach = {
     {
       title:"1.1M",
       subtitle: "sq. ft. Facility",
-      details:"Assent Steel’s state-of-the-art fabrication facility spans 1.1 million square feet, designed for maximum efficiency and quality production."
+      details:"ASSENT STEEL’s state-of-the-art fabrication facility spans 1.1 million square feet, designed for maximum efficiency and quality production."
      },
      {
        title:"650,000",
        subtitle: "tons of Steel Fabricated",
-       details:"Since 2008, Assent Steel has delivered over 650,000 tons of fabricated steel for major projects worldwide, now expanding excellence to North America."
+       details:"Since 2008, ASSENT STEEL has delivered over 650,000 tons of fabricated steel for major projects worldwide, now expanding excellence to North America."
       },
       {
         title:"1,250",

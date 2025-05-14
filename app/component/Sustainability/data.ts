@@ -40,68 +40,55 @@ export const textimg = {
   ],
 };
 export const tabcnts = {
-  title:"MPS Machineries",
+  title:"5 Core Areas of Focus",
   data: [
     {
       id: 1,
-      title: "Bandsaw Machine-FICEP",
-      tab: "Bandsaw Machine-FICEP",
+      title: "Environment",
+      tab: "Environment",
       paragraphs: [
-        "The FICEP bandsaw machine delivers versatile cutting performance. It handles a wide range of material sizes—from small pieces to large sheets for straight 90° cuts. For angled cuts, it processes medium-sized materials at 45° and smaller sections at steeper angles up to 60°.",
-        "Sawing capacity st 90°  Min 80x10mm max 1250x600mm.Sawing capacity at 45° 800x 600mm.Sawing capacity at 60° 500x500m. Toothed band speed 20-100 ."
+        "Committed to sustainable practices and eco-friendly solutions, Assent Steels prioritizes responsible resource management, energy efficiency, and waste reduction to minimize our environmental impact. Through innovative technologies, strict environmental policies, and continuous improvement.",
+"We ensure that our operations align with global sustainability standards. Our dedication extends beyond compliance, actively promoting greener alternatives, reducing carbon footprints, and fostering a culture of environmental responsibility across our communities."
       ],
       image: assets.susmn2
     }
     ,{
       id: 2,
-      title: "Drilling Machine-FICEP",
-      tab: "Drilling Machine-FICEP",
+      title: "Health and safety",
+      tab: "Health and safety",
       paragraphs: [
-         "We report transparently. We overcome our challenges in an open manner because we value integrity, and we recognize that all will benefit from open discussion and group awareness"
-      ],
+         "Committed to sustainable practices and eco-friendly solutions, Assent Steels prioritizes responsible resource management, energy efficiency, and waste reduction to minimize our environmental impact. Through innovative technologies, strict environmental policies, and continuous improvement.",
+"We ensure that our operations align with global sustainability standards. Our dedication extends beyond compliance, actively promoting greener alternatives, reducing carbon footprints, and fostering a culture of environmental responsibility across our communities."
+    ],
       image: assets.susmn2
     },{
       id: 3,
-      title: "Tipo machine-B254",
-      tab: "Tipo machine-B254",
+      title: "Our Community",
+      tab: "Our Community",
       paragraphs: [
-         "We report transparently. We overcome our challenges in an open manner because we value integrity, and we recognize that all will benefit from open discussion and group awareness"
-      ],
+         "Committed to sustainable practices and eco-friendly solutions, Assent Steels prioritizes responsible resource management, energy efficiency, and waste reduction to minimize our environmental impact. Through innovative technologies, strict environmental policies, and continuous improvement.",
+"We ensure that our operations align with global sustainability standards. Our dedication extends beyond compliance, actively promoting greener alternatives, reducing carbon footprints, and fostering a culture of environmental responsibility across our communities."
+    ],
       image: assets.susmn2
     },{
       id: 4,
-      title: " Tipo machine-A31",
-      tab: " Tipo machine-A31",
+      title: " Diversity",
+      tab: " Diversity",
       paragraphs: [
-         "We report transparently. We overcome our challenges in an open manner because we value integrity, and we recognize that all will benefit from open discussion and group awareness"
-      ],
+         "Committed to sustainable practices and eco-friendly solutions, Assent Steels prioritizes responsible resource management, energy efficiency, and waste reduction to minimize our environmental impact. Through innovative technologies, strict environmental policies, and continuous improvement.",
+"We ensure that our operations align with global sustainability standards. Our dedication extends beyond compliance, actively promoting greener alternatives, reducing carbon footprints, and fostering a culture of environmental responsibility across our communities."
+    ],
       image: assets.susmn2
     },{
       id: 5,
-      title: "Laser Machine-Cutlite Penta-Plus-20KW",
-      tab: "Laser Machine-Cutlite Penta-Plus-20KW",
+      title: "Ethics",
+      tab: "Ethics",
       paragraphs: [
-         "We report transparently. We overcome our challenges in an open manner because we value integrity, and we recognize that all will benefit from open discussion and group awareness"
-      ],
+         "Committed to sustainable practices and eco-friendly solutions, Assent Steels prioritizes responsible resource management, energy efficiency, and waste reduction to minimize our environmental impact. Through innovative technologies, strict environmental policies, and continuous improvement.",
+"We ensure that our operations align with global sustainability standards. Our dedication extends beyond compliance, actively promoting greener alternatives, reducing carbon footprints, and fostering a culture of environmental responsibility across our communities."
+    ],
       image: assets.susmn2
-    },{
-      id: 6,
-      title: "Portable Machine",
-      tab: "Portable Machine",
-      paragraphs: [
-         "We report transparently. We overcome our challenges in an open manner because we value integrity, and we recognize that all will benefit from open discussion and group awareness"
-      ],
-      image: assets.susmn2
-    }
-    ,{
-      id: 7,
-      title: "Portable Machinenew",
-      tab: "Portable Machinenew",
-      paragraphs: [
-         "We report transparently. We overcome our challenges in an open manner because we value integrity, and we recognize that all will benefit from open discussion and group awareness"
-      ],
-      image: assets.susmn2
-    }
+    },
 
   ],
 };

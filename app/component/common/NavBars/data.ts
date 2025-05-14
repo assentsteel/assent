@@ -58,12 +58,12 @@ export const menuItems: MenuItem[] = [
         url: "/projects-list",
       },
       {
-        title: "Industrial",
-        url: "/projects-list",
+        title: "Industrial Oil & Gas",
+        url: "/Industrial-oil",
       },
       {
-        title: "Data centric ",
-        url: "/projects-list",
+        title: "Data Centre  ",
+        url: "/datacentre",
       },
     ],
   },

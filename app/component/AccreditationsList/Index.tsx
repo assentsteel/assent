@@ -1,7 +1,7 @@
 import React from "react";
 import { boxcontent } from "./data";
 
-import HeadingText from "./sections/AccreditationsList";
+import AccreditationsList from "./sections/AccreditationsList";
 import HeroInner from  "../common/Banner/HeroInner";
 export default function Index() {
   const breadcrumb = [
@@ -16,7 +16,7 @@ export default function Index() {
         title="Awards and Accreditations"
         breadcrumbs={breadcrumb}
       />
-      <HeadingText data={boxcontent.data} />
+      <AccreditationsList data={boxcontent.data} />
 
     </>
 

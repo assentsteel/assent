@@ -5,9 +5,9 @@ export const singletextimg = {
   data: [
     {
       id: 1,
-      title: "Precision Engineering with Advanced Software",
+      title: "Painting for Maximum Steel Protection & Finish",
       paragraphs: [
-        "State-of-the-art software tools are utilized to deliver precise structural design and detailing services. Industry-leading software ensures accuracy, efficiency, and adherence to global standards. From designing hot-rolled sections and moment connections to generating detailed fabrication drawings."
+        "After blasting, painting transforms raw steel into a fortified, long-lasting surface ready to withstand industrial punishment or meet architectural demands. This isn't just about slapping on color—it's a calculated defense system against rust, chemical attacks, UV degradation, and physical abrasion."
       ],
       image: assets.blastingmn2
     }
@@ -16,9 +16,10 @@ export const singletextimg = {
 export const about = {
       id: 1,
       title:"",
-      heading: "Painting for Maximum Steel Protection & Finish",
+      heading: "Blasting for Superior Steel Surface Quality",
       paragraphs: [
-        "After blasting, painting transforms raw steel into a fortified, long-lasting surface ready to withstand industrial punishment or meet architectural demands. This isn't just about slapping on color—it's a calculated defense system against rust, chemical attacks, UV degradation, and physical abrasion."
+        "ASSENT STEEL INDUSTRIES L.L.C, Steel Fabrication Facility has an area of 50,000 sq. meters in dedicated to raw material storage. It can accommodate up to 40,000 tons of steel sections and has a fully covered area of 30,000 sq. meters for blasting and painting operation that can easily handle any of your project coating requirements. ",
+"The plant is equipped with the latest CNC machines, welding machines, blasting machines, and other types of equipment to ensure the quality, speed of production accuracy, and proper control. The plant has also No. off Overhead Cranes & Ground Trolleys for Material Handling during the production."
       ]
 };
 export const textimg = {
