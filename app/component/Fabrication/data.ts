@@ -148,12 +148,12 @@ export const Structuredata = {
   subttle:"At Assent Steels, we specialize in the design, fabrication, and erection of a wide range of steel structures tailored to meet industrial, commercial, and infrastructure needs. Our expertise covers everything from heavy-duty frameworks to lightweight custom installations. Each structure is engineered with precision to ensure safety, durability, and efficiency in every application.",
   slideitems: [
     {
-      icon: [assets.fabtype1,assets.abtsi,assets.fabtype1],
+      icon: [assets.fabtype1,assets.fabtype1,assets.fabtype1],
       title: "Type A ",
 
     },
     {
-      icon: [assets.fabtype1,assets.abtsi,assets.fabtype1],
+      icon: [assets.fabtype1,assets.fabtype1,assets.fabtype1],
       title: "Type B",
 
     },
