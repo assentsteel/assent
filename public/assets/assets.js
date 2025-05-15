@@ -184,6 +184,9 @@ import team5 from "./img/team/team5.png";
 import team6 from "./img/team/team6.png";
 import team7 from "./img/team/team7.png";
 import asiaicn from "./img/icns/asia.jpg";
+import africa from "./img/icns/africa.jpg";
+import gcc from "./img/icns/gcc.jpg";
+import iraq from "./img/icns/iraq.jpg";
 
 
 
@@ -193,6 +196,8 @@ import asiaicn from "./img/icns/asia.jpg";
 
 export const assets = {
   asiaicn,
+  gcc,africa,
+  iraq,
   lin,
   teambanner,
   team1,
