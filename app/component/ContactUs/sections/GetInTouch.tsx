@@ -72,14 +72,18 @@ const GetInTouch: React.FC<PlatformsSectionProps> = () => {
       variants={fadeUp}
     >
       {["General Enquires", "Request for quotation", "downloads"].map((text, i) => (
-        <motion.div
-          key={i}
-          className="border border-[#18355F] w-fit rounded-full min-w-[216px] text-center hover:bg-secondary hover:border-secondary hover:text-white text-territory cursor-pointer transition-all duration-300"
-          whileHover={{ scale: 1.05 }}
-          variants={fadeUp}
-        >
-          <p className="uppercase text-xs font-[500] py-[12px] px-[24px]">{text}</p>
-        </motion.div>
+      <motion.div
+        key={i}
+        className={`border border-[#18355F] w-fit rounded-full min-w-[216px] text-center cursor-pointer transition-all duration-300 ${
+        i === 0
+          ? "bg-secondary border-secondary text-white"
+          : "hover:bg-secondary hover:border-secondary hover:text-white text-territory"
+        }`}
+        whileHover={{ scale: 1.05 }}
+        variants={fadeUp}
+      >
+        <p className="uppercase text-xs font-[500] py-[12px] px-[24px]">{text}</p>
+      </motion.div>
       ))}
     </motion.div>
 
@@ -104,16 +108,16 @@ const GetInTouch: React.FC<PlatformsSectionProps> = () => {
       className="grid grid-cols-1 lg:grid-cols-3 gap-x-4 lg:gap-x-6 xxl:gap-x-10 mb-5 lg:mb-[40px]"
       variants={containerVariants}
     >
-      {["Name", "Email Id", "Contact Number"].map((placeholder, i) => (
+      {["Name", "Email ID", "Contact Number"].map((placeholder, i) => (
         <motion.div
           key={i}
           className="relative w-full mb-2 md:mb-0 mt-2 md:mt-0"
           variants={fadeUp}
         >
           <input
-            type={placeholder === "Email Id" ? "email" : placeholder === "Contact Number" ? "number" : "text"}
+            type={placeholder === "Email ID" ? "email" : placeholder === "Contact Number" ? "number" : "text"}
             placeholder={placeholder}
-            className="px-1 appearance-none bg-transparent border-0 border-b border-[#dcdcdc] focus:outline-none focus:ring-0 focus:border-black text-[#595959] text-xs py-2 pr-6 w-full"
+            className="px-1 appearance-none bg-transparent border-0 border-b border-[#dcdcdc] focus:outline-none focus:ring-0 focus:border-black text-[#595959] text-xs py-2 pr-6 w-full placeholder:text-[#595959]"
           />
         </motion.div>
       ))}
@@ -127,7 +131,7 @@ const GetInTouch: React.FC<PlatformsSectionProps> = () => {
       <textarea
         placeholder="Message"
         rows={6}
-        className="w-full px-1 py-2 pr-6 text-xs text-[#595959] bg-transparent border-0 border-b border-[#dcdcdc] focus:outline-none focus:ring-0 focus:border-black appearance-none"
+        className=" placeholder:text-[#595959] w-full px-1 py-2 pr-6 text-xs text-[#595959] bg-transparent border-0 border-b border-[#dcdcdc] focus:outline-none focus:ring-0 focus:border-black appearance-none"
       />
     </motion.div>
 
