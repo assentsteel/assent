@@ -28,6 +28,14 @@ const Footer = () => {
       viewport={{ once: true, amount: 0.3 }}
       className="bg-primary text-white pt-[60px] lg:pt-[110px]"
     >
+  
+      <button
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        className="fixed bottom-4 right-4 z-50 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg transition-all duration-300 ease-in-out"
+        aria-label="Go to top"
+      >
+        ↑
+      </button>
       <div className="container">
         <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-[40px] xxl:gap-[50px] xxxl:gap-[100px] mb-[30px] md:mb-[70px]">
           {/* Contact Info */}
