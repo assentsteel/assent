@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { FaFacebookF, FaInstagram, FaLinkedinIn, FaYoutube } from "react-icons/fa6";
+import ScrollToTop from "./ScrollToTop";
 
 
 
@@ -26,57 +27,48 @@ const Footer = () => {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
-      className="bg-primary text-white pt-[60px] lg:pt-[110px]"
-    >
-  
-      <button
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        className="fixed bottom-4 right-4 z-50 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg transition-all duration-300 ease-in-out"
-        aria-label="Go to top"
-      >
-        ↑
-      </button>
+      className="bg-primary text-white pt-[60px] lg:pt-[110px]" >
+
+      <ScrollToTop/>
       <div className="container">
         <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-[40px] xxl:gap-[50px] xxxl:gap-[100px] mb-[30px] md:mb-[70px]">
           {/* Contact Info */}
-          <div  className="md:col-span-4 md:order-last overflow-hidden">
+          <div className="md:col-span-4 md:order-last overflow-hidden">
             <motion.div variants={fadeInLeft}>
-            <Image src="/assets/img/logo-wh.svg" className="mb-5 lg:mb-[50px]" alt="Assent Steel" width={150} height={50} />
-            <h3 className="text-sm font-semibold mt-4">Head Office</h3>
-            <p>
-              Dubai Industrial City, UAE.
-              <br /> P.O.Box: 38438
-            </p>
-            <div className="flex flex-col lg:flex-row gap-2 md:gap-7 mt-[30px]">
-              <p className="flex gap-2">
-                <span className="text-secondary">T:</span> +971 4 247 1200
+              <Image src="/assets/img/logo-wh.svg" className="mb-5 lg:mb-[50px]" alt="Assent Steel" width={150} height={50} />
+              <h3 className="text-sm font-semibold mt-4">Head Office</h3>
+              <p>
+                Dubai Industrial City, UAE.
+                <br /> P.O.Box: 38438
               </p>
-              <p className="flex gap-2">
-                <span className="text-secondary">E:</span> info@assentsteel.com
-              </p>
-            </div>
+              <div className="flex flex-col lg:flex-row gap-2 md:gap-7 mt-[30px]">
+                <p className="flex gap-2"> <span className="text-secondary">T:</span> +971 4 247 1200 </p>
+                <p className="flex gap-2">
+                  <span className="text-secondary">E:</span> info@assentsteel.com
+                </p>
+              </div>
             </motion.div>
           </div>
           {/* Quick Links */}
           <motion.div variants={fadeIn} className="md:col-span-8 overflow-hidden">
-            <motion.h3 variants={fadeInLeft}  className="text-lg font-semibold mb-5 lg:mb-[50px]">Quick Links</motion.h3>
-           <ul className="space-y-2 grid lg:grid-cols-2 lg:w-[75%]">
-  {[
-    { label: "Leadership Team", href: "/team" },
-    { label: "Global Presence", href: "/global-presence" },
-    { label: "Awards & Accreditations", href: "/accreditations" },
-    { label: "Careers", href: "/careers" },
-    { label: "News", href: "/news" },
-    { label: "Request for Quotation", href: "/rfq" },
-    { label: "Vendor Registration", href: "/vendor" },
-  ].map((link, index) => (
-    <motion.li key={index} variants={fadeInLeft}>
-      <Link href={link.href} className="hover:text-secondary transition-all ease-in-out duration-500">
-        {link.label}
-      </Link>
-    </motion.li>
-  ))}
-</ul>
+            <motion.h3 variants={fadeInLeft} className="text-lg font-semibold mb-5 lg:mb-[50px]">Quick Links</motion.h3>
+            <ul className="space-y-2 grid lg:grid-cols-2 lg:w-[75%]">
+              {[
+                { label: "Leadership Team", href: "/team" },
+                { label: "Global Presence", href: "/global-presence" },
+                { label: "Awards & Accreditations", href: "/accreditations" },
+                { label: "Careers", href: "/careers" },
+                { label: "News", href: "/news" },
+                { label: "Request for Quotation", href: "/rfq" },
+                { label: "Vendor Registration", href: "/vendor" },
+              ].map((link, index) => (
+                <motion.li key={index} variants={fadeInLeft}>
+                  <Link href={link.href} className="hover:text-secondary transition-all ease-in-out duration-500">
+                    {link.label}
+                  </Link>
+                </motion.li>
+              ))}
+            </ul>
 
           </motion.div>
         </motion.div>
