@@ -72,7 +72,7 @@ const Accordion: React.FC<PlatformsSectionProps> = ({
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 viewport={{ once: true, amount: 0.2 }} // triggers only once when 20% is in view
               >
-                <div className="flex gap-5 md:gap-10 lg:gap-[50px] xl:gap-[100]">
+                <div className="flex items-start gap-5 md:gap-10 lg:gap-[50px] xl:gap-[100]">
                   {/* <p className="text-[#1F1F1F80] text-md leading-[1]">
                     {String(da.id).padStart(2, '0')}
                   </p> */}

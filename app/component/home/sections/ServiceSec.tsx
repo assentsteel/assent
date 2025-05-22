@@ -11,28 +11,28 @@ const sectors = [
     title: "Engineering",
     icon: "/assets/img/icns/engineering-icon.svg",
     poster: "/assets/img/service/Engineering.jpg",
-    desc:"lorem ipsum dollar sitemet lkdjfalksf lkdsfjlkajf;lkasj f;lkdasjf;lkjas;ldfkjas;lfj"
+    desc:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam fuga ad, sequi tempore atque accusantium architecto numquam recusandae accusamus."
   },
   {
     id: 2,
     title: "Fabrication",
     icon: "/assets/img/icns/Fabrication.svg",
     poster: "/assets/img/service/fabrication.png",
-    desc:"lorem ipsum dollar sitemet lkdjfalksf lkdsfjlkajf;lkasj f;lkdasjf;lkjas;ldfkjas;lfj"
+    desc:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam fuga ad, sequi tempore atque accusantium architecto numquam recusandae accusamus."
   },
   {
     id: 3,
     title: "Blasting & Painting",
     icon: "/assets/img/icns/Blasting & Painting.svg",
     poster: "/assets/img/service/Painting.jpg",
-    desc:"lorem ipsum dollar sitemet lkdjfalksf lkdsfjlkajf;lkasj f;lkdasjf;lkjas;ldfkjas;lfj"
+    desc:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam fuga ad, sequi tempore atque accusantium architecto numquam recusandae accusamus."
   },
   {
     id: 4,
     title: "Steel Erection",
     icon: "/assets/img/icns/Steel Erection.svg",
     poster: "/assets/img/service/Erection.jpg",
-    desc:"lorem ipsum dollar sitemet lkdjfalksf lkdsfjlkajf;lkasj f;lkdasjf;lkjas;ldfkjas;lfj"
+    desc:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam fuga ad, sequi tempore atque accusantium architecto numquam recusandae accusamus."
   },
 
 ];
@@ -62,8 +62,8 @@ const ServiceSec = () => {
                   <div className="bg-gradient-to-t from-black to-transparent absolute bottom-0 left-0 z-10 w-full h-0 group-hover:h-full transition-all duration-300"></div>
                 <Image src={sector.poster} alt={sector.title} width={800} height={800} className="absolute top-0 left-0 w-full h-full -z-1" />
                 <MdArrowOutward className="text-white absolute right-[20px] z-10 text-[0px] group-hover:text-lg top-[20px] opacity-0 transition-all ease-in-out duration-500 group-hover:opacity-100 translate-x-[10px] hover:translate-x-[0px] " />
-                <div className="p-3 lg:p-5 relative z-20 translate-y-full group-hover:-translate-y-0 transition-all duration-300">
-                  <p className="text-white">{sector.desc}</p>
+                <div className="p-5 lg:p-8 relative z-20 translate-y-full group-hover:-translate-y-0 transition-all duration-300">
+                  <p className="text-white text-base font-normal">{sector.desc}</p>
                 </div>
               </motion.div>
               <motion.div
