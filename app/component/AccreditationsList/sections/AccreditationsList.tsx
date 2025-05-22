@@ -53,7 +53,7 @@ const AccreditationsList: React.FC<PlatformsSectionProps> = ({ data }) => {
       <div className="container">
         <div className="pb-10">
           <p>
-            At Assent Steel, excellence is more than a standard — it's our foundation. Our commitment to quality, safety, and innovation has earned us industry-wide recognition. Each award and accreditation reflects our unwavering pursuit of engineering perfection. We take pride in these achievements as they inspire us to keep raising the bar.
+            At Assent Steel, excellence is more than a standard — it&apos;s our foundation. Our commitment to quality, safety, and innovation has earned us industry-wide recognition. Each award and accreditation reflects our unwavering pursuit of engineering perfection. We take pride in these achievements as they inspire us to keep raising the bar.
           </p>
         </div>
        <motion.div
