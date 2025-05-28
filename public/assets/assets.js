@@ -164,6 +164,8 @@ import gpbanner from "./img/gp/gpbanner.jpg";
 import gpslide1 from "./img/gp/gpslide1.jpg";
 import gpslide2 from "./img/gp/gpslide2.jpg";
 import gpslide3 from "./img/gp/gpslide3.jpg";
+import gpslide4 from "./img/gp/gpslide4.jpg";
+import gpslide5 from "./img/gp/gpslide5.jpg";
 import americabanner from "./img/gpdetails/americabanner.jpg";
 import amprofile from "./img/gpdetails/amprofile.jpg";
 import amsingle from "./img/gpdetails/amsingle.jpg";
@@ -184,7 +186,11 @@ import team5 from "./img/team/team5.png";
 import team6 from "./img/team/team6.png";
 import team7 from "./img/team/team7.png";
 import asiaicn from "./img/icns/asia.jpg";
-
+import africa from "./img/icns/africa.jpg";
+import gcc from "./img/icns/gcc.jpg";
+import iraq from "./img/icns/iraq.jpg";
+import gearIcon from "./img/icns/engineering-icon.svg";
+import thdIcon from "./img/icons/3d.png";
 
 
 
@@ -193,6 +199,8 @@ import asiaicn from "./img/icns/asia.jpg";
 
 export const assets = {
   asiaicn,
+  gcc,africa,
+  iraq,
   lin,
   teambanner,
   team1,
@@ -216,6 +224,8 @@ export const assets = {
   gpslide1,
   gpslide2,
   gpslide3,
+  gpslide4,
+  gpslide5,
   arrowgreen,
   bgimg,
   hric1,
@@ -377,5 +387,7 @@ export const assets = {
   mn3,
   mn2,
   abtbanner,
-  single
+  single,
+  gearIcon,
+  thdIcon
 };

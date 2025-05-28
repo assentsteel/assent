@@ -16,6 +16,8 @@
     "@radix-ui/react-label": "^2.1.1",
     "@radix-ui/react-select": "^2.1.6",
     "@radix-ui/react-slot": "^1.1.2",
+    "@react-three/drei": "^10.0.8",
+    "@react-three/fiber": "^9.1.2",
     "@splidejs/react-splide": "^0.7.12",
     "@studio-freight/lenis": "^1.0.42",
     "@studio-freight/react-lenis": "^0.0.47",
@@ -52,6 +54,7 @@
     "swr": "^2.3.2",
     "tailwind-merge": "^3.0.1",
     "tailwindcss-animate": "^1.0.7",
+    "three": "^0.176.0",
     "tinymce": "^7.7.0",
     "zod": "^3.24.1"
   },

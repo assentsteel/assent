@@ -1,13 +1,14 @@
 import React from "react";
-import {singletextimg,about,Packagesdata,IndustriesWeServe,Slidethumbdata} from "./data";
+import {singletextimg,about,Packagesdata,IndustriesWeServe} from "./data";
 import Herotext from "../common/Banner/Herotext";
 import SingleImageText from "../common/SingleImageText";
 import SingleImage from "../common/SingleImage";
 import { assets } from "@/public/assets/assets";
 import IntroBold from "../common/IntroBold";
 import Boxgrid from "./sections/Boxgrid";
-import Slidetextthumb from "./sections/Slidetextthumb";
+
 import Packages from "./sections/Packages";
+import ProjectModels from "./sections/ProjectModels";
 export default function Index() {
   const breadcrumb = [
     { label: "Home", href: "/" },
@@ -29,8 +30,8 @@ export default function Index() {
         subttle={IndustriesWeServe.subttle}
         data={IndustriesWeServe.data} />
       </section>
-
-      <Slidetextthumb data={Slidethumbdata.data} />
+    <ProjectModels/>
+   
 
 
       <SingleImageText data={singletextimg.data} maxwidth={'max-w-[68ch]'} textright={true} />

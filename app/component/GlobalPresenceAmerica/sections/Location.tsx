@@ -405,7 +405,7 @@ const Location: React.FC<PlatformsSectionProps> = ({ data }) => {
                   <div className="box-iraq bg-white rounded-[5px]  p-3  xl:p-4 absolute bottom-[18%] right-[3%] shadow-md">
                     <div className="flex gap-2 items-center">
                       <div>
-                        <Image src={assets.asiaicn} alt="" className="rounded-[2px] shadow-md" />
+                        <Image src={assets.iraq} alt="" className="rounded-[2px] shadow-md" />
                       </div>
                       <div>
                         <div>
@@ -427,7 +427,7 @@ const Location: React.FC<PlatformsSectionProps> = ({ data }) => {
                   <div className="box-africa bg-white rounded-[5px]  p-3  xl:p-4 absolute bottom-0 right-[6%] shadow-md">
                     <div className="flex gap-2 items-center">
                       <div>
-                        <Image src={assets.asiaicn} alt="" className="rounded-[2px] shadow-md" />
+                        <Image src={assets.africa} alt="" className="rounded-[2px] shadow-md" />
                       </div>
                       <div>
                         <div>
@@ -449,7 +449,7 @@ const Location: React.FC<PlatformsSectionProps> = ({ data }) => {
                   <div className="box-gcc bg-white rounded-[5px]  p-3  xl:p-4 absolute bottom-[-10px] left-[6%] shadow-md">
                     <div className="flex gap-2 ">
                       <div>
-                        <Image src={assets.asiaicn} alt="" className="rounded-[2px] shadow-md" />
+                        <Image src={assets.gcc} alt="" className="rounded-[2px] shadow-md" />
                       </div>
                       <div>
                         <div>
