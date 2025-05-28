@@ -114,6 +114,7 @@ const HeroSection = () => {
                     src={slide.videoSrc}
                     className="absolute inset-0 w-full h-full object-cover"
                     loop
+                    autoPlay
                     muted
                     playsInline
                     poster={slide.poster} // Poster image

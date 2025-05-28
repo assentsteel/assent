@@ -55,12 +55,12 @@ const Footer = () => {
            <ul className="space-y-2 grid lg:grid-cols-2 lg:w-[75%]">
   {[
     { label: "Leadership Team", href: "/team" },
-    { label: "Global Presence", href: "/global-presence" },
-    { label: "Awards & Accreditations", href: "/accreditations" },
-    { label: "Careers", href: "/careers" },
     { label: "News", href: "/news" },
+    { label: "Global Presence", href: "/global-presence" },
     { label: "Request for Quotation", href: "/rfq" },
+    { label: "Awards & Accreditations", href: "/accreditations" },
     { label: "Vendor Registration", href: "/vendor" },
+    { label: "Careers", href: "/careers" },
   ].map((link, index) => (
     <motion.li key={index} variants={fadeInLeft}>
       <Link href={link.href} className="hover:text-secondary transition-all ease-in-out duration-500">
@@ -83,6 +83,8 @@ const Footer = () => {
                     {btn}
                   </motion.button>
                 ))}
+                <div className="">
+            sdsd</div>
               </div>
             </div>
           </motion.div>

@@ -164,13 +164,13 @@ export const Menu = ({
           </form>
 
           <div className="mt-5 px-4 flex flex-col gap-5">
-            <div className="text-md font-semibold">Results</div>
+            {/* <div className="text-md font-semibold">Results</div>
             <ul className="grid grid-cols-2 list-disc gap-5 text-xs px-4">
               <li className="cursor-pointer">Item 1</li>
               <li className="cursor-pointer">Item 2</li>
               <li className="cursor-pointer">Item 3</li>
               <li className="cursor-pointer">Item 4</li>
-            </ul>
+            </ul> */}
           </div>
 
         </div></div>
