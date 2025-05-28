@@ -190,6 +190,7 @@ import africa from "./img/icns/africa.jpg";
 import gcc from "./img/icns/gcc.jpg";
 import iraq from "./img/icns/iraq.jpg";
 import gearIcon from "./img/icns/engineering-icon.svg";
+import thdIcon from "./img/icons/3d.png";
 
 
 
@@ -387,5 +388,6 @@ export const assets = {
   mn2,
   abtbanner,
   single,
-  gearIcon
+  gearIcon,
+  thdIcon
 };
