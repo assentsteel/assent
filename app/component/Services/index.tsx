@@ -1,10 +1,11 @@
 import React from "react";
-import {singletextimg,boxcontent,textrts,slideimages} from "./data";
+import {singletextimg,boxcontent,textrts,slideimages,whychoosedata} from "./data";
 import SingleImage from "./sections/SingleImage";
 import Herotext from "../common/Banner/Herotext";
 import ContentText from "./sections/ContentText";
 import HeadingText from "./sections/HeadingText";
 import SingleImageText from "../common/SingleImageText";
+import WhyChoose from "../common/WhyChoose";
 export default function Index() {
   const breadcrumb = [
     { label: "Home", href: "/" },
@@ -20,6 +21,8 @@ export default function Index() {
       <ContentText data={textrts} />
       <div className="custw"><SingleImageText data={singletextimg.data} maxwidth={'max-w-[96ch]'}  /></div>
       <HeadingText data={boxcontent.data} />
+
+    <WhyChoose data={whychoosedata} />
 
     </>
   );

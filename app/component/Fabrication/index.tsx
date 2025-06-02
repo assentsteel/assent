@@ -1,5 +1,5 @@
 import React from "react";
-import {about,IndustriesWeServe,Structuredata,tabcnts} from "./data";
+import {about,IndustriesWeServe,Structuredata,tabcnts,strengthServe,whychoosedata} from "./data";
 import Herotext from "../common/Banner/Herotext";
 import SingleImage from "../common/SingleImage";
 import { assets } from "@/public/assets/assets";
@@ -7,6 +7,8 @@ import IntroBold from "../common/IntroBold";
 import BoxgridSlider from "./sections/BoxgridSlider";
 import Structure from "./sections/Structure";
 import NavTabsection from "./sections/NavTabsection";
+import WhyChoose from "../common/WhyChoose";
+import Boxgds from "../common/Boxgds";
 export default function Index() {
   const breadcrumb = [
     { label: "Home", href: "/" },
@@ -34,7 +36,13 @@ export default function Index() {
       <Structure
         data={Structuredata} />
       </section>
-
+       <section className="pt-[50px]  xl:pt-[80px]">
+      <Boxgds
+      colnum={3}
+        title={strengthServe.title}
+        data={strengthServe.data} />
+      </section>
+    <WhyChoose data={whychoosedata} />
 
 
     </>

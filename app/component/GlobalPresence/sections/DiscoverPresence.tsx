@@ -54,13 +54,13 @@ const DiscoverPresence: React.FC<PlatformsSectionProps> = ({ data }) => {
     <section className="py-[50px] md:py-[70px] xl:py-[100px]    relative  ">
       <div className="container">
         <motion.h3 variants={slideInTop} initial="hidden" whileInView="visible" exit="exit" className="text-xl font-semibold text-primary  leading-[1.2] mb-5 md:mb-10">Discover Our <br /> Presence in Other Countries</motion.h3>
-        <motion.div className="grid grid-cols-1   md:grid-cols-3 gap-8" variants={containerVariants} initial="hidden" whileInView="show" viewport={{ once: true }} >
+        <motion.div className="grid grid-cols-1 md:grid-cols-2  lg:grid-cols-5 gap-8" variants={containerVariants} initial="hidden" whileInView="show" viewport={{ once: true }} >
 
           {data.map((item, index) => (
             <motion.div key={index} variants={itemVariants}>
-              <motion.div className="relative group " whileHover={{ scale: 1.015 }} transition={{ type: "spring", stiffness: 300 }} >
+              <motion.div className="relative group  h-full " whileHover={{ scale: 1.015 }} transition={{ type: "spring", stiffness: 300 }} >
                 <Link href={item.urlss}>
-                  <figure className="overlayclr lg:max-h-[650px] overflow-hidden rounded-[15px]">
+                  <figure className="overlayclr lg:max-h-[650px] h-full overflow-hidden rounded-[15px]">
                     <Image src={item.image} alt="" className=" w-full object-cover h-[350px] md:h-full" priority />
                   </figure>
 

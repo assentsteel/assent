@@ -1,5 +1,5 @@
 import React from "react";
-import {singletextimg,about,Packagesdata,IndustriesWeServe} from "./data";
+import {singletextimg,about,Packagesdata,IndustriesWeServe,whychoosedata} from "./data";
 import Herotext from "../common/Banner/Herotext";
 import SingleImageText from "../common/SingleImageText";
 import SingleImage from "../common/SingleImage";
@@ -9,6 +9,7 @@ import Boxgrid from "./sections/Boxgrid";
 
 import Packages from "./sections/Packages";
 import ProjectModels from "./sections/ProjectModels";
+import WhyChoose from "../common/WhyChoose";
 export default function Index() {
   const breadcrumb = [
     { label: "Home", href: "/" },
@@ -31,12 +32,12 @@ export default function Index() {
         data={IndustriesWeServe.data} />
       </section>
     <ProjectModels/>
-   
+
 
 
       <SingleImageText data={singletextimg.data} maxwidth={'max-w-[68ch]'} textright={true} />
       <Packages data={Packagesdata}    />
-
+      <WhyChoose data={whychoosedata} />
 
     </>
   );

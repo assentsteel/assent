@@ -47,3 +47,41 @@ export const slideimages = {
   image: [assets.slide,assets.slide,assets.slide,assets.slide  ,assets.slide,assets.slide  ,assets.slide,assets.slide,assets.slide],
 
 };
+
+export const whychoosedata = {
+    titlesection:"Why Choose ASSENT STEEL for Structural Steel Services ?",
+    descsection:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  data: [
+    {
+      title: "End-to-End Capabilities",
+      desc:"We handle everything from design and detailing to erection and finishing.",
+      icon: assets.wsa1
+    },
+    {
+      title: "On-Time Delivery",
+      desc:"Efficient project management ensures we meet tight schedules without compromise.",
+      icon: assets.wsa2
+    },
+    {
+      title: "Diverse Project Experience",
+      desc:"Trusted by clients in industrial, commercial, infrastructure, and energy sectors. ",
+      icon: assets.wsa3
+    },
+    {
+      title: "Safety & Quality Commitment",
+      desc:"Adherence to global safety and QA/QC protocols across all service phases.",
+      icon: assets.wsa4
+    },
+    {
+      title: "Advanced Tech Integration",
+      desc:"Use of BIM, CNC, ERP systems to streamline planning, fabrication, and tracking.",
+      icon: assets.wsa5
+    },
+    {
+      title: "Skilled Multidisciplinary Teams",
+      desc:"Engineers, fabricators, and erectors work in sync to deliver cohesive solutions.",
+      icon: assets.wsa6
+    },
+
+  ]
+};
