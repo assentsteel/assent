@@ -71,3 +71,99 @@ export const textrts =
 }
 
 
+export const whychoosedata = {
+    titlesection:"Why Choose ASSENT STEEL for Blasting & Painting ?",
+    descsection:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  data: [
+    {
+      title: "Surface Perfection",
+      desc:"We achieve optimal surface preparation with precise abrasive blasting techniques.",
+      icon: assets.whs1
+    },
+    {
+      title: "In-House Facilities",
+      desc:"Modern, climate-controlled booths ensure consistent finish and quick turnaround.",
+      icon: assets.whs2
+    },
+    {
+      title: "Corrosion Resistance",
+      desc:"Our coatings provide long-term protection in harsh industrial and coastal environments.",
+      icon: assets.whs3
+    },
+    {
+      title: "Custom Coating Systems",
+      desc:"Tailored solutions using epoxy, PU, zinc-rich primers, and more, based on client specs.",
+      icon: assets.whs4
+    },
+    {
+      title: "Certified Processes",
+      desc:"All blasting and painting follow ISO and SSPC standards for quality assurance.",
+      icon: assets.whs5
+    },
+    {
+      title: "Trained & Qualified Team",
+      desc:"Our specialists are trained to deliver consistent, high-quality finishes every time.",
+      icon: assets.whs6
+    },
+
+  ]
+};
+export const strengthServe = {
+  title: "Our Strengths",
+  data: [
+    {
+      id: 1,
+      icon: assets.sr1,
+      title: "10 ",
+      subttle:"",
+      desc: "Painting Bays",
+      url: "",
+      paragraph: []
+    },
+    {
+      id: 2,
+      icon: assets.sr2,
+      title: "2",
+      subttle:"",
+      desc: "Automatic Blasting Mahines",
+      url: "",
+      paragraph: []
+    },
+    {
+      id: 3,
+      icon: assets.sr3,
+      title: "4",
+      subttle:"",
+      desc: "Manual Blasting Booths",
+      url: "",
+      paragraph: []
+    },
+    {
+      id: 4,
+      icon: assets.sr4,
+      title: "20,000",
+      subttle:"M²/Month",
+      desc: "Fireproofing Capacity",
+      url: "",
+      paragraph: []
+    },
+    {
+      id: 5,
+      icon: assets.sr5,
+      title: "84,000 ",
+      subttle:"M²/Month",
+      desc: "Painting Capacity",
+      url: "",
+      paragraph: []
+    },
+    {
+      id: 6,
+      icon: assets.sr6,
+      title: "",
+      subttle:"",
+      desc: "Roller Conveyor System",
+      url: "",
+      paragraph: []
+    },
+  ],
+};

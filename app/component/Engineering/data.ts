@@ -229,3 +229,40 @@ export const textrts =
 }
 
 
+export const whychoosedata = {
+    titlesection:"Why Choose ASSENT STEEL for Engineering Excellence ?",
+    descsection:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  data: [
+    {
+      title: "Precision-Driven Design",
+      desc:"We engineer every project with unmatched accuracy and attention to structural detail.",
+      icon: assets.vr1
+    },
+    {
+      title: "Advanced 3D Modelling",
+      desc:"Utilizing the latest CAD and BIM tools for enhanced planning and coordination.",
+      icon: assets.vr2
+    },
+    {
+      title: "Industry-Compliant Standards",
+      desc:"All engineering meets global standards like ASTM, ISO, and AWS for quality and precision.",
+      icon: assets.vr3
+    },
+    {
+      title: "Skilled Engineering Team",
+      desc:"Led by experienced engineers and project managers with deep industry expertise.",
+      icon: assets.vr4
+    },
+    {
+      title: "Integrated Solutions",
+      desc:"From conceptual design to execution, we provide end-to-end engineering services.",
+      icon: assets.vr5
+    },
+    {
+      title: "Proven Track Record",
+      desc:"Trusted by major developers across industrial, commercial, and infrastructure sectors.",
+      icon: assets.vr6
+    },
+
+  ]
+};

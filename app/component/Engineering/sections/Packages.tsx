@@ -74,8 +74,8 @@ const Packages: React.FC<PackagesProps> = ({ data }) => {
 
           <div className="w-full ">
             {data.sections.map((item,index)=> (
-            <div className="mb-4 lg:mb-[60px]" key={index}>
-              <div className="pb-5 border-b">
+            <div className="" key={index}>
+              <div className="pb-5 border-b mt6 md:mt-[60px]">
                   <p className="text-lg font-[500]">{item.secheading}</p>
                 </div>
 

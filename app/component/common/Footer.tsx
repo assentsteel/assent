@@ -83,6 +83,8 @@ const Footer = () => {
                     {btn}
                   </motion.button>
                 ))}
+                <div className="">
+            sdsd</div>
               </div>
             </div>
           </motion.div>

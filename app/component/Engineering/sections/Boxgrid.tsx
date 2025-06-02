@@ -3,6 +3,17 @@ import Image from "next/image";
 import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { assets } from "@/public/assets/assets";
+
+ const dataimagebg = [
+  assets.hrbn1,
+  assets.hrbn2,
+  assets.hrbn3,
+  assets.hrbn4,
+  assets.hrbn5,
+  assets.hrbn6,
+  assets.hrbn7,
+];
 
 interface ExpertiseItem {
   id: number;
@@ -69,46 +80,44 @@ const Boxgrid: React.FC<ExpertiseSectionProps> = ({
             }}
           >
             {/* Item 1 */}
-            {data.map((expertise) => (
-              <div key={expertise.id}>
+           {data.map((expertise, index) => (
+  <div key={expertise.id}>
+    <Link href={`${expertise.url}`}>
+      <div
+        style={{
+          backgroundImage: `url(${dataimagebg[index]?.src || dataimagebg[index]})`,
+        }}
+        className="group dddd relative"
+      >
+        <div className="flex relative z-10 bg-primary group-hover:bg-[#00000000] flex-col justify-between gap-3 border p-5 transition-all duration-500 md:h-[300px] lg:h-[340px] lg:gap-0 lg:p-10 xl:h-[414px]">
 
-                  <div key={expertise.id}>
-                    <Link href={`${expertise.url}`}>
-                      <div
-                        key={expertise.id}
-                        className="group flex flex-col justify-between gap-3 border p-5 transition-all duration-500 hover:bg-secondary md:h-[300px]  lg:h-[340px] lg:gap-0 lg:p-10 xl:h-[414px]"
-                      >
-                        {/* Image Wrapper */}
-                        <div className="align-center flex h-[68px] w-[68px] rounded-[5px] justify-center bg-secondary p-2 transition-colors duration-500 group-hover:bg-white md:h-[50px] md:w-[50px]">
-                          <Image
-                            src={expertise.icon}
-                            alt={expertise.title}
-                            className="fltrcls transition duration-500  brightness-0 invert-[1]   group-hover:brightness-[1] group-hover:invert-0"
-                          />
-                        </div>
+          {/* Image Wrapper */}
+          <div className="align-center   flex h-[68px] w-[68px] rounded-[5px] justify-center  p-2 transition-colors duration-500 bg-secondary group-hover:bg-white md:h-[50px] md:w-[50px]">
+            <Image
+              src={expertise.icon}
+              alt={expertise.title}
+              className="fltrcls transition duration-500 brightness-0 invert-[1] group-hover:brightness-[1] group-hover:invert-0"
+            />
+          </div>
 
-                        {/* Content */}
-                        <div>
-                          {/* Title */}
-                          <h3 className="text-md font-semibold titlesp transition-colors duration-300 text-white group-hover:text-white">
-                            {expertise.title}
-                          </h3>
+          {/* Content */}
+          <div>
+            <h3 className="text-md font-semibold titlesp transition-colors duration-300 text-white group-hover:text-white">
+              {expertise.title}
+            </h3>
 
-                          <div className=" overflow-hidden">
-                            <p
-                              className="text-19 font-normal cntsmd hided-content max-h-0 w-[102%] overflow-hidden pt-2 text-white
-                                opacity-0 transition-all duration-500 group-hover:max-h-[15rem] group-hover:opacity-100"
-                            >
-                              {expertise.desc}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </Link>
-                  </div>
+            <div className="overflow-hidden">
+              <p className="text-19 font-normal cntsmd hided-content max-h-0 w-[102%] overflow-hidden pt-2 text-white opacity-0 transition-all duration-500 group-hover:max-h-[15rem] group-hover:opacity-100">
+                {expertise.desc}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Link>
+  </div>
+))}
 
-              </div>
-            ))}
           </motion.div>
         </div>
       </div>

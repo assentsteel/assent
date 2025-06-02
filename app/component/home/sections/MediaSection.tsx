@@ -126,7 +126,7 @@ const MediaSection = () => {
                   href="#"
                   className="text-xs border-b border-secondary uppercase group pb-[16px] inline-flex items-center gap-[18px] text-territory font-medium"
                 >
-                  About ASSENT{" "}
+                  Read More{" "}
                   <div className="w-[20px] h-[20px] rounded-full text-secondary bg-territory group-hover:bg-secondary group-hover:text-primary flex items-center text-[14px] justify-center transition duration-300 ease-in-out">
                     <FaChevronRight />
                   </div>

@@ -10,7 +10,7 @@ const stats = [
   { value: 10000, label: "Production Capacity", icon: "/assets/img/icns/srv-02.svg", suffix: " MT / Month" },
   { value: 250, label: "Projects Completed", icon: "/assets/img/icns/srv-03.svg", suffix: "+" },
   { value: 84000, label: "Painting Capacity", icon: "/assets/img/icns/srv-04.svg", suffix: " m² / Month" },
-  { value: 2.7, label: "Factory Area", icon: "/assets/img/icns/srv-05.svg", suffix: " Million ft²" },
+  { value: 2.7, label: "Factory Area", icon: "/assets/img/icns/srv-05.svg", suffix: "Million m²" },
   { value: 20000, label: "Fire Proofing Capacity", icon: "/assets/img/icns/srv-06.svg", suffix: " m² / Month" },
 ];
 
@@ -21,16 +21,16 @@ const StatsSection: React.FC = () => {
   return (
     <motion.div
       ref={ref}
-      className="flex justify-center items-center overflow-hidden relative bg-primary"
+      className="flex justify-center items-center overflow-hidden relative bg-primary "
     >
-      <div className="grid grid-cols-1 md:grid-cols-2 w-full frscfes px-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 w-full frscfes px-3 ">
         {stats.map((stat, index) => (
           <motion.div
             key={index}
             initial={{ opacity: 0, scale: 0.8 }}
             animate={inView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.8, delay: index * 0.2 }}
-            className="flex items-center  text-white  py-[20px] px-[20px]  lg:py-[70px] lg:px-[0px]  gap-5 border-b border-white/20 border-solid"
+            className="flex items-center  text-white  py-[20px] px-[20px]  lg:py-[70px] lg:px-[10px]  gap-5 border-b border-white/20 border-solid"
           >
             <motion.div
               initial={{ scale: 0 }}
