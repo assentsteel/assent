@@ -1,0 +1,189 @@
+"use client"
+
+import React, { useEffect, useState } from 'react'
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from '@/components/ui/dialog'
+import { Label } from '@/components/ui/label'
+import { Input } from '@/components/ui/input'
+import { MdEdit } from "react-icons/md";
+import { MdDelete } from "react-icons/md";
+import { IoMdExit } from "react-icons/io";
+import { ImageUploader } from '@/components/ui/image-uploader';
+import Link from 'next/link'
+
+const AdminGallery = () => {
+
+    const [title, setTitle] = useState("");
+    const [thumbnail, setThumbnail] = useState("");
+    const [thumbnailAlt, setThumbnailAlt] = useState("");
+    const [items, setItems] = useState<{ _id: string; title: string; thumbnail: string; thumbnailAlt: string }[]>([]);
+    
+    const handleAddItem = async () => {
+        try {
+            const res = await fetch("/api/admin/gallery", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ title, thumbnail, thumbnailAlt }),
+            });
+            const data = await res.json();
+            if (data.success) {
+                alert(data.message);
+                setTitle("");
+                setThumbnail("");
+                setThumbnailAlt("");
+                fetchItems();
+            }
+        } catch (error) {
+            console.log(error);
+            alert("Internal Server Error");
+        }
+    }
+
+    const handleEditItem = async (id:string) => {
+        try {
+            const res = await fetch(`/api/admin/gallery?id=${id}`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ title, thumbnail, thumbnailAlt }),
+            });
+            const data = await res.json();
+            if (data.success) {
+                alert(data.message);
+                setTitle("");
+                setThumbnail("");
+                setThumbnailAlt("");
+                fetchItems();
+            }
+        } catch (error) {
+            console.log(error);
+            alert("Internal Server Error");
+        }
+    }
+
+    const handleDeleteItem = async (id:string) => {
+        try {
+            const res = await fetch(`/api/admin/gallery?id=${id}`, {
+                method: "DELETE",
+            });
+            const data = await res.json();
+            if (data.success) {
+                alert(data.message);
+                fetchItems();
+            }
+        } catch (error) {
+            console.log(error);
+            alert("Internal Server Error");
+        }
+    }
+
+    const fetchItems = async () => {
+        try {
+            const res = await fetch("/api/admin/gallery");
+            const data = await res.json();
+            console.log(data)
+            if (data.success) {
+                setItems(data.data);
+            }
+        } catch (error) {
+            console.log(error);
+            alert("Internal Server Error");
+        }
+    }
+
+    useEffect(() => {
+        fetchItems();
+    }, []);
+
+
+  return (
+    <div>
+        <div className='flex flex-col gap-5'>
+                        <div className='flex items-center gap-2 justify-between'>
+                            <h2 className='text-lg font-semibold'>Items</h2>
+                            <Dialog>
+                                <DialogTrigger className="bg-primary text-white px-2 py-1 rounded-md" onClick={() => { setTitle("");setThumbnail("");setThumbnailAlt(""); }}>Add Item</DialogTrigger>
+                                <DialogContent className="">
+                                    <DialogHeader>
+                                        <DialogTitle>Add Item</DialogTitle>
+                                        <div className="flex flex-col gap-4">
+        
+                                            <div>
+                                                <Label>Title</Label>
+                                                <Input type="text" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
+                                            </div>
+                                            <div>
+                                                <Label>Thumbnail</Label>
+                                                <ImageUploader value={thumbnail} onChange={(url) => setThumbnail(url)} />
+                                            </div>
+                                            <div>
+                                                <Label>Thumbnail Alt</Label>
+                                                <Input type="text" placeholder="Thumbnail Alt" value={thumbnailAlt} onChange={(e) => setThumbnailAlt(e.target.value)} />
+                                            </div>
+        
+                                        </div>
+                                    </DialogHeader>
+                                    <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={handleAddItem}>Save</DialogClose>
+                                </DialogContent>
+        
+                            </Dialog>
+                        </div>
+                        <div className='flex flex-col gap-2 h-[200px] overflow-y-auto'>
+                            {items.map((item, index) => (
+                                <div className='flex items-center justify-between border p-2 rounded-md' key={index}>
+                                    <div>
+                                        <p>{item.title}</p>
+                                    </div>
+                                    <div className="flex items-center gap-10">
+                                        <Dialog>
+                                            <DialogTrigger className="" onClick={() => { setTitle(item.title);setThumbnail(item.thumbnail);setThumbnailAlt(item.thumbnailAlt); }}><MdEdit className="cursor-pointer text-md" /></DialogTrigger>
+                                            <DialogContent className="">
+                                                <DialogHeader>
+                                                    <DialogTitle>Edit Item</DialogTitle>
+                                                    <div className="flex flex-col gap-4">
+        
+                                                        <div>
+                                                            <Label>Title</Label>
+                                                            <Input type="text" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
+                                                        </div>
+                                                        <div>
+                                                            <Label>Thumbnail</Label>
+                                                            <ImageUploader value={thumbnail} onChange={(url) => setThumbnail(url)} />
+                                                        </div>
+                                                        <div>
+                                                            <Label>Thumbnail Alt</Label>
+                                                            <Input type="text" placeholder="Thumbnail Alt" value={thumbnailAlt} onChange={(e) => setThumbnailAlt(e.target.value)} />
+                                                        </div>
+        
+                                                    </div>
+                                                </DialogHeader>
+                                                <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={()=>handleEditItem(item._id)}>Save</DialogClose>
+                                            </DialogContent>
+        
+                                        </Dialog>
+        
+                                        <Link href={`/admin/gallery/${item._id}`}><IoMdExit className="cursor-pointer text-md"/></Link>
+                                    
+                                    <Dialog>
+                                        <DialogTrigger className=""><MdDelete className="cursor-pointer text-md" /></DialogTrigger>
+                                        <DialogContent className="">
+                                            <DialogHeader>
+                                                <DialogTitle>Delete Item</DialogTitle>
+                                                <p>Are you sure you want to delete this item?</p>
+                                            </DialogHeader>
+                                            <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={()=>handleDeleteItem(item._id)}>Delete</DialogClose>
+                                            <DialogClose className="bg-black text-white px-2 py-1 rounded-md">Cancel</DialogClose>
+                                        </DialogContent>
+                                    </Dialog>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+    </div>
+  )
+}
+
+export default AdminGallery
