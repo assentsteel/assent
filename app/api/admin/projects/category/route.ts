@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
         if(!project){
             return NextResponse.json({ message: "Projects not found" }, { status: 404 });
         }
-        project.categories.push({ name,metaTitle,metaDescription });
+        project.categories.push({ name,metaTitle,metaDescription,slug });
         await project.save();
         return NextResponse.json({ message: "Category created successfully",success:true }, { status: 201 });
     } catch (error) {
