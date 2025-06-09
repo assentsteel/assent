@@ -112,10 +112,13 @@ const AboutPage = () => {
                 setValue("metaTitle", data.data.metaTitle);
                 setValue("metaDescription", data.data.metaDescription);
                 setValue("firstSection", data.data.firstSection);
+                setValue("firstSection.items", data.data.firstSection.items);
                 setValue("secondSection", data.data.secondSection);
                 setValue("historySection", data.data.historySection);
+                setValue("historySection.items", data.data.historySection.items);
                 setValue("purposeSection", data.data.purposeSection);
                 setValue("coreValues", data.data.coreValues);
+                setValue("coreValues.items", data.data.coreValues.items);
             } else {
                 const data = await response.json();
                 alert(data.message);

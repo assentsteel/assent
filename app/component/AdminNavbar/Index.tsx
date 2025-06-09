@@ -11,7 +11,7 @@ import {
     PresentationChartBarIcon,
     BriefcaseIcon,
   } from "@heroicons/react/24/outline";
-import { CodeIcon } from 'lucide-react';
+import { AwardIcon, CodeIcon, GalleryThumbnails, HeartHandshake, LeafIcon, ThumbsUp, Workflow } from 'lucide-react';
 
 const AdminNavbar = () => {
 
@@ -23,13 +23,16 @@ const AdminNavbar = () => {
         { name: "Clients", href: "/admin/clients", icon: PresentationChartBarIcon },
         { name: "Services", href: "/admin/services", icon: EnvelopeIcon },
         // { name: "Industries", href: "/admin/industries", icon: BriefcaseIcon },
-        { name: "Projects", href: "/admin/projects", icon: CheckBadgeIcon },
-        { name: "News", href: "/admin/news", icon: CheckBadgeIcon },
-        { name: "Gallery", href: "/admin/gallery", icon: CheckBadgeIcon },
-        { name: "Awards", href: "/admin/awards", icon:NewspaperIcon },
+        { name: "Projects", href: "/admin/projects", icon: Workflow },
+        { name: "News", href: "/admin/news", icon: NewspaperIcon },
+        { name: "Gallery", href: "/admin/gallery", icon: GalleryThumbnails },
+        { name: "Awards", href: "/admin/awards", icon:AwardIcon },
         { name: "Team", href: "/admin/team", icon:UserGroupIcon },
         { name: "Careers", href: "/admin/careers", icon:BriefcaseIcon },
         { name: "Contact", href: "/admin/contact", icon: EnvelopeIcon },
+        { name: "Quality", href: "/admin/quality", icon: ThumbsUp },
+        { name: "HSE", href: "/admin/hse", icon: HeartHandshake },
+        { name: "Sustainability", href: "/admin/sustainability", icon: LeafIcon },
         { name: "Tag Codes", href: "/admin/codes", icon: CodeIcon},
       ];
 
