@@ -7,6 +7,7 @@ import { MdEdit } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
 import { IoMdExit } from "react-icons/io";
 import Link from 'next/link'
+import { RiAiGenerateText } from 'react-icons/ri'
 
 
 const ProjectsPage = () => {
@@ -18,7 +19,8 @@ const ProjectsPage = () => {
     const [oldSectorName, setOldSectorName] = useState<string>("");
     const [oldLocationName, setOldLocationName] = useState<string>("");
 
-    const [categories, setCategories] = useState<{ _id: string; name: string,metaTitle:string,metaDescription:string }[]>([]);
+    const [slug,setSlug] = useState<string>("")
+    const [categories, setCategories] = useState<{ _id: string; name: string,metaTitle:string,metaDescription:string,slug:string }[]>([]);
     const [sectors, setSectors] = useState<{ _id: string; name: string }[]>([]);
     const [locations, setLocations] = useState<{ _id: string; name: string }[]>([]);
 
@@ -48,7 +50,7 @@ const ProjectsPage = () => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ name,metaTitle,metaDescription }),
+                body: JSON.stringify({ name,metaTitle,metaDescription,slug }),
             });
             const data = await res.json();
             if (data.success) {
@@ -69,7 +71,7 @@ const ProjectsPage = () => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ name,metaTitle,metaDescription }),
+                body: JSON.stringify({ name,metaTitle,metaDescription,slug }),
             });
             const data = await res.json();
             if (data.success) {
@@ -249,7 +251,21 @@ const ProjectsPage = () => {
     }
 
 
+    useEffect(() => {
+        if (!slug) return;
+        const newSlug = slug.replace(/\s+/g, '-');
+        setSlug(newSlug);
+    }, [slug])
 
+    const handleAutoGenerate = () => {
+        if (!name) return;
+        const slug = name
+          .toLowerCase()
+          .trim()
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/^-+|-+$/g, ''); // remove leading/trailing dashes
+        setSlug(slug);
+      };
 
     return (
         <div className='flex flex-col gap-5'>
@@ -257,7 +273,7 @@ const ProjectsPage = () => {
                 <div className='flex items-center gap-2 justify-between'>
                     <h2 className='text-lg font-semibold'>Categories</h2>
                     <Dialog>
-                        <DialogTrigger className="bg-primary text-white px-2 py-1 rounded-md" onClick={() => { setName("");setMetaTitle("");setMetaDescription(""); }}>Add Category</DialogTrigger>
+                        <DialogTrigger className="bg-primary text-white px-2 py-1 rounded-md" onClick={() => { setName("");setMetaTitle("");setMetaDescription("");setSlug("") }}>Add Category</DialogTrigger>
                         <DialogContent className="">
                             <DialogHeader>
                                 <DialogTitle>Add Category</DialogTitle>
@@ -267,6 +283,16 @@ const ProjectsPage = () => {
                                         <Label>Name</Label>
                                         <Input type="text" placeholder="Title" value={name} onChange={(e) => setName(e.target.value)} />
                                     </div>
+                                    <div>
+                <Label className='pl-3 flex gap-2 items-center mb-1'>
+                                                Slug
+                                                <div className='flex gap-2 items-center bg-green-600 text-white p-1 rounded-md cursor-pointer w-fit' onClick={handleAutoGenerate}>
+                                                    <p>Auto Generate</p>
+                                                    <RiAiGenerateText />
+                                                </div>
+                                                </Label>
+                    <Input type='text' placeholder='Slug' value={slug} onChange={(e) => setSlug(e.target.value)} />
+                </div>
                                     <div>
                                         <Label>Meta Title</Label>
                                         <Input type="text" placeholder="Meta Title" value={metaTitle} onChange={(e) => setMetaTitle(e.target.value)} />
@@ -291,7 +317,7 @@ const ProjectsPage = () => {
                             </div>
                             <div className="flex items-center gap-10">
                                 <Dialog>
-                                    <DialogTrigger className="" onClick={() => { setName(category.name);setMetaTitle(category.metaTitle);setMetaDescription(category.metaDescription); }}><MdEdit className="cursor-pointer text-md" /></DialogTrigger>
+                                    <DialogTrigger className="" onClick={() => { setName(category.name);setMetaTitle(category.metaTitle);setMetaDescription(category.metaDescription);setSlug(category.slug) }}><MdEdit className="cursor-pointer text-md" /></DialogTrigger>
                                     <DialogContent className="">
                                         <DialogHeader>
                                             <DialogTitle>Edit Category</DialogTitle>
@@ -301,6 +327,16 @@ const ProjectsPage = () => {
                                                     <Label>Name</Label>
                                                     <Input type="text" placeholder="Title" value={name} onChange={(e) => setName(e.target.value)} />
                                                 </div>
+                                                <div>
+                <Label className='pl-3 flex gap-2 items-center mb-1'>
+                                                Slug
+                                                <div className='flex gap-2 items-center bg-green-600 text-white p-1 rounded-md cursor-pointer w-fit' onClick={handleAutoGenerate}>
+                                                    <p>Auto Generate</p>
+                                                    <RiAiGenerateText />
+                                                </div>
+                                                </Label>
+                    <Input type='text' placeholder='Slug' value={slug} onChange={(e) => setSlug(e.target.value)} />
+                </div>
                                                 <div>
                                                     <Label>Meta Title</Label>
                                                     <Input type="text" placeholder="Meta Title" value={metaTitle} onChange={(e) => setMetaTitle(e.target.value)} />
