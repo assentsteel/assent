@@ -58,7 +58,7 @@ interface HseFormProps {
 const HsePage = () => {
 
 
-    const { register, handleSubmit, setValue, control, formState: { errors },getValues,watch } = useForm<HseFormProps>();
+    const { register, handleSubmit, setValue, control, formState: { errors },watch } = useForm<HseFormProps>();
 
 
     const { fields: secondSectionItems, append: secondSectionAppend, remove: secondSectionRemove } = useFieldArray({
