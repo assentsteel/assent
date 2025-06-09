@@ -110,7 +110,7 @@ export async function GET(request: NextRequest) {
             }
             return NextResponse.json({ data: projectData }, { status: 200 });
         }
-        if (categorySlug) {
+        else if (categorySlug) {
             const category = project.categories.find((category: { slug: string; }) => category.slug === categorySlug);
             if (!category) {
                 return NextResponse.json({ message: "Category not found" }, { status: 404 });
@@ -120,6 +120,8 @@ export async function GET(request: NextRequest) {
                 return NextResponse.json({ message: "Project not found" }, { status: 404 });
             }
             return NextResponse.json({ data: projectData }, { status: 200 });
+        }else{
+            return NextResponse.json({ data: project }, { status: 200 });
         }
     } catch (error) {
         console.log(error);
