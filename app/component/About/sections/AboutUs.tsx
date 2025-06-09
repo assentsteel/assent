@@ -6,17 +6,10 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
+import { About } from '@/public/types/Common'; 
 
-
-
-interface PlatformsSectionProps {
-
-  data: {id: number;
-    heading: string;
-    title: string;
-    paragraphs: string[];}
-}
-const AboutUs: React.FC<PlatformsSectionProps> = ({ data }) => {
+const AboutUs = ({ data }: { data: About }) => {
+  console.log(data)
    const containerRef = useRef(null);
 
    const textContainerVariants = {

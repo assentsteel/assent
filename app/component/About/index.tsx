@@ -9,7 +9,10 @@ import Aboutslider from "./sections/Aboutslider";
 import SingleImageText from "../common/SingleImageText";
 import { assets } from "@/public/assets/assets";
 import SingleImage from "./sections/SingleImage";
-export default function Index() {
+ 
+import { About } from '@/public/types/Common';
+
+const Index = async ({ data }: { data: About }) => {
   const breadcrumb = [
     { label: "Home", href: "/" },
     { label: "About", href: "" },
@@ -23,7 +26,7 @@ export default function Index() {
         title="Our Journey Forward"
         breadcrumbs={breadcrumb}
       />
-      <AboutUs data={about} />
+      <AboutUs data={data} />
       <Achievements AreaExpertise={AreaExpertise.data} />
       <SingleImage secimage={assets.single}/>
       <TextByImg data={textimg.data} />
@@ -34,3 +37,5 @@ export default function Index() {
     </>
   );
 }
+
+export default Index;
