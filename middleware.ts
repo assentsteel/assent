@@ -3,7 +3,13 @@ import { NextRequest } from "next/server";
 import * as jose from "jose";
 
 export async function middleware(request: NextRequest) {
+  const response = NextResponse.next();
   const path = request.nextUrl.pathname;
+
+
+  response.headers.set("Access-Control-Allow-Origin", "https://docs-rho-wine.vercel.app");
+  response.headers.set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  response.headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
 
   // Define protected routes
   const isProtectedRoute = path.startsWith("/admin") && !path.includes("/admin/login");
@@ -25,7 +31,7 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  return NextResponse.next();
+  return response;
 }
 
 export const config = {
