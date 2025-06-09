@@ -94,10 +94,6 @@ export async function GET(request: NextRequest) {
         const categorySlug = request.nextUrl.searchParams.get("categorySlug");
         const projectId = request.nextUrl.searchParams.get("projectId");
         const projectSlug = request.nextUrl.searchParams.get("projectSlug");
-        const isAdmin = await verifyAdmin(request);
-        if (!isAdmin) {
-            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
-        }
         await connectDB();
         const project = await Project.findOne({});
         if (!project) {
