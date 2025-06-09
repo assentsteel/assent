@@ -32,6 +32,9 @@ const projectSchema = new mongoose.Schema({
         metaDescription:{
             type:String,
         },
+        slug:{
+            type:String,
+        },
         projects:[{
             banner:{
                 type:String,
