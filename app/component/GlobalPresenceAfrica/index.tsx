@@ -1,7 +1,7 @@
 import React from "react";
-import {singletextimg,about,slidedata,reach,Locationdata} from "./data";
+import {about,slidedata,reach,Locationdata} from "./data";
 import Herotext from "../common/Banner/Herotext";
-import SingleImageText from "../common/SingleImageText";
+// import SingleImageText from "../common/SingleImageText";
 import SingleImage from "../common/SingleImage";
 import { assets } from "@/public/assets/assets";
 import IntroBold from "../common/IntroBold";
@@ -25,7 +25,7 @@ export default function Index() {
         <GlobalReach data={reach} />
 
     <div className="custw">
-      <SingleImageText data={singletextimg.data} maxwidth={'max-w-[68ch]'} textright={true} />
+      {/* <SingleImageText data={singletextimg.data} maxwidth={'max-w-[68ch]'} textright={true} /> */}
       </div>
       <ProjectAfrica data={slidedata} />
     <Location data={Locationdata.data} />

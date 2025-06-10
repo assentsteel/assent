@@ -1,27 +1,18 @@
-"use client";
-
-import  { StaticImageData } from "next/image";
+"use client"; 
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
-interface PlatformsItem {
-  id: number;
-  title: string;
-  paragraphs: string[];
-  image: string | StaticImageData;
-}
+ 
+ 
 
-interface PlatformsSectionProps {
-  textright?: boolean;
+import { About } from '@/public/types/Common'; 
 
-  maxwidth?: string;
-  data: PlatformsItem[];
-}
-const SingleImageText: React.FC<PlatformsSectionProps> = ({data,textright,maxwidth
-}) => {
+
+
+const SingleImageText = ({ data,textright,maxwidth }: { data: About ,textright?: boolean;  maxwidth?: string }) => {   
 
   const containerRef = useRef(null);
   const fadeUp = {
@@ -60,17 +51,15 @@ const SingleImageText: React.FC<PlatformsSectionProps> = ({data,textright,maxwid
   }, []);
   return (
     <section className="py-[50px] md:py-[70px] xl:py-[100px] cpt0  overflow-hidden relative cpt0 ">
-     <div className="container">
-  {data.map((item) => (
-    <motion.div
-      key={item.id}
+     <div className="container"> 
+    <motion.div 
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
       variants={fadeUp}
       className={`rounded-[15px] p-4 lg:pt-[116px] lg:pb-[96px] lg:px-[100px] bg-cover relative ${textright ? `blueoverlayrt` : 'blueoverlay'}`}
       style={{
-        background: `url(${typeof item.image === 'string' ? item.image : item.image.src})`,
+        background: `url(${typeof data.purposeSection.image === 'string' ? data.purposeSection.image : data.purposeSection.image})`,
         backgroundSize: 'cover',
       }}
     >
@@ -86,21 +75,21 @@ const SingleImageText: React.FC<PlatformsSectionProps> = ({data,textright,maxwid
           variants={fadeUp}
           className="text-xl text-white font-[600] leading-[1.2] mb-3 lg:mb-[30px]"
         >
-          {item.title}
+          {data.purposeSection.title}
         </motion.h2>
 
-        {item.paragraphs.map((paragraph, index) => (
+        {data.purposeSection.description.split("\n").map((paragraph, index) => (
           <motion.p
             key={index}
             variants={fadeUp}
             className="mb-4 last:mb-0 text-white text-base font-[400] leading-[1.8]"
-          >
-            {paragraph}
+            dangerouslySetInnerHTML={{__html: paragraph}}
+          > 
           </motion.p>
         ))}
       </motion.div>
     </motion.div>
-  ))}
+ 
 </div>
     </section>
   );

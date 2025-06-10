@@ -1,9 +1,9 @@
 import React from "react";
-import {singletextimg,about,slideimages,Textdata,accdata} from "./data";
+import {about,slideimages,Textdata,accdata} from "./data";
 import Herotext from "../common/Banner/Herotext";
 import BoxSlider from "../common/BoxSlider";
 import TextImg from "./sections/TextImg";
-import SingleImageText from "../common/SingleImageText";
+// import SingleImageText from "../common/SingleImageText";
 import Accordion from "./sections/Accordion";
 import SingleImage from "../common/SingleImage";
 import { assets } from "@/public/assets/assets";
@@ -26,7 +26,7 @@ export default function Index() {
         <BoxSlider data={slideimages} />
         </section>
       <TextImg data={Textdata} />
-      <div className="custw"><SingleImageText data={singletextimg.data} maxwidth={'max-w-[68ch]'} textright={true} /></div>
+      {/* <div className="custw"><SingleImageText data={singletextimg.data} maxwidth={'max-w-[68ch]'} textright={true} /></div> */}
       <div className="custw"><Accordion data={accdata.data} heading={accdata.heading}   /></div>
 
 

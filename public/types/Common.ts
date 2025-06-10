@@ -43,7 +43,7 @@
             image: string,
             imageAlt: string
           },
-          coreValuesSection: {
+          coreValues: {
             title: string,
             items: [
               {
@@ -55,5 +55,17 @@
             ]
           }
         }
+export type Gallery = [{
+  title: string,
+  thumbnail: string,
+  thumbnailAlt: string,
+  slug: string,
+  images: string[]
+}]
+export type Gallerydata = 
+{
+  message: string;
+  success: boolean;
+  data: string[]
+}
  
-   

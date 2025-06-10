@@ -1,7 +1,7 @@
 import React from "react";
 import HeroInner from "../common/Banner/HeroInner";
-import {about,reach,discover} from "./data";
-import AboutUs from "../About/sections/AboutUs";
+import {reach,discover} from "./data";
+// import AboutUs from "../About/sections/AboutUs";
 import GlobalReach from "./sections/GlobalReach";
 import DiscoverPresence from "./sections/DiscoverPresence";
 export default function Index() {
@@ -18,7 +18,7 @@ export default function Index() {
         title="Global Presence"
         breadcrumbs={breadcrumb}
       />
-      <AboutUs data={about} />
+      {/* <AboutUs data={about} /> */}
       <GlobalReach data={reach} bgcolor="bg-primary"/>
     <DiscoverPresence data={discover.data}/>
 

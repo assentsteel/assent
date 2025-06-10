@@ -1,11 +1,11 @@
 import React from "react";
-import {singletextimg,about,textimg,whychoosedata,strengthServe} from "./data";
+import {about,whychoosedata,strengthServe} from "./data";
 import Herotext from "../common/Banner/Herotext";
-import SingleImageText from "../common/SingleImageText";
+// import SingleImageText from "../common/SingleImageText";
 import SingleImage from "../common/SingleImage";
 import { assets } from "@/public/assets/assets";
 import IntroBold from "../common/IntroBold";
-import TextByImg from "../About/sections/TextByImg";
+// import TextByImg from "../About/sections/TextByImg";
 import Boxgds from "../common/Boxgds";
 import WhyChoose from "../common/WhyChoose";
 export default function Index() {
@@ -22,8 +22,8 @@ export default function Index() {
 
       <SingleImage secimage={assets.blastingbn}/>
       <IntroBold data={about} />
-      <SingleImageText data={singletextimg.data} maxwidth={'max-w-[68ch]'} textright={false} />
-      <div className="ptst0"><TextByImg data={textimg.data} /></div>
+      {/* <SingleImageText data={singletextimg.data} maxwidth={'max-w-[68ch]'} textright={false} />
+      <div className="ptst0"><TextByImg data={textimg.data} /></div> */}
 
   <section className="pt-[50px]  xl:pt-[80px]">
       <Boxgds

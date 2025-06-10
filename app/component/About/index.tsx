@@ -2,12 +2,10 @@ import React from "react";
 import HeroInner from "../common/Banner/HeroInner";
 import AboutUs from "./sections/AboutUs";
 import Achievements from "./sections/Achievements";
-import {AreaExpertise,textimg,singletextimg,tabcnts,sliderdata,about} from "./data";
 import TextByImg from "./sections/TextByImg";
 import Tabsection from "./sections/Tabsection";
 import Aboutslider from "./sections/Aboutslider";
-import SingleImageText from "../common/SingleImageText";
-import { assets } from "@/public/assets/assets";
+import SingleImageText from "../common/SingleImageText"; 
 import SingleImage from "./sections/SingleImage";
  
 import { About } from '@/public/types/Common';
@@ -22,17 +20,17 @@ const Index = async ({ data }: { data: About }) => {
   return (
     <>
       <HeroInner
-        imageSrc="/assets/img/about/banner.jpg"
-        title="Our Journey Forward"
+        imageSrc={data.banner}
+        title={data.pageTitle}
         breadcrumbs={breadcrumb}
       />
       <AboutUs data={data} />
-      <Achievements AreaExpertise={AreaExpertise.data} />
-      <SingleImage secimage={assets.single}/>
-      <TextByImg data={textimg.data} />
-      <Aboutslider data={sliderdata.data} />
-      <SingleImageText data={singletextimg.data} textright={true}  maxwidth={'max-w-[56ch]'} />
-      <Tabsection data={tabcnts}  />
+      <Achievements data={data} />
+      <SingleImage data={data}/>
+      <TextByImg data={data} kmbtn={false} />
+      <Aboutslider data={data} />
+      <SingleImageText data={data} textright={true}  maxwidth={'max-w-[56ch]'} />
+      <Tabsection data={data}  />
 
     </>
   );
