@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { memo } from "react";
 
 interface ClientSideLinkProps {
   href: string;
@@ -15,7 +16,7 @@ interface ClientSideLinkProps {
 }
 
 // Client component for handling active states
-export default function ClientSideLink({
+function ClientSideLink({
   href,
   name,
   icon,
@@ -65,16 +66,21 @@ export default function ClientSideLink({
       {isOpen && children && (
         <div className="flex pl-14 flex-col items-start gap-2">
           {children.map((item, index) => (
+            <div key={index} className="flex items-center gap-2">
+            <div>-</div>
             <Link
-              key={index}
               href={item.href}
-              className="w-full p-2 rounded-md cursor-pointer hover:bg-gray-50 hover:text-primary"
+              className="w-full rounded-md cursor-pointer hover:bg-gray-50 hover:text-primary text-sm font-medium"
             >
               {item.name}
             </Link>
+            </div>
           ))}
         </div>
       )}
     </>
   );
 }
+
+
+export default memo(ClientSideLink)

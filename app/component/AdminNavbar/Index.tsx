@@ -20,7 +20,12 @@ const AdminNavbar = () => {
         { name: "Home", href: "/admin/home", icon: HomeIcon },
         { name: "About", href: "/admin/about", icon: UserGroupIcon },
         { name: "Clients", href: "/admin/clients", icon: PresentationChartBarIcon },
-        { name: "Services", href: "/admin/services", icon: EnvelopeIcon },
+        { name: "Services", href: "#", icon: EnvelopeIcon,children: [
+            { name: "Engineering", href: "/admin/services/engineering" },
+            { name: "Fabrication", href: "/admin/services/fabrication" },
+            { name: "Blasting", href: "/admin/services/blasting" },
+            { name: "Steel Erection", href: "/admin/services/steel-erection" },
+          ] },
         // { name: "Industries", href: "/admin/industries", icon: BriefcaseIcon },
         { name: "Projects", href: "/admin/projects", icon: Workflow },
         { name: "News", href: "/admin/news", icon: NewspaperIcon },
@@ -46,7 +51,9 @@ const AdminNavbar = () => {
             icon={<Icon className="h-5 w-5" />}
             isOpen={openLink === item.href}
             setOpenLink={setOpenLink}
-          />
+          >
+            {item.children}
+          </ClientSideLink>
         );
       })
   )
