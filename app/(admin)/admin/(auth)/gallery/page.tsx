@@ -10,6 +10,7 @@ import { IoMdExit } from "react-icons/io";
 import { ImageUploader } from '@/components/ui/image-uploader';
 import Link from 'next/link'
 import { RiAiGenerateText } from 'react-icons/ri'
+import { Button } from '@/components/ui/button'
 
 const AdminGallery = () => {
 
@@ -18,6 +19,9 @@ const AdminGallery = () => {
     const [thumbnailAlt, setThumbnailAlt] = useState("");
     const [items, setItems] = useState<{ _id: string; title: string; thumbnail: string; thumbnailAlt: string,slug:string }[]>([]);
     const [slug, setSlug] = useState<string>("")
+      const [metaTitle, setMetaTitle] = useState<string>("");
+      const [metaDescription, setMetaDescription] = useState<string>("");
+      const [pageTitle, setPageTitle] = useState<string>("");
 
     const handleAddItem = async () => {
         try {
@@ -88,6 +92,9 @@ const AdminGallery = () => {
             console.log(data)
             if (data.success) {
                 setItems(data.data);
+                setMetaTitle(data.data.metaTitle);
+                setMetaDescription(data.data.metaDescription);
+                setPageTitle(data.data.pageTitle);
             }
         } catch (error) {
             console.log(error);
@@ -95,8 +102,47 @@ const AdminGallery = () => {
         }
     }
 
+
+    const handleFetchMeta = async() => {
+        try {
+          const response = await fetch("/api/admin/gallery/intrometa");
+          if(response.ok) {
+            const data = await response.json();
+            setMetaTitle(data.data.metaTitle);
+            setMetaDescription(data.data.metaDescription);
+            setPageTitle(data.data.pageTitle);
+          }else{
+            const data = await response.json();
+            alert(data.message);
+          }
+        } catch (error) {
+          console.log("Error fetching details", error);
+        }
+      }
+
+
+    const submitMetaSection = async() => {
+        try {
+          const response = await fetch("/api/admin/gallery/intrometa",{
+            method: "POST",
+            body: JSON.stringify({ metaTitle, metaDescription, pageTitle }),
+          });
+          if(response.ok) {
+            const data = await response.json();
+            alert(data.message);
+            handleFetchMeta();
+          }else{
+            const data = await response.json();
+            alert(data.message);
+          }
+        } catch (error) {
+            console.log("Error saving details", error);
+        }
+      }
+
     useEffect(() => {
         fetchItems();
+        handleFetchMeta();
     }, []);
 
     useEffect(() => {
@@ -119,6 +165,27 @@ const AdminGallery = () => {
     return (
         <div>
             <div className='flex flex-col gap-5'>
+            <div className="h-fit w-full p-2 border-2 border-gray-300 rounded-md mt-5">
+                                              <div className="flex justify-between border-b-2 pb-2">
+                                                  <Label className="text-sm font-bold">Meta Section</Label>
+                                                  <Button onClick={submitMetaSection} className="text-white">Save</Button>
+                                              </div>
+                                              <div className="mt-2 grid grid-cols-1 gap-2  h-fit">
+                                                
+                                                  <div>
+                                                      <Label>Page Title</Label>
+                                                      <Input type="text" defaultValue={pageTitle} onChange={(e) => setPageTitle(e.target.value)} />
+                                                  </div>
+                                                  <div>
+                                                      <Label>Meta title</Label>
+                                                      <Input type="text" defaultValue={metaTitle} onChange={(e) => setMetaTitle(e.target.value)} />
+                                                  </div>
+                                                  <div>
+                                                      <Label>Meta Description</Label>
+                                                      <Input type="text" defaultValue={metaDescription} onChange={(e) => setMetaDescription(e.target.value)} />
+                                                  </div>
+                                              </div>
+                                          </div>
                 <div className='flex items-center gap-2 justify-between'>
                     <h2 className='text-lg font-semibold'>Items</h2>
                     <Dialog>
