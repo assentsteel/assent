@@ -1,7 +1,7 @@
 import React from "react";
-import {singletextimg,about,Packagesdata,IndustriesWeServe,whychoosedata} from "./data";
+import {about,Packagesdata,IndustriesWeServe,whychoosedata} from "./data";
 import Herotext from "../common/Banner/Herotext";
-import SingleImageText from "../common/SingleImageText";
+// import SingleImageText from "../common/SingleImageText";
 import SingleImage from "../common/SingleImage";
 import { assets } from "@/public/assets/assets";
 import IntroBold from "../common/IntroBold";
@@ -35,7 +35,7 @@ export default function Index() {
 
 
 
-      <SingleImageText data={singletextimg.data} maxwidth={'max-w-[68ch]'} textright={true} />
+      {/* <SingleImageText data={singletextimg.data} maxwidth={'max-w-[68ch]'} textright={true} /> */}
       <Packages data={Packagesdata}    />
       <WhyChoose data={whychoosedata} />
 

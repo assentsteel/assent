@@ -69,7 +69,7 @@ export const IndustriesWeServe = {
     },
     {
       id: 7,
-      icon: assets.engser7,
+      icon: assets.ve,
       title: "Value Engineering & Design Proposals",
       desc: "Branding & Creative",
       url: "",
@@ -251,7 +251,7 @@ export const whychoosedata = {
     {
       title: "Skilled Engineering Team",
       desc:"Led by experienced engineers and project managers with deep industry expertise.",
-      icon: assets.vr4
+      icon: assets.sk
     },
     {
       title: "Integrated Solutions",

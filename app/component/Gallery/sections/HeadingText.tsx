@@ -1,26 +1,18 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
 import { containerVariants, itemVariants } from "../../common/MotionAnimation"
 import Link from "next/link";
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger); 
+  import { Gallery } from '@/public/types/Common';
 
-interface PlatformsItem {
-  id: number;
-  title: string;
-  sector: string;
-  urlss: string;
-  image: string | StaticImageData;
-}
-
-interface PlatformsSectionProps {
-  data: PlatformsItem[];
-}
-const HeadingText: React.FC<PlatformsSectionProps> = ({ data }) => {
+  const HeadingText = ({ data }: { data: Gallery }) => { 
+  
+      
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -50,20 +42,23 @@ const HeadingText: React.FC<PlatformsSectionProps> = ({ data }) => {
   whileInView="show"
   viewport={{ once: true }}
 >
-  {data.map((item, index) => (
+  
+  {data.map((item , index) => (
     <motion.div key={index} variants={itemVariants}>
       <motion.div
         className="relative group"
         whileHover={{ scale: 1.015 }}
         transition={{ type: "spring", stiffness: 300 }}
       >
-         <Link href={item.urlss}>
+         <Link href={`/gallery-details/${item.slug}`}>
         <figure className="overlayclr">
           <Image
-            src={item.image}
+            src={item.thumbnail}
             alt=""
             className="rounded-[15px] w-full object-cover"
             priority
+            width={500}
+            height={500}
           />
         </figure>
 

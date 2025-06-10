@@ -1,11 +1,11 @@
 import React from "react";
-import {singletextimg,about,textimg,Grsldata,cdata} from "./data";
+import {about,Grsldata,cdata} from "./data";
 import Herotext from "../common/Banner/Herotext";
-import SingleImageText from "../common/SingleImageText";
+// import SingleImageText from "../common/SingleImageText";
 import SingleImage from "../common/SingleImage";
 import { assets } from "@/public/assets/assets";
 import IntroBold from "../common/IntroBold";
-import TextByImg from "../About/sections/TextByImg";
+// import TextByImg from "../About/sections/TextByImg";
 import Growslide from "./sections/Growslide";
 import Commitments from "./sections/Commitments";
 export default function Index() {
@@ -23,9 +23,9 @@ export default function Index() {
       <SingleImage secimage={assets.hsebanner}/>
       <IntroBold data={about} />
       <Commitments data={cdata.data} heading={cdata.heading} />
-      <SingleImageText data={singletextimg.data} maxwidth={'max-w-[75ch]'} textright={false} />
+      {/* <SingleImageText data={singletextimg.data} maxwidth={'max-w-[75ch]'} textright={false} /> */}
       <section className="ptst0">
-      <TextByImg data={textimg.data} kmbtn={true} />
+      {/* <TextByImg data={textimg.data} kmbtn={true} /> */}
       </section>
       <Growslide data={Grsldata} />
 

@@ -86,7 +86,7 @@ const Packages: React.FC<PackagesProps> = ({ data }) => {
                         <div><Image
                           src={ite.image}
                           alt=""
-                          className="group-hover:brightness-0 group-hover:invert rotate-180"
+                          className="group-hover:brightness-0 group-hover:invert "
                         /></div>
                         <div><p className="text-md opacity-90">{ite.title}</p></div>
                       </div>

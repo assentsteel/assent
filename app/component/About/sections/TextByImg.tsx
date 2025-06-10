@@ -1,25 +1,16 @@
-"use client";
- ;
-import Image, { StaticImageData } from "next/image";
+"use client"; 
+import Image  from "next/image";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
 gsap.registerPlugin(ScrollTrigger);
+ 
+import { About } from '@/public/types/Common'; 
 
-interface PlatformsItem {
-  id: number;
-  title: string;
-  paragraphs: string[];
-  image: string | StaticImageData;
-}
 
-interface PlatformsSectionProps {
-  kmbtn?: boolean;
-  data: PlatformsItem[];
-}
-const TextByImg: React.FC<PlatformsSectionProps> = ({data,kmbtn
-}) => {
+
+const TextByImg = ({ data,kmbtn }: { data: About, kmbtn?: boolean }) => {   
 
   const containerRef = useRef(null);
   const textVariants = {
@@ -72,25 +63,23 @@ const TextByImg: React.FC<PlatformsSectionProps> = ({data,kmbtn
 
 
 
-    >
-      {data.map((item) => (
-        <div className="mb-8 lg:mb-0" key={item.id}>
+    > 
+        <div className="mb-8 lg:mb-0" >
           <motion.h2 className="text-xl text-primary font-[600] leading-[1.2] mb-4 lg:mb-10"
             viewport={{ once: true, amount: 0.2 }}
             variants={textVariants}
             initial="hidden"
             whileInView="visible">
-            {item.title}
+            {data.secondSection.title}
           </motion.h2>
 
           <motion.div className="text-territory text-base font-[400] leading-[1.8] mb-6 lg:mb-10"
           initial="hidden"
           whileInView="visible"
           variants={imageVariants}
-          viewport={{ once: true, amount: 0.2 }}>
-            {item.paragraphs.map((paragraph, index) => (
-              <p key={index} className="mb-4">{paragraph}</p>
-            ))}
+          viewport={{ once: true, amount: 0.2 }} dangerouslySetInnerHTML={{__html: data.secondSection.description}}> 
+           
+          
           </motion.div>
           {kmbtn &&
             <motion.button
@@ -103,7 +92,7 @@ const TextByImg: React.FC<PlatformsSectionProps> = ({data,kmbtn
             </motion.button>
           }
         </div>
-      ))}
+   
     </div>
 
     {/* Image Section */}
@@ -114,17 +103,19 @@ const TextByImg: React.FC<PlatformsSectionProps> = ({data,kmbtn
       variants={imageVariants}
       viewport={{ once: true, amount: 0.2 }}
     >
-      {data.map((item) => (
-        <div key={item.id}>
+      
+        <div >
           <figure className="image-wrapper">
             <Image
-              src={item.image}
-              alt=""
+              src={data.secondSection.image2}
+              alt={data.secondSection.image2Alt}
               className="rounded-[15px]"
+              width={4860}
+              height={1725}
             />
           </figure>
         </div>
-      ))}
+   
     </motion.div>
   </div>
 </div>

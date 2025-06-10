@@ -7,15 +7,11 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { AnimatePresence, motion } from "framer-motion";
 gsap.registerPlugin(ScrollTrigger);
 
-interface PlatformsItem {
-  id: number;
-  image: string | StaticImageData;
-}
-
-interface PlatformsSectionProps {
-  data: PlatformsItem[];
-}
-const HeadingText: React.FC<PlatformsSectionProps> = ({ data }) => {
+import { Gallerydata } from '@/public/types/Common';
+ 
+  
+    const HeadingText = ({ data }: { data: Gallerydata }) => {
+      console.log(data) 
   const containerRef = useRef(null);
 
 
@@ -78,18 +74,20 @@ const HeadingText: React.FC<PlatformsSectionProps> = ({ data }) => {
         whileInView="show"
         viewport={{ once: true }}
       >
-        <div className="columns-2 md:columns-3 lg:columns-4 gap-4">
-          {data.map((item, index) => (
+        <div className="columns-2 md:columns-3 lg:columns-4 gap-4"> 
+          {data.data.map((image, index) => (
             <motion.div
               key={index}
               variants={itemVariants}
               className="mb-4 break-inside-avoid rounded-lg overflow-hidden group cursor-pointer"
-              onClick={() => setSelectedImage(item.image)}
+              onClick={() => setSelectedImage(image)}
             >
               <Image
-                src={item.image}
-                alt=""
+                src={image}
+                alt={'demo'}
                 className="w-full h-auto object-cover rounded-lg transform transition duration-300 group-hover:scale-105 group-hover:brightness-90"
+              width={500}
+              height={500}
               />
             </motion.div>
           ))}
@@ -118,6 +116,8 @@ const HeadingText: React.FC<PlatformsSectionProps> = ({ data }) => {
                 src={selectedImage}
                 alt="popup"
                 className="w-full h-auto rounded-lg"
+                width={500}
+                height={500}
               />
             </div>
           </motion.div>

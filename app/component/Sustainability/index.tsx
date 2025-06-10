@@ -1,7 +1,7 @@
 import React from "react";
-import {about,textimg,listsc,policydata,tabcnts,Islideata,focusdata} from "./data";
+import {about,listsc,policydata,tabcnts,Islideata,focusdata} from "./data";
 import IntroBold from "../common/IntroBold";
-import TextByImg from "../About/sections/TextByImg";
+// import TextByImg from "../About/sections/TextByImg";
 import HeroInner from "../common/Banner/HeroInner";
 import Listsec from "./sections/Listsec";
 import Policy from "./sections/Policy";
@@ -29,7 +29,7 @@ export default function Index() {
       <Listsec listitem={listsc.data} />
       <Policy data={policydata}/>
       <section className="ptst0">
-      <TextByImg data={textimg.data} kmbtn={false} />
+      {/* <TextByImg data={textimg.data} kmbtn={false} /> */}
       </section>
       <NavTabsection data={tabcnts} navigation={false} bgcolor="bg-primary" textwhite={true} />
       <Initiatives  data={focusdata}  />

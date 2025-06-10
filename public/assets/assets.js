@@ -205,6 +205,7 @@ import vr1 from "./img/icns/vr1.svg";
 import vr2 from "./img/icns/vr2.svg";
 import vr3 from "./img/icns/vr3.svg";
 import vr4 from "./img/icns/vr4.svg";
+import sk from "./img/icns/sk.svg";
 import vr5 from "./img/icns/vr5.svg";
 import vr6 from "./img/icns/vr6.svg";
 import sr1 from "./img/icns/sr1.svg";
@@ -225,6 +226,7 @@ import wsa3 from "./img/icns/wsa3.svg";
 import wsa4 from "./img/icns/wsa4.svg";
 import wsa5 from "./img/icns/wsa5.svg";
 import wsa6 from "./img/icns/wsa6.svg";
+import ve from "./img/icns/ves.svg";
 
 
 
@@ -254,6 +256,7 @@ export const assets = {
   vr2,
   vr3,
   vr4,
+  sk,
   vr5,
 vr6,
   hrbn1,
@@ -350,6 +353,7 @@ vr6,
   engser5,
   engser6,
   engser7,
+  ve,
   engbanner,
   qtftbanner,
   qtbanner,
