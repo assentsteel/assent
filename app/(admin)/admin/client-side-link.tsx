@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { memo } from "react";
+import { MdExpandCircleDown } from "react-icons/md";
 
 interface ClientSideLinkProps {
   href: string;
@@ -13,6 +14,7 @@ interface ClientSideLinkProps {
   children?: { href: string; name: string }[];
   isOpen?: boolean;
   setOpenLink?: (href: string | null) => void;
+  hasChild?: boolean;
 }
 
 // Client component for handling active states
@@ -24,6 +26,7 @@ function ClientSideLink({
   children,
   isOpen = false,
   setOpenLink,
+  hasChild = false,
 }: ClientSideLinkProps) {
   const pathname = usePathname();
   const isActive = pathname === `${href}` || pathname?.startsWith(`${href}/`);
@@ -62,6 +65,7 @@ function ClientSideLink({
       >
         <span className="mr-3">{icon}</span>
         {name}
+        {hasChild && <MdExpandCircleDown className="ml-1 mt-1" />}
       </Link>
       {isOpen && children && (
         <div className="flex pl-14 flex-col items-start gap-2">
