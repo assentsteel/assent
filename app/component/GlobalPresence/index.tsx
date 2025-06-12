@@ -1,27 +1,30 @@
 import React from "react";
-import HeroInner from "../common/Banner/HeroInner";
-import {reach,discover} from "./data";
-// import AboutUs from "../About/sections/AboutUs";
+import HeroInner from "../common/Banner/HeroInner"; 
+import AboutUs from "../About/sections/AboutUs";
 import GlobalReach from "./sections/GlobalReach";
 import DiscoverPresence from "./sections/DiscoverPresence";
-export default function Index() {
+
+import { GlobalPresence } from '@/public/types/Common'; 
+const Index = async ({ data }: { data: GlobalPresence }) => {
+ 
   const breadcrumb = [
     { label: "Home", href: "/" },
-    { label: "Global Presence", href: "" },
+    { label: data.pageTitle, href: "" },
     // { label: `${data && data.data.sector}`, href: "#" },
   ];
 
   return (
     <>
       <HeroInner
-        imageSrc="/assets/img/gp/gpbanner.jpg"
-        title="Global Presence"
+        imageSrc={data.banner}
+        title={data.pageTitle}
         breadcrumbs={breadcrumb}
       />
-      {/* <AboutUs data={about} /> */}
-      <GlobalReach data={reach} bgcolor="bg-primary"/>
-    <DiscoverPresence data={discover.data}/>
+      <AboutUs data={data} />
+      <GlobalReach data={data.secondSection} bgcolor="bg-primary"/>
+    <DiscoverPresence data={data}/>
 
     </>
   );
 }
+export default Index

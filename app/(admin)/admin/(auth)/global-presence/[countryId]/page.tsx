@@ -99,7 +99,7 @@ const IndividualGlobalPresence = () => {
             try {
                 const response = await fetch(`/api/admin/global-presence/country?id=${countryId}`);
                 const data = await response.json();
-                console.log(data.data)
+                
                 if(data.data.sections.length > 0){
                     setSections(data.data.sections);
                 }

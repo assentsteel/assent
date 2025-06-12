@@ -1,5 +1,5 @@
 "use client";
-import Image, { StaticImageData } from "next/image";
+import Image  from "next/image";
 import { useEffect, useRef } from "react";
 import { assets } from "@/public/assets/assets";
 import gsap from "gsap";
@@ -11,16 +11,12 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import { motion } from "framer-motion";
 import {gdVariants, slideInTop } from "./MotionAnimation";
+ 
+  
+          import { Quality } from '@/public/types/Common';   
+          
+          const BoxSlider = ({ data }: { data: Quality }) => {    
 
-
-interface PlatformsSection {
-  title: string;
-  image: StaticImageData[];
-}
-interface PlatformsSectionProps {
-  data:  PlatformsSection
-}
-const BoxSlider: React.FC<PlatformsSectionProps> = ({ data }) => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
   const containerRef = useRef(null);
@@ -74,7 +70,7 @@ const BoxSlider: React.FC<PlatformsSectionProps> = ({ data }) => {
               variants={textItemVariants}
               className="text-md uppercase text-white font-medium border-b inline-flex border-secondary pb-[10px] lg:pb-[25px] leading-none "
             >
-            {data.title}
+            {data.certificateSection.title}
             </motion.p>
             </div>
             </motion.div>
@@ -149,7 +145,7 @@ const BoxSlider: React.FC<PlatformsSectionProps> = ({ data }) => {
                 }}
 
             >
-              {data.image.map((src, index) => (
+              {data.certificateSection.items.map((src, index) => (
                 <SwiperSlide key={index} className="">
                   <motion.div
                       variants={gdVariants}
@@ -157,8 +153,8 @@ const BoxSlider: React.FC<PlatformsSectionProps> = ({ data }) => {
                       whileInView="visible"
                       viewport={{ once: true, amount: 0.2 }}>
                   <Image
-                    src={src}
-                    alt={`Slide ${index + 1}`}
+                    src={src.image}
+                    alt={src.imageAlt}
                     width={600}
                     height={400}
                     className="w-full h-auto object-cover rounded-md"

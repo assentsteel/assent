@@ -6,18 +6,11 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { AnimatePresence, motion } from "framer-motion";
 gsap.registerPlugin(ScrollTrigger);
+ 
 
-interface PlatformsItem {
-  id: number;
-  title: string;
-  image:  StaticImageData;
-}
+import { Awards } from '@/public/types/Common';  
 
-interface PlatformsSectionProps {
-  data: PlatformsItem[];
-}
-const AccreditationsList: React.FC<PlatformsSectionProps> = ({ data }) => {
-
+const AccreditationsList = ({ data }: { data: Awards }) => {   
     const [selectedImage, setSelectedImage] = useState<string | StaticImageData | null>(null);
 
   const modalVariants = {
@@ -63,11 +56,11 @@ const AccreditationsList: React.FC<PlatformsSectionProps> = ({ data }) => {
         animate="visible"
         viewport={{ once: true, amount: 0.2 }}
       >
-        {data.map((item, index) => (
+        {data.awards.map((item, index) => (
           <motion.div key={index} variants={itemVariants}>
             <div className="relative group overlbl h-full cursor-pointer" onClick={() => setSelectedImage(item.image)} >
               <figure className="overlayclr">
-                <Image src={item.image} alt="" className="rounded-[15px] w-full object-cover" />
+                <Image src={item.image} alt="" className="rounded-[15px] w-full object-cover" width={800} height={800} />
               </figure>
 
               <div className="absolute bottom-0 px-5 pb-5 w-full">
@@ -111,6 +104,8 @@ const AccreditationsList: React.FC<PlatformsSectionProps> = ({ data }) => {
                 src={selectedImage}
                 alt="popup"
                 className="w-full h-auto rounded-lg"
+                width={800}
+                height={800}
               />
             </div>
           </motion.div>

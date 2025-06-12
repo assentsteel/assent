@@ -9,27 +9,11 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Autoplay, Pagination } from "swiper/modules";
 import { tabItemVariant } from "../../common/MotionAnimation";
-interface ExpertiseItem {
-  icon: string;
-  title: string;
-}
-
-interface ExpertiseSection {
-  title: string;
-  subttle?: string;
-  slideitems: ExpertiseItem[];
-}
-interface ExpertiseSectionProps {
-  colnum?: number;
-  maxchwidth?: string;
-  data: ExpertiseSection;
-}
-const BoxgridSlider: React.FC<ExpertiseSectionProps> = ({
-
-  data,
-  maxchwidth,
-}) => {
-
+ 
+ import { Fabrication } from '@/public/types/Common'; 
+   
+  const   BoxgridSlider = ({ data,maxchwidth }: { data: Fabrication, maxchwidth?: string }) => {   
+ 
   const swiperRef = useRef<SwiperType | null>(null);
 
   useEffect(() => {
@@ -68,7 +52,7 @@ const BoxgridSlider: React.FC<ExpertiseSectionProps> = ({
               }, // Slide up and fade in
             }}
           >
-            <h2 className="text-xl text-white font-[600] leading-[1.2] mb-4 lg:mb-7" style={{ maxWidth: maxchwidth ? `${maxchwidth}ch` : undefined }}>{data.title}</h2>
+            <h2 className="text-xl text-white font-[600] leading-[1.2] mb-4 lg:mb-7" style={{ maxWidth: maxchwidth ? `${maxchwidth}ch` : undefined }}>{data.thirdSection.title}</h2>
               </motion.div>
          <motion.div
             initial="hidden"
@@ -84,7 +68,7 @@ const BoxgridSlider: React.FC<ExpertiseSectionProps> = ({
             }}
               >
                 <p className="text-19   font-400   text-white   lg:max-w-[120ch]">
-              {data.subttle}
+              {data.thirdSection.description}
             </p></motion.div>
           </motion.div>
         </div>
@@ -118,7 +102,7 @@ const BoxgridSlider: React.FC<ExpertiseSectionProps> = ({
               }}
             >
 
-          {data.slideitems.map((item, index) => (
+          {data.thirdSection.items.map((item, index) => (
             <SwiperSlide key={index}  className="">
             <motion.div  variants={tabItemVariant}
               initial="hidden"
@@ -126,7 +110,7 @@ const BoxgridSlider: React.FC<ExpertiseSectionProps> = ({
               viewport={{ once: true, amount: 0.3 }}
               exit="exit" className="flex items-center gap-[12px]">
               <div className="min-w-[40px] min-h-[44px] lg:min-w-[61px] lg:min-h-[64px] bg-secondary rounded-[5px] flex justify-center items-center">
-                <Image src={item.icon} alt="" className="img-fluid p-2 md:p:0"/>
+                <Image src={item.logo} alt={item.logoAlt} className="img-fluid p-2 md:p:0" width={45} height={45}/>
               </div>
               <div><p className="tex-md font-semibold text-white">{item.title}</p></div>
             </motion.div>

@@ -7,17 +7,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 
-
-type PlatformsSectionProps = {
-  // existing props
-  data: {
-    title: string;
-    desc: string;
-  };
-};
-
-const ContentText: React.FC<PlatformsSectionProps> = ({data
-}) => {
+ 
+  
+    import { Services } from '@/public/types/Common';  
+    const ContentText = ({ data }: { data: Services }) => {  
   const containerRef = useRef(null);
 
   const textContainerVariants = {
@@ -71,7 +64,7 @@ const ContentText: React.FC<PlatformsSectionProps> = ({data
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
               >
-                {data.title}
+                {data.firstSection.title}
               </motion.h2>
               </div>
             </motion.div>
@@ -84,10 +77,10 @@ const ContentText: React.FC<PlatformsSectionProps> = ({data
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true, amount: 0.3 }}
+                  className="text-sm font-normal  text-territory leading-[1.6"
+                  dangerouslySetInnerHTML={{__html: data.firstSection.description}}
                 >
-                  <p className="text-sm font-normal  text-territory leading-[1.6]">
-                  {data.desc}
-                  </p>
+                 
                 </motion.div>
               </div>
             </div>

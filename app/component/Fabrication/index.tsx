@@ -1,50 +1,48 @@
-import React from "react";
-import {about,IndustriesWeServe,Structuredata,tabcnts,strengthServe,whychoosedata} from "./data";
+import React from "react"; 
 import Herotext from "../common/Banner/Herotext";
-import SingleImage from "../common/SingleImage";
-import { assets } from "@/public/assets/assets";
+import SingleImage from "../common/SingleImage"; 
 import IntroBold from "../common/IntroBold";
 import BoxgridSlider from "./sections/BoxgridSlider";
 import Structure from "./sections/Structure";
 import NavTabsection from "./sections/NavTabsection";
 import WhyChoose from "../common/WhyChoose";
 import Boxgds from "../common/Boxgds";
-export default function Index() {
+import { Fabrication } from '@/public/types/Common'; 
+const Index = async ({ data }: { data: Fabrication }) => {  
   const breadcrumb = [
     { label: "Home", href: "/" },
-    { label: "Fabrication", href: "" },
+    { label: data.pageTitle, href: "" },
     // { label: `${data && data.data.sector}`, href: "#" },
   ];
 
   return (
     <>
 
-      <Herotext breadcrumbs={breadcrumb} title={"Fabrication"} />
+      <Herotext breadcrumbs={breadcrumb} title={data.pageTitle} />
 
-      <SingleImage secimage={assets.fabbanner}/>
-      <IntroBold data={about} />
+      <SingleImage data={data}/>
+      <IntroBold data={data.firstSection} />
       <section>
         <div className="container border-b pb-[50px]  xl:pb-[100px]">
 
         </div>
       </section>
-      <NavTabsection data={tabcnts} navigation={true} />
-      <BoxgridSlider
-      colnum={4}
-        data={IndustriesWeServe} />
+      <NavTabsection data={data.secondSection} navigation={true} />
+      <BoxgridSlider 
+        data={data} />
       <section className="py-[50px]  xl:py-[100px]">
       <Structure
-        data={Structuredata} />
+        data={data} />
       </section>
        <section className="pt-[50px]  xl:pt-[80px]">
       <Boxgds
-      colnum={3}
-        title={strengthServe.title}
-        data={strengthServe.data} />
+      colnum={3} 
+        data={data.fifthSection} />
       </section>
-    <WhyChoose data={whychoosedata} />
+    <WhyChoose data={data.sixthSection} />
 
 
     </>
   );
 }
+export default Index

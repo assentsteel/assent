@@ -1,24 +1,17 @@
 "use client";
 import { useEffect, useRef } from "react";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
 import Link from "next/link";
-gsap.registerPlugin(ScrollTrigger);
-interface PlatformsItem {
-  id: number;
-  date: string;
-  title: string;
-  comment: string;
-  image: string | StaticImageData;
-  url:string
-}
-
-interface PlatformsSectionProps {
-  data: PlatformsItem[];
-}
-const NewsList: React.FC<PlatformsSectionProps> = ({ data }) => {
+gsap.registerPlugin(ScrollTrigger); 
+  
+  
+  import { News } from '@/public/types/Common';
+   
+    
+      const NewsList = ({ data }: { data: News }) => {
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -49,7 +42,7 @@ const NewsList: React.FC<PlatformsSectionProps> = ({ data }) => {
     <section className="pb-[50px] md:pb-[70px] xl:pb-[100px]   relative ">
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-2  xl:grid-cols-3 gap-x-4 lg:gap-x-6 xxl:gap-x-10 ">
-          {data.map((item, index) => (
+          {data.news.map((item, index) => (
            <motion.div
            key={index}
            className="itemsmn"
@@ -62,27 +55,33 @@ const NewsList: React.FC<PlatformsSectionProps> = ({ data }) => {
          >
               <div className="relative group lg:h-auto  rounded-[15px]"
               >
-                <figure className=" h-full  " >
+                <figure className=" w-[500px] h-[370px] " >
                   <Image
-                    src={item.image}
+                    src={item.thumbnail}
                     alt=""
                     className="rounded-[15px]  h-full w-full object-cover"
+                    width={500}
+                    height={370}
                   />
                   </figure>
 
                 <div className=" pt-[10px] w-full">
                   <div className="flex justify-between items-center">
-                    <p className="text-xs text-[#595959] font-[400] leading-[1.9] ">
-                      {item.date}
+                    <p className="text-xs text-[#595959] font-[400] leading-[1.9] "> 
+                      {new Date(item.createdAt).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  })}
                     </p>
                     <p className="text-xs text-[#595959] font-[400] leading-[1.9] ">
-                      {item.comment}
+                      {item.category}
                     </p>
                   </div>
                   <h3 className="line-clamp-2 text-black text-sm mt-2 lg:mt-5  leading-[1.3] xl:leading-[1.8] mb-4 lg:mb-[10px] font-[400]">
-                    {item.title}
+                    {item.mainTitle}
                   </h3>
-                  <Link href={item.url}>
+                  <Link href={`/news-details/${item.slug}`}>
                   <div className="flex justify-between mb-5 lg:mb-0">
                     <div className=" flex gap-4 items-center w-fit m-0 border-b  border-secondary pb-[10px]   transition-all duration-500 ">
                       <p className="text-xs uppercase text-black font-[500] inline-flex  leading-[1] ">

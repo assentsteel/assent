@@ -6,17 +6,11 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
-
-
-
-interface PlatformsSectionProps {
-
-  data: {id: number;
-    heading: string;
-    title: string;
-    paragraphs: string[];}
-}
-const IntroBold: React.FC<PlatformsSectionProps> = ({ data }) => {
+ 
+  
+        import {   introbold } from '@/public/types/Common';   
+        
+        const IntroBold = ({ data }: { data: introbold}) => {    
    const containerRef = useRef(null);
 
    const textContainerVariants = {
@@ -71,7 +65,7 @@ const IntroBold: React.FC<PlatformsSectionProps> = ({ data }) => {
         custom="x"
         variants={textVariants}
       >
-        {data.heading}
+        {data.title}
       </motion.h2>
 
 
@@ -90,22 +84,18 @@ const IntroBold: React.FC<PlatformsSectionProps> = ({ data }) => {
               >
 
                   <div >
-
-
-      {data.paragraphs.map((text, index) => (
-        <motion.p
-          key={index}
+ 
+        <motion.div 
           className="text-sm font-normal mb-5 last:mb-0   text-territory leading-[1.6]"
           custom="y"
   variants={textVariants}
   initial="hidden"
   whileInView="visible"
   viewport={{ once: true, amount: 0.3 }}
-  transition={{ delay: 0.2 * (index + 1), duration: 0.5 }}
-        >
-          {text}
-        </motion.p>
-      ))}
+  transition={{ delay: 0.2  , duration: 0.5 }}
+  dangerouslySetInnerHTML={{__html: data.description}}
+        > 
+        </motion.div> 
      </div>
     </motion.div>
   </div>

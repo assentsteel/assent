@@ -6,12 +6,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
 gsap.registerPlugin(ScrollTrigger);
  
-import { textbyimg } from '@/public/types/Common'; 
-
-
-
-const TextByImg = ({ data,kmbtn }: { data: textbyimg, kmbtn?: boolean }) => {   
-  
+import { Sustainability } from '@/public/types/Common'; 
+ 
+const   TextByImgSlide = ({ data,kmbtn }: { data: Sustainability, kmbtn?: boolean }) => {   
 
   const containerRef = useRef(null);
   const textVariants = {
@@ -71,14 +68,14 @@ const TextByImg = ({ data,kmbtn }: { data: textbyimg, kmbtn?: boolean }) => {
             variants={textVariants}
             initial="hidden"
             whileInView="visible">
-            {data.title}
+            {data.thirdSection.title}
           </motion.h2>
 
           <motion.div className="text-territory text-base font-[400] leading-[1.8] mb-6 lg:mb-10"
           initial="hidden"
           whileInView="visible"
           variants={imageVariants}
-          viewport={{ once: true, amount: 0.2 }} dangerouslySetInnerHTML={{__html: data.description}}> 
+          viewport={{ once: true, amount: 0.2 }} dangerouslySetInnerHTML={{__html: data.thirdSection.description}}> 
            
           
           </motion.div>
@@ -106,25 +103,15 @@ const TextByImg = ({ data,kmbtn }: { data: textbyimg, kmbtn?: boolean }) => {
     >
       
         <div >
-          <figure className="image-wrapper">
-            {data.image2 && (
+          <figure className="image-wrapper"> 
               <Image
-                src={data.image2}
-                alt={data.image2Alt || ""}
+                src={data.thirdSection.items[0].image}
+                alt={data.thirdSection.items[0].imageAlt || ""}
                 className="rounded-[15px]"
                 width={4860}
                 height={1725}
-              />
-            )}
-            {data.image && (
-              <Image
-                src={data.image}
-                alt={data.imageAlt || ""}
-                className="rounded-[15px]"
-                width={4860}
-                height={1725}
-              />
-            )}
+              /> 
+           
           </figure>
         </div>
    
@@ -135,4 +122,4 @@ const TextByImg = ({ data,kmbtn }: { data: textbyimg, kmbtn?: boolean }) => {
   );
 };
 
-export default TextByImg;
+export default TextByImgSlide;

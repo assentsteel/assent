@@ -6,10 +6,11 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
-import { About,GlobalPresence } from '@/public/types/Common'; 
-
-const AboutUs = ({ data }: { data: About | GlobalPresence }) => {
-
+ 
+  
+        import {   GpAmericaSection } from '@/public/types/Common';   
+        
+        const IntroBoldGp = ({ data }: { data: GpAmericaSection}) => {    
    const containerRef = useRef(null);
 
    const textContainerVariants = {
@@ -20,10 +21,7 @@ const AboutUs = ({ data }: { data: About | GlobalPresence }) => {
     },
   };
 
-  const textItemVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
-  };
+
   useEffect(() => {
     if (containerRef.current) {
       gsap.from(containerRef.current, {
@@ -52,31 +50,30 @@ const AboutUs = ({ data }: { data: About | GlobalPresence }) => {
     },
   };
   return (
-    <section className="section-spacing   overflow-hidden relative  ">
+    <section className="pt-10 xl:pt-[42px]   overflow-hidden relative  ">
       <div className="container">
-      <div className="grid grid-cols-12  left-spacing pr-[15px] md:pr-0">
-        <div className="col-span-12 lg:col-span-4">
+      <div className="grid grid-cols-12   ">
+        <div className="col-span-12 lg:col-span-5">
           <motion.div
             variants={textContainerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
           >
-            <div className="overflow-hidden mb-[20px] lg:mb-[48px]">
-            <motion.p
-              variants={textItemVariants}
-              className="text-md uppercase text-[#595959] font-medium border-b inline-flex border-secondary pb-[10px] lg:pb-[25px] leading-none "
-            >
-             {data.firstSection.mainTitle}
-            </motion.p>
-            </div>
+            <motion.h2
+        className="text-xl text-primary font-[600] leading-[1.2] mb-4 lg:mb-0"
+        custom="x"
+        variants={textVariants}
+      >
+        {data.title}
+      </motion.h2>
 
 
           </motion.div>
         </div>
 
 <motion.div
-  className="col-span-12 lg:col-span-8 right-0 pl-[0px] lg:pl-[50px]"
+  className="col-span-12 lg:col-span-7 right-0 pl-[0px] lg:pl-[50px]"
 >
   <div>
   <motion.div
@@ -87,26 +84,18 @@ const AboutUs = ({ data }: { data: About | GlobalPresence }) => {
               >
 
                   <div >
-                 <motion.h2
-        className="text-xl text-primary font-[600] leading-[1.2] mb-4 lg:mb-6"
-        custom="x"
-        variants={textVariants}
-      >
-        {data.firstSection.subTitle}
-      </motion.h2>
-
-      {data.firstSection.description.split("\n").map((text, index) => (
-        <motion.div
-          key={index}
-          className="text-sm font-normal mb-3 lg:mb-6 text-territory leading-[1.6]"
+ 
+        <motion.div 
+          className="text-sm font-normal mb-5 last:mb-0   text-territory leading-[1.6]"
           custom="y"
-          variants={textVariants}
-          transition={{ delay: 0.2 * (index + 1), duration: 0.5 }}
-          dangerouslySetInnerHTML={{__html: text}}
-        >
-          
-        </motion.div>
-      ))}
+  variants={textVariants}
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true, amount: 0.3 }}
+  transition={{ delay: 0.2  , duration: 0.5 }}
+  dangerouslySetInnerHTML={{__html: data.description}}
+        > 
+        </motion.div> 
      </div>
     </motion.div>
   </div>
@@ -117,4 +106,4 @@ const AboutUs = ({ data }: { data: About | GlobalPresence }) => {
   );
 };
 
-export default AboutUs;
+export default IntroBoldGp;

@@ -10,7 +10,7 @@ import SingleImage from "./sections/SingleImage";
  
 import { About } from '@/public/types/Common';
 
-const Index = async ({ data }: { data: About }) => {
+const Index = async ({ data }: { data: About  }) => {
   const breadcrumb = [
     { label: "Home", href: "/" },
     { label: "About", href: "" },
@@ -27,9 +27,9 @@ const Index = async ({ data }: { data: About }) => {
       <AboutUs data={data} />
       <Achievements data={data} />
       <SingleImage data={data}/>
-      <TextByImg data={data} kmbtn={false} />
+      <TextByImg data={data.secondSection} kmbtn={false} />
       <Aboutslider data={data} />
-      <SingleImageText data={data} textright={true}  maxwidth={'max-w-[56ch]'} />
+      <SingleImageText data={data.purposeSection} textright={true}  maxwidth={'max-w-[56ch]'} />
       <Tabsection data={data}  />
 
     </>

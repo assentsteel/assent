@@ -1,25 +1,17 @@
 "use client";
  ;
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
 import Link from "next/link";
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger); 
+ 
 
-
-
-interface PlatformsSectionProps {
-  data: {
-    title: string;
-  paragraphs: string[];
-  image: string | StaticImageData;
-  }
-}
-
-const TextImg: React.FC<PlatformsSectionProps> = ({data
-}) => {
+          import { Quality } from '@/public/types/Common';   
+          
+          const TextImg = ({ data }: { data: Quality }) => {   
 
   const containerRef = useRef(null);
   const textVariants = {
@@ -76,17 +68,15 @@ const TextImg: React.FC<PlatformsSectionProps> = ({data
             variants={textVariants}
             initial="hidden"
             whileInView="visible">
-            {data.title}
+            {data.thirdSection.title}
           </motion.h2>
 
           <motion.div className="text-territory text-base font-[400] leading-[1.8] mb-6 lg:mb-10"
           initial="hidden"
           whileInView="visible"
           variants={imageVariants}
-          viewport={{ once: true, amount: 0.2 }}>
-            {data.paragraphs.map((paragraph, index) => (
-              <p key={index} className="mb-4">{paragraph}</p>
-            ))}
+          viewport={{ once: true, amount: 0.2 }} dangerouslySetInnerHTML={{__html: data.thirdSection.description}}> 
+              
               </motion.div>
               <Link href="/gallery">
               <motion.button
@@ -113,9 +103,11 @@ const TextImg: React.FC<PlatformsSectionProps> = ({data
         <div >
           <figure className="image-wrapper">
             <Image
-              src={data.image}
-              alt=""
+              src={data.thirdSection.image}
+              alt={data.thirdSection.imageAlt}
               className="rounded-[15px] "
+              width={600}
+              height={400}
             />
           </figure>
         </div>
