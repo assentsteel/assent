@@ -1,5 +1,5 @@
 "use client";
-import Image, { StaticImageData } from "next/image";
+import Image  from "next/image";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -7,19 +7,12 @@ import { motion } from "framer-motion";
 import { assets } from "@/public/assets/assets";
 gsap.registerPlugin(ScrollTrigger);
 
-interface PlatformsItem {
-  id: number;
-  title: string;
-  paragraphs: string[];
-  image: string | StaticImageData;
-}
-
-interface PlatformsSectionProps {
-  kmbtn?: boolean;
-  heading: string;
-  data: PlatformsItem[];
-}
-const Commitments: React.FC<PlatformsSectionProps> = ({ data,heading }) => {
+ 
+  
+      import { Hse } from '@/public/types/Common'; 
+       
+        
+          const Commitments = ({ data }: { data: Hse }) => {
   const containerRef = useRef(null);
   const textVariants = {
     hidden: { opacity: 0, x: -30 },
@@ -62,11 +55,11 @@ const Commitments: React.FC<PlatformsSectionProps> = ({ data,heading }) => {
   }, []);
   const [currentIndex, setCurrentIndex] = useState(0);
   const handleNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % data.length);
+    setCurrentIndex((prev) => (prev + 1) % data.secondSection.items.length);
   };
 
   const handlePrev = () => {
-    setCurrentIndex((prev) => (prev - 1 + data.length) % data.length);
+    setCurrentIndex((prev) => (prev - 1 + data.secondSection.items.length) % data.secondSection.items.length);
   };
   return (
     <section className="pt-[50px] md:pt-[70px] xl:pt-[100px] ">
@@ -81,7 +74,7 @@ const Commitments: React.FC<PlatformsSectionProps> = ({ data,heading }) => {
         initial="hidden"
         whileInView="visible"
       >
-    {heading}
+    {data.secondSection.title}
  </motion.h2>
 </div>
 <div className="lg:flex ">
@@ -96,7 +89,7 @@ const Commitments: React.FC<PlatformsSectionProps> = ({ data,heading }) => {
     <div  >
       <figure className="image-wrapper">
         <Image
-          src={data[currentIndex].image}
+          src={data.secondSection.items[currentIndex].image}
           alt=""
           className="rounded-[15px]"
         />
@@ -114,7 +107,7 @@ const Commitments: React.FC<PlatformsSectionProps> = ({ data,heading }) => {
         initial="hidden"
         whileInView="visible"
       >
-        {data[currentIndex].title}
+        {data.secondSection.items[currentIndex].title}
       </motion.h2>
 
       <motion.div
@@ -123,12 +116,10 @@ const Commitments: React.FC<PlatformsSectionProps> = ({ data,heading }) => {
         whileInView="visible"
         variants={imageVariants}
         viewport={{ once: true, amount: 0.2 }}
-      >
-        {data[currentIndex].paragraphs.map((paragraph, index) => (
-          <p key={index} className="mb-4 text-sm text-white leading-[1.6]">
-            {paragraph}
-          </p>
-        ))}
+      > 
+          <p  className="mb-4 text-sm text-white leading-[1.6]">
+            {data.secondSection.items[currentIndex].description}
+          </p> 
       </motion.div>
       <div className=" flex gap-2 lg:gap-[30px] z-10 mb-8 md:mb-[40px] justify-end md:justify-normal">
         <button onClick={handlePrev}

@@ -6,12 +6,12 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 import { motion } from "framer-motion";
 
-import { imageVariants } from "./MotionAnimation"
  
-      import { Quality , Hse , Engineering , Fabrication, Blasting } from '@/public/types/Common';   
+ 
+      import { GpAmericaSection} from '@/public/types/Common';   
+import { imageVariants } from "../../common/MotionAnimation";
       
-      const SingleImage = ({ data }: { data: Quality  | Hse | Engineering | Fabrication |Blasting }) => {    
-
+     const SingleImageGp = ({ data }: { data: GpAmericaSection }) => {    
   const containerRef = useRef(null);
 
 
@@ -44,8 +44,8 @@ import { imageVariants } from "./MotionAnimation"
 
         >
           <Image
-            src={data.firstSection.image}
-            alt={data.firstSection.imageAlt}
+            src={data.image}
+            alt={data.imageAlt}
             width={500}
             height={569}
             className="rounded-[15px] object-cover w-full h-full"
@@ -57,4 +57,4 @@ import { imageVariants } from "./MotionAnimation"
   );
 };
 
-export default SingleImage;
+export default SingleImageGp;

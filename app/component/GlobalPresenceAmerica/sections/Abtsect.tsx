@@ -1,26 +1,15 @@
-"use client";
- ;
-import  { StaticImageData } from "next/image";
+"use client"; 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
 gsap.registerPlugin(ScrollTrigger);
 
-interface PlatformsItem {
-  id: number;
-  title: string;
-  designation: string;
-  paragraphs: string[];
-  image: string | StaticImageData;
-}
-
-interface PlatformsSectionProps {
-  kmbtn?: boolean;
-  data: PlatformsItem[];
-}
-const Abtsect: React.FC<PlatformsSectionProps> = ({data,kmbtn
-}) => {
+ 
+  
+  import { GpAbtsect} from '@/public/types/Common';   
+          
+         const Abtsect = ({ data ,kmbtn}: { data: GpAbtsect ,kmbtn?: boolean}) => {    
 
   const containerRef = useRef(null);
   const textVariants = {
@@ -68,23 +57,22 @@ const Abtsect: React.FC<PlatformsSectionProps> = ({data,kmbtn
       <div className="container">
   <div className="lg:flex items-stretch">
     {/* Text Section */}
-    <div  className="w-full lg:w-2/3 xl:w-3/4 pr-0 lg:pr-[100px]"  >
-      {data.map((item) => (
-        <div className="mb-8 lg:mb-0" key={item.id}>
+    <div  className="w-full lg:w-2/3 xl:w-3/4 pr-0 lg:pr-[100px]"  > 
+        <div className="mb-8 lg:mb-0" >
           <div className="mb-4 lg:mb-10">
           <motion.h2 className="text-xl text-primary font-[600] leading-[1.2] "
             viewport={{ once: true, amount: 0.2 }}
             variants={textVariants}
             initial="hidden"
             whileInView="visible">
-            {item.title}
+            {data.name}
           </motion.h2>
           <motion.h2 className="text-xl text-primary font-[600] leading-[1.2]  "
             viewport={{ once: true, amount: 0.2 }}
             variants={textVariants}
             initial="hidden"
             whileInView="visible">
-            {item.designation}
+            {data.designation}
           </motion.h2>
           </div>
           <motion.div className="text-territory text-base font-[400] leading-[1.8] mb-6 lg:mb-10"
@@ -92,9 +80,7 @@ const Abtsect: React.FC<PlatformsSectionProps> = ({data,kmbtn
           whileInView="visible"
           variants={imageVariants}
           viewport={{ once: true, amount: 0.2 }}>
-            {item.paragraphs.map((paragraph, index) => (
-              <p key={index} className="mb-4">{paragraph}</p>
-            ))}
+            <div dangerouslySetInnerHTML={{__html: data.description}}></div>
           </motion.div>
           {kmbtn &&
             <button className="mt-auto border border-secondary py-2 px-6 rounded-full hover:bg-secondary hover:text-white transition text-xs h-[40px] lg:h-[48px] text-territory max-w-[315px] w-[315px] font-medium uppercase">
@@ -102,7 +88,7 @@ const Abtsect: React.FC<PlatformsSectionProps> = ({data,kmbtn
             </button>
           }
         </div>
-      ))}
+ 
     </div>
 
     {/* Image Section */}
@@ -111,13 +97,12 @@ const Abtsect: React.FC<PlatformsSectionProps> = ({data,kmbtn
       whileInView="visible"
       variants={imageVariants}
       viewport={{ once: true, amount: 0.2 }}
-    >
-      {data.map((item) => (
-        <div key={item.id}>
+    > 
+        <div  >
           <div className="gbgs rounded-full p-1 h-[607px] flex items-center flex-row">
             <div className="rounded-full   h-[600px] flex items-center flex-row w-full lg:p-6 bg-white">
             <div className="  rounded-full bg-[red] h-full w-full  bg-no-repeat   " style={{
-                background: `url(${typeof item.image === "string" ? item.image : item.image.src})`,
+                background: `url(${typeof data.image === "string" ? data.image : data.image})`,
                 backgroundSize: "cover",
                 backgroundPosition:"center"
               }}>
@@ -125,8 +110,7 @@ const Abtsect: React.FC<PlatformsSectionProps> = ({data,kmbtn
            </div>
           </div>
 
-        </div>
-      ))}
+        </div> 
     </motion.div>
   </div>
 </div>

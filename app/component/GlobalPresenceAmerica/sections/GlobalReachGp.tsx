@@ -8,9 +8,9 @@ import { textContainerVariants, textItemVariants } from "../../common/MotionAnim
 gsap.registerPlugin(ScrollTrigger);
  
   
-  import { GlobalReachtype } from '@/public/types/Common'; 
+  import { Globaltype } from '@/public/types/Common'; 
   
-  const GlobalReach = ({ data,bgcolor }: { data: GlobalReachtype , bgcolor?: string }) => {
+  const GlobalReachGp = ({ data,bgcolor }: { data: Globaltype , bgcolor?: string }) => {
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -32,15 +32,7 @@ gsap.registerPlugin(ScrollTrigger);
   return (
     <div className={`py-[50px] md:py-[70px] xl:py-[100px] overflow-hidden relative ${bgcolor ? bgcolor : ''} `}>
       <div className="container">
-        <div className="mb-4 lg:mb-[60px]">
-          <motion.h2 className={`text-xl  font-semibold ${bgcolor ? 'text-white': 'text-territory' }`}
-                variants={textContainerVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.3 }}>
-            {data.title}
-          </motion.h2>
-        </div>
+        
         <motion.div
   className="grid grid-cols-12 "
   variants={textContainerVariants}
@@ -93,4 +85,4 @@ gsap.registerPlugin(ScrollTrigger);
   );
 };
 
-export default GlobalReach;
+export default GlobalReachGp;

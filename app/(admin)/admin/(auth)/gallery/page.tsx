@@ -89,7 +89,6 @@ const AdminGallery = () => {
         try {
             const res = await fetch("/api/admin/gallery");
             const data = await res.json();
-            console.log(data)
             if (data.success) {
                 setItems(data.data);
                 setMetaTitle(data.data.metaTitle);

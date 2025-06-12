@@ -10,8 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 import { Gallerydata } from '@/public/types/Common';
  
   
-    const HeadingText = ({ data }: { data: Gallerydata }) => {
-      console.log(data) 
+    const HeadingText = ({ data }: { data: Gallerydata }) => { 
   const containerRef = useRef(null);
 
 
@@ -39,17 +38,17 @@ import { Gallerydata } from '@/public/types/Common';
     },
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut",
-      },
-    },
-  };
+  // const itemVariants = {
+  //   hidden: { opacity: 0, y: 30 },
+  //   show: {
+  //     opacity: 1,
+  //     y: 0,
+  //     transition: {
+  //       duration: 0.5,
+  //       ease: "easeOut",
+  //     },
+  //   },
+  // };
     const [selectedImage, setSelectedImage] = useState<string | StaticImageData | null>(null);
 
   const modalVariants = {
@@ -75,10 +74,9 @@ import { Gallerydata } from '@/public/types/Common';
         viewport={{ once: true }}
       >
         <div className="columns-2 md:columns-3 lg:columns-4 gap-4"> 
-          {data.data.map((image, index) => (
+          {data?.data?.map((image, index) => (
             <motion.div
-              key={index}
-              variants={itemVariants}
+              key={index} 
               className="mb-4 break-inside-avoid rounded-lg overflow-hidden group cursor-pointer"
               onClick={() => setSelectedImage(image)}
             >

@@ -24,8 +24,10 @@ const items = [
   },
   // Add more items here if needed
 ];
+ 
 
-export default function ProjectModels() {
+     import {   Engineering } from '@/public/types/Common';   
+    const ProjectModels = ({ data }: { data: Engineering}) => {   
   const [activeIndex, setActiveIndex] = useState(0);
   const selectedItem = items[activeIndex];
 
@@ -80,23 +82,10 @@ export default function ProjectModels() {
           {/* Text Content */}
           <div className="w-full md:w-1/2 space-y-6">
             <h2 className="text-xl  text-primary font-[600] leading-[1.2] mb-4 lg:mb-10">
-              Project Models
-            </h2>
-            <p className="mb-4 last:mb-0">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.,
-            </p>{" "}
-            <p className="mb-4 last:mb-0">
-              Llaboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-              dolor in reprehen derit in voluptate velit esse cillum dolore eu
-              fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-              proident, sunt in culpa qui officia.
-            </p>
+              {data.thirdSection.title}
+            </h2> 
+            <div  dangerouslySetInnerHTML={{__html: data.thirdSection.description}}></div>
+             
             {/* Navigation Thumbnails */}
             <div className="flex items-center gap-4 mt-4">
               {/* Left Button */}
@@ -156,3 +145,4 @@ export default function ProjectModels() {
     </section>
   );
 }
+export default ProjectModels;

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Image, { StaticImageData } from "next/image";
+import Image  from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
@@ -9,17 +9,12 @@ import Link from "next/link";
 import { slideInTop } from "../../common/MotionAnimation";
 gsap.registerPlugin(ScrollTrigger);
 
-interface PlatformsItem {
-  id: number;
-  title: string;
-  urlss: string;
-  image: string | StaticImageData;
-}
-
-interface PlatformsSectionProps {
-  data: PlatformsItem[];
-}
-const DiscoverPresence: React.FC<PlatformsSectionProps> = ({ data }) => {
+ 
+  
+    
+    import { GlobalPresence } from '@/public/types/Common'; 
+    
+    const DiscoverPresence = ({ data }: { data: GlobalPresence }) => {
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -56,12 +51,12 @@ const DiscoverPresence: React.FC<PlatformsSectionProps> = ({ data }) => {
         <motion.h3 variants={slideInTop} initial="hidden" whileInView="visible" exit="exit" className="text-xl font-semibold text-primary  leading-[1.2] mb-5 md:mb-10">Discover Our <br /> Presence in Other Countries</motion.h3>
         <motion.div className="grid grid-cols-1 md:grid-cols-2  lg:grid-cols-5 gap-8" variants={containerVariants} initial="hidden" whileInView="show" viewport={{ once: true }} >
 
-          {data.map((item, index) => (
+          {data.thirdSection.countries.map((item, index) => (
             <motion.div key={index} variants={itemVariants}>
               <motion.div className="relative group  h-full " whileHover={{ scale: 1.015 }} transition={{ type: "spring", stiffness: 300 }} >
-                <Link href={item.urlss}>
+                <Link href={`${item.slug=="north-america" ? `/global-presence-america/${item.slug}` : item.slug=="europe" ? `/global-presence-europe/${item.slug}` : item.slug=="africa" ? `/global-presence-africa/${item.slug}` : ""}`}>
                   <figure className="overlayclr lg:max-h-[650px] h-full overflow-hidden rounded-[15px]">
-                    <Image src={item.image} alt="" className=" w-full object-cover h-[350px] md:h-full" priority />
+                    <Image src={item.image} alt="" className=" w-full object-cover h-[350px] md:h-full" priority width={500} height={500} />
                   </figure>
 
                   <div className="absolute bottom-0 px-5 pb-5 lg:px-[30px] lg:pb-[30px] w-full">

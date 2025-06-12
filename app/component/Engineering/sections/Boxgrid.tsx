@@ -14,31 +14,11 @@ import { assets } from "@/public/assets/assets";
   assets.hrbn6,
   assets.hrbn7,
 ];
-
-interface ExpertiseItem {
-  id: number;
-  icon: string;
-  title: string;
-  subttle?: string;
-  desc: string;
-  url?: string;
-}
-
-interface ExpertiseSectionProps {
-  title: string;
-  colnum?: number;
-  maxchwidth?: number;
-  data: ExpertiseItem[];
-  subttle?: string;
-}
-
-const Boxgrid: React.FC<ExpertiseSectionProps> = ({
-  title,
-  data,
-  colnum,
-  subttle,
-  maxchwidth,
-}) => {
+ 
+  
+        import {   Engineering } from '@/public/types/Common';   
+        
+        const Boxgrid = ({ data, maxchwidth, colnum }: { data: Engineering,colnum?:number,maxchwidth?:number}) => {    
   return (
     <section className="bg-primary overimg relative">
     <div className="container mx-auto py-4">
@@ -57,9 +37,9 @@ const Boxgrid: React.FC<ExpertiseSectionProps> = ({
               }, // Slide up and fade in
             }}
           >
-            <h2 className="text-xl text-white font-[600] leading-[1.2] mb-4 lg:mb-7" style={{ maxWidth: maxchwidth ? `${maxchwidth}ch` : undefined }}>{title}</h2>
+            <h2 className="text-xl text-white font-[600] leading-[1.2] mb-4 lg:mb-7" style={{ maxWidth: maxchwidth ? `${maxchwidth}ch` : undefined }}>{data.secondSection.title}</h2>
             <p className="text-19   font-400   text-white   lg:max-w-[120ch]">
-              {subttle}
+              {data.secondSection.description}
             </p>
           </motion.div>
         </div>
@@ -80,9 +60,9 @@ const Boxgrid: React.FC<ExpertiseSectionProps> = ({
             }}
           >
             {/* Item 1 */}
-           {data.map((expertise, index) => (
-  <div key={expertise.id}>
-    <Link href={`${expertise.url}`}>
+           {data.secondSection.items.map((expertise, index) => (
+  <div key={index}>
+    <Link href={`#`}>
       <div
         style={{
           backgroundImage: `url(${dataimagebg[index]?.src || dataimagebg[index]})`,
@@ -94,8 +74,10 @@ const Boxgrid: React.FC<ExpertiseSectionProps> = ({
           {/* Image Wrapper */}
           <div className="align-center   flex h-[68px] w-[68px] rounded-[5px] justify-center  p-2 transition-colors duration-500 bg-secondary group-hover:bg-white md:h-[50px] md:w-[50px]">
             <Image
-              src={expertise.icon}
-              alt={expertise.title}
+              src={expertise.logo}
+              alt={expertise.logoAlt}
+              width={50}
+              height={50}
               className="fltrcls transition duration-500 brightness-0 invert-[1] group-hover:brightness-[1] group-hover:invert-0"
             />
           </div>
@@ -108,7 +90,7 @@ const Boxgrid: React.FC<ExpertiseSectionProps> = ({
 
             <div className="overflow-hidden">
               <p className="text-19 font-normal cntsmd hided-content max-h-0 w-[102%] overflow-hidden pt-2 text-white opacity-0 transition-all duration-500 group-hover:max-h-[15rem] group-hover:opacity-100">
-                {expertise.desc}
+                {expertise.description}
               </p>
             </div>
           </div>
