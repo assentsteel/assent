@@ -1,5 +1,5 @@
 "use client";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { assets } from "@/public/assets/assets";
 import gsap from "gsap";
@@ -11,11 +11,13 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import { motion } from "framer-motion";
 
-
-interface PlatformsSectionProps {
-  data: {image: StaticImageData[]}
-}
-const SingleImage: React.FC<PlatformsSectionProps> = ({ data }) => {
+ 
+  
+  import { Services } from '@/public/types/Common'; 
+  
+  
+  
+  const SingleImage = ({ data }: { data: Services }) => {  
   const prevRef = useRef(null);
   const nextRef = useRef(null);
   const containerRef = useRef(null);
@@ -72,10 +74,10 @@ const SingleImage: React.FC<PlatformsSectionProps> = ({ data }) => {
               spaceBetween={20}
               className="rounded-xl overflow-hidden h-[200px] md:h-auto"
             >
-              {data.image.map((src, index) => (
+              {data.firstSection.items.map((src, index) => (
                 <SwiperSlide key={index}>
                   <Image
-                    src={src}
+                    src={src.image}
                     alt={`Slide ${index + 1}`}
                     width={600}
                     height={400}

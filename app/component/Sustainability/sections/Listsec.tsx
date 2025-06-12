@@ -2,24 +2,15 @@
 
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
 import { gdVariants,gdsVariants } from "../../common/MotionAnimation";
 gsap.registerPlugin(ScrollTrigger);
 
-
-interface PlatformsItem {
-  title: string;
-  image: string | StaticImageData;
-  bgimg: string | StaticImageData;
-}
-
-interface PlatformsSectionProps {
-  listitem:PlatformsItem[]
-}
-const Listsec: React.FC<PlatformsSectionProps> = ({listitem
-}) => {
+ import {   Sustainability  } from '@/public/types/Common';   
+        
+ const Listsec = ({ data }: { data: Sustainability}) => {    
    const containerRef = useRef(null);
 
 
@@ -52,7 +43,7 @@ const Listsec: React.FC<PlatformsSectionProps> = ({listitem
   whileInView="visible"
   viewport={{ once: true, amount: 0.2 }}
 >
-  {listitem.map((Item, index) => (
+  {data.firstSection.items.map((Item, index) => (
     <motion.div
       key={index}
       variants={gdsVariants}
@@ -63,9 +54,9 @@ const Listsec: React.FC<PlatformsSectionProps> = ({listitem
         backgroundImage:
           hoveredIndex === index
             ? `url(${
-                typeof Item.bgimg === "object" && "src" in Item.bgimg
-                  ? Item.bgimg.src
-                  : Item.bgimg
+                typeof Item.image === "object" && "src" in Item.image
+                  ? Item.image
+                  : Item.image
               })`
             : "linear-gradient(90.51deg, #D9D9D9 0.47%, rgba(217, 217, 217, 0) 99.63%)",
       }}
@@ -73,9 +64,11 @@ const Listsec: React.FC<PlatformsSectionProps> = ({listitem
       <div className="flex gap-2 items-center">
         <p>
           <Image
-            src={Item.image}
-            alt=""
+            src={Item.logo}
+            alt={Item.logoAlt}
             className="group-hover:brightness-0 group-hover:invert-[1] transition-all duration-400"
+            width={20}
+            height={33}
           />
         </p>
         <p className="text-lg text-territory group-hover:text-white transition-all duration-400">

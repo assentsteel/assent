@@ -2,32 +2,11 @@
 import Image from "next/image";
 import React from "react";
 import { motion } from "framer-motion";
-
-
-interface ExpertiseItem {
-  id: number;
-  icon: string;
-  title: string;
-  subttle?: string;
-  desc: string;
-  url?: string;
-  paragraph?: string[];
-}
-
-interface ExpertiseSectionProps {
-  title: string;
-  colnum?: number;
-  maxchwidth?: number;
-  data: ExpertiseItem[];
-  subttle?: string;
-}
-
-const Boxgds: React.FC<ExpertiseSectionProps> = ({
-  title,
-  data,
-  colnum,
-  maxchwidth,
-}) => {
+ 
+  
+     import { Boxgd } from '@/public/types/Common'; 
+       
+      const   Boxgds = ({ data,maxchwidth,colnum }: { data: Boxgd, maxchwidth?: string ,colnum?: number }) => {   
   return (
     <section className="bg-primary   relative">
     <div className="container mx-auto  ">
@@ -46,7 +25,7 @@ const Boxgds: React.FC<ExpertiseSectionProps> = ({
               }, // Slide up and fade in
             }}
           >
-            <h2 className="text-xl text-white font-[600] leading-[1.2] mb-0" style={{ maxWidth: maxchwidth ? `${maxchwidth}ch` : undefined }}>{title}</h2>
+            <h2 className="text-xl text-white font-[600] leading-[1.2] mb-0" style={{ maxWidth: maxchwidth ? `${maxchwidth}ch` : undefined }}>{data.title}</h2>
 
           </motion.div>
         </div>
@@ -67,7 +46,7 @@ const Boxgds: React.FC<ExpertiseSectionProps> = ({
             }}
           >
             {/* Item 1 */}
-           {data.map((expertise, index) => (
+           {data.items.map((expertise, index) => (
   <div key={index}
         className="custom-grid group">
         <div className="flex relative z-10 bg-primary bgd  flex-col justify-between  gap-8 md:gap-0  px-5 py-[50px] xl:py-[100px] group-hover:lg:py-[30px] transition-all duration-500 md:h-[400px] lg:h-[408px]   lg:p-10  ">
@@ -75,30 +54,35 @@ const Boxgds: React.FC<ExpertiseSectionProps> = ({
           {/* Image Wrapper */}
           <div className="align-center   flex h-[64px] w-[64px] rounded-[5px] justify-center   transition-colors duration-500    ">
             <Image
-              src={expertise.icon}
-              alt={expertise.title}
+              src={expertise.logo}
+              alt={expertise.logoAlt}
               className="fltrcls transition duration-500  "
+              width={64}
+              height={64}
             />
           </div>
 
           {/* Content */}
           <div>
             <h3 className="text-xl font-semibold titlesp transition-colors duration-300 text-white group-hover:text-primary leading-[1.2]">
-              {expertise.title} <span className="text-lg font-medium">{expertise.subttle}</span>
+              {expertise.title} <span className="text-lg font-medium">{expertise.number}</span>
                      </h3>
                      <p className="text-lg font-medium cntsmd hided-content  overflow-hidden pt-2 text-white group-hover:text-primary  ">
-                {expertise.desc}
+                {expertise.value}
               </p>
 
                    <div className="overflow-hidden">
 
 
-             {expertise.paragraph && (
+             {/* {expertise.description && (
               <ul className="list-disc list-inside marker:mr-1 text-md font-normal cntsmd hided-content max-h-0 w-[102%] overflow-hidden pt-2 text-white group-hover:text-primary opacity-0 transition-all duration-500 group-hover:max-h-[15rem] group-hover:opacity-100">
-                {expertise.paragraph.map((item, idx) => (
+                {expertise.description.map((item, idx) => (
                   <li key={idx}>{item}</li>
                 ))}
               </ul>
+            )} */}
+             {expertise.description && (
+            <div className="list-disc list-inside marker:mr-1 text-md font-normal cntsmd hided-content max-h-0 w-[102%] overflow-hidden pt-2 text-white group-hover:text-primary opacity-0 transition-all duration-500 group-hover:max-h-[15rem] group-hover:opacity-100" dangerouslySetInnerHTML={{__html: expertise.description}}></div>
             )}
             </div>
           </div>

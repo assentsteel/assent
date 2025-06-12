@@ -6,7 +6,6 @@ import Project from "@/app/models/Project";
 export async function POST(request: NextRequest) {
     try {
         const data = await request.json();
-        console.log(data)
         const id = request.nextUrl.searchParams.get("id");
         console.log(id)
         const isAdmin = await verifyAdmin(request);

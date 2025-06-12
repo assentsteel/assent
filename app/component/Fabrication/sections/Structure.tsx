@@ -1,29 +1,18 @@
 "use client";
 
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
-interface ExpertiseItem {
-  icon: StaticImageData[];
-  title: string;
-}
-interface ExpertiseSection {
-  title: string;
-  subttle?: string;
-  slideitems: ExpertiseItem[];
-}
-interface ExpertiseSectionProps {
-  maxchwidth?: string;
-  data: ExpertiseSection;
-}
-
-const Structure: React.FC<ExpertiseSectionProps> = ({ data, maxchwidth }) => {
+ 
+  
+   import { Fabrication } from '@/public/types/Common'; 
+     
+    const   Structure = ({ data,maxchwidth }: { data: Fabrication, maxchwidth?: string }) => {   
   const [currentImageIndexes, setCurrentImageIndexes] = useState(
-    data.slideitems.map(() => 0)
+    data.fourthSection.items.map(() => 0)
   );
   const [intervals, setIntervals] = useState<(NodeJS.Timeout | null)[]>(
-    data.slideitems.map(() => null)
+    data.fourthSection.items.map(() => null)
   );
 
   const handleMouseEnter = (index: number) => {
@@ -33,7 +22,7 @@ const Structure: React.FC<ExpertiseSectionProps> = ({ data, maxchwidth }) => {
       setCurrentImageIndexes((prev) => {
         const newIndexes = [...prev];
         newIndexes[index] =
-          (newIndexes[index] + 1) % data.slideitems[index].icon.length;
+          (newIndexes[index] + 1) % data.fourthSection.items[index].images.length;
         return newIndexes;
       });
     }, 1000);
@@ -83,18 +72,18 @@ const Structure: React.FC<ExpertiseSectionProps> = ({ data, maxchwidth }) => {
                   maxWidth: maxchwidth ? `${maxchwidth}ch` : undefined,
                 }}
               >
-                {data.title}
+                {data.fourthSection.title}
               </h2>
 
               <p className="text-19 font-400 lg:max-w-[120ch]">
-                {data.subttle}
+                {data.fourthSection.description}
               </p>
             </motion.div>
           </div>
 
           <div className="my-[50px] md:my-[70px] xl:my-[100px]">
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[10px] md:gap-[70px] xl:gap-[130px]">
-              {data.slideitems.map((items, index) => (
+              {data.fourthSection.items.map((items, index) => (
                 <div
   key={index}
   className="flex flex-col items-center gap-3 md:gap-5 justify-center group" // <-- Add 'group' here
@@ -126,8 +115,8 @@ const Structure: React.FC<ExpertiseSectionProps> = ({ data, maxchwidth }) => {
         className="absolute inset-0 cursor-pointer"
       >
         <Image
-          src={items.icon[currentImageIndexes[index]]}
-          alt={items.title}
+          src={items.images[currentImageIndexes[index]].image}
+          alt={items.images[currentImageIndexes[index]].imageAlt}
           fill
           style={{ objectFit: "contain" }}
         />
@@ -137,7 +126,7 @@ const Structure: React.FC<ExpertiseSectionProps> = ({ data, maxchwidth }) => {
 
   {/* Pagination dots */}
   <div className="flex items-center justify-center gap-2 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-    {items.icon.map((_, imgIndex) => (
+    {items.images.map((_, imgIndex) => (
       <button
         key={imgIndex}
         onClick={() => {

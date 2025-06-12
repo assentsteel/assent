@@ -9,16 +9,10 @@ gsap.registerPlugin(ScrollTrigger);
 
 import { textContainerVariants ,textItemVariants} from "./MotionAnimation"
 
-
-
-interface PlatformsSectionProps {
-
-  data: {id: number;
-    heading: string;
-    title: string;
-    paragraphs: string[];}
-}
-const Intro: React.FC<PlatformsSectionProps> = ({ data }) => {
+ 
+        import { Quality } from '@/public/types/Common';   
+        
+        const Intro = ({ data }: { data: Quality }) => {    
    const containerRef = useRef(null);
 
 
@@ -65,7 +59,7 @@ const Intro: React.FC<PlatformsSectionProps> = ({ data }) => {
               variants={textItemVariants}
               className="text-md uppercase  text-[#595959] font-medium border-b inline-flex border-secondary pb-[10px] lg:pb-[25px] leading-none "
             >
-             {data.title}
+             {data.firstSection.mainTitle}
             </motion.p>
             </div>
 
@@ -90,20 +84,18 @@ const Intro: React.FC<PlatformsSectionProps> = ({ data }) => {
         custom="x"
         variants={textVariants}
       >
-        {data.heading}
+        {data.firstSection.subTitle}
       </motion.h2>
+      <motion.div 
+      className="text-sm font-normal mb-0   text-territory leading-[1.6]"
+      custom="y"
+      variants={textVariants}
+      transition={{ delay: 0.2 ,  duration: 0.5 }}
+      dangerouslySetInnerHTML={{__html: data.firstSection.description}}>
 
-      {data.paragraphs.map((text, index) => (
-        <motion.p
-          key={index}
-          className="text-sm font-normal mb-0   text-territory leading-[1.6]"
-          custom="y"
-          variants={textVariants}
-          transition={{ delay: 0.2 * (index + 1), duration: 0.5 }}
-        >
-          {text}
-        </motion.p>
-      ))}
+ </motion.div>
+         
+    
      </div>
     </motion.div>
   </div>

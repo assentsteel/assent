@@ -1,5 +1,4 @@
-"use client";
-import { StaticImageData } from "next/image";
+"use client"; 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
@@ -7,22 +6,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion, AnimatePresence } from "framer-motion"
 gsap.registerPlugin(ScrollTrigger);
 
-interface PlatformsItem {
-  id: number;
-  icon: string | StaticImageData;
-  title: string;
-  paragraphs: string[];
-  image: string | StaticImageData;
-}
-interface PlatformsSectionProps {
-  data: PlatformsItem[];
-  heading: string;
-}
-
-const Accordion: React.FC<PlatformsSectionProps> = ({
-  data,
-  heading,
-}) => {
+ 
+  
+  import { Quality } from '@/public/types/Common';  
+    const Accordion = ({ data  }: { data: Quality}) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const containerRef = useRef(null);
 
@@ -57,12 +44,12 @@ const Accordion: React.FC<PlatformsSectionProps> = ({
         <div className="lg:flex lg:items-center xxl:items-start">
           <div className="w-full lg:w-[40%] pr-0 lg:pr-[35px]">
             <motion.h2 viewport={{ once: true, amount: 0.2 }} variants={slideInLeft} initial="hidden" exit="exit" whileInView="visible" className="text-xl  text-primary font-[600] leading-[1.2] mb-4 lg:mb-7" >
-              {heading}
+              {data.fifthSection.title}
             </motion.h2>
           </div>
 
           <div className="w-full lg:w-[60%] pl-0 lg:pl-[35px] mt-6 lg:mt-0">
-            {data.map((da, index) => (
+            {data.fifthSection.items.map((da, index) => (
               <motion.div
                 key={index}
                 className="group border-b first:border-t border-[#00000015] py-5 lg:py-[20px] xxl:py-[30px] transition-all duration-300"
@@ -76,13 +63,13 @@ const Accordion: React.FC<PlatformsSectionProps> = ({
                   {/* <p className="text-[#1F1F1F80] text-md leading-[1]">
                     {String(da.id).padStart(2, '0')}
                   </p> */}
-                  <Image src={da.icon} alt={da.title} width={40} height={40} />
+                  <Image src={da.logo} alt={da.title} width={40} height={40} />
                   <div>
                     <h3 className={`  text-md   group-hover:text-secondary transition-all duration-300 cursor-pointer leading-[1] ${activeIndex === index ? 'text-secondary font-[600]' : 'text-primary font-[400] '} `}> {da.title}</h3>
                     <AnimatePresence mode="wait">
                       {activeIndex === index && (
                         <motion.div key="content" initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto", marginTop: "20px" }} exit={{ opacity: 0, height: 0, marginTop: 0 }} transition={{ duration: 0.4 }} className="text-territory text-sm font-[400] leading-[1.7]" >
-                          <p>{da.paragraphs}</p>
+                          <p>{da.description}</p>
                         </motion.div>
                       )}
                     </AnimatePresence>
