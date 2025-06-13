@@ -3,8 +3,11 @@ import { boxcontent,Specss,textimg } from "./data";
 import HeroInner from "../common/Banner/HeroInner";
 import Specs from "./sections/Specs";
 import Slidethumb from "../common/Slidethumb";
-import Morepjts from "./sections/Morepjts";
-export default function Index() {
+import Morepjts from "./sections/Morepjts"; 
+  
+  import { Projectswfull } from '@/public/types/Common'; 
+  const Index = async ({ data }: { data: Projectswfull }) => {  
+    console.log(data)
   const breadcrumb = [
     { label: "Homse", href: "/" },
     { label: "Projects", href: "" },
@@ -30,3 +33,4 @@ export default function Index() {
     </>
   );
 }
+export default Index;

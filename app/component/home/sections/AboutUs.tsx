@@ -7,11 +7,12 @@ import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Home } from "@/public/types/Common";
 gsap.registerPlugin(ScrollTrigger);
 
 
 
-const AboutUs = () => {
+const AboutUs = ({ data }: { data: Home }) => {
    const containerRef = useRef(null);
 
    const textContainerVariants = {
@@ -57,7 +58,7 @@ const AboutUs = () => {
               variants={textItemVariants}
               className="text-md uppercase text-[#595959] font-medium border-b inline-flex border-secondary pb-[10px] lg:pb-[25px] leading-none "
             >
-              About Company
+              {data.firstSection.mainTitle}
             </motion.p>
             </div>
             <div className="overflow-hidden mb-[30px] lg:mb-[70px] pb-2">
@@ -65,8 +66,7 @@ const AboutUs = () => {
               variants={textItemVariants}
               className="text-xl leading-none text-primary font-semibold "
             >
-              Founded in 2008, ASSENT STEEL INDUSTRIES is a leader in steel
-              fabrication & engineering services
+              {data.firstSection.subTitle}
             </motion.h2>
             </div>
             <div className="overflow-hidden">
@@ -75,7 +75,7 @@ const AboutUs = () => {
                 href="/about"
                 className="text-xs border-b border-secondary uppercase group pb-[16px] inline-flex items-center gap-[18px] text-territory font-medium"
               >
-                  About ASSENT STEEL
+                  {data.firstSection.buttonText}
                 <div className="w-[20px] h-[20px] rounded-full text-secondary bg-territory group-hover:bg-secondary group-hover:text-primary flex items-center text-[14px] justify-center transition duration-300 ease-in-out">
                   <FaChevronRight />
                 </div>
@@ -86,7 +86,7 @@ const AboutUs = () => {
         </div>
         <div className="col-span-12 lg:col-span-7 right-0 pl-[0px] lg:pl-[50px]">
           <div ref={containerRef}>
-          <StatsSection />
+          <StatsSection data={data} />
           </div>
         </div>
       </div>
