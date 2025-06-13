@@ -966,5 +966,182 @@ export type GpAbtsect = {
         } 
       ]
     }
-      
+    export type Projectsw= 
+    {
+      data: [
+        {
+          banner: string,
+          bannerAlt: string,
+          pageTitle: string,
+          description: string,
+          title: string,
+          slug: string,
+          sector: string,
+          location: string,
+          employer: string,
+          contractor: string,
+          consultant: string,
+          scope: string,
+          steelTonnage: string,
+          thumbnailAlt: string,
+          metaTitle: string,
+          metaDescription: string,
+          images: [
+            string 
+          ],
+          _id: string,
+          thumbnail: string
+        }
+      ]
+    }
+    export type Projectactaall =   
+{
+  data: [
+    {
+      name: string,
+      metaTitle: string,
+      metaDescription: string,
+      projects: [
+        {
+          banner: string,
+          bannerAlt: string,
+          pageTitle: string,
+          description: string,
+          title: string,
+          slug: string,
+          sector: string,
+          location: string,
+          employer: string,
+          contractor: string,
+          consultant: string,
+          scope: string,
+          steelTonnage: string,
+          thumbnailAlt: string,
+          metaTitle: string,
+          metaDescription: string,
+          images: [
+            string 
+          ],
+          _id: string,
+          thumbnail: string
+        },
+           
+      ],
+      _id: string,
+      slug: string
+    } 
+  ],
+  message: string,
+  success: boolean
+}
+    export type Projectswfull =  
+    {
+      banner: string,
+      bannerAlt: string,
+      metaTitle: string,
+      metaDescription: string,
+      pageTitle: string,
+      sector: string,
+      location: string,
+      categories: [
+        {
+          name: string,
+          metaTitle: string,
+          metaDescription: string,
+          slug: string,
+          projects: [
+            {
+              banner: string,
+              bannerAlt: string,
+              pageTitle: string,
+              description: string,
+              title: string,
+              slug: string,
+              sector: string,
+              location: string,
+              employer: string,
+              contractor: string,
+              consultant: string,
+              scope: string,
+              steelTonnage: string,
+              thumbnail: string,
+              thumbnailAlt: string,
+              metaTitle: string,
+              metaDescription: string,
+              images: [
+                string
+              ]
+            }
+          ]
+        }
+      ]
+    }
+    export type Home =   {
+      metaTitle: string,
+      metaDescription: string,
+      banner: string,
+      bannerAlt: string,
+      pageTitle: string,
+      bannerSection: {
+        items: [
+          {
+            video: string,
+            mainTitle: string,
+            subTitle: string,
+            poster: string
+          }
+        ]
+      },
+      firstSection: {
+        mainTitle: string,
+        subTitle: string,
+        buttonText: string,
+        items: [
+          {
+            logo: string,
+            logoAlt: string,
+            number: string,
+            value: string
+          }
+        ]
+      },
+      clientsSection: {
+        items: [
+          {
+            logo: string,
+            logoAlt: string
+          }
+        ]
+      },
+      servicesSection: {
+        title: string,
+        items: [
+          {
+            logo: string,
+            logoAlt: string,
+            title: string,
+            description: string,
+            image: string,
+            imageAlt: string,
+            slug: string
+          }
+        ]
+      },
+      sustainabilitySection: {
+        title: string,
+        video: string,
+        poster: string,
+        description: string,
+        itemTitle: string,
+        items: [
+          {
+            logo: string,
+            logoAlt: string,
+            title: string
+          }
+        ]
+      }
+    }
+    
+     
       

@@ -11,6 +11,7 @@ import Link from "next/link";
 import { FaChevronRight } from "react-icons/fa6";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Home } from "@/public/types/Common";
 gsap.registerPlugin(ScrollTrigger);
 const slides = [
   {
@@ -24,7 +25,7 @@ const slides = [
   },
 ];
 
-const HeroSection = () => {
+const HeroSection = ({ data }: { data: Home }) => {
   const textRef = useRef(null);
   const containerRef = useRef(null);
 
@@ -111,18 +112,18 @@ const HeroSection = () => {
                     ref={(el) => {
                       videoRefs.current[index] = el;
                     }}
-                    src={slide.videoSrc}
+                    src={data.bannerSection.items[0].video}
                     className="absolute inset-0 w-full h-full object-cover"
                     loop
                     autoPlay
                     muted
                     playsInline
-                    poster={slide.poster} // Poster image
+                    poster={data.bannerSection.items[0].poster} // Poster image
                   />
                 ) : (
                   /* Image Slide */
                   <Image
-                    src={slide.imageSrc ?? "/assets/img/slide2.jpg"}
+                    src={slide.imageSrc ?? data.bannerSection.items[0].poster}
                     alt="Hero Background"
                     layout="fill"
                     objectFit="cover"
@@ -145,7 +146,7 @@ const HeroSection = () => {
                         className="text-white text-xxl leading-none xxl:w-[80%] xxxl:w-[70%] font-semibold"
                         variants={textItemVariants}
                       >
-                        {slide.title}
+                        {data.bannerSection.items[0].mainTitle}
                       </motion.h1>
                     </div>
                     <div className="overflow-hidden pb-1 mt-[30px]">
@@ -153,7 +154,7 @@ const HeroSection = () => {
                         className="text-white text-md leading-none font-normal "
                         variants={textItemVariants}
                       >
-                        Delivering high-quality products globally{" "}
+                        {data.bannerSection.items[0].subTitle}
                         <b className="font-semibold text-secondary">
                           since 2008
                         </b>

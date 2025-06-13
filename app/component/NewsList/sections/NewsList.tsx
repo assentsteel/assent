@@ -11,7 +11,7 @@ gsap.registerPlugin(ScrollTrigger);
   import { News } from '@/public/types/Common';
    
     
-      const NewsList = ({ data }: { data: News }) => {
+      const NewsList = ({ data }: { data: News }) => { 
   const containerRef = useRef(null);
 
   useEffect(() => {

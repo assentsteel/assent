@@ -7,8 +7,7 @@ import SingleImageText from "../common/SingleImageText";
 import SingleImageGp from "../GlobalPresenceAmerica/sections/SingleImageGp";
 import IntroBoldGp from "../GlobalPresenceAmerica/sections/IntroBoldGp";
 import { Gpafrica } from '@/public/types/Common';
-const Index = async ({data}:{data:Gpafrica}) => { 
-  console.log(data)
+const Index = async ({data}:{data:Gpafrica}) => {  
   const breadcrumb = [
     { label: "Home", href: "/" },
     { label: data.data.title, href: "" },
