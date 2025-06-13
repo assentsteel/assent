@@ -23,7 +23,8 @@ const homeSchema = new mongoose.Schema({
                 video:{type:String,required:true},
                 mainTitle:{type:String,required:true},
                 subTitle:{type:String,required:true},
-                poster:{type:String,required:true}
+                poster:{type:String,required:true},
+                primaryColorText:{type:String}
             }
         ]
     },
@@ -36,7 +37,8 @@ const homeSchema = new mongoose.Schema({
                 logo:{type:String,required:true},
                 logoAlt:{type:String},
                 number:{type:String,required:true},
-                value:{type:String,required:true}
+                value:{type:String,required:true},
+                suffix:{type:String}
             }
         ]
     },
