@@ -12,7 +12,7 @@ export default async function Home() {
     const projData = await projResponse.json();
   return (
     <>
-     <Index />
+     <Index data={data.data} newsData={newsData.data}  projData={projData.data}/>
     </>
   );
 }
