@@ -27,6 +27,7 @@ interface HomeFormProps {
             mainTitle: string;
             subTitle: string;
             poster: string;
+            primaryColorText: string;
         }[];
     };
     firstSection: {
@@ -38,6 +39,7 @@ interface HomeFormProps {
             logoAlt: string;
             number: string;
             value: string;
+            suffix: string;
         }[];
     };
     clientsSection: {
@@ -219,13 +221,17 @@ const Home = () => {
                                         })} />
                                         {errors.bannerSection?.items?.[index]?.subTitle && <p className='text-red-500'>{errors.bannerSection?.items?.[index]?.subTitle.message}</p>}
                                     </div>
+                                    <div className='flex flex-col gap-2'>
+                                        <Label className='pl-3 font-bold'>Primary Color Text</Label>
+                                        <Input type='text' placeholder='Primary Color Text' {...register(`bannerSection.items.${index}.primaryColorText`)} />
+                                    </div>
                                 </div>
 
                             </div>
                         ))}
 
                         <div>
-                            <Button type='button' className="w-full cursor-pointer" onClick={() => bannerSectionAppend({ mainTitle: "", subTitle: "", video: "", poster: "" })}>Add Item</Button>
+                            <Button type='button' className="w-full cursor-pointer" onClick={() => bannerSectionAppend({ mainTitle: "", subTitle: "", video: "", poster: "", primaryColorText: "" })}>Add Item</Button>
                         </div>
 
                     </div>
@@ -300,6 +306,10 @@ const Home = () => {
                                             <Input type='text' placeholder='Number' {...register(`firstSection.items.${index}.number`)} />
                                         </div>
                                         <div className='flex flex-col gap-2'>
+                                            <Label className='pl-3 font-bold'>Suffix</Label>
+                                            <Input type='text' placeholder='Suffix' {...register(`firstSection.items.${index}.suffix`)} />
+                                        </div>
+                                        <div className='flex flex-col gap-2'>
                                             <Label className='pl-3 font-bold'>Value</Label>
                                             <Input type='text' placeholder='Value' {...register(`firstSection.items.${index}.value`, {
                                                 required: "Value is required"
@@ -312,7 +322,7 @@ const Home = () => {
                             ))}
 
                             <div>
-                                <Button type='button' className="w-full cursor-pointer" onClick={() => firstSectionAppend({ number: "", value: "", logo: "", logoAlt: "" })}>Add Item</Button>
+                                <Button type='button' className="w-full cursor-pointer" onClick={() => firstSectionAppend({ suffix:"",number: "", value: "", logo: "", logoAlt: "" })}>Add Item</Button>
                             </div>
 
                         </div>
