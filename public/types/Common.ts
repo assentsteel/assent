@@ -105,7 +105,7 @@ export type News =
         name: string
       }
     ],
-    news: [
+    news:
       {
         mainTitle: string,
         subTitle: string,
@@ -118,8 +118,7 @@ export type News =
         createdAt: string,
         metaTitle: string,
         metaDescription: string
-      }
-    ]
+      }[]
   } 
   export type Newsdetails =  
   

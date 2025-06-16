@@ -5,36 +5,73 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
 gsap.registerPlugin(ScrollTrigger);
-const dropdowns = [
-  {
-    label: "Category",
-    options: [
-      { value: "", label: "Category" },
-      { value: "a", label: "Commercial Projects" },
-      { value: "b", label: "Industrial Oil & Gas Projects" },
-      { value: "b", label: "Data Centre Projects" },
-    ],
-  },
-];
-const Fillters = ({ }) => {
-  const [selectedValues, setSelectedValues] = useState(
-      dropdowns.map((d) => d.options[0])
-    );
-    const [openIndex, setOpenIndex] = useState<number | null>(null);
-
-    const toggleDropdown = (index: number | null) => {
-      setOpenIndex(openIndex === index ? null : index);
-    };
-
-    const selectOption = (dropdownIndex: number, option: { value: string; label: string; }) => {
-      const updated = [...selectedValues];
-      updated[dropdownIndex] = option;
-      setSelectedValues(updated);
-      setOpenIndex(null);
+// const dropdowns = [
+//   {
+//     label: "Category",
+//     options: [
+//       { value: "", label: "Category" },
+//       { value: "a", label: "Commercial Projects" },
+//       { value: "b", label: "Industrial Oil & Gas Projects" },
+//       { value: "b", label: "Data Centre Projects" },
+//     ],
+//   },
+// ];
+const Fillters = ({ data,setUpdated,clearFilters,search,setSearch }: { data: {name:string}[] ,setUpdated:React.Dispatch<React.SetStateAction<{ value: string; label: string; }[]>>,clearFilters: () => void,search:string,setSearch:React.Dispatch<React.SetStateAction<string>>}) => {
+  const [selectedValues, setSelectedValues] = useState<{ value: string; label: string; }[]>([
+    { value: "Category", label: "Category" }, // category
+    { value: "Date", label: "Date" } ,
+    { value: "", label: "" } // date
+  ]);
+  
+  const [date, setDate] = useState<string | null>(null);
+  const [isOpen, setIsOpen] = useState(false);
+  
+  const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newDate = e.target.value;
+    setHasValue(!!newDate);
+    setDate(newDate);
+  
+    const updatedValues = [
+      selectedValues[0], // keep the existing category
+      { value: newDate, label: newDate },
+      selectedValues[2],// update the date
+    ];
+  
+    setSelectedValues(updatedValues);
+    setUpdated(updatedValues);
   };
+  
+  const selectOption = (option: { value: string; label: string; }) => {
+    setIsOpen(false)
+  
+    const updatedValues = [
+      option, // update the category
+      selectedValues[1],
+      selectedValues[2], // keep the existing date
+    ];
+  
+    setSelectedValues(updatedValues);
+    setUpdated(updatedValues);
+  };
+
+  const handleSearch = (value:string) => {
+    const updatedValues = [
+      selectedValues[0], // keep the existing category
+      selectedValues[1],
+      { value: value, label: value } // update the search
+    ];
+    setSearch(value);
+    setUpdated(updatedValues);
+    setSelectedValues(updatedValues);
+  }
+
 
   const inputRef = useRef<HTMLInputElement>(null);
   const [hasValue, setHasValue] = useState(false);
+
+  useEffect(()=>{
+    console.log(isOpen)
+  },[isOpen])
 
   const containerRef = useRef(null);
 
@@ -79,9 +116,9 @@ const Fillters = ({ }) => {
       <input
         ref={inputRef}
         type="date"
-        onChange={(e) => setHasValue(!!e.target.value)}
+        onChange={(e) => handleDateChange(e)}
         className={`uppercase px-1 appearance-none bg-transparent border-0 border-b border-black focus:outline-none focus:ring-0 focus:border-black text-primary text-xs py-2 pr-6 w-full cursor-pointer [&::-webkit-calendar-picker-indicator]:hidden ${!hasValue ? 'text-gray-400' : ''}`}
-        value={hasValue ? undefined : ""}
+        value={date || ""}
         placeholder="Choose date"
       />
       {!hasValue && (
@@ -107,18 +144,18 @@ const Fillters = ({ }) => {
       </div>
     </div>
 
-          {dropdowns.map((dropdown, index) => (
-        <div key={index} className="relative w-full my-3 lg:my-0 ">
+        <div  className="relative w-full my-3 lg:my-0 ">
           <button
-            onClick={() => toggleDropdown(index)}
+            onClick={() => setIsOpen(true)}
             className="uppercase w-full text-left text-xs text-primary bg-transparent border-0 border-b border-black py-2 pr-6 appearance-none focus:outline-none focus:ring-0 focus:border-black relative"
           >
-            {selectedValues[index].label}
+            {selectedValues[0].label}
+            {/* {selectedValues[index].label} */}
             <div className="pointer-events-none absolute  right-2 top-1/2 -translate-y-1/2 text-secondary">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className={`h-4 w-4 transition-transform ${
-                  openIndex === index ? "rotate-180" : "rotate-0"
+                  isOpen ? "rotate-180" : "rotate-0"
                 }`}
                 fill="none"
                 viewBox="0 0 24 24"
@@ -130,21 +167,20 @@ const Fillters = ({ }) => {
             </div>
           </button>
 
-          {openIndex === index && (
+          {isOpen && (
             <ul className="absolute z-10 left-0 w-full bg-white border   mt-1 shadow-lg rounded-md overflow-hidden">
-              {dropdown.options.map((option) => (
+              {data.map((option,index) => (
                 <li
-                  key={option.value}
-                  onClick={() => selectOption(index, option)}
+                  key={index}
+                  onClick={() => selectOption({value:option.name,label:option.name})}
                   className="px-4 py-2 text-xs uppercase text-primary hover:bg-secondary hover:text-white cursor-pointer transition duration-300"
                 >
-                  {option.label}
+                  {option.name}
                 </li>
               ))}
             </ul>
           )}
         </div>
-      ))}
 
           <div className="relative w-full flex items-center mb-2 md:mb-0 mt-2 md:mt-0">
           <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none" className="absolute">
@@ -154,12 +190,14 @@ const Fillters = ({ }) => {
           <input
             type="text"
             placeholder="Search..."
-            className="uppercase px-1 ps-8 appearance-none bg-transparent border-0 border-b border-black focus:outline-none focus:ring-0 focus:border-black text-primary text-xs py-2 pr-6 w-full"
+            className="px-1 ps-8 appearance-none bg-transparent border-0 border-b border-black focus:outline-none focus:ring-0 focus:border-black text-primary text-xs py-2 pr-6 w-full"
+            value={search}
+            onChange={(e) => handleSearch(e.target.value)}
           />
 
           </div>
           </div>
-          <button className="border whitespace-nowrap font-[500] border-secondary text-xs text-territory uppercase rounded-full py-[8px] px-[20px]">Clear filter</button>
+          <button onClick={()=>{clearFilters();setHasValue(false);setDate(null);setIsOpen(false);setSearch("");setSelectedValues([ {value:"Category",label:"Category"},{value:"Date",label:"Date"},{value:"",label:""}])}} className="border whitespace-nowrap font-[500] border-secondary text-xs text-territory uppercase rounded-full py-[8px] px-[20px]">Clear filter</button>
         </div>
       </motion.div>
     </section>

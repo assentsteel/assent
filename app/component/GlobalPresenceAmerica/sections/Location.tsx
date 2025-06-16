@@ -194,7 +194,7 @@ gsap.registerPlugin(ScrollTrigger);
                       d="M721.5 195L670.292 189L608.5 114L495 91"
                       stroke="#18355F"
                       stroke-opacity="0.7"
-                      stroke-linecap="round"
+                      strokeLinecap="round"
                     />)}
                   <path
                     d="M716.771 203.575H712.111L709.781 199.514L712.111 195.52H716.771L719.035 199.514L716.771 203.575Z"
@@ -242,7 +242,7 @@ gsap.registerPlugin(ScrollTrigger);
                       d="M778.344 394.973H639.344L600.844 200.473"
                       stroke="#18355F"
                       stroke-opacity="0.7"
-                      stroke-linecap="round"
+                      strokeLinecap="round"
                     />
                   )}
 
@@ -292,7 +292,7 @@ gsap.registerPlugin(ScrollTrigger);
                       d="M163.5 529.301H341.5H471.5L575 269.301"
                       stroke="#18355F"
                       stroke-opacity="0.7"
-                      stroke-linecap="round"
+                      strokeLinecap="round"
                     />)}
                   <path
                     d="M568.06 279.102H563.4L561.07 275.108L563.4 271.047H568.06L570.39 275.108L568.06 279.102Z"
@@ -342,7 +342,7 @@ gsap.registerPlugin(ScrollTrigger);
                       d="M741.719 516.109H612.223L511.719 323.109"
                       stroke="#18355F"
                       stroke-opacity="0.7"
-                      stroke-linecap="round"
+                      strokeLinecap="round"
                     />)}
 
                   <path

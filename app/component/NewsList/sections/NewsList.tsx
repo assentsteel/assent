@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { Dispatch, SetStateAction, useEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -11,8 +11,9 @@ gsap.registerPlugin(ScrollTrigger);
   import { News } from '@/public/types/Common';
    
     
-      const NewsList = ({ data }: { data: News }) => { 
+      const NewsList = ({ data,visibleCount,setVisibleCount }: { data: News['news']; visibleCount: number; setVisibleCount: Dispatch<SetStateAction<number>> }) => { 
   const containerRef = useRef(null);
+
 
   useEffect(() => {
     if (containerRef.current) {
@@ -42,7 +43,7 @@ gsap.registerPlugin(ScrollTrigger);
     <section className="pb-[50px] md:pb-[70px] xl:pb-[100px]   relative ">
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-2  xl:grid-cols-3 gap-x-4 lg:gap-x-6 xxl:gap-x-10 ">
-          {data.news.map((item, index) => (
+          {data.map((item, index) => (
            <motion.div
            key={index}
            className="itemsmn"
@@ -111,7 +112,8 @@ gsap.registerPlugin(ScrollTrigger);
           ))}
         </div>
         <div className="text-center mt-5 md:mt-[60px]">
-          <button className="border flex gap-3 items-center justify-center m-auto whitespace-nowrap font-[500] border-secondary text-xs text-territory uppercase rounded-full py-[8px] px-[20px]  w-fit">
+          {visibleCount < data.length && (
+          <button onClick={()=>setVisibleCount((prev)=>prev + 9)} className="border flex gap-3 items-center justify-center m-auto whitespace-nowrap font-[500] border-secondary text-xs text-territory uppercase rounded-full py-[8px] px-[20px]  w-fit">
             Load More
             <svg
               stroke="#000"
@@ -124,7 +126,7 @@ gsap.registerPlugin(ScrollTrigger);
             >
               <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"></path>
             </svg>
-          </button>
+          </button>)}
         </div>
       </div>
     </section>
