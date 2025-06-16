@@ -2,7 +2,7 @@ import React from "react";
 import Herotext from "../common/Banner/Herotext";
 import HeadingText from "./sections/HeadingText"; 
 import { Projectsw } from '@/public/types/Common'; 
-const Index = async ({ data, slug }: { data: Projectsw, slug: string }) => {  
+const Index = async ({ data, slug,locationData,sectorData }: { data: Projectsw, slug: string,locationData: {name:string}[],sectorData: {name:string}[] }) => {  
   console.log(data)
   const unslugify = (slug: string): string => {
     return slug
@@ -24,7 +24,7 @@ const Index = async ({ data, slug }: { data: Projectsw, slug: string }) => {
       <Herotext breadcrumbs={breadcrumb} title={unslugify(slug)} />
       {/* <Fillters /> */}
 
-      <HeadingText data={data} categoryslug={slug} />
+      <HeadingText data={data} categoryslug={slug} locationData={locationData} sectorData={sectorData} />
 
     </>
   );

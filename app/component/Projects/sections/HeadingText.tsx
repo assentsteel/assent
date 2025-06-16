@@ -9,42 +9,48 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 gsap.registerPlugin(ScrollTrigger);
+import { useParams } from "next/navigation";
 
  import { Projectsw } from '@/public/types/Common';
 
- const HeadingText = ({ data, categoryslug }: { data: Projectsw,categoryslug: string }) => { 
+ const HeadingText = ({ data, categoryslug,locationData,sectorData }: { data: Projectsw,categoryslug: string,locationData: { name: string; }[],sectorData: { name: string; }[] }) => { 
   console.log(data)
-  const dropdowns = [
-    {
-      label: "Country",
-      options: [
-        { value: "", label: "All countries" },
-        { value: "UAE", label: "UAE" },
-        { value: "Kuwait", label: "Kuwait" },
-        { value: "Qatar", label: "Qatar" },
-        { value: "Kazakhstan", label: "Kazakhstan" },
-      ],
-    },
-    {
-      label: "Sector",
-      options: [
-        { value: "", label: "Sector" },
-        { value: "airport", label: "Airport" },
-        { value: "arena/Stadiums", label: "Arena/Stadiums" },
-        { value: "education", label: "Education" },
-        { value: "High Rise Tower", label: "High Rise Tower" },
-        { value: "Leisure Centre", label: "Leisure Centre" },
-        { value: "Metro Rail - Depots & Stabling Yard", label: "Metro Rail - Depots & Stabling Yard" },
-        { value: "Metro Rail - Stations", label: "Metro Rail - Stations" },
-        { value: "Museum/Cultural Centres", label: "Museum/Cultural Centres" },
-        { value: "Retail/Residential Building", label: "Retail/Residential Building" },
-        { value: "Shopping Mall", label: "Shopping Mall" },
-      ],
-    },
-  ]; 
+  const params = useParams();
+  // const dropdowns = [
+  //   {
+  //     label: "Country",
+  //     options: [
+  //       { value: "", label: "All countries" },
+  //       { value: "UAE", label: "UAE" },
+  //       { value: "Kuwait", label: "Kuwait" },
+  //       { value: "Qatar", label: "Qatar" },
+  //       { value: "Kazakhstan", label: "Kazakhstan" },
+  //     ],
+  //   },
+  //   {
+  //     label: "Sector",
+  //     options: [
+  //       { value: "", label: "Sector" },
+  //       { value: "airport", label: "Airport" },
+  //       { value: "arena/Stadiums", label: "Arena/Stadiums" },
+  //       { value: "education", label: "Education" },
+  //       { value: "High Rise Tower", label: "High Rise Tower" },
+  //       { value: "Leisure Centre", label: "Leisure Centre" },
+  //       { value: "Metro Rail - Depots & Stabling Yard", label: "Metro Rail - Depots & Stabling Yard" },
+  //       { value: "Metro Rail - Stations", label: "Metro Rail - Stations" },
+  //       { value: "Museum/Cultural Centres", label: "Museum/Cultural Centres" },
+  //       { value: "Retail/Residential Building", label: "Retail/Residential Building" },
+  //       { value: "Shopping Mall", label: "Shopping Mall" },
+  //     ],
+  //   },
+  // ]; 
  
 
-const [selectedValues, setSelectedValues] = useState(dropdowns.map(d => d.options[0])); 
+const [selectedValues, setSelectedValues] = useState<{ value: string; label: string; }[]>([
+  { value: "All countries", label: "All countries" },
+  { value: "Sector", label: "Sector" },
+  { value: "", label: "" },
+]); 
 interface ProjectItem {
   banner: string;
   bannerAlt: string;
@@ -67,32 +73,62 @@ interface ProjectItem {
   thumbnail: string;
 }
 
+const [search,setSearch] = useState<{ value: string; label: string }>({value:"",label:""})
 const [filteredResults, setFilteredResults] = useState<ProjectItem[]>(data.data); 
 const [visibleCount, setVisibleCount] = useState(8);
-const [searchQuery, setSearchQuery] = useState<string>("");
-const handleChange = (index: number, value: { value: string; label: string }) => {
-  const updated = [...selectedValues];
-  updated[index] = value;
+const handleLocationChange = (value: { value: string; label: string }) => {
+  const updated = [
+    value,
+    selectedValues[1],
+    search,
+  ];
+  console.log("updated",updated)
   setSelectedValues(updated);
   applyFilters(updated);
-  console.log(updated);
+  // console.log(updated);
 };
+
+const handleSectorChange = (value: { value: string; label: string }) => {
+  const updated = [
+    selectedValues[0],
+    value,
+    search,
+  ];
+  console.log("updated",updated)
+  setSelectedValues(updated);
+  applyFilters(updated);
+  // console.log(updated);
+};
+
+const handleSearchChange = (value: { value: string; label: string }) => {
+  setSearch(value)
+  const updated = [
+    selectedValues[0],
+    selectedValues[1],
+    value,
+  ];
+  console.log("updated",updated)
+  setSelectedValues(updated);
+  applyFilters(updated);
+  // console.log(updated);
+};
+
 const applyFilters = (filters: { value: string; label: string }[]) => {
-  const [country, sector] = filters;
+  console.log(filters)
+  const [country, sector,search] = filters;
   const filtered = data;
 
   const results = filtered.data.filter((item) => {
-    const matchCountry = country.value
+    const matchCountry = country.value != "All countries"
       ? item.location?.toLowerCase() === country.value.toLowerCase()
       : true;
 
-    const matchSector = sector.value
+    const matchSector = sector.value != "Sector"
       ? item.sector?.toLowerCase() === sector.value.toLowerCase()
       : true;
 
-    const matchSearch = searchQuery
-      ? item.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        item.title?.toLowerCase().includes(searchQuery.toLowerCase())
+    const matchSearch = search.value
+      ? item.title.toLowerCase().includes(search.value.toLowerCase())
       : true;
 
     return matchCountry && matchSector && matchSearch;
@@ -104,17 +140,19 @@ const applyFilters = (filters: { value: string; label: string }[]) => {
 };
 const clearFilters = () => {
   setFilteredResults(data.data);
+  setSelectedValues([
+    { value: "All countries", label: "All countries" },
+    { value: "Sector", label: "Sector" },
+    { value: "", label: "" },
+  ]);
+  setSearch({value:"",label:""})
 };
 const visibleItems = filteredResults.slice(0, visibleCount);
 
 const handleLoadMore = () => {
   setVisibleCount((prev) => prev + 8);
 };
-const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-  const value = e.target.value;
-  setSearchQuery(value); 
-  applyFilters(selectedValues);
-};
+
 
 
 
@@ -128,24 +166,24 @@ const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
               <div className="md:flex w-full items-center uppercase text-md font-[500] gap-3 lg:gap-10 mb-5 lg:mb-0">
                 <p>Filter</p>
 
-                {dropdowns.map((dropdown, index) => (
-                  <div key={index} className="relative w-full my-3 lg:my-0">
+                
+                  <div className="relative w-full my-3 lg:my-0">
                     <Listbox
-                      value={selectedValues[index]}
-                      onChange={(val) => handleChange(index, val)}
+                      value={selectedValues[0].value}
+                      onChange={(val) => handleLocationChange({value:val,label:val})}
                     >
                       <div className="relative">
                         <Listbox.Button className="uppercase w-full text-left text-xs text-primary bg-transparent border-0 border-b border-black py-2 pr-6 appearance-none focus:outline-none focus:ring-0 focus:border-black relative">
-                          {selectedValues[index].label}
+                          {selectedValues[0].value}
                           <span className="absolute right-2 top-1/2 -translate-y-1/2 text-secondary pointer-events-none">
                             <ChevronUpDownIcon className="h-4 w-4" />
                           </span>
                         </Listbox.Button>
                         <Listbox.Options className="absolute z-10 left-0 w-full bg-white border mt-1 shadow-lg rounded-md overflow-hidden">
-                          {dropdown.options.map((option) => (
+                          {locationData.map((option) => (
                             <Listbox.Option
-                              key={option.label}
-                              value={option}
+                              key={option.name}
+                              value={option.name}
                               className={({ active, selected }) =>
                                 `cursor-pointer select-none px-4 py-2 text-xs uppercase text-primary ${
                                   active ? "bg-secondary text-white" : ""
@@ -154,7 +192,7 @@ const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
                             >
                               {({ selected }) => (
                                 <span className="flex items-center justify-between">
-                                  {option.label}
+                                  {option.name}
                                   {selected && <CheckIcon className="w-4 h-4 ml-2 text-white" />}
                                 </span>
                               )}
@@ -164,7 +202,44 @@ const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
                       </div>
                     </Listbox>
                   </div>
-                ))}
+
+
+                  <div className="relative w-full my-3 lg:my-0">
+                    <Listbox
+                      value={selectedValues[1].value}
+                      onChange={(val) => handleSectorChange({value:val,label:val})}
+                    >
+                      <div className="relative">
+                        <Listbox.Button className="uppercase w-full text-left text-xs text-primary bg-transparent border-0 border-b border-black py-2 pr-6 appearance-none focus:outline-none focus:ring-0 focus:border-black relative">
+                          {selectedValues[1].value}
+                          <span className="absolute right-2 top-1/2 -translate-y-1/2 text-secondary pointer-events-none">
+                            <ChevronUpDownIcon className="h-4 w-4" />
+                          </span>
+                        </Listbox.Button>
+                        <Listbox.Options className="absolute z-10 left-0 w-full bg-white border mt-1 shadow-lg rounded-md overflow-hidden">
+                          {sectorData.map((option) => (
+                            <Listbox.Option
+                              key={option.name}
+                              value={option.name}
+                              className={({ active, selected }) =>
+                                `cursor-pointer select-none px-4 py-2 text-xs uppercase text-primary ${
+                                  active ? "bg-secondary text-white" : ""
+                                } ${selected ? "font-semibold" : ""}`
+                              }
+                            >
+                              {({ selected }) => (
+                                <span className="flex items-center justify-between">
+                                  {option.name}
+                                  {selected && <CheckIcon className="w-4 h-4 ml-2 text-white" />}
+                                </span>
+                              )}
+                            </Listbox.Option>
+                          ))}
+                        </Listbox.Options>
+                      </div>
+                    </Listbox>
+                  </div>
+
 
                 <div className="relative w-full flex items-center mb-2 md:mb-0 mt-2 md:mt-0">
                   <svg
@@ -192,9 +267,9 @@ const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
                   <input
                     type="text"
                     placeholder="Search..."
+                    value={search.value}
+                    onChange={(e) => handleSearchChange({value:e.target.value,label:e.target.value})}
                     className="uppercase px-1 ps-8 appearance-none bg-transparent border-0 border-b border-black focus:outline-none focus:ring-0 focus:border-black text-primary text-xs py-2 pr-6 w-full"
-                    value={searchQuery}
-                    onChange={handleSearch}
                   />
                 </div>
               </div>
@@ -222,7 +297,7 @@ whileHover={{ scale: 1.015 }}
 transition={{ type: "spring", stiffness: 300 }}
 > 
 
-        <Link href={`/projects-details/${item.slug}`}> 
+        <Link href={`/projects-details/${params.slug}/${item.slug}`}> 
         <figure className="overlayclr">
           <Image
             src={item.thumbnail}
