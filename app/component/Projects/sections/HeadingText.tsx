@@ -152,7 +152,11 @@ const visibleItems = filteredResults.slice(0, visibleCount);
 const handleLoadMore = () => {
   setVisibleCount((prev) => prev + 8);
 };
- 
+const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const value = e.target.value;
+  setSearch({value:value,label:value}); 
+  applyFilters(selectedValues);
+};
 
 
 
