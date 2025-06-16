@@ -55,7 +55,7 @@ gsap.registerPlugin(ScrollTrigger);
          >
               <div className="relative group lg:h-auto  rounded-[15px]"
               >
-                <figure className=" w-[500px] h-[370px] " >
+                <figure className=" w-auto h-[370px] " >
                   <Image
                     src={item.thumbnail}
                     alt=""
