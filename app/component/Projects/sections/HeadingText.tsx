@@ -69,6 +69,7 @@ interface ProjectItem {
 
 const [filteredResults, setFilteredResults] = useState<ProjectItem[]>(data.data); 
 const [visibleCount, setVisibleCount] = useState(8);
+const [searchQuery, setSearchQuery] = useState<string>("");
 const handleChange = (index: number, value: { value: string; label: string }) => {
   const updated = [...selectedValues];
   updated[index] = value;
@@ -89,7 +90,12 @@ const applyFilters = (filters: { value: string; label: string }[]) => {
       ? item.sector?.toLowerCase() === sector.value.toLowerCase()
       : true;
 
-    return matchCountry && matchSector;
+    const matchSearch = searchQuery
+      ? item.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        item.title?.toLowerCase().includes(searchQuery.toLowerCase())
+      : true;
+
+    return matchCountry && matchSector && matchSearch;
   });
 
    
@@ -104,7 +110,11 @@ const visibleItems = filteredResults.slice(0, visibleCount);
 const handleLoadMore = () => {
   setVisibleCount((prev) => prev + 8);
 };
- 
+const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const value = e.target.value;
+  setSearchQuery(value); 
+  applyFilters(selectedValues);
+};
 
 
 
@@ -183,6 +193,8 @@ const handleLoadMore = () => {
                     type="text"
                     placeholder="Search..."
                     className="uppercase px-1 ps-8 appearance-none bg-transparent border-0 border-b border-black focus:outline-none focus:ring-0 focus:border-black text-primary text-xs py-2 pr-6 w-full"
+                    value={searchQuery}
+                    onChange={handleSearch}
                   />
                 </div>
               </div>
