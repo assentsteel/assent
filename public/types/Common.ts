@@ -1087,7 +1087,8 @@ export type GpAbtsect = {
             video: string,
             mainTitle: string,
             subTitle: string,
-            poster: string
+            poster: string,
+            primaryColorText: string
           }
         ]
       },
@@ -1100,7 +1101,8 @@ export type GpAbtsect = {
             logo: string,
             logoAlt: string,
             number: string,
-            value: string
+            value: string,
+            suffix: string
           }
         ]
       },

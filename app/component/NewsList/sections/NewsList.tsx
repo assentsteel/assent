@@ -62,7 +62,7 @@ gsap.registerPlugin(ScrollTrigger);
                     alt=""
                     className="rounded-[15px]  h-full w-full object-cover"
                     width={500}
-                    height={370}
+                    height={500}
                   />
                   </figure>
 

@@ -151,12 +151,12 @@ const HeroSection = ({ data }: { data: Home }) => {
                     </div>
                     <div className="overflow-hidden pb-1 mt-[30px]">
                       <motion.p
-                        className="text-white text-md leading-none font-normal "
+                        className="text-white text-md leading-none font-normal flex gap-2"
                         variants={textItemVariants}
                       >
                         {data.bannerSection.items[0].subTitle}
                         <b className="font-semibold text-secondary">
-                          since 2008
+                        {data.bannerSection.items[0].primaryColorText}
                         </b>
                       </motion.p>
                     </div>
