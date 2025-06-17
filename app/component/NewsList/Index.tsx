@@ -24,13 +24,14 @@ const [search,setSearch] = useState("")
 useEffect(()=>{
   const applyFilters = (filters: { value: string; label: string }[]) => {
     console.log(filters)
+    const latestNews = data.news.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
     if(filters.length === 0){
-      setFilteredResults(data.news);
+      setFilteredResults(latestNews);
       return;
     }
 
     const [category, date,search] = filters;
-    const filtered = data.news;
+    const filtered = latestNews;
 
     console.log(category,date,search)
   

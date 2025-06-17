@@ -36,10 +36,9 @@ const StatsSection = ({ data }: { data: Home }) => {
               <Image src={stat.logo} alt={stat.logoAlt} width={50} height={50} className="h-[45px] lg:h-[50px]" />
             </motion.div>
             <div>
-              <span className="text-[30px]  lg:text-[40px] font-bold leading-none">
+              <span className="text-[30px]  lg:text-[40px] font-bold leading-none flex items-center gap-1">
                  {inView ? <CountUp start={0} end={Number(stat.number)} duration={2} delay={0.3} decimals={Number(stat.number) % 1 !== 0 ? 1 : 0} /> : 0}
-                
-                <span className="text-[17px] lg:text-[24px]">+</span>
+                <span className="text-[17px] lg:text-[24px]">{stat.suffix}</span>
               </span>
               <p className="text-md text-white/70">{stat.value}</p>
             </div>

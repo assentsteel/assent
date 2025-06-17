@@ -12,6 +12,7 @@ import Link from "next/link";
   
     const RecentNews = ({ data }: { data: News }) => { 
   const containerRef = useRef(null);
+  const latestNews = data.news.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 
   useEffect(() => {
     if (containerRef.current) {
@@ -70,7 +71,7 @@ import Link from "next/link";
     initial="hidden"
     animate="visible"
     exit="exit">
-    {data.news.slice(0, 1).map((item, index) => {
+    {latestNews.slice(0, 1).map((item, index) => {
       
       return (
         <motion.div
@@ -82,7 +83,7 @@ import Link from "next/link";
           className="relative group h-[300px] lg:h-[672px] overflow-hidden rounded-[15px]"
         >
           <figure className="h-full blueover">
-            <Image src={item.thumbnail} alt="" className="rounded-[15px] h-full w-full object-cover" width={100} height={100}/>
+            <Image src={item.thumbnail} alt="" className="rounded-[15px] h-full w-full object-cover" width={700} height={700}/>
           </figure>
           <motion.div
   className="absolute bottom-0 z-10 px-5 xxl:px-10 pb-5 xxl:pb-10 w-full"
@@ -116,7 +117,7 @@ import Link from "next/link";
     initial="hidden"
     animate="visible"
     exit="exit" className="flex flex-col gap-4 lg:gap-6 xxl:gap-10">
-    {data.news.slice(1).map((item, index) => {
+    {latestNews.slice(1).map((item, index) => {
 
       return (
         <motion.div
