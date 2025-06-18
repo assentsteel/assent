@@ -4,9 +4,9 @@ import Image from "next/image";
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
- 
- 
-  
+
+
+
 import { Home } from "@/public/types/Common";
 
 
@@ -38,7 +38,22 @@ const StatsSection = ({ data }: { data: Home }) => {
             <div>
               <span className="text-[30px]  lg:text-[40px] font-bold leading-none flex items-center gap-1">
                  {inView ? <CountUp start={0} end={Number(stat.number)} duration={2} delay={0.3} decimals={Number(stat.number) % 1 !== 0 ? 1 : 0} /> : 0}
-                <span className="text-[17px] lg:text-[24px]">{stat.suffix}</span>
+                {/* <span className="text-[17px] lg:text-[24px]">{stat.suffix}</span> */}
+               {(() => {
+            const [before, after] = stat.suffix.split('/');
+            return (
+              <>
+                <span className="text-[30px]  lg:text-[40px]">{before}</span>
+                {after && (
+                  <>
+                    <span className="mx-1 text-[17px] lg:text-[24px]">/</span>
+                    <span className="text-[17px] lg:text-[24px]">{after}</span>
+                  </>
+                )}
+              </>
+            );
+          })()}
+
               </span>
               <p className="text-md text-white/70">{stat.value}</p>
             </div>
