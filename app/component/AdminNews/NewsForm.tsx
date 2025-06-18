@@ -128,7 +128,7 @@ const NewsForm = ({ editMode }: { editMode?: boolean }) => {
     }, [watch("slug")])
 
     const handleAutoGenerate = () => {
-        const name = watch("subTitle");
+        const name = watch("mainTitle");
         if (!name) return;
         const slug = name
           .toLowerCase()
@@ -167,8 +167,7 @@ const NewsForm = ({ editMode }: { editMode?: boolean }) => {
                 </div>
                 <div>
                     <Label className='pl-3'>Sub Title</Label>
-                    <Input type='text' placeholder='Title' {...register("subTitle", { required: "Title is required" })} />
-                    {errors.subTitle && <p className='text-red-500'>{errors.subTitle.message}</p>}
+                    <Input type='text' placeholder='Title' {...register("subTitle")} />
                 </div>
                 <div>
                 <Label className='pl-3 flex gap-2 items-center mb-1'>
