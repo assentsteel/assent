@@ -22,7 +22,7 @@ export default function News() {
 
   const [oldCategory, setOldCategory] = useState<string>("");
   const [category, setCategory] = useState<string>("");
-  const [newsList, setNewsList] = useState<{_id: string, subTitle: string, thumbnail: string}[]>([]);
+  const [newsList, setNewsList] = useState<{_id: string, mainTitle: string, thumbnail: string}[]>([]);
   const [categoryList, setCategoryList] = useState<{_id: string, name: string}[]>([]);
   const [metaTitle, setMetaTitle] = useState<string>("");
   const [metaDescription, setMetaDescription] = useState<string>("");
@@ -278,8 +278,8 @@ export default function News() {
             <div className="flex justify-between border p-1 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300 h-12" key={item._id}>
             <div className="h-full">
               <div className="flex gap-2 items-center h-full">
-                <Image src={item.thumbnail} alt={item.subTitle} width={100} height={100} className="h-full object-cover"/>
-                {item.subTitle}
+                <Image src={item.thumbnail} alt={item.mainTitle} width={100} height={100} className="h-full object-cover"/>
+                {item.mainTitle}
               </div>
             </div>
             <div className="flex gap-5">
