@@ -94,9 +94,6 @@ const Fillters = ({ data,setUpdated,clearFilters,search,setSearch }: { data: {na
     };
   }, []);
 
-  useEffect(()=>{
-    console.log(isOpen)
-  },[isOpen])
 
   const containerRef = useRef(null);
 

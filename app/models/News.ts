@@ -14,7 +14,7 @@ const newsSchema = new mongoose.Schema({
     news:[
         {
             mainTitle:{ type: String, required: true },
-            subTitle: { type: String, required: true },
+            subTitle: { type: String},
             slug: { type: String, required: true },
             content: { type: String, required: true },
             thumbnail: { type: String, required: true },
