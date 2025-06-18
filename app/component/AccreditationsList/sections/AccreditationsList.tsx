@@ -6,11 +6,11 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { AnimatePresence, motion } from "framer-motion";
 gsap.registerPlugin(ScrollTrigger);
- 
 
-import { Awards } from '@/public/types/Common';  
 
-const AccreditationsList = ({ data }: { data: Awards }) => {   
+import { Awards } from '@/public/types/Common';
+
+const AccreditationsList = ({ data }: { data: Awards }) => {
     const [selectedImage, setSelectedImage] = useState<string | StaticImageData | null>(null);
 
   const modalVariants = {
@@ -44,11 +44,7 @@ const AccreditationsList = ({ data }: { data: Awards }) => {
   return (
     <section className="py-[50px] md:py-[70px] xl:py-[100px] overflow-hidden relative">
       <div className="container">
-        <div className="pb-10">
-          <p>
-            At Assent Steel, excellence is more than a standard — it&apos;s our foundation. Our commitment to quality, safety, and innovation has earned us industry-wide recognition. Each award and accreditation reflects our unwavering pursuit of engineering perfection. We take pride in these achievements as they inspire us to keep raising the bar.
-          </p>
-        </div>
+
        <motion.div
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
         variants={containerVariants}
@@ -119,20 +115,7 @@ const AccreditationsList = ({ data }: { data: Awards }) => {
         transition={{ delay: 0.2, duration: 0.5 }}
         viewport={{ once: true }}
       >
-        <button className="border flex gap-3 items-center justify-center m-auto whitespace-nowrap font-[500] border-secondary text-xs text-territory uppercase rounded-full py-[8px] px-[20px] w-fit">
-          Load More
-          <svg
-            stroke="#000"
-            fill="#000"
-            strokeWidth="0"
-            viewBox="0 0 320 512"
-            height="10px"
-            width="8px"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M310.6 233.4c12.5 12.5..." />
-          </svg>
-        </button>
+
       </motion.div>
       </div>
     </section>
