@@ -1,6 +1,6 @@
 export const metadata = {
-    title: "FireGate | Backend Console",
-    description: "FireGate",
+    title: "Assent | Backend Console",
+    description: "Assent",
   };
   
   import "../../../globals.css";

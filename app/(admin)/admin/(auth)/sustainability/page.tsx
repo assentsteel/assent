@@ -279,7 +279,7 @@ const SustainabilityPage = () => {
                     ))}
 
                     <div>
-                        <Button type='button' className="w-full cursor-pointer" onClick={() => firstSectionAppend({ logo: "", logoAlt: "",image:"",imageAlt:"",title:"" })}>Add Item</Button>
+                        <Button type='button' className="w-full cursor-pointer text-white" onClick={() => firstSectionAppend({ logo: "", logoAlt: "",image:"",imageAlt:"",title:"" })}>Add Item</Button>
                     </div>
 
                 </div>
@@ -424,7 +424,7 @@ const SustainabilityPage = () => {
                     ))}
 
                     <div>
-                        <Button type='button' className="w-full cursor-pointer" onClick={() => thirdSectionAppend({ image: "", imageAlt: "" })}>Add Item</Button>
+                        <Button type='button' className="w-full cursor-pointer text-white" onClick={() => thirdSectionAppend({ image: "", imageAlt: "" })}>Add Item</Button>
                     </div>
 
                 </div>
@@ -496,7 +496,7 @@ const SustainabilityPage = () => {
                     ))}
 
                     <div>
-                        <Button type='button' className="w-full cursor-pointer" onClick={() => fourthSectionAppend({ image: "", imageAlt: "", title: "", description: "" })}>Add Item</Button>
+                        <Button type='button' className="w-full cursor-pointer text-white" onClick={() => fourthSectionAppend({ image: "", imageAlt: "", title: "", description: "" })}>Add Item</Button>
                     </div>
 
                 </div>
@@ -565,7 +565,7 @@ const SustainabilityPage = () => {
                     ))}
 
                     <div>
-                        <Button type='button' className="w-full cursor-pointer" onClick={() => fifthSectionAppend({ image: "", imageAlt: "", title: "", description: "" })}>Add Item</Button>
+                        <Button type='button' className="w-full cursor-pointer text-white" onClick={() => fifthSectionAppend({ image: "", imageAlt: "", title: "", description: "" })}>Add Item</Button>
                     </div>
 
                 </div>
@@ -610,7 +610,7 @@ const SustainabilityPage = () => {
                 </div>
 
                 <div className='flex justify-center'>
-                    <Button type='submit'>Submit</Button>
+                    <Button type='submit' className="w-full cursor-pointer text-white">Submit</Button>
                 </div>
 
             </form>

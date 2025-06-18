@@ -224,7 +224,7 @@ const AboutPage = () => {
                     ))}
 
                     <div>
-                        <Button type='button' className="w-full cursor-pointer" onClick={() => firstSectionAppend({ number: "", value: "" })}>Add Item</Button>
+                        <Button type='button' className="w-full cursor-pointer text-white" onClick={() => firstSectionAppend({ number: "", value: "" })}>Add Item</Button>
                     </div>
 
                 </div>
@@ -389,7 +389,7 @@ const AboutPage = () => {
                     ))}
 
                     <div>
-                        <Button type='button' className="w-full cursor-pointer" onClick={() => historySectionAppend({ year: "", title: "", description: "", image: "", imageAlt: "" })}>Add Item</Button>
+                        <Button type='button' className="w-full cursor-pointer text-white" onClick={() => historySectionAppend({ year: "", title: "", description: "", image: "", imageAlt: "" })}>Add Item</Button>
                     </div>
 
                 </div>
@@ -503,7 +503,7 @@ const AboutPage = () => {
                     ))}
 
                     <div>
-                        <Button type='button' className="w-full cursor-pointer" onClick={() => coreValuesAppend({ image: "", imageAlt: "", title: "", description: "" })}>Add Item</Button>
+                        <Button type='button' className="w-full cursor-pointer text-white" onClick={() => coreValuesAppend({ image: "", imageAlt: "", title: "", description: "" })}>Add Item</Button>
                     </div>
 
                 </div>
@@ -522,7 +522,7 @@ const AboutPage = () => {
                 </div>
 
                 <div className='flex justify-center'>
-                    <Button type='submit'>Submit</Button>
+                    <Button type='submit' className="cursor-pointer text-white">Submit</Button>
                 </div>
 
             </form>

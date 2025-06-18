@@ -292,7 +292,7 @@ const NewsForm = ({ editMode }: { editMode?: boolean }) => {
 
 
                 <div className='flex justify-center'>
-                    <Button type='submit'>Submit</Button>
+                    <Button type='submit' className='bg-primary text-white'>Submit</Button>
                 </div>
 
             </form>

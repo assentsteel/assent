@@ -177,7 +177,7 @@ export default function News() {
           <div className="flex justify-between border-b-2 pb-2">
             <Label className="text-sm font-bold">Awards And Accreditations</Label>
             <Dialog>
-              <DialogTrigger className="bg-black text-white px-2 py-1 rounded-md" onClick={()=>{setTitle(""); setImage(""); setImageAlt("")}}>Add Award</DialogTrigger>
+              <DialogTrigger className="bg-primary text-white px-3 py-2 rounded-md font-bold" onClick={()=>{setTitle(""); setImage(""); setImageAlt("")}}>Add Award</DialogTrigger>
               <DialogContent>
                 <DialogHeader>
                   <DialogTitle>Add Award</DialogTitle>

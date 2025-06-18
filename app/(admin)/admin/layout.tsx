@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "../../../app/globals.css";
 
 export const metadata: Metadata = {
-  title: "Fire Gate | Backend Console",
-  description: "Fire Gate",
+  title: "Assent | Backend Console",
+  description: "Assent",
 };
 
 export default function RootLayout({

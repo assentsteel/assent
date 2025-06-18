@@ -326,7 +326,7 @@ const FabricationPage = () => {
                     ))}
 
                     <div>
-                        <Button type='button' className="w-full cursor-pointer" onClick={() => secondSectionAppend({ image: "", imageAlt: "", title: "", description: "" })}>Add Item</Button>
+                        <Button type='button' className="w-full cursor-pointer text-white" onClick={() => secondSectionAppend({ image: "", imageAlt: "", title: "", description: "" })}>Add Item</Button>
                     </div>
 
                 </div>
@@ -418,7 +418,7 @@ const FabricationPage = () => {
                     ))}
 
                     <div>
-                        <Button type='button' className="w-full cursor-pointer" onClick={() => thirdSectionAppend({ logo: "", logoAlt: "", title: "" })}>Add Item</Button>
+                        <Button type='button' className="w-full cursor-pointer text-white" onClick={() => thirdSectionAppend({ logo: "", logoAlt: "", title: "" })}>Add Item</Button>
                     </div>
 
                 </div>
@@ -476,7 +476,7 @@ const FabricationPage = () => {
                 
                 
                                             <div>
-                                        <Button type='button' className="w-full cursor-pointer" onClick={() => {handleAddImage(index)}}>Add Image</Button>
+                                        <Button type='button' className="w-full cursor-pointer text-white" onClick={() => {handleAddImage(index)}}>Add Image</Button>
                                     </div>
                 
                 
@@ -529,7 +529,7 @@ const FabricationPage = () => {
                                     ))}
                 
                                     <div>
-                                        <Button type='button' className="w-full cursor-pointer" onClick={() => {fourthSectionAppend({ title: "",images:[]})}}>Add Item</Button>
+                                        <Button type='button' className="w-full cursor-pointer text-white" onClick={() => {fourthSectionAppend({ title: "",images:[]})}}>Add Item</Button>
                                     </div>
                 
                                 </div>
@@ -634,7 +634,7 @@ const FabricationPage = () => {
                     ))}
 
                     <div>
-                        <Button type='button' className="w-full cursor-pointer" onClick={() => fifthSectionAppend({ logoAlt:"",title:"",logo:"",number:"",value:"",description:"" })}>Add Item</Button>
+                        <Button type='button' className="w-full cursor-pointer text-white" onClick={() => fifthSectionAppend({ logoAlt:"",title:"",logo:"",number:"",value:"",description:"" })}>Add Item</Button>
                     </div>
 
                 </div>
@@ -732,7 +732,7 @@ const FabricationPage = () => {
                     ))}
 
                     <div>
-                        <Button type='button' className="w-full cursor-pointer" onClick={() => sixthSectionAppend({ title: "", logo: "", logoAlt: "", description: "" })}>Add Item</Button>
+                        <Button type='button' className="w-full cursor-pointer text-white" onClick={() => sixthSectionAppend({ title: "", logo: "", logoAlt: "", description: "" })}>Add Item</Button>
                     </div>
 
                 </div>
@@ -754,7 +754,7 @@ const FabricationPage = () => {
                 </div>
 
                 <div className='flex justify-center'>
-                    <Button type='submit'>Submit</Button>
+                    <Button type='submit' className="cursor-pointer text-white">Submit</Button>
                 </div>
 
             </form>

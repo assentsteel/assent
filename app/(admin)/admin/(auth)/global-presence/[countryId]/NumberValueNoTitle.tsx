@@ -62,7 +62,7 @@ const NumberValueNoTitle = ({register,control,index,type}:NumberValueNoTitleProp
                         ))}
     
                         <div>
-                            <Button type='button' className="w-full cursor-pointer" onClick={() => secondSectionAppend({ description: "", number: "", value: "" })}>Add Item</Button>
+                            <Button type='button' className="w-full cursor-pointer  bg-green-400" onClick={() => secondSectionAppend({ description: "", number: "", value: "" })}>Add Item +</Button>
                         </div>
     
                     </div>

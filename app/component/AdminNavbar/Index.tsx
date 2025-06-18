@@ -34,7 +34,7 @@ const AdminNavbar = () => {
     const navItems = [
         { name: "Home", href: "/admin/home", icon: HomeIcon },
         { name: "About", href: "/admin/about", icon: UserGroupIcon },
-        { name: "Clients", href: "/admin/clients", icon: PresentationChartBarIcon },
+        // { name: "Clients", href: "/admin/clients", icon: PresentationChartBarIcon },
         { name: "Services", href: "#", icon: EnvelopeIcon,hasChild:true,children: [
             { name: "Engineering", href: "/admin/services/engineering" },
             { name: "Fabrication", href: "/admin/services/fabrication" },

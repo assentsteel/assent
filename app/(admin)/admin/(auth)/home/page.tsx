@@ -231,7 +231,7 @@ const Home = () => {
                         ))}
 
                         <div>
-                            <Button type='button' className="w-full cursor-pointer" onClick={() => bannerSectionAppend({ mainTitle: "", subTitle: "", video: "", poster: "", primaryColorText: "" })}>Add Item</Button>
+                            <Button type='button' className="w-full cursor-pointer text-white" onClick={() => bannerSectionAppend({ mainTitle: "", subTitle: "", video: "", poster: "", primaryColorText: "" })}>Add Item</Button>
                         </div>
 
                     </div>
@@ -322,7 +322,7 @@ const Home = () => {
                             ))}
 
                             <div>
-                                <Button type='button' className="w-full cursor-pointer" onClick={() => firstSectionAppend({ suffix:"",number: "", value: "", logo: "", logoAlt: "" })}>Add Item</Button>
+                                <Button type='button' className="w-full cursor-pointer text-white" onClick={() => firstSectionAppend({ suffix:"",number: "", value: "", logo: "", logoAlt: "" })}>Add Item</Button>
                             </div>
 
                         </div>
@@ -372,7 +372,7 @@ const Home = () => {
                         ))}
 
                         <div>
-                            <Button type='button' className="w-full cursor-pointer" onClick={() => clientsSectionAppend({ logo: "", logoAlt: "" })}>Add Item</Button>
+                            <Button type='button' className="w-full cursor-pointer text-white" onClick={() => clientsSectionAppend({ logo: "", logoAlt: "" })}>Add Item</Button>
                         </div>
 
                     </div>
@@ -505,7 +505,7 @@ const Home = () => {
                             ))}
 
                             <div>
-                                <Button type='button' className="w-full cursor-pointer" onClick={() => servicesSectionAppend({ title: "", description: "", logo: "", logoAlt: "", image: "", imageAlt: "", slug: "" })}>Add Item</Button>
+                                <Button type='button' className="w-full cursor-pointer text-white" onClick={() => servicesSectionAppend({ title: "", description: "", logo: "", logoAlt: "", image: "", imageAlt: "", slug: "" })}>Add Item</Button>
                             </div>
 
                         </div>
@@ -633,7 +633,7 @@ const Home = () => {
                                 ))}
 
                                 <div>
-                                    <Button type='button' className="w-full cursor-pointer" onClick={() => sustainabilitySectionAppend({ title: "", logo: "", logoAlt: "" })}>Add Item</Button>
+                                    <Button type='button' className="w-full cursor-pointer text-white" onClick={() => sustainabilitySectionAppend({ title: "", logo: "", logoAlt: "" })}>Add Item</Button>
                                 </div>
 
                             </div>
@@ -655,7 +655,7 @@ const Home = () => {
                 </div>
 
                 <div className='flex justify-center'>
-                    <Button type='submit'>Submit</Button>
+                    <Button type='submit' className="cursor-pointer text-white">Submit</Button>
                 </div>
 
             </form>

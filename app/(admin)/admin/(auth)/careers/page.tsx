@@ -214,7 +214,7 @@ const CareerPage = () => {
                     ))}
 
                     <div>
-                        <Button type='button' className="w-full cursor-pointer" onClick={() => append({ title: "", description: "", image: "", imageAlt: "" })}>Add Item</Button>
+                        <Button type='button' className="w-full cursor-pointer text-white" onClick={() => append({ title: "", description: "", image: "", imageAlt: "" })}>Add Item</Button>
                     </div>
 
                 </div>
@@ -304,7 +304,7 @@ const CareerPage = () => {
                     ))}
 
                     <div>
-                        <Button type='button' className="w-full cursor-pointer" onClick={() => secondSectionAppend({ title: "", logo: "", logoAlt: "" })}>Add Item</Button>
+                        <Button type='button' className="w-full cursor-pointer text-white" onClick={() => secondSectionAppend({ title: "", logo: "", logoAlt: "" })}>Add Item</Button>
                     </div>
 
                 </div>
@@ -357,7 +357,7 @@ const CareerPage = () => {
                     ))}
 
                     <div>
-                        <Button type='button' className="w-full cursor-pointer" onClick={() => thirdSectionAppend({ title: "", location: "" })}>Add Item</Button>
+                        <Button type='button' className="w-full cursor-pointer text-white" onClick={() => thirdSectionAppend({ title: "", location: "" })}>Add Item</Button>
                     </div>
 
                 </div>
@@ -379,7 +379,7 @@ const CareerPage = () => {
                 </div>
 
                 <div className='flex justify-center'>
-                    <Button type='submit'>Submit</Button>
+                    <Button type='submit' className="w-full cursor-pointer text-white">Submit</Button>
                 </div>
 
             </form>

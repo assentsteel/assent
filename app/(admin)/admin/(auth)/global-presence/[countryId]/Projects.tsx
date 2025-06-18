@@ -87,7 +87,7 @@ const Projects = ({register,control,index,type}:ProjectsProps) => {
                         ))}
     
                         <div>
-                            <Button type='button' className="w-full cursor-pointer" onClick={() => secondSectionAppend({ title: "", project: "", clientLocation: "", quantity: "", image: "", imageAlt: "" })}>Add Item</Button>
+                            <Button type='button' className="w-full cursor-pointer bg-green-400" onClick={() => secondSectionAppend({ title: "", project: "", clientLocation: "", quantity: "", image: "", imageAlt: "" })}>Add Item +</Button>
                         </div>
     
                     </div>

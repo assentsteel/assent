@@ -207,7 +207,7 @@ export default function News() {
           <div className="flex justify-between border-b-2 pb-2">
             <Label className="text-sm font-bold">Category</Label>
             <Dialog>
-              <DialogTrigger className="bg-black text-white px-2 py-1 rounded-md" onClick={()=>setCategory("")}>Add Category</DialogTrigger>
+              <DialogTrigger className="bg-primary text-white px-3 py-2 rounded-md font-bold" onClick={()=>setCategory("")}>Add Category</DialogTrigger>
               <DialogContent>
                 <DialogHeader>
                   <DialogTitle>Add Category</DialogTitle>

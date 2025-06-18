@@ -349,7 +349,7 @@ const EngineeringPage = () => {
                     ))}
 
                     <div>
-                        <Button type='button' className="w-full cursor-pointer" onClick={() => secondSectionAppend({ image: "", imageAlt: "", title: "", description: "", logoAlt: "", logo: "" })}>Add Item</Button>
+                        <Button type='button' className="w-full cursor-pointer text-white" onClick={() => secondSectionAppend({ image: "", imageAlt: "", title: "", description: "", logoAlt: "", logo: "" })}>Add Item</Button>
                     </div>
 
                 </div>
@@ -531,7 +531,7 @@ const EngineeringPage = () => {
                 
                 
                                             <div>
-                                        <Button type='button' className="w-full cursor-pointer" onClick={() => {handleAddElement(index)}}>Add Element</Button>
+                                        <Button type='button' className="w-full cursor-pointer text-white" onClick={() => {handleAddElement(index)}}>Add Element</Button>
                                     </div>
                 
                 
@@ -604,7 +604,7 @@ const EngineeringPage = () => {
                                     ))}
                 
                                     <div>
-                                        <Button type='button' className="w-full cursor-pointer" onClick={() => {fifthSectionAppend({ title: "", elements: []})}}>Add Item</Button>
+                                        <Button type='button' className="w-full cursor-pointer text-white" onClick={() => {fifthSectionAppend({ title: "", elements: []})}}>Add Item</Button>
                                     </div>
                 
                                 </div>
@@ -700,7 +700,7 @@ const EngineeringPage = () => {
                     ))}
 
                     <div>
-                        <Button type='button' className="w-full cursor-pointer" onClick={() => sixthSectionAppend({ title: "", logo: "", logoAlt: "", description: "" })}>Add Item</Button>
+                        <Button type='button' className="w-full cursor-pointer text-white" onClick={() => sixthSectionAppend({ title: "", logo: "", logoAlt: "", description: "" })}>Add Item</Button>
                     </div>
 
                 </div>
@@ -722,7 +722,7 @@ const EngineeringPage = () => {
                 </div>
 
                 <div className='flex justify-center'>
-                    <Button type='submit'>Submit</Button>
+                    <Button type='submit' className="cursor-pointer text-white">Submit</Button>
                 </div>
 
             </form>
