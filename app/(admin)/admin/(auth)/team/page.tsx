@@ -195,7 +195,7 @@ const TeamPage = () => {
                     ))}
 
                     <div>
-                        <Button type='button' className="w-full cursor-pointer" onClick={() => append({ name: "", designation: "", linkedIn: "",image:"",imageAlt:"" })}>Add Member</Button>
+                        <Button type='button' className="w-full cursor-pointer text-white" onClick={() => append({ name: "", designation: "", linkedIn: "",image:"",imageAlt:"" })}>Add Member</Button>
                     </div>
 
                 </div>
@@ -214,7 +214,7 @@ const TeamPage = () => {
                 </div>
 
                 <div className='flex justify-center'>
-                    <Button type='submit'>Submit</Button>
+                    <Button type='submit' className="w-full cursor-pointer">Submit</Button>
                 </div>
 
             </form>

@@ -184,7 +184,7 @@ const ContactPage = () => {
                     ))}
 
                     <div>
-                        <Button type='button' className="w-full cursor-pointer" onClick={() => append({title:"",address:"",phone:"",email:"",fax:"",workingHours:"",map:"" })}>Add Item</Button>
+                        <Button type='button' className="w-full cursor-pointer text-white" onClick={() => append({title:"",address:"",phone:"",email:"",fax:"",workingHours:"",map:"" })}>Add Item</Button>
                     </div>
 
                 </div>
@@ -203,7 +203,7 @@ const ContactPage = () => {
                 </div>
 
                 <div className='flex justify-center'>
-                    <Button type='submit'>Submit</Button>
+                    <Button type='submit' className="w-full cursor-pointer text-white">Submit</Button>
                 </div>
 
             </form>

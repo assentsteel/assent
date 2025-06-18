@@ -401,7 +401,7 @@ const BlastingPage = () => {
                     ))}
 
                     <div>
-                        <Button type='button' className="w-full cursor-pointer" onClick={() => fourthSectionAppend({ logoAlt:"",title:"",logo:"",number:"",value:"",description:"" })}>Add Item</Button>
+                        <Button type='button' className="w-full cursor-pointer text-white" onClick={() => fourthSectionAppend({ logoAlt:"",title:"",logo:"",number:"",value:"",description:"" })}>Add Item</Button>
                     </div>
 
                 </div>
@@ -499,7 +499,7 @@ const BlastingPage = () => {
                     ))}
 
                     <div>
-                        <Button type='button' className="w-full cursor-pointer" onClick={() => fifthSectionAppend({ logoAlt:"",title:"",logo:"",description:"" })}>Add Item</Button>
+                        <Button type='button' className="w-full cursor-pointer text-white" onClick={() => fifthSectionAppend({ logoAlt:"",title:"",logo:"",description:"" })}>Add Item</Button>
                     </div>
 
                 </div>
@@ -521,7 +521,7 @@ const BlastingPage = () => {
                 </div>
 
                 <div className='flex justify-center'>
-                    <Button type='submit'>Submit</Button>
+                    <Button type='submit' className="cursor-pointer text-white">Submit</Button>
                 </div>
 
             </form>

@@ -198,7 +198,7 @@ const SteelErectionPage = () => {
                     ))}
 
                     <div>
-                        <Button type='button' className="w-full cursor-pointer" onClick={() => firstSectionAppend({ image:"",imageAlt:"" })}>Add Item</Button>
+                        <Button type='button' className="w-full cursor-pointer text-white" onClick={() => firstSectionAppend({ image:"",imageAlt:"" })}>Add Item</Button>
                     </div>
 
                 </div>
@@ -341,7 +341,7 @@ const SteelErectionPage = () => {
                     ))}
 
                     <div>
-                        <Button type='button' className="w-full cursor-pointer" onClick={() => thirdSectionAppend({ image:"",imageAlt:"",title:"" })}>Add Item</Button>
+                        <Button type='button' className="w-full cursor-pointer text-white" onClick={() => thirdSectionAppend({ image:"",imageAlt:"",title:"" })}>Add Item</Button>
                     </div>
 
                 </div>
@@ -439,7 +439,7 @@ const SteelErectionPage = () => {
                     ))}
 
                     <div>
-                        <Button type='button' className="w-full cursor-pointer" onClick={() => fourthSectionAppend({ logoAlt:"",title:"",logo:"",description:"" })}>Add Item</Button>
+                        <Button type='button' className="w-full cursor-pointer text-white" onClick={() => fourthSectionAppend({ logoAlt:"",title:"",logo:"",description:"" })}>Add Item</Button>
                     </div>
 
                 </div>
@@ -461,7 +461,7 @@ const SteelErectionPage = () => {
                 </div>
 
                 <div className='flex justify-center'>
-                    <Button type='submit'>Submit</Button>
+                    <Button type='submit' className="cursor-pointer text-white">Submit</Button>
                 </div>
 
             </form>

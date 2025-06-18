@@ -282,7 +282,7 @@ const HsePage = () => {
                             </div>
 
                             <div>
-                        <Button type='button' className="w-full cursor-pointer" onClick={() => {handleAddFile(index)}}>Add File</Button>
+                        <Button type='button' className="w-full cursor-pointer text-white bg-green-400" onClick={() => {handleAddFile(index)}}>Add File</Button>
                     </div>
 
 
@@ -341,7 +341,7 @@ const HsePage = () => {
                     ))}
 
                     <div>
-                        <Button type='button' className="w-full cursor-pointer" onClick={() => {secondSectionAppend({ image: "", imageAlt: "", title: "", description: "", files: []})}}>Add Item</Button>
+                        <Button type='button' className="w-full cursor-pointer text-white" onClick={() => {secondSectionAppend({ image: "", imageAlt: "", title: "", description: "", files: []})}}>Add Item</Button>
                     </div>
 
                 </div>
@@ -464,7 +464,7 @@ const HsePage = () => {
                     ))}
 
                     <div>
-                        <Button type='button' className="w-full cursor-pointer" onClick={() => fourthSectionAppend({ number: "", value: "" })}>Add Item</Button>
+                        <Button type='button' className="w-full cursor-pointer text-white" onClick={() => fourthSectionAppend({ number: "", value: "" })}>Add Item</Button>
                     </div>
 
                 </div>
@@ -483,7 +483,7 @@ const HsePage = () => {
                 </div>
 
                 <div className='flex justify-center'>
-                    <Button type='submit'>Submit</Button>
+                    <Button type='submit' className="w-full cursor-pointer text-white">Submit</Button>
                 </div>
 
             </form>
