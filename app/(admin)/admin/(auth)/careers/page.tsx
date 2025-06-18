@@ -95,7 +95,9 @@ const CareerPage = () => {
                 setValue("metaTitle", data.data.metaTitle);
                 setValue("metaDescription", data.data.metaDescription);
                 setValue("firstSection", data.data.firstSection);
+                setValue("firstSection.items", data.data.firstSection.items);
                 setValue("secondSection", data.data.secondSection);
+                setValue("secondSection.items", data.data.secondSection.items);
                 setValue("thirdSection", data.data.thirdSection);
                 setValue("thirdSection.items", data.data.thirdSection.items);
             } else {
