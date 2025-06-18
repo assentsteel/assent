@@ -7,10 +7,10 @@ gsap.registerPlugin(ScrollTrigger);
 import { motion } from "framer-motion";
 
 import { imageVariants } from "./MotionAnimation"
- 
-      import { Quality , Hse , Engineering , Fabrication, Blasting } from '@/public/types/Common';   
-      
-      const SingleImage = ({ data }: { data: Quality  | Hse | Engineering | Fabrication |Blasting }) => {    
+
+      import { Quality , Hse , Engineering , Fabrication, Blasting } from '@/public/types/Common';
+
+      const SingleImage = ({ data }: { data: Quality  | Hse | Engineering | Fabrication |Blasting }) => {
 
   const containerRef = useRef(null);
 
@@ -46,7 +46,7 @@ import { imageVariants } from "./MotionAnimation"
           <Image
             src={data.firstSection.image}
             alt={data.firstSection.imageAlt}
-            width={500}
+            width={1600}
             height={569}
             className="rounded-[15px] object-cover w-full h-full"
           />
