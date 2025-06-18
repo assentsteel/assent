@@ -2,11 +2,11 @@
 import Image from "next/image";
 import React from "react";
 import { motion } from "framer-motion";
- 
-  
-     import { Boxgd } from '@/public/types/Common'; 
-       
-      const   Boxgds = ({ data,maxchwidth,colnum }: { data: Boxgd, maxchwidth?: string ,colnum?: number }) => {   
+
+
+     import { Boxgd } from '@/public/types/Common';
+
+      const   Boxgds = ({ data,maxchwidth,colnum }: { data: Boxgd, maxchwidth?: string ,colnum?: number }) => {
   return (
     <section className="bg-primary   relative">
     <div className="container mx-auto  ">
@@ -65,9 +65,9 @@ import { motion } from "framer-motion";
           {/* Content */}
           <div>
             <h3 className="text-xl font-semibold titlesp transition-colors duration-300 text-white group-hover:text-primary leading-[1.2]">
-              {expertise.title} <span className="text-lg font-medium">{expertise.number}</span>
+              {expertise.title} <span className=" ">{expertise.number}</span>
                      </h3>
-                     <p className="text-lg font-medium cntsmd hided-content  overflow-hidden pt-2 text-white group-hover:text-primary  ">
+                     <p className="text-lg font-semibold cntsmd hided-content  overflow-hidden pt-2 text-white group-hover:text-primary  ">
                 {expertise.value}
               </p>
 
@@ -81,8 +81,9 @@ import { motion } from "framer-motion";
                 ))}
               </ul>
             )} */}
-             {expertise.description && (
-            <div className="list-disc list-inside marker:mr-1 text-md font-normal cntsmd hided-content max-h-0 w-[102%] overflow-hidden pt-2 text-white group-hover:text-primary opacity-0 transition-all duration-500 group-hover:max-h-[15rem] group-hover:opacity-100" dangerouslySetInnerHTML={{__html: expertise.description}}></div>
+                        {expertise.description && (
+                       <div className="insts pl-2 list-disc list-inside marker:mr-1 text-md font-normal cntsmd hided-content max-h-0 w-[102%] overflow-hidden pt-2 text-white group-hover:text-primary opacity-0 transition-all duration-500 group-hover:max-h-[15rem] group-hover:opacity-100"
+                         dangerouslySetInnerHTML={{ __html: expertise.description }}></div>
             )}
             </div>
           </div>

@@ -8,12 +8,12 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { assets } from "@/public/assets/assets";
 import { tabItemVariant } from "../../common/MotionAnimation";
 gsap.registerPlugin(ScrollTrigger);
- 
 
-  
-  import { NavTab } from '@/public/types/Common'; 
-   
-  const   NavTabsection = ({ data,navigation, bgcolor, textwhite, }: { data: NavTab, navigation?: boolean, bgcolor?: string, textwhite?: boolean }) => {   
+
+
+  import { NavTab } from '@/public/types/Common';
+
+  const   NavTabsection = ({ data,navigation, bgcolor, textwhite, }: { data: NavTab, navigation?: boolean, bgcolor?: string, textwhite?: boolean }) => {
   const [activeTab, setActiveTab] = useState(0); // default first tab
 
   const tabs = data.items.map((item) => item.title);
@@ -202,10 +202,10 @@ onClick={() => setActiveTab((prev) => Math.max(prev - 1, 0))}
                       {activeContent.title}
                     </h2>
                     <div className="text-territory text-sm font-[400] leading-[1.8] mb-6 lg:mb-10">
-                   <div className={` ${
-                            textwhite ? "text-white" : "text-black"
+                   <div className={`insts ${
+                            textwhite ? "text-white" : "text-black "
                           }`} dangerouslySetInnerHTML={{__html: activeContent.description}}></div>
-                        
+
                     </div>
                   </div>
                 </div>
@@ -256,7 +256,7 @@ onClick={() => setActiveTab((prev) => Math.max(prev - 1, 0))}
                     >
 
                       <div className="text-sm font-[400] leading-[1.8] text-territory mb-4">
-                       
+
                           <div dangerouslySetInnerHTML={{__html: content.description}}></div>
                       </div>
                       <Image

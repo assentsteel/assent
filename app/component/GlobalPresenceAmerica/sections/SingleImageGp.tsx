@@ -6,12 +6,12 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 import { motion } from "framer-motion";
 
- 
- 
-      import { GpAmericaSection} from '@/public/types/Common';   
+
+
+      import { GpAmericaSection} from '@/public/types/Common';
 import { imageVariants } from "../../common/MotionAnimation";
-      
-     const SingleImageGp = ({ data }: { data: GpAmericaSection }) => {    
+
+     const SingleImageGp = ({ data }: { data: GpAmericaSection }) => {
   const containerRef = useRef(null);
 
 
@@ -46,7 +46,7 @@ import { imageVariants } from "../../common/MotionAnimation";
           <Image
             src={data.image}
             alt={data.imageAlt}
-            width={500}
+            width={1600}
             height={569}
             className="rounded-[15px] object-cover w-full h-full"
           />
