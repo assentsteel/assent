@@ -68,6 +68,31 @@ const Fillters = ({ data,setUpdated,clearFilters,search,setSearch }: { data: {na
 
   const inputRef = useRef<HTMLInputElement>(null);
   const [hasValue, setHasValue] = useState(false);
+  const [isPickerOpen, setIsPickerOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const handlePickerToggle = () => {
+    if (isPickerOpen) {
+      inputRef.current?.blur(); // Closes the picker
+      setIsPickerOpen(false);
+    } else {
+      inputRef.current?.showPicker(); // Opens the picker
+      setIsPickerOpen(true);
+    }
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   useEffect(()=>{
     console.log(isOpen)
@@ -111,11 +136,12 @@ const Fillters = ({ data,setUpdated,clearFilters,search,setSearch }: { data: {na
 
           <div
       className="relative w-full mb-2 md:mb-0 mt-2 md:mt-0"
-      onClick={() => inputRef.current?.showPicker?.()}
+      onClick={handlePickerToggle}
     >
       <input
         ref={inputRef}
         type="date"
+        onBlur={() => setIsPickerOpen(false)}
         onChange={(e) => handleDateChange(e)}
         className={`uppercase px-1 appearance-none bg-transparent border-0 border-b border-black focus:outline-none focus:ring-0 focus:border-black text-primary text-xs py-2 pr-6 w-full cursor-pointer [&::-webkit-calendar-picker-indicator]:hidden ${!hasValue ? 'text-gray-400' : ''}`}
         value={date || ""}
@@ -144,9 +170,9 @@ const Fillters = ({ data,setUpdated,clearFilters,search,setSearch }: { data: {na
       </div>
     </div>
 
-        <div  className="relative w-full my-3 lg:my-0 ">
+        <div  className="relative w-full my-3 lg:my-0 " ref={dropdownRef}>
           <button
-            onClick={() => setIsOpen(true)}
+            onClick={() => setIsOpen(!isOpen)}
             className="uppercase w-full text-left text-xs text-primary bg-transparent border-0 border-b border-black py-2 pr-6 appearance-none focus:outline-none focus:ring-0 focus:border-black relative"
           >
             {selectedValues[0].label}
