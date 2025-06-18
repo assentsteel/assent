@@ -5,15 +5,6 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { assets } from "@/public/assets/assets";
 
- const dataimagebg = [
-  assets.hrbn1,
-  assets.hrbn2,
-  assets.hrbn3,
-  assets.hrbn4,
-  assets.hrbn5,
-  assets.hrbn6,
-  assets.hrbn7,
-];
 
 
         import {   Engineering } from '@/public/types/Common';
