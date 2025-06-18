@@ -14,11 +14,12 @@ import { assets } from "@/public/assets/assets";
   assets.hrbn6,
   assets.hrbn7,
 ];
- 
-  
-        import {   Engineering } from '@/public/types/Common';   
-        
-        const Boxgrid = ({ data, maxchwidth, colnum }: { data: Engineering,colnum?:number,maxchwidth?:number}) => {    
+
+
+        import {   Engineering } from '@/public/types/Common';
+
+const Boxgrid = ({ data, maxchwidth, colnum }: { data: Engineering, colnum?: number, maxchwidth?: number }) => {
+          console.log(data)
   return (
     <section className="bg-primary overimg relative">
     <div className="container mx-auto py-4">
@@ -65,7 +66,7 @@ import { assets } from "@/public/assets/assets";
     <Link href={`#`}>
       <div
         style={{
-          backgroundImage: `url(${dataimagebg[index]?.src || dataimagebg[index]})`,
+          backgroundImage: `url(${expertise.image})`,
         }}
         className="group dddd relative"
       >
