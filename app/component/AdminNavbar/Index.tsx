@@ -7,7 +7,6 @@ import {
     NewspaperIcon,
     UserGroupIcon,
     EnvelopeIcon,
-    PresentationChartBarIcon,
     BriefcaseIcon,
     GlobeAltIcon,
   } from "@heroicons/react/24/outline";
