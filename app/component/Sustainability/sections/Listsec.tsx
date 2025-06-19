@@ -67,8 +67,8 @@ gsap.registerPlugin(ScrollTrigger);
             src={Item.logo}
             alt={Item.logoAlt}
             className="group-hover:brightness-0 group-hover:invert-[1] transition-all duration-400"
-            width={20}
-            height={33}
+            width={37}
+            height={37}
           />
         </p>
         <p className="text-lg text-territory group-hover:text-white transition-all duration-400">
