@@ -284,6 +284,7 @@ const Home = () => {
                                                 <ImageUploader
                                                     value={field.value}
                                                     onChange={field.onChange}
+                                                    isLogo
                                                 />
                                             )}
                                         />
@@ -415,6 +416,7 @@ const Home = () => {
                                                     <ImageUploader
                                                         value={field.value}
                                                         onChange={field.onChange}
+                                                        isLogo
                                                     />
                                                 )}
                                             />
@@ -596,6 +598,7 @@ const Home = () => {
                                                         <ImageUploader
                                                             value={field.value}
                                                             onChange={field.onChange}
+                                                            isLogo
                                                         />
                                                     )}
                                                 />

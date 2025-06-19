@@ -323,6 +323,7 @@ const EngineeringPage = () => {
                                             <ImageUploader
                                                 value={field.value}
                                                 onChange={field.onChange}
+                                                isLogo
                                             />
                                         )}
                                     />
@@ -561,6 +562,7 @@ const EngineeringPage = () => {
                                                                 onChange={(url:string) => {
                                                                     field.onChange(url); // update file URL // update size separately
                                                                   }}
+                                                                isLogo
                                                             />
                                                         )}
                                                     />
@@ -658,6 +660,7 @@ const EngineeringPage = () => {
                                             <ImageUploader
                                                 value={field.value}
                                                 onChange={field.onChange}
+                                                isLogo
                                             />
                                         )}
                                     />
