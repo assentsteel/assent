@@ -259,6 +259,7 @@ const SustainabilityPage = () => {
                                     <ImageUploader
                                         value={field.value}
                                         onChange={field.onChange}
+                                        isLogo
                                     />
                                 )}
                             />

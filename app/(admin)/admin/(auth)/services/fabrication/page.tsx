@@ -378,6 +378,7 @@ const FabricationPage = () => {
                                             <ImageUploader
                                                 value={field.value}
                                                 onChange={field.onChange}
+                                                isLogo
                                             />
                                         )}
                                     />
@@ -574,6 +575,7 @@ const FabricationPage = () => {
                                             <ImageUploader
                                                 value={field.value}
                                                 onChange={field.onChange}
+                                                isLogo
                                             />
                                         )}
                                     />
@@ -690,6 +692,7 @@ const FabricationPage = () => {
                                             <ImageUploader
                                                 value={field.value}
                                                 onChange={field.onChange}
+                                                isLogo
                                             />
                                         )}
                                     />

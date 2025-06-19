@@ -391,6 +391,7 @@ const QualityPage = () => {
                                             <ImageUploader
                                                 value={field.value}
                                                 onChange={field.onChange}
+                                                isLogo
                                             />
                                         )}
                                     />

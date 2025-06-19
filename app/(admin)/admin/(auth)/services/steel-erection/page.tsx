@@ -397,6 +397,7 @@ const SteelErectionPage = () => {
                                             <ImageUploader
                                                 value={field.value}
                                                 onChange={field.onChange}
+                                                isLogo
                                             />
                                         )}
                                     />

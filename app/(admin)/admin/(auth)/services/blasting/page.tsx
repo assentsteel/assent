@@ -341,6 +341,7 @@ const BlastingPage = () => {
                                             <ImageUploader
                                                 value={field.value}
                                                 onChange={field.onChange}
+                                                isLogo
                                             />
                                         )}
                                     />
@@ -457,6 +458,7 @@ const BlastingPage = () => {
                                             <ImageUploader
                                                 value={field.value}
                                                 onChange={field.onChange}
+                                                isLogo
                                             />
                                         )}
                                     />
