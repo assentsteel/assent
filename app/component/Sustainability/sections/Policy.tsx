@@ -7,10 +7,12 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { containersVariants, textItemsVariants } from "../../common/MotionAnimation";
 gsap.registerPlugin(ScrollTrigger);
 
- 
-   import {   Sustainability  } from '@/public/types/Common';   
-          
-   const Policy = ({ data }: { data: Sustainability}) => {    
+import Image from "next/image";
+
+
+   import {   Sustainability  } from '@/public/types/Common';
+
+   const Policy = ({ data }: { data: Sustainability}) => {
   const containerRef = useRef(null);
 
   const textContainerVariants = {
@@ -101,13 +103,21 @@ gsap.registerPlugin(ScrollTrigger);
 
     <motion.button
       variants={textItemsVariants}
-      className="group gap-4 flex justify-between items-center mt-auto border border-secondary py-2 px-6 rounded-full hover:bg-white hover:text-secondary text-territory transition text-xs h-[40px] lg:h-[48px] font-medium uppercase relative"
+      className="group gap-4 flex justify-between items-center mt-auto border border-secondary py-2 px-6 rounded-full bg-white hover:bg-secondary hover:text-white text-territory transition text-xs h-[40px] lg:h-[48px] font-medium uppercase relative"
     >
       <span className="w-fit text-center">
       {data.secondSection.fileName}
       </span>
       <div className="flex gap-3">
-        {/* Your SVGs here */}
+                        <div>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16" fill="none">
+                            <path d="M1.6084 15H12.6084M7.1084 1V11.5M7.1084 11.5L10.3167 8.4375M7.1084 11.5L3.90007 8.4375" stroke="#1F1F1F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div>
+                                <Image src="/assets/img/icns/eye.png" alt="Logo" width={22} height={15} />
+                        </div>
+
       </div>
     </motion.button>
   </motion.div>
@@ -131,15 +141,15 @@ gsap.registerPlugin(ScrollTrigger);
                     >
                       {data.secondSection.secondTitle}
                     </motion.h2>
- 
-                        <motion.p 
+
+                        <motion.p
                         className="last:mb-0 text-sm font-normal mb-3 lg:mb-6 text-territory leading-[1.6]"
                         custom="y"
                         variants={textVariants}
                         transition={{ delay: 0.2  , duration: 0.5 }}
                       >
                        {data.secondSection.description}
-                      </motion.p> 
+                      </motion.p>
                   </div>
                 </motion.div>
               </div>

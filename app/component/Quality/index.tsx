@@ -28,7 +28,7 @@ const Index = async ({ data }: { data: Quality }) => {
         <BoxSlider data={data} />
         </section>
       <TextImg data={data} />
-      <div className="custw"><SingleImageText data={data.thirdSection} maxwidth={'max-w-[68ch]'} textright={true} /></div>
+      <div className="custw"><SingleImageText data={data.fourthSection} maxwidth={'max-w-[68ch]'} textright={true} /></div>
       <div className="custw"><Accordion data={data}     /></div>
 
 

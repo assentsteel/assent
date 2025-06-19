@@ -92,6 +92,8 @@ gsap.registerPlugin(ScrollTrigger);
           src={data.secondSection.items[currentIndex].image}
           alt=""
           className="rounded-[15px]"
+          width={500}
+          height={500}
         />
       </figure>
     </div>
@@ -111,16 +113,16 @@ gsap.registerPlugin(ScrollTrigger);
       </motion.h2>
 
       <motion.div
-        className="text-territory text-base font-[400] leading-[1.8] mb-6 lg:mb-[30px]"
+        className="text-territory flex flex-col gap-3 text-base font-[400] leading-[1.8] mb-6 lg:mb-[30px] mb-4 text-sm text-white leading-[1.6]"
         initial="hidden"
         whileInView="visible"
         variants={imageVariants}
         viewport={{ once: true, amount: 0.2 }}
+        dangerouslySetInnerHTML={{__html: data.secondSection.items[currentIndex].description}}
       > 
-          <p  className="mb-4 text-sm text-white leading-[1.6]">
-            {data.secondSection.items[currentIndex].description}
-          </p> 
+ 
       </motion.div>
+      {data.secondSection.items.length > 1 && (
       <div className=" flex gap-2 lg:gap-[30px] z-10 mb-8 md:mb-[40px] justify-end md:justify-normal">
         <button onClick={handlePrev}
           className="bg-white text-black px-3 py-1 rounded-full w-[38px] h-[38px] md:w-[48px] md:h-[48px] hover:bg-secondary group transition flex items-center justify-center">
@@ -144,6 +146,7 @@ gsap.registerPlugin(ScrollTrigger);
           />
         </button>
       </div>
+      )}
 
       <div className="flex flex-col md:flex-row lg:flex-col xl:flex-row justify-center items-center md:justify-start gap-5  ">
         <button className="mb-4 md:mb:0  group flex justify-between items-center mt-auto border border-secondary py-2 px-6 rounded-full hover:bg-white hover:text-territory text-white transition text-xs h-[40px] lg:h-[48px] max-w-[280px] w-[280px] font-medium uppercase relative">
@@ -166,18 +169,8 @@ gsap.registerPlugin(ScrollTrigger);
                 strokeLinejoin="round"
               />
             </svg>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="16"
-              viewBox="0 0 24 16"
-              fill="none"
-            >
-              <path
-                d="M5.64453 13.0948C7.61842 14.3649 9.80446 15 12.2026 15C14.601 15 16.7857 14.3649 18.7567 13.0948C20.7279 11.8246 22.2214 10.1263 23.2371 8C22.2214 5.87366 20.7266 4.1754 18.7527 2.90524C16.7788 1.63508 14.5928 1 12.1946 1C9.79622 1 7.61152 1.63508 5.64051 2.90524C3.6693 4.1754 2.17585 5.87366 1.16016 8C2.17585 10.1263 3.67064 11.8246 5.64453 13.0948Z"
-                stroke="#1F1F1F"
-              />
-            </svg>
+            
+            <Image src="/assets/img/icns/eye.png"  alt="" width={22} height={14}/>
           </div>
         </button>
 
@@ -201,18 +194,8 @@ gsap.registerPlugin(ScrollTrigger);
                 strokeLinejoin="round"
               />
             </svg>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="16"
-              viewBox="0 0 24 16"
-              fill="none"
-            >
-              <path
-                d="M5.64453 13.0948C7.61842 14.3649 9.80446 15 12.2026 15C14.601 15 16.7857 14.3649 18.7567 13.0948C20.7279 11.8246 22.2214 10.1263 23.2371 8C22.2214 5.87366 20.7266 4.1754 18.7527 2.90524C16.7788 1.63508 14.5928 1 12.1946 1C9.79622 1 7.61152 1.63508 5.64051 2.90524C3.6693 4.1754 2.17585 5.87366 1.16016 8C2.17585 10.1263 3.67064 11.8246 5.64453 13.0948Z"
-                stroke="#1F1F1F"
-              />
-            </svg>
+           
+            <Image src="/assets/img/icns/eye.png"  alt="" width={22} height={14}/>
           </div>
         </button>
       </div>

@@ -104,7 +104,8 @@ import {gdVariants, slideInTop } from "./MotionAnimation";
         </div>
       </div>
       <div>
-      <div className=" ">
+        <div className="overflow-hidden"> 
+      <div className=" container  " >
           <div className="relative w-full  ">
             <motion.div  variants={slideInLeft}
     initial="hidden"
@@ -126,7 +127,7 @@ import {gdVariants, slideInTop } from "./MotionAnimation";
               }}
               loop
               spaceBetween={20}
-                className="  overflow-hidden"
+            className="!overflow-visible"
 
                 breakpoints={{
                   320: {
@@ -139,7 +140,7 @@ import {gdVariants, slideInTop } from "./MotionAnimation";
                     slidesPerView: 3,
                   },
                   1524: {
-                    slidesPerView:4.4,
+                    slidesPerView:4.3,
                   },
 
                 }}
@@ -157,7 +158,7 @@ import {gdVariants, slideInTop } from "./MotionAnimation";
                     alt={src.imageAlt}
                     width={600}
                     height={400}
-                    className="w-full h-auto object-cover rounded-md"
+                    className="w-full h-auto object-cover rounded-[18px]"
                     priority
                     />
                     </motion.div>
@@ -170,6 +171,7 @@ import {gdVariants, slideInTop } from "./MotionAnimation";
               </motion.div>
           </div>
         </div>
+      </div>
       </div>
     </section>
   );
