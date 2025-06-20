@@ -15,6 +15,7 @@ import MapSection from './MapSection'
 import NumberValueNoTitle from './NumberValueNoTitle'
 import Projects from './Projects'
 import { MdExpandMore } from "react-icons/md";
+import AdminItemContainer from '@/app/component/common/AdminItemContainer';
 
 export interface GlobalPresenceFormProps {
     pageTitle: string;
@@ -143,9 +144,10 @@ const IndividualGlobalPresence = () => {
                     sections?.map((section,index)=>(
                         <div key={index}>
                             <div className='flex gap-2 items-center'>
-                            <h1 className='text-lg font-bold'>{`Section ${index + 1}`}</h1>
-                            <IoMdCloseCircle  className='cursor-pointer text-lg text-red-600' onClick={()=>handleRemoveSection(index)}/>
+                            <h1 className='text-md font-semibold'>{`Section ${index + 1}`}</h1>
+                            <IoMdCloseCircle  className='cursor-pointer text-md text-red-600' onClick={()=>handleRemoveSection(index)}/>
                             </div>
+                            <AdminItemContainer>
                             {section.type == "Type 1" && (<BannerSection index={index} register={register} control={control} type={section.type}/>)}
                             {section.type == "Type 2" && (<NumberValue index={index} register={register} control={control} type={section.type}/>)}
                             {section.type == "Type 3" && (<PersonImage index={index} register={register} control={control} type={section.type}/>)}
@@ -153,22 +155,23 @@ const IndividualGlobalPresence = () => {
                             {section.type == "Type 5" && (<MapSection index={index} register={register} control={control} type={section.type}/>)}
                             {section.type == "Type 6" && (<NumberValueNoTitle index={index} register={register} control={control} type={section.type}/>)}
                             {section.type == "Type 7" && (<Projects index={index} register={register} control={control} type={section.type}/>)}
+                        </AdminItemContainer>
                         </div>
                     ))
                 )}
-                        <Button type="button" className="bg-black text-white items-center gap-2 flex" onClick={()=>setTypeMenuOpen(true)}>Add Section <MdExpandMore className='text-xl'/></Button>
+                        <Button type="button" className="bg-black text-white items-center gap-2 flex text-[16px]" onClick={()=>setTypeMenuOpen(true)}>Add Section <MdExpandMore className='text-xl'/></Button>
                     
                     {typeMenuOpen && <div className='relative grid grid-cols-4 gap-2 border border-gray-300 p-2'>
                         <IoMdCloseCircle  className='absolute top-2 right-2 cursor-pointer text-lg' onClick={()=>setTypeMenuOpen(false)}/>
                     {sectionTypes.map((item,index)=>(
                         <div onClick={()=>handleAddSection(item.name)} key={index} className=' h-[200px] w-[200px] flex flex-col items-center justify-center hover:border-2 hover:p-2 hover:border-gray-300 hover:shadow-md hover:shadow-gray-300 hover:cursor-pointer'>
                             <Image src={item.image} alt={item.name} width={200} height={200}/>
-                            <p>{item.name}</p>
+                            <p className='text-[16px]'>{item.name}</p>
                         </div>
                     ))}
                 </div>}
 
-                <Button type="submit" className="text-white" onClick={handleSubmit(handleAddGlobalPresence)}>Save</Button>
+                <Button type="submit" className="text-white text-[16px]" onClick={handleSubmit(handleAddGlobalPresence)}>Save</Button>
     </div>
   )
 }

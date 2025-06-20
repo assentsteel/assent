@@ -12,6 +12,7 @@ import { Textarea } from '@/components/ui/textarea'
 const ReactQuill = dynamic(() => import('react-quill-new'), { ssr: false })
 import 'react-quill-new/dist/quill.snow.css';
 import dynamic from 'next/dynamic'
+import AdminItemContainer from '@/app/component/common/AdminItemContainer';
 
 interface QualityFormProps {
 
@@ -125,23 +126,24 @@ const QualityPage = () => {
 
                 <div className='flex flex-col gap-2'>
                     <div>
-                        <Label className='pl-3 font-bold'>Page Title</Label>
+                        <Label oneInput>Page Title</Label>
                         <Input type='text' placeholder='Page Title' {...register("pageTitle")} />
                     </div>
                 </div>
 
-                <Label className='pl-3 font-bold border-b p-2 text-lg'>First Section</Label>
-                <div className='border p-2 rounded-md flex flex-col gap-2'>
+<AdminItemContainer>
+                <Label main>First Section</Label>
+                <div className='p-5 rounded-md flex flex-col gap-2'>
                     <div className='flex flex-col gap-2'>
                         <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>Main Title</Label>
+                            <Label className='font-bold'>Main Title</Label>
                             <Input type='text' placeholder='Main Title' {...register("firstSection.mainTitle", {
                                 required: "Main Title is required"
                             })} />
                             {errors.firstSection?.mainTitle && <p className='text-red-500'>{errors.firstSection?.mainTitle.message}</p>}
                         </div>
                         <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>Sub Title</Label>
+                            <Label className='font-bold'>Sub Title</Label>
                             <Input type='text' placeholder='Sub Title' {...register("firstSection.subTitle", {
                                 required: "Sub Title is required"
                             })} />
@@ -156,7 +158,7 @@ const QualityPage = () => {
 
                         <div className='flex flex-col gap-2'>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Image</Label>
+                                    <Label className='font-bold'>Image</Label>
                                     <Controller
                                         name={`firstSection.image`}
                                         control={control}
@@ -175,7 +177,7 @@ const QualityPage = () => {
 
                                 <div className='flex flex-col gap-2'>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Alt Tag</Label>
+                                    <Label className='font-bold'>Alt Tag</Label>
                                     <Input type='text' placeholder='Alt Tag' {...register(`firstSection.imageAlt`, {
                                         required: "Value is required"
                                     })} />
@@ -194,13 +196,15 @@ const QualityPage = () => {
 
 
                 </div>
+                </AdminItemContainer>
 
 
-                <Label className='pl-3 font-bold border-b p-2 text-lg'>Certificates Section</Label>
+<AdminItemContainer>
+                <Label main>Certificates Section</Label>
                 <div className='border p-2 rounded-md flex flex-col gap-2'>
                     <div className='flex flex-col gap-2'>
                         <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>Title</Label>
+                            <Label className='font-bold'>Title</Label>
                             <Input type='text' placeholder='Title' {...register("certificateSection.title", {
                                 required: "Title is required"
                             })} />
@@ -211,19 +215,19 @@ const QualityPage = () => {
 
 
                     <div>
-                    <Label className='pl-3 font-bold'>Items</Label>
+                    <Label className='font-bold'>Items</Label>
                 <div className='border p-2 rounded-md flex flex-col gap-5'>
 
 
                     {certificateSectionItems.map((field, index) => (
-                        <div key={field.id} className='grid grid-cols-2 gap-2 relative border p-2 rounded-md'>
+                        <div key={field.id} className='grid grid-cols-2 gap-2 relative border-b p-2 pb-5 last:border-b-0'>
                             <div className='absolute top-2 right-2'>
                                 <RiDeleteBinLine onClick={() => certificateSectionRemove(index)} className='cursor-pointer text-red-600' />
                             </div>
 
                             <div className='flex flex-col gap-2'>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Image</Label>
+                                    <Label className='font-bold'>Image</Label>
                                     <Controller
                                         name={`certificateSection.items.${index}.image`}
                                         control={control}
@@ -242,7 +246,7 @@ const QualityPage = () => {
 
                                 <div className='flex flex-col gap-2'>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Alt Tag</Label>
+                                    <Label className='font-bold'>Alt Tag</Label>
                                     <Input type='text' placeholder='Alt Tag' {...register(`certificateSection.items.${index}.imageAlt`, {
                                         required: "Value is required"
                                     })} />
@@ -257,22 +261,26 @@ const QualityPage = () => {
                         </div>
                     ))}
 
-                    <div>
-                        <Button type='button' className="w-full cursor-pointer text-white" onClick={() => certificateSectionAppend({ image: "", imageAlt: "" })}>Add Item</Button>
-                    </div>
+                    
 
                 </div>
+                <div className='flex justify-end mt-2'>
+                        <Button type='button' addItem onClick={() => certificateSectionAppend({ image: "", imageAlt: "" })}>Add Item</Button>
+                    </div>
                 </div>
                     
 
                 </div>
 
+                </AdminItemContainer>
 
-                <Label className='pl-3 font-bold border-b p-2 text-lg'>Third Section</Label>
-                <div className='border p-2 rounded-md flex flex-col gap-2'>
+
+<AdminItemContainer>
+                <Label main>Third Section</Label>
+                <div className='p-5 rounded-md flex flex-col gap-2'>
                     <div className='flex flex-col gap-2'>
                     <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>Image</Label>
+                            <Label className='font-bold'>Image</Label>
                             <Controller
                                 name="thirdSection.image"
                                 control={control}
@@ -287,18 +295,18 @@ const QualityPage = () => {
                             {errors.thirdSection?.image && (
                                 <p className="text-red-500">{errors.thirdSection?.image.message}</p>
                             )}
-                            <Label className='pl-3 font-bold'>Alt Tag</Label>
+                            <Label className='font-bold'>Alt Tag</Label>
                             <Input type='text' placeholder='Alt Tag' {...register("thirdSection.imageAlt")} />
                         </div>
                         <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>Title</Label>
+                            <Label className='font-bold'>Title</Label>
                             <Input type='text' placeholder='Title' {...register("thirdSection.title", {
                                 required: "Title is required"
                             })} />
                             {errors.thirdSection?.title && <p className='text-red-500'>{errors.thirdSection?.title.message}</p>}
                         </div>
                         <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>Description</Label>
+                            <Label className='font-bold'>Description</Label>
                             <Controller name="thirdSection.description" control={control} render={({ field }) => {
                                 return <ReactQuill theme="snow" value={field.value} onChange={field.onChange} />
                             }} />
@@ -310,12 +318,15 @@ const QualityPage = () => {
 
                 </div>
 
+                </AdminItemContainer>
 
-                <Label className='pl-3 font-bold border-b p-2 text-lg'>Fourth Section</Label>
-                <div className='border p-2 rounded-md flex flex-col gap-2'>
+
+<AdminItemContainer>
+                <Label main>Fourth Section</Label>
+                <div className='p-5 rounded-md flex flex-col gap-2'>
                     <div className='flex flex-col gap-2'>
                     <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>Image</Label>
+                            <Label className='font-bold'>Image</Label>
                             <Controller
                                 name="fourthSection.image"
                                 control={control}
@@ -330,18 +341,18 @@ const QualityPage = () => {
                             {errors.fourthSection?.image && (
                                 <p className="text-red-500">{errors.fourthSection?.image.message}</p>
                             )}
-                            <Label className='pl-3 font-bold'>Alt Tag</Label>
+                            <Label className='font-bold'>Alt Tag</Label>
                             <Input type='text' placeholder='Alt Tag' {...register("fourthSection.imageAlt")} />
                         </div>
                         <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>Title</Label>
+                            <Label className='font-bold'>Title</Label>
                             <Input type='text' placeholder='Title' {...register("fourthSection.title", {
                                 required: "Title is required"
                             })} />
                             {errors.fourthSection?.title && <p className='text-red-500'>{errors.fourthSection?.title.message}</p>}
                         </div>
                         <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>Description</Label>
+                            <Label className='font-bold'>Description</Label>
                             <Textarea placeholder='Description' {...register("fourthSection.description", {
                                 required: "Description is required"
                             })} />
@@ -354,20 +365,22 @@ const QualityPage = () => {
 
                 </div>
 
+                </AdminItemContainer>
 
 
 
-                <div>
+
+                <AdminItemContainer>
                     <div className='flex border-b mb-5'>
-                    <Label className='pl-3 font-bold text-lg'>Fifth Section</Label>
+                    <Label main>Fifth Section</Label>
                     </div>
 
                     
 
-                <div className='border p-2 rounded-md flex flex-col gap-5'>
+                <div className='p-5 flex flex-col gap-5'>
                 <div className='flex flex-col gap-2'>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Title</Label>
+                                    <Label className='font-bold'>Title</Label>
                                     <Input type='text' placeholder='Title' {...register(`fifthSection.title`, {
                                         required: "Value is required"
                                     })} />
@@ -375,8 +388,10 @@ const QualityPage = () => {
                                 </div>
                             </div>
 
+                            <Label>Items</Label>
+
                     {fifthSectionItems.map((field, index) => (
-                        <div key={field.id} className='grid grid-cols-2 gap-2 relative border p-2 rounded-md'>
+                        <div key={field.id} className='grid grid-cols-2 gap-2 relative border-b p-2 pb-5 last:border-b-0'>
                             <div className='absolute top-2 right-2'>
                                 <RiDeleteBinLine onClick={() => fifthSectionRemove(index)} className='cursor-pointer text-red-600' />
                             </div>
@@ -419,12 +434,13 @@ const QualityPage = () => {
                         </div>
                     ))}
 
-                    <div>
-                        <Button type='button' className="w-full cursor-pointer text-white" onClick={() => fifthSectionAppend({ logo: "", logoAlt: "", title: "", description: "" })}>Add Item</Button>
+                    
+                    <div className='flex justify-end mt-2'>
+                        <Button type='button' addItem onClick={() => fifthSectionAppend({ logo: "", logoAlt: "", title: "", description: "" })}>Add Item</Button>
                     </div>
-
                 </div>
-                </div>
+                
+                </AdminItemContainer>
 
 
 
@@ -439,7 +455,7 @@ const QualityPage = () => {
                 </div>
 
                 <div className='flex justify-center'>
-                    <Button type='submit' className="w-full cursor-pointer text-white">Submit</Button>
+                    <Button type='submit' className="w-full cursor-pointer text-white text-[16px]">Submit</Button>
                 </div>
 
             </form>

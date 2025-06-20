@@ -20,7 +20,6 @@ import Image from "next/image";
             <div className="flex items-center">
         <Image src="/assets/img/logo.svg" alt="Logo" width={150} height={150} />
           </div>
-              <h2 className="text-lg font-semibold text-gray-800">Admin Panel</h2>
             </div>
             <nav className="space-y-1">
               <AdminNavbar />
@@ -39,7 +38,7 @@ import Image from "next/image";
         </aside>
   
         {/* Main content */}
-        <main className="flex-1  h-screen overflow-y-auto p-8">{children}</main>
+        <main className="flex-1  h-screen overflow-y-auto p-8 bg-gray-100">{children}</main>
       </div>
     );
   }

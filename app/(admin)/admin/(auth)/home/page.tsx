@@ -13,6 +13,7 @@ const ReactQuill = dynamic(() => import('react-quill-new'), { ssr: false })
 import 'react-quill-new/dist/quill.snow.css';
 import dynamic from 'next/dynamic'
 import { VideoUploader } from '@/components/ui/video-uploader';
+import AdminItemContainer from '@/app/component/common/AdminItemContainer';
 
 interface HomeFormProps {
 
@@ -158,19 +159,19 @@ const Home = () => {
             <form className='flex flex-col gap-5' onSubmit={handleSubmit(handleAddHome)}>
 
 
-                <div className='flex flex-col gap-2'>
-                    <Label className='pl-3 font-bold border-b p-2 text-lg'>Banner Section</Label>
-                    <div className='border p-2 rounded-md flex flex-col gap-5'>
+                <AdminItemContainer>
+                    <Label className='' main>Banner Section</Label>
+                    <div className='p-5 rounded-md flex flex-col gap-5'>
 
 
                         {bannerSectionItems.map((field, index) => (
-                            <div key={field.id} className='grid grid-cols-2 gap-2 relative border p-2 rounded-md'>
+                            <div key={field.id} className='grid grid-cols-2 gap-2 relative border-b  pb-5'>
                                 <div className='absolute top-2 right-2'>
                                     <RiDeleteBinLine onClick={() => bannerSectionRemove(index)} className='cursor-pointer text-red-600' />
                                 </div>
                                 <div className='flex flex-col gap-2'>
                                     <div className='flex flex-col gap-2'>
-                                        <Label className='pl-3 font-bold'>Video</Label>
+                                        <Label className=''>Video</Label>
                                         <Controller
                                             name={`bannerSection.items.${index}.video`}
                                             control={control}
@@ -187,8 +188,12 @@ const Home = () => {
                                         )}
                                     </div>
 
-                                    <div className='flex flex-col gap-2'>
-                                        <Label className='pl-3 font-bold'>Poster</Label>
+                                    
+
+                                </div>
+                                <div className='flex flex-col gap-2'>
+                                <div className='flex flex-col gap-2'>
+                                        <Label className='text-[16px] font-light'>Poster</Label>
                                         <Controller
                                             name={`bannerSection.items.${index}.poster`}
                                             control={control}
@@ -204,58 +209,61 @@ const Home = () => {
                                             <p className="text-red-500">{errors.bannerSection?.items?.[index]?.poster.message}</p>
                                         )}
                                     </div>
-
+                                    <div>
+                                    
                                 </div>
-                                <div className='flex flex-col gap-2'>
-                                    <div className='flex flex-col gap-2'>
-                                        <Label className='pl-3 font-bold'>Main Title</Label>
+                                
+                            </div>
+                            <div className='grid grid-cols-3 col-span-2 gap-3'>
+                            <div className='flex flex-col gap-2'>
+                                        <Label className='text-[16px] font-light'>Main Title</Label>
                                         <Input type='text' placeholder='Main Title' {...register(`bannerSection.items.${index}.mainTitle`, {
                                             required: "Main Title is required"
                                         })} />
                                         {errors.bannerSection?.items?.[index]?.mainTitle && <p className='text-red-500'>{errors.bannerSection?.items?.[index]?.mainTitle.message}</p>}
                                     </div>
                                     <div className='flex flex-col gap-2'>
-                                        <Label className='pl-3 font-bold'>Sub Title</Label>
+                                        <Label className='text-[16px] font-light'>Sub Title</Label>
                                         <Input type='text' placeholder='Sub Title' {...register(`bannerSection.items.${index}.subTitle`, {
                                             required: "Sub Title is required"
                                         })} />
                                         {errors.bannerSection?.items?.[index]?.subTitle && <p className='text-red-500'>{errors.bannerSection?.items?.[index]?.subTitle.message}</p>}
                                     </div>
                                     <div className='flex flex-col gap-2'>
-                                        <Label className='pl-3 font-bold'>Primary Color Text</Label>
+                                        <Label className='text-[16px] font-light'>Primary Color Text</Label>
                                         <Input type='text' placeholder='Primary Color Text' {...register(`bannerSection.items.${index}.primaryColorText`)} />
                                     </div>
-                                </div>
-
-                            </div>
+                                    </div>
+                                    </div>
                         ))}
 
-                        <div>
-                            <Button type='button' className="w-full cursor-pointer text-white" onClick={() => bannerSectionAppend({ mainTitle: "", subTitle: "", video: "", poster: "", primaryColorText: "" })}>Add Item</Button>
+                        <div className='flex justify-end'>
+                            <Button type='button' className="" addItem onClick={() => bannerSectionAppend({ mainTitle: "", subTitle: "", video: "", poster: "", primaryColorText: "" })}>Add Item</Button>
                         </div>
 
                     </div>
-                </div>
+                </AdminItemContainer>
 
-                <Label className='pl-3 font-bold border-b p-2 text-lg'>First Section</Label>
-                <div className='border p-2 rounded-md flex flex-col gap-2'>
+                <AdminItemContainer>
+                <Label className='' main>First Section</Label>
+                <div className='p-5 flex flex-col gap-2'>
                     <div className='flex flex-col gap-2'>
                         <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>Main Title</Label>
+                            <Label className=' font-bold'>Main Title</Label>
                             <Input type='text' placeholder='Main Title' {...register("firstSection.mainTitle", {
                                 required: "Main Title is required"
                             })} />
                             {errors.firstSection?.mainTitle && <p className='text-red-500'>{errors.firstSection?.mainTitle.message}</p>}
                         </div>
                         <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>Sub Title</Label>
+                            <Label className=' font-bold'>Sub Title</Label>
                             <Input type='text' placeholder='Sub Title' {...register("firstSection.subTitle", {
                                 required: "Sub Title is required"
                             })} />
                             {errors.firstSection?.subTitle && <p className='text-red-500'>{errors.firstSection?.subTitle.message}</p>}
                         </div>
                         <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>Button Text</Label>
+                            <Label className=' font-bold'>Button Text</Label>
                             <Input type='text' placeholder='Button Text' {...register("firstSection.buttonText", {
                                 required: "Button Text is required"
                             })} />
@@ -264,18 +272,18 @@ const Home = () => {
                     </div>
 
 
-                    <div>
-                        <Label className='pl-3 font-bold'>Items</Label>
+                    <div className='flex flex-col gap-2'>
+                        <Label className=' font-bold'>Items</Label>
                         <div className='border p-2 rounded-md flex flex-col gap-5'>
 
 
                             {firstSectionItems.map((field, index) => (
-                                <div key={field.id} className='grid grid-cols-2 gap-2 relative border p-2 rounded-md'>
+                                <div key={field.id} className='grid grid-cols-2 gap-2 relative border-b  pb-5'>
                                     <div className='absolute top-2 right-2'>
                                         <RiDeleteBinLine onClick={() => firstSectionRemove(index)} className='cursor-pointer text-red-600' />
                                     </div>
                                     <div className='flex flex-col gap-2'>
-                                        <Label className='pl-3 font-bold'>Logo</Label>
+                                        <Label className=' font-bold'>Logo</Label>
                                         <Controller
                                             name={`firstSection.items.${index}.logo`}
                                             control={control}
@@ -294,7 +302,7 @@ const Home = () => {
 
                                         <div className='flex flex-col gap-2'>
                                             <div className='flex flex-col gap-2'>
-                                                <Label className='pl-3 font-bold'>Alt Tag</Label>
+                                                <Label className=' font-bold'>Alt Tag</Label>
                                                 <Input type='text' placeholder='Alt Tag' {...register(`firstSection.items.${index}.logoAlt`)} />
                                             </div>
                                         </div>
@@ -303,15 +311,15 @@ const Home = () => {
 
                                     <div className='flex flex-col gap-2'>
                                         <div className='flex flex-col gap-2'>
-                                            <Label className='pl-3 font-bold'>Number</Label>
+                                            <Label className=' font-bold'>Number</Label>
                                             <Input type='text' placeholder='Number' {...register(`firstSection.items.${index}.number`)} />
                                         </div>
                                         <div className='flex flex-col gap-2'>
-                                            <Label className='pl-3 font-bold'>Suffix</Label>
+                                            <Label className=' font-bold'>Suffix</Label>
                                             <Input type='text' placeholder='Suffix' {...register(`firstSection.items.${index}.suffix`)} />
                                         </div>
                                         <div className='flex flex-col gap-2'>
-                                            <Label className='pl-3 font-bold'>Value</Label>
+                                            <Label className=' font-bold'>Value</Label>
                                             <Input type='text' placeholder='Value' {...register(`firstSection.items.${index}.value`, {
                                                 required: "Value is required"
                                             })} />
@@ -322,8 +330,8 @@ const Home = () => {
                                 </div>
                             ))}
 
-                            <div>
-                                <Button type='button' className="w-full cursor-pointer text-white" onClick={() => firstSectionAppend({ suffix:"",number: "", value: "", logo: "", logoAlt: "" })}>Add Item</Button>
+                            <div className='flex justify-end'>
+                                <Button type='button' className="" addItem onClick={() => firstSectionAppend({ suffix:"",number: "", value: "", logo: "", logoAlt: "" })}>Add Item</Button>
                             </div>
 
                         </div>
@@ -331,21 +339,21 @@ const Home = () => {
 
 
                 </div>
+                </AdminItemContainer>
 
 
-                <Label className='pl-3 font-bold border-b p-2 text-lg'>Clients Section</Label>
-                <div>
-                    <Label className='pl-3 font-bold'>Items</Label>
-                    <div className='border p-2 rounded-md flex flex-col gap-5'>
+                <AdminItemContainer>
+                <Label className='' main>Clients Section</Label>
+                    <div className='rounded-md flex flex-col gap-5 p-5'>
 
 
                         {clientsSectionItems.map((field, index) => (
-                            <div key={field.id} className='grid grid-cols-2 gap-2 relative border p-2 rounded-md'>
+                            <div key={field.id} className='grid grid-cols-2 gap-2 relative border-b pb-5'>
                                 <div className='absolute top-2 right-2'>
                                     <RiDeleteBinLine onClick={() => clientsSectionRemove(index)} className='cursor-pointer text-red-600' />
                                 </div>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Logo</Label>
+                                    <Label className=' font-bold'>Logo</Label>
                                     <Controller
                                         name={`clientsSection.items.${index}.logo`}
                                         control={control}
@@ -360,31 +368,32 @@ const Home = () => {
                                     {errors.clientsSection?.items?.[index]?.logo && (
                                         <p className="text-red-500">{errors.clientsSection?.items?.[index]?.logo.message}</p>
                                     )}
-
-                                    <div className='flex flex-col gap-2'>
+                                </div>
+                                
+                                <div className='flex flex-col gap-2'>
                                         <div className='flex flex-col gap-2'>
-                                            <Label className='pl-3 font-bold'>Alt Tag</Label>
+                                            <Label className=' font-bold'>Alt Tag</Label>
                                             <Input type='text' placeholder='Alt Tag' {...register(`clientsSection.items.${index}.logoAlt`)} />
                                         </div>
                                     </div>
-
-                                </div>
                             </div>
                         ))}
 
-                        <div>
-                            <Button type='button' className="w-full cursor-pointer text-white" onClick={() => clientsSectionAppend({ logo: "", logoAlt: "" })}>Add Item</Button>
+                        <div className='flex justify-end'>
+                            <Button type='button' className="" addItem onClick={() => clientsSectionAppend({ logo: "", logoAlt: "" })}>Add Item</Button>
                         </div>
 
                     </div>
-                </div>
 
 
-                <Label className='pl-3 font-bold border-b p-2 text-lg'>Services Section</Label>
-                <div className='border p-2 rounded-md flex flex-col gap-2'>
+                </AdminItemContainer>
+
+                <AdminItemContainer>
+                <Label className='' main>Services Section</Label>
+                <div className='p-5  flex flex-col gap-2'>
                     <div className='flex flex-col gap-2'>
                         <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>Title</Label>
+                            <Label className=' font-bold'>Title</Label>
                             <Input type='text' placeholder='Title' {...register("servicesSection.title", {
                                 required: "Title is required"
                             })} />
@@ -395,19 +404,18 @@ const Home = () => {
 
 
                     <div>
-                        <Label className='pl-3 font-bold'>Items</Label>
-                        <div className='border p-2 rounded-md flex flex-col gap-5'>
-
+                        <div className='rounded-md flex flex-col gap-5'>
+                        <Label className=' font-bold'>Items</Label>
 
                             {servicesSectionItems.map((field, index) => (
-                                <div key={field.id} className='grid grid-cols-2 gap-2 relative border p-2 rounded-md'>
+                                <div key={field.id} className='grid grid-cols-2 gap-2 relative border-b p-2'>
                                     <div className='absolute top-2 right-2'>
                                         <RiDeleteBinLine onClick={() => servicesSectionRemove(index)} className='cursor-pointer text-red-600' />
                                     </div>
 
                                     <div className='flex flex-col gap-2'>
                                         <div className='flex flex-col gap-2'>
-                                            <Label className='pl-3 font-bold'>Logo</Label>
+                                            <Label className=' font-bold'>Logo</Label>
                                             <Controller
                                                 name={`servicesSection.items.${index}.logo`}
                                                 control={control}
@@ -434,6 +442,28 @@ const Home = () => {
                                                 {errors.servicesSection?.items?.[index]?.logoAlt && <p className='text-red-500'>{errors.servicesSection?.items?.[index]?.logoAlt.message}</p>}
                                             </div>
                                         </div>
+
+                                        <div className='flex flex-col gap-2'>
+                                        <div className='flex flex-col gap-2'>
+                                            <div className='flex flex-col gap-2'>
+                                                <Label className='pl-3 font-bold'>Title</Label>
+                                                <Input type='text' placeholder='Title' {...register(`servicesSection.items.${index}.title`, {
+                                                    required: "Value is required"
+                                                })} />
+                                                {errors.servicesSection?.items?.[index]?.title && <p className='text-red-500'>{errors.servicesSection?.items?.[index]?.title.message}</p>}
+                                            </div>
+                                        </div>
+
+                                        <div className='flex flex-col gap-2'>
+                                            <div className='flex flex-col gap-2'>
+                                                <Label className='pl-3 font-bold'>Description</Label>
+                                                <Textarea placeholder='Description' {...register(`servicesSection.items.${index}.description`, {
+                                                    required: "Value is required"
+                                                })} />
+                                                {errors.servicesSection?.items?.[index]?.description && <p className='text-red-500'>{errors.servicesSection?.items?.[index]?.description.message}</p>}
+                                            </div>
+                                        </div>
+                                    </div>
 
 
                                     </div>
@@ -481,33 +511,13 @@ const Home = () => {
 
                                     </div>
 
-                                    <div className='flex flex-col gap-2'>
-                                        <div className='flex flex-col gap-2'>
-                                            <div className='flex flex-col gap-2'>
-                                                <Label className='pl-3 font-bold'>Title</Label>
-                                                <Input type='text' placeholder='Title' {...register(`servicesSection.items.${index}.title`, {
-                                                    required: "Value is required"
-                                                })} />
-                                                {errors.servicesSection?.items?.[index]?.title && <p className='text-red-500'>{errors.servicesSection?.items?.[index]?.title.message}</p>}
-                                            </div>
-                                        </div>
-
-                                        <div className='flex flex-col gap-2'>
-                                            <div className='flex flex-col gap-2'>
-                                                <Label className='pl-3 font-bold'>Description</Label>
-                                                <Textarea placeholder='Description' {...register(`servicesSection.items.${index}.description`, {
-                                                    required: "Value is required"
-                                                })} />
-                                                {errors.servicesSection?.items?.[index]?.description && <p className='text-red-500'>{errors.servicesSection?.items?.[index]?.description.message}</p>}
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
 
                                 </div>
                             ))}
 
-                            <div>
-                                <Button type='button' className="w-full cursor-pointer text-white" onClick={() => servicesSectionAppend({ title: "", description: "", logo: "", logoAlt: "", image: "", imageAlt: "", slug: "" })}>Add Item</Button>
+                            <div className='flex justify-end'>
+                                <Button type='button' className="" addItem onClick={() => servicesSectionAppend({ title: "", description: "", logo: "", logoAlt: "", image: "", imageAlt: "", slug: "" })}>Add Item</Button>
                             </div>
 
                         </div>
@@ -515,14 +525,15 @@ const Home = () => {
 
 
                 </div>
+                </AdminItemContainer>
 
 
-
-                <Label className='pl-3 font-bold border-b p-2 text-lg'>Sustainability Section</Label>
-                <div className='border p-2 rounded-md flex flex-col gap-2'>
+                <AdminItemContainer>
+                <Label className='' main>Sustainability Section</Label>
+                <div className=' p-5  flex flex-col gap-2'>
                     <div className='flex flex-col gap-2'>
                         <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>Video</Label>
+                            <Label className='font-bold'>Video</Label>
                             <Controller
                                 name="sustainabilitySection.video"
                                 control={control}
@@ -539,7 +550,7 @@ const Home = () => {
                             )}
                         </div>
                         <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>Poster</Label>
+                            <Label className='font-bold'>Poster</Label>
                             <Controller
                                 name="sustainabilitySection.poster"
                                 control={control}
@@ -556,40 +567,37 @@ const Home = () => {
                             )}
                         </div>
                         <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>Title</Label>
+                            <Label className='font-bold'>Title</Label>
                             <Input type='text' placeholder='Title' {...register("sustainabilitySection.title", {
                                 required: "Title is required"
                             })} />
                             {errors.sustainabilitySection?.title && <p className='text-red-500'>{errors.sustainabilitySection?.title.message}</p>}
                         </div>
                         <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>Description</Label>
+                            <Label className='font-bold'>Description</Label>
                             <Controller name="sustainabilitySection.description" control={control} render={({ field }) => {
-                                return <ReactQuill theme="snow" value={field.value} onChange={field.onChange} />
+                                return <ReactQuill theme="snow" value={field.value} onChange={field.onChange} className='custom-quill'/>
                             }} />
                         </div>
                         <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>Item Title</Label>
+                            <Label className='font-bold'>Item Title</Label>
                             <Input type='text' placeholder='Item Title' {...register("sustainabilitySection.itemTitle", {
                                 required: "Item Title is required"
                             })} />
                             {errors.sustainabilitySection?.itemTitle && <p className='text-red-500'>{errors.sustainabilitySection?.itemTitle.message}</p>}
                         </div>
 
-                        <div>
-                            <Label className='pl-3 font-bold'>Items</Label>
-                            <div className='border p-2 rounded-md flex flex-col gap-5'>
-
+                        <div>                          
 
                                 {sustainabilitySectionItems.map((field, index) => (
-                                    <div key={field.id} className='grid grid-cols-2 gap-2 relative border p-2 rounded-md'>
+                                    <div key={field.id} className='grid grid-cols-2 gap-2 relative border-b pb-5'>
                                         <div className='absolute top-2 right-2'>
                                             <RiDeleteBinLine onClick={() => sustainabilitySectionRemove(index)} className='cursor-pointer text-red-600' />
                                         </div>
 
                                         <div className='flex flex-col gap-2'>
                                             <div className='flex flex-col gap-2'>
-                                                <Label className='pl-3 font-bold'>Logo</Label>
+                                                <Label className='font-bold'>Logo</Label>
                                                 <Controller
                                                     name={`sustainabilitySection.items.${index}.logo`}
                                                     control={control}
@@ -609,7 +617,7 @@ const Home = () => {
 
                                             <div className='flex flex-col gap-2'>
                                                 <div className='flex flex-col gap-2'>
-                                                    <Label className='pl-3 font-bold'>Alt Tag</Label>
+                                                    <Label className='font-bold'>Alt Tag</Label>
                                                     <Input type='text' placeholder='Alt Tag' {...register(`sustainabilitySection.items.${index}.logoAlt`, {
                                                         required: "Value is required"
                                                     })} />
@@ -623,7 +631,7 @@ const Home = () => {
                                         <div className='flex flex-col gap-2'>
                                             <div className='flex flex-col gap-2'>
                                                 <div className='flex flex-col gap-2'>
-                                                    <Label className='pl-3 font-bold'>Title</Label>
+                                                    <Label className='font-bold'>Title</Label>
                                                     <Input type='text' placeholder='Title' {...register(`sustainabilitySection.items.${index}.title`, {
                                                         required: "Value is required"
                                                     })} />
@@ -635,11 +643,10 @@ const Home = () => {
                                     </div>
                                 ))}
 
-                                <div>
-                                    <Button type='button' className="w-full cursor-pointer text-white" onClick={() => sustainabilitySectionAppend({ title: "", logo: "", logoAlt: "" })}>Add Item</Button>
+                                <div className='flex justify-end mt-2'>
+                                    <Button type='button' className="" addItem onClick={() => sustainabilitySectionAppend({ title: "", logo: "", logoAlt: "" })}>Add Item</Button>
                                 </div>
 
-                            </div>
                         </div>
 
 
@@ -648,17 +655,19 @@ const Home = () => {
 
                 </div>
 
+                </AdminItemContainer>
+
                 <div className='flex flex-col gap-2'>
-                    <Label className='pl-3 font-bold'>Meta Title</Label>
+                    <Label className='font-bold'>Meta Title</Label>
                     <Input type='text' placeholder='Meta Title' {...register("metaTitle")} />
                 </div>
                 <div className='flex flex-col gap-2'>
-                    <Label className='pl-3 font-bold'>Meta Description</Label>
+                    <Label className='font-bold'>Meta Description</Label>
                     <Input type='text' placeholder='Meta Description' {...register("metaDescription")} />
                 </div>
 
                 <div className='flex justify-center'>
-                    <Button type='submit' className="cursor-pointer text-white">Submit</Button>
+                    <Button type='submit' className="cursor-pointer text-white text-[16px] w-full">Submit</Button>
                 </div>
 
             </form>

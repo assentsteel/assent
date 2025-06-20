@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button'
 import { ImageUploader } from '@/components/ui/image-uploader'
 import { RiDeleteBinLine } from "react-icons/ri";
 import { Textarea } from '@/components/ui/textarea'
+import AdminItemContainer from '@/app/component/common/AdminItemContainer';
 
 interface ContactFormProps {
 
@@ -95,7 +96,7 @@ const ContactPage = () => {
 
                 <div className='flex flex-col gap-2'>
                     <div>
-                        <Label className="pl-3 font-bold">Banner</Label>
+                        <Label className="font-bold">Banner</Label>
                         <Controller
                             name="banner"
                             control={control}
@@ -112,20 +113,21 @@ const ContactPage = () => {
                         )}
                     </div>
                     <div>
-                        <Label className='pl-3 font-bold'>Alt Tag</Label>
+                        <Label className='font-bold'>Alt Tag</Label>
                         <Input type='text' placeholder='Alt Tag' {...register("bannerAlt")} />
                     </div>
                     <div>
-                        <Label className='pl-3 font-bold'>Page Title</Label>
+                        <Label className='font-bold'>Page Title</Label>
                         <Input type='text' placeholder='Page Title' {...register("pageTitle")} />
                     </div>
                 </div>
 
-                <Label className='pl-3 font-bold border-b p-2 text-lg'>First Section</Label>
-                <div className='border p-2 rounded-md flex flex-col gap-2'>
+<AdminItemContainer>
+                <Label main>First Section</Label>
+                <div className='p-5 rounded-md flex flex-col gap-2'>
                     <div className='flex flex-col gap-2'>
                         <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>Title</Label>
+                            <Label className='font-bold'>Title</Label>
                             <Input type='text' placeholder='Title' {...register("firstSection.title", {
                                 required: "Title is required"
                             })} />
@@ -134,48 +136,48 @@ const ContactPage = () => {
                     </div>
 
                             <div>
-                    <Label className='pl-3 font-bold'>Items</Label>
+                    <Label className='font-bold'>Items</Label>
                 <div className='border p-2 rounded-md flex flex-col gap-5'>
 
 
                     {fields.map((field, index) => (
-                        <div key={field.id} className='grid grid-cols-2 gap-2 relative border p-2 rounded-md'>
+                        <div key={field.id} className='grid grid-cols-2 gap-2 relative border-b p-2 pb-5 last:border-b-0'>
                             <div className='absolute top-2 right-2'>
                                 <RiDeleteBinLine onClick={() => remove(index)} className='cursor-pointer text-red-600' />
                             </div>
                             <div className='flex flex-col gap-2'>
                             <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Title</Label>
+                                    <Label className='font-bold'>Title</Label>
                                     <Input type='text' placeholder='Title' {...register(`firstSection.items.${index}.title`, {
                                         required: "Title is required"
                                     })} />
                                     {errors.firstSection?.items?.[index]?.title && <p className='text-red-500'>{errors.firstSection?.items?.[index]?.title.message}</p>}
                                 </div>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Address</Label>
+                                    <Label className='font-bold'>Address</Label>
                                     <Textarea placeholder='Address' {...register(`firstSection.items.${index}.address`)} />
                                 </div>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Phone</Label>
+                                    <Label className='font-bold'>Phone</Label>
                                     <Input type='text' placeholder='Phone' {...register(`firstSection.items.${index}.phone`)} />
                                 </div>
                             </div>
                             <div className='flex flex-col gap-2'>
                                 
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Email</Label>
+                                    <Label className='font-bold'>Email</Label>
                                     <Input type='text' placeholder='Email' {...register(`firstSection.items.${index}.email`)} />
                                 </div>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Fax</Label>
+                                    <Label className='font-bold'>Fax</Label>
                                     <Input type='text' placeholder='Fax' {...register(`firstSection.items.${index}.fax`)} />
                                 </div>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Working Hours</Label>
+                                    <Label className='font-bold'>Working Hours</Label>
                                     <Textarea placeholder='Working Hours' {...register(`firstSection.items.${index}.workingHours`)} />
                                 </div>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Map</Label>
+                                    <Label className='font-bold'>Map</Label>
                                     <Input type='text' placeholder='Map' {...register(`firstSection.items.${index}.map`)} />
                                 </div>
                             </div>
@@ -183,27 +185,30 @@ const ContactPage = () => {
                         </div>
                     ))}
 
-                    <div>
-                        <Button type='button' className="w-full cursor-pointer text-white" onClick={() => append({title:"",address:"",phone:"",email:"",fax:"",workingHours:"",map:"" })}>Add Item</Button>
+                    
+
+                </div>
+                <div className='flex justify-end mt-2'>
+                        <Button type='button' addItem onClick={() => append({title:"",address:"",phone:"",email:"",fax:"",workingHours:"",map:"" })}>Add Item</Button>
                     </div>
-
-                </div>
                 </div>
 
 
                 </div>
+
+                </AdminItemContainer>
 
                 <div className='flex flex-col gap-2'>
-                    <Label className='pl-3 font-bold'>Meta Title</Label>
+                    <Label className='font-bold'>Meta Title</Label>
                     <Input type='text' placeholder='Meta Title' {...register("metaTitle")} />
                 </div>
                 <div className='flex flex-col gap-2'>
-                    <Label className='pl-3 font-bold'>Meta Description</Label>
+                    <Label className='font-bold'>Meta Description</Label>
                     <Input type='text' placeholder='Meta Description' {...register("metaDescription")} />
                 </div>
 
                 <div className='flex justify-center'>
-                    <Button type='submit' className="w-full cursor-pointer text-white">Submit</Button>
+                    <Button type='submit' className="w-full cursor-pointer text-white text-[16px]">Submit</Button>
                 </div>
 
             </form>

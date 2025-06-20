@@ -58,15 +58,17 @@ function ClientSideLink({
           }
         }}
         className={cn(
-          "flex items-center px-4 py-2 text-sm font-medium rounded-md transition-colors",
+          "flex items-center px-4 py-2 text-[16px] font-medium rounded-md transition-colors justify-between",
           "hover:bg-gray-50 hover:text-primary",
           isActive ? "bg-gray-50 text-primary" : "text-gray-700",
           className
         )}
       >
+        <div className="flex items-center">
         <span className="mr-3">{icon}</span>
         {name}
-        {hasChild && <MdExpandCircleDown className="ml-1 mt-1" />}
+        </div>
+        {hasChild && (!isOpen ? <MdExpandCircleDown className="ml-1 mt-1" /> : <MdExpandCircleDown className="ml-1 mt-1 rotate-180" />)}
       </Link>
       {isOpen && children && (
         <div className="flex pl-14 flex-col items-start gap-2">
@@ -75,7 +77,7 @@ function ClientSideLink({
             <div>-</div>
             <Link
               href={item.href}
-              className="w-full rounded-md cursor-pointer hover:bg-gray-50 hover:text-primary text-sm font-medium"
+              className="w-full rounded-md cursor-pointer hover:bg-gray-50 hover:text-primary text-[16px] font-medium"
             >
               {item.name}
             </Link>

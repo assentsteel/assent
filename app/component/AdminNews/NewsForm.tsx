@@ -158,19 +158,19 @@ const NewsForm = ({ editMode }: { editMode?: boolean }) => {
 
     return (
         <div className='flex flex-col gap-5'>
-            <h1 className='text-lg font-bold'>{editMode ? "Edit News" : "Add News"}</h1>
+            <h1 className='text-md font-semibold'>{editMode ? "Edit News" : "Add News"}</h1>
             <form className='flex flex-col gap-5 border p-2 rounded-md' onSubmit={handleSubmit(handleAddNews)}>
                 <div>
-                    <Label className='pl-3'>Main Title</Label>
+                    <Label className=''>Main Title</Label>
                     <Input type='text' placeholder='Title' {...register("mainTitle", { required: "Title is required" })} />
                     {errors.mainTitle && <p className='text-red-500'>{errors.mainTitle.message}</p>}
                 </div>
                 <div>
-                    <Label className='pl-3'>Sub Title</Label>
+                    <Label className=''>Sub Title</Label>
                     <Input type='text' placeholder='Title' {...register("subTitle")} />
                 </div>
                 <div>
-                <Label className='pl-3 flex gap-2 items-center mb-1'>
+                <Label className='flex gap-2 items-center mb-1'>
                                                 Slug
                                                 <div className='flex gap-2 items-center bg-green-600 text-white p-1 rounded-md cursor-pointer w-fit' onClick={handleAutoGenerate}>
                                                     <p>Auto Generate</p>
@@ -186,7 +186,7 @@ const NewsForm = ({ editMode }: { editMode?: boolean }) => {
                     {errors.slug && <p className='text-red-500'>{errors.slug.message}</p>}
                 </div>
                 <div className='flex flex-col gap-2'>
-                    <Label className='pl-3'>Category</Label>
+                    <Label className=''>Category</Label>
                     <Controller
                         name="category"
                         control={control}
@@ -218,12 +218,12 @@ const NewsForm = ({ editMode }: { editMode?: boolean }) => {
                 <div className='grid grid-cols-1 gap-2'>
                     <div>
                         <div>
-                            <Label className='pl-3'>Thumbnail</Label>
+                            <Label className=''>Thumbnail</Label>
                             <ImageUploader onChange={(url) => setValue("thumbnail", url)} value={watch("thumbnail")} />
                             {errors.thumbnail && <p className='text-red-500'>{errors.thumbnail.message}</p>}
                         </div>
                         <div>
-                            <Label className='pl-3'>Thumbnail Alt</Label>
+                            <Label className=''>Thumbnail Alt</Label>
                             <Input type='text' placeholder='Alt Tag' {...register("thumbnailAlt")} />
                             {errors.thumbnailAlt && <p className='text-red-500'>{errors.thumbnailAlt.message}</p>}
                         </div>
@@ -235,7 +235,7 @@ const NewsForm = ({ editMode }: { editMode?: boolean }) => {
                 <div className='flex flex-col gap-2 border p-2 rounded-md'>
                    
                 <div>
-                    <Label className="block text-sm pl-2 ">Images</Label>
+                    <Label className="block text-sm ">Images</Label>
                     <div className="mt-2">
                         <ImageUploader onChange={handleImageUpload} deleteAfterUpload={true} />
                     </div>
@@ -266,7 +266,7 @@ const NewsForm = ({ editMode }: { editMode?: boolean }) => {
                 </div>
 
                 <div>
-                    <Label className='pl-3'>Content</Label>
+                    <Label className=''>Content</Label>
                     <Controller name="content" control={control} rules={{ required: "Content is required" }} render={({ field }) => {
                         return <ReactQuill theme="snow" value={field.value} onChange={field.onChange} />
                     }} />
@@ -291,7 +291,7 @@ const NewsForm = ({ editMode }: { editMode?: boolean }) => {
 
 
                 <div className='flex justify-center'>
-                    <Button type='submit' className='bg-primary text-white'>Submit</Button>
+                    <Button type='submit' className='bg-primary text-white w-full text-[16px]'>Submit</Button>
                 </div>
 
             </form>

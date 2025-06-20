@@ -23,7 +23,7 @@ const MapSection = ({register,control,index,type}:MapSectionProps) => {
         name: `section.${index}.items`
     });
   return (
-    <div className='border p-2 rounded-md flex flex-col gap-2'>
+    <div className='p-5 rounded-md flex flex-col gap-2'>
     
                                 <div>
                         <Controller
@@ -37,7 +37,7 @@ const MapSection = ({register,control,index,type}:MapSectionProps) => {
     
     
                         {secondSectionFields.map((field, itemIndex) => (
-                            <div key={field.id} className='grid grid-cols-2 gap-2 relative border p-2 rounded-md'>
+                            <div key={field.id} className='grid grid-cols-2 gap-2 relative border-b p-2 pb-5 last:border-b-0'>
                                 <div className='absolute top-2 right-2'>
                                     <RiDeleteBinLine onClick={() => secondSectionRemove(itemIndex)} className='cursor-pointer text-red-600' />
                                 </div>
@@ -71,11 +71,12 @@ const MapSection = ({register,control,index,type}:MapSectionProps) => {
                             </div>
                         ))}
     
-                        <div>
-                            <Button type='button' className="w-full cursor-pointer bg-green-400" onClick={() => secondSectionAppend({ title: "", address: "", phone: "", email: "", fax: "" })}>Add Item +</Button>
-                        </div>
+                        
     
                     </div>
+                    <div className='flex justify-end mt-2'>
+                            <Button type='button' addItem onClick={() => secondSectionAppend({ title: "", address: "", phone: "", email: "", fax: "" })}>Add Item +</Button>
+                        </div>
                     </div>
     
     

@@ -175,10 +175,10 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
 
     return (
         <div className='flex flex-col gap-5'>
-            <h1 className='text-lg font-bold'>{editMode ? "Edit Project" : "Add Project"}</h1>
+            <h1 className='text-md font-semibold'>{editMode ? "Edit Project" : "Add Project"}</h1>
             <form className='flex flex-col gap-5 border p-2 rounded-md' onSubmit={handleSubmit(handleAddProject)}>
                 <div>
-                    <Label className='pl-3'>Banner</Label>
+                    <Label className=''>Banner</Label>
                     <Controller
                         name="banner"
                         control={control}
@@ -193,17 +193,17 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                     {errors.banner && <p className='text-red-500'>{errors.banner.message}</p>}
                 </div>
                 <div>
-                    <Label className='pl-3'>Banner Alt</Label>
+                    <Label className=''>Banner Alt</Label>
                     <Input type='text' placeholder='Banner Alt' {...register("bannerAlt", { required: "Banner Alt is required" })} />
                     {errors.bannerAlt && <p className='text-red-500'>{errors.bannerAlt.message}</p>}
                 </div>
                 <div>
-                    <Label className='pl-3'>Page Title</Label>
+                    <Label className=''>Page Title</Label>
                     <Input type='text' placeholder='Page Title' {...register("pageTitle", { required: "Page Title is required" })} />
                     {errors.pageTitle && <p className='text-red-500'>{errors.pageTitle.message}</p>}
                 </div>
                 <div>
-                <Label className='pl-3 flex gap-2 items-center mb-1'>
+                <Label className='flex gap-2 items-center mb-1'>
                                                 Slug
                                                 <div className='flex gap-2 items-center bg-green-600 text-white p-1 rounded-md cursor-pointer w-fit' onClick={handleAutoGenerate}>
                                                     <p>Auto Generate</p>
@@ -219,7 +219,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                     {errors.slug && <p className='text-red-500'>{errors.slug.message}</p>}
                 </div>
                 <div className='flex flex-col gap-2'>
-                    <Label className='pl-3'>Sector</Label>
+                    <Label className=''>Sector</Label>
                     <Controller
                         name="sector"
                         control={control}
@@ -248,7 +248,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                 </div>
 
                 <div className='flex flex-col gap-2'>
-                    <Label className='pl-3'>Location</Label>
+                    <Label className=''>Location</Label>
                     <Controller
                         name="location"
                         control={control}
@@ -278,27 +278,27 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
 
 
                 <div>
-                    <Label className='pl-3'>Employer</Label>
+                    <Label className=''>Employer</Label>
                     <Input type='text' placeholder='Employer' {...register("employer")} />
                 </div>
 
                 <div>
-                    <Label className='pl-3'>Contractor</Label>
+                    <Label className=''>Contractor</Label>
                     <Input type='text' placeholder='Contractor' {...register("contractor")} />
                 </div>
 
                 <div>
-                    <Label className='pl-3'>Consultant</Label>
+                    <Label className=''>Consultant</Label>
                     <Input type='text' placeholder='Consultant' {...register("consultant")} />
                 </div>
 
                 <div>
-                    <Label className='pl-3'>Scope</Label>
+                    <Label className=''>Scope</Label>
                     <Input type='text' placeholder='Scope' {...register("scope")} />
                 </div>
 
                 <div>
-                    <Label className='pl-3'>Steel Tonnage</Label>
+                    <Label className=''>Steel Tonnage</Label>
                     <Input type='text' placeholder='Steel Tonnage' {...register("steelTonnage")} />
                 </div>
 
@@ -306,12 +306,12 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                 <div className='grid grid-cols-1 gap-2'>
                     <div>
                         <div>
-                            <Label className='pl-3'>Thumbnail</Label>
+                            <Label className=''>Thumbnail</Label>
                             <ImageUploader onChange={(url) => setValue("thumbnail", url)} value={watch("thumbnail")} />
                             {errors.thumbnail && <p className='text-red-500'>{errors.thumbnail.message}</p>}
                         </div>
                         <div>
-                            <Label className='pl-3'>Thumbnail Alt</Label>
+                            <Label className=''>Thumbnail Alt</Label>
                             <Input type='text' placeholder='Alt Tag' {...register("thumbnailAlt")} />
                             {errors.thumbnailAlt && <p className='text-red-500'>{errors.thumbnailAlt.message}</p>}
                         </div>
@@ -354,13 +354,13 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                 </div>
 
                 <div>
-                    <Label className='pl-3'>Title</Label>
+                    <Label className=''>Title</Label>
                     <Input type='text' placeholder='Title' {...register("title", { required: "Title is required" })} />
                     {errors.title && <p className='text-red-500'>{errors.title.message}</p>}
                 </div>
 
                 <div>
-                    <Label className='pl-3'>Description</Label>
+                    <Label className=''>Description</Label>
                     <Controller name="description" control={control} rules={{ required: "Description is required" }} render={({ field }) => {
                         return <ReactQuill theme="snow" value={field.value} onChange={field.onChange} />
                     }} />
