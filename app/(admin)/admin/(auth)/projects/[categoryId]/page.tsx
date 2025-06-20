@@ -58,15 +58,16 @@ const CategoryPage = () => {
     return (
         <>
             <div className="flex justify-between mb-5">
-                <h3 className="text-lg font-bold">Projects</h3>
+                <h3 className="text-md font-semibold">Projects</h3>
                 <Link href={`/admin/projects/${categoryId}/add`}>
-                    <Button className="text-white">Add Project</Button>
+                    <Button className="text-white text-[16px]">Add Project</Button>
                 </Link>
             </div>
+            <div className="flex flex-col gap-2">
             {projects?.map((project, index) => (
                 <div className='flex items-center justify-between border p-2 rounded-md' key={index}>
                     <div>
-                        <p>{project.title}</p>
+                        <p className="text-[16px]">{project.title}</p>
                     </div>
                     <div className="flex items-center gap-10">
 
@@ -88,6 +89,7 @@ const CategoryPage = () => {
                     </div>
                 </div>
             ))}
+            </div>
         </>
     )
 }

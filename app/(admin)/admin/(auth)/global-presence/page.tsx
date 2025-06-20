@@ -12,6 +12,7 @@ import { Textarea } from '@/components/ui/textarea'
 const ReactQuill = dynamic(() => import('react-quill-new'), { ssr: false })
 import 'react-quill-new/dist/quill.snow.css';
 import dynamic from 'next/dynamic'
+import AdminItemContainer from '@/app/component/common/AdminItemContainer';
 
 interface GlobalPresenceFormProps {
 
@@ -141,25 +142,26 @@ const GlobalPresencePage = () => {
                     </div>
                 </div>
 
-                <Label className='pl-3 font-bold border-b p-2 text-lg'>First Section</Label>
-                <div className='border p-2 rounded-md flex flex-col gap-2'>
+<AdminItemContainer>
+                <Label main>First Section</Label>
+                <div className='p-5 rounded-md flex flex-col gap-2'>
                     <div className='flex flex-col gap-2'>
                         <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>Main Title</Label>
+                            <Label className='font-bold'>Main Title</Label>
                             <Input type='text' placeholder='Main Title' {...register("firstSection.mainTitle", {
                                 required: "Main Title is required"
                             })} />
                             {errors.firstSection?.mainTitle && <p className='text-red-500'>{errors.firstSection?.mainTitle.message}</p>}
                         </div>
                         <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>Sub Title</Label>
+                            <Label className='font-bold'>Sub Title</Label>
                             <Input type='text' placeholder='Sub Title' {...register("firstSection.subTitle", {
                                 required: "Sub Title is required"
                             })} />
                             {errors.firstSection?.subTitle && <p className='text-red-500'>{errors.firstSection?.subTitle.message}</p>}
                         </div>
                         <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>Description</Label>
+                            <Label className='font-bold'>Description</Label>
                             <Controller
                                 name="firstSection.description"
                                 control={control}
@@ -173,13 +175,14 @@ const GlobalPresencePage = () => {
                     </div>
 
                 </div>
+                </AdminItemContainer>
 
-
-                <Label className='pl-3 font-bold border-b p-2 text-lg'>Second Section</Label>
-                <div className='border p-2 rounded-md flex flex-col gap-2'>
+<AdminItemContainer>
+                <Label main>Second Section</Label>
+                <div className='p-5 rounded-md flex flex-col gap-2'>
                     <div className='flex flex-col gap-2'>
                         <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>Title</Label>
+                            <Label className='font-bold'>Title</Label>
                             <Input type='text' placeholder='Title' {...register("secondSection.title", {
                                 required: "Title is required"
                             })} />
@@ -188,29 +191,29 @@ const GlobalPresencePage = () => {
                     </div>
 
                             <div>
-                    <Label className='pl-3 font-bold'>Items</Label>
+                    <Label className='font-bold'>Items</Label>
                 <div className='border p-2 rounded-md flex flex-col gap-5'>
 
 
                     {secondSectionFields.map((field, index) => (
-                        <div key={field.id} className='grid grid-cols-2 gap-2 relative border p-2 rounded-md'>
+                        <div key={field.id} className='grid grid-cols-2 gap-2 relative border-b p-2 pb-5 last:border-b-0'>
                             <div className='absolute top-2 right-2'>
                                 <RiDeleteBinLine onClick={() => secondSectionRemove(index)} className='cursor-pointer text-red-600' />
                             </div>
                             <div className='flex flex-col gap-2'>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Number</Label>
+                                    <Label className='font-bold'>Number</Label>
                                     <Input type='text' placeholder='Number' {...register(`secondSection.items.${index}.number`)} />
                                     {errors.secondSection?.items?.[index]?.number && <p className='text-red-500'>{errors.secondSection?.items?.[index]?.number.message}</p>}
                                 </div>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Value</Label>
+                                    <Label className='font-bold'>Value</Label>
                                     <Input type='text' placeholder='Value' {...register(`secondSection.items.${index}.value`)} />
                                 </div>
                             </div>
                             <div className='flex flex-col gap-2'>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Description</Label>
+                                    <Label className='font-bold'>Description</Label>
                                     <Textarea placeholder='Description' {...register(`secondSection.items.${index}.description`, {
                                         required: "Description is required"
                                     })} />
@@ -221,24 +224,27 @@ const GlobalPresencePage = () => {
                         </div>
                     ))}
 
-                    <div>
-                        <Button type='button' className="w-full cursor-pointer text-white" onClick={() => secondSectionAppend({ description: "", number: "", value: "" })}>Add Item</Button>
+                    
+
+                </div>
+                <div className='flex justify-end mt-2'>
+                        <Button type='button' addItem onClick={() => secondSectionAppend({ description: "", number: "", value: "" })}>Add Item</Button>
                     </div>
-
-                </div>
                 </div>
 
 
                 </div>
+                </AdminItemContainer>
 
 
-                <Label className='pl-3 font-bold border-b p-2 text-lg'>Third Section</Label>
+<AdminItemContainer>
+                <Label main>Third Section</Label>
                 <div className='border p-2 rounded-md flex flex-col gap-2'>
 
                             <div>
 
                             <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>Title</Label>
+                            <Label className='font-bold'>Title</Label>
                             <Input type='text' placeholder='Title' {...register("thirdSection.title", {
                                 required: "Title is required"
                             })} />
@@ -246,25 +252,25 @@ const GlobalPresencePage = () => {
                         </div>
 
                         
-                    <Label className='pl-3 font-bold'>Countries</Label>
+                    <Label className='font-bold'>Countries</Label>
                 <div className='border p-2 rounded-md flex flex-col gap-5'>
 
                     
                     {thirdSectionFields.map((field, index) => (
-                        <div key={field.id} className='grid grid-cols-2 gap-2 relative border p-2 rounded-md'>
+                        <div key={field.id} className='grid grid-cols-2 gap-2 relative border-b p-2 pb-5 last:border-b-0'>
                             <div className='absolute top-2 right-2'>
                                 <RiDeleteBinLine onClick={() => thirdSectionRemove(index)} className='cursor-pointer text-red-600' />
                             </div>
                             <div className='flex flex-col gap-2'>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Title</Label>
+                                    <Label className='font-bold'>Title</Label>
                                     <Input type='text' placeholder='Title' {...register(`thirdSection.countries.${index}.title`, {
                                         required: "Title is required"
                                     })} />
                                     {errors.thirdSection?.countries?.[index]?.title && <p className='text-red-500'>{errors.thirdSection?.countries?.[index]?.title.message}</p>}
                                 </div>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Slug</Label>
+                                    <Label className='font-bold'>Slug</Label>
                                     <Input type='text' placeholder='Slug' {...register(`thirdSection.countries.${index}.slug`, {
                                         required: "Slug is required", pattern: {
                                             value: /^[a-z0-9]+(-[a-z0-9]+)*$/,
@@ -276,7 +282,7 @@ const GlobalPresencePage = () => {
                             </div>
                             <div className='flex flex-col gap-2'>
                                 <div>
-                                    <Label className='pl-3 font-bold'>Image</Label>
+                                    <Label className='font-bold'>Image</Label>
                                     <Controller
                                         name={`thirdSection.countries.${index}.image`}
                                         control={control}
@@ -287,7 +293,7 @@ const GlobalPresencePage = () => {
                                     {errors.thirdSection?.countries?.[index]?.image && <p className='text-red-500'>{errors.thirdSection?.countries?.[index]?.image.message}</p>}
                                 </div>
                                 <div>
-                                    <Label className='pl-3 font-bold'>Image Alt</Label>
+                                    <Label className='font-bold'>Image Alt</Label>
                                     <Input type='text' placeholder='Image Alt' {...register(`thirdSection.countries.${index}.imageAlt`, {
                                         required: "Image Alt is required"
                                     })} />
@@ -298,30 +304,29 @@ const GlobalPresencePage = () => {
                         </div>
                     ))}
 
-                    <div>
-                        <Button type='button' className="w-full cursor-pointer text-white" onClick={() => thirdSectionAppend({ title: "", slug: "", image: "", imageAlt: "" })}>Add Item</Button>
+                    
+
+                </div>
+                <div className='flex justify-end mt-2'>
+                        <Button type='button' addItem onClick={() => thirdSectionAppend({ title: "", slug: "", image: "", imageAlt: "" })}>Add Item</Button>
                     </div>
-
-                </div>
                 </div>
 
 
                 </div>
-
-
-
+                </AdminItemContainer>
 
                 <div className='flex flex-col gap-2'>
-                    <Label className='pl-3 font-bold'>Meta Title</Label>
+                    <Label className='font-bold'>Meta Title</Label>
                     <Input type='text' placeholder='Meta Title' {...register("metaTitle")} />
                 </div>
                 <div className='flex flex-col gap-2'>
-                    <Label className='pl-3 font-bold'>Meta Description</Label>
+                    <Label className='font-bold'>Meta Description</Label>
                     <Input type='text' placeholder='Meta Description' {...register("metaDescription")} />
                 </div>
 
                 <div className='flex justify-center'>
-                    <Button type='submit' className="cursor-pointer text-white">Submit</Button>
+                    <Button type='submit' className="cursor-pointer text-white w-full text-[16px]">Submit</Button>
                 </div>
 
             </form>

@@ -55,7 +55,7 @@ const AdminIndiGallery = () => {
 
   return (
     <div className='flex flex-col gap-5'>
-                    <Label className="block text-sm pl-2 ">Images</Label>
+                    <Label className="block text-sm">Images</Label>
                     <div className="mt-2">
                         <ImageUploader onChange={(url: string) => handleImageUpload(url)} deleteAfterUpload={true} />
                     </div>
@@ -79,7 +79,7 @@ const AdminIndiGallery = () => {
                             </div>
                         ))}
                     </div>
-                    <Button className='text-white' onClick={() => handlePushImages()}>Submit</Button>
+                    <Button className='text-white w-full text-[16px]' onClick={() => handlePushImages()}>Submit</Button>
                 </div>
   )
 }

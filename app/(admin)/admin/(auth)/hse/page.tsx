@@ -12,6 +12,7 @@ const ReactQuill = dynamic(() => import('react-quill-new'), { ssr: false })
 import 'react-quill-new/dist/quill.snow.css';
 import dynamic from 'next/dynamic'
 import { FileUploader } from '@/components/ui/file-uploader';
+import AdminItemContainer from '@/app/component/common/AdminItemContainer';
 
 interface HseFormProps {
 
@@ -140,16 +141,17 @@ const HsePage = () => {
 
                 <div className='flex flex-col gap-2'>
                     <div>
-                        <Label className='pl-3 font-bold'>Page Title</Label>
+                        <Label oneInput>Page Title</Label>
                         <Input type='text' placeholder='Page Title' {...register("pageTitle")} />
                     </div>
                 </div>
 
-                <Label className='pl-3 font-bold border-b p-2 text-lg'>First Section</Label>
-                <div className='border p-2 rounded-md flex flex-col gap-2'>
+<AdminItemContainer>
+                <Label main>First Section</Label>
+                <div className='p-5 rounded-md flex flex-col gap-2'>
                     <div className='flex flex-col gap-2'>
                         <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>Title</Label>
+                            <Label className='font-bold'>Title</Label>
                             <Input type='text' placeholder='Title' {...register("firstSection.title", {
                                 required: "Title is required"
                             })} />
@@ -162,9 +164,10 @@ const HsePage = () => {
                             }} />
                         </div>
 
+<div className='grid grid-cols-2 gap-2'>
                         <div className='flex flex-col gap-2'>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Image</Label>
+                                    <Label className='font-bold'>Image</Label>
                                     <Controller
                                         name={`firstSection.image`}
                                         control={control}
@@ -181,16 +184,17 @@ const HsePage = () => {
                                     )}
                                 </div>
 
+
+                            </div>
+                            <div className='flex flex-col gap-2'>
                                 <div className='flex flex-col gap-2'>
-                                <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Alt Tag</Label>
+                                    <Label className='font-bold'>Alt Tag</Label>
                                     <Input type='text' placeholder='Alt Tag' {...register(`firstSection.imageAlt`, {
                                         required: "Value is required"
                                     })} />
                                     {errors.firstSection?.imageAlt && <p className='text-red-500'>{errors.firstSection?.imageAlt.message}</p>}
                                 </div>
                             </div>
-
 
                             </div>
 
@@ -203,12 +207,14 @@ const HsePage = () => {
 
                 </div>
 
+                </AdminItemContainer>
 
-                <Label className='pl-3 font-bold border-b p-2 text-lg'>Second Section</Label>
-                <div className='border p-2 rounded-md flex flex-col gap-2'>
+<AdminItemContainer>
+                <Label main>Second Section</Label>
+                <div className='p-5 rounded-md flex flex-col gap-2'>
                     <div className='flex flex-col gap-2'>
                         <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>Title</Label>
+                            <Label className='font-bold'>Title</Label>
                             <Input type='text' placeholder='Title' {...register("secondSection.title", {
                                 required: "Title is required"
                             })} />
@@ -219,7 +225,7 @@ const HsePage = () => {
 
 
                     <div>
-                    <Label className='pl-3 font-bold'>Items</Label>
+                    <Label className='font-bold'>Items</Label>
                 <div className='border p-2 rounded-md flex flex-col gap-5'>
 
 
@@ -232,7 +238,7 @@ const HsePage = () => {
 
                             <div className='flex flex-col gap-2'>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Image</Label>
+                                    <Label className='font-bold'>Image</Label>
                                     <Controller
                                         name={`secondSection.items.${index}.image`}
                                         control={control}
@@ -251,7 +257,7 @@ const HsePage = () => {
 
                                 <div className='flex flex-col gap-2'>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Alt Tag</Label>
+                                    <Label className='font-bold'>Alt Tag</Label>
                                     <Input type='text' placeholder='Alt Tag' {...register(`secondSection.items.${index}.imageAlt`, {
                                         required: "Value is required"
                                     })} />
@@ -282,7 +288,7 @@ const HsePage = () => {
                             </div>
 
                             <div>
-                        <Button type='button' className="w-full cursor-pointer text-white bg-green-400" onClick={() => {handleAddFile(index)}}>Add File</Button>
+                        <Button type='button' className="w-full cursor-pointer text-white bg-green-400 text-[16px]" onClick={() => {handleAddFile(index)}}>Add File</Button>
                     </div>
 
 
@@ -292,7 +298,7 @@ const HsePage = () => {
 
                         
 
-                        <div className='grid grid-cols-2 gap-2'>
+                        <div className='grid grid-cols-2 gap-2 mt-5'>
                             {watch(`secondSection.items.${index}.files`).map((file, fileIndex) => (
                         <div key={fileIndex} className='grid grid-cols-1 gap-2 relative border p-2 rounded-md'>
                             <div className='absolute top-2 right-2'>
@@ -301,7 +307,7 @@ const HsePage = () => {
 
                             <div className='flex flex-col gap-2'>
                             <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>File</Label>
+                                    <Label className='font-bold'>File</Label>
                                     <Controller
                                         name={`secondSection.items.${index}.files.${fileIndex}.file`}
                                         control={control}
@@ -320,7 +326,7 @@ const HsePage = () => {
 
                                 <div className='flex flex-col gap-2'>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Title</Label>
+                                    <Label className='font-bold'>Title</Label>
                                     <Input type='text' placeholder='Title' {...register(`secondSection.items.${index}.files.${fileIndex}.title`, {
                                         required: "Title is required"
                                     })} />
@@ -341,7 +347,7 @@ const HsePage = () => {
                     ))}
 
                     <div>
-                        <Button type='button' className="w-full cursor-pointer text-white" onClick={() => {secondSectionAppend({ image: "", imageAlt: "", title: "", description: "", files: []})}}>Add Item</Button>
+                        <Button type='button' className="w-full cursor-pointer text-white text-[16px]" onClick={() => {secondSectionAppend({ image: "", imageAlt: "", title: "", description: "", files: []})}}>Add Item</Button>
                     </div>
 
                 </div>
@@ -350,12 +356,16 @@ const HsePage = () => {
 
                 </div>
 
+                </AdminItemContainer>
 
-                <Label className='pl-3 font-bold border-b p-2 text-lg'>Third Section</Label>
-                <div className='border p-2 rounded-md flex flex-col gap-2'>
+
+
+                <AdminItemContainer>
+                <Label main>Third Section</Label>
+                <div className='p-5 rounded-md flex flex-col gap-2'>
                     <div className='flex flex-col gap-2'>
                     <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>Image</Label>
+                            <Label className='font-bold'>Image</Label>
                             <Controller
                                 name="thirdSection.image"
                                 control={control}
@@ -370,18 +380,18 @@ const HsePage = () => {
                             {errors.thirdSection?.image && (
                                 <p className="text-red-500">{errors.thirdSection?.image.message}</p>
                             )}
-                            <Label className='pl-3 font-bold'>Alt Tag</Label>
+                            <Label className='font-bold'>Alt Tag</Label>
                             <Input type='text' placeholder='Alt Tag' {...register("thirdSection.imageAlt")} />
                         </div>
                         <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>Title</Label>
+                            <Label className='font-bold'>Title</Label>
                             <Input type='text' placeholder='Title' {...register("thirdSection.title", {
                                 required: "Title is required"
                             })} />
                             {errors.thirdSection?.title && <p className='text-red-500'>{errors.thirdSection?.title.message}</p>}
                         </div>
                         <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>Description</Label>
+                            <Label className='font-bold'>Description</Label>
                             <Controller name="thirdSection.description" control={control} render={({ field }) => {
                                 return <ReactQuill theme="snow" value={field.value} onChange={field.onChange} />
                             }} />
@@ -392,32 +402,35 @@ const HsePage = () => {
                     </div>
 
                 </div>
+                </AdminItemContainer>
 
 
+
+                <AdminItemContainer>
                 <div>
                     <div className='flex border-b mb-5'>
-                    <Label className='pl-3 font-bold text-lg'>Fourth Section</Label>
+                    <Label main>Fourth Section</Label>
                     </div>
 
                     
 
-                <div className='border p-2 rounded-md flex flex-col gap-5'>
+                <div className='p-5 rounded-md flex flex-col gap-5'>
                 <div className='flex flex-col gap-2'>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Title</Label>
+                                    <Label className='font-bold'>Title</Label>
                                     <Input type='text' placeholder='Title' {...register(`fourthSection.title`, {
                                         required: "Value is required"
                                     })} />
                                     {errors.fourthSection?.title && <p className='text-red-500'>{errors.fourthSection?.title.message}</p>}
                                 </div>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Description</Label>
+                                    <Label className='font-bold'>Description</Label>
                                     <Controller name="fourthSection.description" control={control} render={({ field }) => {
                                         return <ReactQuill theme="snow" value={field.value} onChange={field.onChange} />
                                     }} />
                                 </div>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Image</Label>
+                                    <Label className='font-bold'>Image</Label>
                                     <Controller
                                         name="fourthSection.image"
                                         control={control}
@@ -432,20 +445,21 @@ const HsePage = () => {
                                     {errors.fourthSection?.image && (
                                         <p className="text-red-500">{errors.fourthSection?.image.message}</p>
                                     )}
-                                    <Label className='pl-3 font-bold'>Alt Tag</Label>
+                                    <Label className='font-bold'>Alt Tag</Label>
                                     <Input type='text' placeholder='Alt Tag' {...register("fourthSection.imageAlt")} />
                                 </div>
                             </div>
 
-                            <Label className='pl-3 font-bold'>Items</Label>
+                            <Label className='font-bold'>Items</Label>
+                            <div className='border p-2 rounded-md'>
                             {fourthSectionItems.map((field, index) => (
-                        <div key={field.id} className='grid grid-cols-2 gap-2 relative border p-2 rounded-md'>
+                        <div key={field.id} className='grid grid-cols-2 gap-2 relative border-b p-2 pb-5 last:border-b-0'>
                             <div className='absolute top-2 right-2'>
                                 <RiDeleteBinLine onClick={() => fourthSectionRemove(index)} className='cursor-pointer text-red-600' />
                             </div>
                             <div className='flex flex-col gap-2'>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Number</Label>
+                                    <Label className='font-bold'>Number</Label>
                                     <Input type='text' placeholder='Number' {...register(`fourthSection.items.${index}.number`)} />
                                 </div>
                                 
@@ -454,7 +468,7 @@ const HsePage = () => {
                             <div>
                                 
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Value</Label>
+                                    <Label className='font-bold'>Value</Label>
                                     <Input type='text' placeholder='Value' {...register(`fourthSection.items.${index}.value`)} />
                                 </div>
                                 
@@ -462,28 +476,30 @@ const HsePage = () => {
 
                         </div>
                     ))}
+                    </div>
 
-                    <div>
-                        <Button type='button' className="w-full cursor-pointer text-white" onClick={() => fourthSectionAppend({ number: "", value: "" })}>Add Item</Button>
+                    <div className='flex justify-end mt-2'>
+                        <Button type='button' addItem onClick={() => fourthSectionAppend({ number: "", value: "" })}>Add Item</Button>
                     </div>
 
                 </div>
                 </div>
+                </AdminItemContainer>
 
 
 
 
                 <div className='flex flex-col gap-2'>
-                    <Label className='pl-3 font-bold'>Meta Title</Label>
+                    <Label className='font-bold'>Meta Title</Label>
                     <Input type='text' placeholder='Meta Title' {...register("metaTitle")} />
                 </div>
                 <div className='flex flex-col gap-2'>
-                    <Label className='pl-3 font-bold'>Meta Description</Label>
+                    <Label className='font-bold'>Meta Description</Label>
                     <Input type='text' placeholder='Meta Description' {...register("metaDescription")} />
                 </div>
 
                 <div className='flex justify-center'>
-                    <Button type='submit' className="w-full cursor-pointer text-white">Submit</Button>
+                    <Button type='submit' className="w-full cursor-pointer text-white text-[16px]">Submit</Button>
                 </div>
 
             </form>

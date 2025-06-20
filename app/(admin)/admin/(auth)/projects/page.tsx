@@ -271,7 +271,7 @@ const ProjectsPage = () => {
         <div className='flex flex-col gap-5'>
             <div className='flex flex-col gap-5 border-dashed border-2 p-2'>
                 <div className='flex items-center gap-2 justify-between'>
-                    <h2 className='text-lg font-semibold'>Categories</h2>
+                    <h2 className='text-md font-semibold'>Categories</h2>
                     <Dialog>
                         <DialogTrigger className="bg-primary text-white px-2 py-1 rounded-md" onClick={() => { setName("");setMetaTitle("");setMetaDescription("");setSlug("") }}>Add Category</DialogTrigger>
                         <DialogContent className="">
@@ -284,7 +284,7 @@ const ProjectsPage = () => {
                                         <Input type="text" placeholder="Title" value={name} onChange={(e) => setName(e.target.value)} />
                                     </div>
                                     <div>
-                <Label className='pl-3 flex gap-2 items-center mb-1'>
+                <Label className='flex gap-2 items-center mb-1'>
                                                 Slug
                                                 <div className='flex gap-2 items-center bg-green-600 text-white p-1 rounded-md cursor-pointer w-fit' onClick={handleAutoGenerate}>
                                                     <p>Auto Generate</p>
@@ -313,7 +313,7 @@ const ProjectsPage = () => {
                     {categories.map((category, index) => (
                         <div className='flex items-center justify-between border p-2 rounded-md' key={index}>
                             <div>
-                                <p>{category.name}</p>
+                                <p className="text-[16px]">{category.name}</p>
                             </div>
                             <div className="flex items-center gap-10">
                                 <Dialog>
@@ -328,7 +328,7 @@ const ProjectsPage = () => {
                                                     <Input type="text" placeholder="Title" value={name} onChange={(e) => setName(e.target.value)} />
                                                 </div>
                                                 <div>
-                <Label className='pl-3 flex gap-2 items-center mb-1'>
+                <Label className='flex gap-2 items-center mb-1'>
                                                 Slug
                                                 <div className='flex gap-2 items-center bg-green-600 text-white p-1 rounded-md cursor-pointer w-fit' onClick={handleAutoGenerate}>
                                                     <p>Auto Generate</p>
@@ -375,7 +375,7 @@ const ProjectsPage = () => {
                     <div className='grid grid-cols-2 gap-5'>
             <div className='flex flex-col gap-5 border-dashed border-2 p-2'>
                 <div className='flex items-center gap-2 justify-between'>
-                    <h2 className='text-lg font-semibold'>Sector</h2>
+                    <h2 className='text-md font-semibold'>Sector</h2>
                     <Dialog>
                         <DialogTrigger className="bg-primary text-white px-2 py-1 rounded-md" onClick={() => {setSector("");}}>Add Sector</DialogTrigger>
                         <DialogContent className="">
@@ -399,7 +399,7 @@ const ProjectsPage = () => {
                     {sectors.map((sector, index) => (
                         <div className='flex items-center justify-between border p-2 rounded-md' key={index}>
                             <div>
-                                <p>{sector.name}</p>
+                                <p className="text-[16px]">{sector.name}</p>
                             </div>
                             <div className="flex items-center gap-10">
                                 <Dialog>
@@ -443,7 +443,7 @@ const ProjectsPage = () => {
 
             <div className='flex flex-col gap-5 border-dashed border-2 p-2'>
                 <div className='flex items-center gap-2 justify-between'>
-                    <h2 className='text-lg font-semibold'>Location</h2>
+                    <h2 className='text-md font-semibold'>Location</h2>
                     <Dialog>
                         <DialogTrigger className="bg-primary text-white px-2 py-1 rounded-md" onClick={() => {setLocation("");}}>Add Location</DialogTrigger>
                         <DialogContent className="">
@@ -467,7 +467,7 @@ const ProjectsPage = () => {
                     {locations.map((location, index) => (
                         <div className='flex items-center justify-between border p-2 rounded-md' key={index}>
                             <div>
-                                <p>{location.name}</p>
+                                <p className="text-[16px]">{location.name}</p>
                             </div>
                             <div className="flex items-center gap-10">
                                 <Dialog>

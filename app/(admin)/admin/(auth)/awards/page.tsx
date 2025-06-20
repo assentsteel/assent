@@ -144,7 +144,7 @@ export default function News() {
                               <div className="h-fit w-full p-2 border-2 border-gray-300 rounded-md mt-5 ">
                                   <div className="flex justify-between border-b-2 pb-2">
                                       <Label className="text-sm font-bold">Meta Section</Label>
-                                      <Button onClick={submitMetaSection} className="text-white">Save</Button>
+                                      <Button onClick={submitMetaSection} className="text-white text-[16px]">Save</Button>
                                   </div>
                                   <div className="mt-2 grid grid-cols-1 gap-2  h-fit">
                                         <div>

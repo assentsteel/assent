@@ -12,6 +12,7 @@ import { Textarea } from '@/components/ui/textarea'
 const ReactQuill = dynamic(() => import('react-quill-new'), { ssr: false })
 import 'react-quill-new/dist/quill.snow.css';
 import dynamic from 'next/dynamic'
+import AdminItemContainer from '@/app/component/common/AdminItemContainer';
 
 interface BlastingFormProps {
 
@@ -130,16 +131,17 @@ const BlastingPage = () => {
 
                 <div className='flex flex-col gap-2'>
                     <div>
-                        <Label className='pl-3 font-bold'>Page Title</Label>
+                        <Label oneInput>Page Title</Label>
                         <Input type='text' placeholder='Page Title' {...register("pageTitle")} />
                     </div>
                 </div>
 
-                <Label className='pl-3 font-bold border-b p-2 text-lg'>First Section</Label>
-                <div className='border p-2 rounded-md flex flex-col gap-2'>
+<AdminItemContainer>
+                <Label main>First Section</Label>
+                <div className='p-5 rounded-md flex flex-col gap-2'>
                     <div className='flex flex-col gap-2'>
                         <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>Title</Label>
+                            <Label className='font-bold'>Title</Label>
                             <Input type='text' placeholder='Title' {...register("firstSection.title", {
                                 required: "Title is required"
                             })} />
@@ -152,9 +154,12 @@ const BlastingPage = () => {
                             }} />
                         </div>
 
+                            <div className='grid grid-cols-2 gap-2'>
+                                
+
                         <div className='flex flex-col gap-2'>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Image</Label>
+                                    <Label className='font-bold'>Image</Label>
                                     <Controller
                                         name={`firstSection.image`}
                                         control={control}
@@ -171,16 +176,17 @@ const BlastingPage = () => {
                                     )}
                                 </div>
 
+                            </div>
+                            
+                            <div className='flex flex-col gap-2'>
                                 <div className='flex flex-col gap-2'>
-                                <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Alt Tag</Label>
+                                    <Label className='font-bold'>Alt Tag</Label>
                                     <Input type='text' placeholder='Alt Tag' {...register(`firstSection.imageAlt`, {
                                         required: "Value is required"
                                     })} />
                                     {errors.firstSection?.imageAlt && <p className='text-red-500'>{errors.firstSection?.imageAlt.message}</p>}
                                 </div>
                             </div>
-
 
                             </div>
 
@@ -192,13 +198,15 @@ const BlastingPage = () => {
 
 
                 </div>
+                </AdminItemContainer>
 
 
-                <Label className='pl-3 font-bold border-b p-2 text-lg'>Second Section</Label>
-                <div className='border p-2 rounded-md flex flex-col gap-2'>
+                <AdminItemContainer>
+                <Label main>Second Section</Label>
+                <div className='p-5 rounded-md flex flex-col gap-2'>
                     <div className='flex flex-col gap-2'>
                         <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>Title</Label>
+                            <Label className='font-bold'>Title</Label>
                             <Input type='text' placeholder='Title' {...register("secondSection.title", {
                                 required: "Title is required"
                             })} />
@@ -211,9 +219,10 @@ const BlastingPage = () => {
                             }} />
                         </div>
 
+                        <div className='grid grid-cols-2 gap-2'>
                         <div className='flex flex-col gap-2'>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Image</Label>
+                                    <Label className='font-bold'>Image</Label>
                                     <Controller
                                         name={`secondSection.image`}
                                         control={control}
@@ -230,17 +239,17 @@ const BlastingPage = () => {
                                     )}
                                 </div>
 
+                            </div>
+
+                            <div className='flex flex-col gap-2'>
                                 <div className='flex flex-col gap-2'>
-                                <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Alt Tag</Label>
+                                    <Label className='font-bold'>Alt Tag</Label>
                                     <Input type='text' placeholder='Alt Tag' {...register(`secondSection.imageAlt`, {
                                         required: "Value is required"
                                     })} />
                                     {errors.secondSection?.imageAlt && <p className='text-red-500'>{errors.secondSection?.imageAlt.message}</p>}
                                 </div>
                             </div>
-
-
                             </div>
 
 
@@ -251,12 +260,14 @@ const BlastingPage = () => {
 
 
                 </div>
+                </AdminItemContainer>
 
-                <Label className='pl-3 font-bold border-b p-2 text-lg'>Third Section</Label>
-                <div className='border p-2 rounded-md flex flex-col gap-2'>
+<AdminItemContainer>
+                <Label main>Third Section</Label>
+                <div className='p-5 rounded-md flex flex-col gap-2'>
                     <div className='flex flex-col gap-2'>
                         <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>Title</Label>
+                            <Label className='font-bold'>Title</Label>
                             <Input type='text' placeholder='Title' {...register("thirdSection.title", {
                                 required: "Title is required"
                             })} />
@@ -269,9 +280,10 @@ const BlastingPage = () => {
                             }} />
                         </div>
 
+                        <div className='grid grid-cols-2 gap-2'>
                         <div className='flex flex-col gap-2'>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Image</Label>
+                                    <Label className='font-bold'>Image</Label>
                                     <Controller
                                         name={`thirdSection.image`}
                                         control={control}
@@ -288,7 +300,10 @@ const BlastingPage = () => {
                                     )}
                                 </div>
 
-                                <div className='flex flex-col gap-2'>
+                            </div>
+
+                            
+                            <div className='flex flex-col gap-2'>
                                 <div className='flex flex-col gap-2'>
                                     <Label className='pl-3 font-bold'>Alt Tag</Label>
                                     <Input type='text' placeholder='Alt Tag' {...register(`thirdSection.imageAlt`, {
@@ -297,22 +312,22 @@ const BlastingPage = () => {
                                     {errors.thirdSection?.imageAlt && <p className='text-red-500'>{errors.thirdSection?.imageAlt.message}</p>}
                                 </div>
                             </div>
-
-
                             </div>
 
 
                     </div>
 
                 </div>
+                </AdminItemContainer>
 
 
-                                <Label className='pl-3 font-bold border-b p-2 text-lg'>Fourth Section</Label>
+<AdminItemContainer>
+                                <Label main>Fourth Section</Label>
                 <div className='border p-2 rounded-md flex flex-col gap-2'>
                     <div className='flex flex-col gap-2'>
                     
                         <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>Title</Label>
+                            <Label className='font-bold'>Title</Label>
                             <Input type='text' placeholder='Title' {...register("fourthSection.title", {
                                 required: "Title is required"
                             })} />
@@ -320,19 +335,19 @@ const BlastingPage = () => {
                         </div>
 
                          <div>
-                            <Label className='pl-3 font-bold'>Items</Label>
+                            <Label className='font-bold'>Items</Label>
                 <div className='border p-2 rounded-md flex flex-col gap-5'>
 
 
                     {fourthSectionItems.map((field, index) => (
-                        <div key={field.id} className='grid grid-cols-2 gap-2 relative border p-2 rounded-md h-[400px]'>
+                        <div key={field.id} className='grid grid-cols-2 gap-2 relative border-b p-2 h-[400px] last:border-b-0'>
                             <div className='absolute top-2 right-2'>
                                 <RiDeleteBinLine onClick={() => fourthSectionRemove(index)} className='cursor-pointer text-red-600' />
                             </div>
 
                             <div className='flex flex-col gap-2'>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Logo</Label>
+                                    <Label className='font-bold'>Logo</Label>
                                     <Controller
                                         name={`fourthSection.items.${index}.logo`}
                                         control={control}
@@ -352,7 +367,7 @@ const BlastingPage = () => {
 
                                 <div className='flex flex-col gap-2'>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Alt Tag</Label>
+                                    <Label className='font-bold'>Alt Tag</Label>
                                     <Input type='text' placeholder='Alt Tag' {...register(`fourthSection.items.${index}.logoAlt`, {
                                         required: "Value is required"
                                     })} />
@@ -367,7 +382,7 @@ const BlastingPage = () => {
 
                             <div className='flex flex-col gap-2'>
                             <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Number</Label>
+                                    <Label className='font-bold'>Number</Label>
                                     <Input type='text' placeholder='Number' {...register(`fourthSection.items.${index}.number`, {
                                         required: "Value is required"
                                     })} />
@@ -375,7 +390,7 @@ const BlastingPage = () => {
                                 </div>
 
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Value</Label>
+                                    <Label className='font-bold'>Value</Label>
                                     <Input type='text' placeholder='Value' {...register(`fourthSection.items.${index}.value`, {
                                         required: "Value is required"
                                     })} />
@@ -383,7 +398,7 @@ const BlastingPage = () => {
                                 </div>
 
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Description</Label>
+                                    <Label className='font-bold'>Description</Label>
                                     <Controller
                                     name={`fourthSection.items.${index}.description`}
                                     control={control}
@@ -401,32 +416,34 @@ const BlastingPage = () => {
                         </div>
                     ))}
 
-                    <div>
-                        <Button type='button' className="w-full cursor-pointer text-white" onClick={() => fourthSectionAppend({ logoAlt:"",title:"",logo:"",number:"",value:"",description:"" })}>Add Item</Button>
-                    </div>
+                    
 
                 </div>
+                <div className='flex justify-end mt-2'>
+                        <Button type='button' addItem onClick={() => fourthSectionAppend({ logoAlt:"",title:"",logo:"",number:"",value:"",description:"" })}>Add Item</Button>
+                    </div>
                             </div>
                         
 
                     </div>
 
                 </div>
+                </AdminItemContainer>
 
 
-
-                                <Label className='pl-3 font-bold border-b p-2 text-lg'>Fifth Section</Label>
+<AdminItemContainer>
+                                <Label main>Fifth Section</Label>
                 <div className='border p-2 rounded-md flex flex-col gap-2'>
                     <div className='flex flex-col gap-2'>
                         <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>Title</Label>
+                            <Label className='font-bold'>Title</Label>
                             <Input type='text' placeholder='Title' {...register("fifthSection.title", {
                                 required: "Title is required"
                             })} />
                             {errors.fifthSection?.title && <p className='text-red-500'>{errors.fifthSection?.title.message}</p>}
                         </div>
                         <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>Description</Label>
+                            <Label className='font-bold'>Description</Label>
                             <Textarea placeholder='Description' {...register("fifthSection.description", {
                                 required: "Description is required"
                             })} />
@@ -437,12 +454,12 @@ const BlastingPage = () => {
 
 
                     <div>
-                    <Label className='pl-3 font-bold'>Items</Label>
-                <div className='border p-2 rounded-md flex flex-col gap-5'>
+                    <Label className='font-bold'>Items</Label>
+                <div className='border rounded-md flex flex-col gap-5 p-2'>
 
 
                     {fifthSectionItems.map((field, index) => (
-                        <div key={field.id} className='grid grid-cols-2 gap-2 relative border p-2 rounded-md'>
+                        <div key={field.id} className='grid grid-cols-2 gap-2 relative border-b p-2 pb-5 last:border-b-0'>
                             <div className='absolute top-2 right-2'>
                                 <RiDeleteBinLine onClick={() => fifthSectionRemove(index)} className='cursor-pointer text-red-600' />
                             </div>
@@ -500,15 +517,17 @@ const BlastingPage = () => {
                         </div>
                     ))}
 
-                    <div>
-                        <Button type='button' className="w-full cursor-pointer text-white" onClick={() => fifthSectionAppend({ logoAlt:"",title:"",logo:"",description:"" })}>Add Item</Button>
-                    </div>
+                    
 
                 </div>
+                <div className='flex justify-end mt-2'>
+                        <Button type='button' addItem onClick={() => fifthSectionAppend({ logoAlt:"",title:"",logo:"",description:"" })}>Add Item</Button>
+                    </div>
                 </div>
                     
 
                 </div>
+                </AdminItemContainer>
 
 
 
@@ -523,7 +542,7 @@ const BlastingPage = () => {
                 </div>
 
                 <div className='flex justify-center'>
-                    <Button type='submit' className="cursor-pointer text-white">Submit</Button>
+                    <Button type='submit' className="cursor-pointer text-white text-[16px] w-full">Submit</Button>
                 </div>
 
             </form>

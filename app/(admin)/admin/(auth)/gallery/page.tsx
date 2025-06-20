@@ -167,7 +167,7 @@ const AdminGallery = () => {
             <div className="h-fit w-full p-2 border-2 border-gray-300 rounded-md mt-5">
                                               <div className="flex justify-between border-b-2 pb-2">
                                                   <Label className="text-sm font-bold">Meta Section</Label>
-                                                  <Button onClick={submitMetaSection} className="text-white">Save</Button>
+                                                  <Button onClick={submitMetaSection} className="text-white text-[16px]">Save</Button>
                                               </div>
                                               <div className="mt-2 grid grid-cols-1 gap-2  h-fit">
                                                 
@@ -186,7 +186,7 @@ const AdminGallery = () => {
                                               </div>
                                           </div>
                 <div className='flex items-center gap-2 justify-between'>
-                    <h2 className='text-lg font-semibold'>Items</h2>
+                    <h2 className='text-md font-semibold'>Items</h2>
                     <Dialog>
                         <DialogTrigger className="bg-primary text-white px-2 py-1 rounded-md" onClick={() => { setTitle(""); setThumbnail(""); setThumbnailAlt("");setSlug("") }}>Add Item</DialogTrigger>
                         <DialogContent className="">
@@ -199,7 +199,7 @@ const AdminGallery = () => {
                                         <Input type="text" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
                                     </div>
                                     <div>
-                                        <Label className='pl-3 flex gap-2 items-center mb-1'>
+                                        <Label className='flex gap-2 items-center mb-1'>
                                             Slug
                                             <div className='flex gap-2 items-center bg-green-600 text-white p-1 rounded-md cursor-pointer w-fit' onClick={handleAutoGenerate}>
                                                 <p>Auto Generate</p>
@@ -228,7 +228,7 @@ const AdminGallery = () => {
                     {items.map((item, index) => (
                         <div className='flex items-center justify-between border p-2 rounded-md' key={index}>
                             <div>
-                                <p>{item.title}</p>
+                                <p className="text-[16px]">{item.title}</p>
                             </div>
                             <div className="flex items-center gap-10">
                                 <Dialog>
@@ -243,7 +243,7 @@ const AdminGallery = () => {
                                                     <Input type="text" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
                                                 </div>
                                                 <div>
-                                                    <Label className='pl-3 flex gap-2 items-center mb-1'>
+                                                    <Label className='flex gap-2 items-center mb-1'>
                                                         Slug
                                                         <div className='flex gap-2 items-center bg-green-600 text-white p-1 rounded-md cursor-pointer w-fit' onClick={handleAutoGenerate}>
                                                             <p>Auto Generate</p>

@@ -12,6 +12,7 @@ import { Textarea } from '@/components/ui/textarea'
 const ReactQuill = dynamic(() => import('react-quill-new'), { ssr: false })
 import 'react-quill-new/dist/quill.snow.css';
 import dynamic from 'next/dynamic'
+import AdminItemContainer from '@/app/component/common/AdminItemContainer';
 
 interface AboutFormProps {
 
@@ -140,9 +141,10 @@ const AboutPage = () => {
             <form className='flex flex-col gap-5' onSubmit={handleSubmit(handleAddAbout)}>
 
 
-                <div className='flex flex-col gap-2'>
+                    <AdminItemContainer>
+                        <Label className="" main>Banner</Label>
+                        <div className='p-5 rounded-md grid grid-cols-2 gap-5'>
                     <div>
-                        <Label className="pl-3 font-bold">Banner</Label>
                         <Controller
                             name="banner"
                             control={control}
@@ -158,28 +160,32 @@ const AboutPage = () => {
                             <p className="text-red-500">{errors.banner.message}</p>
                         )}
                     </div>
-                    <div>
-                        <Label className='pl-3 font-bold'>Alt Tag</Label>
+                    <div className='flex flex-col gap-2'>
+                    <div className='flex flex-col gap-1'>
+                        <Label className='font-bold'>Alt Tag</Label>
                         <Input type='text' placeholder='Alt Tag' {...register("bannerAlt")} />
                     </div>
-                    <div>
-                        <Label className='pl-3 font-bold'>Page Title</Label>
+                    <div className='flex flex-col gap-1'>
+                        <Label className='font-bold'>Page Title</Label>
                         <Input type='text' placeholder='Page Title' {...register("pageTitle")} />
                     </div>
+                    </div>
                 </div>
+                </AdminItemContainer>
 
-                <Label className='pl-3 font-bold border-b p-2 text-lg'>First Section</Label>
-                <div className='border p-2 rounded-md flex flex-col gap-2'>
+                <AdminItemContainer>
+                <Label main>First Section</Label>
+                <div className='p-5 rounded-md flex flex-col gap-2'>
                     <div className='flex flex-col gap-2'>
                         <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>Main Title</Label>
+                            <Label className='font-bold'>Main Title</Label>
                             <Input type='text' placeholder='Main Title' {...register("firstSection.mainTitle", {
                                 required: "Main Title is required"
                             })} />
                             {errors.firstSection?.mainTitle && <p className='text-red-500'>{errors.firstSection?.mainTitle.message}</p>}
                         </div>
                         <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>Sub Title</Label>
+                            <Label className='font-bold'>Sub Title</Label>
                             <Input type='text' placeholder='Sub Title' {...register("firstSection.subTitle", {
                                 required: "Sub Title is required"
                             })} />
@@ -195,24 +201,24 @@ const AboutPage = () => {
 
 
                     <div>
-                    <Label className='pl-3 font-bold'>Items</Label>
-                <div className='border p-2 rounded-md flex flex-col gap-5'>
+                    <Label className='font-bold'>Items</Label>
+                <div className='border p-2 rounded-md flex flex-col gap-5 mt-0.5'>
 
 
                     {firstSectionItems.map((field, index) => (
-                        <div key={field.id} className='grid grid-cols-2 gap-2 relative border p-2 rounded-md'>
+                        <div key={field.id} className='grid grid-cols-2 gap-2 relative border-b pb-5'>
                             <div className='absolute top-2 right-2'>
                                 <RiDeleteBinLine onClick={() => firstSectionRemove(index)} className='cursor-pointer text-red-600' />
                             </div>
                             <div className='flex flex-col gap-2'>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Number</Label>
+                                    <Label className='font-bold'>Number</Label>
                                     <Input type='text' placeholder='Number' {...register(`firstSection.items.${index}.number`)} />
                                 </div>
                             </div>
                             <div className='flex flex-col gap-2'>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Value</Label>
+                                    <Label className='font-bold'>Value</Label>
                                     <Input type='text' placeholder='Value' {...register(`firstSection.items.${index}.value`, {
                                         required: "Value is required"
                                     })} />
@@ -223,8 +229,8 @@ const AboutPage = () => {
                         </div>
                     ))}
 
-                    <div>
-                        <Button type='button' className="w-full cursor-pointer text-white" onClick={() => firstSectionAppend({ number: "", value: "" })}>Add Item</Button>
+                    <div className='flex justify-end'>
+                        <Button type='button' className="" addItem onClick={() => firstSectionAppend({ number: "", value: "" })}>Add Item</Button>
                     </div>
 
                 </div>
@@ -232,13 +238,16 @@ const AboutPage = () => {
 
 
                 </div>
+                </AdminItemContainer>
 
 
-                <Label className='pl-3 font-bold border-b p-2 text-lg'>Second Section</Label>
-                <div className='border p-2 rounded-md flex flex-col gap-2'>
+                <AdminItemContainer>
+                <Label main>Second Section</Label>
+                <div className='p-5 rounded-md flex flex-col gap-2'>
                     <div className='flex flex-col gap-2'>
+                        <div className='grid grid-cols-2 gap-2'>
                     <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>Image 1</Label>
+                            <Label className='font-bold'>Image 1</Label>
                             <Controller
                                 name="secondSection.image1"
                                 control={control}
@@ -253,18 +262,11 @@ const AboutPage = () => {
                             {errors.secondSection?.image1 && (
                                 <p className="text-red-500">{errors.secondSection?.image1.message}</p>
                             )}
-                            <Label className='pl-3 font-bold'>Alt Tag</Label>
+                            <Label className='font-bold'>Alt Tag</Label>
                             <Input type='text' placeholder='Alt Tag' {...register("secondSection.image1Alt")} />
                         </div>
                         <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>Title</Label>
-                            <Input type='text' placeholder='Title' {...register("secondSection.title", {
-                                required: "Title is required"
-                            })} />
-                            {errors.secondSection?.title && <p className='text-red-500'>{errors.secondSection?.title.message}</p>}
-                        </div>
-                        <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>Image 2</Label>
+                            <Label className='font-bold'>Image 2</Label>
                             <Controller
                                 name="secondSection.image2"
                                 control={control}
@@ -279,11 +281,20 @@ const AboutPage = () => {
                             {errors.secondSection?.image2 && (
                                 <p className="text-red-500">{errors.secondSection?.image2.message}</p>
                             )}
-                            <Label className='pl-3 font-bold'>Alt Tag</Label>
+                            <Label className='font-bold'>Alt Tag</Label>
                             <Input type='text' placeholder='Alt Tag' {...register("secondSection.image2Alt")} />
                         </div>
+                        </div>
                         <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>Description</Label>
+                            <Label className='font-bold'>Title</Label>
+                            <Input type='text' placeholder='Title' {...register("secondSection.title", {
+                                required: "Title is required"
+                            })} />
+                            {errors.secondSection?.title && <p className='text-red-500'>{errors.secondSection?.title.message}</p>}
+                        </div>
+                        
+                        <div className='flex flex-col gap-1'>
+                            <Label className='font-bold'>Description</Label>
                             <Controller name="secondSection.description" control={control} render={({ field }) => {
                                 return <ReactQuill theme="snow" value={field.value} onChange={field.onChange} />
                             }} />
@@ -294,13 +305,15 @@ const AboutPage = () => {
                     </div>
 
                 </div>
+                </AdminItemContainer>
 
 
-                <Label className='pl-3 font-bold border-b p-2 text-lg'>History Section</Label>
-                <div className='border p-2 rounded-md flex flex-col gap-2'>
+                <AdminItemContainer>
+                <Label main>History Section</Label>
+                <div className='p-5 rounded-md flex flex-col gap-2'>
                     <div className='flex flex-col gap-2'>
                         <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>Title</Label>
+                            <Label className='font-bold'>Title</Label>
                             <Input type='text' placeholder='Title' {...register("historySection.title", {
                                 required: "Title is required"
                             })} />
@@ -311,19 +324,19 @@ const AboutPage = () => {
 
 
                     <div>
-                    <Label className='pl-3 font-bold'>Items</Label>
+                    <Label className='font-bold'>Items</Label>
                 <div className='border p-2 rounded-md flex flex-col gap-5'>
 
 
                     {historySectionItems.map((field, index) => (
-                        <div key={field.id} className='grid grid-cols-2 gap-2 relative border p-2 rounded-md'>
+                        <div key={field.id} className='grid grid-cols-2 gap-2 relative border-b pb-5 last:border-b-0'>
                             <div className='absolute top-2 right-2'>
                                 <RiDeleteBinLine onClick={() => historySectionRemove(index)} className='cursor-pointer text-red-600' />
                             </div>
 
                             <div className='flex flex-col gap-2'>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Image</Label>
+                                    <Label className='font-bold'>Image</Label>
                                     <Controller
                                         name={`historySection.items.${index}.image`}
                                         control={control}
@@ -342,7 +355,7 @@ const AboutPage = () => {
 
                                 <div className='flex flex-col gap-2'>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Alt Tag</Label>
+                                    <Label className='font-bold'>Alt Tag</Label>
                                     <Input type='text' placeholder='Alt Tag' {...register(`historySection.items.${index}.imageAlt`, {
                                         required: "Value is required"
                                     })} />
@@ -356,7 +369,7 @@ const AboutPage = () => {
                             <div className='flex flex-col gap-2'>
                             <div className='flex flex-col gap-2'>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Year</Label>
+                                    <Label className='font-bold'>Year</Label>
                                     <Input type='text' placeholder='Year' {...register(`historySection.items.${index}.year`, {
                                         required: "Value is required"
                                     })} />
@@ -366,7 +379,7 @@ const AboutPage = () => {
 
                             <div className='flex flex-col gap-2'>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Title</Label>
+                                    <Label className='font-bold'>Title</Label>
                                     <Input type='text' placeholder='Title' {...register(`historySection.items.${index}.title`, {
                                         required: "Value is required"
                                     })} />
@@ -376,7 +389,7 @@ const AboutPage = () => {
 
                             <div className='flex flex-col gap-2'>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Description</Label>
+                                    <Label className='font-bold'>Description</Label>
                                     <Textarea placeholder='Description' {...register(`historySection.items.${index}.description`, {
                                         required: "Value is required"
                                     })} />
@@ -388,20 +401,22 @@ const AboutPage = () => {
                         </div>
                     ))}
 
-                    <div>
-                        <Button type='button' className="w-full cursor-pointer text-white" onClick={() => historySectionAppend({ year: "", title: "", description: "", image: "", imageAlt: "" })}>Add Item</Button>
-                    </div>
+                    
 
                 </div>
+                <div className='flex justify-end mt-2'>
+                        <Button type='button' addItem onClick={() => historySectionAppend({ year: "", title: "", description: "", image: "", imageAlt: "" })}>Add Item</Button>
+                    </div>
                 </div>
                     
 
                 </div>
+                </AdminItemContainer>
 
 
-
-                <Label className='pl-3 font-bold border-b p-2 text-lg'>Purpose Section</Label>
-                <div className='border p-2 rounded-md flex flex-col gap-2'>
+                <AdminItemContainer>
+                <Label main>Purpose Section</Label>
+                <div className='p-5 rounded-md flex flex-col gap-2'>
                     <div className='flex flex-col gap-2'>
                     <div className='flex flex-col gap-1'>
                             <Label className='pl-3 font-bold'>Image</Label>
@@ -421,14 +436,14 @@ const AboutPage = () => {
                             )}
                         </div>
                         <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>Title</Label>
+                            <Label className='font-bold'>Title</Label>
                             <Input type='text' placeholder='Title' {...register("purposeSection.title", {
                                 required: "Title is required"
                             })} />
                             {errors.purposeSection?.title && <p className='text-red-500'>{errors.purposeSection?.title.message}</p>}
                         </div>
                         <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>Description</Label>
+                            <Label className='font-bold'>Description</Label>
                             <Controller name="purposeSection.description" control={control} render={({ field }) => {
                                 return <ReactQuill theme="snow" value={field.value} onChange={field.onChange} />
                             }} />
@@ -439,19 +454,16 @@ const AboutPage = () => {
                     </div>
 
                 </div>
+                </AdminItemContainer>
 
 
-                <div>
-                    <div className='flex border-b mb-5'>
-                    <Label className='pl-3 font-bold text-lg'>Core Values</Label>
-                    </div>
+                    <AdminItemContainer>
+                    <Label main>Core Values</Label>
 
-                    
-
-                <div className='border p-2 rounded-md flex flex-col gap-5'>
+                <div className='p-5 rounded-md flex flex-col gap-5'>
                 <div className='flex flex-col gap-2'>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Title</Label>
+                                    <Label className='font-bold'>Title</Label>
                                     <Input type='text' placeholder='Title' {...register(`coreValues.title`, {
                                         required: "Value is required"
                                     })} />
@@ -459,8 +471,10 @@ const AboutPage = () => {
                                 </div>
                             </div>
 
+                    <Label>Items</Label>
+                    <div className='border p-2 rounded-md'>
                     {coreValuesItems.map((field, index) => (
-                        <div key={field.id} className='grid grid-cols-2 gap-2 relative border p-2 rounded-md'>
+                        <div key={field.id} className='grid grid-cols-2 gap-2 relative border-b pb-2 last:border-b-0'>
                             <div className='absolute top-2 right-2'>
                                 <RiDeleteBinLine onClick={() => coreValuesRemove(index)} className='cursor-pointer text-red-600' />
                             </div>
@@ -501,13 +515,16 @@ const AboutPage = () => {
 
                         </div>
                     ))}
-
-                    <div>
-                        <Button type='button' className="w-full cursor-pointer text-white" onClick={() => coreValuesAppend({ image: "", imageAlt: "", title: "", description: "" })}>Add Item</Button>
+                    
                     </div>
+                    <div className='flex justify-end mt-2'>
+                        <Button type='button' addItem onClick={() => coreValuesAppend({ image: "", imageAlt: "", title: "", description: "" })}>Add Item</Button>
+                    </div>
+                    
 
                 </div>
-                </div>
+                </AdminItemContainer>
+
 
 
 
@@ -521,8 +538,8 @@ const AboutPage = () => {
                     <Input type='text' placeholder='Meta Description' {...register("metaDescription")} />
                 </div>
 
-                <div className='flex justify-center'>
-                    <Button type='submit' className="cursor-pointer text-white">Submit</Button>
+                <div className='flex'>
+                    <Button type='submit' className="cursor-pointer text-white text-[16px] w-full">Submit</Button>
                 </div>
 
             </form>

@@ -14,6 +14,7 @@ import 'react-quill-new/dist/quill.snow.css';
 import dynamic from 'next/dynamic'
 import { FileUploader } from '@/components/ui/file-uploader';
 import Image from 'next/image';
+import AdminItemContainer from '@/app/component/common/AdminItemContainer';
 
 interface SustainabilityFormProps {
 
@@ -172,7 +173,7 @@ const SustainabilityPage = () => {
 
                 <div className='flex flex-col gap-2'>
                     <div>
-                        <Label className="pl-3 font-bold">Banner</Label>
+                        <Label className="font-bold">Banner</Label>
                         <Controller
                             name="banner"
                             control={control}
@@ -189,20 +190,21 @@ const SustainabilityPage = () => {
                         )}
                     </div>
                     <div>
-                        <Label className='pl-3 font-bold'>Alt Tag</Label>
+                        <Label className='font-bold'>Alt Tag</Label>
                         <Input type='text' placeholder='Alt Tag' {...register("bannerAlt")} />
                     </div>
                     <div>
-                        <Label className='pl-3 font-bold'>Page Title</Label>
+                        <Label className='font-bold'>Page Title</Label>
                         <Input type='text' placeholder='Page Title' {...register("pageTitle")} />
                     </div>
                 </div>
 
-                <Label className='pl-3 font-bold border-b p-2 text-lg'>First Section</Label>
-                <div className='border p-2 rounded-md flex flex-col gap-2'>
+<AdminItemContainer>
+                <Label main>First Section</Label>
+                <div className='p-5 rounded-md flex flex-col gap-2'>
                     <div className='flex flex-col gap-2'>
                         <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>Title</Label>
+                            <Label className='font-bold'>Title</Label>
                             <Input type='text' placeholder='Title' {...register("firstSection.title", {
                                 required: "Title is required"
                             })} />
@@ -218,18 +220,18 @@ const SustainabilityPage = () => {
 
 
                     <div>
-                    <Label className='pl-3 font-bold'>Items</Label>
+                    <Label className='font-bold'>Items</Label>
                 <div className='border p-2 rounded-md flex flex-col gap-5'>
 
 
                     {firstSectionItems.map((field, index) => (
-                        <div key={field.id} className='grid grid-cols-2 gap-2 relative border p-2 rounded-md'>
+                        <div key={field.id} className='grid grid-cols-2 gap-2 relative border-b p-2 pb-5 last:border-b-0'>
                             <div className='absolute top-2 right-2'>
                                 <RiDeleteBinLine onClick={() => firstSectionRemove(index)} className='cursor-pointer text-red-600' />
                             </div>
                             <div className='flex flex-col gap-2'>
                             <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>Image</Label>
+                            <Label className='font-bold'>Image</Label>
                             <Controller
                                 name={`firstSection.items.${index}.image`}
                                 control={control}
@@ -244,13 +246,13 @@ const SustainabilityPage = () => {
                             {errors.firstSection?.items?.[index]?.image && (
                                 <p className="text-red-500">{errors.firstSection?.items?.[index]?.image.message}</p>
                             )}
-                            <Label className='pl-3 font-bold'>Alt Tag</Label>
+                            <Label className='font-bold'>Alt Tag</Label>
                             <Input type='text' placeholder='Alt Tag' {...register(`firstSection.items.${index}.imageAlt`)} />
                         </div>
                             </div>
                             <div className='flex flex-col gap-2'>
                             <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>Logo</Label>
+                            <Label className='font-bold'>Logo</Label>
                             <Controller
                                 name={`firstSection.items.${index}.logo`}
                                 control={control}
@@ -266,55 +268,59 @@ const SustainabilityPage = () => {
                             {errors.firstSection?.items?.[index]?.logo && (
                                 <p className="text-red-500">{errors.firstSection?.items?.[index]?.logo.message}</p>
                             )}
-                            <Label className='pl-3 font-bold'>Alt Tag</Label>
+                            <Label className='font-bold'>Alt Tag</Label>
                             <Input type='text' placeholder='Alt Tag' {...register(`firstSection.items.${index}.logoAlt`)} />
                         </div>
                             </div>
 
                             <div>
-                            <Label className='pl-3 font-bold'>Title</Label>
+                            <Label className='font-bold'>Title</Label>
                             <Input type='text' placeholder='Title' {...register(`firstSection.items.${index}.title`)} />
                         </div>
 
                         </div>
                     ))}
 
-                    <div>
-                        <Button type='button' className="w-full cursor-pointer text-white" onClick={() => firstSectionAppend({ logo: "", logoAlt: "",image:"",imageAlt:"",title:"" })}>Add Item</Button>
+                    
+
+                </div>
+                <div className='flex justify-end mt-2'>
+                        <Button type='button' addItem onClick={() => firstSectionAppend({ logo: "", logoAlt: "",image:"",imageAlt:"",title:"" })}>Add Item</Button>
                     </div>
-
-                </div>
                 </div>
 
 
                 </div>
 
+                </AdminItemContainer>
 
-                <Label className='pl-3 font-bold border-b p-2 text-lg'>Second Section</Label>
-                <div className='border p-2 rounded-md flex flex-col gap-2'>
+
+<AdminItemContainer>
+                <Label main>Second Section</Label>
+                <div className='p-5 rounded-md flex flex-col gap-2'>
                     <div className='flex flex-col gap-2'>
                         <div>
-                            <Label className='pl-3 font-bold'>First Title</Label>
+                            <Label className='font-bold'>First Title</Label>
                             <Input type='text' placeholder='First Title' {...register("secondSection.firstTitle", {
                                 required: "First Title is required"
                             })} />
                             {errors.secondSection?.firstTitle && <p className='text-red-500'>{errors.secondSection?.firstTitle.message}</p>}
                         </div>
                         <div>
-                            <Label className='pl-3 font-bold'>Second Title</Label>
+                            <Label className='font-bold'>Second Title</Label>
                             <Input type='text' placeholder='Second Title' {...register("secondSection.secondTitle", {
                                 required: "Second Title is required"
                             })} />
                             {errors.secondSection?.secondTitle && <p className='text-red-500'>{errors.secondSection?.secondTitle.message}</p>}
                         </div>
                         <div>
-                            <Label className="text-sm font-bold pl-3">Description</Label>
+                            <Label className="text-sm font-bold">Description</Label>
                             <Controller name="secondSection.description" control={control} rules={{ required: "Description is required" }} render={({ field }) => {
                                 return <Textarea placeholder="Description" {...field} />
                             }} />
                         </div>
                     <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>File</Label>
+                            <Label className='font-bold'>File</Label>
                             <Controller
                                 name="secondSection.file"
                                 control={control}
@@ -331,21 +337,21 @@ const SustainabilityPage = () => {
                             )}
                         </div>
                         <div>
-                            <Label className='pl-3 font-bold'>File Name</Label>
+                            <Label className='font-bold'>File Name</Label>
                             <Input type='text' placeholder='File Name' {...register("secondSection.fileName", {
                                 required: "File Name is required"
                             })} />
                             {errors.secondSection?.fileName && <p className='text-red-500'>{errors.secondSection?.fileName.message}</p>}
                         </div>
                         <div>
-                            <Label className='pl-3 font-bold'>Third Title</Label>
+                            <Label className='font-bold'>Third Title</Label>
                             <Input type='text' placeholder='Third Title' {...register("secondSection.thirdTitle", {
                                 required: "Third Title is required"
                             })} />
                             {errors.secondSection?.thirdTitle && <p className='text-red-500'>{errors.secondSection?.thirdTitle.message}</p>}
                         </div>
                         <div>
-                            <Label className='pl-3 font-bold'>File Description</Label>
+                            <Label className='font-bold'>File Description</Label>
                             <Input type='text' placeholder='File Description' {...register("secondSection.fileDescription", {
                                 required: "File Description is required"
                             })} />
@@ -356,19 +362,21 @@ const SustainabilityPage = () => {
 
                 </div>
 
+                </AdminItemContainer>
 
-                <Label className='pl-3 font-bold border-b p-2 text-lg'>Third Section</Label>
-                <div className='border p-2 rounded-md flex flex-col gap-2'>
+<AdminItemContainer>
+                <Label main>Third Section</Label>
+                <div className='p-5 rounded-md flex flex-col gap-2'>
                     <div className='flex flex-col gap-2'>
                         <div className='flex flex-col gap-1'>
-                            <Label className='pl-3 font-bold'>Title</Label>
+                            <Label className='font-bold'>Title</Label>
                             <Input type='text' placeholder='Title' {...register("thirdSection.title", {
                                 required: "Title is required"
                             })} />
                             {errors.thirdSection?.title && <p className='text-red-500'>{errors.thirdSection?.title.message}</p>}
                         </div>
                         <div>
-                            <Label className='pl-3 font-bold'>Description</Label>
+                            <Label className='font-bold'>Description</Label>
                             <Controller name="thirdSection.description" control={control} rules={{ required: "Description is required" }} render={({ field }) => {
                                 return <ReactQuill value={field.value} onChange={field.onChange} />
                             }} />
@@ -379,19 +387,19 @@ const SustainabilityPage = () => {
 
 
                     <div>
-                    <Label className='pl-3 font-bold'>Items</Label>
+                    <Label className='font-bold'>Items</Label>
                 <div className='border p-2 rounded-md flex flex-col gap-5'>
 
 
                     {thirdSectionItems.map((field, index) => (
-                        <div key={field.id} className='grid grid-cols-2 gap-2 relative border p-2 rounded-md'>
+                        <div key={field.id} className='grid grid-cols-2 gap-2 relative border-b p-2 pb-5 last:border-b-0'>
                             <div className='absolute top-2 right-2'>
                                 <RiDeleteBinLine onClick={() => thirdSectionRemove(index)} className='cursor-pointer text-red-600' />
                             </div>
 
                             <div className='flex flex-col gap-2'>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Image</Label>
+                                    <Label className='font-bold'>Image</Label>
                                     <Controller
                                         name={`thirdSection.items.${index}.image`}
                                         control={control}
@@ -412,7 +420,7 @@ const SustainabilityPage = () => {
 
                             <div className='flex flex-col gap-2'>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Alt Tag</Label>
+                                    <Label className='font-bold'>Alt Tag</Label>
                                     <Input type='text' placeholder='Alt Tag' {...register(`thirdSection.items.${index}.imageAlt`, {
                                         required: "Value is required"
                                     })} />
@@ -424,28 +432,30 @@ const SustainabilityPage = () => {
                         </div>
                     ))}
 
-                    <div>
-                        <Button type='button' className="w-full cursor-pointer text-white" onClick={() => thirdSectionAppend({ image: "", imageAlt: "" })}>Add Item</Button>
-                    </div>
+                    
 
                 </div>
+                <div className='flex justify-end mt-2'>
+                        <Button type='button' addItem onClick={() => thirdSectionAppend({ image: "", imageAlt: "" })}>Add Item</Button>
+                    </div>
                 </div>
                     
 
                 </div>
+                </AdminItemContainer>
 
 
-                <div>
+                <AdminItemContainer>
                     <div className='flex border-b mb-5'>
-                    <Label className='pl-3 font-bold text-lg'>Fourth Section</Label>
+                    <Label main>Fourth Section</Label>
                     </div>
 
                     
 
-                <div className='border p-2 rounded-md flex flex-col gap-5'>
+                <div className='p-5 rounded-md flex flex-col gap-5'>
                 <div className='flex flex-col gap-2'>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Title</Label>
+                                    <Label className='font-bold'>Title</Label>
                                     <Input type='text' placeholder='Title' {...register(`fourthSection.title`, {
                                         required: "Value is required"
                                     })} />
@@ -453,14 +463,15 @@ const SustainabilityPage = () => {
                                 </div>
                             </div>
 
+                    <Label>Items</Label>
                     {fourthSectionItems.map((field, index) => (
-                        <div key={field.id} className='grid grid-cols-2 gap-2 relative border p-2 rounded-md'>
+                        <div key={field.id} className='grid grid-cols-2 gap-2 relative border-b p-2 pb-5 last:border-b-0'>
                             <div className='absolute top-2 right-2'>
                                 <RiDeleteBinLine onClick={() => fourthSectionRemove(index)} className='cursor-pointer text-red-600' />
                             </div>
                             <div className='flex flex-col gap-2'>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Image</Label>
+                                    <Label className='font-bold'>Image</Label>
                                     <Controller
                                         name={`fourthSection.items.${index}.image`}
                                         control={control}
@@ -475,7 +486,7 @@ const SustainabilityPage = () => {
                                     {errors.fourthSection?.items?.[index]?.image && <p className='text-red-500'>{errors.fourthSection?.items?.[index]?.image.message}</p>}
                                 </div>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Alt Tag</Label>
+                                    <Label className='font-bold'>Alt Tag</Label>
                                     <Input type='text' placeholder='Alt Tag' {...register(`fourthSection.items.${index}.imageAlt`)} />
                                 </div>
                                 
@@ -483,11 +494,11 @@ const SustainabilityPage = () => {
 
                             <div>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Title</Label>
+                                    <Label className='font-bold'>Title</Label>
                                     <Input type='text' placeholder='Title' {...register(`fourthSection.items.${index}.title`)} />
                                 </div>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Description</Label>
+                                    <Label className='font-bold'>Description</Label>
                                     <Textarea placeholder='Description' {...register(`fourthSection.items.${index}.description`)} />
                                 </div>
                                 
@@ -496,25 +507,25 @@ const SustainabilityPage = () => {
                         </div>
                     ))}
 
-                    <div>
-                        <Button type='button' className="w-full cursor-pointer text-white" onClick={() => fourthSectionAppend({ image: "", imageAlt: "", title: "", description: "" })}>Add Item</Button>
+                    <div className='flex justify-end mt-2'>
+                        <Button type='button' addItem onClick={() => fourthSectionAppend({ image: "", imageAlt: "", title: "", description: "" })}>Add Item</Button>
                     </div>
 
                 </div>
-                </div>
+                </AdminItemContainer>
 
 
-                <div>
+                <AdminItemContainer>
                     <div className='flex border-b mb-5'>
-                    <Label className='pl-3 font-bold text-lg'>Fifth Section</Label>
+                    <Label main>Fifth Section</Label>
                     </div>
 
                     
 
-                <div className='border p-2 rounded-md flex flex-col gap-5'>
+                <div className='p-5 rounded-md flex flex-col gap-5'>
                 <div className='flex flex-col gap-2'>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Title</Label>
+                                    <Label className='font-bold'>Title</Label>
                                     <Input type='text' placeholder='Title' {...register(`fifthSection.title`, {
                                         required: "Value is required"
                                     })} />
@@ -523,13 +534,13 @@ const SustainabilityPage = () => {
                             </div>
 
                     {fifthSectionItems.map((field, index) => (
-                        <div key={field.id} className='grid grid-cols-2 gap-2 relative border p-2 rounded-md'>
+                        <div key={field.id} className='grid grid-cols-2 gap-2 relative border-b p-2 pb-5 last:border-b-0'>
                             <div className='absolute top-2 right-2'>
                                 <RiDeleteBinLine onClick={() => fifthSectionRemove(index)} className='cursor-pointer text-red-600' />
                             </div>
                             <div className='flex flex-col gap-2'>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Image</Label>
+                                    <Label className='font-bold'>Image</Label>
                                     <Controller
                                         name={`fifthSection.items.${index}.image`}
                                         control={control}
@@ -544,7 +555,7 @@ const SustainabilityPage = () => {
                                     {errors.fifthSection?.items?.[index]?.image && <p className='text-red-500'>{errors.fifthSection?.items?.[index]?.image.message}</p>}
                                 </div>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Alt Tag</Label>
+                                    <Label className='font-bold'>Alt Tag</Label>
                                     <Input type='text' placeholder='Alt Tag' {...register(`fifthSection.items.${index}.imageAlt`)} />
                                 </div>
                                 
@@ -552,11 +563,11 @@ const SustainabilityPage = () => {
 
                             <div>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Title</Label>
+                                    <Label className='font-bold'>Title</Label>
                                     <Input type='text' placeholder='Title' {...register(`fifthSection.items.${index}.title`)} />
                                 </div>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Description</Label>
+                                    <Label className='font-bold'>Description</Label>
                                     <Textarea placeholder='Description' {...register(`fifthSection.items.${index}.description`)} />
                                 </div>
                                 
@@ -565,14 +576,14 @@ const SustainabilityPage = () => {
                         </div>
                     ))}
 
-                    <div>
-                        <Button type='button' className="w-full cursor-pointer text-white" onClick={() => fifthSectionAppend({ image: "", imageAlt: "", title: "", description: "" })}>Add Item</Button>
+                    <div className='flex justify-end mt-2'>
+                        <Button type='button' addItem onClick={() => fifthSectionAppend({ image: "", imageAlt: "", title: "", description: "" })}>Add Item</Button>
                     </div>
 
                 </div>
-                </div>
+                </AdminItemContainer>
 
-                <Label className='pl-3 font-bold text-lg'>Card Images</Label>
+                <Label className='font-bold text-lg'>Card Images</Label>
                     <div className='flex flex-col gap-5'>
                                         <div className="mt-2">
                                             <ImageUploader onChange={(url: string) => handleCardImageUpload(url)} deleteAfterUpload={true} />
@@ -602,16 +613,16 @@ const SustainabilityPage = () => {
 
 
                 <div className='flex flex-col gap-2'>
-                    <Label className='pl-3 font-bold'>Meta Title</Label>
+                    <Label className='font-bold'>Meta Title</Label>
                     <Input type='text' placeholder='Meta Title' {...register("metaTitle")} />
                 </div>
                 <div className='flex flex-col gap-2'>
-                    <Label className='pl-3 font-bold'>Meta Description</Label>
+                    <Label className='font-bold'>Meta Description</Label>
                     <Input type='text' placeholder='Meta Description' {...register("metaDescription")} />
                 </div>
 
                 <div className='flex justify-center'>
-                    <Button type='submit' className="w-full cursor-pointer text-white">Submit</Button>
+                    <Button type='submit' className="w-full cursor-pointer text-white text-[16px]">Submit</Button>
                 </div>
 
             </form>

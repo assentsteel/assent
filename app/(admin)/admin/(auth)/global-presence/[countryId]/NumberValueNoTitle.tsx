@@ -23,7 +23,7 @@ const NumberValueNoTitle = ({register,control,index,type}:NumberValueNoTitleProp
         name: `section.${index}.items`
     });
   return (
-    <div className='border p-2 rounded-md flex flex-col gap-2'>
+    <div className='p-5 rounded-md flex flex-col gap-2'>
     
                                 <div>
                         <Controller
@@ -32,28 +32,28 @@ const NumberValueNoTitle = ({register,control,index,type}:NumberValueNoTitleProp
                                                         defaultValue={type}
                                                         render={({ field }) => <input type="hidden" {...field} />}
                                                     />
-                        <Label className='pl-3 font-bold'>Items</Label>
+                        <Label className='font-bold'>Items</Label>
                     <div className='border p-2 rounded-md flex flex-col gap-5'>
     
     
                         {secondSectionFields.map((field, itemIndex) => (
-                            <div key={field.id} className='grid grid-cols-2 gap-2 relative border p-2 rounded-md'>
+                            <div key={field.id} className='grid grid-cols-2 gap-2 relative border-b p-2 pb-5 last:border-b-0'>
                                 <div className='absolute top-2 right-2'>
                                     <RiDeleteBinLine onClick={() => secondSectionRemove(itemIndex)} className='cursor-pointer text-red-600' />
                                 </div>
                                 <div className='flex flex-col gap-2'>
                                     <div className='flex flex-col gap-2'>
-                                        <Label className='pl-3 font-bold'>Number</Label>
+                                        <Label className='font-bold'>Number</Label>
                                         <Input type='text' placeholder='Number' {...register(`section.${index}.items.${itemIndex}.number`)} />
                                     </div>
                                     <div className='flex flex-col gap-2'>
-                                        <Label className='pl-3 font-bold'>Value</Label>
+                                        <Label className='font-bold'>Value</Label>
                                         <Input type='text' placeholder='Value' {...register(`section.${index}.items.${itemIndex}.value`)} />
                                     </div>
                                 </div>
                                 <div className='flex flex-col gap-2'>
                                     <div className='flex flex-col gap-2'>
-                                        <Label className='pl-3 font-bold'>Description</Label>
+                                        <Label className='font-bold'>Description</Label>
                                         <Textarea placeholder='Description' {...register(`section.${index}.items.${itemIndex}.description`)} />
                                     </div>
                                 </div>
@@ -61,11 +61,12 @@ const NumberValueNoTitle = ({register,control,index,type}:NumberValueNoTitleProp
                             </div>
                         ))}
     
-                        <div>
-                            <Button type='button' className="w-full cursor-pointer  bg-green-400" onClick={() => secondSectionAppend({ description: "", number: "", value: "" })}>Add Item +</Button>
-                        </div>
+                       
     
                     </div>
+                    <div className='flex justify-end mt-2'>
+                            <Button type='button' addItem onClick={() => secondSectionAppend({ description: "", number: "", value: "" })}>Add Item +</Button>
+                        </div>
                     </div>
     
     

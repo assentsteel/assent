@@ -20,7 +20,7 @@ interface BannerSectionProps {
 
 const BannerSection = ({ register, control, index, type }: BannerSectionProps) => {
     return (
-        <div className='border p-2 rounded-md flex flex-col gap-2'>
+        <div className='p-5 rounded-md flex flex-col gap-2'>
             <div className='flex flex-col gap-2'>
                 <Controller
                     name={`section.${index}.type`}
@@ -29,7 +29,7 @@ const BannerSection = ({ register, control, index, type }: BannerSectionProps) =
                     render={({ field }) => <input type="hidden" {...field} />}
                 />
                 <div className='flex flex-col gap-1'>
-                    <Label className='pl-3 font-bold'>Title</Label>
+                    <Label className='font-bold'>Title</Label>
                     <Input type="text" placeholder="Title" {...register(`section.${index}.title`)} />
                 </div>
                 <div>
@@ -41,7 +41,7 @@ const BannerSection = ({ register, control, index, type }: BannerSectionProps) =
 
                 <div className='flex flex-col gap-2'>
                     <div className='flex flex-col gap-2'>
-                        <Label className='pl-3 font-bold'>Image</Label>
+                        <Label className='font-bold'>Image</Label>
                         <Controller
                             name={`section.${index}.image`}
                             control={control}
@@ -56,7 +56,7 @@ const BannerSection = ({ register, control, index, type }: BannerSectionProps) =
 
                     <div className='flex flex-col gap-2'>
                         <div className='flex flex-col gap-2'>
-                            <Label className='pl-3 font-bold'>Alt Tag</Label>
+                            <Label className='font-bold'>Alt Tag</Label>
                             <Input type='text' placeholder='Alt Tag' {...register(`section.${index}.imageAlt`)} />
                         </div>
                     </div>

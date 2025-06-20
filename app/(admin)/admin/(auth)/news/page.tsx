@@ -184,7 +184,7 @@ export default function News() {
                               <div className="h-fit w-full p-2 border-2 border-gray-300 rounded-md mt-5">
                                   <div className="flex justify-between border-b-2 pb-2">
                                       <Label className="text-sm font-bold">Meta Section</Label>
-                                      <Button onClick={submitMetaSection} className="text-white">Save</Button>
+                                      <Button onClick={submitMetaSection} className="text-white text-[16px]">Save</Button>
                                   </div>
                                   <div className="mt-2 grid grid-cols-1 gap-2  h-fit">
                                     
@@ -207,7 +207,7 @@ export default function News() {
           <div className="flex justify-between border-b-2 pb-2">
             <Label className="text-sm font-bold">Category</Label>
             <Dialog>
-              <DialogTrigger className="bg-primary text-white px-3 py-2 rounded-md font-bold" onClick={()=>setCategory("")}>Add Category</DialogTrigger>
+              <DialogTrigger className="bg-primary text-white px-3 py-2 rounded-md font-bold text-[16px]" onClick={()=>setCategory("")}>Add Category</DialogTrigger>
               <DialogContent>
                 <DialogHeader>
                   <DialogTitle>Add Category</DialogTitle>
@@ -271,7 +271,7 @@ export default function News() {
       <div className="h-[400px] w-full p-2 border-2 border-gray-300 rounded-md overflow-y-hidden">
         <div className="flex justify-between border-b-2 pb-2">
           <Label className="text-sm font-bold">News</Label>
-          <Button onClick={()=>router.push("/admin/news/add")} className="text-white">Add News</Button>
+          <Button onClick={()=>router.push("/admin/news/add")} className="text-white text-[16px]">Add News</Button>
         </div>
         <div className="mt-2 flex flex-col gap-2 overflow-y-scroll h-3/4">
           {newsList?.map((item)=>(
