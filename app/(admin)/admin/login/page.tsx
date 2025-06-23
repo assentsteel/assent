@@ -24,6 +24,8 @@ export default function AdminLogin() {
 
       if (data.success) {
         window.location.href = "/admin/home";
+      }else{
+        setError(data.message);
       }
     } catch (err) {
       console.log(err);
