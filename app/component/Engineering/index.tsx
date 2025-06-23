@@ -1,42 +1,43 @@
-import React from "react";
-import {singletextimg,about,Packagesdata,IndustriesWeServe,Slidethumbdata} from "./data";
+import React from "react"; 
 import Herotext from "../common/Banner/Herotext";
 import SingleImageText from "../common/SingleImageText";
-import SingleImage from "../common/SingleImage";
-import { assets } from "@/public/assets/assets";
+import SingleImage from "../common/SingleImage"; 
 import IntroBold from "../common/IntroBold";
 import Boxgrid from "./sections/Boxgrid";
-import Slidetextthumb from "./sections/Slidetextthumb";
+
 import Packages from "./sections/Packages";
-export default function Index() {
+import ProjectModels from "./sections/ProjectModels";
+import WhyChoose from "../common/WhyChoose";
+import { Engineering } from '@/public/types/Common'; 
+const Index = async ({ data }: { data: Engineering }) => { 
+   
   const breadcrumb = [
     { label: "Home", href: "/" },
-    { label: "Engineering", href: "" },
+    { label: data.pageTitle, href: "" },
     // { label: `${data && data.data.sector}`, href: "#" },
   ];
 
   return (
     <>
 
-      <Herotext breadcrumbs={breadcrumb} title={"Engineering"} />
+      <Herotext breadcrumbs={breadcrumb} title={data.pageTitle} />
 
-      <SingleImage secimage={assets.engbanner}/>
-      <IntroBold data={about} />
+      <SingleImage data={data}/>
+      <IntroBold data={data.firstSection} />
       <section className="pt-[50px]  xl:pt-[80px]">
       <Boxgrid
-      colnum={4}
-        title={IndustriesWeServe.title}
-        subttle={IndustriesWeServe.subttle}
-        data={IndustriesWeServe.data} />
+      colnum={4} 
+        data={data} />
       </section>
+    <ProjectModels data={data}/>
 
-      <Slidetextthumb data={Slidethumbdata.data} />
 
 
-      <SingleImageText data={singletextimg.data} maxwidth={'max-w-[68ch]'} textright={true} />
-      <Packages data={Packagesdata}    />
-
+      <SingleImageText data={data.fourthSection} maxwidth={'max-w-[68ch]'} textright={true} />
+      <Packages data={data}    />
+      <WhyChoose data={data.sixthSection} />
 
     </>
   );
 }
+export default Index

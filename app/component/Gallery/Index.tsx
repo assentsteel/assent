@@ -1,8 +1,10 @@
-import React from "react";
-import {boxcontent} from "./data";
+import React from "react"; 
 import Herotext from "../common/Banner/Herotext";
 import HeadingText from "./sections/HeadingText";
-export default function Index() {
+
+import { Gallery } from '@/public/types/Common';
+
+const Index = async ({ data }: { data: Gallery }) => { 
   const breadcrumb = [
     { label: "Home", href: "/" },
     { label: "Gallery", href: "" },
@@ -16,8 +18,10 @@ export default function Index() {
       <Herotext breadcrumbs={breadcrumb} title={"Gallery"} />
 
 
-      <HeadingText data={boxcontent.data} />
+      <HeadingText data={data} />
 
     </>
   );
 }
+
+export default Index;

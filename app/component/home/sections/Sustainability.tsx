@@ -6,9 +6,10 @@ import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Home } from "@/public/types/Common";
 gsap.registerPlugin(ScrollTrigger);
 
-const Sustainability = () => {
+const Sustainability = ({ data }: { data: Home }) => {
    const containerRef = useRef(null);
   const textContainerVariants = {
     hidden: { opacity: 0 },
@@ -46,13 +47,13 @@ const Sustainability = () => {
     <section className="relative bg-cover bg-center text-white section-spacing bg-primary">
       <div className="w-full h-full absolute mx-auto top-0 left-0 right-0" ref={containerRef}>
       <video
-        src="/assets/video/sustainable.mp4" // Correct public folder reference
+        src={data.sustainabilitySection.video} // Correct public folder reference
         className="absolute inset-0 w-full h-full object-cover"
         loop
         muted
         playsInline
         autoPlay
-        poster="/assets/img/home/sutainable.jpg" // Add poster image if needed
+        poster={data.sustainabilitySection.poster} // Add poster image if needed
       />
       </div>
       <div className="absolute inset-0 bg-gradient-to-t from-[#002C03]/30 via-[#001702]/80 to-[#000B03]/85"></div>
@@ -64,15 +65,11 @@ const Sustainability = () => {
           viewport={{ once: true, amount: 0.3 }}>
             <div className="overflow-hidden mb-[5px] md:mb-[55px]">
           <motion.h2 variants={textItemVariants}  className="text-xl font-semibold leading-none ">
-            Sustainability at <br />
-            ASSENT STEEL
+            {data.sustainabilitySection.title}
           </motion.h2>
           </div>
           <div className="overflow-hidden mt-4 md:w-[80%]">
-          <motion.p variants={textItemVariants} className="">
-            ASSENT STEEL is committed to the highest standards of Corporate Social Responsibility and Sustainable
-            Development which is an integral part of its business philosophy.
-          </motion.p>
+          <motion.div variants={textItemVariants}  dangerouslySetInnerHTML={{__html: data.sustainabilitySection.description}}></motion.div>
           </div>
         </motion.div>
         <motion.div variants={textContainerVariants}
@@ -80,19 +77,19 @@ const Sustainability = () => {
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}>
              <div className="overflow-hidden">
-          <motion.h3 variants={textItemVariants} className="text-lg font-semibold mb-5 md:mb-[50px]">Core Areas of Focus</motion.h3>
-          </div>
+          <motion.h3 variants={textItemVariants} className="text-lg font-semibold mb-5 md:mb-[50px]">{data.sustainabilitySection.itemTitle}</motion.h3>
+          </div> 
           <motion.ul className="grid grid-cols-1 md:grid-cols-2 text-md text-secondary leading-none border-t border-b border-secondary mb-[60px] xxl:mb-[140px]" variants={textContainerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}>
-            <li className="overflow-hidden border-b border-secondary py-[10px] md:py-[25px]"><motion.span variants={textItemVariants2} className="flex items-center gap-[10px] md:gap-[30px]"><div className="w-[30px] h-[30px] md:w-[35px] md:h-[35px]"><Image className="w-full h-full" src="/assets/img/icns/sus-01.svg" alt="Environmental"  width={38} height={38} /></div>Environmental</motion.span></li>
-            <li className="overflow-hidden border-b border-secondary py-[10px] md:py-[25px]"><motion.span variants={textItemVariants2} className="flex items-center gap-[10px] md:gap-[30px]"><div className="w-[30px] h-[30px] md:w-[35px] md:h-[35px]"><Image className="w-full h-full" src="/assets/img/icns/sus-02.svg" alt="Environmental" width={38} height={38} /></div> Health & Safety</motion.span></li>
-            <li className="overflow-hidden border-b border-secondary py-[10px] md:py-[25px]"><motion.span variants={textItemVariants2} className="flex items-center gap-[10px] md:gap-[30px]"><div className="w-[30px] h-[30px] md:w-[35px] md:h-[35px]"><Image className="w-full h-full" src="/assets/img/icns/sus-03.svg" alt="Environmental" width={38} height={38} /></div> Community</motion.span></li>
-            <li className="overflow-hidden border-b border-secondary py-[10px] md:py-[25px]"><motion.span variants={textItemVariants2} className="flex items-center gap-[10px] md:gap-[30px]"><div className="w-[30px] h-[30px] md:w-[35px] md:h-[35px]"><Image className="w-full h-full" src="/assets/img/icns/sus-04.svg" alt="Environmental" width={38} height={38} /></div> Diversity</motion.span></li>
-            <li className="overflow-hidden  py-[10px] md:py-[25px]"><motion.span variants={textItemVariants2} className="flex items-center gap-[10px] md:gap-[30px]"><div className="w-[30px] h-[30px] md:w-[35px] md:h-[35px]"><Image className="w-full h-full" src="/assets/img/icns/sus-05.svg" alt="Environmental" width={38} height={38} /></div> Ethics</motion.span></li>
-
+            {data.sustainabilitySection.items.map((item, index) => (
+              <li key={index} className="overflow-hidden border-b border-secondary py-[10px] md:py-[25px]"><motion.span variants={textItemVariants2} className="flex items-center gap-[10px] md:gap-[30px]"><div className="w-[30px] h-[30px] md:w-[35px] md:h-[35px]"><Image className="w-full h-full" src={item.logo} alt={item.logoAlt} width={38} height={38} /></div>{item.title}</motion.span></li>
+            ))}
+            
           </motion.ul>
+
+
           <div className="overflow-hidden mt-[50px]">
           <motion.div  variants={textItemVariants}>
           <Link href="/sustainability" className="text-xs border-b  border-secondary text-white uppercase group pb-[16px] inline-flex items-center gap-[18px]">Read More <div className="w-[20px] h-[20px] text-secondary rounded-full bg-white group-hover:bg-secondary group-hover:text-primary flex items-center text-[14px] justify-center transition duration-300 ease-in-out"><FaChevronRight /></div></Link>

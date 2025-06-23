@@ -1,25 +1,19 @@
 "use client";
-import { useEffect, useRef } from "react";
-import Image, { StaticImageData } from "next/image";
+import { Dispatch, SetStateAction, useEffect, useRef } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
 import Link from "next/link";
-gsap.registerPlugin(ScrollTrigger);
-interface PlatformsItem {
-  id: number;
-  date: string;
-  title: string;
-  comment: string;
-  image: string | StaticImageData;
-  url:string
-}
-
-interface PlatformsSectionProps {
-  data: PlatformsItem[];
-}
-const NewsList: React.FC<PlatformsSectionProps> = ({ data }) => {
+gsap.registerPlugin(ScrollTrigger); 
+  
+  
+  import { News } from '@/public/types/Common';
+   
+    
+      const NewsList = ({ data,visibleCount,setVisibleCount }: { data: News['news']; visibleCount: number; setVisibleCount: Dispatch<SetStateAction<number>> }) => { 
   const containerRef = useRef(null);
+
 
   useEffect(() => {
     if (containerRef.current) {
@@ -62,27 +56,33 @@ const NewsList: React.FC<PlatformsSectionProps> = ({ data }) => {
          >
               <div className="relative group lg:h-auto  rounded-[15px]"
               >
-                <figure className=" h-full  " >
+                <figure className=" w-auto h-[370px] " >
                   <Image
-                    src={item.image}
+                    src={item.thumbnail}
                     alt=""
                     className="rounded-[15px]  h-full w-full object-cover"
+                    width={500}
+                    height={500}
                   />
                   </figure>
 
                 <div className=" pt-[10px] w-full">
                   <div className="flex justify-between items-center">
-                    <p className="text-xs text-[#595959] font-[400] leading-[1.9] ">
-                      {item.date}
+                    <p className="text-xs text-[#595959] font-[400] leading-[1.9] "> 
+                      {new Date(item.createdAt).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  })}
                     </p>
                     <p className="text-xs text-[#595959] font-[400] leading-[1.9] ">
-                      {item.comment}
+                      {item.category}
                     </p>
                   </div>
                   <h3 className="line-clamp-2 text-black text-sm mt-2 lg:mt-5  leading-[1.3] xl:leading-[1.8] mb-4 lg:mb-[10px] font-[400]">
-                    {item.title}
+                    {item.mainTitle}
                   </h3>
-                  <Link href={item.url}>
+                  <Link href={`/news-details/${item.slug}`}>
                   <div className="flex justify-between mb-5 lg:mb-0">
                     <div className=" flex gap-4 items-center w-fit m-0 border-b  border-secondary pb-[10px]   transition-all duration-500 ">
                       <p className="text-xs uppercase text-black font-[500] inline-flex  leading-[1] ">
@@ -112,7 +112,8 @@ const NewsList: React.FC<PlatformsSectionProps> = ({ data }) => {
           ))}
         </div>
         <div className="text-center mt-5 md:mt-[60px]">
-          <button className="border flex gap-3 items-center justify-center m-auto whitespace-nowrap font-[500] border-secondary text-xs text-territory uppercase rounded-full py-[8px] px-[20px]  w-fit">
+          {visibleCount < data.length && (
+          <button onClick={()=>setVisibleCount((prev)=>prev + 9)} className="border flex gap-3 items-center justify-center m-auto whitespace-nowrap font-[500] border-secondary text-xs text-territory uppercase rounded-full py-[8px] px-[20px]  w-fit">
             Load More
             <svg
               stroke="#000"
@@ -125,7 +126,7 @@ const NewsList: React.FC<PlatformsSectionProps> = ({ data }) => {
             >
               <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"></path>
             </svg>
-          </button>
+          </button>)}
         </div>
       </div>
     </section>

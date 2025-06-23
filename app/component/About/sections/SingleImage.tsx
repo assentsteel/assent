@@ -1,18 +1,15 @@
 "use client";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 import { motion } from "framer-motion";
+import { About } from '@/public/types/Common'; 
 
 
 
-
-interface PlatformsSectionProps {
-  secimage: StaticImageData
-}
-const SingleImage: React.FC<PlatformsSectionProps> = ({ secimage }) => {
+const SingleImage = ({ data }: { data: About }) => {  
   const containerRef = useRef(null);
   const imageVariants = {
     hidden: { opacity: 0, x: 30 },
@@ -54,9 +51,11 @@ const SingleImage: React.FC<PlatformsSectionProps> = ({ secimage }) => {
           viewport={{ once: true, amount: 0.2 }}
         >
           <Image
-            src={secimage}
-            alt=""
+            src={data.secondSection.image1}
+            alt={data.secondSection.image1Alt}
             className="rounded-[15px]"
+            width={4860}
+            height={1725}
           />
         </motion.figure>
       </div>

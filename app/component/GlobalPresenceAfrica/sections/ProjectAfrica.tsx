@@ -1,7 +1,7 @@
 "use client";
 
 import {  useRef, useEffect } from "react";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperType } from "swiper";
@@ -12,26 +12,10 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { assets } from "@/public/assets/assets";
 gsap.registerPlugin(ScrollTrigger);
-interface ssecar {
-  project: string;
-  location: string;
-  Quantity: string;
-}
 
-interface secar {
-  title: string;
-  image: StaticImageData;
-  secdata: ssecar[];
-}
-interface PlatformsSection {
-  heading?: string;
-  data: secar[];
-}
-interface PlatformsSectionProps {
-  data: PlatformsSection;
-}
-
-const ProjectAfrica: React.FC<PlatformsSectionProps> = ({ data }) => {
+   import { Gpslide} from '@/public/types/Common';    
+          
+         const ProjectAfrica = ({ data }: { data: Gpslide }) => {   
   const swiperRef = useRef<SwiperType | null>(null);
 
   const containerRef = useRef(null);
@@ -152,7 +136,7 @@ const ProjectAfrica: React.FC<PlatformsSectionProps> = ({ data }) => {
               className="w-full !overflow-visible"
               onSwiper={(swiper) => (swiperRef.current = swiper)}
             >
-              {data.data.map((project, index) => (
+              {data.items.map((project, index) => (
                 <SwiperSlide key={index} className="">
                   <motion.div className="cursor-pointer ">
                     <div className="relative group">
@@ -169,14 +153,14 @@ const ProjectAfrica: React.FC<PlatformsSectionProps> = ({ data }) => {
                         <div className="hrcontent lg:w-[60%]">
                           <div className="p-4 lg:p-10">
                             <div>
-                              {project.secdata.map((ite, index) => (
-                                <div key={index}>
+                              
+                                <div >
                                   <div className="mb-2 pb-2 md:mb-2 md:pb-2 border-b border-[#F2F2F2]">
                                     <p className="text-white text-[12px] md:text-[15px] mb-1 uppercase">
                                       PROJECT
                                     </p>
                                     <p className="text-white text-[13px] md:text-sm leading-[1.3] max-w-[31ch]">
-                                      {ite.project}
+                                      {project.project}
                                     </p>
                                   </div>
                                   <div className="mb-2 pb-2 md:mb-2 md:pb-2 border-b border-[#F2F2F2]">
@@ -184,7 +168,7 @@ const ProjectAfrica: React.FC<PlatformsSectionProps> = ({ data }) => {
                                       CLIENT, Location
                                     </p>
                                     <p className="text-white text-[13px] md:text-sm leading-[1.3] max-w-[31ch]">
-                                      {ite.location}
+                                      {project.clientLocation}
                                     </p>
                                   </div>
                                   <div className="">
@@ -192,11 +176,11 @@ const ProjectAfrica: React.FC<PlatformsSectionProps> = ({ data }) => {
                                       QUANTITY
                                     </p>
                                     <p className="text-white text-[13px] md:text-sm leading-[1.3] max-w-[31ch]">
-                                      {ite.Quantity}
+                                      {project.quantity}
                                     </p>
                                   </div>
                                 </div>
-                              ))}
+                          
                             </div>
                           </div>
                         </div>

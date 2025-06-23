@@ -3,33 +3,17 @@
 import Image from "next/image";
 import { useEffect, useRef,useState } from "react";
 import gsap from "gsap";
+import { assets } from "@/public/assets/assets";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
 gsap.registerPlugin(ScrollTrigger);
 
-interface DetailedItem {
-  icon: string;
-  title: string;
-  content: string;
-}
-interface PlatformsItem {
-  id: number;
-  title: string;
-  tag: string;
-  workingtitle: string;
-  workingtime: string;
-  workingdetails: string;
-  details: DetailedItem[]
-}
 
-interface PlatformsSectionProps {
-  data: PlatformsItem[];
-}
+  import { Contact } from '@/public/types/Common';   
+  
+  const TextByImg = ({ data }: { data: Contact }) => {    
 
-const TextByImg: React.FC<PlatformsSectionProps> = ({data
-}) => {
-
-  const [activeTab, setActiveTab] = useState(data[0]?.tag);
+  const [activeTab, setActiveTab] = useState(data.firstSection.items[0]?.title);
   const containerRef = useRef(null);
 
 
@@ -83,7 +67,7 @@ const TextByImg: React.FC<PlatformsSectionProps> = ({data
              initial="hidden"
              animate="visible"
             exit="exit"
-            className="text-xl  text-primary font-[600] leading-[1] mb-0">Find Us Here</motion.h2>
+            className="text-xl  text-primary font-[600] leading-[1] mb-0">{data.firstSection.title}</motion.h2>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
   {/* Left Side - Tabs */}
@@ -103,13 +87,13 @@ const TextByImg: React.FC<PlatformsSectionProps> = ({data
         className="md:flex gap-10 lg:gap-[100px] items-center border-b border-[#ffffff35] mb-4 lg:mb-[30px] w-fit"
         variants={itemVariants}
       >
-        {data.map((item, index) => (
+        {data.firstSection.items.map((item, index) => (
           <motion.p
             key={index}
-            onClick={() => setActiveTab(item.tag)}
+            onClick={() => setActiveTab(item.title)}
             className={`text-lg md:text-sm xl:text-md xxl:text-lg leading-[2.18] cursor-pointer relative top-[1px] pb-1
               ${
-                activeTab === item.tag
+                activeTab === item.title
                   ? "border-b-2 border-secondary font-[600]"
                   : "border-b-2 border-transparent font-[400]"
               }`}
@@ -121,16 +105,15 @@ const TextByImg: React.FC<PlatformsSectionProps> = ({data
         ))}
       </motion.div>
 
-      {data.map((item, index) =>
-        activeTab === item.tag ? (
+      {data.firstSection.items.map((item, index) =>
+        activeTab === item.title ? (
           <motion.div
             key={index}
             className="flex flex-col gap-7"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.4 }}
-          >
-            {item.details.map((deta, index) => (
+          > 
               <motion.div
                 key={index}
                 className="flex gap-5 items-start"
@@ -138,15 +121,62 @@ const TextByImg: React.FC<PlatformsSectionProps> = ({data
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.5 }}
               >
-                <Image src={deta.icon} alt="" />
+                <Image src={assets.location} alt="" />
                 <div>
                   <p className="text-[14px] uppercase mb-[10px] opacity-75 tracking-[2px]">
-                    {deta.title}
+                  Address
                   </p>
-                  <p className="max-w-[25ch]">{deta.content}</p>
+                  <p className="max-w-[25ch]">{item.address}</p>
                 </div>
               </motion.div>
-            ))}
+              <motion.div
+                key={index}
+                className="flex gap-5 items-start"
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.5 }}
+              >
+                <Image src={assets.phn} alt="" />
+              <div>
+                  <p className="text-[14px] uppercase mb-[10px] opacity-75 tracking-[2px]">
+                  PHONE NUMBER
+                  </p>
+                  <p className="max-w-[25ch]">{item.phone}</p>
+                </div>
+                
+              </motion.div>
+              <motion.div
+                key={index}
+                className="flex gap-5 items-start"
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.5 }}
+              >
+                <Image src={assets.email} alt="" />
+                <div>
+                  <p className="text-[14px] uppercase mb-[10px] opacity-75 tracking-[2px]">
+                  EMAIL
+                  </p>
+                  <p className="max-w-[25ch]">{item.email}</p>
+                </div>
+                
+              </motion.div>
+              <motion.div
+                key={index}
+                className="flex gap-5 items-start"
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.5 }}
+              >
+                <Image src={assets.fax} alt="" />
+                <div>
+                  <p className="text-[14px] uppercase mb-[10px] opacity-75 tracking-[2px]">
+                  FAX NUMBER
+                  </p>
+                  <p className="max-w-[25ch]">{item.fax}</p>
+                </div>
+                
+              </motion.div> 
 
             <motion.div
               className="bg-[#ffffff05] rounded-[10px] p-5 md:p-7"
@@ -155,10 +185,9 @@ const TextByImg: React.FC<PlatformsSectionProps> = ({data
               transition={{ delay: 0.5, duration: 0.5 }}
             >
               <p className="text-[18px] xl:text-[22px] mb-[10px] font-[600]">
-                {item.workingtitle}
+              Working Hours
               </p>
-              <p className="mb-[10px] opacity-85">{item.workingtime}</p>
-              <p className="opacity-75">{item.workingdetails}</p>
+              <p className="mb-[10px] opacity-85" dangerouslySetInnerHTML={{__html: item.workingHours}}></p> 
             </motion.div>
           </motion.div>
         ) : null

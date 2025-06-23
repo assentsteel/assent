@@ -1,5 +1,5 @@
 "use client";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -11,18 +11,13 @@ import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import { assets } from "@/public/assets/assets";
 import { motion } from "framer-motion";
+import { Projectswfull } from '@/public/types/Common'; 
+import parse from 'html-react-parser';
+
 gsap.registerPlugin(ScrollTrigger);
 
-const images = [assets.slim, assets.slim, assets.slim];
-interface PlatformsItem {
-  id: number;
-  title: string;
-  paragraphs: string[];
-  image: string | StaticImageData;
-}
-
 interface PlatformsSectionProps {
-  data: PlatformsItem[];
+  data: Projectswfull['categories'][number]['projects'][number];
 }
 const Slidethumb: React.FC<PlatformsSectionProps> = ({ data }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
@@ -106,12 +101,14 @@ const Slidethumb: React.FC<PlatformsSectionProps> = ({ data }) => {
                 spaceBetween={10}
                 className="rounded-xl overflow-hidden"
               >
-                {images.map((src, index) => (
+                {data.images.map((src, index) => (
                   <SwiperSlide key={index}>
                     <Image
                       src={src}
                       alt={`Slide ${index + 1}`}
                       className="w-full h-auto object-cover"
+                      width={500}
+                      height={569}
                     />
                   </SwiperSlide>
                 ))}
@@ -127,7 +124,7 @@ const Slidethumb: React.FC<PlatformsSectionProps> = ({ data }) => {
                   modules={[Thumbs]}
                   className="thumbs relative z-10"
                 >
-                  {images.map((src, i) => (
+                  {data.images.map((src, i) => (
                     <SwiperSlide
                       key={i}
                       className="!w-[50px] !h-[50px] flex items-center justify-center"
@@ -177,14 +174,13 @@ const Slidethumb: React.FC<PlatformsSectionProps> = ({ data }) => {
             </motion.div>
           </div>
           <div className="w-full lg:w-1/2 pr-0 lg:pr-[44px] mt-6 lg:mt-0 ">
-            {data.map((item) => (
-              <div key={item.id}>
+              <div>
                 <motion.h2 className="text-xl  text-primary font-[600] leading-[1.2] mb-4 lg:mb-10"
                 variants={slideInLeft}
                 initial="hidden"
                  whileInView="visible"
                 exit="exit">
-                  {item.title}
+                  {data.title}
                 </motion.h2>
 
                 <motion.div className="text-territory text-base font-[400] leading-[1.8] mb-0 lg:mb-10"
@@ -192,14 +188,11 @@ const Slidethumb: React.FC<PlatformsSectionProps> = ({ data }) => {
                  initial="hidden"
                  whileInView="visible"
                  exit="exit">
-                  {item.paragraphs.map((paragraph, index) => (
-                    <p key={index} className="mb-4 last:mb-0">
-                      {paragraph}
-                    </p>
-                  ))}
+                    <div className="mb-4 last:mb-0">
+                      {parse(data.description)}
+                    </div>
                 </motion.div>
               </div>
-            ))}
           </div>
         </div>
       </div>

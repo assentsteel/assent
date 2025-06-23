@@ -5,19 +5,10 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
-interface PlatformsItem {
-  id: number;
-  title: string;
-  subtitle: string;
-  smalltext?: string;
-}
+ 
+import { About } from '@/public/types/Common'; 
 
-interface PlatformsSectionProps {
-  AreaExpertise: PlatformsItem[];
-}
-
-const Achievements: React.FC<PlatformsSectionProps> = ({AreaExpertise
-}) => {
+const Achievements = ({ data }: { data: About }) => { 
   const containerRef = useRef(null);
 
   const containerVariants = {
@@ -68,9 +59,9 @@ const Achievements: React.FC<PlatformsSectionProps> = ({AreaExpertise
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
     >
-      {AreaExpertise.map((item) => (
+      {data.firstSection.items.map((item, index) => (
         <motion.div
-          key={item.id}
+          key={index}
           className="col-span-6 xl:col-span-3 py-3 md:py-10 group hrgr"
           variants={cardVariants}
         >
@@ -80,14 +71,14 @@ const Achievements: React.FC<PlatformsSectionProps> = ({AreaExpertise
                 className="text-primary font-[600] text-[20px] md:text-40 mb-[4px]"
                 variants={cardVariants}
               >
-                {item.title}
-                <span className="text-[15px] md:text-sm">{item.smalltext}</span>
+                {item.number}
+                {/* <span className="text-[15px] md:text-sm">{item.number}</span> */}
               </motion.p>
               <motion.p
                 className="text-[15px] md:text-md text-territory leading-[1.6]"
                 variants={cardVariants}
               >
-                {item.subtitle}
+                {item.value}
               </motion.p>
             </div>
           </div>

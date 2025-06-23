@@ -164,6 +164,8 @@ import gpbanner from "./img/gp/gpbanner.jpg";
 import gpslide1 from "./img/gp/gpslide1.jpg";
 import gpslide2 from "./img/gp/gpslide2.jpg";
 import gpslide3 from "./img/gp/gpslide3.jpg";
+import gpslide4 from "./img/gp/gpslide4.jpg";
+import gpslide5 from "./img/gp/gpslide5.jpg";
 import americabanner from "./img/gpdetails/americabanner.jpg";
 import amprofile from "./img/gpdetails/amprofile.jpg";
 import amsingle from "./img/gpdetails/amsingle.jpg";
@@ -187,7 +189,44 @@ import asiaicn from "./img/icns/asia.jpg";
 import africa from "./img/icns/africa.jpg";
 import gcc from "./img/icns/gcc.jpg";
 import iraq from "./img/icns/iraq.jpg";
+import gearIcon from "./img/icns/engineering-icon.svg";
+import thdIcon from "./img/icons/3d.png";
 
+
+import hrbn1 from "./img/about/hrbn1.jpg";
+import hrbn2 from "./img/about/hrbn2.jpg";
+import hrbn3 from "./img/about/hrbn3.jpg";
+import hrbn4 from "./img/about/hrbn4.jpg";
+import hrbn5 from "./img/about/hrbn5.jpg";
+import hrbn6 from "./img/about/hrbn6.jpg";
+import hrbn7 from "./img/about/hrbn7.jpg";
+
+import vr1 from "./img/icns/vr1.svg";
+import vr2 from "./img/icns/vr2.svg";
+import vr3 from "./img/icns/vr3.svg";
+import vr4 from "./img/icns/vr4.svg";
+import sk from "./img/icns/sk.svg";
+import vr5 from "./img/icns/vr5.svg";
+import vr6 from "./img/icns/vr6.svg";
+import sr1 from "./img/icns/sr1.svg";
+import sr2 from "./img/icns/sr2.svg";
+import sr3 from "./img/icns/sr3.svg";
+import sr4 from "./img/icns/sr4.svg";
+import sr5 from "./img/icns/sr5.svg";
+import sr6 from "./img/icns/sr6.svg";
+import whs1 from "./img/icns/whs1.svg";
+import whs2 from "./img/icns/whs2.svg";
+import whs3 from "./img/icns/whs3.svg";
+import whs4 from "./img/icns/whs4.svg";
+import whs5 from "./img/icns/whs5.svg";
+import whs6 from "./img/icns/whs6.svg";
+import wsa1 from "./img/icns/wsa1.svg";
+import wsa2 from "./img/icns/wsa2.svg";
+import wsa3 from "./img/icns/wsa3.svg";
+import wsa4 from "./img/icns/wsa4.svg";
+import wsa5 from "./img/icns/wsa5.svg";
+import wsa6 from "./img/icns/wsa6.svg";
+import ve from "./img/icns/ves.svg";
 
 
 
@@ -195,6 +234,38 @@ import iraq from "./img/icns/iraq.jpg";
 
 
 export const assets = {
+  wsa1,
+  wsa2,
+  wsa3,
+  wsa4,
+  wsa5,
+  wsa6,
+  whs1,
+  whs2,
+  whs3,
+  whs4,
+  whs5,
+  whs6,
+  sr1,
+  sr2,
+  sr3,
+  sr4,
+  sr5,
+  sr6,
+  vr1,
+  vr2,
+  vr3,
+  vr4,
+  sk,
+  vr5,
+vr6,
+  hrbn1,
+  hrbn2,
+  hrbn3,
+  hrbn4,
+  hrbn5,
+  hrbn6,
+  hrbn7,
   asiaicn,
   gcc,africa,
   iraq,
@@ -221,6 +292,8 @@ export const assets = {
   gpslide1,
   gpslide2,
   gpslide3,
+  gpslide4,
+  gpslide5,
   arrowgreen,
   bgimg,
   hric1,
@@ -280,6 +353,7 @@ export const assets = {
   engser5,
   engser6,
   engser7,
+  ve,
   engbanner,
   qtftbanner,
   qtbanner,
@@ -382,5 +456,7 @@ export const assets = {
   mn3,
   mn2,
   abtbanner,
-  single
+  single,
+  gearIcon,
+  thdIcon
 };

@@ -1,32 +1,23 @@
 "use client";
 
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { motion, AnimatePresence } from "framer-motion";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { assets } from "@/public/assets/assets";
 gsap.registerPlugin(ScrollTrigger);
-interface PlatformsItem {
-  id: number;
-  title: string;
-  tab: string;
-  paragraphs: string[];
-  image: string | StaticImageData;
+ 
+import { About } from '@/public/types/Common'; 
 
-}
-interface PlatformsItemmn {
-  title: string;
-  data:PlatformsItem[]
-}
-interface PlatformsSectionProps {
-  navigation?: boolean;
-  data: PlatformsItemmn;
-}
-const Tabsection: React.FC<PlatformsSectionProps> = ({ data,navigation }) => {
+
+
+const Tabsection = ({ data,navigation }: { data: About ,navigation?: boolean }) => {   
+ 
+  
   const [activeTab, setActiveTab] = useState(0); // default first tab
 
-  const tabs = data.data.map((item) => item.tab);
+  const tabs = data.coreValues.items.map((item) => item.title);
 useEffect(() => {
   const interval = setInterval(() => {
     setActiveTab((prev) => (prev + 1) % tabs.length);
@@ -36,7 +27,7 @@ useEffect(() => {
 }, [tabs.length]);
 
 
-  const activeContent = data.data[activeTab];
+  const activeContent = data.coreValues.items[activeTab];
   const [isMobile, setIsMobile] = useState(false);
 
   const containerRef = useRef(null);
@@ -102,7 +93,7 @@ const fadeInUp = {
            initial="hidden"
            animate="visible"
            exit="exit">
-            {data.title}
+            {data.coreValues.title}
           </motion.h2>
           {!isMobile && navigation &&(
           <div className="flex justify-end items-center gap-4 mb-6">
@@ -198,11 +189,7 @@ const fadeInUp = {
             {activeContent.title}
           </h2>
           <div className="text-territory text-sm font-[400] leading-[1.8] mb-6 lg:mb-10">
-            {activeContent.paragraphs.map((p, i) => (
-              <p key={i} className="mb-4">
-                {p}
-              </p>
-            ))}
+            {activeContent.description}
           </div>
         </div>
       </div>
@@ -218,6 +205,8 @@ const fadeInUp = {
             src={activeContent.image}
             alt={activeContent.title}
             className="rounded-[15px] object-cover"
+            width={4860}
+            height={1725}
           />
         </motion.figure>
       </div>
@@ -225,7 +214,7 @@ const fadeInUp = {
   )}
 </AnimatePresence>
 {isMobile &&
-  data.data.map((content, index) => (
+  data.coreValues.items.map((content, index) => (
     <div
       key={index}
       className="mb-6 border border-[#00000020] rounded-[10px] overflow-hidden"
@@ -248,16 +237,14 @@ const fadeInUp = {
             className="p-4"
           >
             <div className="text-sm font-[400] leading-[1.8] text-territory mb-4">
-              {content.paragraphs.map((p, i) => (
-                <p key={i} className="mb-4">
-                  {p}
-                </p>
-              ))}
+              {content.description}
             </div>
             <Image
               src={content.image}
               alt={content.title}
               className="rounded-[15px] object-cover"
+              width={4860}
+              height={1725}
             />
           </motion.div>
         )}

@@ -1,7 +1,6 @@
-
 import { assets } from "@/public/assets/assets";
 
-export const news = {
+export const newsd = {
   data: [
     {
       id: 1,
@@ -9,7 +8,8 @@ export const news = {
       comment: "Project Update",
       title: "We are thrilled to showcase the our new completion of our latest project.",
       image: assets.news1,
-      url:'/news-details'
+      url:'/news-details',
+      linkText: 'Read More'
     },
     {
       id: 2,
@@ -17,7 +17,8 @@ export const news = {
       comment: "PPE Exhibition",
       title: "Just because something is good doesn't mean that it can’t be improved.",
       image:assets.news2,
-      url:'/news-details'
+      url:'/news-details',
+      linkText: 'Read More'
     },
     {
       id: 3,
@@ -25,7 +26,8 @@ export const news = {
       comment: "Team Building",
       title: "Set in the vibrant landscape of Cairo, ASSENT STEEL’s Egypt Office.",
       image:assets.news3,
-      url:'/news-details'
+      url:'/news-details',
+      linkText: 'Read More'
     },
     {
       id: 4,
@@ -33,7 +35,8 @@ export const news = {
       comment: "Happy New Year 2024",
       title: "ASSENT STEEL wishes you a Happy New Year filled with joy and love.",
       image:assets.news4,
-      url:'/news-details'
+      url:'/news-details',
+      linkText: 'Read More'
     },
     {
       id: 5,
@@ -41,7 +44,8 @@ export const news = {
       comment: "ASSENT STEEL 2023 Year in Review",
       title: "As we stand on the brink of a new year, it's a perfect moment to reflect.",
       image:assets.news5,
-      url:'/news-details'
+      url:'/news-details',
+      linkText: 'Read More'
     },
     {
       id: 6,
@@ -49,7 +53,8 @@ export const news = {
       comment: "Wonderland Contest",
       title: "ASSENT STEEL wishes everyone a joyous Christmas filled with warmth  and love.",
       image:assets.news6,
-      url:'/news-details'
+      url:'/news-details',
+      linkText: 'Read More'
     },
     {
       id: 7,
@@ -57,7 +62,8 @@ export const news = {
       comment: "Workforce Beach Outing",
       title: "ASSENT STEEL is thrilled to share yet again the wonderful memories created during our second",
       image:assets.news7,
-      url:'/news-details'
+      url:'/news-details',
+      linkText: 'Read More'
     },
     {
       id: 8,
@@ -65,7 +71,8 @@ export const news = {
       comment: "Welding Positions",
       title: "At ASSENT STEEL, we go beyond the ordinary to showcase our welding prowess. ",
       image:assets.news8,
-      url:'/news-details'
+      url:'/news-details',
+      linkText: 'Read More'
     },
     {
       id: 9,
@@ -73,7 +80,8 @@ export const news = {
       comment: "5S Challenge – November Winners",
       title: "ASSENT STEEL’S 5S Challenge, as part of its ongoing LEAN journey, awarded its 3rd and final winners.",
       image:assets.news9,
-      url:'/news-details'
+      url:'/news-details',
+      linkText: 'Read More'
     },
   ],
 };

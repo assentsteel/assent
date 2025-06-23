@@ -1,21 +1,15 @@
 "use client";
-import { useEffect, useRef } from "react";
-import Image, { StaticImageData } from "next/image";
+import {  useRef, useEffect } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Link from "next/link";
 gsap.registerPlugin(ScrollTrigger);
-interface PlatformsItem {
-  id: number;
-  date: string;
-  title: string;
-  comment: string;
-  image: string | StaticImageData;
-}
-
-interface PlatformsSectionProps {
-  data: PlatformsItem[];
-}
-const MoreNews: React.FC<PlatformsSectionProps> = ({ data }) => {
+  
+    import { News } from '@/public/types/Common'; 
+     
+      
+        const MoreNews = ({ data }: { data: News | undefined }) => {
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -34,36 +28,45 @@ const MoreNews: React.FC<PlatformsSectionProps> = ({ data }) => {
     }
   }, []);
 
+  if (!data) return null;  // Return null if data is undefined
+
   return (
     <section className="pb-[50px] md:pb-[70px] xl:pb-[100px] overflow-hidden relative ">
       <div >
 
         <div className=" ">
-          {data.slice(0, 3).map((item, index) => (
+          {data?.news.slice(0, 3).map((item, index) => (
 
             <div key={index} >
               <div className="relative group lg:h-auto  rounded-[15px]">
-                <figure className=" h-full  ">
+                <figure className=" h-[197px] w-[270px] ">
                   <Image
-                    src={item.image}
-                    alt=""
+                    src={item.thumbnail}
+                    alt={item.thumbnailAlt}
                     className="rounded-[15px]  h-full w-full object-cover"
+                    width={270}
+                    height={197}
                   />
                 </figure>
 
                 <div className=" pt-[10px] w-full">
                   <div className="flex justify-between items-center">
-                    <p className="text-xs text-[#595959] font-[400] leading-[1.9] ">
-                      {item.date}
+                    <p className="text-xs text-[#595959] font-[400] leading-[1.9] "> 
+                      {new Date(item.createdAt).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  })}
                     </p>
                     <p className="text-xs text-[#595959] font-[400] leading-[1.9] ">
-                      {item.comment}
+                      {item.category}
                     </p>
                   </div>
                   <h3 className="line-clamp-2 text-black text-sm mt-2 lg:mt-5  leading-[1.3] xl:leading-[1.8] mb-4 lg:mb-[10px] font-[400]">
-                    {item.title}
+                    {item.mainTitle}
                   </h3>
                   <div className="flex justify-between mb-5 lg:mb-0">
+                    <Link href={`/news-details/${item.slug}`}>
                     <div className=" flex gap-4 items-center w-fit m-0 border-b  border-secondary pb-[10px]   transition-all duration-500 ">
                       <p className="text-xs uppercase text-black font-[500] inline-flex  leading-[1] ">
                         Read More
@@ -82,6 +85,7 @@ const MoreNews: React.FC<PlatformsSectionProps> = ({ data }) => {
                         </svg>
                       </div>
                     </div>
+                    </Link>
                   </div>
                 </div>
               </div>

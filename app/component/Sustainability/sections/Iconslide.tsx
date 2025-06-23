@@ -9,22 +9,13 @@ import {motion} from 'framer-motion'
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Autoplay, Pagination } from "swiper/modules";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 gsap.registerPlugin(ScrollTrigger);
-interface PlatformsItemss {
-  image: StaticImageData;
-}
-interface PlatformsItem {
-  content: PlatformsItemss[];
-}
+ 
 
-interface PlatformsSectionProps {
-  data: PlatformsItem;
-}
+import { Sustainability } from '@/public/types/Common';  
 
-const Iconslide: React.FC<PlatformsSectionProps> = ({data
-}) => {
-
+const Iconslide = ({ data }: { data: Sustainability }) => {   
   const swiperRef = useRef<SwiperType | null>(null);
 
 
@@ -53,13 +44,13 @@ const Iconslide: React.FC<PlatformsSectionProps> = ({data
             className="w-full !overflow-visible"
             onSwiper={(swiper) => (swiperRef.current = swiper)}
           >
-            {data.content.map((item, index) => (
+            {data.cardImages.map((item, index) => (
               <SwiperSlide key={index} className="growslide" >
                 <motion.div  className="cursor-pointer   "
     whileHover={{ scale: 1.05, rotateY: 10, rotateX: 0 }}
     transition={{ type: "spring", stiffness: 200, damping: 10 }}>
 
-                 <Image src={item.image} alt=""  className="rounded-[15px]"  />
+                 <Image src={item} alt=""  className="rounded-[15px]" width={500} height={500} />
                 </motion.div>
               </SwiperSlide>
             ))}

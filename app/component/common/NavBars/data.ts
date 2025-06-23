@@ -55,15 +55,15 @@ export const menuItems: MenuItem[] = [
     children: [
       {
         title: "Commercial Projects  ",
-        url: "/projects-list",
+        url: `/projects-list/commercial-projects`,
       },
       {
         title: "Industrial Oil & Gas Projects",
-        url: "/Industrial-oil",
+        url: `/projects-list/industrial-oil-gas-projects`,
       },
       {
         title: "Data Centre Projects  ",
-        url: "/datacentre",
+        url: `/projects-list/data-centre-projects`,
       },
     ],
   },

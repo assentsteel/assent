@@ -7,17 +7,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { AnimatePresence, motion } from "framer-motion";
 gsap.registerPlugin(ScrollTrigger);
 
-interface PlatformsItem {
-  id: number;
-  title: string;
-  image:  StaticImageData;
-}
 
-interface PlatformsSectionProps {
-  data: PlatformsItem[];
-}
-const AccreditationsList: React.FC<PlatformsSectionProps> = ({ data }) => {
+import { Awards } from '@/public/types/Common';
 
+const AccreditationsList = ({ data }: { data: Awards }) => {
     const [selectedImage, setSelectedImage] = useState<string | StaticImageData | null>(null);
 
   const modalVariants = {
@@ -49,8 +42,9 @@ const AccreditationsList: React.FC<PlatformsSectionProps> = ({ data }) => {
   };
 
   return (
-    <section className="py-[50px] md:py-[70px] xl:py-[100px]  xxl:py-[150px]  overflow-hidden relative  ">
+    <section className="py-[50px] md:py-[70px] xl:py-[100px] overflow-hidden relative">
       <div className="container">
+
        <motion.div
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
         variants={containerVariants}
@@ -58,18 +52,11 @@ const AccreditationsList: React.FC<PlatformsSectionProps> = ({ data }) => {
         animate="visible"
         viewport={{ once: true, amount: 0.2 }}
       >
-        {data.map((item, index) => (
+        {data.awards.map((item, index) => (
           <motion.div key={index} variants={itemVariants}>
-            <div
-              className="relative group overlbl h-full cursor-pointer"
-                onClick={() => setSelectedImage(item.image)}
-            >
+            <div className="relative group overlbl h-full cursor-pointer" onClick={() => setSelectedImage(item.image)} >
               <figure className="overlayclr">
-                <Image
-                  src={item.image}
-                  alt=""
-                  className="rounded-[15px] w-full object-cover"
-                />
+                <Image src={item.image} alt="" className="rounded-[15px] w-full object-cover" width={800} height={800} />
               </figure>
 
               <div className="absolute bottom-0 px-5 pb-5 w-full">
@@ -113,6 +100,8 @@ const AccreditationsList: React.FC<PlatformsSectionProps> = ({ data }) => {
                 src={selectedImage}
                 alt="popup"
                 className="w-full h-auto rounded-lg"
+                width={800}
+                height={800}
               />
             </div>
           </motion.div>
@@ -126,20 +115,7 @@ const AccreditationsList: React.FC<PlatformsSectionProps> = ({ data }) => {
         transition={{ delay: 0.2, duration: 0.5 }}
         viewport={{ once: true }}
       >
-        <button className="border flex gap-3 items-center justify-center m-auto whitespace-nowrap font-[500] border-secondary text-xs text-territory uppercase rounded-full py-[8px] px-[20px] w-fit">
-          Load More
-          <svg
-            stroke="#000"
-            fill="#000"
-            strokeWidth="0"
-            viewBox="0 0 320 512"
-            height="10px"
-            width="8px"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M310.6 233.4c12.5 12.5..." />
-          </svg>
-        </button>
+
       </motion.div>
       </div>
     </section>

@@ -1,19 +1,17 @@
 "use client";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
+import { assets } from "@/public/assets/assets";
+import { Projectswfull } from '@/public/types/Common'; 
+
 gsap.registerPlugin(ScrollTrigger);
-interface PlatformsItem {
-  id: number;
-  title: string;
-  spec: string;
-  image: string | StaticImageData;
-}
+
 
 interface PlatformsSectionProps {
-  data: PlatformsItem[];
+  data:  Projectswfull['categories'][number]['projects'][number] 
 }
 const Specs: React.FC<PlatformsSectionProps> = ({ data }) => {
   const containerRef = useRef(null);
@@ -53,22 +51,90 @@ const Specs: React.FC<PlatformsSectionProps> = ({ data }) => {
       >
       <div className="py-[50px] md:py-[70px] xl:py-[100px] bg-[#18355F] rounded-[15px]">
   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-6 md:gap-y-[80px] gap-x-6 xxl:gap-x-[60px] px-6 md:px-10 lg:px-[150px]">
-    {data.map((item, index) => (
       <motion.div
-        key={index}
         className="flex gap-5 items-center"
         variants={cardVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
       >
-        <Image src={item.image} alt="" />
+        <Image src={assets.spec1} alt="" />
         <div className="text-white">
-          <p className="text-xs capitalize">{item.title}</p>
-          <p className="text-md font-[600] uppercase">{item.spec}</p>
+          <p className="text-xs capitalize">EMPLOYER</p>
+          <p className="text-md font-[600] uppercase">{data.employer}</p>
         </div>
       </motion.div>
-    ))}
+
+      <motion.div
+        className="flex gap-5 items-center"
+        variants={cardVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+      >
+        <Image src={assets.spec2} alt="" />
+        <div className="text-white">
+          <p className="text-xs capitalize">CONTRACTOR</p>
+          <p className="text-md font-[600] uppercase">{data.contractor}</p>
+        </div>
+      </motion.div>
+
+      <motion.div
+        className="flex gap-5 items-center"
+        variants={cardVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+      >
+        <Image src={assets.spec3} alt="" />
+        <div className="text-white">
+          <p className="text-xs capitalize">CONSULTANT</p>
+          <p className="text-md font-[600] uppercase">{data.consultant}</p>
+        </div>
+      </motion.div>
+
+      <motion.div
+        className="flex gap-5 items-center"
+        variants={cardVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+      >
+        <Image src={assets.spec4} alt="" />
+        <div className="text-white">
+          <p className="text-xs capitalize">COUNTRY</p>
+          <p className="text-md font-[600] uppercase">{data.location}</p>
+        </div>
+      </motion.div>
+
+      <motion.div
+        className="flex gap-5 items-center"
+        variants={cardVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+      >
+        <Image src={assets.spec5} alt="" />
+        <div className="text-white">
+          <p className="text-xs capitalize">SCOPE</p>
+          <p className="text-md font-[600] uppercase">{data.scope}</p>
+        </div>
+      </motion.div>
+
+      <motion.div
+        className="flex gap-5 items-center"
+        variants={cardVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+      >
+        <Image src={assets.spec6} alt="" />
+        <div className="text-white">
+          <p className="text-xs capitalize">STEEL TONNAGE</p>
+          <p className="text-md font-[600] uppercase">{data.steelTonnage}</p>
+        </div>
+      </motion.div>
+
   </div>
 </div>
 </motion.div>

@@ -2,22 +2,15 @@
 
 import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
-interface PlatformsItem {
-  id: number;
-  title: string;
-  image: string | StaticImageData;
-}
-
-interface PlatformsSectionProps {
-  data: PlatformsItem[];
-}
-const HeadingText: React.FC<PlatformsSectionProps> = ({data
-}) => {
+ 
+  
+      import { Services } from '@/public/types/Common';  
+      const HeadingText = ({ data }: { data: Services }) => {  
   const containerRef = useRef(null);
 
   const slideInLeft = {
@@ -72,7 +65,7 @@ const HeadingText: React.FC<PlatformsSectionProps> = ({data
             >
               <div className="overflow-hidden mb-[20px] ">
                 <h2 className="text-xl  text-primary font-[600] leading-[1.2] max-w-[33ch]">
-                  Trusted Steel Erection Experts Delivering End-to-End Solutions
+                  {data.thirdSection.title}
                 </h2>
               </div>
             </motion.div>
@@ -85,24 +78,15 @@ const HeadingText: React.FC<PlatformsSectionProps> = ({data
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}>
 
-                <p className="text-sm font-normal  text-territory leading-[1.6] ">
-                  Working with ASSENT STEEL INDUSTRIES means you get the support
-                  of one of the leading expert Steel Erection Companies in the
-                  UAE. We uphold a safety culture and ensure that our Steel
-                  Erection practices in the UAE are standard-complaint and
-                  failsafe. The steel fabrication process is long and complex.
-                  Our company employs the best tools and equipment to deliver
-                  the various steel erection services with precision and
-                  authority. At ASSENT STEEL INDUSTRIES, we use our vast
-                  knowledge base and steel expertise to help make your vision
-                  come to life.{" "}
-                </p>
+                <div className="text-sm font-normal  text-territory leading-[1.6] "
+                dangerouslySetInnerHTML={{__html: data.thirdSection.description}}> 
+                </div>
               </motion.div>
             </div>
           </div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[30px] mt-5 lg:mt-[60px]">
-        {data.map((item, index) => (
+        {data.thirdSection.items.map((item, index) => (
   <motion.div
     key={index}
     initial="hidden"
@@ -114,7 +98,9 @@ const HeadingText: React.FC<PlatformsSectionProps> = ({data
       <motion.figure className="overlayclr" whileHover={{ scale: 1.02 }} transition={{ duration: 0.3 }}>
         <Image
           src={item.image}
-          alt=""
+          alt={item.imageAlt}
+          width={500}
+          height={500}
           className="rounded-[15px] w-full object-cover"
         />
       </motion.figure>

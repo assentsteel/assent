@@ -1,9 +1,12 @@
-import React from "react";
-import { boxcontent } from "./data";
+import React from "react"; 
 
 import HeroInner from  "../common/Banner/HeroInner";
 import Teamlist from "./sections/Teamlist";
-export default function Index() {
+
+import { Team } from '@/public/types/Common';
+ 
+
+const Index = async ({ data }: { data: Team }) => { 
   const breadcrumb = [
     { label: "Home", href: "/" },
     { label: "Leadership Team", href: "" },
@@ -12,13 +15,14 @@ export default function Index() {
 
   return (
     <>
-<HeroInner          imageSrc="/assets/img/team/teambanner.jpg"
-        title="Leadership Team"
+<HeroInner          imageSrc={data.banner}
+        title={data.pageTitle}
         breadcrumbs={breadcrumb}
       />
-      <Teamlist data={boxcontent} />
+      <Teamlist data={data} />
 
     </>
 
   );
 }
+export default Index

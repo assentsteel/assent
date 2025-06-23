@@ -1,0 +1,74 @@
+import mongoose from "mongoose";
+
+const globalPresenceSchema = new mongoose.Schema({
+    metaTitle:{
+        type:String
+    },
+    metaDescription:{
+        type:String
+    },
+    banner:{
+        type:String
+    },
+    bannerAlt:{
+        type:String
+    },
+    pageTitle:{
+        type:String
+    },
+    firstSection:{
+        mainTitle:{
+            type:String
+        },
+        subTitle:{
+            type:String
+        },
+        description:{
+            type:String
+        }
+    },
+    secondSection:{
+        title:{
+            type:String
+        },
+        items:[
+            {
+                number:{
+                    type:String
+                },
+                value:{
+                    type:String
+                },
+                description:{
+                    type:String
+                }
+            }
+        ]
+    },
+    thirdSection:{
+        title:{
+            type:String
+        },
+        countries:[
+            {
+                title:{
+                    type:String
+                },
+                image:{
+                    type:String
+                },
+                imageAlt:{
+                    type:String
+                },
+                slug:{
+                    type:String
+                },
+                sections:{
+                    type:mongoose.Schema.Types.Mixed,
+                }
+            }
+        ]
+    }
+})
+
+export default mongoose.models.GlobalPresence || mongoose.model("GlobalPresence", globalPresenceSchema);

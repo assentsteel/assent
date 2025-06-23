@@ -1,16 +1,19 @@
 import React from "react";
-import { boxcontent,Specss,textimg } from "./data";
+import { boxcontent } from "./data";
 import HeroInner from "../common/Banner/HeroInner";
 import Specs from "./sections/Specs";
 import Slidethumb from "../common/Slidethumb";
-import Morepjts from "./sections/Morepjts";
-export default function Index() {
+import Morepjts from "./sections/Morepjts"; 
+  
+  import { Projectswfull } from '@/public/types/Common'; 
+  const Index = async ({ data }: { data: Projectswfull['categories'][number]['projects'][number] }) => {  
+    console.log(data)
   const breadcrumb = [
     { label: "Homse", href: "/" },
     { label: "Projects", href: "" },
     { label: "Construction", href: "" },
-    { label: "Airport", href: "" },
-    { label: "Dubai International Airport Expansion", href: "" },
+    { label: data.sector, href: "" },
+    { label: data.pageTitle, href: "" },
 
     // { label: `${data && data.data.sector}`, href: "#" },
   ];
@@ -19,14 +22,15 @@ export default function Index() {
     <>
 
 <HeroInner
-        imageSrc="/assets/img/projects-details/bnr.jpg"
-        title="Dubai International Airport Expansion"
+        imageSrc={data.banner}
+        title={data.pageTitle}
         breadcrumbs={breadcrumb}
       />
-      <Specs data={Specss.data} />
-      <Slidethumb data={textimg.data} />
+      <Specs data={data} />
+      <Slidethumb data={data} />
       <Morepjts data={boxcontent.data} />
 
     </>
   );
 }
+export default Index;

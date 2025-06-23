@@ -1,30 +1,16 @@
 "use client";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion, AnimatePresence } from "framer-motion"
 import { assets } from "@/public/assets/assets";
 import { slideInLeft } from "../../common/MotionAnimation";
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger); 
 
-interface PlatformsItem {
-  id: number;
-  title: string;
-  paragraphs: string[];
-  image: string | StaticImageData;
-}
-interface PlatformsSection {
-  heading:string;
-  data: PlatformsItem[];
-}
-interface PlatformsSectionProps {
-  data: PlatformsSection;
-}
-const Initiatives: React.FC<PlatformsSectionProps> = ({
-  data
-}) => {
+import { Sustainability } from '@/public/types/Common';  
 
+const Initiatives = ({ data }: { data: Sustainability }) => {   
   const [activeIndex, setActiveIndex] = useState(0);
   const containerRef = useRef(null);
 
@@ -57,14 +43,14 @@ const Initiatives: React.FC<PlatformsSectionProps> = ({
             exit="exit"
             className="text-xl  text-primary font-[600] leading-[1.2] mb-4 lg:mb-[40px]"
           >
-            {data.heading}
+            {data.fifthSection.title}
           </motion.h2>
 
         </div>
         <div className="lg:flex lg:items-center xxl:items-center">
 
           <div className="w-full lg:w-[60%] pr-0 lg:pr-[35px] mt-6 lg:mt-0">
-  {data.data.map((da, index) => (
+  {data.fifthSection.items.map((da, index) => (
     <div className="border-b last:border-b-0  border-[#00000015]" key={index}>
       <motion.div
       key={index}
@@ -75,7 +61,7 @@ const Initiatives: React.FC<PlatformsSectionProps> = ({
       transition={{ duration: 0.4, delay: index * 0.1 }}
     >
         <div className="flex gap-5 items-start">
-        <Image src={assets.arrowgreen} alt="" className={`${activeIndex === index ? ' ' : 'brightness-0 opacity-[1]'} `}/>
+        <Image src={assets.arrowgreen} alt="" className={`${activeIndex === index ? ' ' : 'brightness-0 opacity-[1]'} `} width={20} height={20}/>
           <div>
           <h3
           className={`  text-md   group-hover:text-secondary transition-all duration-300 cursor-pointer leading-[1] font-[500] text-territory
@@ -92,7 +78,7 @@ const Initiatives: React.FC<PlatformsSectionProps> = ({
             transition={{ duration: 0.4 }}
             className="text-territory text-sm font-[400] leading-[1.7]"
           >
-            <p>{da.paragraphs}</p>
+            <p>{da.description}</p>
           </motion.div>
         )}
       </AnimatePresence>
@@ -104,8 +90,8 @@ const Initiatives: React.FC<PlatformsSectionProps> = ({
   ))}
           </div>
           <div className="w-full lg:w-[40%] pl-0 lg:pl-[35px] ">
-            {data.data.map((item) => (
-              <motion.div className=" hidden first:block" key={item.id}
+            {data.fifthSection.items.map((item ,index) => (
+              <motion.div className=" hidden first:block" key={index}
               variants={slideInLeft}
               initial="hidden"
               whileInView="visible"
@@ -117,6 +103,8 @@ const Initiatives: React.FC<PlatformsSectionProps> = ({
                     alt=""
                     className="rounded-[15px] w-full object-cover "
                     priority
+                    width={500}
+                    height={500}
                   />
                 </figure>
               </motion.div>

@@ -1,24 +1,28 @@
-import React from "react";
-import { boxcontent } from "./data";
+import React from "react"; 
 
 import AccreditationsList from "./sections/AccreditationsList";
 import HeroInner from  "../common/Banner/HeroInner";
-export default function Index() {
+
+import { Awards } from '@/public/types/Common';
+ 
+
+const Index = async ({ data }: { data: Awards }) => { 
   const breadcrumb = [
     { label: "Home", href: "/" },
-    { label: "Awards and Accreditation", href: "" },
+    { label: data.pageTitle, href: "" },
 
   ];
 
   return (
     <>
-<HeroInner          imageSrc="/assets/img/accreditations/banner.jpg"
-        title="Awards and Accreditations"
+<HeroInner          imageSrc={data.banner}
+        title={data.pageTitle}
         breadcrumbs={breadcrumb}
       />
-      <AccreditationsList data={boxcontent.data} />
+      <AccreditationsList data={data} />
 
     </>
 
   );
 }
+export default Index;

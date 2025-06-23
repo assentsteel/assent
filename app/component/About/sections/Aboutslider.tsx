@@ -1,29 +1,20 @@
 "use client";
 
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import { motion } from "framer-motion";
 
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { assets } from "@/public/assets/assets";
-gsap.registerPlugin(ScrollTrigger);
+import gsap from "gsap"; 
+import { assets } from "@/public/assets/assets"; 
+import { About } from '@/public/types/Common'; 
 
-interface PlatformsItem {
-  id: number;
-  title: string;
-  image: StaticImageData;
-  heading: string;
-  desc: string;
-}
 
-interface PlatformsSectionProps {
-  data: PlatformsItem[];
-}
 
-const Aboutslider: React.FC<PlatformsSectionProps> = ({ data }) => {
+const Aboutslider = ({ data }: { data: About }) => {  
+   
+  
   const containerRef = useRef(null);
   const textVariants = {
     hidden: { opacity: 0, x: -30 },
@@ -91,7 +82,7 @@ const Aboutslider: React.FC<PlatformsSectionProps> = ({ data }) => {
                viewport={{ once: true, amount: 0.2 }}
                variants={textVariants}
                initial="hidden"
-               whileInView="visible" className="text-white text-xl font-[600] ">History
+               whileInView="visible" className="text-white text-xl font-[600] ">{data.historySection.title}
               </motion.h2>
               <div className="flex justify-end gap-4">
                 {/* Prev Button */}
@@ -160,7 +151,7 @@ const Aboutslider: React.FC<PlatformsSectionProps> = ({ data }) => {
     ref={thumbsRef}
     className="mb-4 justify-center abtstl"
   >
-    {data.map((src, index) => (
+    {data.historySection.items.map((src, index) => (
       <SplideSlide key={`thumb-${index}`}>
         <motion.p
           variants={fadeUp}
@@ -168,7 +159,7 @@ const Aboutslider: React.FC<PlatformsSectionProps> = ({ data }) => {
           whileInView="visible"
           className="font-[600] text-[45px] lg:text-[90px] text-[#54739F] pt-8 lg:pt-[40px]"
         >
-          {src.title}
+          {src.year}
         </motion.p>
       </SplideSlide>
     ))}
@@ -188,7 +179,7 @@ const Aboutslider: React.FC<PlatformsSectionProps> = ({ data }) => {
     }}
     ref={mainRef}
   >
-    {data.map((src, index) => (
+    {data.historySection.items.map((src, index) => (
       <SplideSlide key={`main-${index}`}>
         <div className="md:flex">
           <motion.div
@@ -201,7 +192,7 @@ const Aboutslider: React.FC<PlatformsSectionProps> = ({ data }) => {
             <div className="pt-3 md:pt-[50px] lg:pt-[100px] md:pr-[50px] lg:pr-[106px] md:border-r border-[#ffffff35]">
               <Image
                 src={src.image}
-                alt={`Slide ${index + 1}`}
+                alt={src.imageAlt}
                 width={600}
                 height={400}
                 className="w-full h-auto rounded-xl object-cover"
@@ -218,9 +209,9 @@ const Aboutslider: React.FC<PlatformsSectionProps> = ({ data }) => {
           >
             <div className="pt-10 md:pt-[50px] lg:pt-[100px] md:pl-[50px] lg:pl-[90px]">
               <h3 className="text-white text-lg font-[600] mb-5 lg:mb-[40px]">
-                {src.heading}
+                {src.title}
               </h3>
-              <p className="text-white max-w-[50ch]">{src.desc}</p>
+              <p className="text-white max-w-[50ch]">{src.description}</p>
             </div>
           </motion.div>
         </div>

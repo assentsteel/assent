@@ -1,28 +1,16 @@
 "use client";
-import Image, { StaticImageData } from "next/image";
+import Image  from "next/image";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion, AnimatePresence } from "framer-motion"
 gsap.registerPlugin(ScrollTrigger);
+ 
 
-interface PlatformsItem {
-  id: number;
-  title: string;
-  paragraphs: string[];
-  image: string | StaticImageData;
-}
-interface PlatformsSectionProps {
-  data: PlatformsItem[];
-  heading: string;
-  description: string;
-}
-
-const TextByImg: React.FC<PlatformsSectionProps> = ({
-  data,
-  heading,
-  description,
-}) => {
+  
+  import { Career } from '@/public/types/Common';  
+  
+  const TextByImg = ({ data }: { data: Career }) => {    
   const [activeIndex, setActiveIndex] = useState(0);
   const containerRef = useRef(null);
 
@@ -70,7 +58,7 @@ const TextByImg: React.FC<PlatformsSectionProps> = ({
             exit="exit"
             className="text-xl  text-primary font-[600] leading-[1.2] mb-4 lg:mb-7"
           >
-            {heading}
+            {data.firstSection.title}
           </motion.h2>
           <motion.div
             variants={slideInTop}
@@ -79,13 +67,13 @@ const TextByImg: React.FC<PlatformsSectionProps> = ({
             exit="exit"
             className="mb-4 lg:mb-[60px]"
           >
-            <p>{description}</p>
+            <p>{data.firstSection.description}</p>
           </motion.div>
         </div>
         <div className="lg:flex lg:items-center xxl:items-start">
           <div className="w-full lg:w-[51%] pr-0 lg:pr-[35px]">
-            {data.map((item) => (
-              <motion.div className=" hidden first:block" key={item.id}
+            {data.firstSection.items.map((item ,index) => (
+              <motion.div className=" hidden first:block" key={index}
               variants={slideInLeft}
               initial="hidden"
               animate="visible"
@@ -96,6 +84,8 @@ const TextByImg: React.FC<PlatformsSectionProps> = ({
                     alt=""
                     className="rounded-[15px] w-full object-cover "
                     priority
+                    width={800}
+                    height={800}
                   />
                 </figure>
               </motion.div>
@@ -103,7 +93,7 @@ const TextByImg: React.FC<PlatformsSectionProps> = ({
           </div>
 
           <div className="w-full lg:w-[49%] pl-0 lg:pl-[35px] mt-6 lg:mt-0">
-  {data.map((da, index) => (
+  {data.firstSection.items.map((da, index) => (
     <motion.div
       key={index}
       className="group border-b first:border-t border-[#00000015] py-5  lg:py-[20px] xxl:py-[30px] group transition-all duration-300"
@@ -129,7 +119,7 @@ const TextByImg: React.FC<PlatformsSectionProps> = ({
             transition={{ duration: 0.4 }}
             className="text-territory text-sm font-[400] leading-[1.7]"
           >
-            <p>{da.paragraphs}</p>
+            <p>{da.description}</p>
           </motion.div>
         )}
       </AnimatePresence>

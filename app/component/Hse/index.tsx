@@ -1,35 +1,36 @@
-import React from "react";
-import {singletextimg,about,textimg,Grsldata,cdata} from "./data";
+import React from "react"; 
 import Herotext from "../common/Banner/Herotext";
 import SingleImageText from "../common/SingleImageText";
-import SingleImage from "../common/SingleImage";
-import { assets } from "@/public/assets/assets";
+import SingleImage from "../common/SingleImage"; 
 import IntroBold from "../common/IntroBold";
 import TextByImg from "../About/sections/TextByImg";
 import Growslide from "./sections/Growslide";
 import Commitments from "./sections/Commitments";
-export default function Index() {
+
+import { Hse } from '@/public/types/Common'; 
+const Index = async ({ data }: { data: Hse }) => { 
   const breadcrumb = [
     { label: "Home", href: "/" },
-    { label: "HSE", href: "" },
+    { label: data.pageTitle, href: "" },
     // { label: `${data && data.data.sector}`, href: "#" },
   ];
 
   return (
     <>
 
-      <Herotext breadcrumbs={breadcrumb} title={"Health, Safety & Environment"} />
+      <Herotext breadcrumbs={breadcrumb} title={data.pageTitle} />
 
-      <SingleImage secimage={assets.hsebanner}/>
-      <IntroBold data={about} />
-      <Commitments data={cdata.data} heading={cdata.heading} />
-      <SingleImageText data={singletextimg.data} maxwidth={'max-w-[75ch]'} textright={false} />
+      <SingleImage data={data}/>
+      <IntroBold data={data.firstSection} />
+      <Commitments data={data} />
+      <SingleImageText data={data.thirdSection} maxwidth={'max-w-[75ch]'} textright={false} />
       <section className="ptst0">
-      <TextByImg data={textimg.data} kmbtn={true} />
+      <TextByImg data={data.fourthSection} kmbtn={true} />
       </section>
-      <Growslide data={Grsldata} />
+      <Growslide data={data} />
 
 
     </>
   );
 }
+export default Index

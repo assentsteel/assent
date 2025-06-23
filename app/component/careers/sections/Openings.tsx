@@ -5,24 +5,11 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
 gsap.registerPlugin(ScrollTrigger);
-
-interface jobarray {
-  jobtitle: string;
-  place: string;
-}
-interface PlatformsItem {
-  id: number;
-  title: string;
-  job: jobarray[];
-}
-
-interface PlatformsSectionProps {
-  data: PlatformsItem[];
-}
-
-const Openings: React.FC<PlatformsSectionProps> = ({data
-}) => {
-
+ 
+  
+  import { Career } from '@/public/types/Common';  
+  
+  const Openings = ({ data }: { data: Career }) => {    
   const containerRef = useRef(null);
 
 
@@ -45,10 +32,8 @@ const Openings: React.FC<PlatformsSectionProps> = ({data
   return (
     <section className="py-[50px] md:py-[70px] xl:py-[100px]   overflow-hidden relative bg-primary">
 
-<div className="container">
-  {data.map((item) => (
-    <motion.div
-      key={item.id}
+<div className="container"> 
+    <motion.div 
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -61,10 +46,10 @@ const Openings: React.FC<PlatformsSectionProps> = ({data
         viewport={{ once: true }}
         transition={{ delay: 0.2, duration: 0.6 }}
       >
-        {item.title}
+        {data.thirdSection.title}
       </motion.h2>
 
-      {item.job.map((jobarray, index) => (
+      {data.thirdSection.items.map((jobarray, index) => (
         <motion.div
           key={index}
           className="md:flex justify-between items-center group py-5 lg:py-10 border-b"
@@ -75,12 +60,12 @@ const Openings: React.FC<PlatformsSectionProps> = ({data
         >
           <div className="md:w-1/2">
             <p className="font-[600] text-lg text-white group-hover:text-secondary transition-colors duration-300">
-              {jobarray.jobtitle}
+              {jobarray.title}
             </p>
           </div>
 
           <div className="md:w-1/2 flex justify-between items-center font-[600] text-md text-white group-hover:text-secondary mt-3 md:mt-0">
-            <p>{jobarray.place}</p>
+            <p>{jobarray.location}</p>
 
             <motion.div
               whileHover={{ scale: 1.05 }}
@@ -108,7 +93,7 @@ const Openings: React.FC<PlatformsSectionProps> = ({data
         </motion.div>
       ))}
     </motion.div>
-  ))}
+ 
 </div>
     </section>
   );

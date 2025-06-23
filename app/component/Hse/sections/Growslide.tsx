@@ -10,20 +10,13 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Autoplay, Pagination } from "swiper/modules";
 gsap.registerPlugin(ScrollTrigger);
-interface PlatformsItemss {
-  title: string;
-  desc: string;
-}
-interface PlatformsItem {
-  content: PlatformsItemss[];
-}
+ 
 
-interface PlatformsSectionProps {
-  data: PlatformsItem;
-}
+import { Hse } from '@/public/types/Common'; 
 
-const Growslide: React.FC<PlatformsSectionProps> = ({data
-}) => {
+
+
+const Growslide = ({ data }: { data: Hse }) => {   
 
   const swiperRef = useRef<SwiperType | null>(null);
 
@@ -52,14 +45,14 @@ const Growslide: React.FC<PlatformsSectionProps> = ({data
             className="w-full !overflow-visible"
             onSwiper={(swiper) => (swiperRef.current = swiper)}
           >
-            {data.content.map((item, index) => (
+            {data.fourthSection.items.map((item, index) => (
               <SwiperSlide key={index} className="growslide" >
                 <motion.div  className="cursor-pointer pl-5 border-l"
     whileHover={{ scale: 1.05, rotateY: 10, rotateX: 0 }}
     transition={{ type: "spring", stiffness: 200, damping: 10 }}>
 
-                  <h3 className="text-40 font-semibold text-primary leading-none pt-[25px]">{item.title}</h3>
-                  <p className="text-md text-territory leading-none font-normal py-[25px] ">{item.desc}</p>
+                  <h3 className="text-40 font-semibold text-primary leading-none pt-[25px]">{item.number}</h3>
+                  <p className="text-md text-territory leading-none font-normal py-[25px] ">{item.value}</p>
                 </motion.div>
               </SwiperSlide>
             ))}

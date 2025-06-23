@@ -263,3 +263,123 @@ export const textrts =
 }
 
 
+export const whychoosedata = {
+    titlesection:"Why Choose ASSENT STEEL for Engineering Excellence ?",
+    descsection:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  data: [
+    {
+      title: "Precision-Driven Design",
+      desc:"We engineer every project with unmatched accuracy and attention to structural detail.",
+      icon: assets.vr1
+    },
+    {
+      title: "Advanced 3D Modelling",
+      desc:"Utilizing the latest CAD and BIM tools for enhanced planning and coordination.",
+      icon: assets.vr2
+    },
+    {
+      title: "Industry-Compliant Standards",
+      desc:"All engineering meets global standards like ASTM, ISO, and AWS for quality and precision.",
+      icon: assets.vr3
+    },
+    {
+      title: "Skilled Engineering Team",
+      desc:"Led by experienced engineers and project managers with deep industry expertise.",
+      icon: assets.vr4
+    },
+    {
+      title: "Integrated Solutions",
+      desc:"From conceptual design to execution, we provide end-to-end engineering services.",
+      icon: assets.vr5
+    },
+    {
+      title: "Proven Track Record",
+      desc:"Trusted by major developers across industrial, commercial, and infrastructure sectors.",
+      icon: assets.vr6
+    },
+
+  ]
+};
+export const strengthServe = {
+  title: "Our Strengths",
+  data: [
+    {
+      id: 1,
+      icon: assets.sr1,
+      title: "15 ",
+
+      desc: "Fabrication Bays",
+      url: "",
+      paragraph: [
+      "11 Regular Bays",
+      "2 Jumbo Structure Bays",
+      "2 Trussel Bays"
+    ]
+    },
+    {
+      id: 2,
+      icon: assets.sr2,
+      title: "39",
+
+      desc: "CNC Machines",
+      url: "",
+       paragraph: [
+      "11 Regular Bays",
+      "2 Jumbo Structure Bays",
+      "2 Trussel Bays"
+    ]
+    },
+    {
+      id: 3,
+      icon: assets.sr3,
+      title: "69",
+
+      desc: "Overhead Cranes",
+      url: "",
+       paragraph: [
+      "11 Regular Bays",
+      "2 Jumbo Structure Bays",
+      "2 Trussel Bays"
+    ]
+    },
+    {
+      id: 4,
+      icon: assets.sr4,
+      title: "4",
+
+      desc: "Electric Trolley Systems",
+      url: "",
+       paragraph: [
+      "11 Regular Bays",
+      "2 Jumbo Structure Bays",
+      "2 Trussel Bays"
+    ]
+    },
+    {
+      id: 5,
+      icon: assets.sr5,
+      title: "10,000",
+      subttle:"MT/Month",
+      desc: "Fabrication Manpower",
+      url: "",
+       paragraph: [
+      "11 Regular Bays",
+      "2 Jumbo Structure Bays",
+      "2 Trussel Bays"
+    ]
+    },
+    {
+      id: 6,
+      icon: assets.sr6,
+      title: "1500",
+
+      desc: "Fabrication Manpower",
+      url: "",
+       paragraph: [
+      "11 Regular Bays",
+      "2 Jumbo Structure Bays",
+      "2 Trussel Bays"
+    ]
+    },
+  ],
+};

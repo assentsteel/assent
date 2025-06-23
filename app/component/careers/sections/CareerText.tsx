@@ -1,30 +1,16 @@
 "use client";
 
-import Image, { StaticImageData } from "next/image";
+import Image  from "next/image";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
 gsap.registerPlugin(ScrollTrigger);
-
-interface specarr {
-  icon : string | StaticImageData;
-  text: string;
-}
-interface PlatformsItem {
-  id: number;
-  title: string;
-  paragraphs: string[];
-  image: string | StaticImageData;
-  specs: specarr[];
-}
-
-interface PlatformsSectionProps {
-  data: PlatformsItem[];
-}
-const CareerText: React.FC<PlatformsSectionProps> = ({data
-}) => {
-
+ 
+  
+  import { Career } from '@/public/types/Common';  
+  
+  const CareerText = ({ data }: { data: Career }) => {    
   const containerRef = useRef(null);
 
 
@@ -47,13 +33,13 @@ const CareerText: React.FC<PlatformsSectionProps> = ({data
   return (
     <section className="py-[50px] md:py-[70px] xl:py-[100px]   overflow-hidden relative ">
       <div className="container">
-  {data.map((item) => (
+  {/* {data.secondSection.items.map((item ,index) => ( */}
     <motion.div
-      key={item.id}
+       
       className="rounded-[15px] p-4  lg:py-[120px] lg:px-[100px] blueoverlay relative"
       style={{
         background: `url(${
-          typeof item.image === "string" ? item.image : item.image.src
+          typeof data.secondSection.image === "string" ? data.secondSection.image : data.secondSection.image
         })`,
         backgroundSize: "cover",
       }}
@@ -70,24 +56,21 @@ const CareerText: React.FC<PlatformsSectionProps> = ({data
           viewport={{ once: true }}
           transition={{ delay: 0.2, duration: 0.6 }}
         >
-          {item.title}
+          {data.secondSection.title}
         </motion.h2>
-
-        {item.paragraphs.map((paragraph, index) => (
-          <motion.p
-            key={index}
+ 
+          <motion.p 
             className="text-white text-base font-[400] leading-[1.8]"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.3 + index * 0.2, duration: 0.6 }}
+            transition={{ delay: 0.3 , duration: 0.6 }}
           >
-            {paragraph}
-          </motion.p>
-        ))}
+            {data.secondSection.description}
+          </motion.p> 
 
         <div className="grid grid-cols-1 lg:grid-cols-2 mt-6 lg:mt-10 border-b border-white">
-          {item.specs.map((spec, index) => (
+          {data.secondSection.items.map((spec, index) => (
             <motion.div
               key={index}
               className="flex items-center gap-3 lg:gap-7 py-4 lg:py-[25px] border-t border-white"
@@ -96,14 +79,14 @@ const CareerText: React.FC<PlatformsSectionProps> = ({data
               viewport={{ once: true }}
               transition={{ delay: 0.4 + index * 0.15, duration: 0.5 }}
             >
-              <Image src={spec.icon} alt="" />
-              <p className="text-md text-white">{spec.text}</p>
+              <Image src={spec.logo} alt={spec.logoAlt} width={37} height={38} />
+              <p className="text-md text-white">{spec.title}</p>
             </motion.div>
           ))}
         </div>
       </div>
     </motion.div>
-  ))}
+ 
 </div>
     </section>
   );

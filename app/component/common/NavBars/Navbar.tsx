@@ -10,7 +10,7 @@ import { HoveredLink, Menu, MenuItem } from "@/components/ui/navbar-menu";
 
 // import { usePathname } from "next/navigation";
 
-const Navbar = () => {
+const Navbar = ({ categories }: { categories: { name: string; slug: string; }[] }) => {
   const pathname = usePathname();
   const [active, setActive] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState<null | boolean>(null);
@@ -97,6 +97,50 @@ const Navbar = () => {
 
         <Menu setActive={setActive}>
           {menuItems.map((menuItem, index) =>
+          menuItem.title == "Projects" ? (
+            <MenuItem
+                setActive={setActive}
+                active={active}
+                url={menuItem.url}
+                item={menuItem.title}
+                key={index}>
+                <div className="grid grid-cols-1 py-4  ">
+                  {/* <ProductItem
+                  title="Residential"
+                  description=" "
+                  href="#"
+                  src={"/assets/images/gd-im1.jpg"}
+                />
+                <ProductItem
+                  title="Commercial"
+                  description=""
+                  href="#"
+                  src="/assets/images/gd-im2.jpg"
+                /> */}
+                  {categories.map((item, index) => (
+                    <HoveredLink href={`/projects-list/${item.slug}`} key={index}>
+                      <div className=" hover:bg-black/5 pl-3 pr-[80px] py-2 rounded-[8px] transition-transform duration-300 hover:text-secondary hover:scale-105 flex gap-2 items-center self-start spckbtn whts">
+                        <div >
+                          <Image
+                            src={"/assets/img/icons/arrow.svg"}
+                            alt=""
+                            width={15}
+                            height={15}
+                          />
+                        </div>{" "}
+                        <p className="m-0 p-0 text-[16px] uppercase ">
+                          {item.name}
+                        </p>
+                      </div>
+                    </HoveredLink>
+                  ))}
+
+                  {/* <HoveredLink href="#">
+                  <div>Commercial</div>
+                </HoveredLink> */}
+                </div>
+              </MenuItem>
+          ) : (
             menuItem.children ? (
               <MenuItem
                 setActive={setActive}
@@ -153,7 +197,7 @@ const Navbar = () => {
                 </div>
               </MenuItem>
             )
-          )}
+          ))}
 
           {/* <MenuItem item="About Us" setActive={setActive} active={active}>
              <div className="p-4">
