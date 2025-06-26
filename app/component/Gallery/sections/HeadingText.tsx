@@ -4,19 +4,19 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { motion } from "framer-motion";
-import { containerVariants, itemVariants } from "../../common/MotionAnimation"
+// import { motion } from "framer-motion";
+// import { containerVariants, itemVariants } from "../../common/MotionAnimation"
 import Link from "next/link";
-gsap.registerPlugin(ScrollTrigger); 
+gsap.registerPlugin(ScrollTrigger);
   import { Gallery } from '@/public/types/Common';
 
-  const HeadingText = ({ data }: { data: Gallery }) => { 
+  const HeadingText = ({ data }: { data: Gallery }) => {
     const [visibleCount, setVisibleCount] = useState(12);
-     
-    const visibleItems = data.slice(0, visibleCount); 
+
+    const visibleItems = data.slice(0, visibleCount);
     const handleLoadMore = () => {
       setVisibleCount((prev) => prev + 8);
-    }; 
+    };
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -41,13 +41,13 @@ gsap.registerPlugin(ScrollTrigger);
 
       < div
   className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
-   
+
 >
   {visibleItems.map((item, index) => (
     <div key={index}  >
       <div
         className="relative group"
-        
+
       >
         <Link href={`/gallery-details/${item.slug}`}>
           <figure className="overlayclr">

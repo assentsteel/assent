@@ -14,17 +14,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Home } from "@/public/types/Common";
 import { assets } from "@/public/assets/assets";
 gsap.registerPlugin(ScrollTrigger);
-const slides = [
-  {
-    id: 1,
-    type: "video",
-    videoSrc: "/assets/video/Assent_Video.mp4", // Replace with your video path
-    poster: "/assets/img/home/banner.jpg", // Poster image
-    title: "ASSENT STEEL INDUSTRIES LLC leading Steel Fabricator",
-    subtitle: "",
-    imageSrc: "/assets/img/slide1.jpg", // Add imageSrc property
-  },
-];
+
 
 const HeroSection = ({ data }: { data: Home }) => {
   const prevRef = useRef(null);
@@ -57,7 +47,7 @@ const HeroSection = ({ data }: { data: Home }) => {
   }, [data.bannerSection.items.length]);
 
 /*   useEffect(() => {
-    gsap.from(containerRef.current, { 
+    gsap.from(containerRef.current, {
       opacity: 0,
       width: 100,
       duration: 1.5,
@@ -70,11 +60,11 @@ const HeroSection = ({ data }: { data: Home }) => {
       <Swiper
         modules={[Autoplay, Pagination,Navigation]}
         autoplay={{ delay: 3000, disableOnInteraction: false }}
-         
+
         navigation={{
           prevEl: prevRef.current,
           nextEl: nextRef.current,
-        }} 
+        }}
         onInit={(swiper) => {
           if (typeof swiper.params.navigation === "object") {
             swiper.params.navigation.prevEl = prevRef.current;
