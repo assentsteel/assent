@@ -2,7 +2,7 @@
 
 import { useRef, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination } from "swiper/modules";
+import { Autoplay, Pagination,Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import Image from "next/image";
@@ -12,6 +12,7 @@ import { FaChevronRight } from "react-icons/fa6";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Home } from "@/public/types/Common";
+import { assets } from "@/public/assets/assets";
 gsap.registerPlugin(ScrollTrigger);
 const slides = [
   {
@@ -26,6 +27,8 @@ const slides = [
 ];
 
 const HeroSection = ({ data }: { data: Home }) => {
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
   const textRef = useRef(null);
   const containerRef = useRef(null);
 
@@ -50,11 +53,11 @@ const HeroSection = ({ data }: { data: Home }) => {
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
   useEffect(() => {
-    videoRefs.current = videoRefs.current.slice(0, slides.length);
-  }, [slides.length]);
+    videoRefs.current = videoRefs.current.slice( data.bannerSection.items.length);
+  }, [data.bannerSection.items.length]);
 
 /*   useEffect(() => {
-    gsap.from(containerRef.current, {
+    gsap.from(containerRef.current, { 
       opacity: 0,
       width: 100,
       duration: 1.5,
@@ -65,8 +68,21 @@ const HeroSection = ({ data }: { data: Home }) => {
   return (
     <section className="relative w-full h-[90vh] overflow-hidden">
       <Swiper
-        modules={[Autoplay, Pagination]}
+        modules={[Autoplay, Pagination,Navigation]}
         autoplay={{ delay: 3000, disableOnInteraction: false }}
+         
+        navigation={{
+          prevEl: prevRef.current,
+          nextEl: nextRef.current,
+        }} 
+        onInit={(swiper) => {
+          if (typeof swiper.params.navigation === "object") {
+            swiper.params.navigation.prevEl = prevRef.current;
+            swiper.params.navigation.nextEl = nextRef.current;
+          }
+          swiper.navigation.init();
+          swiper.navigation.update();
+        }}
         pagination={{
           el: ".custom-pagination",
           clickable: true,
@@ -98,7 +114,7 @@ const HeroSection = ({ data }: { data: Home }) => {
           });
         }}
       >
-        {slides.map((slide, index) => (
+        {data.bannerSection.items.map((slide, index) => (
           <SwiperSlide key={index}>
             <div className="w-full h-full mx-auto">
               <div className="overlay absolute w-full h-full bg-gradient-to-t from-black to-transparent z-[1]"></div>
@@ -107,23 +123,23 @@ const HeroSection = ({ data }: { data: Home }) => {
                 ref={containerRef}
               >
                 {/* Video Slide with Poster */}
-                {slide.type === "video" ? (
+                {slide.video !== "" ? (
                   <video
                     ref={(el) => {
                       videoRefs.current[index] = el;
                     }}
-                    src={data.bannerSection.items[0].video}
+                    src={slide.video}
                     className="absolute inset-0 w-full h-full object-cover"
                     loop
                     autoPlay
                     muted
                     playsInline
-                    poster={data.bannerSection.items[0].poster} // Poster image
+                    poster={slide.poster} // Poster image
                   />
                 ) : (
                   /* Image Slide */
                   <Image
-                    src={slide.imageSrc ?? data.bannerSection.items[0].poster}
+                    src={slide.poster}
                     alt="Hero Background"
                     layout="fill"
                     objectFit="cover"
@@ -146,7 +162,7 @@ const HeroSection = ({ data }: { data: Home }) => {
                         className="text-white text-xxl leading-none xxl:w-[80%] xxxl:w-[70%] font-semibold"
                         variants={textItemVariants}
                       >
-                        {data.bannerSection.items[0].mainTitle}
+                        {slide.mainTitle}
                       </motion.h1>
                     </div>
                     <div className="overflow-hidden pb-1 mt-[30px]">
@@ -154,16 +170,16 @@ const HeroSection = ({ data }: { data: Home }) => {
                         className="text-white text-md leading-none font-normal flex gap-2"
                         variants={textItemVariants}
                       >
-                        {data.bannerSection.items[0].subTitle}
+                        {slide.subTitle}
                         <b className="font-semibold text-secondary">
-                        {data.bannerSection.items[0].primaryColorText}
+                        {slide.primaryColorText}
                         </b>
                       </motion.p>
                     </div>
                     <div className="overflow-hidden">
                       <motion.div variants={textItemVariants}>
                         <Link
-                          href="#"
+                          href="/about"
                           className="text-xs border-b border-secondary text-white uppercase group pb-[16px] inline-flex mt-[50px]  items-center gap-[18px]"
                         >
                           Read More{" "}
@@ -180,7 +196,31 @@ const HeroSection = ({ data }: { data: Home }) => {
           </SwiperSlide>
         ))}
       </Swiper>
+      {data.bannerSection.items.length > 1 && (
+          <motion.div className=" flex gap-2 lg:gap-[30px] z-10 absolute right-[30px] bottom-[30px]" >
+              <button
+                ref={prevRef}
+                className="bg-white text-black  py-1 rounded-full w-[28px] h-[28px] lg:w-[48px] lg:h-[48px] hover:bg-secondary group transition flex items-center justify-center"
+              >
+                <Image
+                  src={assets.greenarrow}
+                  alt=""
 
+                  className="group-hover:brightness-0 group-hover:invert w-[11px] h-[11px]  lg:w-[11px] lg:h-[18px]"
+                />
+              </button>
+              <button
+                ref={nextRef}
+                className="bg-white text-black  py-1 rounded-full w-[28px] h-[28px] lg:w-[48px] lg:h-[48px] hover:bg-secondary group transition flex items-center justify-center"
+              >
+                <Image
+                  src={assets.greenarrow}
+                  alt=""
+                  className="group-hover:brightness-0 group-hover:invert rotate-180 w-[11px] h-[11px]  lg:w-[11px]  lg:h-[18px]"
+                />
+              </button>
+          </motion.div>
+      )}
       {/* Custom Numbered Pagination */}
       {/*  <div className="absolute z-20 w-full bottom-[100px]">
         <div className="container relative">

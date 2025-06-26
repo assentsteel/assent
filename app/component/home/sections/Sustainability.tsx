@@ -37,11 +37,21 @@ const Sustainability = ({ data }: { data: Home }) => {
         ease: "power3.out",
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top 60%", // Starts when the top of the section is 85% in view
+          start: "top 60%",
           toggleActions: "play none none none",
         },
       });
     }
+  
+    const handleResize = () => {
+      ScrollTrigger.refresh();
+    };
+  
+    window.addEventListener("resize", handleResize);
+  
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
   return (
     <section className="relative bg-cover bg-center text-white section-spacing bg-primary">

@@ -10,7 +10,7 @@ const LogoTicker = ({ data }: { data: Home }) => {
   return (
     <section className="py-[60px] overflow-hidden">
       <div className="container">
-        <h2 className="text-xl font-semibold mb-5 lg:mb-[50px] leading-none text-primary ">Our Clients</h2>
+        {/* <h2 className="text-xl font-semibold mb-5 lg:mb-[50px] leading-none text-primary ">Our Clients</h2> */}
         <div className="flex overflow-hidden">
           <motion.div
             className="flex gap-[50px] lg:gap-[150px] flex-none min-w-max"

@@ -28,7 +28,7 @@ console.log(data);
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: index * 0.3 }}
               viewport={{ once: true, amount: 0.5 }}>
-              <motion.div className="rounded-custom overflow-hidden relative min-h-[450px] flex items-end group" whileHover={{ scale: 1.05, rotateY: 10, }}
+              <motion.div className="rounded-custom overflow-hidden relative min-h-[350px]  md:min-h-[450px] flex items-end group" whileHover={{ scale: 1.05, rotateY: 10, }}
                 transition={{ type: "spring", stiffness: 200, damping: 15 }}>
                   <div className="bg-gradient-to-t from-black to-transparent absolute bottom-0 left-0 z-10 w-full h-0 group-hover:h-full transition-all duration-300"></div>
                 <Image src={sector.image} alt={sector.imageAlt} width={800} height={800} className="absolute top-0 left-0 w-full h-full -z-1" />
