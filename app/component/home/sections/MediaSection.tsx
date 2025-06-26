@@ -43,12 +43,15 @@ const MediaSection = ({data}: {data: News}) => {
             >
               <div className="relative w-full h-[200px] lg:h-[300px] xxxl:h-[400px] ">
               
-  <Image
-    src={latestNews.thumbnail}
-    alt={latestNews.thumbnailAlt}
-    layout="fill"
-    objectFit="cover"
-  /> 
+              <figure className="relative w-full h-full">
+                <Image
+                  src={latestNews.thumbnail}
+                  alt={latestNews.thumbnailAlt}
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="top"
+                />
+              </figure>
               </div>
               <div className="px-[30px] py-[30px] lg:px-[60px] lg:py-[40px]">
                 <div className="flex justify-between mb-5 lg:mb-[35px]">

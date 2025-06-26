@@ -8,9 +8,9 @@ import { AnimatePresence, motion } from "framer-motion";
 gsap.registerPlugin(ScrollTrigger);
 
 import { Gallerydata } from '@/public/types/Common';
- 
-  
-    const HeadingText = ({ data }: { data: Gallerydata }) => { 
+
+
+    const HeadingText = ({ data }: { data: Gallerydata }) => {
   const containerRef = useRef(null);
 
 
@@ -73,10 +73,10 @@ import { Gallerydata } from '@/public/types/Common';
         whileInView="show"
         viewport={{ once: true }}
       >
-        <div className="columns-2 md:columns-3 lg:columns-4 gap-4"> 
+        <div className="columns-2 md:columns-3 lg:columns-4 gap-4">
           {data?.data?.map((image, index) => (
             <motion.div
-              key={index} 
+              key={index}
               className="mb-4 break-inside-avoid rounded-lg overflow-hidden group cursor-pointer"
               onClick={() => setSelectedImage(image)}
             >

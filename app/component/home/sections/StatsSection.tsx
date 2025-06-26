@@ -26,28 +26,28 @@ const StatsSection = ({ data }: { data: Home }) => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={inView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.8, delay: index * 0.2 }}
-            className="flex items-center  text-white  py-[20px] px-[20px]  lg:py-[70px] lg:px-[10px]  gap-5 border-b border-white/20 border-solid"
+            className="flex items-center  text-white  py-[40px] px-[20px]  lg:py-[70px] lg:px-[10px]  gap-5 border-b border-white/20 border-solid"
           >
             <motion.div
               initial={{ scale: 0 }}
               animate={inView ? { scale: 1 } : {}}
               transition={{ duration: 0.5, delay: index * 0.2 }}
             >
-              <Image src={stat.logo} alt={stat.logoAlt} width={50} height={50} className="h-[45px] lg:h-[50px]" />
+              <Image src={stat.logo} alt={stat.logoAlt} width={50} height={50} className="h-[45px] lg:h-[35px] xl:h-[60px] w-[45px] lg:w-[35px] xl:w-[60px]" />
             </motion.div>
             <div>
-              <span className="text-[30px]  lg:text-[40px] font-bold leading-none flex items-center gap-1">
+              <span className="text-[20px] lg:text-[15px] xl:text-[20px]  2xl:text-[40px] font-bold leading-none flex items-center gap-1">
                  {inView ? <CountUp start={0} end={Number(stat.number)} duration={2} delay={0.3} decimals={Number(stat.number) % 1 !== 0 ? 1 : 0} /> : 0}
-                {/* <span className="text-[17px] lg:text-[24px]">{stat.suffix}</span> */}
+                {/* <span className="text-[17px] 2xl:text-[24px]">{stat.suffix}</span> */}
                {(() => {
             const [before, after] = stat.suffix.split('/');
             return (
               <>
-                <span className="text-[30px]  lg:text-[40px]">{before}</span>
+                <span className="text-[20px] lg:text-[15px] xl:text-[20px]  2xl:text-[40px]">{before}</span>
                 {after && (
                   <>
-                    <span className="mx-1 text-[17px] lg:text-[24px]">/</span>
-                    <span className="text-[17px] lg:text-[24px]">{after}</span>
+                    <span className="mx-1 text-[17px] 2xl:text-[24px]">/</span>
+                    <span className="text-[17px] 2xl:text-[24px]">{after}</span>
                   </>
                 )}
               </>
@@ -55,7 +55,7 @@ const StatsSection = ({ data }: { data: Home }) => {
           })()}
 
               </span>
-              <p className="text-md text-white/70">{stat.value}</p>
+              <p className="text-md lg:text-[14px] xl:text-[18px] 2xl:text-md text-white/70">{stat.value}</p>
             </div>
           </motion.div>
         ))}

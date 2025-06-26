@@ -31,7 +31,7 @@ const AboutUs = ({ data }: { data: Home }) => {
     if (containerRef.current) {
       gsap.from(containerRef.current, {
         opacity: 0,
-        width: 100,
+        width: 60,
         duration: 1.5,
         ease: "power3.out",
         scrollTrigger: {
@@ -85,7 +85,7 @@ const AboutUs = ({ data }: { data: Home }) => {
           </motion.div>
         </div>
         <div className="col-span-12 lg:col-span-7 right-0 pl-[0px] lg:pl-[50px]">
-          <div ref={containerRef}>
+          <div  >
           <StatsSection data={data} />
           </div>
         </div>
