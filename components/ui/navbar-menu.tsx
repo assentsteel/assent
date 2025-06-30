@@ -209,7 +209,7 @@ export const Menu = ({
             <div className="bar12"></div>
         </div></div>) : (
             <ul className="grid grid-cols-2 list-disc gap-5 text-xs px-4">
-              {result.map((item: any, index: number) => {
+              {result.map((item: {type: string, project: {title: string, slug: string}, category: string, item: {mainTitle: string, slug: string, title: string}}, index: number) => {
                 if(item.project){
                   return <Link href={`/projects-details/${item.category}/${item.project.slug}`} key={index} className="cursor-pointer" onClick={()=>setSearchActive(false)}><li>{item.project.title}</li></Link>
                 }else if(item.type == "news"){
