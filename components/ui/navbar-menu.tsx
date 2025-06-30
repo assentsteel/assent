@@ -83,6 +83,7 @@ export const Menu = ({
   const [searchActive, setSearchActive] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
   const searchButtonRef = useRef<HTMLDivElement>(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     if (searchButtonRef.current) {
@@ -105,6 +106,34 @@ export const Menu = ({
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  const [result, setResult] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const handleSearch = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      setLoading(true);
+      const res = await fetch("/api/search", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ searchQuery }),
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        console.log(data)
+        setResult(data.data);
+      }
+    } catch (err) {
+      console.log(err);
+    }finally{
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="relative">
@@ -150,12 +179,12 @@ export const Menu = ({
             <IoClose className="text-lg text-green-950 cursor-pointer" />
           </div> */}
 
-          <form className="w-[95%] mt-3 px-2">
-            {/* <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label> */}
+          <form className="w-[95%] mt-3 px-2" onSubmit={handleSearch}>
+            
             <div className="relative mt-10">
 
-              <input type="text" id="" className="outline-none block w-full p-2  text-sm text-black bg-transparent  placeholder:text-green-950 border-b" placeholder="Search Website" required />
-              <div className="absolute inset-y-0 end-0 flex items-center ps-3  cursor-pointer">
+              <input value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} type="text" id="" className="outline-none block w-full p-2  text-sm text-black bg-transparent  placeholder:text-green-950 border-b" placeholder="Search Website" required />
+              <div className="absolute inset-y-0 end-0 flex items-center ps-3  cursor-pointer" onClick={handleSearch}>
                 <svg className="w-4 h-4 text-black" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                   <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                 </svg>
@@ -163,14 +192,33 @@ export const Menu = ({
             </div>
           </form>
 
-          <div className="mt-5 px-4 flex flex-col gap-5">
-            {/* <div className="text-md font-semibold">Results</div>
+          <div className="mt-5 px-4 flex flex-col gap-5 text-black">
+            <div className="text-md font-semibold">Results</div>
+            {loading ? (<div className="flex justify-center items-center h-full"><div className="loader">
+            <div className="bar1"></div>
+            <div className="bar2"></div>
+            <div className="bar3"></div>
+            <div className="bar4"></div>
+            <div className="bar5"></div>
+            <div className="bar6"></div>
+            <div className="bar7"></div>
+            <div className="bar8"></div>
+            <div className="bar9"></div>
+            <div className="bar10"></div>
+            <div className="bar11"></div>
+            <div className="bar12"></div>
+        </div></div>) : (
             <ul className="grid grid-cols-2 list-disc gap-5 text-xs px-4">
-              <li className="cursor-pointer">Item 1</li>
-              <li className="cursor-pointer">Item 2</li>
-              <li className="cursor-pointer">Item 3</li>
-              <li className="cursor-pointer">Item 4</li>
-            </ul> */}
+              {result.map((item: {type: string, project: {title: string, slug: string}, category: string, item: {mainTitle: string, slug: string, title: string}}, index: number) => {
+                if(item.project){
+                  return <Link href={`/projects-details/${item.category}/${item.project.slug}`} key={index} className="cursor-pointer" onClick={()=>setSearchActive(false)}><li>{item.project.title}</li></Link>
+                }else if(item.type == "news"){
+                  return <Link href={`/news-details/${item.item.slug}`} key={index} className="cursor-pointer" onClick={()=>setSearchActive(false)}><li>{item.item.mainTitle}</li></Link>
+                }else if(item.type == "gallery"){
+                  return <Link href={`/gallery-details/${item.item.slug}`} key={index} className="cursor-pointer" onClick={()=>setSearchActive(false)}><li>{item.item.title}</li></Link>
+                }
+              })}
+            </ul>)}
           </div>
 
         </div></div>
