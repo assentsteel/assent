@@ -52,7 +52,7 @@ const AboutUs = ({ data }: { data: About | GlobalPresence }) => {
     },
   };
   return (
-    <section className="section-spacing   overflow-hidden relative  ">
+    <section className=" pt-[120px] pb-5 md:pb-0  overflow-hidden relative   ">
       <div className="container">
       <div className="grid grid-cols-12  left-spacing pr-[15px] md:pr-0">
         <div className="col-span-12 lg:col-span-4">

@@ -4,10 +4,11 @@ import React from "react";
 import { motion } from "framer-motion";
 import { MdArrowOutward } from "react-icons/md"; 
 import { Home } from "@/public/types/Common";
+import Link from "next/link";
  
 
 const ServiceSec = ({ data }: { data: Home }) => {
-
+console.log(data);
   return (
     <section className="section-spacing overflow-hidden bg-primary">
       <div className="container">
@@ -17,16 +18,17 @@ const ServiceSec = ({ data }: { data: Home }) => {
           <h2 className="text-xl font-semibold mb-5 lg:mb-[50px] leading-none text-white">{data.servicesSection.title}</h2>
         </motion.div>
         {/* Grid Section with Sectors */}
-        <div className="grid md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-[30px] items-center border-b border-white/35">
+        <div className="grid md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-[30px]   border-b border-white/35">
           {data.servicesSection.items.map((sector, index) => (
+            <Link href={`${sector.slug}`} key={index} className="relative   top-[2px] group cursor-pointer before:content-[''] before:absolute before:bottom-0 before:top-auto before:left-0 before:h-[3px] before:bg-secondary before:z-10 before:w-0 before:mx-auto hover:before:w-full before:transition-all before:duration-300 before:ease-in-out ">
             <motion.div
-              key={index}
-              className="relative group cursor-pointer before:content-[''] before:absolute before:bottom-0 before:top-auto before:left-0 before:h-[4px] before:bg-secondary before:z-10 before:w-0 before:mx-auto hover:before:w-full before:transition-all before:duration-300 before:ease-in-out border-b border-white/30 lg:border-b-0 perspective-[1000px]"
+              
+              className="  "
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: index * 0.3 }}
               viewport={{ once: true, amount: 0.5 }}>
-              <motion.div className="rounded-custom overflow-hidden relative min-h-[450px] flex items-end group" whileHover={{ scale: 1.05, rotateY: 10, }}
+              <motion.div className="rounded-custom overflow-hidden relative min-h-[350px]  md:min-h-[450px] flex items-end group" whileHover={{ scale: 1.05, rotateY: 10, }}
                 transition={{ type: "spring", stiffness: 200, damping: 15 }}>
                   <div className="bg-gradient-to-t from-black to-transparent absolute bottom-0 left-0 z-10 w-full h-0 group-hover:h-full transition-all duration-300"></div>
                 <Image src={sector.image} alt={sector.imageAlt} width={800} height={800} className="absolute top-0 left-0 w-full h-full -z-1" />
@@ -48,6 +50,7 @@ const ServiceSec = ({ data }: { data: Home }) => {
                 </motion.div>
               </motion.div>
             </motion.div>
+            </Link>
           ))}
         </div>
       </div>

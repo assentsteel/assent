@@ -79,34 +79,34 @@ const AccreditationsList = ({ data }: { data: Awards }) => {
       </motion.div>
 
       {/* Modal */}
-      <AnimatePresence>
-        {selectedImage && (
-          <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            variants={modalVariants}
-            onClick={() => setSelectedImage(null)}
-          >
-            <div className="relative max-w-2xl w-full">
-              <button
-                className="absolute top-2 right-2 text-white text-2xl z-10 flex justify-center items-center bg-primary rounded-full w-[25px] h-[25px]"
-                onClick={() => setSelectedImage(null)}
-              >
-                &times;
-              </button>
-              <Image
-                src={selectedImage}
-                alt="popup"
-                className="w-full h-auto rounded-lg"
-                width={800}
-                height={800}
-              />
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+     <AnimatePresence>
+             {selectedImage && (
+               <motion.div
+                 className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
+                 initial="hidden"
+                 animate="visible"
+                 exit="exit"
+                 variants={modalVariants}
+                 onClick={() => setSelectedImage(null)}
+               >
+                 <div className="relative max-w-xl w-full">
+                   <button
+                     className="absolute top-2 right-2 text-white text-2xl z-10 flex justify-center items-center bg-primary rounded-full w-[25px] h-[25px]"
+                     onClick={() => setSelectedImage(null)}
+                   >
+                     &times;
+                   </button>
+                   <Image
+                     src={selectedImage}
+                     alt="popup"
+                     className="w-full h-auto rounded-lg img-fluid "
+                     width={500}
+                     height={500}
+                   />
+                 </div>
+               </motion.div>
+             )}
+           </AnimatePresence>
 
       <motion.div
         className="text-center mt-5 md:mt-[60px]"

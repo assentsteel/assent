@@ -1,14 +1,14 @@
-"use client"; 
+"use client";
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
- 
- 
 
-import { Abtpurpose  } from '@/public/types/Common';  
+
+
+import { Abtpurpose  } from '@/public/types/Common';
   const SingleImageText = ({ data , textright,maxwidth }: { data: Abtpurpose    , textright?: boolean;  maxwidth?: string }) => {
   const containerRef = useRef(null);
   const fadeUp = {
@@ -45,20 +45,21 @@ import { Abtpurpose  } from '@/public/types/Common';
       });
     }
   }, []);
- 
+
 
   return (
     <section className="py-[50px] md:py-[70px] xl:py-[100px] cpt0  overflow-hidden relative cpt0">
-      <div className="container"> 
-               <motion.div 
+      <div className="container">
+               <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
           variants={fadeUp}
-          className={`rounded-[15px] p-4 lg:pt-[116px] lg:pb-[96px] lg:px-[100px] bg-cover relative ${textright ? `blueoverlayrt` : 'blueoverlay'}`}
+          className={`rounded-[15px] p-4 lg:pt-[116px] lg:pb-[96px] lg:px-[100px] bg-cover relative ${textright ? `blueoverlayrt` : 'blueoverlay bg-[position:right_center]'}`}
           style={{
             background: `url(${typeof data.image === 'string' ? data.image : data.image})`,
             backgroundSize: 'cover',
+            backgroundPosition: 'right center',
           }}
         >
           <motion.div
@@ -68,7 +69,7 @@ import { Abtpurpose  } from '@/public/types/Common';
             viewport={{ once: true, amount: 0.3 }}
             className={`flex flex-col justify-center relative z-10 h-full ${maxwidth ? maxwidth : ''} ${textright ? 'lg:ml-auto' : ''}`}
           >
-          
+
                 <motion.h2
                   variants={fadeUp}
                   className="text-xl text-white font-[600] leading-[1.2] mb-3 lg:mb-[30px]"
@@ -84,10 +85,10 @@ import { Abtpurpose  } from '@/public/types/Common';
                     dangerouslySetInnerHTML={{__html: paragraph}}
                   />
                 ))}
-             
+
           </motion.div>
-        </motion.div> 
-            
+        </motion.div>
+
       </div>
     </section>
   );

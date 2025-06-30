@@ -14,15 +14,15 @@ import { assets } from "@/public/assets/assets";
 import { Projectswfull } from "@/public/types/Common";
 gsap.registerPlugin(ScrollTrigger);
 
- 
+
 
 export default function ProjectsSection({data}: {data: Projectswfull}) {
   const [activeCategory, setActiveCategory] = useState<number | null>(0);
   const [viewAll, setViewAll] = useState(false);
   const swiperRef = useRef<SwiperType | null>(null);
 
-  
- 
+
+
   return (
     <section className="section-spacing overflow-hidden">
       <div className="container">
@@ -39,7 +39,7 @@ export default function ProjectsSection({data}: {data: Projectswfull}) {
                 </motion.div>
 
 
-        <div className="flex justify-between gap-[10px] mb-[40px]">
+        <div className="flex flex-col md:flex-row justify-between gap-[10px] mb-[40px]">
           <div className="lg:flex lg:flex-row flex flex-col gap-2" >
           {data.categories.map((category, index) => (
   <motion.div
@@ -66,8 +66,8 @@ export default function ProjectsSection({data}: {data: Projectswfull}) {
   </motion.div>
 ))}
           </div>
-          <div className="">
-          <motion.div className="  lg:flex lg:flex-row flex flex-col gap-2 lg:gap-[60px]" initial={{ opacity: 0, y: 50 }}
+          <div className="mt-5 md:mt-0">
+          <motion.div className="flex items-center justify-end gap-2 lg:gap-[60px]" initial={{ opacity: 0, y: 50 }}
                whileInView={{ opacity: 1, y: 0 }}
                transition={{ duration: 0.8, delay:  0.3 }}
               viewport={{ once: true, amount: 0.5 }}>
@@ -134,8 +134,8 @@ export default function ProjectsSection({data}: {data: Projectswfull}) {
             spaceBetween={30}
             slidesPerView={1.2}
             breakpoints={{
-              640: { slidesPerView: 2 },
-              1024: { slidesPerView: 2 },
+              640: { slidesPerView: 2.1 },
+              1024: { slidesPerView: 2.1 },
             }}
             className="w-full !overflow-visible"
             onSwiper={(swiper) => (swiperRef.current = swiper)}
@@ -145,7 +145,7 @@ export default function ProjectsSection({data}: {data: Projectswfull}) {
                 <motion.div  className="cursor-pointer"
     whileHover={{ scale: 1.05, rotateY: 10, rotateX: 0 }}
     transition={{ type: "spring", stiffness: 200, damping: 10 }}>
-                <figure className="rounded-custom overflow-hidden h-[400px] h-md-[500px]">
+                <figure className="rounded-custom overflow-hidden h-[250px] lg:h-[300px] xl:h-[400px]">
                   <Image
                     src={project.banner}
                     width={1000}
@@ -158,7 +158,7 @@ export default function ProjectsSection({data}: {data: Projectswfull}) {
                 <h3 className="text-lg font-semibold leading-none pt-[25px]">{project.title}</h3>
                 </motion.div>
               </SwiperSlide>
-            )) 
+            ))
           ) : (
             data.categories.map((category, index) => (
               <div key={index}>
@@ -167,7 +167,7 @@ export default function ProjectsSection({data}: {data: Projectswfull}) {
                 <motion.div  className="cursor-pointer"
     whileHover={{ scale: 1.05, rotateY: 10, rotateX: 0 }}
     transition={{ type: "spring", stiffness: 200, damping: 10 }}>
-                <figure className="rounded-custom overflow-hidden h-[400px] h-md-[500px]">
+                <figure className="rounded-custom overflow-hidden h-[300px] md:h-[400px]">
                   <Image
                     src={project.banner}
                     width={1000}

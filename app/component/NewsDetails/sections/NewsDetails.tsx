@@ -2,7 +2,7 @@
 import { useEffect, useRef,useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger"; 
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { assets } from "@/public/assets/assets";
 import MoreNews from "./MoreNews";
 gsap.registerPlugin(ScrollTrigger);
@@ -10,13 +10,13 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
-import { motion } from "framer-motion"; 
- 
-  
+import { motion } from "framer-motion";
+
+
   import { News, Newsdetails } from '@/public/types/Common';
-    
-    
-      const NewsDetails = ({ data }: { data: Newsdetails }) => {  
+
+
+      const NewsDetails = ({ data }: { data: Newsdetails }) => {
         const [newsList, setNewsList] = useState<News>();
         const handleFetchProjects = async () => {
           try {
@@ -32,7 +32,7 @@ import { motion } from "framer-motion";
             console.log("Error fetching news", error);
           }
         };
-      
+
         useEffect(() => {
           handleFetchProjects();
         }, []);
@@ -112,8 +112,8 @@ import { motion } from "framer-motion";
                           src={src}
                           alt={`Slide ${index + 1}`}
                           className="w-full h-[300px] md:h-[400px] lg:h-[570px] object-cover"
-                          width={100}
-                          height={100}
+                          width={1215}
+                          height={570}
                         />
                       </SwiperSlide>
                     ))}
@@ -184,21 +184,21 @@ import { motion } from "framer-motion";
                     {data.data.mainTitle}
                   </h2>
                 </motion.div>
-                <div className="mbp10"> 
+                <div className="mbp10">
                     <motion.div
                       variants={slideInTop}
                       initial="hidden"
                       whileInView="visible"
                       viewport={{ once: true, amount: 0.3 }}
-                      exit="exit" 
+                      exit="exit"
                       dangerouslySetInnerHTML={{__html: data.data.content}}
                     >
-                     
+
                     </motion.div>
-                 
+
                 </div>
               </div>
-         
+
           </div>
 
           <div className="lg:w-1/6 ">
