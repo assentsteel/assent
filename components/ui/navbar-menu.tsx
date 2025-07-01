@@ -7,6 +7,7 @@ import arrow from "@/public/assets/img/home/arrow.svg";
 import { FaChevronRight } from "react-icons/fa6";
 import { IoSearchOutline } from "react-icons/io5";
 import { IoClose } from "react-icons/io5";
+import { useSearchContext } from "@/contexts/searchContext";
 
 const transition = {
   type: "spring",
@@ -84,11 +85,10 @@ export const Menu = ({
   const searchRef = useRef<HTMLDivElement>(null);
   const searchButtonRef = useRef<HTMLDivElement>(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const { searchActive: globalSearchActive, setSearchActive: globalSetSearchActive } = useSearchContext();
 
   useEffect(() => {
-    if (searchButtonRef.current) {
-      return;
-    }
+    
 
 
     function handleClickOutside(event: MouseEvent) {
@@ -127,6 +127,7 @@ export const Menu = ({
       if (data.success) {
         console.log(data)
         setResult(data.data);
+        setSearchQuery("")
       }
     } catch (err) {
       console.log(err);
@@ -134,6 +135,24 @@ export const Menu = ({
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (searchActive) {
+      const scrollY = window.scrollY;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.left = '0';
+      document.body.style.right = '0';
+      globalSetSearchActive(true);
+    } else {
+      const scrollY = document.body.style.top;
+      document.body.style.position = '';
+      document.body.style.top = '';
+      window.scrollTo(0, parseInt(scrollY || '0') * -1);
+      globalSetSearchActive(false);
+      setResult([]);
+    }
+  }, [searchActive]);
 
   return (
     <div className="relative">
@@ -173,8 +192,8 @@ export const Menu = ({
 
         <>
         <div className={`fixed inset-0 bg-black/30 backdrop-blur-sm z-10 h-screen w-full duration-300 ${searchActive ? "translate-y-[0%]" : "translate-y-[-100%]"}`}></div>
-        <div  ref={searchRef} className={`w-full bg-white z-10 h-[500px] shadow-xl absolute top-24 right-0 duration-300 ${searchActive ? "translate-y-[0%]" : "translate-y-[-100%]"}`}>
-        <div className="container">
+        <div  ref={searchRef} className={`w-full bg-white z-10 h-[500px] shadow-xl absolute top-24 right-0 duration-300 flex flex-col ${searchActive ? "translate-y-[0%]" : "translate-y-[-100%]"}`}>
+        <div className="container h-full">
           {/* <div className="absolute top-[20px] xxxl:right-[60px] right-[30px]" onClick={() => setSearchActive(!searchActive)}>
             <IoClose className="text-lg text-green-950 cursor-pointer" />
           </div> */}
@@ -192,8 +211,8 @@ export const Menu = ({
             </div>
           </form>
 
-          <div className="mt-5 px-4 flex flex-col gap-5 text-black">
-            <div className="text-md font-semibold">Results</div>
+          <div className="mt-5 px-4 flex flex-col gap-5 text-black h-3/4">
+            {result.length>0 ? <div className="text-md font-semibold">Results</div> : null}
             {loading ? (<div className="flex justify-center items-center h-full"><div className="loader">
             <div className="bar1"></div>
             <div className="bar2"></div>
@@ -208,7 +227,7 @@ export const Menu = ({
             <div className="bar11"></div>
             <div className="bar12"></div>
         </div></div>) : (
-            <ul className="grid grid-cols-2 list-disc gap-5 text-xs px-4">
+            <div className="flex-1 overflow-hidden h-full"><ul className="grid grid-cols-2 list-disc gap-5 text-xs px-4 h-full overflow-y-auto">
               {result.map((item: {type: string, project: {title: string, slug: string}, category: string, item: {mainTitle: string, slug: string, title: string}}, index: number) => {
                 if(item.project){
                   return <Link href={`/projects-details/${item.category}/${item.project.slug}`} key={index} className="cursor-pointer" onClick={()=>setSearchActive(false)}><li>{item.project.title}</li></Link>
@@ -218,7 +237,7 @@ export const Menu = ({
                   return <Link href={`/gallery-details/${item.item.slug}`} key={index} className="cursor-pointer" onClick={()=>setSearchActive(false)}><li>{item.item.title}</li></Link>
                 }
               })}
-            </ul>)}
+            </ul></div>)}
           </div>
 
         </div></div>
