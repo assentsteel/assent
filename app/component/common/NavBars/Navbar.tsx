@@ -14,6 +14,32 @@ const Navbar = ({ categories }: { categories: { name: string; slug: string; }[] 
   const pathname = usePathname();
   const [active, setActive] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState<null | boolean>(null);
+  const [showNavbar, setShowNavbar] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+   
+  
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+  
+      if (currentScrollY < 100) {
+        // always show at top
+        setShowNavbar(false);
+      } else if (currentScrollY > lastScrollY) {
+        // scrolling down
+        setShowNavbar(true);
+      } else {
+        // scrolling up
+        setShowNavbar(true); 
+      }
+  
+      setLastScrollY(currentScrollY);
+    };
+  
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
+  
 
   const pagesWithBackground = ["/"]; // Add required pages
   const hasBackground = pagesWithBackground.includes(pathname);
@@ -33,6 +59,8 @@ const Navbar = ({ categories }: { categories: { name: string; slug: string; }[] 
 
     window.addEventListener("resize", handleScreenCheck);
 
+
+
     return () => window.removeEventListener("resize", handleScreenCheck);
   }, []);
 
@@ -47,11 +75,16 @@ const Navbar = ({ categories }: { categories: { name: string; slug: string; }[] 
 
     return (
       <header
-        className={`${
-          hasBackground
-            ? "bg-white backdrop-blur-[10px] text-black shadow-md"
-            : "bg-transparent text-white tanspheader"
-        } transition duration-300 ease-in-out w-full  top-0 z-50 relative`}>
+  className={`${
+    hasBackground
+      ? "bg-white backdrop-blur-[10px] text-black shadow-md"
+      : "bg-transparent text-white tanspheader"
+  } transition-transform duration-700 ease-in-out transform ${
+    showNavbar ? "fixed top-0 translate-y-0" : "relative top-[94px] -translate-y-full"
+  }   w-full z-50`}
+>
+
+    
         {/* <div className='flex items-center'>
    <div className="hidden md:flex space-x-6 text-gray-800 text-sm uppercase">
      <Link href="/about">
