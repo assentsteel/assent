@@ -22,7 +22,7 @@ const MobileNav = () => {
   const [result, setResult] = useState([]);
   const [loading, setLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const { searchActive: globalSearchActive, setSearchActive: globalSetSearchActive } = useSearchContext();
+  const {setSearchActive: globalSetSearchActive } = useSearchContext();
 
     const handleSearch = async (e: React.FormEvent) => {
       e.preventDefault();

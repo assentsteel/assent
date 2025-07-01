@@ -85,12 +85,9 @@ export const Menu = ({
   const searchRef = useRef<HTMLDivElement>(null);
   const searchButtonRef = useRef<HTMLDivElement>(null);
   const [searchQuery, setSearchQuery] = useState("");
-  const { searchActive: globalSearchActive, setSearchActive: globalSetSearchActive } = useSearchContext();
+  const {setSearchActive: globalSetSearchActive} = useSearchContext();
 
   useEffect(() => {
-    
-
-
     function handleClickOutside(event: MouseEvent) {
       if (
         searchRef.current &&
