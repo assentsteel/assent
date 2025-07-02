@@ -186,10 +186,7 @@ const TeamPage = () => {
                                 </div>
                                 <div className='flex flex-col gap-2'>
                                     <Label className='font-bold'>LinkedIn</Label>
-                                    <Input type='text' placeholder='LinkedIn' {...register(`teamSection.items.${index}.linkedIn`, {
-                                        required: "LinkedIn is required"
-                                    })} />
-                                    {errors.teamSection?.items?.[index]?.linkedIn && <p className='text-red-500'>{errors.teamSection?.items?.[index]?.linkedIn.message}</p>}
+                                    <Input type='text' placeholder='LinkedIn' {...register(`teamSection.items.${index}.linkedIn`)} />
                                 </div>
                             </div>
 
