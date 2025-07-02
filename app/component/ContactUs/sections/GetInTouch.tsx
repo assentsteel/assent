@@ -10,7 +10,7 @@ import RegistrationForm from "./forms/RegistrationForm";
 import Downloads from "./forms/Downloads";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm, SubmitHandler } from "react-hook-form"
+import { useForm } from "react-hook-form"
 import { generalEnquirySchema } from "@/app/schemas/generalEnquiry";
 
 gsap.registerPlugin(ScrollTrigger);
