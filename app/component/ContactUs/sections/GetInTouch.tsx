@@ -12,6 +12,8 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form"
 import { generalEnquirySchema } from "@/app/schemas/generalEnquiry";
+import { registrationFormSchema } from "@/app/schemas/registrationForm";
+import { downloadFormSchema } from "@/app/schemas/downloadForm";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -29,16 +31,22 @@ interface PlatformsItem {
 interface PlatformsSectionProps {
   data: PlatformsItem[];
 }
+type FormSchemaType =
+  | z.infer<typeof generalEnquirySchema>
+  | z.infer<typeof registrationFormSchema>
+  | z.infer<typeof downloadFormSchema>;
 
 const GetInTouch: React.FC<PlatformsSectionProps> = () => {
 
-type GeneralEnquiryForm = z.infer<typeof generalEnquirySchema>
 
   const containerRef = useRef(null);
   const [formIndex, setFormIndex] = React.useState(1);
 
-  const {register,handleSubmit,formState:{errors}} = useForm<GeneralEnquiryForm>({
-    resolver:zodResolver(formIndex === 1 ? generalEnquirySchema : formIndex === 2 ? generalEnquirySchema : generalEnquirySchema)
+  const [tradelicenseFile, setTradelicenseFile] = React.useState<File | null>(null);
+  const [vatregistrationFile, setVatregistrationFile] = React.useState<File | null>(null);
+
+  const {reset} = useForm<FormSchemaType>({
+    resolver:zodResolver(formIndex === 1 ? generalEnquirySchema : formIndex === 2 ? registrationFormSchema : downloadFormSchema)
   })
 
 
@@ -66,9 +74,98 @@ type GeneralEnquiryForm = z.infer<typeof generalEnquirySchema>
       opacity: 1, y: 0, transition: { duration: 0.5 }},
     };
 
-    const onSubmit = (data: GeneralEnquiryForm) => {
-      console.log(data);
+    const onSubmit = async (data: FormSchemaType) => {
+      console.log(data)
+      try {
+        switch (data.type) {
+          case "generalEnquiry":
+            const response = await fetch("/api/admin/contact", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(data),
+            });
+            if (response.ok) {
+              const data = await response.json();
+              alert(data.message);
+            }else{
+              alert("Something went wrong, try again")
+            }
+            break;
+          case "registrationForm":
+            console.log(data)
+            if(tradelicenseFile){
+              const formData = new FormData();
+              formData.append("file", tradelicenseFile as File);
+              formData.append("fileType", "file");
+              const tradeLicenseResponse = await fetch("/api/admin/upload", {
+                method: "POST",
+                body: formData,
+              });
+              if (tradeLicenseResponse.status !== 200) {
+                alert("Something went wrong, try again")
+                return;
+              }
+              if(vatregistrationFile){
+                const formData = new FormData();
+                formData.append("file", vatregistrationFile as File);
+                formData.append("fileType", "file");
+                const vatRegistrationResponse = await fetch("/api/admin/upload", {
+                  method: "POST",
+                  body: formData,
+                });
+                if (vatRegistrationResponse.status !== 200) {
+                  alert("Something went wrong, try again")
+                  return;
+                }
+                const vatRegistrationData = await vatRegistrationResponse.json();
+                const tradeLicenseData = await tradeLicenseResponse.json();
+                if(tradeLicenseData.url && vatRegistrationData.url){
+                  const formResponse = await fetch("/api/admin/contact", {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({...data,tradelicense:tradeLicenseData.url,vatregistration:vatRegistrationData.url}),
+                  });
+                  if (formResponse.ok) {
+                    const data = await formResponse.json();
+                    alert(data.message);
+                  }else{
+                    alert("Something went wrong, try again")
+                  }
+                }
+              }
+            }
+            break;
+          case "downloadForm":
+            const response3 = await fetch("/api/admin/contact", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(data),
+            });
+            if (response3.ok) {
+              const data = await response3.json();
+              alert(data.message);
+            }else{
+              alert("Something went wrong, try again")
+            }
+            break;
+          default:
+            break;
+        }
+      } catch (error) {
+        console.log(error);
+      }
     };
+
+    useEffect(() => {
+      console.log(formIndex)
+      reset({type:formIndex === 1 ? "generalEnquiry" : formIndex === 2 ? "registrationForm" : "downloadForm"})
+    }, [formIndex]);
 
     const forms = [
       {
@@ -76,21 +173,21 @@ type GeneralEnquiryForm = z.infer<typeof generalEnquirySchema>
         buttonText:"Get In Touch",
         title: "Get In Touch",
         description:"With our expertise in steel projects, we are with you to help you realize your dreams. Every step of the way. Simply let us know how we can reach you.",
-        component: <GeneralEnquiry register={register} handleSubmit={handleSubmit} onSubmit={onSubmit} errors={errors}/>
+        component: <GeneralEnquiry onSubmit={onSubmit}/>
       },
       {
         id:2,
         buttonText:"Request for quotation",
         title: "Registrations Form",
         description:"Partner with ASSENT STEEL by registering as a vendor. Fill out the form below to submit your details, and our procurement team will review your application.",
-        component: <RegistrationForm/>
+        component: <RegistrationForm onSubmit={onSubmit} setTradeLicenseFile={setTradelicenseFile} setVatRegistrationFile={setVatregistrationFile}/>
       },
       {
         id:3,
         buttonText:"Downloads",
         title: "Download Form",
         description:"Get access to essential documents by submitting the form below. Select your request type, provide your details, and download the required information.",
-        component: <Downloads/>
+        component: <Downloads onSubmit={onSubmit}/>
       },
     ]
 
