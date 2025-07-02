@@ -1,11 +1,14 @@
 import React from 'react'
 import { motion } from "framer-motion";
+import { UseFormRegister, UseFormHandleSubmit, FieldErrors } from "react-hook-form";
+import { z } from "zod";
+import { generalEnquirySchema } from "@/app/schemas/generalEnquiry";
 
 interface GeneralEnquiryProps {
-    register: any;
-    handleSubmit: any;
-    onSubmit: any;
-    errors: any;
+    register: UseFormRegister<z.infer<typeof generalEnquirySchema>>;
+    handleSubmit: UseFormHandleSubmit<z.infer<typeof generalEnquirySchema>>;
+    onSubmit: (data: z.infer<typeof generalEnquirySchema>) => void;
+    errors: FieldErrors<z.infer<typeof generalEnquirySchema>>;
 }
 
 const GeneralEnquiry = ({ register, handleSubmit, onSubmit, errors }: GeneralEnquiryProps) => {
@@ -40,11 +43,11 @@ const GeneralEnquiry = ({ register, handleSubmit, onSubmit, errors }: GeneralEnq
           <input
             type={placeholder === "Email ID" ? "email" : "text"}
             placeholder={placeholder}
-            {...register(placeholder.split(" ").join("").toLowerCase())}
+            {...register(placeholder.split(" ").join("").toLowerCase() as keyof z.infer<typeof generalEnquirySchema>)}
             className="px-1 appearance-none bg-transparent border-0 border-b border-[#dcdcdc] focus:outline-none focus:ring-0 focus:border-black text-[#595959] text-xs py-2 pr-6 w-full placeholder:text-[#595959]"
           />
-          {errors[placeholder.split(" ").join("").toLowerCase()] && (
-            <p className="text-red-500 text-xs mt-1">{errors[placeholder.split(" ").join("").toLowerCase()]?.message}</p>
+          {errors[placeholder.split(" ").join("").toLowerCase() as keyof z.infer<typeof generalEnquirySchema>] && (
+            <p className="text-red-500 text-xs mt-1">{errors[placeholder.split(" ").join("").toLowerCase() as keyof z.infer<typeof generalEnquirySchema>]?.message}</p>
           )}
         </motion.div>
       ))}

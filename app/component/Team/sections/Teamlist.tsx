@@ -77,13 +77,13 @@ gsap.registerPlugin(ScrollTrigger);
                   className="grayscale-[1] group-hover:grayscale-0 transition-all duration-400 w-full object-cover"
                 />
                 </figure>
-                <Image
+                {item.linkedIn && item.linkedIn !== "" && <Image
                   src={assets.lin}
                   alt=""
                   width={67}
                   height={67}
                   className="cursor-pointer absolute bottom-5 right-5 opacity-0 group-hover:opacity-100 transition-all duration-400 translate-x-[-20px] group-hover:translate-x-0"
-                />
+                />}
               </div>
                 <div className="">
                    <div className="px-5 py-5 lg:px-10 lg:py-5 bg-[#F5F5F5] rounded-b-[15px]" >
