@@ -53,7 +53,10 @@ const AdminNavbar = () => {
         { name: "Awards", href: "/admin/awards", icon:AwardIcon },
         { name: "Team", href: "/admin/team", icon:UserGroupIcon },
         { name: "Careers", href: "/admin/careers", icon:BriefcaseIcon },
-        { name: "Contact", href: "/admin/contact", icon: EnvelopeIcon },
+        { name: "Contact", href: "###", icon: EnvelopeIcon,hasChild:true,children: [
+          { name: "Main Page", href: "/admin/contact" },
+          {name:"Enquiries",href:"/admin/enquiries"}
+        ] },
         { name: "Quality", href: "/admin/quality", icon: ThumbsUp },
         { name: "HSE", href: "/admin/hse", icon: HeartHandshake },
         { name: "Sustainability", href: "/admin/sustainability", icon: LeafIcon },

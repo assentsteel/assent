@@ -1,17 +1,21 @@
 import React from 'react'
 import { motion } from "framer-motion";
-import { UseFormRegister, UseFormHandleSubmit, FieldErrors } from "react-hook-form";
 import { z } from "zod";
 import { generalEnquirySchema } from "@/app/schemas/generalEnquiry";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+type GeneralEnquiryForm = z.infer<typeof generalEnquirySchema>
 
 interface GeneralEnquiryProps {
-    register: UseFormRegister<z.infer<typeof generalEnquirySchema>>;
-    handleSubmit: UseFormHandleSubmit<z.infer<typeof generalEnquirySchema>>;
-    onSubmit: (data: z.infer<typeof generalEnquirySchema>) => void;
-    errors: FieldErrors<z.infer<typeof generalEnquirySchema>>;
+    onSubmit: (data: GeneralEnquiryForm) => void;
 }
 
-const GeneralEnquiry = ({ register, handleSubmit, onSubmit, errors }: GeneralEnquiryProps) => {
+const GeneralEnquiry = ({ onSubmit }: GeneralEnquiryProps) => {
+
+    const {register,handleSubmit,formState:{errors}} = useForm<GeneralEnquiryForm>({
+        resolver:zodResolver(generalEnquirySchema)
+    })
 
     const containerVariants = {
         hidden: {},
