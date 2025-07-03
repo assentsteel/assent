@@ -285,7 +285,7 @@ const handleLoadMore = () => {
         </section>
     <section className="pb-[50px] md:pb-[70px] xl:pb-[100px]    relative  ">
       <div className="container">
-        <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 "
+        <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 "
         >
           {visibleItems.map((item, index) => (
     <div key={index}>
@@ -298,11 +298,11 @@ transition={{ type: "spring", stiffness: 300 }}
 > 
 
         <Link href={`/projects-details/${params.slug}/${item.slug}`}> 
-        <figure className="overlayclr">
+        <figure className="overlayclr xxl:h-[511px]  h-[450px]">
           <Image
             src={item.thumbnail}
             alt={item.thumbnailAlt}
-            className="rounded-[15px]   w-full object-cover"
+            className="rounded-[15px]  h-full w-full object-cover"
             priority
             width={600}
             height={400}
