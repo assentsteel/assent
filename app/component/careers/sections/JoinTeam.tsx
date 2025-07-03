@@ -10,9 +10,9 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, SubmitHandler, Controller  } from "react-hook-form";
 gsap.registerPlugin(ScrollTrigger);
-import DatePicker from "react-date-picker";
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
+import Image from "next/image";
 
 interface jobarray {
   jobtitle: string;
@@ -236,6 +236,7 @@ const JoinTeam: React.FC<PlatformsSectionProps> = () => {
       >
         <div className="text-2xl text-gray-700">
           {/* Your SVG icon here */}
+           <Image src="/assets/img/icons/attatchment.svg" alt="attachment" width={20} height={20}/>
         </div>
         <div className="text-sm text-[gray-700]">
           <p>

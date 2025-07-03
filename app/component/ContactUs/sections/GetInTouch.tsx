@@ -5,9 +5,12 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
-import GeneralEnquiries from "./forms/GeneralEnquiries";
+import GeneralEnquiry from "./forms/GeneralEnquiry";
 import RegistrationForm from "./forms/RegistrationForm";
+import Downloads from "./forms/Downloads";
+
 gsap.registerPlugin(ScrollTrigger);
+
 
 interface jobarray {
   jobtitle: string;
@@ -23,32 +26,13 @@ interface PlatformsSectionProps {
   data: PlatformsItem[];
 }
 
+
 const GetInTouch: React.FC<PlatformsSectionProps> = () => {
 
-const forms = [
-  {
-    id:1,
-    title:"General Enquires",
-    description:"With our expertise in steel projects, we are with you to help you realize your dreams. Every step of the way. Simply let us know how we can reach you.",
-    component:<GeneralEnquiries/>
-  },
-  {
-    id:2,
-    title:"Request for quotation",
-    description:"With our expertise in steel projects, we are with you to help you realize your dreams. Every step of the way. Simply let us know how we can reach you.",
-    component:<RegistrationForm/>
-  },
-  {
-    id:3,
-    title:"Downloads",
-    description:"With our expertise in steel projects, we are with you to help you realize your dreams. Every step of the way. Simply let us know how we can reach you.",
-    component:<GeneralEnquiries/>
-  }
-]
-
-const [activeForm, setActiveForm] = React.useState(1);
-
   const containerRef = useRef(null);
+  const [formIndex, setFormIndex] = React.useState(1);
+
+
 
   useEffect(() => {
     if (containerRef.current) {
@@ -65,15 +49,6 @@ const [activeForm, setActiveForm] = React.useState(1);
       });
     }
   }, []);
-  const containerVariants = {
-    hidden: {},
-    show: {
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
 
   const fadeUp = {
     hidden: { opacity: 0, y: 20 },
@@ -81,10 +56,36 @@ const [activeForm, setActiveForm] = React.useState(1);
       opacity: 1, y: 0, transition: { duration: 0.5 }},
     };
 
+
+    const forms = [
+      {
+        id:1,
+        buttonText:"Get In Touch",
+        title: "Get In Touch",
+        description:"With our expertise in steel projects, we are with you to help you realize your dreams. Every step of the way. Simply let us know how we can reach you.",
+        component: <GeneralEnquiry/>
+      },
+      {
+        id:2,
+        buttonText:"Request for quotation",
+        title: "Registrations Form",
+        description:"Partner with ASSENT STEEL by registering as a vendor. Fill out the form below to submit your details, and our procurement team will review your application.",
+        component: <RegistrationForm/>
+      },
+      {
+        id:3,
+        buttonText:"Downloads",
+        title: "Download Form",
+        description:"Get access to essential documents by submitting the form below. Select your request type, provide your details, and download the required information.",
+        component: <Downloads/>
+      },
+    ]
+
   return (
     <section className="py-[50px] md:py-[70px] xl:py-[100px]   overflow-hidden relative ">
       <div className="container">
   <div
+    
   >
     {/* Buttons Row */}
     <motion.div
@@ -93,38 +94,40 @@ const [activeForm, setActiveForm] = React.useState(1);
     >
       {forms.map((form, i) => (
       <motion.div
-      onClick={() => setActiveForm(form.id)}
+      onClick={() => {
+        setFormIndex(form.id)
+      }}
         key={i}
         className={`border border-[#18355F] w-fit rounded-full min-w-[216px] text-center cursor-pointer transition-all duration-300 ${
-        i === 0
+        form.id === formIndex
           ? "bg-secondary border-secondary text-white"
           : "hover:bg-secondary hover:border-secondary hover:text-white text-territory"
         }`}
         whileHover={{ scale: 1.05 }}
         variants={fadeUp}
       >
-        <p className="uppercase text-xs font-[500] py-[12px] px-[24px]">{form.title}</p>
+        <p className="uppercase text-xs font-[500] py-[12px] px-[24px]">{form.buttonText}</p>
       </motion.div>
       ))}
     </motion.div>
 
     <motion.h2
-          className="text-xl text-primary font-[600] leading-[1.2] mb-3 lg:mb-[30px]"
-          variants={fadeUp}
-        >
-          {forms.find((form) => form.id === activeForm)?.title}
-        </motion.h2>
-    
-        {/* Description */}
-        <motion.p
-          className="text-[#404040] max-w-[90ch] mb-5 lg:mb-[40px]"
-          variants={fadeUp}
-        >
-          {forms.find((form) => form.id === activeForm)?.description}
-        </motion.p>
+      className="text-xl text-primary font-[600] leading-[1.2] mb-3 lg:mb-[30px]"
+      variants={fadeUp}
+    >
+      {forms.find((form) => form.id === formIndex)?.title}
+    </motion.h2>
 
-    {forms.find((form) => form.id === activeForm)?.component}
-    
+    {/* Description */}
+    <motion.p
+      className="text-[#404040] max-w-[90ch] mb-5 lg:mb-[40px]"
+      variants={fadeUp}
+    >
+      {forms.find((form) => form.id === formIndex)?.description}
+    </motion.p>
+
+    {/* Input Fields */}
+    {forms.find((form) => form.id === formIndex)?.component}
   </div>
 </div>
     </section>
