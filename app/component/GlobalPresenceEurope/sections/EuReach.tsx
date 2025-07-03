@@ -6,22 +6,12 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { gdsVariants, gdVariants, slideInTop } from "../../common/MotionAnimation";
 gsap.registerPlugin(ScrollTrigger);
-interface secar{
-  count: string;
-  title: string;
-  details: string;
-}
-interface PlatformsSection{
-  heading: string;
-   data: secar[]
-}
-interface PlatformsSectionProps {
-
-  data: PlatformsSection;
-}
-
-
-const EuReach: React.FC<PlatformsSectionProps> = ({ data }) => {
+ 
+  
+    
+          import {   GpEuReach } from '@/public/types/Common';   
+          
+          const EuReach = ({ data }: { data: GpEuReach}) => {    
   const containerRef = useRef(null);
 
   const textContainerVariants = {
@@ -57,7 +47,7 @@ const EuReach: React.FC<PlatformsSectionProps> = ({ data }) => {
                          initial="hidden"
                          whileInView="visible"
                          exit="exit">
-            {data.heading}
+            {data.title}
           </motion.h2>
         </div>
         <motion.div className="grid grid-cols-12  "
@@ -65,7 +55,7 @@ const EuReach: React.FC<PlatformsSectionProps> = ({ data }) => {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.2 }}>
-        {data.data.map((item, index) => (
+        {data.items.map((item, index) => (
             <motion.div className="col-span-12 lg:col-span-4 lg:px-4 last:pb-0 pb-5 lg:pb-0 group" key={index}   variants={gdsVariants}>
               <motion.div
                 variants={textContainerVariants}
@@ -76,13 +66,13 @@ const EuReach: React.FC<PlatformsSectionProps> = ({ data }) => {
                 <div className="border-b border-white group-hover:border-secondary transition-all ease-in-out duration-400 mb-4 pb-4 lg:mb-8 lg:pb-8">
                 <div className="flex gap-2 items-baseline">
                       <h3 className="text-xl font-semibold text-white">
-                        {item.count}
+                        {item.number}
                       </h3>
-                      <span className="text-md text-white">{item.title}</span>
+                      <span className="text-md text-white">{item.value}</span>
                     </div>
                 </div>
                 <p className="text-sm text-white opacity-80">
-                  {item.details}
+                  {item.description}
                 </p>
               </motion.div>
             </motion.div>

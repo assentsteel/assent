@@ -6,17 +6,10 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
+import { About,GlobalPresence } from '@/public/types/Common'; 
 
+const AboutUs = ({ data }: { data: About | GlobalPresence }) => {
 
-
-interface PlatformsSectionProps {
-
-  data: {id: number;
-    heading: string;
-    title: string;
-    paragraphs: string[];}
-}
-const AboutUs: React.FC<PlatformsSectionProps> = ({ data }) => {
    const containerRef = useRef(null);
 
    const textContainerVariants = {
@@ -59,7 +52,7 @@ const AboutUs: React.FC<PlatformsSectionProps> = ({ data }) => {
     },
   };
   return (
-    <section className="section-spacing   overflow-hidden relative  ">
+    <section className=" pt-[120px] pb-5 md:pb-0  overflow-hidden relative   ">
       <div className="container">
       <div className="grid grid-cols-12  left-spacing pr-[15px] md:pr-0">
         <div className="col-span-12 lg:col-span-4">
@@ -74,7 +67,7 @@ const AboutUs: React.FC<PlatformsSectionProps> = ({ data }) => {
               variants={textItemVariants}
               className="text-md uppercase text-[#595959] font-medium border-b inline-flex border-secondary pb-[10px] lg:pb-[25px] leading-none "
             >
-             {data.title}
+             {data.firstSection.mainTitle}
             </motion.p>
             </div>
 
@@ -99,19 +92,20 @@ const AboutUs: React.FC<PlatformsSectionProps> = ({ data }) => {
         custom="x"
         variants={textVariants}
       >
-        {data.heading}
+        {data.firstSection.subTitle}
       </motion.h2>
 
-      {data.paragraphs.map((text, index) => (
-        <motion.p
+      {data.firstSection.description.split("\n").map((text, index) => (
+        <motion.div
           key={index}
           className="text-sm font-normal mb-3 lg:mb-6 text-territory leading-[1.6]"
           custom="y"
           variants={textVariants}
           transition={{ delay: 0.2 * (index + 1), duration: 0.5 }}
+          dangerouslySetInnerHTML={{__html: text}}
         >
-          {text}
-        </motion.p>
+          
+        </motion.div>
       ))}
      </div>
     </motion.div>

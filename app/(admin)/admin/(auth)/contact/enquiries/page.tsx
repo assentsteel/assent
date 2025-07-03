@@ -1,0 +1,255 @@
+"use client"
+
+import AdminItemContainer from '@/app/component/common/AdminItemContainer'
+import { Label } from '@/components/ui/label'
+import React, { useEffect } from 'react'
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger,DialogClose } from '@/components/ui/dialog'
+import { HiMiniViewfinderCircle } from 'react-icons/hi2'
+import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
+import Link from 'next/link'
+import { FaFilePdf } from 'react-icons/fa'
+import { MdDelete } from 'react-icons/md'
+
+interface generalEnquiry {
+    _id: string;
+    name: string;
+    emailid: string;
+    contactnumber: string;
+    message: string;
+    type: string;
+}
+
+interface registrationForm {
+    _id: string;
+    nameofthecompany: string;
+    typeofproduct: string;
+    contactperson: string;
+    designation: string;
+    contactno: string;
+    emailid: string;
+    tradelicense: string;
+    vatregistration: string;
+    type: string;
+}
+
+interface downloadForm {
+    _id: string;
+    name: string;
+    emailid: string;
+    contactno: string;
+    designation: string;
+    companyname: string;
+    requestType: string;
+    purpose: string;
+    type: string;
+}
+
+interface EnquiryData {
+  generalEnquiry: generalEnquiry[];
+  registrationForm: registrationForm[];
+  downloadForm: downloadForm[];
+}
+
+const Enquiries = () => {
+
+    const [enquiryData, setEnquiryData] = React.useState<EnquiryData>();
+    const [enquiryList, setEnquiryList] = React.useState<
+  | generalEnquiry[]
+  | registrationForm[]
+  | downloadForm[]
+>([]);
+const [selectedEnquiryType, setSelectedEnquiryType] = React.useState("");
+
+    useEffect(() => {
+        fetchEnquiry()
+    },[])
+
+    const fetchEnquiry = async () => {
+        try {
+            const response = await fetch("/api/admin/enquiry");
+            const data = await response.json();
+            setEnquiryData(data.data);
+            console.log(data.data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const [selectedOnce, setSelectedOnce] = React.useState(false);
+
+    const handleEnquirySelect = (type: keyof EnquiryData) => {
+        setSelectedOnce(true);
+        if (enquiryData) {
+          const data = enquiryData[type];
+          setEnquiryList(Array.isArray(data) ? data : [data]);
+        }
+      };
+
+      const handleDeleteEnquiry = async (id: string, type: string) => {
+        try {
+          const response = await fetch(`/api/admin/enquiry?id=${id}&type=${type}`, {
+            method: "DELETE",
+          });
+          if (response.ok) {
+            const refreshed = await fetch("/api/admin/enquiry");
+            const updatedData = await refreshed.json();
+      
+            setEnquiryData(updatedData.data);
+      
+            const selectedList = updatedData.data[type] as generalEnquiry[] | registrationForm[] | downloadForm[];
+            setEnquiryList(Array.isArray(selectedList) ? selectedList : []);
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+  return (
+    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 h-screen'>
+<div className='col-span-2 border-r border-[#00000015] h-full pr-4'>
+    <AdminItemContainer>
+    <div className='p-2'>
+        <div className='border-b border-[#00000015] p-2'>
+            <Label>{selectedEnquiryType == "" ? "Enquiries" : selectedEnquiryType}</Label>
+        </div>
+        <div className='flex flex-col gap-2'>
+            {selectedOnce ? (enquiryList.length > 0 ? (enquiryList.map((enquiry: generalEnquiry | registrationForm | downloadForm, index: number) => (
+                <div key={index} className='border-b border-[#00000015] p-2 flex justify-between'>
+                    <div>{enquiry.emailid}</div>
+                    <div className='flex gap-10'>
+                    {enquiry.type === "generalEnquiry" && <Dialog>
+                        <DialogTrigger><HiMiniViewfinderCircle className='text-lg cursor-pointer' /></DialogTrigger>
+                        <DialogContent>
+                            <DialogHeader>
+                                <DialogTitle>View Details</DialogTitle>
+                                <DialogDescription className='flex flex-col gap-2 h-[300px] overflow-y-scroll'>
+                                    <Label>Name</Label>
+                                    <Input type="text" placeholder="Name" readOnly value={(enquiry as generalEnquiry).name}/>
+                                    <Label>Email</Label>
+                                    <Input type="text" placeholder="Email" readOnly value={(enquiry as generalEnquiry).emailid}/>
+                                    <Label>Contact</Label>
+                                    <Input type="text" placeholder="Contact" readOnly value={(enquiry as generalEnquiry).contactnumber}/>
+                                    <Label>Message</Label>
+                                    <Textarea placeholder="Message" readOnly value={(enquiry as generalEnquiry).message}/>
+                                </DialogDescription>
+                            </DialogHeader>
+                            <DialogClose className="bg-black text-white px-2 py-1 rounded-md">Close</DialogClose>
+                        </DialogContent>
+
+                    </Dialog>}
+
+                    {enquiry.type === "registrationForm" && <Dialog>
+                        <DialogTrigger><HiMiniViewfinderCircle className='text-lg cursor-pointer' /></DialogTrigger>
+                        <DialogContent>
+                            <DialogHeader>
+                                <DialogTitle>View Details</DialogTitle>
+                                <DialogDescription className='flex flex-col gap-2 h-[300px] overflow-y-scroll'>
+                                    <Label>Name of the Company</Label>
+                                    <Input type="text" placeholder="Name" readOnly value={(enquiry as registrationForm).nameofthecompany}/>
+                                    <Label>Type of Product</Label>
+                                    <Input type="text" placeholder="Email" readOnly value={(enquiry as registrationForm).typeofproduct}/>
+                                    <Label>Contact Person</Label>
+                                    <Input type="text" placeholder="Contact" readOnly value={(enquiry as registrationForm).contactperson}/>
+                                    <Label>Designation</Label>
+                                    <Input type="text" placeholder="Designation" readOnly value={(enquiry as registrationForm).designation}/>
+                                    <Label>Contact No</Label>
+                                    <Input type="text" placeholder="Contact" readOnly value={(enquiry as registrationForm).contactno}/>
+                                    <Label>Email</Label>
+                                    <Input type="text" placeholder="Email" readOnly value={(enquiry as registrationForm).emailid}/>
+                                    <Label>Trade License</Label>
+                                    <Link href={(enquiry as registrationForm).tradelicense as unknown as string} target='_blank' rel="noopener noreferrer">
+                                    <FaFilePdf className='text-lg cursor-pointer' />
+                                    </Link>
+                                    <Label>VAT Registration No</Label>
+                                    <Link href={(enquiry as registrationForm).vatregistration as unknown as string} target='_blank' rel="noopener noreferrer">
+                                    <FaFilePdf className='text-lg cursor-pointer' />
+                                    </Link>
+                                </DialogDescription>
+                            </DialogHeader>
+                            <DialogClose className="bg-black text-white px-2 py-1 rounded-md">Close</DialogClose>
+                        </DialogContent>
+
+                    </Dialog>}
+
+                    {enquiry.type === "downloadForm" && <Dialog>
+                        <DialogTrigger><HiMiniViewfinderCircle className='text-lg cursor-pointer' /></DialogTrigger>
+                        <DialogContent>
+                            <DialogHeader>
+                                <DialogTitle>View Details</DialogTitle>
+                                <DialogDescription className='flex flex-col gap-2 h-[300px] overflow-y-scroll'>
+                                <Label>Request Type</Label>
+                                <Input type="text" placeholder="Request Type" readOnly value={(enquiry as downloadForm).requestType}/>
+                                    <Label>Name</Label>
+                                    <Input type="text" placeholder="Name" readOnly value={(enquiry as downloadForm).name}/>
+                                    <Label>Designation</Label>
+                                    <Input type="text" placeholder="Designation" readOnly value={(enquiry as downloadForm).designation}/>
+                                    <Label>Company Name</Label>
+                                    <Input type="text" placeholder="Company Name" readOnly value={(enquiry as downloadForm).companyname}/>
+                                    <Label>Contact No</Label>
+                                    <Input type="text" placeholder="Contact No" readOnly value={(enquiry as downloadForm).contactno}/>
+                                    <Label>Email</Label>
+                                    <Input type="text" placeholder="Email" readOnly value={(enquiry as downloadForm).emailid}/>
+                                    <Label>Purpose</Label>
+                                    <Textarea placeholder="Purpose" readOnly value={(enquiry as downloadForm).purpose}/>
+                                </DialogDescription>
+                            </DialogHeader>
+                            <DialogClose className="bg-black text-white px-2 py-1 rounded-md">Close</DialogClose>
+                        </DialogContent>
+
+                    </Dialog>
+                    }
+                    <Dialog>
+                                  <DialogTrigger><MdDelete className='text-lg cursor-pointer' /></DialogTrigger>
+                                  <DialogContent>
+                                    <DialogHeader>
+                                      <DialogTitle>Are you sure?</DialogTitle>
+                                    </DialogHeader>
+                                    <div className="flex gap-2">
+                                      <DialogClose className="bg-black text-white px-2 py-1 rounded-md">No</DialogClose>
+                                      <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={()=>handleDeleteEnquiry(enquiry._id, enquiry.type)}>Yes</DialogClose>
+                                    </div>
+                    
+                                  </DialogContent>
+                    
+                                </Dialog>   
+                                </div>  
+                </div>
+            ))):(
+                <div className='flex items-center justify-center h-full'>
+                    <Label>No enquiries</Label>
+                </div>
+            )):(<div className='flex items-center justify-center h-full'>
+                <Label>Select a type to view the enquiries</Label>
+            </div>)}
+        </div>
+
+    </div>
+    </AdminItemContainer>
+</div>
+<div className='col-span-1'>
+    <AdminItemContainer>
+        <div className='p-2'>
+    <div className='border-b border-[#00000015] p-2'>
+        <Label>Types</Label>
+    </div>
+    <div className='flex flex-col gap-2'>
+        <div className='border-b border-[#00000015] p-2 cursor-pointer' onClick={() => {handleEnquirySelect("generalEnquiry");setSelectedEnquiryType("General Enquiry")}}>
+            <div>General Enquiry</div>
+        </div>
+        <div className='border-b border-[#00000015] p-2 cursor-pointer' onClick={() => {handleEnquirySelect("registrationForm");setSelectedEnquiryType("Registration Form")}}>
+            <div>Registration Form</div>
+        </div>
+        <div className='border-b border-[#00000015] p-2 cursor-pointer' onClick={() => {handleEnquirySelect("downloadForm");setSelectedEnquiryType("Download Form")}}>
+            <div>Download Form</div>
+        </div>
+    </div>
+    </div>
+    </AdminItemContainer>
+</div>
+
+    </div>
+  )
+}
+
+export default Enquiries

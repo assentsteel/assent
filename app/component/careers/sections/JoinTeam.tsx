@@ -5,7 +5,14 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
+import { careerFormSchema } from "@/schemas/careerSchema";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm, SubmitHandler, Controller  } from "react-hook-form";
 gsap.registerPlugin(ScrollTrigger);
+import 'react-date-picker/dist/DatePicker.css';
+import 'react-calendar/dist/Calendar.css';
+import Image from "next/image";
 
 interface jobarray {
   jobtitle: string;
@@ -21,12 +28,29 @@ interface PlatformsSectionProps {
   data: PlatformsItem[];
 }
 
+type CareerFormProps = z.infer<typeof careerFormSchema>
+
 const JoinTeam: React.FC<PlatformsSectionProps> = () => {
 
   const [fileName, setFileName] = useState("");
+  const [file, setFile] = useState<File | null>(null);
+
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors,isSubmitting },
+    setValue,
+    reset,
+  } = useForm<CareerFormProps>({
+    resolver: zodResolver(careerFormSchema),
+  })
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
+    if(file){
+      setFile(file);
+    }
     const allowedTypes = ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"];
 
     if (!file) {
@@ -45,7 +69,7 @@ const JoinTeam: React.FC<PlatformsSectionProps> = () => {
       e.target.value = "";
       return;
     }
-
+    setValue("file", file, { shouldValidate: true });
     setFileName(file.name);
   };
   const containerRef = useRef(null);
@@ -66,6 +90,36 @@ const JoinTeam: React.FC<PlatformsSectionProps> = () => {
     }
   }, []);
 
+
+  const onSubmit: SubmitHandler<CareerFormProps> = async(data) => {
+    if(fileName){
+        const formData = new FormData();
+        formData.append("file",file as File);
+        formData.append("fileType", "file");
+        const response = await fetch("/api/admin/upload", {
+          method: "POST",
+          body: formData,
+        });
+        if (response.status !== 200) {
+          alert("Something went wrong, please try again");
+          return;
+        }
+        const fileData = await response.json();
+        if(fileData.url){
+          const formResponse = await fetch("/api/admin/careers", {
+            method: "POST",
+            body: JSON.stringify({...data,file:fileData.url}),
+          });
+          if(formResponse.ok){
+            const formdata = await formResponse.json();
+            alert(formdata.message);
+            setFileName("");
+            reset();
+          }
+        }
+    }
+  };
+
   return (
     <section className="py-[50px] md:py-[70px] xl:py-[100px]   overflow-hidden relative ">
       <div className="container">
@@ -84,6 +138,8 @@ const JoinTeam: React.FC<PlatformsSectionProps> = () => {
       Join Our Team
     </motion.h2>
 
+    <form onSubmit={handleSubmit(onSubmit)}>
+
     {/* Reusable animation wrapper for fields */}
     {[
       ["First Name", "Last Name"],
@@ -101,15 +157,31 @@ const JoinTeam: React.FC<PlatformsSectionProps> = () => {
       >
         {pair.map((placeholder, i) => (
           <div key={i} className="relative w-full mt-2">
-            <input
-              type={placeholder.includes("Email") ? "email" : placeholder.includes("Phone") ? "number" : "text"}
+            {placeholder === "Date of Birth" ? <Controller
+              name="dateofbirth"
+              control={control}
+              render={({ field }) => (
+                <div className="px-1 appearance-none bg-transparent border-0 border-b border-[#ieieie] focus:outline-none focus:ring-0 focus:border-[black] text-[#595959] text-xs py-2 pr-6 w-full h-10">
+                  {!field.value && <label className="text-[#595959]">{placeholder}</label>}
+                <input type="date" {...field} className={`${field.value ? "text-[#595959]" : "text-transparent"} absolute inset-0  px-1 bg-transparent border-0 border-[#ccc] focus:outline-none focus:border-black text-xs pr-6 w-full`}/>
+                </div>
+              )}
+            /> : <input
+              type={placeholder.includes("Email") ? "email" : "text"}
+              {...register(placeholder.split(" ").join("").toLowerCase() as keyof CareerFormProps)}
               placeholder={placeholder}
               className="px-1 appearance-none bg-transparent border-0 border-b border-[#ieieie] focus:outline-none focus:ring-0 focus:border-[black] text-[#595959] text-xs py-2 pr-6 w-full"
-            />
+            />} 
+            {errors[placeholder.split(" ").join("").toLowerCase() as keyof CareerFormProps] && (
+              <p className="text-red-500 text-xs mt-1">
+                {errors[placeholder.split(" ").join("").toLowerCase() as keyof CareerFormProps]?.message?.toString()}
+              </p>
+            )}
           </div>
         ))}
       </motion.div>
     ))}
+    
 
     {/* Gender */}
     <motion.div
@@ -124,15 +196,28 @@ const JoinTeam: React.FC<PlatformsSectionProps> = () => {
         <div className="flex gap-4">
           {["Male", "Female", "Others"].map((gender, i) => (
             <label key={i} className="inline-flex items-center cursor-pointer mr-3">
-              <input
-                type="radio"
+              <Controller
                 name="gender"
-                value={gender.toLowerCase()}
-                className="appearance-none w-5 h-5 border-2 border-green-500 rounded-full checked:bg-green-500 checked:border-green-500 transition duration-200"
+                control={control}
+                render={({ field }) => (
+                  <input
+                    type="radio"
+                    {...field}
+                    value={gender.toLowerCase()}
+                    className="appearance-none w-5 h-5 border-2 border-green-500 rounded-full checked:bg-green-500 checked:border-green-500 transition duration-200"
+                  />
+                  
+                )}
               />
+              
               <span className="ml-2 text-[#595959]">{gender}</span>
             </label>
           ))}
+          {errors.gender && (
+            <p className="text-red-500 text-xs mt-1">
+              {errors.gender?.message?.toString()}
+            </p>
+          )}
         </div>
       </div>
     </motion.div>
@@ -151,6 +236,7 @@ const JoinTeam: React.FC<PlatformsSectionProps> = () => {
       >
         <div className="text-2xl text-gray-700">
           {/* Your SVG icon here */}
+           <Image src="/assets/img/icons/attatchment.svg" alt="attachment" width={20} height={20}/>
         </div>
         <div className="text-sm text-[gray-700]">
           <p>
@@ -164,13 +250,20 @@ const JoinTeam: React.FC<PlatformsSectionProps> = () => {
         <input
           id="file-upload"
           type="file"
+          {...register("file")}
           accept=".pdf,.doc,.docx"
           onChange={handleFileChange}
           className="hidden"
         />
+        {errors.file && (
+          <p className="text-red-500 text-xs mt-1">
+            {errors.file?.message?.toString()}
+          </p>
+        )}
       </label>
 
       <motion.button
+      disabled={isSubmitting}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         className="mt-6 min-w-[173px] bg-[#0A2657] text-white text-[16px] font-[400] px-8 py-4 rounded-full shadow-md hover:bg-primary transition duration-300"
@@ -178,6 +271,7 @@ const JoinTeam: React.FC<PlatformsSectionProps> = () => {
         SUBMIT
       </motion.button>
     </motion.div>
+    </form>
   </motion.div>
 </div>
     </section>

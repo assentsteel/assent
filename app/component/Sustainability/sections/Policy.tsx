@@ -7,10 +7,12 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { containersVariants, textItemsVariants } from "../../common/MotionAnimation";
 gsap.registerPlugin(ScrollTrigger);
 
-interface PlatformsSectionProps {
-  data: { id: number; heading: string; title: string; paragraphs: string[] };
-}
-const Policy: React.FC<PlatformsSectionProps> = ({ data }) => {
+import Image from "next/image";
+
+
+   import {   Sustainability  } from '@/public/types/Common';
+
+   const Policy = ({ data }: { data: Sustainability}) => {
   const containerRef = useRef(null);
 
   const textContainerVariants = {
@@ -77,7 +79,7 @@ const Policy: React.FC<PlatformsSectionProps> = ({ data }) => {
       variants={textItemsVariants}
       className="text-md uppercase text-[#595959] font-medium border-b inline-flex border-secondary pb-[10px] lg:pb-[25px] leading-none"
     >
-      {data.title}
+      {data.secondSection.firstTitle}
     </motion.p>
   </motion.div>
 
@@ -89,26 +91,33 @@ const Policy: React.FC<PlatformsSectionProps> = ({ data }) => {
       className="text-md font-semibold text-territory mb-2"
       variants={textItemsVariants}
     >
-      Committed to a Greener Future
+       {data.secondSection.thirdTitle}
     </motion.h3>
 
     <motion.p
       className="text-sm text-territory opacity-85 mb-3 lg:mb-8"
       variants={textItemsVariants}
     >
-      Building responsibly for tomorrow through innovation and sustainable
-      practices. Download our Sustainability Policy 2024 to learn more.
+     {data.secondSection.fileDescription}
     </motion.p>
 
     <motion.button
       variants={textItemsVariants}
-      className="group gap-4 flex justify-between items-center mt-auto border border-secondary py-2 px-6 rounded-full hover:bg-white hover:text-secondary text-territory transition text-xs h-[40px] lg:h-[48px] font-medium uppercase relative"
+      className="group gap-4 flex justify-between items-center mt-auto border border-secondary py-2 px-6 rounded-full bg-white hover:bg-secondary hover:text-white text-territory transition text-xs h-[40px] lg:h-[48px] font-medium uppercase relative"
     >
       <span className="w-fit text-center">
-        Sustainability Policy 2024
+      {data.secondSection.fileName}
       </span>
       <div className="flex gap-3">
-        {/* Your SVGs here */}
+                        <div>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16" fill="none">
+                            <path d="M1.6084 15H12.6084M7.1084 1V11.5M7.1084 11.5L10.3167 8.4375M7.1084 11.5L3.90007 8.4375" stroke="#1F1F1F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div>
+                                <Image src="/assets/img/icns/eye.png" alt="Logo" width={22} height={15} />
+                        </div>
+
       </div>
     </motion.button>
   </motion.div>
@@ -130,20 +139,17 @@ const Policy: React.FC<PlatformsSectionProps> = ({ data }) => {
                       custom="x"
                       variants={textVariants}
                     >
-                      {data.heading}
+                      {data.secondSection.secondTitle}
                     </motion.h2>
 
-                    {data.paragraphs.map((text, index) => (
                         <motion.p
-                        key={index}
                         className="last:mb-0 text-sm font-normal mb-3 lg:mb-6 text-territory leading-[1.6]"
                         custom="y"
                         variants={textVariants}
-                        transition={{ delay: 0.2 * (index + 1), duration: 0.5 }}
+                        transition={{ delay: 0.2  , duration: 0.5 }}
                       >
-                        {text}
+                       {data.secondSection.description}
                       </motion.p>
-                    ))}
                   </div>
                 </motion.div>
               </div>

@@ -7,17 +7,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { AnimatePresence, motion } from "framer-motion";
 gsap.registerPlugin(ScrollTrigger);
 
-interface PlatformsItem {
-  id: number;
-  title: string;
-  image:  StaticImageData;
-}
 
-interface PlatformsSectionProps {
-  data: PlatformsItem[];
-}
-const AccreditationsList: React.FC<PlatformsSectionProps> = ({ data }) => {
+import { Awards } from '@/public/types/Common';
 
+const AccreditationsList = ({ data }: { data: Awards }) => {
     const [selectedImage, setSelectedImage] = useState<string | StaticImageData | null>(null);
 
   const modalVariants = {
@@ -49,8 +42,9 @@ const AccreditationsList: React.FC<PlatformsSectionProps> = ({ data }) => {
   };
 
   return (
-    <section className="py-[50px] md:py-[70px] xl:py-[100px]  xxl:py-[150px]  overflow-hidden relative  ">
+    <section className="py-[50px] md:py-[70px] xl:py-[100px] overflow-hidden relative">
       <div className="container">
+
        <motion.div
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
         variants={containerVariants}
@@ -58,18 +52,11 @@ const AccreditationsList: React.FC<PlatformsSectionProps> = ({ data }) => {
         animate="visible"
         viewport={{ once: true, amount: 0.2 }}
       >
-        {data.map((item, index) => (
+        {data.awards.map((item, index) => (
           <motion.div key={index} variants={itemVariants}>
-            <div
-              className="relative group overlbl h-full cursor-pointer"
-                onClick={() => setSelectedImage(item.image)}
-            >
+            <div className="relative group overlbl h-full cursor-pointer" onClick={() => setSelectedImage(item.image)} >
               <figure className="overlayclr">
-                <Image
-                  src={item.image}
-                  alt=""
-                  className="rounded-[15px] w-full object-cover"
-                />
+                <Image src={item.image} alt="" className="rounded-[15px] w-full object-cover" width={800} height={800} />
               </figure>
 
               <div className="absolute bottom-0 px-5 pb-5 w-full">
@@ -92,32 +79,34 @@ const AccreditationsList: React.FC<PlatformsSectionProps> = ({ data }) => {
       </motion.div>
 
       {/* Modal */}
-      <AnimatePresence>
-        {selectedImage && (
-          <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            variants={modalVariants}
-            onClick={() => setSelectedImage(null)}
-          >
-            <div className="relative max-w-2xl w-full">
-              <button
-                className="absolute top-2 right-2 text-white text-2xl z-10 flex justify-center items-center bg-primary rounded-full w-[25px] h-[25px]"
-                onClick={() => setSelectedImage(null)}
-              >
-                &times;
-              </button>
-              <Image
-                src={selectedImage}
-                alt="popup"
-                className="w-full h-auto rounded-lg"
-              />
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+     <AnimatePresence>
+             {selectedImage && (
+               <motion.div
+                 className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
+                 initial="hidden"
+                 animate="visible"
+                 exit="exit"
+                 variants={modalVariants}
+                 onClick={() => setSelectedImage(null)}
+               >
+                 <div className="relative max-w-xl w-full">
+                   <button
+                     className="absolute top-2 right-2 text-white text-2xl z-10 flex justify-center items-center bg-primary rounded-full w-[25px] h-[25px]"
+                     onClick={() => setSelectedImage(null)}
+                   >
+                     &times;
+                   </button>
+                   <Image
+                     src={selectedImage}
+                     alt="popup"
+                     className="w-full h-auto rounded-lg img-fluid "
+                     width={500}
+                     height={500}
+                   />
+                 </div>
+               </motion.div>
+             )}
+           </AnimatePresence>
 
       <motion.div
         className="text-center mt-5 md:mt-[60px]"
@@ -126,20 +115,7 @@ const AccreditationsList: React.FC<PlatformsSectionProps> = ({ data }) => {
         transition={{ delay: 0.2, duration: 0.5 }}
         viewport={{ once: true }}
       >
-        <button className="border flex gap-3 items-center justify-center m-auto whitespace-nowrap font-[500] border-secondary text-xs text-territory uppercase rounded-full py-[8px] px-[20px] w-fit">
-          Load More
-          <svg
-            stroke="#000"
-            fill="#000"
-            strokeWidth="0"
-            viewBox="0 0 320 512"
-            height="10px"
-            width="8px"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M310.6 233.4c12.5 12.5..." />
-          </svg>
-        </button>
+
       </motion.div>
       </div>
     </section>

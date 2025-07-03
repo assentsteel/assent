@@ -1,9 +1,8 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef,useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { news } from "../data";
 import { assets } from "@/public/assets/assets";
 import MoreNews from "./MoreNews";
 gsap.registerPlugin(ScrollTrigger);
@@ -13,18 +12,31 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import { motion } from "framer-motion";
 
-const images = [assets.ren1, assets.ren1];
 
-interface PlatformsItem {
-  date: string;
-  title: string;
-  content: string[];
-}
+  import { News, Newsdetails } from '@/public/types/Common';
 
-interface PlatformsSectionProps {
-  data: PlatformsItem[];
-}
-const NewsDetails: React.FC<PlatformsSectionProps> = ({ data }) => {
+
+      const NewsDetails = ({ data }: { data: Newsdetails }) => {
+        const [newsList, setNewsList] = useState<News>();
+        const handleFetchProjects = async () => {
+          try {
+            const response = await fetch("/api/admin/news");
+            if (response.ok) {
+              const data = await response.json();
+              setNewsList(data.data);
+            } else {
+              const data = await response.json();
+              alert(data.message);
+            }
+          } catch (error) {
+            console.log("Error fetching news", error);
+          }
+        };
+
+        useEffect(() => {
+          handleFetchProjects();
+        }, []);
+
   const prevRef = useRef(null);
   const nextRef = useRef(null);
   const containerRef = useRef(null);
@@ -94,12 +106,14 @@ const NewsDetails: React.FC<PlatformsSectionProps> = ({ data }) => {
                     spaceBetween={20}
                     className="rounded-xl overflow-hidden"
                   >
-                    {images.map((src, index) => (
+                    {data.data.images.map((src, index) => (
                       <SwiperSlide key={index}>
                         <Image
                           src={src}
                           alt={`Slide ${index + 1}`}
                           className="w-full h-[300px] md:h-[400px] lg:h-[570px] object-cover"
+                          width={1215}
+                          height={570}
                         />
                       </SwiperSlide>
                     ))}
@@ -134,8 +148,7 @@ const NewsDetails: React.FC<PlatformsSectionProps> = ({ data }) => {
                 </motion.div>
               </div>
             </div>
-            {data.map((item, index) => (
-              <div key={index}>
+             <div  >
                 <div>
                   <motion.div
                     variants={slideInLeft}
@@ -147,7 +160,11 @@ const NewsDetails: React.FC<PlatformsSectionProps> = ({ data }) => {
                   >
                     <div className="flex justify-between items-center mt-4 md:mt-5 mb-4 md:mb-5">
                       <p className="text-sm font-[500] text-territory">
-                        {item.date}
+                      {new Date(data.data.createdAt).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  })}
                       </p>
                     </div>
                     <div className="flex gap-5 lg:gap-10">
@@ -164,25 +181,24 @@ const NewsDetails: React.FC<PlatformsSectionProps> = ({ data }) => {
                   exit="exit"
                 >
                   <h2 className="font-[600] text-lg leading-[1.65] text-primary mb-4 lg:mb-[30px]">
-                    {item.title}
+                    {data.data.mainTitle}
                   </h2>
                 </motion.div>
                 <div className="mbp10">
-                  {item.content.map((ite, index) => (
                     <motion.div
                       variants={slideInTop}
                       initial="hidden"
                       whileInView="visible"
                       viewport={{ once: true, amount: 0.3 }}
                       exit="exit"
-                      key={index}
+                      dangerouslySetInnerHTML={{__html: data.data.content}}
                     >
-                      <p> {ite}</p>
+
                     </motion.div>
-                  ))}
+
                 </div>
               </div>
-            ))}
+
           </div>
 
           <div className="lg:w-1/6 ">
@@ -199,7 +215,7 @@ const NewsDetails: React.FC<PlatformsSectionProps> = ({ data }) => {
                   </p>
                 </div>
               </div>
-              <MoreNews data={news.data} />
+              <MoreNews data={newsList} />
             </motion.div>
           </div>
         </div>

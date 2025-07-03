@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { FaFacebookF, FaInstagram, FaLinkedinIn, FaYoutube } from "react-icons/fa6";
+import ScrollToTop from "./ScrollToTop";
 
 
 
@@ -26,49 +27,48 @@ const Footer = () => {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
-      className="bg-primary text-white pt-[60px] lg:pt-[110px]"
-    >
+      className="bg-primary text-white pt-[60px] lg:pt-[110px]" >
+
+      <ScrollToTop/>
       <div className="container">
         <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-[40px] xxl:gap-[50px] xxxl:gap-[100px] mb-[30px] md:mb-[70px]">
           {/* Contact Info */}
-          <div  className="md:col-span-4 md:order-last overflow-hidden">
+          <div className="md:col-span-4 md:order-last overflow-hidden">
             <motion.div variants={fadeInLeft}>
-            <Image src="/assets/img/logo-wh.svg" className="mb-5 lg:mb-[50px]" alt="Assent Steel" width={150} height={50} />
-            <h3 className="text-sm font-semibold mt-4">Head Office</h3>
-            <p>
-              Dubai Industrial City, UAE.
-              <br /> P.O.Box: 38438
-            </p>
-            <div className="flex flex-col lg:flex-row gap-2 md:gap-7 mt-[30px]">
-              <p className="flex gap-2">
-                <span className="text-secondary">T:</span> +971 4 247 1200
+              <Image src="/assets/img/logo-wh.svg" className="mb-5 lg:mb-[50px]" alt="Assent Steel" width={150} height={50} />
+              <h3 className="text-sm font-semibold mt-4">Head Office</h3>
+              <p>
+                Dubai Industrial City, UAE.
+                <br /> P.O.Box: 38438
               </p>
-              <p className="flex gap-2">
-                <span className="text-secondary">E:</span> info@assentsteel.com
-              </p>
-            </div>
+              <div className="flex flex-col 2xl:flex-row gap-2 2xl:gap-7 mt-[30px]">
+                <p className="flex gap-2"> <span className="text-secondary">T:</span> +971 4 247 1200 </p>
+                <p className="flex gap-2">
+                  <span className="text-secondary">E:</span> info@assentsteel.com
+                </p>
+              </div>
             </motion.div>
           </div>
           {/* Quick Links */}
           <motion.div variants={fadeIn} className="md:col-span-8 overflow-hidden">
-            <motion.h3 variants={fadeInLeft}  className="text-lg font-semibold mb-5 lg:mb-[50px]">Quick Links</motion.h3>
-           <ul className="space-y-2 grid lg:grid-cols-2 lg:w-[75%]">
-  {[
-    { label: "Leadership Team", href: "/team" },
-    { label: "Global Presence", href: "/global-presence" },
-    { label: "Awards & Accreditations", href: "/accreditations" },
-    { label: "Careers", href: "/careers" },
-    { label: "News", href: "/news" },
-    { label: "Request for Quotation", href: "/rfq" },
-    { label: "Vendor Registration", href: "/vendor" },
-  ].map((link, index) => (
-    <motion.li key={index} variants={fadeInLeft}>
-      <Link href={link.href} className="hover:text-secondary transition-all ease-in-out duration-500">
-        {link.label}
-      </Link>
-    </motion.li>
-  ))}
-</ul>
+            <motion.h3 variants={fadeInLeft} className="text-lg font-semibold mb-5 lg:mb-[50px]">Quick Links</motion.h3>
+            <ul className="space-y-2 grid lg:grid-cols-2 lg:w-[75%]">
+              {[
+                { label: "Leadership Team", href: "/team" },
+                { label: "Global Presence", href: "/global-presence" },
+                { label: "Awards & Accreditations", href: "/accreditations" },
+                { label: "Careers", href: "/careers" },
+                { label: "News", href: "/news" },
+                { label: "Request for Quotation", href: "/rfq" },
+                { label: "Vendor Registration", href: "/vendor" },
+              ].map((link, index) => (
+                <motion.li key={index} variants={fadeInLeft}>
+                  <Link href={link.href} className="hover:text-secondary transition-all ease-in-out duration-500">
+                    {link.label}
+                  </Link>
+                </motion.li>
+              ))}
+            </ul>
 
           </motion.div>
         </motion.div>
@@ -76,20 +76,34 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-[10px] xxl:gap-[50px] xxxl:gap-[100px] items-start">
           {/* Buttons and Certifications */}
           <motion.div variants={fadeIn} className="md:col-span-8">
-            <div className="flex md:flex-row flex-col gap-5 md:gap-[70px] justify-between border-t border-white/35 pt-[30px] md:pt-[70px]">
-              <div className="flex md:flex-row flex-col gap-4 overflow-hidden">
+            <div className="flex md:flex-row flex-col gap-5 md:gap-[70px] justify-between border-t border-white/35 pt-5 lg:pt-[70px] pb-5 lg:pb-0 ">
+              <div className="flex items-center flex-col md:flex-row gap-4 justify-between w-full">
+                <div className="flex md:flex-row flex-col gap-4 overflow-hidden pt-2 lg:pt-0 wst57">
                 {["DOWNLOAD BROCHURE", "PRE-QUALIFICATION"].map((btn, index) => (
                   <motion.button key={index} variants={scaleUp} className="border border-secondary py-2 px-4 rounded-full hover:bg-secondary hover:text-primary h-[40px] md:h-[58px] transition-all ease-in-out duration-500">
                     {btn}
                   </motion.button>
                 ))}
+
+                </div>
+                <div className="flex gap-1 items-center">
+                  <Image src="/assets/img/icns/fcer1.png" alt="Certifications" width={156} height={58} className=" w-auto rounded-sm" />
+
+                  <Image src="/assets/img/icns/fcer2.png" alt="Certifications" width={43} height={58} className=" w-auto rounded-sm" />
+
+                  <Image src="/assets/img/icns/fcer3.png" alt="Certifications" width={183} height={58} className=" w-auto rounded-sm" />
+
+                  <Image src="/assets/img/icns/fcer4.png" alt="Certifications" width={81} height={58} className=" w-auto rounded-sm" />
+
+
+                </div>
               </div>
             </div>
           </motion.div>
 
           {/* Social Links */}
-          <motion.div variants={fadeIn} className="md:col-span-4 hidden md:block">
-            <div className="flex gap-6 border-t border-white/35 pt-[70px]">
+          <motion.div variants={fadeIn} className="md:col-span-4  block">
+            <div className="flex gap-6 border-t border-white/35 pt-5 md:pt-[70px]">
               {[FaLinkedinIn, FaFacebookF, FaInstagram, FaYoutube].map((Icon, index) => (
                 <motion.div key={index} variants={scaleUp}>
                   <Link href="#" className="text-md hover:text-secondary hover:scale-125 transition-all ease-in-out duration-500 h-[45px] xxxl:h-[58px] items-center flex">
@@ -101,7 +115,7 @@ const Footer = () => {
           </motion.div>
         </div>
       </div>
-      <motion.div variants={fadeIn} className="text-center text-sm mt-[40px] md:mt-[70px] bg-[#0F2C56] py-[20px]">
+      <motion.div variants={fadeIn} className="text-center text-sm mt-5 md:mt-[70px] bg-[#0F2C56] py-[20px]">
         <div className="container text-left">
           <p className="text-xs text-white/50">&copy; 2025 ASSENT STEEL. All rights reserved.</p>
         </div>

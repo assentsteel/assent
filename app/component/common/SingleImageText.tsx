@@ -1,28 +1,15 @@
 "use client";
-
-import  { StaticImageData } from "next/image";
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
-interface PlatformsItem {
-  id: number;
-  title: string;
-  paragraphs: string[];
-  image: string | StaticImageData;
-}
 
-interface PlatformsSectionProps {
-  textright?: boolean;
 
-  maxwidth?: string;
-  data: PlatformsItem[];
-}
-const SingleImageText: React.FC<PlatformsSectionProps> = ({data,textright,maxwidth
-}) => {
 
+import { Abtpurpose  } from '@/public/types/Common';
+  const SingleImageText = ({ data , textright,maxwidth }: { data: Abtpurpose    , textright?: boolean;  maxwidth?: string }) => {
   const containerRef = useRef(null);
   const fadeUp = {
     hidden: { opacity: 0, y: 40 },
@@ -58,50 +45,51 @@ const SingleImageText: React.FC<PlatformsSectionProps> = ({data,textright,maxwid
       });
     }
   }, []);
+
+
   return (
-    <section className="py-[50px] md:py-[70px] xl:py-[100px] cpt0  overflow-hidden relative cpt0 ">
-     <div className="container">
-  {data.map((item) => (
-    <motion.div
-      key={item.id}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.3 }}
-      variants={fadeUp}
-      className={`rounded-[15px] p-4 lg:pt-[116px] lg:pb-[96px] lg:px-[100px] bg-cover relative ${textright ? `blueoverlayrt` : 'blueoverlay'}`}
-      style={{
-        background: `url(${typeof item.image === 'string' ? item.image : item.image.src})`,
-        backgroundSize: 'cover',
-      }}
-    >
-      <motion.div
-        variants={staggerContainer}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-        className={`  flex flex-col justify-center relative z-10 h-full ${maxwidth ? `${maxwidth}` : ''} ${textright ? 'lg:ml-auto' : ''}`}
-
-      >
-        <motion.h2
+    <section className="py-[50px] md:py-[70px] xl:py-[100px] cpt0  overflow-hidden relative cpt0">
+      <div className="container">
+               <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
           variants={fadeUp}
-          className="text-xl text-white font-[600] leading-[1.2] mb-3 lg:mb-[30px]"
+          className={`rounded-[15px] p-4 lg:pt-[116px] lg:pb-[96px] lg:px-[100px] bg-cover relative ${textright ? `blueoverlayrt` : 'blueoverlay bg-[position:right_center]'}`}
+          style={{
+            background: `url(${typeof data.image === 'string' ? data.image : data.image})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'right center',
+          }}
         >
-          {item.title}
-        </motion.h2>
-
-        {item.paragraphs.map((paragraph, index) => (
-          <motion.p
-            key={index}
-            variants={fadeUp}
-            className="mb-4 last:mb-0 text-white text-base font-[400] leading-[1.8]"
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            className={`flex flex-col justify-center relative z-10 h-full ${maxwidth ? maxwidth : ''} ${textright ? 'lg:ml-auto' : ''}`}
           >
-            {paragraph}
-          </motion.p>
-        ))}
-      </motion.div>
-    </motion.div>
-  ))}
-</div>
+
+                <motion.h2
+                  variants={fadeUp}
+                  className="text-xl text-white font-[600] leading-[1.2] mb-3 lg:mb-[30px]"
+                >
+                  {data.title}
+                </motion.h2>
+
+                {data.description.split("\n").map((paragraph: string, index: number) => (
+                  <motion.p
+                    key={index}
+                    variants={fadeUp}
+                    className="mb-4 last:mb-0 text-white text-base font-[400] leading-[1.8]"
+                    dangerouslySetInnerHTML={{__html: paragraph}}
+                  />
+                ))}
+
+          </motion.div>
+        </motion.div>
+
+      </div>
     </section>
   );
 };

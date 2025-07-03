@@ -4,37 +4,19 @@ import Link from "next/link";
 import { FaChevronRight } from "react-icons/fa6";
 import { motion } from "framer-motion";
 
-const mediaData = [
-  {
-    id: 1,
-    title:
-      "ASSENT STEEL is proud to be the Largest Steel Fabrication Facility in the GCC.",
-    date: "17-12-2024",
-    category: "News",
-    image: "/assets/img/home/nws.jpg",
-    featured: true,
-  },
-  {
-    id: 2,
-    title:
-      "ASSENT STEEL continues its commitment to excellence in steel fabrication.",
-    date: "15-12-2024",
-    category: "News",
-    featured: false,
-  },
-  {
-    id: 3,
-    title: "New advancements in steel technology at ASSENT STEEL.",
-    date: "10-12-2024",
-    category: "News",
-    featured: false,
-  },
-];
+ 
 
-const MediaSection = () => {
-  const featuredMedia = mediaData.find((item) => item.featured);
-  const otherMedia = mediaData.filter((item) => !item.featured);
-
+import { News } from '@/public/types/Common';
+const MediaSection = ({data}: {data: News}) => { 
+  const latestNews = data.news[data.news.length - 1];
+  const lastTwoItems =  data.news.slice(-3, -1);
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+    const year = date.getFullYear();
+    return `${day}-${month}-${year}`;
+  };
   return (
     <section>
       <div className="container section-spacing">
@@ -51,7 +33,7 @@ const MediaSection = () => {
         </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-[80px] overflow-hidden">
           {/* Featured Media on the left */}
-          {featuredMedia && (
+          {/* {featuredMedia && ( */}
             <motion.div
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -60,29 +42,31 @@ const MediaSection = () => {
               className=" bg-primary text-white rounded-custom  overflow-hidden"
             >
               <div className="relative w-full h-[200px] lg:h-[300px] xxxl:h-[400px] ">
-              {featuredMedia?.image && (
-  <Image
-    src={featuredMedia.image}
-    alt={featuredMedia.title}
-    layout="fill"
-    objectFit="cover"
-  />
-)}
+              
+              <figure className="relative w-full h-full">
+                <Image
+                  src={latestNews.thumbnail}
+                  alt={latestNews.thumbnailAlt}
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="top"
+                />
+              </figure>
               </div>
               <div className="px-[30px] py-[30px] lg:px-[60px] lg:py-[40px]">
                 <div className="flex justify-between mb-5 lg:mb-[35px]">
                   <span className="text-secondary text-xs uppercase">
-                    {featuredMedia.category}
+                    News
                   </span>
-                  <span className="text-white text-xs uppercase">
-                    {featuredMedia.date}
+                  <span className="text-white text-xs uppercase"> 
+           {formatDate(latestNews.createdAt)} 
                   </span>
                 </div>
                 <h3 className="text-lg font-semibold mt-0  mb-[30px] leading-normal">
-                  {featuredMedia.title}
+                  {latestNews.mainTitle}
                 </h3>
                 <Link
-                  href="#"
+                  href={`/news-details/${latestNews.slug}`}
                   className="text-xs border-b border-secondary text-white uppercase group pb-[16px] inline-flex items-center gap-[18px]"
                 >
                   Read More{" "}
@@ -92,7 +76,7 @@ const MediaSection = () => {
                 </Link>
               </div>
             </motion.div>
-          )}
+          {/* )} */}
 
           {/* News List on the right */}
           <div className="flex flex-col overflow-hidden">
@@ -100,33 +84,33 @@ const MediaSection = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay:  0.3 }}
                 viewport={{ once: true, amount: 0.5 }}>
-            {otherMedia.map((item, index) => (
+            {lastTwoItems.map((item, index) => (
               <div
 
-                key={item.id}
+                key={index}
                 className={`border-b  ${
-                  index === otherMedia.length - 1
+                  index === lastTwoItems.length - 1
                     ? "border-b-0 pb-[60px] mb-[0px]"
                     : "pb-[30px] mb-[25px] lg:pb-[60px] lg:mb-[50px]"
                 }`}
               >
                 <div className="flex justify-between mb-5 lg:mb-[35px]">
                   <span className="text-secondary text-xs uppercase">
-                    {item.category}
+                    News
                   </span>
                   <span className="text-territory text-xs uppercase">
-                    {item.date}
+                    {formatDate(item.createdAt)}
                   </span>
                 </div>
 
                 <h3 className="text-lg font-semibold mb-5  lg:mb-[35px] leading-tight">
-                  {item.title}
+                  {item.mainTitle}
                 </h3>
                 <Link
-                  href="#"
+                  href={`/news-details/${item.slug}`}
                   className="text-xs border-b border-secondary uppercase group pb-[16px] inline-flex items-center gap-[18px] text-territory font-medium"
                 >
-                  About ASSENT{" "}
+                  Read More{" "}
                   <div className="w-[20px] h-[20px] rounded-full text-secondary bg-territory group-hover:bg-secondary group-hover:text-primary flex items-center text-[14px] justify-center transition duration-300 ease-in-out">
                     <FaChevronRight />
                   </div>

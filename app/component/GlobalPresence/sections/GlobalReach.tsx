@@ -6,23 +6,11 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { textContainerVariants, textItemVariants } from "../../common/MotionAnimation";
 gsap.registerPlugin(ScrollTrigger);
-interface secar{
-  count: string;
-  title: string;
-  details: string;
-}
-interface PlatformsSection{
-  heading?: string;
-   data: secar[]
-}
-interface PlatformsSectionProps {
-
-  bgcolor?: string;
-  data: PlatformsSection;
-}
-
-
-const GlobalReach: React.FC<PlatformsSectionProps> = ({ data ,bgcolor  }) => {
+ 
+  
+  import { GlobalReachtype } from '@/public/types/Common'; 
+  
+  const GlobalReach = ({ data,bgcolor }: { data: GlobalReachtype , bgcolor?: string }) => {
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -50,7 +38,7 @@ const GlobalReach: React.FC<PlatformsSectionProps> = ({ data ,bgcolor  }) => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}>
-            {data.heading}
+            {data.title}
           </motion.h2>
         </div>
         <motion.div
@@ -60,7 +48,7 @@ const GlobalReach: React.FC<PlatformsSectionProps> = ({ data ,bgcolor  }) => {
   whileInView="visible"
   viewport={{ once: true, amount: 0.3 }}
 >
-  {data.data.map((item, index) => (
+  {data.items.map((item, index) => (
     <motion.div
       className="col-span-12 lg:col-span-4 lg:px-4 last:pb-0 pb-5 lg:pb-0"
       key={index}
@@ -77,7 +65,7 @@ const GlobalReach: React.FC<PlatformsSectionProps> = ({ data ,bgcolor  }) => {
               bgcolor ? 'text-white' : 'text-territory'
             }`}
           >
-            {item.count}
+            {item.number}
             <span className="text-secondary">+</span>
           </h3>
           <p
@@ -85,7 +73,7 @@ const GlobalReach: React.FC<PlatformsSectionProps> = ({ data ,bgcolor  }) => {
               bgcolor ? 'text-white' : 'text-territory'
             }`}
           >
-            {item.title}
+            {item.value}
           </p>
         </div>
         <p
@@ -93,7 +81,7 @@ const GlobalReach: React.FC<PlatformsSectionProps> = ({ data ,bgcolor  }) => {
             bgcolor ? 'text-white' : 'text-territory'
           } opacity-80`}
         >
-          {item.details}
+          {item.description}
         </p>
       </div>
     </motion.div>

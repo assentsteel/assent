@@ -1,6 +1,6 @@
 "use client";
 
-import Image, { StaticImageData } from "next/image";
+import Image  from "next/image";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { motion, AnimatePresence } from "framer-motion";
@@ -8,32 +8,15 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { assets } from "@/public/assets/assets";
 import { tabItemVariant } from "../../common/MotionAnimation";
 gsap.registerPlugin(ScrollTrigger);
-interface PlatformsItem {
-  id: number;
-  title: string;
-  tab: string;
-  paragraphs: string[];
-  image: string | StaticImageData;
-}
-interface PlatformsItemmn {
-  title: string;
-  data: PlatformsItem[];
-}
-interface PlatformsSectionProps {
-  navigation?: boolean;
-  bgcolor?: string;
-  textwhite?: boolean;
-  data: PlatformsItemmn;
-}
-const NavTabsection: React.FC<PlatformsSectionProps> = ({
-  data,
-  navigation,
-  bgcolor,
-  textwhite,
-}) => {
+
+
+
+  import { NavTab } from '@/public/types/Common';
+
+  const   NavTabsection = ({ data,navigation, bgcolor, textwhite, }: { data: NavTab, navigation?: boolean, bgcolor?: string, textwhite?: boolean }) => {
   const [activeTab, setActiveTab] = useState(0); // default first tab
 
-  const tabs = data.data.map((item) => item.tab);
+  const tabs = data.items.map((item) => item.title);
   useEffect(() => {
   const interval = setInterval(() => {
     setActiveTab((prev) => (prev + 1) % tabs.length);
@@ -41,7 +24,7 @@ const NavTabsection: React.FC<PlatformsSectionProps> = ({
 
   return () => clearInterval(interval); // cleanup on unmount
 }, [tabs.length]);
-  const activeContent = data.data[activeTab];
+  const activeContent = data.items[activeTab];
   const [isMobile, setIsMobile] = useState(false);
 
   const containerRef = useRef(null);
@@ -209,7 +192,7 @@ onClick={() => setActiveTab((prev) => Math.max(prev - 1, 0))}
                 exit="hidden"
                 className="lg:flex items-center"
               >
-                <div className="w-full lg:w-2/5 pr-0 lg:pr-[44px]">
+                <div className="w-full lg:w-3/5 pr-0 lg:pr-[44px]">
                   <div className="mb-8 lg:mb-0">
                     <h2
                       className={`text-lg ${
@@ -219,20 +202,14 @@ onClick={() => setActiveTab((prev) => Math.max(prev - 1, 0))}
                       {activeContent.title}
                     </h2>
                     <div className="text-territory text-sm font-[400] leading-[1.8] mb-6 lg:mb-10">
-                      {activeContent.paragraphs.map((p, i) => (
-                        <p
-                          key={i}
-                          className={`mb-4 ${
-                            textwhite ? "text-white" : "text-black"
-                          }`}
-                        >
-                          {p}
-                        </p>
-                      ))}
+                   <div className={`insts ${
+                            textwhite ? "text-white" : "text-black "
+                          }`} dangerouslySetInnerHTML={{__html: activeContent.description}}></div>
+
                     </div>
                   </div>
                 </div>
-                <div className="w-full lg:w-3/5 pl-0 lg:pl-[44px]">
+                <div className="w-full lg:w-2/5 pl-0 lg:pl-[44px]">
                   <motion.figure
                     className="image-wrapper"
                     variants={fadeInUp}
@@ -244,6 +221,8 @@ onClick={() => setActiveTab((prev) => Math.max(prev - 1, 0))}
                       src={activeContent.image}
                       alt={activeContent.title}
                       className="rounded-[15px] object-cover"
+                      width={500}
+                      height={500}
                     />
                   </motion.figure>
                 </div>
@@ -251,7 +230,7 @@ onClick={() => setActiveTab((prev) => Math.max(prev - 1, 0))}
             )}
           </AnimatePresence>
           {isMobile &&
-            data.data.map((content, index) => (
+            data.items.map((content, index) => (
               <div
                 key={index}
                 className="mb-6 border border-[#00000020] rounded-[10px] overflow-hidden"
@@ -277,11 +256,8 @@ onClick={() => setActiveTab((prev) => Math.max(prev - 1, 0))}
                     >
 
                       <div className="text-sm font-[400] leading-[1.8] text-territory mb-4">
-                        {content.paragraphs.map((p, i) => (
-                          <p key={i} className="mb-4">
-                            {p}
-                          </p>
-                        ))}
+
+                          <div dangerouslySetInnerHTML={{__html: content.description}}></div>
                       </div>
                       <Image
                         src={content.image}

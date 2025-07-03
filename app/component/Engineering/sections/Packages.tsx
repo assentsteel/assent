@@ -1,33 +1,15 @@
 "use client";
-import Image, { StaticImageData } from "next/image";
+import Image  from "next/image";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion"
 gsap.registerPlugin(ScrollTrigger);
 
-
-interface PackageItem {
-  title: string;
-  desc: string;
-  image: string | StaticImageData;
-}
-
-interface PackageSection {
-  secheading: string;
-  data: PackageItem[];
-}
-
-interface PackagesData {
-  heading: string;
-  sections: PackageSection[];
-}
-
-interface PackagesProps {
-  data: PackagesData;
-}
-
-const Packages: React.FC<PackagesProps> = ({ data }) => {
+ 
+  
+       import {   Engineering } from '@/public/types/Common';   
+      const Packages = ({ data }: { data: Engineering}) => {   
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -66,33 +48,35 @@ const Packages: React.FC<PackagesProps> = ({ data }) => {
             animate="visible"
             exit="exit"
               className="text-xl  text-primary font-[600] leading-[1.2] mb-5 lg:mb-[60px]"
-              dangerouslySetInnerHTML={{ __html: data.heading }}
+              dangerouslySetInnerHTML={{ __html: data.fifthSection.title}}
           >
           </motion.h2>
 
           </div>
 
           <div className="w-full ">
-            {data.sections.map((item,index)=> (
-            <div className="mb-4 lg:mb-[60px]" key={index}>
-              <div className="pb-5 border-b">
-                  <p className="text-lg font-[500]">{item.secheading}</p>
+            {data.fifthSection.items.map((item,index)=> (
+            <div className="" key={index}>
+              <div className="pb-5 border-b mt6 md:mt-[60px]">
+                  <p className="text-lg font-[500]">{item.title}</p>
                 </div>
 
-                {item.data.map((ite ,index) => (
+                {item.elements.map((ite ,index) => (
                   <div className="md:flex border-b py-3 lg:py-[42px] px-3 lg:px-[30px] bg-white hover:bg-[#005F9E08] " key={index}>
                     <div className="w-full md:w-3/5">
                       <div className="flex gap-4 md:gap-[95px] items-center mb-4 md:mb-0">
                         <div><Image
-                          src={ite.image}
-                          alt=""
-                          className="group-hover:brightness-0 group-hover:invert rotate-180"
+                          src={ite.logo}
+                          alt={ite.logoAlt}
+                          className="group-hover:brightness-0 group-hover:invert "
+                          width={50}
+                          height={50}
                         /></div>
                         <div><p className="text-md opacity-90">{ite.title}</p></div>
                       </div>
                     </div>
                     <div className="w-full md:w-2/5">
-                      <div><p className="text-sm opacity-90">{ite.desc}</p></div>
+                      <div><p className="text-sm opacity-90">{ite.description}</p></div>
                     </div>
                   </div>
                 ))}

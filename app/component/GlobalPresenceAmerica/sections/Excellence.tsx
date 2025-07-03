@@ -6,27 +6,12 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {  gdsVariants, gdVariants, slideInTop } from "../../common/MotionAnimation";
 gsap.registerPlugin(ScrollTrigger);
-interface secar{
-  title: string;
-  subtitle: string;
-  details: string;
-}
-interface PlatformsSection{
-  heading: string;
-   data: secar[]
-}
-interface PlatformsSectionProps {
-
-  data: PlatformsSection;
-}
-
-
-const Excellence: React.FC<PlatformsSectionProps> = ({ data }) => {
-  const containerRef = useRef(null);
-
-
-
-
+ 
+  
+import { GpEuReachdata} from '@/public/types/Common';   
+        
+       const Excellence = ({ data }: { data: GpEuReachdata }) => {    
+  const containerRef = useRef(null); 
   useEffect(() => {
     if (containerRef.current) {
       gsap.from(containerRef.current, {
@@ -51,7 +36,7 @@ const Excellence: React.FC<PlatformsSectionProps> = ({ data }) => {
                  initial="hidden"
                  whileInView="visible"
                  exit="exit">
-      {data.heading}
+      {data.title}
     </motion.h2>
   </div>
 
@@ -62,7 +47,7 @@ const Excellence: React.FC<PlatformsSectionProps> = ({ data }) => {
   whileInView="visible"
   viewport={{ once: true, amount: 0.2 }}
 >
-  {data.data.map((item, index) => (
+  {data.items.map((item, index) => (
     <motion.div
       key={index}
       variants={gdsVariants}
@@ -78,13 +63,13 @@ const Excellence: React.FC<PlatformsSectionProps> = ({ data }) => {
           <div className="w-full md:w-1/2">
             <div className="mb-4 md:mb-0 lg:flex gap-2 items-baseline">
               <h3 className="text-xl font-semibold text-white">
-                {item.title}
+                {item.number}
               </h3>
-              <span className="text-md text-white">{item.subtitle}</span>
+              <span className="text-md text-white">{item.value}</span>
             </div>
           </div>
           <div className="w-full md:w-1/2">
-            <p className="text-sm text-white">{item.details}</p>
+            <p className="text-sm text-white">{item.description}</p>
           </div>
         </div>
       </div>

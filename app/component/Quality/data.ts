@@ -106,6 +106,7 @@ export const accdata = {
   data: [
     {
       id: 1,
+      icon:"/assets/img/icns/engineering-icon.svg",
       title: "Quality Planning",
       paragraphs: [
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
@@ -115,6 +116,7 @@ export const accdata = {
 
     {
       id: 2,
+      icon:"/assets/img/icns/engineering-icon.svg",
       title: "Quality Assurance & Control",
       paragraphs: [
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
@@ -124,6 +126,7 @@ export const accdata = {
 
     {
       id: 3,
+      icon:"/assets/img/icns/engineering-icon.svg",
       title: "Continuous Quality Improvement",
       paragraphs: [
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
@@ -133,6 +136,7 @@ export const accdata = {
 
     {
       id: 4,
+      icon:"/assets/img/icns/engineering-icon.svg",
       title: "Regulatory Compliance",
       paragraphs: [
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
@@ -142,6 +146,7 @@ export const accdata = {
 
     {
       id: 5,
+      icon:"/assets/img/icns/engineering-icon.svg",
       title: "Customer Satisfaction",
       paragraphs: [
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
