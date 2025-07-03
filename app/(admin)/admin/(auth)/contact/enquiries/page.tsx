@@ -3,10 +3,6 @@
 import AdminItemContainer from '@/app/component/common/AdminItemContainer'
 import { Label } from '@/components/ui/label'
 import React, { useEffect } from 'react'
-import { generalEnquirySchema } from '@/app/schemas/generalEnquiry'
-import { registrationFormSchema } from '@/app/schemas/registrationForm'
-import { downloadFormSchema } from '@/app/schemas/downloadForm'
-import { z } from 'zod'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger,DialogClose } from '@/components/ui/dialog'
 import { HiMiniViewfinderCircle } from 'react-icons/hi2'
 import { Input } from '@/components/ui/input'
@@ -15,21 +11,55 @@ import Link from 'next/link'
 import { FaFilePdf } from 'react-icons/fa'
 import { MdDelete } from 'react-icons/md'
 
+interface generalEnquiry {
+    _id: string;
+    name: string;
+    emailid: string;
+    contactnumber: string;
+    message: string;
+    type: string;
+}
+
+interface registrationForm {
+    _id: string;
+    nameofthecompany: string;
+    typeofproduct: string;
+    contactperson: string;
+    designation: string;
+    contactno: string;
+    emailid: string;
+    tradelicense: string;
+    vatregistration: string;
+    type: string;
+}
+
+interface downloadForm {
+    _id: string;
+    name: string;
+    emailid: string;
+    contactno: string;
+    designation: string;
+    companyname: string;
+    requestType: string;
+    purpose: string;
+    type: string;
+}
 
 interface EnquiryData {
-  generalEnquiry: z.infer<typeof generalEnquirySchema>;
-  registrationForm: z.infer<typeof registrationFormSchema>[];
-  downloadForm: z.infer<typeof downloadFormSchema>[];
+  generalEnquiry: generalEnquiry[];
+  registrationForm: registrationForm[];
+  downloadForm: downloadForm[];
 }
 
 const Enquiries = () => {
 
     const [enquiryData, setEnquiryData] = React.useState<EnquiryData>();
     const [enquiryList, setEnquiryList] = React.useState<
-  | z.infer<typeof generalEnquirySchema>[]
-  | z.infer<typeof registrationFormSchema>[]
-  | z.infer<typeof downloadFormSchema>[]
+  | generalEnquiry[]
+  | registrationForm[]
+  | downloadForm[]
 >([]);
+const [selectedEnquiryType, setSelectedEnquiryType] = React.useState("");
 
     useEffect(() => {
         fetchEnquiry()
@@ -62,8 +92,13 @@ const Enquiries = () => {
             method: "DELETE",
           });
           if (response.ok) {
-            await fetchEnquiry();
-            handleEnquirySelect(type as keyof EnquiryData);
+            const refreshed = await fetch("/api/admin/enquiry");
+            const updatedData = await refreshed.json();
+      
+            setEnquiryData(updatedData.data);
+      
+            const selectedList = updatedData.data[type] as generalEnquiry[] | registrationForm[] | downloadForm[];
+            setEnquiryList(Array.isArray(selectedList) ? selectedList : []);
           }
         } catch (error) {
           console.log(error);
@@ -76,10 +111,10 @@ const Enquiries = () => {
     <AdminItemContainer>
     <div className='p-2'>
         <div className='border-b border-[#00000015] p-2'>
-            <Label>Enquiries</Label>
+            <Label>{selectedEnquiryType == "" ? "Enquiries" : selectedEnquiryType}</Label>
         </div>
         <div className='flex flex-col gap-2'>
-            {selectedOnce ? (enquiryList.length > 0 ? (enquiryList.map((enquiry: z.infer<typeof generalEnquirySchema> | z.infer<typeof registrationFormSchema> | z.infer<typeof downloadFormSchema>, index: number) => (
+            {selectedOnce ? (enquiryList.length > 0 ? (enquiryList.map((enquiry: generalEnquiry | registrationForm | downloadForm, index: number) => (
                 <div key={index} className='border-b border-[#00000015] p-2 flex justify-between'>
                     <div>{enquiry.emailid}</div>
                     <div className='flex gap-10'>
@@ -90,13 +125,13 @@ const Enquiries = () => {
                                 <DialogTitle>View Details</DialogTitle>
                                 <DialogDescription className='flex flex-col gap-2 h-[300px] overflow-y-scroll'>
                                     <Label>Name</Label>
-                                    <Input type="text" placeholder="Name" readOnly value={(enquiry as z.infer<typeof generalEnquirySchema>).name}/>
+                                    <Input type="text" placeholder="Name" readOnly value={(enquiry as generalEnquiry).name}/>
                                     <Label>Email</Label>
-                                    <Input type="text" placeholder="Email" readOnly value={(enquiry as z.infer<typeof generalEnquirySchema>).emailid}/>
+                                    <Input type="text" placeholder="Email" readOnly value={(enquiry as generalEnquiry).emailid}/>
                                     <Label>Contact</Label>
-                                    <Input type="text" placeholder="Contact" readOnly value={(enquiry as z.infer<typeof generalEnquirySchema>).contactnumber}/>
+                                    <Input type="text" placeholder="Contact" readOnly value={(enquiry as generalEnquiry).contactnumber}/>
                                     <Label>Message</Label>
-                                    <Textarea placeholder="Message" readOnly value={(enquiry as z.infer<typeof generalEnquirySchema>).message}/>
+                                    <Textarea placeholder="Message" readOnly value={(enquiry as generalEnquiry).message}/>
                                 </DialogDescription>
                             </DialogHeader>
                             <DialogClose className="bg-black text-white px-2 py-1 rounded-md">Close</DialogClose>
@@ -111,23 +146,23 @@ const Enquiries = () => {
                                 <DialogTitle>View Details</DialogTitle>
                                 <DialogDescription className='flex flex-col gap-2 h-[300px] overflow-y-scroll'>
                                     <Label>Name of the Company</Label>
-                                    <Input type="text" placeholder="Name" readOnly value={(enquiry as z.infer<typeof registrationFormSchema>).nameofthecompany}/>
+                                    <Input type="text" placeholder="Name" readOnly value={(enquiry as registrationForm).nameofthecompany}/>
                                     <Label>Type of Product</Label>
-                                    <Input type="text" placeholder="Email" readOnly value={(enquiry as z.infer<typeof registrationFormSchema>).typeofproduct}/>
+                                    <Input type="text" placeholder="Email" readOnly value={(enquiry as registrationForm).typeofproduct}/>
                                     <Label>Contact Person</Label>
-                                    <Input type="text" placeholder="Contact" readOnly value={(enquiry as z.infer<typeof registrationFormSchema>).contactperson}/>
+                                    <Input type="text" placeholder="Contact" readOnly value={(enquiry as registrationForm).contactperson}/>
                                     <Label>Designation</Label>
-                                    <Input type="text" placeholder="Designation" readOnly value={(enquiry as z.infer<typeof registrationFormSchema>).designation}/>
+                                    <Input type="text" placeholder="Designation" readOnly value={(enquiry as registrationForm).designation}/>
                                     <Label>Contact No</Label>
-                                    <Input type="text" placeholder="Contact" readOnly value={(enquiry as z.infer<typeof registrationFormSchema>).contactno}/>
+                                    <Input type="text" placeholder="Contact" readOnly value={(enquiry as registrationForm).contactno}/>
                                     <Label>Email</Label>
-                                    <Input type="text" placeholder="Email" readOnly value={(enquiry as z.infer<typeof registrationFormSchema>).emailid}/>
+                                    <Input type="text" placeholder="Email" readOnly value={(enquiry as registrationForm).emailid}/>
                                     <Label>Trade License</Label>
-                                    <Link href={(enquiry as z.infer<typeof registrationFormSchema>).tradelicense as unknown as string} target='_blank' rel="noopener noreferrer">
+                                    <Link href={(enquiry as registrationForm).tradelicense as unknown as string} target='_blank' rel="noopener noreferrer">
                                     <FaFilePdf className='text-lg cursor-pointer' />
                                     </Link>
                                     <Label>VAT Registration No</Label>
-                                    <Link href={(enquiry as z.infer<typeof registrationFormSchema>).vatregistration as unknown as string} target='_blank' rel="noopener noreferrer">
+                                    <Link href={(enquiry as registrationForm).vatregistration as unknown as string} target='_blank' rel="noopener noreferrer">
                                     <FaFilePdf className='text-lg cursor-pointer' />
                                     </Link>
                                 </DialogDescription>
@@ -144,19 +179,19 @@ const Enquiries = () => {
                                 <DialogTitle>View Details</DialogTitle>
                                 <DialogDescription className='flex flex-col gap-2 h-[300px] overflow-y-scroll'>
                                 <Label>Request Type</Label>
-                                <Input type="text" placeholder="Request Type" readOnly value={(enquiry as z.infer<typeof downloadFormSchema>).requestType}/>
+                                <Input type="text" placeholder="Request Type" readOnly value={(enquiry as downloadForm).requestType}/>
                                     <Label>Name</Label>
-                                    <Input type="text" placeholder="Name" readOnly value={(enquiry as z.infer<typeof downloadFormSchema>).name}/>
+                                    <Input type="text" placeholder="Name" readOnly value={(enquiry as downloadForm).name}/>
                                     <Label>Designation</Label>
-                                    <Input type="text" placeholder="Designation" readOnly value={(enquiry as z.infer<typeof downloadFormSchema>).designation}/>
+                                    <Input type="text" placeholder="Designation" readOnly value={(enquiry as downloadForm).designation}/>
                                     <Label>Company Name</Label>
-                                    <Input type="text" placeholder="Company Name" readOnly value={(enquiry as z.infer<typeof downloadFormSchema>).companyname}/>
+                                    <Input type="text" placeholder="Company Name" readOnly value={(enquiry as downloadForm).companyname}/>
                                     <Label>Contact No</Label>
-                                    <Input type="text" placeholder="Contact No" readOnly value={(enquiry as z.infer<typeof downloadFormSchema>).contactno}/>
+                                    <Input type="text" placeholder="Contact No" readOnly value={(enquiry as downloadForm).contactno}/>
                                     <Label>Email</Label>
-                                    <Input type="text" placeholder="Email" readOnly value={(enquiry as z.infer<typeof downloadFormSchema>).emailid}/>
+                                    <Input type="text" placeholder="Email" readOnly value={(enquiry as downloadForm).emailid}/>
                                     <Label>Purpose</Label>
-                                    <Textarea placeholder="Purpose" readOnly value={(enquiry as z.infer<typeof downloadFormSchema>).purpose}/>
+                                    <Textarea placeholder="Purpose" readOnly value={(enquiry as downloadForm).purpose}/>
                                 </DialogDescription>
                             </DialogHeader>
                             <DialogClose className="bg-black text-white px-2 py-1 rounded-md">Close</DialogClose>
@@ -199,13 +234,13 @@ const Enquiries = () => {
         <Label>Types</Label>
     </div>
     <div className='flex flex-col gap-2'>
-        <div className='border-b border-[#00000015] p-2 cursor-pointer' onClick={() => handleEnquirySelect("generalEnquiry")}>
+        <div className='border-b border-[#00000015] p-2 cursor-pointer' onClick={() => {handleEnquirySelect("generalEnquiry");setSelectedEnquiryType("General Enquiry")}}>
             <div>General Enquiry</div>
         </div>
-        <div className='border-b border-[#00000015] p-2 cursor-pointer' onClick={() => handleEnquirySelect("registrationForm")}>
+        <div className='border-b border-[#00000015] p-2 cursor-pointer' onClick={() => {handleEnquirySelect("registrationForm");setSelectedEnquiryType("Registration Form")}}>
             <div>Registration Form</div>
         </div>
-        <div className='border-b border-[#00000015] p-2 cursor-pointer' onClick={() => handleEnquirySelect("downloadForm")}>
+        <div className='border-b border-[#00000015] p-2 cursor-pointer' onClick={() => {handleEnquirySelect("downloadForm");setSelectedEnquiryType("Download Form")}}>
             <div>Download Form</div>
         </div>
     </div>

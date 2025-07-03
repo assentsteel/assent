@@ -50,31 +50,31 @@ export async function POST(req:NextRequest) {
                 if(generalEnquiry){
                     generalEnquiry.generalEnquiry.push(body);
                     await generalEnquiry.save();
-                    return NextResponse.json({ message: "Details saved successfully" }, { status: 200 });
+                    return NextResponse.json({ message: "Thanks you, we will get back to you soon" }, { status: 200 });
                 }else{
-                    return NextResponse.json({ message: "Error saving  details" }, { status: 500 });
+                    return NextResponse.json({ message: "Something went wrong" }, { status: 500 });
                 }
             case "registrationForm":
                 const registrationForm = await Enquiry.findOne({});
                 if(registrationForm){
                     registrationForm.registrationForm.push(body);
                     await registrationForm.save();
-                    return NextResponse.json({ message: "Details saved successfully" }, { status: 200 });
+                    return NextResponse.json({ message: "Thanks you, we will get back to you soon" }, { status: 200 });
                 }else{
-                    return NextResponse.json({ message: "Error saving  details" }, { status: 500 });
+                    return NextResponse.json({ message: "Something went wrong" }, { status: 500 });
                 }
             case "downloadForm":
                 const downloadForm = await Enquiry.findOne({});
                 if(downloadForm){
                     downloadForm.downloadForm.push(body);
                     await downloadForm.save();
-                    return NextResponse.json({ message: "Details saved successfully" }, { status: 200 });
+                    return NextResponse.json({ message: "Thanks you, we will get back to you soon" }, { status: 200 });
                 }else{
-                    return NextResponse.json({ message: "Error saving  details" }, { status: 500 });
+                    return NextResponse.json({ message: "Something went wrong" }, { status: 500 });
                 }
         }
     } catch (error) {
-        console.log("Error saving team details", error);
-        return NextResponse.json({ message: "Error saving team details" }, { status: 500 });
+        console.log("Error submitting form", error);
+        return NextResponse.json({ message: "Something went wrong" }, { status: 500 });
     }
 }

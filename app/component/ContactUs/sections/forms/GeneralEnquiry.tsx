@@ -7,13 +7,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 type GeneralEnquiryForm = z.infer<typeof generalEnquirySchema>
 
-interface GeneralEnquiryProps {
-    onSubmit: (data: GeneralEnquiryForm) => void;
-}
 
-const GeneralEnquiry = ({ onSubmit }: GeneralEnquiryProps) => {
+const GeneralEnquiry = () => {
 
-    const {register,handleSubmit,formState:{errors}} = useForm<GeneralEnquiryForm>({
+    const {register,formState:{errors},handleSubmit,reset} = useForm<GeneralEnquiryForm>({
         resolver:zodResolver(generalEnquirySchema)
     })
 
@@ -30,6 +27,29 @@ const GeneralEnquiry = ({ onSubmit }: GeneralEnquiryProps) => {
         hidden: { opacity: 0, y: 20 },
         show: {
           opacity: 1, y: 0, transition: { duration: 0.5 }},
+        };
+
+
+        const onSubmit = async (data: GeneralEnquiryForm) => {
+          console.log(data)
+          try {
+            const response = await fetch("/api/admin/contact", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(data),
+            });
+            if (response.ok) {
+              const data = await response.json();
+              alert(data.message);
+              reset()
+            }else{
+              alert("Something went wrong, try again")
+            }
+          } catch (error) {
+            console.log(error);
+          }
         };
 
   return (

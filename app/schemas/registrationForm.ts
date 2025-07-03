@@ -2,10 +2,6 @@ import { z } from 'zod';
 import xss from "xss"
 
 export const registrationFormSchema = z.object({
-    _id: z.preprocess(
-        (val) => typeof val === "string" ? xss(val) : val,
-        z.string().min(1, "ID is required")
-      ),
     nameofthecompany: z.preprocess(
       (val) => typeof val === "string" ? xss(val) : val,
       z.string().min(3, "Name of the Company is required")

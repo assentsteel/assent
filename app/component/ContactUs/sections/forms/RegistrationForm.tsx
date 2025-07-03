@@ -9,17 +9,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 type RegistrationForm = z.infer<typeof registrationFormSchema>
 
-interface RegistrationFormProps {
-    onSubmit: (data: RegistrationForm) => void;
-    setTradeLicenseFile: (file: File | null) => void;
-    setVatRegistrationFile: (file: File | null) => void;
-}
 
-const RegistrationForm = ({onSubmit,setTradeLicenseFile,setVatRegistrationFile}:RegistrationFormProps) => {
+const RegistrationForm = () => {
 
-    const {register,handleSubmit,formState:{errors},setValue} = useForm<RegistrationForm>({
+    const {register,handleSubmit,formState:{errors},setValue,reset} = useForm<RegistrationForm>({
         resolver:zodResolver(registrationFormSchema)
     })
+
+      const [tradelicenseFile, setTradelicenseFile] = React.useState<File | null>(null);
+      const [vatregistrationFile, setVatregistrationFile] = React.useState<File | null>(null);
 
     const containerVariants = {
         hidden: {},
@@ -42,7 +40,7 @@ const RegistrationForm = ({onSubmit,setTradeLicenseFile,setVatRegistrationFile}:
           const handleTradelicenseFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
             console.log(e)
             const file = e.target.files?.[0];
-            setTradeLicenseFile(file || null);
+            setTradelicenseFile(file || null);
             const allowedTypes = ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"];
         
             if (!file) {
@@ -70,7 +68,7 @@ const RegistrationForm = ({onSubmit,setTradeLicenseFile,setVatRegistrationFile}:
             console.log(e)
             const file = e.target.files?.[0];
             console.log(file)
-            setVatRegistrationFile(file || null);
+            setVatregistrationFile(file || null);
             const allowedTypes = ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"];
         
             if (!file) {
@@ -93,6 +91,57 @@ const RegistrationForm = ({onSubmit,setTradeLicenseFile,setVatRegistrationFile}:
             setValue("vatregistration", file,{shouldValidate: true});
             setVatregistrationFileName(file.name);
           };
+
+          const onSubmit = async(data: RegistrationForm) =>{
+              try {
+                if(tradelicenseFile){
+                  const formData = new FormData();
+                  formData.append("file", tradelicenseFile as File);
+                  formData.append("fileType", "file");
+                  const tradeLicenseResponse = await fetch("/api/admin/upload", {
+                    method: "POST",
+                    body: formData,
+                  });
+                  if (tradeLicenseResponse.status !== 200) {
+                    alert("Something went wrong, try again")
+                    return;
+                  }
+                  if(vatregistrationFile){
+                    const formData = new FormData();
+                    formData.append("file", vatregistrationFile as File);
+                    formData.append("fileType", "file");
+                    const vatRegistrationResponse = await fetch("/api/admin/upload", {
+                      method: "POST",
+                      body: formData,
+                    });
+                    if (vatRegistrationResponse.status !== 200) {
+                      alert("Something went wrong, try again")
+                      return;
+                    }
+                    const vatRegistrationData = await vatRegistrationResponse.json();
+                    const tradeLicenseData = await tradeLicenseResponse.json();
+                    if(tradeLicenseData.url && vatRegistrationData.url){
+                      const formResponse = await fetch("/api/admin/contact", {
+                        method: "POST",
+                        headers: {
+                          "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({...data,tradelicense:tradeLicenseData.url,vatregistration:vatRegistrationData.url}),
+                      });
+                      if (formResponse.ok) {
+                        const data = await formResponse.json();
+                        alert(data.message);
+                        reset()
+                      }else{
+                        alert("Something went wrong, try again")
+                      }
+                    }
+                  }
+                }
+              } catch (error) {
+                  console.log(error)
+              }
+          }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

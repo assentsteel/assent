@@ -2,10 +2,6 @@ import { z } from 'zod';
 import xss from "xss"
 
 export const downloadFormSchema = z.object({
-    _id: z.preprocess(
-        (val) => typeof val === "string" ? xss(val) : val,
-        z.string().min(1, "ID is required")
-      ),
     name: z.preprocess(
       (val) => typeof val === "string" ? xss(val) : val,
       z.string().min(3, "Name is required")

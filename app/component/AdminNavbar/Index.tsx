@@ -52,10 +52,13 @@ const AdminNavbar = () => {
         { name: "Gallery", href: "/admin/gallery", icon: GalleryThumbnails },
         { name: "Awards", href: "/admin/awards", icon:AwardIcon },
         { name: "Team", href: "/admin/team", icon:UserGroupIcon },
-        { name: "Careers", href: "/admin/careers", icon:BriefcaseIcon },
+        { name: "Careers", href: "####", icon:BriefcaseIcon,hasChild:true,children: [
+          { name: "Main Page", href: "/admin/careers" },
+          {name:"Enquiries",href:"/admin/careers/enquiries"}
+        ] },
         { name: "Contact", href: "###", icon: EnvelopeIcon,hasChild:true,children: [
           { name: "Main Page", href: "/admin/contact" },
-          {name:"Enquiries",href:"/admin/enquiries"}
+          {name:"Enquiries",href:"/admin/contact/enquiries"}
         ] },
         { name: "Quality", href: "/admin/quality", icon: ThumbsUp },
         { name: "HSE", href: "/admin/hse", icon: HeartHandshake },

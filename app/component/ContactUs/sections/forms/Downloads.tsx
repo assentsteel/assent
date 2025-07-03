@@ -8,13 +8,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 type DownloadForm = z.infer<typeof downloadFormSchema>
 
-interface DownloadFormProps {
-    onSubmit: (data: DownloadForm) => void;
-}
+const Downloads = () => {
 
-const Downloads = ({onSubmit}:DownloadFormProps) => {
-
-    const {register,handleSubmit,formState:{errors},control} = useForm<DownloadForm>({
+    const {register,handleSubmit,formState:{errors},control,reset} = useForm<DownloadForm>({
         resolver:zodResolver(downloadFormSchema)
     })
     const containerVariants = {
@@ -31,6 +27,27 @@ const Downloads = ({onSubmit}:DownloadFormProps) => {
         show: {
           opacity: 1, y: 0, transition: { duration: 0.5 }},
         };
+
+        const onSubmit = async(data: DownloadForm) => {
+            try {
+                const response = await fetch("/api/admin/contact", {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(data),
+                  });
+                  if (response.ok) {
+                    const data = await response.json();
+                    alert(data.message);
+                    reset()
+                  }else{
+                    alert("Something went wrong, try again")
+                  }
+            } catch (error) {
+                console.log(error)
+            }
+        }
         
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
