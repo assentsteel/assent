@@ -424,3 +424,38 @@ height: 100%;background: linear-gradient(205.71deg, rgba(0, 0, 0, 0) 0%, #5BA646
     width: 57%;
   }
 }
+
+/* Hide the calendar button (icon) */
+.react-date-picker__button {
+  display: none !important;
+}
+
+/* Remove the gray border */
+.react-date-picker__wrapper {
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+/* Style the input group cleanly */
+.react-date-picker__inputGroup {
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+/* Remove spin buttons and input border */
+.react-date-picker__inputGroup__input {
+  border: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+  font-size: 14px !important;
+  color: #000 !important;
+  outline: none !important;
+  appearance: textfield !important;
+}
+
+
+
