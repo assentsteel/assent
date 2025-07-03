@@ -86,7 +86,7 @@ const GeneralEnquiry = () => {
         placeholder="Message"
         rows={6}
         {...register("message")}
-        className=" placeholder:text-[#595959] w-full px-1 py-2 pr-6 text-xs text-[#595959] bg-transparent border-0 border-b border-[#dcdcdc] focus:outline-none focus:ring-0 focus:border-black appearance-none"
+        className=" placeholder:text-[#595959] w-full px-1 lg:py-2 pr-6 text-xs text-[#595959] bg-transparent border-0 border-b border-[#dcdcdc] focus:outline-none focus:ring-0 focus:border-black appearance-none"
       />
       {errors.message && (
         <p className="text-red-500 text-xs mt-1">{errors.message?.message}</p>

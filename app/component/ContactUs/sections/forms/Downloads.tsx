@@ -52,8 +52,8 @@ const Downloads = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
         <input type="hidden" {...register("type")} value="downloadForm"/>
-        <div className="relative w-full flex gap-4 mt-2 mb-14">
-        <p className="text-[16px] text-[#595959]">Select</p>
+        <div className="relative w-full flex gap-4 mt-2 lg:mb-14 mb-5">
+        <p className="text-[#595959] text-xs">Select</p>
         <div className="flex gap-4">
           {["Request Pre-Qualification", "Request Brochure"].map((option, i) => (
             <Controller<DownloadForm> name="requestType" control={control} key={i} render={({ field }) => (
@@ -64,7 +64,7 @@ const Downloads = () => {
                 value={option}
                 className="appearance-none w-5 h-5 border-2 border-green-500 rounded-full checked:bg-green-500 checked:border-green-500 transition duration-200"
               />
-              <span className="ml-2 text-[#595959]">{option}</span>
+              <span className="ml-2 text-[#595959] text-xs">{option}</span>
             </label>
             )}/>
           ))}
@@ -72,7 +72,7 @@ const Downloads = () => {
         </div>
       </div>
         <motion.div
-      className="grid grid-cols-1 lg:grid-cols-2 gap-x-4 gap-y-14 lg:gap-x-6 xxl:gap-x-10 mb-5 lg:mb-[40px]"
+      className="grid grid-cols-1 lg:grid-cols-2 gap-x-4 lg:gap-y-14 lg:gap-x-6 xxl:gap-x-10 mb-5 lg:mb-[40px]"
       variants={containerVariants}
     >
       {["Name", "Designation", "Company Name","Contact No","Email Id"].map((placeholder, i) => (
@@ -103,7 +103,7 @@ const Downloads = () => {
         placeholder="Purpose"
         rows={6}
         {...register("purpose")}
-        className=" placeholder:text-[#595959] w-full px-1 py-2 pr-6 text-xs text-[#595959] bg-transparent border-0 border-b border-[#dcdcdc] focus:outline-none focus:ring-0 focus:border-black appearance-none"
+        className=" placeholder:text-[#595959] w-full px-1 lg:py-2 pr-6 text-xs text-[#595959] bg-transparent border-0 border-b border-[#dcdcdc] focus:outline-none focus:ring-0 focus:border-black appearance-none"
       />
       {errors.purpose && <p className="text-red-500 text-xs mt-1">{errors.purpose.message}</p>}
     </motion.div>
