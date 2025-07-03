@@ -146,7 +146,7 @@ const RegistrationForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
         <motion.div
-              className="grid grid-cols-1 lg:grid-cols-3 gap-x-4 gap-y-14 lg:gap-x-6 xxl:gap-x-10 mb-5 lg:mb-[40px]"
+              className="grid grid-cols-1 lg:grid-cols-3 gap-x-4 lg:gap-y-14 lg:gap-x-6 xxl:gap-x-10 mb-5 lg:mb-[40px]"
               variants={containerVariants}
             >
               {["Name of the Company", "Type of Product", "Contact Person","Designation","Contact No","Email ID"].map((placeholder, i) => (
@@ -171,7 +171,7 @@ const RegistrationForm = () => {
             </motion.div>
         
             {/* Message */}
-            <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-4 gap-y-10 lg:gap-x-6 xxl:gap-x-10 mb-5 lg:mb-[40px] mt-14'>
+            <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-4 lg:gap-y-10 lg:gap-x-6 xxl:gap-x-10 mb-5 lg:mb-[40px] lg:mt-14'>
             <motion.div
               className="relative w-full mb-2 md:mb-0 mt-2 md:mt-0 flex flex-col gap-4"
               variants={fadeUp}
@@ -250,7 +250,7 @@ const RegistrationForm = () => {
             <input type="hidden" {...register("type")} value="registrationForm" />
         
             {/* Submit Button */}
-            <motion.div variants={fadeUp} className="flex justify-end">
+            <motion.div variants={fadeUp} className="flex lg:justify-end">
               <motion.button
                 className="min-w-[173px] bg-[#0A2657] text-white text-[16px] font-[400] px-8 py-4 rounded-full shadow-md hover:bg-primary transition duration-300"
                 whileHover={{ scale: 1.05 }}
