@@ -106,7 +106,7 @@ const Slidethumb: React.FC<PlatformsSectionProps> = ({ data }) => {
                     <Image
                       src={src}
                       alt={`Slide ${index + 1}`}
-                      className="w-full h-auto object-cover"
+                      className="w-full lg:h-[569px] sm:h-[450px] h-[350px] object-cover"
                       width={500}
                       height={569}
                     />
