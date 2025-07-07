@@ -72,7 +72,7 @@ const Slidethumb: React.FC<PlatformsSectionProps> = ({ data }) => {
     exit: { opacity: 0, y: -30, transition: { duration: 0.4 } },
   };
   return (
-    <section className="pt-0 md:pt-[70px] xl:pt-[100px] pb-[50px] md:pb-[70px] xl:pb-[100px]   overflow-hidden relative ">
+    <section className=" pb-[50px] md:pb-[70px] xl:pb-[100px]   overflow-hidden relative ">
       <div className="container">
         <div className="lg:flex items-center">
           <div className="w-full lg:w-1/2 pr-0 lg:pr-[44px]">
@@ -103,37 +103,38 @@ const Slidethumb: React.FC<PlatformsSectionProps> = ({ data }) => {
                 thumbs={{ swiper: thumbsSwiper }}
                 slidesPerView={1}
                 spaceBetween={10}
-                className="rounded-xl overflow-hidden"
+                className="rounded-xl overflow-hidden lg:h-[628px] md:h-[450px] h-[300px]"
               >
                 {data.images.map((src, index) => (
                   <SwiperSlide key={index}>
-                    <Image
-                      src={src}
-                      alt={`Slide ${index + 1}`}
-                      className="w-full lg:h-[569px] sm:h-[450px] h-[350px] object-cover"
-                      width={500}
-                      height={569}
-                    />
+                   <Image
+                  src={src}
+                  alt={`Slide ${index + 1}`}
+                  className="w-full h-full object-cover"
+                  width={1920}
+  height={1080}
+  quality={100}
+                />
                   </SwiperSlide>
                 ))}
               </Swiper>
 
               {/* Thumbnails Swiper */}
-              <div className="absolute bottom-8 p-[14px] rounded-[20px] bg-[#ffffff30] backdrop-blur-xs lg:bottom-[40px] left-1/2 -translate-x-1/2 z-10 w-full max-w-fit px-4">
+              <div className="absolute bottom-8 p-[14px] rounded-[20px] bg-[#ffffff30] backdrop-blur-xs lg:bottom-[40px] left-1/2 -translate-x-1/2 z-20 w-full max-w-fit px-4">
                 <Swiper
                   onSwiper={(swiper) => setThumbsSwiper(swiper)}
                   slidesPerView={3}
                   spaceBetween={10}
                   watchSlidesProgress
                   modules={[Thumbs]}
-                  className="thumbs relative z-10"
+                  className="thumbs relative z-10 w-full overflow-hidden"
                 >
                   {data.images.map((src, i) => (
                     <SwiperSlide
                       key={i}
-                      className="!w-[50px] !h-[50px] flex items-center justify-center"
+                      className="!w-[50px] !h-[50px] flex items-center justify-center rounded-full overflow-hidden border-2 border-transparent hover:border-secondary cursor-pointer"
                     >
-                      <div className="w-[50px] h-[50px] rounded-full overflow-hidden border-2 border-transparent hover:border-secondary cursor-pointer">
+                      
                         <Image
                           src={src}
                           alt={`Thumb ${i}`}
@@ -141,14 +142,14 @@ const Slidethumb: React.FC<PlatformsSectionProps> = ({ data }) => {
                           height={50}
                           className="object-cover w-full h-full"
                         />
-                      </div>
+                     
                     </SwiperSlide>
                   ))}
                 </Swiper>
               </div>
 
               {/* Custom Nav Buttons */}
-              <div className="absolute bottom-8  lg:bottom-[40px] right-4 flex gap-2 z-10 w-full justify-between left-0 px-6 lg:px-[40px]">
+              <div className="absolute bottom-8  lg:bottom-[50px] right-4 flex gap-2 z-10 w-full justify-between left-0 px-6 lg:px-[30px]">
                 <button
                   ref={prevRef}
                   className="bg-white text-black px-3 py-1 rounded-full w-[48px] h-[48px] hover:bg-secondary group transition flex items-center justify-center"
