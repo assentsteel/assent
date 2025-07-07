@@ -19,6 +19,10 @@ gsap.registerPlugin(ScrollTrigger);
 interface PlatformsSectionProps {
   data: Projectswfull['categories'][number]['projects'][number];
 }
+const sanitizeListTags = (html: string) => {
+  return html.replace(/<ol>/g, "<ul>").replace(/<\/ol>/g, "</ul>");
+};
+
 const Slidethumb: React.FC<PlatformsSectionProps> = ({ data }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
   const prevRef = useRef(null);
@@ -188,8 +192,9 @@ const Slidethumb: React.FC<PlatformsSectionProps> = ({ data }) => {
                  initial="hidden"
                  whileInView="visible"
                  exit="exit">
-                    <div className="mb-4 last:mb-0">
-                      {parse(data.description)}
+                    <div className="mb-4 last:mb-0 parsed-content">
+                       {parse(sanitizeListTags(data.description))}
+                      {/* {parse(data.description)} */}
                     </div>
                 </motion.div>
               </div>
