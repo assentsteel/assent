@@ -19,7 +19,13 @@ const gallerySchema = new mongoose.Schema({
     images: {
         type:[String],
         default:[]
-    }
+    },
+    metaTitle: {
+        type: String,
+    },
+    metaDescription: {
+        type: String,
+    },
 })
 
 export default mongoose.models.Gallery || mongoose.model("Gallery", gallerySchema)
