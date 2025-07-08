@@ -17,11 +17,13 @@ const AdminGallery = () => {
     const [title, setTitle] = useState("");
     const [thumbnail, setThumbnail] = useState("");
     const [thumbnailAlt, setThumbnailAlt] = useState("");
-    const [items, setItems] = useState<{ _id: string; title: string; thumbnail: string; thumbnailAlt: string,slug:string }[]>([]);
+    const [items, setItems] = useState<{ _id: string; title: string; thumbnail: string; thumbnailAlt: string,slug:string,metaTitle:string,metaDescription:string }[]>([]);
     const [slug, setSlug] = useState<string>("")
       const [metaTitle, setMetaTitle] = useState<string>("");
       const [metaDescription, setMetaDescription] = useState<string>("");
       const [pageTitle, setPageTitle] = useState<string>("");
+      const [itemMetaTitle, setItemMetaTitle] = useState<string>("");
+      const [itemMetaDescription, setItemMetaDescription] = useState<string>("");
 
     const handleAddItem = async () => {
         try {
@@ -30,7 +32,7 @@ const AdminGallery = () => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ title, thumbnail, thumbnailAlt,slug }),
+                body: JSON.stringify({ title, thumbnail, thumbnailAlt,slug,itemMetaTitle,itemMetaDescription }),
             });
             const data = await res.json();
             if (data.success) {
@@ -38,6 +40,9 @@ const AdminGallery = () => {
                 setTitle("");
                 setThumbnail("");
                 setThumbnailAlt("");
+                setSlug("");
+                setItemMetaTitle("");
+                setItemMetaDescription("");
                 fetchItems();
             }
         } catch (error) {
@@ -53,7 +58,7 @@ const AdminGallery = () => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ title, thumbnail, thumbnailAlt,slug }),
+                body: JSON.stringify({ title, thumbnail, thumbnailAlt,slug,itemMetaTitle,itemMetaDescription }),
             });
             const data = await res.json();
             if (data.success) {
@@ -61,6 +66,9 @@ const AdminGallery = () => {
                 setTitle("");
                 setThumbnail("");
                 setThumbnailAlt("");
+                setSlug("");
+                setItemMetaTitle("");
+                setItemMetaDescription("");
                 fetchItems();
             }
         } catch (error) {
@@ -91,9 +99,6 @@ const AdminGallery = () => {
             const data = await res.json();
             if (data.success) {
                 setItems(data.data);
-                setMetaTitle(data.data.metaTitle);
-                setMetaDescription(data.data.metaDescription);
-                setPageTitle(data.data.pageTitle);
             }
         } catch (error) {
             console.log(error);
@@ -189,7 +194,7 @@ const AdminGallery = () => {
                     <h2 className='text-md font-semibold'>Items</h2>
                     <Dialog>
                         <DialogTrigger className="bg-primary text-white px-2 py-1 rounded-md" onClick={() => { setTitle(""); setThumbnail(""); setThumbnailAlt("");setSlug("") }}>Add Item</DialogTrigger>
-                        <DialogContent className="">
+                        <DialogContent className="h-[600px] overflow-auto">
                             <DialogHeader>
                                 <DialogTitle>Add Item</DialogTitle>
                                 <div className="flex flex-col gap-4">
@@ -216,6 +221,14 @@ const AdminGallery = () => {
                                         <Label>Thumbnail Alt</Label>
                                         <Input type="text" placeholder="Thumbnail Alt" value={thumbnailAlt} onChange={(e) => setThumbnailAlt(e.target.value)} />
                                     </div>
+                                    <div>
+                                        <Label>Meta Title</Label>
+                                        <Input type="text" placeholder="Meta Title" value={itemMetaTitle} onChange={(e) => setItemMetaTitle(e.target.value)} />
+                                    </div>
+                                    <div>
+                                        <Label>Meta Description</Label>
+                                        <Input type="text" placeholder="Meta Description" value={itemMetaDescription} onChange={(e) => setItemMetaDescription(e.target.value)} />
+                                    </div>
 
                                 </div>
                             </DialogHeader>
@@ -232,8 +245,8 @@ const AdminGallery = () => {
                             </div>
                             <div className="flex items-center gap-10">
                                 <Dialog>
-                                    <DialogTrigger className="" onClick={() => { setTitle(item.title); setThumbnail(item.thumbnail); setThumbnailAlt(item.thumbnailAlt);setSlug(item.slug) }}><MdEdit className="cursor-pointer text-md" /></DialogTrigger>
-                                    <DialogContent className="">
+                                    <DialogTrigger className="" onClick={() => { setTitle(item.title); setThumbnail(item.thumbnail); setThumbnailAlt(item.thumbnailAlt);setSlug(item.slug);setItemMetaTitle(item.metaTitle);setItemMetaDescription(item.metaDescription) }}><MdEdit className="cursor-pointer text-md" /></DialogTrigger>
+                                    <DialogContent className="h-[600px] overflow-auto">
                                         <DialogHeader>
                                             <DialogTitle>Edit Item</DialogTitle>
                                             <div className="flex flex-col gap-4">
@@ -259,6 +272,14 @@ const AdminGallery = () => {
                                                 <div>
                                                     <Label>Thumbnail Alt</Label>
                                                     <Input type="text" placeholder="Thumbnail Alt" value={thumbnailAlt} onChange={(e) => setThumbnailAlt(e.target.value)} />
+                                                </div>
+                                                <div>
+                                                    <Label>Meta Title</Label>
+                                                    <Input type="text" placeholder="Meta Title" value={itemMetaTitle} onChange={(e) => setItemMetaTitle(e.target.value)} />
+                                                </div>
+                                                <div>
+                                                    <Label>Meta Description</Label>
+                                                    <Input type="text" placeholder="Meta Description" value={itemMetaDescription} onChange={(e) => setItemMetaDescription(e.target.value)} />
                                                 </div>
 
                                             </div>
