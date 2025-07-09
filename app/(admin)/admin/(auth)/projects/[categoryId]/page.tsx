@@ -7,10 +7,10 @@ import { useEffect, useState } from "react";
 import { MdEdit } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from '@/components/ui/dialog'
-import {closestCorners, DndContext} from '@dnd-kit/core'
-import {arrayMove, SortableContext, verticalListSortingStrategy} from '@dnd-kit/sortable'
-import { useSortable } from '@dnd-kit/sortable';
-import ProjectCard from "./ProjectCard";
+// import {closestCorners, DndContext, DragEndEvent} from '@dnd-kit/core'
+// import {arrayMove, SortableContext, verticalListSortingStrategy} from '@dnd-kit/sortable'
+// import { useSortable } from '@dnd-kit/sortable';
+// import ProjectCard from "./ProjectCard";
 
 const CategoryPage = () => {
     const { categoryId } = useParams();
@@ -50,17 +50,18 @@ const CategoryPage = () => {
     }
 
 
-    const getTaskPos = (id: string) => projects.findIndex((item:{_id:string})=>( item._id == id))
-    const handleDragEnd = (event: { active: any; over: any; }) => {
-        const {active,over} = event
-
-        if(active.id == over.id) return;
-        setProjects((projects)=>{
-            const originalPos = getTaskPos(active.id)
-            const newPos = getTaskPos(over.id)
-            return arrayMove(projects,originalPos,newPos)
-        })
-    }
+    // const getTaskPos = (id: string) => projects.findIndex((item:{_id:string})=>( item._id == id))
+    // const handleDragEnd = (event: DragEndEvent) => {
+    //     const { active, over } = event;
+      
+    //     if (!over || active.id === over.id) return;
+      
+    //     setProjects((projects: { _id: string; title: string }[]) => {
+    //       const originalPos = getTaskPos(active.id);
+    //       const newPos = getTaskPos(over.id);
+    //       return arrayMove(projects, originalPos, newPos);
+    //     });
+    //   };
 
 
     const confirmPosition = async() => {
@@ -111,7 +112,7 @@ const CategoryPage = () => {
             </div>
             <div className="flex flex-col gap-2">
 
-            {reorderMode && 
+            {/* {reorderMode && 
             
             <DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
                 <SortableContext items={projects.map((project) => project._id)} strategy={verticalListSortingStrategy}>
@@ -121,7 +122,7 @@ const CategoryPage = () => {
                 </SortableContext>
             </DndContext>
             
-            }
+            } */}
 
 
 
