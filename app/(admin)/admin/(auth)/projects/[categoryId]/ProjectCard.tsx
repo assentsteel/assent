@@ -2,7 +2,7 @@ import React from 'react'
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 
-const ProjectCard = ({project,id}: {project: {title: string,_id: string}, id:string}) => {
+const ProjectCard = ({project,id}: {project: {title: string,index:number}, id:number}) => {
     const {attributes, listeners, setNodeRef, transform} = useSortable({
         id,
     })
@@ -12,7 +12,7 @@ const ProjectCard = ({project,id}: {project: {title: string,_id: string}, id:str
     }
 
   return (
-    <div ref={setNodeRef} style={style} className='flex items-center justify-between border p-2 rounded-md' {...attributes} {...listeners} key={project._id}>
+    <div ref={setNodeRef} style={style} className='flex items-center justify-between border p-2 rounded-md' {...attributes} {...listeners} key={project.index}>
                             <div>
                                 <p className="text-[16px]">{project.title}</p>
                             </div>

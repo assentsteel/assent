@@ -7,14 +7,13 @@ import { useEffect, useState } from "react";
 import { MdEdit } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from '@/components/ui/dialog'
-// import {closestCorners, DndContext, DragEndEvent} from '@dnd-kit/core'
-// import {arrayMove, SortableContext, verticalListSortingStrategy} from '@dnd-kit/sortable'
-// import { useSortable } from '@dnd-kit/sortable';
-// import ProjectCard from "./ProjectCard";
+import {closestCorners, DndContext, DragEndEvent} from '@dnd-kit/core'
+import {arrayMove, SortableContext, verticalListSortingStrategy} from '@dnd-kit/sortable'
+import ProjectCard from "./ProjectCard";
 
 const CategoryPage = () => {
     const { categoryId } = useParams();
-    const [projects, setProjects] = useState<{ _id: string; title: string }[]>([]);
+    const [projects, setProjects] = useState<{ _id: string; title: string,index:number }[]>([]);
     const [reorderMode, setReorderMode] = useState(false);
 
     useEffect(() => {
@@ -50,18 +49,18 @@ const CategoryPage = () => {
     }
 
 
-    // const getTaskPos = (id: string) => projects.findIndex((item:{_id:string})=>( item._id == id))
-    // const handleDragEnd = (event: DragEndEvent) => {
-    //     const { active, over } = event;
+    const getTaskPos = (id: number | string) => projects.findIndex((item:{index:number})=>( item.index == id))
+    const handleDragEnd = (event: DragEndEvent) => {
+        const { active, over } = event;
       
-    //     if (!over || active.id === over.id) return;
+        if (!over || active.id === over.id) return;
       
-    //     setProjects((projects: { _id: string; title: string }[]) => {
-    //       const originalPos = getTaskPos(active.id);
-    //       const newPos = getTaskPos(over.id);
-    //       return arrayMove(projects, originalPos, newPos);
-    //     });
-    //   };
+        setProjects((projects: { _id: string; title: string,index:number }[]) => {
+          const originalPos = getTaskPos(active.id);
+          const newPos = getTaskPos(over.id);
+          return arrayMove(projects, originalPos, newPos);
+        });
+      };
 
 
     const confirmPosition = async() => {
@@ -76,7 +75,7 @@ const CategoryPage = () => {
 
         const formData = new FormData()
         formData.append('projects',JSON.stringify(updatedProjects))
-        const response = await fetch('/api/admin/projects/reorder',{
+        const response = await fetch(`/api/admin/projects/reorder?id=${categoryId}`,{
             method:"POST",
             body:formData
         })
@@ -107,22 +106,22 @@ const CategoryPage = () => {
                 <Link href={reorderMode ? `#` : `/admin/projects/${categoryId}/add`}>
                     <Button className="text-white text-[16px]" disabled={reorderMode}>Add Project</Button>
                 </Link>
-                <Button disabled={true} className="text-white text-[16px]" onClick={() => confirmPosition()}>{reorderMode ? "Done" : "Reorder"}</Button>
+                <Button className={`text-white text-[16px] ${reorderMode ? "bg-yellow-700" : "bg-green-700"}`} onClick={() => reorderMode ? confirmPosition() : setReorderMode(!reorderMode)}>{reorderMode ? "Done" : "Reorder"}</Button>
                 </div>
             </div>
             <div className="flex flex-col gap-2">
 
-            {/* {reorderMode && 
+            {reorderMode && 
             
             <DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
-                <SortableContext items={projects.map((project) => project._id)} strategy={verticalListSortingStrategy}>
+                <SortableContext items={projects.map((project) => project.index)} strategy={verticalListSortingStrategy}>
                     {projects?.map((project, index) => (
-                        <ProjectCard key={index} project={project} id={project._id} />
+                        <ProjectCard key={index} project={project} id={project.index} />
                     ))}
                 </SortableContext>
             </DndContext>
             
-            } */}
+            }
 
 
 
