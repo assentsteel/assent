@@ -22,6 +22,10 @@ const projectSchema = new mongoose.Schema({
     location:{
         type:String
     },
+    index:{
+        type:Number,
+        default:0
+    },
     categories:[{
         name:{
             type:String,
