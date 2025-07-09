@@ -1050,6 +1050,7 @@ export type GpAbtsect = {
           slug: string,
           projects: [
             {
+              _id: string,
               banner: string,
               bannerAlt: string,
               pageTitle: string,
