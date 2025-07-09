@@ -4,10 +4,15 @@ import HeroInner from "../common/Banner/HeroInner";
 import Specs from "./sections/Specs";
 import Slidethumb from "../common/Slidethumb";
 import Morepjts from "./sections/Morepjts"; 
+import useSWR from "swr";
   
   import { Projectswfull } from '@/public/types/Common'; 
   const Index = async ({ data }: { data: Projectswfull['categories'][number]['projects'][number] }) => {  
-    console.log(data)
+
+    const fetcher = (...args: Parameters<typeof fetch>) => fetch(...args).then(res => res.json())
+    const { data:fullProjects } = useSWR(`/api/admin/projects`, fetcher)
+
+    console.log(fullProjects)
   const breadcrumb = [
     { label: "Homse", href: "/" },
     { label: "Projects", href: "" },

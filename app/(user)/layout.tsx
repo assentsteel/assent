@@ -39,9 +39,9 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <head>{parse(tagData.tag.headerScript)}</head>
+      {tagData?.tag && <head>{parse(tagData?.tag?.headerScript || "")}</head>}
       <body className={`${poppins.variable} font-poppins antialiased`}>
-      {parse(tagData.tag.bodyScript)}
+      {tagData?.tag && <>{parse(tagData?.tag?.bodyScript || "")}</>}
       <SearchProvider>
      <Navbar categories={categories}/>
         {children}
