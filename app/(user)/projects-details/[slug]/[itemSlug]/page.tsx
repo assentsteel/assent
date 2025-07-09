@@ -1,3 +1,4 @@
+
 import Index from "@/app/component/ProjectsDetails/Index"
 import { Metadata } from "next";
 

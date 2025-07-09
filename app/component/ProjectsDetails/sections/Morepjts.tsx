@@ -1,24 +1,54 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useRef } from "react";
-import Image, { StaticImageData } from "next/image";
+import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
+import useSWR from "swr";
+import { Projectswfull } from '@/public/types/Common'; 
+import Link from "next/link";
 
-interface PlatformsItem {
-  id: number;
-  title: string;
-  sector: string;
-  image: string | StaticImageData;
-}
 
 interface PlatformsSectionProps {
-  data: PlatformsItem[];
+  sector: string;
+  projectId: string;
 }
-const Morepjts: React.FC<PlatformsSectionProps> = ({ data }) => {
+
+type ProjectWithCategory = Projectswfull['categories'][number]['projects'][number] & {
+  categorySlug: string;
+};
+
+const Morepjts: React.FC<PlatformsSectionProps> = ({sector,projectId }) => {
   const containerRef = useRef(null);
+
+  const fetcher = (...args: Parameters<typeof fetch>) => fetch(...args).then(res => res.json())
+  const { data:fullProjects } = useSWR(`/api/admin/projects`, fetcher)
+  const [filteredProjects,setFilteredProjects] = useState<ProjectWithCategory[]>([])
+
+  
+  useEffect(() => {
+    if (fullProjects) {
+      const allProjects = fullProjects.data.categories.flatMap(
+        (category: Projectswfull['categories'][number]) =>
+          category.projects.map((project) => ({
+            ...project,
+            categorySlug: category.slug,
+          }))
+      );
+  
+      const filtered = allProjects.filter(
+        (project: ProjectWithCategory) => project.sector === sector
+      );
+  
+      setFilteredProjects(filtered);
+    }
+  }, [fullProjects, sector]);
+
+  useEffect(()=>{
+    console.log(filteredProjects)
+  },[filteredProjects])
 
 
   useEffect(() => {
@@ -54,7 +84,7 @@ const Morepjts: React.FC<PlatformsSectionProps> = ({ data }) => {
     }
   };
   return (
-    <section className="pb-[50px] md:pb-[70px] xl:pb-[100px]    relative  ">
+    filteredProjects.length > 0 && (<section className="pb-[50px] md:pb-[70px] xl:pb-[100px]    relative  ">
       <div className="container">
         <div className="flex justify-between mb-[20px] lg:mb-10">
           <div className="  ">
@@ -74,25 +104,27 @@ const Morepjts: React.FC<PlatformsSectionProps> = ({ data }) => {
                  whileInView="visible"
              exit="exit"
            >
-          <button className="border whitespace-nowrap font-[500] border-secondary text-xs text-territory uppercase rounded-full py-[8px] px-[20px]  w-fit">
+          <Link href={`/projects-list/${filteredProjects[0].categorySlug}`}><button className="border whitespace-nowrap font-[500] border-secondary text-xs text-territory uppercase rounded-full py-[8px] px-[20px]  w-fit">
             View All
-          </button>
+          </button></Link>
           </motion.div></div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-  {data.slice(0, 4).map((item, index) => (
+  {filteredProjects.slice(0, 4).filter((item: { _id: string; }) => item._id !== projectId).map((item, index) => (
+    <Link href={`/projects-details/${item.categorySlug}/${item.slug}`} key={index}>
     <motion.div
-      key={index}
       variants={cardVariants}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
     >
-      <div className="relative group">
+      <div className="relative group h-[510px]">
         <figure className="overlayclr">
           <Image
-            src={item.image}
+            src={item.thumbnail}
             alt=""
-            className="rounded-[15px] w-full object-cover"
+            className="rounded-[15px] w-full object-cover h-full absolute"
+            width={500}
+            height={500}
           />
         </figure>
 
@@ -125,10 +157,11 @@ const Morepjts: React.FC<PlatformsSectionProps> = ({ data }) => {
         </div>
       </div>
     </motion.div>
+    </Link>
   ))}
 </div>
       </div>
-    </section>
+    </section>)
   );
 };
 
