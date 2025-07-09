@@ -7,10 +7,14 @@ import { useEffect, useState } from "react";
 import { MdEdit } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from '@/components/ui/dialog'
+import {closestCorners, DndContext, DragEndEvent} from '@dnd-kit/core'
+import {arrayMove, SortableContext, verticalListSortingStrategy} from '@dnd-kit/sortable'
+import ProjectCard from "./ProjectCard";
 
 const CategoryPage = () => {
     const { categoryId } = useParams();
-    const [projects, setProjects] = useState<{ _id: string; title: string }[]>([]);
+    const [projects, setProjects] = useState<{ _id: string; title: string,index:number }[]>([]);
+    const [reorderMode, setReorderMode] = useState(false);
 
     useEffect(() => {
         fetchProjects();
@@ -44,6 +48,45 @@ const CategoryPage = () => {
         }
     }
 
+
+    const getTaskPos = (id: number | string) => projects.findIndex((item:{index:number})=>( item.index == id))
+    const handleDragEnd = (event: DragEndEvent) => {
+        const { active, over } = event;
+      
+        if (!over || active.id === over.id) return;
+      
+        setProjects((projects: { _id: string; title: string,index:number }[]) => {
+          const originalPos = getTaskPos(active.id);
+          const newPos = getTaskPos(over.id);
+          return arrayMove(projects, originalPos, newPos);
+        });
+      };
+
+
+    const confirmPosition = async() => {
+        setReorderMode(!reorderMode);
+
+        const updatedProjects = projects.map((project, index) => ({
+            ...project,
+            index: index + 1,
+        }));
+
+        setProjects(updatedProjects); 
+
+        const formData = new FormData()
+        formData.append('projects',JSON.stringify(updatedProjects))
+        const response = await fetch(`/api/admin/projects/reorder?id=${categoryId}`,{
+            method:"POST",
+            body:formData
+        })
+        if(response.ok){
+            const data = await response.json()
+            if(data.success){
+                alert(data.message)
+            }
+        }
+    };
+
     if (projects.length === 0) {
         return (
             <div className="flex items-center justify-center h-full flex-col gap-2">
@@ -54,17 +97,37 @@ const CategoryPage = () => {
             </div>
         )
     }
-
+    
     return (
         <>
             <div className="flex justify-between mb-5">
                 <h3 className="text-md font-semibold">Projects</h3>
-                <Link href={`/admin/projects/${categoryId}/add`}>
-                    <Button className="text-white text-[16px]">Add Project</Button>
+                <div className="flex items-center gap-2">
+                <Link href={reorderMode ? `#` : `/admin/projects/${categoryId}/add`}>
+                    <Button className="text-white text-[16px]" disabled={reorderMode}>Add Project</Button>
                 </Link>
+                <Button className={`text-white text-[16px] ${reorderMode ? "bg-yellow-700" : "bg-green-700"}`} onClick={() => reorderMode ? confirmPosition() : setReorderMode(!reorderMode)}>{reorderMode ? "Done" : "Reorder"}</Button>
+                </div>
             </div>
             <div className="flex flex-col gap-2">
-            {projects?.map((project, index) => (
+
+            {reorderMode && 
+            
+            <DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
+                <SortableContext items={projects.map((project) => project.index)} strategy={verticalListSortingStrategy}>
+                    {projects?.map((project, index) => (
+                        <ProjectCard key={index} project={project} id={project.index} />
+                    ))}
+                </SortableContext>
+            </DndContext>
+            
+            }
+
+
+
+
+
+            {!reorderMode && projects?.map((project, index) => (
                 <div className='flex items-center justify-between border p-2 rounded-md' key={index}>
                     <div>
                         <p className="text-[16px]">{project.title}</p>
