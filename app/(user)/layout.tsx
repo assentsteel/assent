@@ -4,6 +4,7 @@ import "../globals.css";
 import Navbar from "../component/common/NavBars/Navbar";
 import Footer from "../component/common/Footer";
 import { SearchProvider } from "@/contexts/searchContext";
+import parse from 'html-react-parser'
 
 
 const poppins = Poppins({
@@ -32,9 +33,15 @@ export default async function RootLayout({
       slug: item.slug,
     }
   });
+
+  const tagResponse = await fetch(`${process.env.BASE_URL}/api/admin/tags`);
+  const tagData = await tagResponse.json();
+
   return (
     <html lang="en">
+      <head>{parse(tagData.tag.headerScript)}</head>
       <body className={`${poppins.variable} font-poppins antialiased`}>
+      {parse(tagData.tag.bodyScript)}
       <SearchProvider>
      <Navbar categories={categories}/>
         {children}

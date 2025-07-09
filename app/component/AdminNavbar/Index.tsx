@@ -10,7 +10,7 @@ import {
     BriefcaseIcon,
     GlobeAltIcon,
   } from "@heroicons/react/24/outline";
-import { AwardIcon, CodeIcon, GalleryThumbnails, HeartHandshake, LeafIcon, ThumbsUp, Workflow } from 'lucide-react';
+import { AwardIcon, GalleryThumbnails, HeartHandshake, LeafIcon, Settings, ThumbsUp, Workflow } from 'lucide-react';
 import { useEffect } from 'react';
 
 
@@ -63,7 +63,7 @@ const AdminNavbar = () => {
         { name: "Quality", href: "/admin/quality", icon: ThumbsUp },
         { name: "HSE", href: "/admin/hse", icon: HeartHandshake },
         { name: "Sustainability", href: "/admin/sustainability", icon: LeafIcon },
-        { name: "Tag Codes", href: "/admin/codes", icon: CodeIcon},
+        { name: "Settings", href: "/admin/settings", icon: Settings},
       ];
 
   return (
