@@ -20,6 +20,11 @@ import { useParams } from 'next/navigation'
 import { ImageUploader } from '@/components/ui/image-uploader'
 import Image from 'next/image'
 import { RiAiGenerateText } from 'react-icons/ri'
+import {closestCorners, DndContext, DragEndEvent} from '@dnd-kit/core'
+import {arrayMove, SortableContext, verticalListSortingStrategy} from '@dnd-kit/sortable'
+import ImageCard from './ImageCard'
+import { TbReorder } from "react-icons/tb";
+import { GiConfirmed } from "react-icons/gi";
 
 
 
@@ -52,6 +57,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
 
     const [sectorList, setSectorList] = useState<{ name: string }[]>([]);
     const [locationList, setLocationList] = useState<{ name: string }[]>([]);
+    const [reorderMode, setReorderMode] = useState(false);
 
     const { register, handleSubmit, setValue, watch, control, formState: { errors } } = useForm<ProjectFormProps>();
 
@@ -170,6 +176,27 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
             imageUrls.filter((_, index) => index !== indexToRemove)
         );
     }; 
+
+
+        const getTaskPos = (id:string) => imageUrls.findIndex((item:string)=>( item == id))
+        const handleDragEnd = (event: DragEndEvent) => {
+            console.log("works");
+            const { active, over } = event;
+          
+            if (!over || active.id === over.id) return;
+          
+            const oldIndex = getTaskPos(active.id as string);
+            const newIndex = getTaskPos(over.id as string);
+          
+            const newPosition = arrayMove(imageUrls, oldIndex, newIndex);
+            setImageUrls(newPosition);
+            setValue("images", newPosition);
+            
+          };
+
+          useEffect(() => {
+            console.log(imageUrls);
+          }, [imageUrls]);
 
 
 
@@ -323,11 +350,26 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                 <div className='flex flex-col gap-2 border p-2 rounded-md'>
                    
                 <div>
+                    <div className='flex justify-between items-center'>
                     <Label className="block text-sm pl-2 ">Images</Label>
-                    <div className="mt-2">
-                        <ImageUploader onChange={handleImageUpload} deleteAfterUpload={true} />
+                    <Button className="bg-green-600 text-white" type="button" onClick={() => setReorderMode(!reorderMode)}>{reorderMode ? <GiConfirmed /> : <TbReorder />}</Button>
                     </div>
-                    <div className="mt-4 grid grid-cols-3 gap-4">
+                    <div className="mt-2">
+                        <ImageUploader onChange={handleImageUpload} deleteAfterUpload={true} multiple={true}/>
+                    </div>
+
+                    {reorderMode && <div className="mt-4 grid grid-cols-3 gap-4">
+                        <DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
+                            <SortableContext items={imageUrls} strategy={verticalListSortingStrategy}>
+                        {imageUrls.map((url, index) => (
+                            <ImageCard key={url} url={url} index={index} handleRemoveImage={handleRemoveImage} id={url} />
+                        ))}
+                        </SortableContext>
+                        </DndContext>
+                    </div>}
+
+
+                    {!reorderMode && <div className="mt-4 grid grid-cols-3 gap-4">
                         {imageUrls.map((url, index) => (
                             <div key={index} className="relative h-40">
                                 <Image
@@ -346,7 +388,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                                 </button>
                             </div>
                         ))}
-                    </div>
+                    </div>}
                 </div>
 
                 
