@@ -13,9 +13,10 @@ interface ImageUploaderProps {
   className?: string;
   deleteAfterUpload?: boolean;
   isLogo?: boolean;
+  multiple?: boolean;
 }
 
-export function ImageUploader({ value, onChange, className, deleteAfterUpload = false, isLogo = false }: ImageUploaderProps) {
+export function ImageUploader({ value, onChange, className, deleteAfterUpload = false, isLogo = false,multiple = false }: ImageUploaderProps) {
   const [isUploading, setIsUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [localImageUrl, setLocalImageUrl] = useState<string | null>(null);
@@ -35,7 +36,32 @@ export function ImageUploader({ value, onChange, className, deleteAfterUpload = 
         setError(null);
         setIsUploadComplete(false);
 
-        const formData = new FormData();
+        if(multiple){
+          const formData = new FormData();
+      acceptedFiles.forEach((file) => {
+        formData.append("files", file); // same key for all files
+      });
+      formData.append("fileType", "image");
+      const response = await fetch("/api/admin/upload-multiple", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.status !== 200) {
+        alert("Upload failed");
+        return;
+      }
+
+      const data = await response.json();
+      // You get back an array of URLs
+      if (Array.isArray(data.urls)) {
+        data.urls.forEach((url: string, index: number) => {
+          onChange(url, acceptedFiles[index]); // optional second arg
+        });
+      }
+
+        }else{
+          const formData = new FormData();
         formData.append("file", file);
         formData.append("fileType", "image");
         const response = await fetch("/api/admin/upload", {
@@ -53,6 +79,9 @@ export function ImageUploader({ value, onChange, className, deleteAfterUpload = 
         setLocalImageUrl(data.url);
         onChange(data.url, file);
         setIsUploadComplete(true);
+        }
+
+        
         if (deleteAfterUpload) {
           setLocalImageUrl(null);
           setIsUploadComplete(false);
@@ -72,8 +101,8 @@ export function ImageUploader({ value, onChange, className, deleteAfterUpload = 
     accept: {
       "image/*": [".png", ".jpg", ".jpeg", ".gif",".svg"],
     },
-    maxFiles: 1,
-    multiple: false,
+    maxFiles: multiple ? undefined : 1,
+    multiple: multiple,
   });
 
   const removeImage = useCallback(() => {
