@@ -89,7 +89,7 @@ const AccreditationsList = ({ data }: { data: Awards }) => {
                  variants={modalVariants}
                  onClick={() => setSelectedImage(null)}
                >
-                 <div className="relative max-w-xl w-full">
+                 <div className="relative max-w-md  w-full">
                    <button
                      className="absolute top-2 right-2 text-white text-2xl z-10 flex justify-center items-center bg-primary rounded-full w-[25px] h-[25px]"
                      onClick={() => setSelectedImage(null)}
@@ -99,7 +99,7 @@ const AccreditationsList = ({ data }: { data: Awards }) => {
                    <Image
                      src={selectedImage}
                      alt="popup"
-                     className="w-full h-auto rounded-lg img-fluid "
+                     className="w-full h-auto rounded-2xl img-fluid "
                      width={500}
                      height={500}
                    />

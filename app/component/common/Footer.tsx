@@ -73,10 +73,10 @@ const Footer = () => {
           </motion.div>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-[10px] xxl:gap-[50px] xxxl:gap-[100px] items-start">
+        <div className="grid grid-cols-1  xxl:grid-cols-12 gap-8 xxl:gap-[50px] xxxl:gap-[100px] items-start">
           {/* Buttons and Certifications */}
           <motion.div variants={fadeIn} className="md:col-span-8">
-            <div className="flex md:flex-row flex-col gap-5 md:gap-[70px] justify-between border-t border-white/35 pt-5 lg:pt-[70px] pb-5 lg:pb-0 ">
+            <div className="flex md:flex-row flex-col gap-5 md:gap-[70px] justify-between border-t border-white/35 pt-8 xxl:pt-[70px] pb-5 lg:pb-0 ">
               <div className="flex items-center flex-col md:flex-row gap-4 justify-between w-full">
                 <div className="flex md:flex-row flex-col gap-4 overflow-hidden pt-2 lg:pt-0 wst57">
                 {["DOWNLOAD BROCHURE", "PRE-QUALIFICATION"].map((btn, index) => (
@@ -87,13 +87,13 @@ const Footer = () => {
 
                 </div>
                 <div className="flex gap-2 md:gap-1 items-center flex-col md:flex-row">
-                  <Image src="/assets/img/icns/fcer1.png" alt="Certifications" width={156} height={58} className=" w-auto rounded-sm" />
+                  <Image src="/assets/img/icns/fcer1.png" alt="Certifications" width={156} height={58} className=" w-auto h-[36px] md:h-auto rounded-sm" />
 
-                  <Image src="/assets/img/icns/fcer2.png" alt="Certifications" width={43} height={58} className=" w-auto rounded-sm" />
+                  <Image src="/assets/img/icns/fcer2.png" alt="Certifications" width={43} height={58} className=" w-auto h-[36px] md:h-auto rounded-sm" />
 
-                  <Image src="/assets/img/icns/fcer3.png" alt="Certifications" width={183} height={58} className=" w-auto rounded-sm" />
+                  <Image src="/assets/img/icns/fcer3.png" alt="Certifications" width={183} height={58} className=" w-auto h-[36px] md:h-auto rounded-sm" />
 
-                  <Image src="/assets/img/icns/fcer4.png" alt="Certifications" width={81} height={58} className=" w-auto rounded-sm" />
+                  <Image src="/assets/img/icns/fcer4.png" alt="Certifications" width={81} height={58} className=" w-auto h-[36px] md:h-auto rounded-sm" />
 
 
                 </div>
@@ -102,8 +102,8 @@ const Footer = () => {
           </motion.div>
 
           {/* Social Links */}
-          <motion.div variants={fadeIn} className="md:col-span-4  block">
-            <div className="flex gap-6 border-t border-white/35 pt-5 md:pt-[70px]">
+          <motion.div variants={fadeIn} className="col-span-8 xxl:col-span-4  block">
+            <div className="flex gap-2 md:gap-6 border-t border-white/35 pt-5 xxl:pt-[70px]">
               {[FaLinkedinIn, FaFacebookF, FaInstagram, FaYoutube].map((Icon, index) => (
                 <motion.div key={index} variants={scaleUp}>
                   <Link href="#" className="text-md hover:text-secondary hover:scale-125 transition-all ease-in-out duration-500 h-[45px] xxxl:h-[58px] items-center flex">

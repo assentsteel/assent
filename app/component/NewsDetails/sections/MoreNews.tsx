@@ -9,9 +9,10 @@ gsap.registerPlugin(ScrollTrigger);
     import { News } from '@/public/types/Common'; 
      
       
-        const MoreNews = ({ data }: { data: News | undefined }) => {
+        const MoreNews = ({ data, id }: { data: News | undefined ,id:number}) => {
   const containerRef = useRef(null);
-
+console.log(data);
+const filteredNews = data?.news.filter((item) => item._id !== id);
   useEffect(() => {
     if (containerRef.current) {
       gsap.from(containerRef.current, {
@@ -28,14 +29,14 @@ gsap.registerPlugin(ScrollTrigger);
     }
   }, []);
 
-  if (!data) return null;  // Return null if data is undefined
+  if (!filteredNews) return null;  // Return null if data is undefined
 
   return (
     <section className="pb-[50px] md:pb-[70px] xl:pb-[100px] overflow-hidden relative ">
       <div >
 
         <div className=" ">
-          {data?.news.slice(0, 3).map((item, index) => (
+          {filteredNews?.slice(0, 3).map((item, index) => (
 
             <div key={index} >
               <div className="relative group lg:h-auto  rounded-[15px]">

@@ -12,6 +12,7 @@ import { Navigation } from "swiper/modules";
 import { motion } from "framer-motion";
 
  
+import { Swiper as SwiperType } from "swiper";
   
   import { Services } from '@/public/types/Common'; 
   
@@ -21,6 +22,7 @@ import { motion } from "framer-motion";
   const prevRef = useRef(null);
   const nextRef = useRef(null);
   const containerRef = useRef(null);
+  const swiperRef = useRef<SwiperType | null>(null);
 
   useEffect(() => {
     if (containerRef.current) {
@@ -69,6 +71,8 @@ import { motion } from "framer-motion";
                 swiper.navigation.init();
                 swiper.navigation.update();
               }}
+              
+              onSwiper={(swiper) => (swiperRef.current = swiper)}
               loop
               slidesPerView={1}
               spaceBetween={20}
@@ -89,9 +93,11 @@ import { motion } from "framer-motion";
             </Swiper>
 
             {/* Custom Navigation Buttons */}
+            
+      {data.firstSection.items.length > 1 && (
             <div className="absolute bottom-4 right-4 flex gap-2 lg:gap-[30px] z-10">
               <button
-                ref={prevRef}
+                 onClick={() => swiperRef.current?.slidePrev()}
                 className="bg-white text-black px-3 py-1 rounded-full w-[38px] h-[38px] md:w-[48px] md:h-[48px] hover:bg-secondary group transition flex items-center justify-center"
               >
                 <Image
@@ -103,7 +109,7 @@ import { motion } from "framer-motion";
                 />
               </button>
               <button
-                ref={nextRef}
+              onClick={() => swiperRef.current?.slideNext()}
                 className="bg-white text-black px-3 py-1 rounded-full w-[38px] h-[38px] md:w-[48px] md:h-[48px] hover:bg-secondary group transition flex items-center justify-center"
               >
                 <Image
@@ -115,6 +121,7 @@ import { motion } from "framer-motion";
                 />
               </button>
               </div>
+              )}
               </motion.div>
           </div>
         </div>

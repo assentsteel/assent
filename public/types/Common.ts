@@ -117,7 +117,8 @@ export type News =
         category: string,
         createdAt: string,
         metaTitle: string,
-        metaDescription: string
+        metaDescription: string,
+        _id: number
       }[]
   } 
   export type Newsdetails =  

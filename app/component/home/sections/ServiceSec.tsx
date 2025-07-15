@@ -20,7 +20,7 @@ console.log(data);
         {/* Grid Section with Sectors */}
         <div className="grid md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-[30px]   border-b border-white/35">
           {data.servicesSection.items.map((sector, index) => (
-            <Link href={`${sector.slug}`} key={index} className="relative   top-[2px] group cursor-pointer before:content-[''] before:absolute before:bottom-0 before:top-auto before:left-0 before:h-[3px] before:bg-secondary before:z-10 before:w-0 before:mx-auto hover:before:w-full before:transition-all before:duration-300 before:ease-in-out ">
+            <Link href={`${sector.slug}`} key={index} className="relative   top-[2px] group   before:content-[''] before:absolute before:bottom-0 before:top-auto before:left-0 before:h-[3px] before:bg-secondary before:z-10 before:w-0 before:mx-auto hover:before:w-full before:transition-all before:duration-300 before:ease-in-out ">
             <motion.div
               
               className="  "
