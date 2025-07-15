@@ -11,7 +11,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import { motion } from "framer-motion";
-
+ 
 
   import { News, Newsdetails } from '@/public/types/Common';
 
@@ -36,6 +36,7 @@ import { motion } from "framer-motion";
         useEffect(() => {
           handleFetchProjects();
         }, []);
+        console.log(data)
 
   const prevRef = useRef(null);
   const nextRef = useRef(null);
@@ -215,7 +216,7 @@ import { motion } from "framer-motion";
                   </p>
                 </div>
               </div>
-              <MoreNews data={newsList} />
+              <MoreNews data={newsList} id={data.data._id}/>
             </motion.div>
           </div>
         </div>
