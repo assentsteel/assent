@@ -59,8 +59,8 @@ const Footer = () => {
                 { label: "Awards & Accreditations", href: "/accreditations" },
                 { label: "Careers", href: "/careers" },
                 { label: "News", href: "/news" },
-                { label: "Request for Quotation", href: "/rfq" },
-                { label: "Vendor Registration", href: "/vendor" },
+                { label: "Request for Quotation", href: "/" },
+                { label: "Vendor Registration", href: "/" },
               ].map((link, index) => (
                 <motion.li key={index} variants={fadeInLeft}>
                   <Link href={link.href} className="hover:text-secondary transition-all ease-in-out duration-500">
@@ -86,7 +86,7 @@ const Footer = () => {
                 ))}
 
                 </div>
-                <div className="flex gap-1 items-center">
+                <div className="flex gap-2 md:gap-1 items-center flex-col md:flex-row">
                   <Image src="/assets/img/icns/fcer1.png" alt="Certifications" width={156} height={58} className=" w-auto rounded-sm" />
 
                   <Image src="/assets/img/icns/fcer2.png" alt="Certifications" width={43} height={58} className=" w-auto rounded-sm" />
