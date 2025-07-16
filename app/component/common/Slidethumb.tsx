@@ -132,7 +132,7 @@ const Slidethumb: React.FC<PlatformsSectionProps> = ({ data }) => {
                   {data.images.map((src, i) => (
                     <SwiperSlide
                       key={i}
-                      className="!w-[50px] !h-[50px] flex items-center justify-center rounded-full overflow-hidden border-2 border-transparent hover:border-secondary cursor-pointer"
+                      className="!w-[40px] !h-[40px] lg:!w-[50px] lg:!h-[50px] flex items-center justify-center rounded-full overflow-hidden border-2 border-transparent hover:border-secondary cursor-pointer"
                     >
                       
                         <Image
@@ -152,7 +152,7 @@ const Slidethumb: React.FC<PlatformsSectionProps> = ({ data }) => {
               <div className="absolute bottom-8  lg:bottom-[50px] right-4 flex gap-2 z-10 w-full justify-between left-0 px-6 lg:px-[30px]">
                 <button
                   ref={prevRef}
-                  className="bg-white text-black px-3 py-1 rounded-full w-[48px] h-[48px] hover:bg-secondary group transition flex items-center justify-center"
+                  className="bg-white text-black lg:px-3 py-1 rounded-full w-[24px] h-[24px] lg:w-[48px] lg:h-[48px] hover:bg-secondary group transition flex items-center justify-center"
                 >
                   <Image
                     src={assets.greenarrow}
@@ -164,7 +164,7 @@ const Slidethumb: React.FC<PlatformsSectionProps> = ({ data }) => {
                 </button>
                 <button
                   ref={nextRef}
-                  className="bg-white text-black px-3 py-1 rounded-full w-[48px] h-[48px] hover:bg-secondary group transition flex items-center justify-center"
+                  className="bg-white text-black lg:px-3 py-1 rounded-full lg:w-[48px] lg:h-[48px] w-[24px] h-[24px] hover:bg-secondary group transition flex items-center justify-center"
                 >
                   <Image
                     src={assets.greenarrow}

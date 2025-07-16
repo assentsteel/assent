@@ -1,5 +1,5 @@
 "use client";
-import { usePathname } from "next/navigation";
+
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import MobileNav from "./MobileNav";
@@ -7,30 +7,46 @@ import Image from "next/image";
 import { menuItems } from "./data";
 
 import { HoveredLink, Menu, MenuItem } from "@/components/ui/navbar-menu";
+import { AnimatePresence, motion } from "framer-motion";
 
 // import { usePathname } from "next/navigation";
 
 const Navbar = ({ categories }: { categories: { name: string; slug: string; }[] }) => {
-  const pathname = usePathname();
   const [active, setActive] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState<null | boolean>(null);
+  const [scrollDirection, setScrollDirection] = useState<"up" | "down" | null>(null);
 
-  const pagesWithBackground = ["/"]; // Add required pages
-  const hasBackground = pagesWithBackground.includes(pathname);
-  const [showFixedNavbar, setShowFixedNavbar] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 150) {
-        setShowFixedNavbar(true);
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+  
+    const updateScroll = () => {
+      const currentY = window.scrollY;
+  
+      if (currentY > lastScrollY) {
+        setScrollDirection("down");
       } else {
-        setShowFixedNavbar(false);
+        setScrollDirection("up");
+      }
+  
+      setScrollY(currentY);
+      lastScrollY = currentY;
+      ticking = false;
+    };
+  
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateScroll);
+        ticking = true;
       }
     };
   
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
   
   useEffect(() => {
     if (typeof window === "undefined") return; // Prevents errors during SSR
@@ -60,13 +76,9 @@ const Navbar = ({ categories }: { categories: { name: string; slug: string; }[] 
 
     //     const isHomePage = pathname === "/"; // Check if it's the home page
     const renderHeader = () => (
-      <header
-        className={`${
-          hasBackground
-            ? "bg-white backdrop-blur-[10px] text-black shadow-md"
-            : "bg-transparent text-white tanspheader"
-        } transition duration-300 ease-in-out w-full z-50`}
-      >
+      // <header
+      //   className={`fixed top-0 left-0 transition duration-300 ease-in-out w-full z-50`}
+      // >
         <Menu setActive={setActive}>
           {menuItems.map((menuItem, index) =>
             menuItem.title === "Projects" ? (
@@ -133,21 +145,29 @@ const Navbar = ({ categories }: { categories: { name: string; slug: string; }[] 
             )
           )}
         </Menu>
-      </header>
+      // </header>
     );
+
+    const shouldShowNavbar = scrollDirection === null || scrollY < 150 || scrollY > 550;
+
     
     return (
-     <> 
-     <div className=" relative z-[9999]  ">
-     {renderHeader()} 
-     </div>
-     {showFixedNavbar&&(
-     <div className="fixed top-0 left-0 w-full z-[999] bg-white text-black shadow-md transition-all duration-500">
-     { renderHeader()}
-     </div>
-     )}
+      <>
+        <AnimatePresence>
+  {shouldShowNavbar && (
+    <motion.header
+      key="navbar"
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      exit={{ y: -100, opacity: 0 }}
+      transition={{ duration: 0.4, ease: "easeInOut" }}
+      className="fixed top-0 left-0 w-full z-[999] bg-white text-black shadow-md"
+    >
+      {renderHeader()}
+    </motion.header>
+  )}
+</AnimatePresence>
       </>
-      
     );
   }
 };

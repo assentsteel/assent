@@ -179,7 +179,7 @@ const handleLoadMore = () => {
                             <ChevronUpDownIcon className="h-4 w-4" />
                           </span>
                         </Listbox.Button>
-                        <Listbox.Options className="absolute z-10 left-0 w-full bg-white border mt-1 shadow-lg rounded-md overflow-hidden">
+                        <Listbox.Options className="absolute z-10 left-0 w-full bg-white border mt-1 shadow-lg rounded-md max-md:h-[200px] overflow-auto">
                           {locationData.map((option) => (
                             <Listbox.Option
                               key={option.name}
@@ -216,7 +216,7 @@ const handleLoadMore = () => {
                             <ChevronUpDownIcon className="h-4 w-4" />
                           </span>
                         </Listbox.Button>
-                        <Listbox.Options className="absolute z-10 left-0 w-full bg-white border mt-1 shadow-lg rounded-md overflow-hidden">
+                        <Listbox.Options className="absolute z-10 left-0 w-full bg-white border mt-1 shadow-lg rounded-md max-md:h-[200px] overflow-auto">
                           {sectorData.map((option) => (
                             <Listbox.Option
                               key={option.name}

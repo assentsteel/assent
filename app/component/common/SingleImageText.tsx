@@ -59,7 +59,7 @@ import { Abtpurpose  } from '@/public/types/Common';
           style={{
             background: `url(${typeof data.image === 'string' ? data.image : data.image})`,
             backgroundSize: 'cover',
-            backgroundPosition: 'right center',
+            backgroundPosition: 'center',
           }}
         >
           <motion.div

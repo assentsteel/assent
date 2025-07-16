@@ -12,7 +12,7 @@ type RegistrationForm = z.infer<typeof registrationFormSchema>
 
 const RegistrationForm = () => {
 
-    const {register,handleSubmit,formState:{errors},setValue,reset} = useForm<RegistrationForm>({
+    const {register,handleSubmit,formState:{errors},setValue,reset,formState:{isSubmitting}} = useForm<RegistrationForm>({
         resolver:zodResolver(registrationFormSchema)
     })
 
@@ -132,6 +132,10 @@ const RegistrationForm = () => {
                         const data = await formResponse.json();
                         alert(data.message);
                         reset()
+                        setTradelicenseFile(null);
+                        setVatregistrationFile(null);
+                        setTradelicenseFileName("");
+                        setVatregistrationFileName("");
                       }else{
                         alert("Something went wrong, try again")
                       }
@@ -252,6 +256,7 @@ const RegistrationForm = () => {
             {/* Submit Button */}
             <motion.div variants={fadeUp} className="flex lg:justify-end">
               <motion.button
+              disabled={isSubmitting}
                 className="min-w-[173px] bg-[#0A2657] text-white text-[16px] font-[400] px-8 py-4 rounded-full shadow-md hover:bg-primary transition duration-300"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}

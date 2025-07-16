@@ -12,6 +12,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { assets } from "@/public/assets/assets";
 import { Projectswfull } from "@/public/types/Common";
+import Link from "next/link";
 gsap.registerPlugin(ScrollTrigger);
 
 
@@ -71,16 +72,12 @@ export default function ProjectsSection({data}: {data: Projectswfull}) {
                whileInView={{ opacity: 1, y: 0 }}
                transition={{ duration: 0.8, delay:  0.3 }}
               viewport={{ once: true, amount: 0.5 }}>
-              <Button
+              <Link href={`/projects-list/${data.categories[activeCategory || 0]?.slug}`}><Button
                   variant="outline"
                 className="px-[17px] py-5 text-xs rounded-full h-[40px] lg:h-[48px] text-black border border-secondary uppercase"
-                 onClick={() => {
-                  setViewAll(!viewAll)
-                  setActiveCategory(null)
-                 }}
                 >
-                {viewAll ? "Back" : "View All"}
-                </Button>
+                {"View All"}
+                </Button></Link>
    <div className="flex justify-end gap-4">
                                 {/* Prev Button */}
                                 <motion.button
@@ -139,10 +136,10 @@ export default function ProjectsSection({data}: {data: Projectswfull}) {
             }}
             className="w-full !overflow-visible"
             onSwiper={(swiper) => (swiperRef.current = swiper)}
-          >{activeCategory !== null ? (
-             data.categories[activeCategory]?.projects.map((project, index) => (
+          >{activeCategory !== null && (
+             data.categories[activeCategory]?.projects.slice(0, 10).map((project, index) => (
               <SwiperSlide key={index} className="" >
-                <motion.div  className="cursor-pointer"
+                <Link href={`/projects-details/${data.categories[activeCategory]?.slug}/${project.slug}`}><motion.div  className="cursor-pointer"
     whileHover={{ scale: 1.05, rotateY: 10, rotateX: 0 }}
     transition={{ type: "spring", stiffness: 200, damping: 10 }}>
                 <figure className="rounded-custom overflow-hidden h-[250px] lg:h-[300px] xl:h-[400px]">
@@ -156,34 +153,10 @@ export default function ProjectsSection({data}: {data: Projectswfull}) {
                 </figure>
                 <p className="text-sm text-[#595959] leading-none font-normal py-[25px] border-b border-[#1F1F1F]">{project.sector}</p>
                 <h3 className="text-lg font-semibold leading-none pt-[25px]">{project.title}</h3>
-                </motion.div>
+                </motion.div></Link>
               </SwiperSlide>
             ))
-          ) : (
-            data.categories.map((category, index) => (
-              <div key={index}>
-                {category.projects.map((project, index) => (
-              <SwiperSlide key={index*2} className="" >
-                <motion.div  className="cursor-pointer"
-    whileHover={{ scale: 1.05, rotateY: 10, rotateX: 0 }}
-    transition={{ type: "spring", stiffness: 200, damping: 10 }}>
-                <figure className="rounded-custom overflow-hidden h-[300px] md:h-[400px]">
-                  <Image
-                    src={project.banner}
-                    width={1000}
-                    height={500}
-                    alt={project.title}
-                    className="rounded-lg h-full w-full"
-                  />
-                </figure>
-                <p className="text-sm text-[#595959] leading-none font-normal py-[25px] border-b border-[#1F1F1F]">{project.sector}</p>
-                <h3 className="text-lg font-semibold leading-none pt-[25px]">{project.title}</h3>
-                </motion.div>
-              </SwiperSlide>
-            ))}
-              </div>
-          ))
-        )}
+          )}
           </Swiper>
           </motion.div>
         </div>
