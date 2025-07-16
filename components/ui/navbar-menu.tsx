@@ -136,18 +136,19 @@ export const Menu = ({
   useEffect(() => {
     if (searchActive) {
       const scrollY = window.scrollY;
-      document.body.style.position = 'fixed';
+      document.body.dataset.scrollY = String(scrollY);
+      // document.body.style.position = 'fixed';
+      document.body.style.overflow = 'hidden';
       document.body.style.top = `-${scrollY}px`;
-      document.body.style.left = '0';
-      document.body.style.right = '0';
+      document.body.style.width = '100%';
       globalSetSearchActive(true);
     } else {
-      const scrollY = document.body.style.top;
+      const scrollY = document.body.dataset.scrollY;
       document.body.style.position = '';
       document.body.style.top = '';
-      window.scrollTo(0, parseInt(scrollY || '0') * -1);
+      document.body.style.width = '';
+      window.scrollTo(0, scrollY ? parseInt(scrollY) : 0);
       globalSetSearchActive(false);
-      setResult([]);
     }
   }, [searchActive]);
 
@@ -188,7 +189,7 @@ export const Menu = ({
       </nav>
 
         <>
-        <div className={`fixed inset-0 bg-black/30 backdrop-blur-sm z-10 h-screen w-full duration-300 ${searchActive ? "translate-y-[0%]" : "translate-y-[-100%]"}`}></div>
+        <div className={`absolute inset-0 bg-black/30 backdrop-blur-sm z-10 h-screen w-full duration-300 ${searchActive ? "translate-y-[0%]" : "translate-y-[-100%]"}`}></div>
         <div  ref={searchRef} className={`w-full bg-white z-10 h-[500px] shadow-xl absolute top-24 right-0 duration-300 flex flex-col ${searchActive ? "translate-y-[0%]" : "translate-y-[-100%]"}`}>
         <div className="container h-full">
           {/* <div className="absolute top-[20px] xxxl:right-[60px] right-[30px]" onClick={() => setSearchActive(!searchActive)}>
