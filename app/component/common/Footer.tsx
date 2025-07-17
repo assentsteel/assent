@@ -59,11 +59,11 @@ const Footer = () => {
                 { label: "Awards & Accreditations", href: "/accreditations" },
                 { label: "Careers", href: "/careers" },
                 { label: "News", href: "/news" },
-                { label: "Request for Quotation", href: "/" },
+                { label: "Request for Quotation", href: "/contact-us" },
                 { label: "Vendor Registration", href: "/" },
               ].map((link, index) => (
                 <motion.li key={index} variants={fadeInLeft}>
-                  <Link href={link.href} className="hover:text-secondary transition-all ease-in-out duration-500">
+                  <Link href={link.label === "Request for Quotation" ? {pathname: "/contact-us", query: {type: "rfq"}} : link.href} className="hover:text-secondary transition-all ease-in-out duration-500">
                     {link.label}
                   </Link>
                 </motion.li>
