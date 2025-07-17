@@ -160,8 +160,11 @@ const HeroSection = ({ data }: { data: Home }) => {
                         className="text-white text-md leading-none font-normal flex gap-2"
                         variants={textItemVariants}
                       >
-                        {slide.subTitle}
-                        <b className="font-semibold text-secondary">
+                        <span className="">
+    {slide.subTitle}{' '}
+    <span className="text-green-500 font-semibold md:hidden">{slide.primaryColorText}</span>
+  </span>
+                        <b className="font-semibold text-secondary max-md:hidden">
                         {slide.primaryColorText}
                         </b>
                       </motion.p>
