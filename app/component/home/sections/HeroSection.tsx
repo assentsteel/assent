@@ -162,7 +162,7 @@ const HeroSection = ({ data }: { data: Home }) => {
                       >
                         <span className="">
     {slide.subTitle}{' '}
-    <span className="text-green-500 font-semibold md:hidden">{slide.primaryColorText}</span>
+    <span className="text-secondary font-semibold md:hidden">{slide.primaryColorText}</span>
   </span>
                         <b className="font-semibold text-secondary max-md:hidden">
                         {slide.primaryColorText}
