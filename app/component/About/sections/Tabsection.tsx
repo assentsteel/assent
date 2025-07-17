@@ -5,30 +5,39 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { motion, AnimatePresence } from "framer-motion";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { assets } from "@/public/assets/assets";
 gsap.registerPlugin(ScrollTrigger);
  
 import { About } from '@/public/types/Common'; 
 
 
 
-const Tabsection = ({ data,navigation }: { data: About ,navigation?: boolean }) => {   
+const Tabsection = ({ data }: { data: About ,navigation?: boolean }) => {   
  
   
   const [activeTab, setActiveTab] = useState(0); // default first tab
+  const [buttonIsHovered, setButtonIsHovered] = useState(false);
 
   const tabs = data.coreValues.items.map((item) => item.title);
 useEffect(() => {
+
+  if(buttonIsHovered){
+    console.log("hovered");
+    return;
+  }
+  
   const interval = setInterval(() => {
     setActiveTab((prev) => (prev + 1) % tabs.length);
   }, 4000);
 
+
+
   return () => clearInterval(interval); // cleanup on unmount
-}, [tabs.length]);
+}, [tabs.length,buttonIsHovered]);
 
 
   const activeContent = data.coreValues.items[activeTab];
   const [isMobile, setIsMobile] = useState(false);
+
 
   const containerRef = useRef(null);
   useEffect(() => {
@@ -66,15 +75,15 @@ const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   };
-  const slideInLeft = {
-    hidden: { opacity: 0, x: -30 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: { duration: 0.6, ease: "easeOut" },
-    },
-    exit: { opacity: 0, x: -30, transition: { duration: 0.4 } },
-  };
+  // const slideInLeft = {
+  //   hidden: { opacity: 0, x: -30 },
+  //   visible: {
+  //     opacity: 1,
+  //     x: 0,
+  //     transition: { duration: 0.6, ease: "easeOut" },
+  //   },
+  //   exit: { opacity: 0, x: -30, transition: { duration: 0.4 } },
+  // };
   const slideInbottom = {
     hidden: { opacity: 0, y: -30 },
     visible: {
@@ -87,69 +96,7 @@ const fadeInUp = {
   return (
     <section className="pt-0 md:pt-[70px] xl:pt-[100px] pb-[50px] md:pb-[70px] xl:pb-[100px]   overflow-hidden relative ">
       <div className="container">
-        <div className="mb-5 lg:mb-[70px] flex justify-between">
-          <motion.h2 className="text-xl  text-primary font-[600] leading-[1.2] "
-           variants={slideInLeft}
-           initial="hidden"
-           animate="visible"
-           exit="exit">
-            {data.coreValues.title}
-          </motion.h2>
-          {!isMobile && navigation &&(
-          <div className="flex justify-end items-center gap-4 mb-6">
-                          {/* Prev Button */}
-                          <motion.button
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.95 }}
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.3 }}
-                            onClick={() => setActiveTab((prev) => Math.max(prev - 1, 0))}
-                disabled={activeTab === 0}
-
-                            className={`bg-white text-black border px-3 py-1 rounded-full w-[48px] h-[48px] hover:border-white hover:bg-secondary group transition flex items-center justify-center ${
-                              activeTab === 0 ? "opacity-50 cursor-not-allowed hover:bg-[#dddddd]" : ""
-                            }`}
-              >
-                            <Image
-                              src={assets.greenarrow}
-                              alt=""
-                              width={11}
-                              height={18}
-                              className="group-hover:brightness-0 group-hover:invert  "
-
-
-                            />
-                          </motion.button>
-
-                          {/* Next Button */}
-                          <motion.button
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.95 }}
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.3, delay: 0.1 }}
-                            onClick={() => setActiveTab((prev) => Math.min(prev + 1, tabs.length - 1))}
-                disabled={activeTab === tabs.length - 1}
-                className={`bg-white text-black border px-3 py-1 rounded-full w-[48px] h-[48px] hover:border-white hover:bg-secondary group transition flex items-center justify-center ${
-                  activeTab === tabs.length - 1
-                    ? "opacity-50 cursor-not-allowed hover:bg-[#dddddd]"
-                    : ""
-                }`}
-
-                          >
-                            <Image
-                              src={assets.greenarrow}
-                              alt=""
-                              width={11}
-                              height={18}
-                              className="group-hover:brightness-0 group-hover:invert rotate-180"
-                            />
-                          </motion.button>
-                        </div>
-          )}
-
-        </div>
+        
         <div >
         {!isMobile && (
             <motion.div className="flex border-t border-b border-[#00000025] justify-between flex-wrap tabmns mb-10"
@@ -161,6 +108,8 @@ const fadeInUp = {
               <button
                 key={index}
                 onClick={() => setActiveTab(index)}
+                onMouseEnter={()=>setButtonIsHovered(true)}
+                onMouseLeave={()=>setButtonIsHovered(false)}
                 className={`py-[13px] text-sm font-[400] relative top-[-1.9px] ${
                   activeTab === index
                     ? "font-[700] border-t-2 border-secondary"
