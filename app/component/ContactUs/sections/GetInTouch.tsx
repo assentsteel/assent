@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import GeneralEnquiry from "./forms/GeneralEnquiry";
 import RegistrationForm from "./forms/RegistrationForm";
 import Downloads from "./forms/Downloads";
+import { useSearchParams } from "next/navigation";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -31,8 +32,14 @@ const GetInTouch: React.FC<PlatformsSectionProps> = () => {
 
   const containerRef = useRef(null);
   const [formIndex, setFormIndex] = React.useState(1);
+  const searchParams = useSearchParams();
+  const type = searchParams.get("type");
 
-
+useEffect(()=>{
+  if(type){
+    setFormIndex(2)
+  }
+},[type])
 
   useEffect(() => {
     if (containerRef.current) {
