@@ -34,12 +34,21 @@ const GetInTouch: React.FC<PlatformsSectionProps> = () => {
   const [formIndex, setFormIndex] = React.useState(1);
   const searchParams = useSearchParams();
   const type = searchParams.get("type");
+  const rfqFormRef = useRef<HTMLDivElement>(null);
+  const hasScrolledRef = useRef(false);
 
 useEffect(()=>{
   if(type){
     setFormIndex(2)
   }
 },[type])
+
+useEffect(() => {
+  if (formIndex === 2 && rfqFormRef.current && !hasScrolledRef.current) {
+    rfqFormRef.current.scrollIntoView({ behavior: "smooth" });
+    hasScrolledRef.current = true;
+  }
+}, [formIndex]);
 
   useEffect(() => {
     if (containerRef.current) {
@@ -95,7 +104,7 @@ useEffect(()=>{
     
   >
     {/* Buttons Row */}
-    <motion.div
+    <motion.div ref={rfqFormRef}
       className="flex flex-col md:flex-row gap-2 pb-5 lg:pb-[40px] mb-5 lg:mb-[40px] border-b border-[#00000015]"
       variants={fadeUp}
     >
