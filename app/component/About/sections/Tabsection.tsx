@@ -5,14 +5,13 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { motion, AnimatePresence } from "framer-motion";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { assets } from "@/public/assets/assets";
 gsap.registerPlugin(ScrollTrigger);
  
 import { About } from '@/public/types/Common'; 
 
 
 
-const Tabsection = ({ data,navigation }: { data: About ,navigation?: boolean }) => {   
+const Tabsection = ({ data }: { data: About ,navigation?: boolean }) => {   
  
   
   const [activeTab, setActiveTab] = useState(0); // default first tab
@@ -76,15 +75,15 @@ const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   };
-  const slideInLeft = {
-    hidden: { opacity: 0, x: -30 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: { duration: 0.6, ease: "easeOut" },
-    },
-    exit: { opacity: 0, x: -30, transition: { duration: 0.4 } },
-  };
+  // const slideInLeft = {
+  //   hidden: { opacity: 0, x: -30 },
+  //   visible: {
+  //     opacity: 1,
+  //     x: 0,
+  //     transition: { duration: 0.6, ease: "easeOut" },
+  //   },
+  //   exit: { opacity: 0, x: -30, transition: { duration: 0.4 } },
+  // };
   const slideInbottom = {
     hidden: { opacity: 0, y: -30 },
     visible: {
