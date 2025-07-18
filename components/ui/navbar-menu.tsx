@@ -90,21 +90,23 @@ export const Menu = ({
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (
-        searchRef.current &&
         event.target instanceof Node &&
-        !searchRef.current.contains(event.target)
+        searchRef.current &&
+        !searchRef.current.contains(event.target) &&
+        searchButtonRef.current &&
+        !searchButtonRef.current.contains(event.target)
       ) {
-        setSearchActive(false); // close the dropdown
+        setSearchActive(false);
       }
     }
-
+  
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
-  const [result, setResult] = useState([]);
+  const [result, setResult] = useState<[] | null>(null);
   const [loading, setLoading] = useState(false);
 
   const handleSearch = async (e: React.FormEvent) => {
@@ -182,7 +184,7 @@ export const Menu = ({
           </div>
         </div>
         <div className="px-[20px] xxl:px-[20px] xxxl:px-[50px]">
-          <div className="cins w-[48px] h-[48px] flex items-center justify-center border border-[#1F1F1F] rounded-full text-center cursor-pointer" ref={searchButtonRef} onClick={()=>setSearchActive(!searchActive)}>
+          <div className="cins w-[48px] h-[48px] flex items-center justify-center border border-[#1F1F1F] rounded-full text-center cursor-pointer" onClick={(e)=>{e.stopPropagation();setSearchActive((prev)=>!prev)}} ref={searchButtonRef}>
             {searchActive ? <IoClose className="text-sm text-secondary"/> : <IoSearchOutline className="text-sm text-secondary"/>}
           </div>
         </div>
@@ -210,7 +212,7 @@ export const Menu = ({
           </form>
 
           <div className="mt-5 px-4 flex flex-col gap-5 text-black h-3/4">
-            {result.length>0 ? <div className="text-md font-semibold">Results</div> : null}
+            {result && result.length>0 ? <div className="text-md font-semibold">Results</div> : null}
             {loading ? (<div className="flex justify-center items-center h-full"><div className="loader">
             <div className="bar1"></div>
             <div className="bar2"></div>
@@ -226,15 +228,15 @@ export const Menu = ({
             <div className="bar12"></div>
         </div></div>) : (
             <div className="flex-1 overflow-hidden h-full"><ul className="grid grid-cols-2 list-disc gap-5 text-xs px-4 h-full overflow-y-auto">
-              {result.map((item: {type: string, project: {title: string, slug: string}, category: string, item: {mainTitle: string, slug: string, title: string}}, index: number) => {
+              {result && result.length>0 ? result.map((item: {type: string, project: {title: string, slug: string}, category: string, item: {mainTitle: string, slug: string, title: string}}, index: number) => {
                 if(item.project){
-                  return <Link href={`/projects-details/${item.category}/${item.project.slug}`} key={index} className="cursor-pointer" onClick={()=>setSearchActive(false)}><li>{item.project.title}</li></Link>
+                  return <Link href={`/projects-details/${item.category}/${item.project.slug}`} key={index} className="cursor-pointer" onClick={()=>{setSearchActive(false);setResult([])}}><li>{item.project.title}</li></Link>
                 }else if(item.type == "news"){
-                  return <Link href={`/news-details/${item.item.slug}`} key={index} className="cursor-pointer" onClick={()=>setSearchActive(false)}><li>{item.item.mainTitle}</li></Link>
+                  return <Link href={`/news-details/${item.item.slug}`} key={index} className="cursor-pointer" onClick={()=>{setSearchActive(false);setResult([])}}><li>{item.item.mainTitle}</li></Link>
                 }else if(item.type == "gallery"){
-                  return <Link href={`/gallery-details/${item.item.slug}`} key={index} className="cursor-pointer" onClick={()=>setSearchActive(false)}><li>{item.item.title}</li></Link>
+                  return <Link href={`/gallery-details/${item.item.slug}`} key={index} className="cursor-pointer" onClick={()=>{setSearchActive(false);setResult([])}}><li>{item.item.title}</li></Link>
                 }
-              })}
+              }) : (result!==null?<div>No Results</div>:null)}
             </ul></div>)}
           </div>
 
