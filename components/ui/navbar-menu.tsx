@@ -184,7 +184,7 @@ export const Menu = ({
           </div>
         </div>
         <div className="px-[20px] xxl:px-[20px] xxxl:px-[50px]">
-          <div className="cins w-[48px] h-[48px] flex items-center justify-center border border-[#1F1F1F] rounded-full text-center cursor-pointer" onClick={(e)=>{e.stopPropagation();setSearchActive((prev)=>!prev)}} ref={searchButtonRef}>
+          <div className="cins w-[48px] h-[48px] flex items-center justify-center border border-[#1F1F1F] rounded-full text-center cursor-pointer" onClick={(e)=>{e.stopPropagation();setSearchActive((prev)=>!prev);setResult(null)}} ref={searchButtonRef}>
             {searchActive ? <IoClose className="text-sm text-secondary"/> : <IoSearchOutline className="text-sm text-secondary"/>}
           </div>
         </div>
@@ -227,7 +227,7 @@ export const Menu = ({
             <div className="bar11"></div>
             <div className="bar12"></div>
         </div></div>) : (
-            <div className="flex-1 overflow-hidden h-full"><ul className="grid grid-cols-2 list-disc gap-5 text-xs px-4 h-full overflow-y-auto">
+            <div className="flex-1 overflow-hidden h-full"><ul className="grid grid-cols-2 list-disc gap-5 text-xs px-4 h-fit overflow-y-auto">
               {result && result.length>0 ? result.map((item: {type: string, project: {title: string, slug: string}, category: string, item: {mainTitle: string, slug: string, title: string}}, index: number) => {
                 if(item.project){
                   return <Link href={`/projects-details/${item.category}/${item.project.slug}`} key={index} className="cursor-pointer" onClick={()=>{setSearchActive(false);setResult(null)}}><li>{item.project.title}</li></Link>
