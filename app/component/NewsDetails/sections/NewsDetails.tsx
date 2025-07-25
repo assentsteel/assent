@@ -19,6 +19,16 @@ import Link from "next/link";
 
       const NewsDetails = ({ data }: { data: Newsdetails }) => {
         const [newsList, setNewsList] = useState<News>();
+
+        const [currentUrl, setCurrentUrl] = useState("");
+
+        useEffect(() => {
+          if (typeof window !== "undefined") {
+            setCurrentUrl(window.location.href);
+          }
+        }, []);
+
+
         const handleFetchProjects = async () => {
           try {
             const response = await fetch("/api/admin/news");
@@ -171,7 +181,7 @@ import Link from "next/link";
                     </div>
                     <div className="flex gap-5 lg:gap-10">
                       <Image src={assets.share} alt="" />
-                      <Link href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(window.location.href)}`} target="_blank"><Image src={assets.linkedin} alt="" /></Link>
+                      <Link href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(currentUrl)}`} target="_blank"><Image src={assets.linkedin} alt="" /></Link>
                     </div>
                   </motion.div>
                 </div>
