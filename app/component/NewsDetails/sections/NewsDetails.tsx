@@ -14,6 +14,7 @@ import { motion } from "framer-motion";
  
 
   import { News, Newsdetails } from '@/public/types/Common';
+import Link from "next/link";
 
 
       const NewsDetails = ({ data }: { data: Newsdetails }) => {
@@ -170,7 +171,7 @@ import { motion } from "framer-motion";
                     </div>
                     <div className="flex gap-5 lg:gap-10">
                       <Image src={assets.share} alt="" />
-                      <Image src={assets.linkedin} alt="" />
+                      <Link href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(window.location.href)}`} target="_blank"><Image src={assets.linkedin} alt="" /></Link>
                     </div>
                   </motion.div>
                 </div>
