@@ -349,7 +349,7 @@ transition={{ type: "spring", stiffness: 300 }}
     Load More
   </button>
 )}
-        {visibleCount >  filteredResults.length && (
+        {filteredResults.length === 0 && (
           <div className="text-center">
            <p>No results found</p> 
           </div>
