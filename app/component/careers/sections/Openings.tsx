@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
+import { useJobSelectContext } from "@/contexts/jobSelectionContext";
 gsap.registerPlugin(ScrollTrigger);
  
   
@@ -11,6 +12,8 @@ gsap.registerPlugin(ScrollTrigger);
   
   const Openings = ({ data }: { data: Career }) => {    
   const containerRef = useRef(null);
+
+  const { setJobSelect } = useJobSelectContext();
 
 
   useEffect(() => {
@@ -69,6 +72,16 @@ gsap.registerPlugin(ScrollTrigger);
 
             <motion.div
               whileHover={{ scale: 1.05 }}
+              onClick={() =>{
+                setTimeout(() => {
+                  const target = document.getElementById("wantToJoin");
+                  if (target) {
+                    target.scrollIntoView({ behavior: "smooth" });
+                  }
+                }, 100)
+
+                setJobSelect(jobarray.title);
+              }}
               className="flex gap-4 items-center w-fit m-0 group-hover:border-b cursor-pointer group-hover:border-secondary pb-[10px] transition-all duration-500"
             >
               <p className="text-xs uppercase text-white group-hover:text-secondary font-[500] inline-flex leading-[1]">

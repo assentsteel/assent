@@ -1,12 +1,11 @@
 import React from "react";
-import {career} from "./data";
 import HeroInner from "../common/Banner/HeroInner";
 import TextByImg from "./sections/TextByImg";
 import CareerText from "./sections/CareerText";
 import Openings from "./sections/Openings";
 import JoinTeam from "./sections/JoinTeam";
 import { Career } from '@/public/types/Common';
- 
+import { JobSelectContextProvider } from '@/contexts/jobSelectionContext'; 
 
 const Index = async ({ data }: { data: Career }) => { 
   const breadcrumb = [
@@ -16,7 +15,8 @@ const Index = async ({ data }: { data: Career }) => {
   ];
 
   return (
-    <>
+    <JobSelectContextProvider>
+
 <HeroInner
         imageSrc={data.banner}
         title={data.pageTitle}
@@ -26,9 +26,9 @@ const Index = async ({ data }: { data: Career }) => {
 <TextByImg data={data}   />
 <CareerText  data={data} />
 <Openings   data={data}  />
-<JoinTeam   data={career.data}  />
+<JoinTeam  openings={data.thirdSection.items}/>
 
-    </>
+    </JobSelectContextProvider>
   );
 }
 export default Index;

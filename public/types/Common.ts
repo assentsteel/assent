@@ -305,7 +305,8 @@ export type News =
             files: [
               {
                 file: string,
-                title: string
+                title: string,
+                _id: string
               }
             ]
           }

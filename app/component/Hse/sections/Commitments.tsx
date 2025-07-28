@@ -5,14 +5,24 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
 import { assets } from "@/public/assets/assets";
+import { Worker, Viewer } from "@react-pdf-viewer/core";
+import "@react-pdf-viewer/core/lib/styles/index.css";
+import { useSearchContext } from "@/contexts/searchContext";
+
 gsap.registerPlugin(ScrollTrigger);
 
  
-  
       import { Hse } from '@/public/types/Common'; 
+import Link from "next/link";
        
         
           const Commitments = ({ data }: { data: Hse }) => {
+
+            const [isOpen, setIsOpen] = useState(false); 
+
+             const {setSearchActive} = useSearchContext();
+
+
   const containerRef = useRef(null);
   const textVariants = {
     hidden: { opacity: 0, x: -30 },
@@ -61,6 +71,46 @@ gsap.registerPlugin(ScrollTrigger);
   const handlePrev = () => {
     setCurrentIndex((prev) => (prev - 1 + data.secondSection.items.length) % data.secondSection.items.length);
   };
+
+
+    useEffect(() => {
+      if (isOpen) {
+        const scrollY = window.scrollY;
+        document.body.dataset.scrollY = String(scrollY);
+        document.body.style.position = 'fixed';
+        document.body.style.overflow = 'hidden';
+        document.body.style.top = `-${scrollY}px`;
+        document.body.style.width = '100%';
+        //search context was used here to avoid conflicts between two contexts
+        setSearchActive(true);
+      } else {
+        const scrollY = document.body.dataset.scrollY;
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        window.scrollTo(0, scrollY ? parseInt(scrollY) : 0);
+        //search context was used here to avoid conflicts between two contexts
+        setSearchActive(false);
+      }
+    }, [isOpen]);
+
+ 
+ 
+  useEffect(() => {
+  }, [data]); 
+  const [openCertificateId, setOpenCertificateId] = useState<string | null>(null);
+  useEffect(() => {
+    if (openCertificateId !== null) {
+      setIsOpen(true);
+    } else {
+      setIsOpen(false);
+    }
+    return () => {
+      setIsOpen(false);
+    };
+  }, [openCertificateId]);
+
+
   return (
     <section className="pt-[50px] md:pt-[70px] xl:pt-[100px] ">
       <div className="py-[50px] md:py-[70px] xl:py-[100px] bg-primary  overflow-hidden relative ">
@@ -149,12 +199,13 @@ gsap.registerPlugin(ScrollTrigger);
       )}
 
       <div className="flex flex-col md:flex-row lg:flex-col xl:flex-row justify-center items-center md:justify-start gap-5  ">
-        <button className="mb-4 md:mb:0  group flex justify-between items-center mt-auto border border-secondary py-2 px-6 rounded-full hover:bg-white hover:text-territory text-white transition text-xs h-[40px] lg:h-[48px] max-w-[280px] w-[280px] font-medium uppercase relative">
-          <span className="w-full text-center">quality policies</span>
+        {data.secondSection.items[currentIndex].files.map((file, index) => (
+        <button key={index} className="mb-4 md:mb:0  group flex justify-between items-center mt-auto border border-secondary py-2 px-6 rounded-full hover:bg-white hover:text-territory text-white transition text-xs h-[40px] lg:h-[48px] max-w-[280px] w-[280px] font-medium uppercase relative">
+          <span className="w-full text-center">{file.title}</span>
 
           {/* Icons container */}
           <div className="absolute right-5 flex gap-2 items-center opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 ease-in-out">
-            <svg
+            <Link href={file.file} target="_blank"><svg
               xmlns="http://www.w3.org/2000/svg"
               width="13"
               height="16"
@@ -168,43 +219,46 @@ gsap.registerPlugin(ScrollTrigger);
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
-            </svg>
+            </svg></Link>
             
-            <Image src="/assets/img/icns/eye.png"  alt="" width={22} height={14}/>
+            <Image src="/assets/img/icns/eye.png"  alt="" width={22} height={14} onClick={() => setOpenCertificateId(file._id)}/>
           </div>
         </button>
-
-        <button className="mb-4 md:mb:0  group flex justify-between items-center mt-auto border border-secondary py-2 px-6 rounded-full hover:bg-white hover:text-territory text-white transition text-xs h-[40px] lg:h-[48px] max-w-[280px] w-[280px] font-medium uppercase relative">
-          <span className="w-full text-center">safety policies</span>
-
-          {/* Icons container */}
-          <div className="absolute right-5 flex gap-2 items-center opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 ease-in-out">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="13"
-              height="16"
-              viewBox="0 0 13 16"
-              fill="none"
-            >
-              <path
-                d="M1 15H12M6.5 1V11.5M6.5 11.5L9.70833 8.4375M6.5 11.5L3.29167 8.4375"
-                stroke="#1F1F1F"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-           
-            <Image src="/assets/img/icns/eye.png"  alt="" width={22} height={14}/>
-          </div>
-        </button>
+        ))}
       </div>
     </div>
 
+   
+
 </div>
 </div>
 </div>
       </div>
+
+      {openCertificateId && isOpen && (
+                  <div
+                  className="fixed inset-0 z-[2000] flex items-center justify-center bg-black bg-opacity-60"
+                  onClick={() => setOpenCertificateId(null)}
+                > 
+          <div className="relative w-[80%] md:w-[65%] xl:w-[40%] h-[80%] bg-white rounded-lg shadow-lg overflow-hidden"
+           onClick={(e) => e.stopPropagation()} >
+                      <button
+              className="absolute top-2 right-5 text-black hover:text-red-600 text-2xl font-bold z-[1] "
+              onClick={() => setOpenCertificateId(null)}
+                      >
+              &times;
+                      </button>
+
+            <div className="w-full h-full mt-10">
+              <Worker workerUrl={`https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.js`}>
+                <Viewer fileUrl={data.secondSection.items[currentIndex].files.find((file) => file._id === openCertificateId)?.file || ""} />
+              </Worker>
+            </div>
+          </div> 
+          </div>
+      )}
+
+
     </section>
   );
 };

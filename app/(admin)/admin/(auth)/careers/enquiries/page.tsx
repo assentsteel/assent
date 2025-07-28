@@ -22,6 +22,7 @@ interface Enquiry {
     currentlocation: string;
     workexperience: string;
     file: string;
+    position: string;
 }
 
 const Enquiries = () => {
@@ -76,7 +77,7 @@ const Enquiries = () => {
                         <DialogTrigger><HiMiniViewfinderCircle className='text-lg cursor-pointer' /></DialogTrigger>
                         <DialogContent>
                             <DialogHeader>
-                                <DialogTitle>View Details</DialogTitle>
+                                <div className='flex gap-2 items-center'><DialogTitle>View Details</DialogTitle><span className='text-sm'>(Applied for : {enquiry.position})</span></div>
                                 <DialogDescription className='flex flex-col gap-2 h-[300px] overflow-y-scroll'>
                                     <Label>First Name</Label>
                                     <Input type="text" placeholder="First Name" readOnly value={enquiry.firstname}/>

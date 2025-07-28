@@ -28,7 +28,7 @@ export default async function Home({params}: {params: Promise<{slug: string,item
   console.log(data)
   return (
     <>
-    <Index data={data.data}    />
+    <Index data={data.data}  categorySlug={slug} />
     </>
   );
 }
