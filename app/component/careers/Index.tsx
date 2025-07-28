@@ -1,5 +1,4 @@
 import React from "react";
-import {career} from "./data";
 import HeroInner from "../common/Banner/HeroInner";
 import TextByImg from "./sections/TextByImg";
 import CareerText from "./sections/CareerText";

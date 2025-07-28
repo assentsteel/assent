@@ -4,7 +4,6 @@ import HeroInner from "../common/Banner/HeroInner";
 import Specs from "./sections/Specs";
 import Slidethumb from "../common/Slidethumb";
 import Morepjts from "./sections/Morepjts"; 
-import { useSearchParams } from "next/navigation";
 
   
   import { Projectswfull } from '@/public/types/Common'; 
