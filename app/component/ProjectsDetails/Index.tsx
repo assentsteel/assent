@@ -1,19 +1,19 @@
 
-
 import React from "react";
 import HeroInner from "../common/Banner/HeroInner";
 import Specs from "./sections/Specs";
 import Slidethumb from "../common/Slidethumb";
 import Morepjts from "./sections/Morepjts"; 
+import { useSearchParams } from "next/navigation";
 
   
   import { Projectswfull } from '@/public/types/Common'; 
-  const Index = async ({ data }: { data: Projectswfull['categories'][number]['projects'][number] }) => {  
+  const Index = async ({ data,categorySlug }: { data: Projectswfull['categories'][number]['projects'][number],categorySlug: string }) => {  
 
 
   const breadcrumb = [
-    { label: "Homse", href: "/" },
-    { label: "Projects", href: "" },
+    { label: "Home", href: "/" },
+    { label: "Projects", href: `/projects-list/${categorySlug}` },
     { label: "Construction", href: "" },
     { label: data.sector, href: "" },
     { label: data.pageTitle, href: "" },

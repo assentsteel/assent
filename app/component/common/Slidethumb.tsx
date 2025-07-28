@@ -120,7 +120,7 @@ const Slidethumb: React.FC<PlatformsSectionProps> = ({ data }) => {
               </Swiper>
 
               {/* Thumbnails Swiper */}
-              <div className="absolute bottom-8 p-[14px] rounded-[20px] bg-[#ffffff30] backdrop-blur-xs lg:bottom-[40px] left-1/2 -translate-x-1/2 z-20 w-full max-w-fit px-4">
+              <div className="absolute max-sm:bottom-14 max-md:bottom-28 max-lg:bottom-20 p-[14px] rounded-[20px] bg-[#ffffff30] backdrop-blur-xs lg:bottom-[40px] left-1/2 -translate-x-1/2 z-20 w-full max-w-fit">
                 <Swiper
                   onSwiper={(swiper) => setThumbsSwiper(swiper)}
                   slidesPerView={3}
@@ -162,6 +162,7 @@ const Slidethumb: React.FC<PlatformsSectionProps> = ({ data }) => {
                     className="group-hover:brightness-0 group-hover:invert "
                   />
                 </button>
+                
                 <button
                   ref={nextRef}
                   className="bg-white text-black lg:px-3 py-1 rounded-full lg:w-[48px] lg:h-[48px] w-[24px] h-[24px] hover:bg-secondary group transition flex items-center justify-center"

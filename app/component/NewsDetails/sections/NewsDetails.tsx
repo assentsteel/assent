@@ -92,7 +92,7 @@ import Link from "next/link";
         <div className="flex flex-col lg:flex-row ">
           <div className="lg:w-5/6 pr-4 lg:pr-6 xxl:pr-[135px] ">
             <div className=" ">
-              <div className="relative w-full  ">
+              <div className="relative w-full bg-gray-100 ">
                 <motion.div
                   variants={slideInTop}
                   initial="hidden"
@@ -123,7 +123,7 @@ import Link from "next/link";
                         <Image
                           src={src}
                           alt={`Slide ${index + 1}`}
-                          className="w-full h-[300px] md:h-[400px] lg:h-[570px] object-cover"
+                          className="w-full h-[300px] md:h-[400px] lg:h-[570px] object-contain"
                           width={1215}
                           height={570}
                         />

@@ -13,27 +13,32 @@ gsap.registerPlugin(ScrollTrigger);
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import Image from "next/image";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+import { useJobSelectContext } from "@/contexts/jobSelectionContext";
 
-interface jobarray {
-  jobtitle: string;
-  place: string;
-}
-interface PlatformsItem {
-  id: number;
+
+interface Opening {
   title: string;
-  job: jobarray[];
+  location: string;
 }
 
-interface PlatformsSectionProps {
-  data: PlatformsItem[];
-}
+type OpeningProps = Opening[];
+
+
 
 type CareerFormProps = z.infer<typeof careerFormSchema>
 
-const JoinTeam: React.FC<PlatformsSectionProps> = () => {
+const JoinTeam = ({openings}: {openings: OpeningProps}) => {
 
   const [fileName, setFileName] = useState("");
   const [file, setFile] = useState<File | null>(null);
+  const { jobSelect } = useJobSelectContext();
 
   const {
     register,
@@ -120,8 +125,14 @@ const JoinTeam: React.FC<PlatformsSectionProps> = () => {
     }
   };
 
+  useEffect(() => {
+    if (jobSelect) {
+      setValue("position", jobSelect, { shouldValidate: true });
+    }
+  }, [jobSelect]);
+
   return (
-    <section className="py-[50px] md:py-[70px] xl:py-[100px]   overflow-hidden relative ">
+    <section className="py-[50px] md:py-[70px] xl:py-[100px]   overflow-hidden relative "  id="wantToJoin">
       <div className="container">
   <motion.div
     initial={{ opacity: 0, y: 40 }}
@@ -163,7 +174,7 @@ const JoinTeam: React.FC<PlatformsSectionProps> = () => {
               render={({ field }) => (
                 <div className="px-1 appearance-none bg-transparent border-0 border-b border-[#ieieie] focus:outline-none focus:ring-0 focus:border-[black] text-[#595959] text-xs py-2 pr-6 w-full h-10">
                   {!field.value && <label className="text-[#595959]">{placeholder}</label>}
-                <input type="date" {...field} className={`${field.value ? "text-[#595959]" : "text-transparent"} absolute inset-0  px-1 bg-transparent border-0 border-[#ccc] focus:outline-none focus:border-black text-xs pr-6 w-full`}/>
+                <input type="date" max={new Date().toISOString().split("T")[0]} {...field} className={`${field.value ? "text-[#595959]" : "text-transparent"} absolute inset-0  px-1 bg-transparent border-0 border-[#ccc] focus:outline-none focus:border-black text-xs pr-6 w-full`}/>
                 </div>
               )}
             /> : <input
@@ -185,13 +196,13 @@ const JoinTeam: React.FC<PlatformsSectionProps> = () => {
 
     {/* Gender */}
     <motion.div
-      className="grid grid-cols-1 lg:grid-cols-2 mb-4 lg:mb-7"
+      className="grid grid-cols-1 lg:grid-cols-2 mb-4 lg:mb-7 gap-x-4 lg:gap-x-6 xxl:gap-x-10"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.4, duration: 0.6 }}
       viewport={{ once: true }}
     >
-      <div className="relative w-full flex gap-4 mt-2">
+      <div className="relative w-full flex gap-4 mt-2 items-center">
         <p className="text-[16px] text-[#595959]">Gender</p>
         <div className="flex gap-4">
           {["Male", "Female", "Others"].map((gender, i) => (
@@ -219,6 +230,48 @@ const JoinTeam: React.FC<PlatformsSectionProps> = () => {
             </p>
           )}
         </div>
+        </div>
+
+      <div>
+        <div className="relative w-full lg:flex lg:gap-4 lg:items-center mt-2 flex gap-y-2 flex-col lg:flex-row">
+              <p className="text-[16px] text-[#595959] font-normal">Position</p>
+              <div className="flex gap-4 w-full">
+                <Controller
+                  name="position"
+                  control={control}
+                  rules={{ required: "Position is required" }}
+                  render={({ field }) => (
+                    <Select
+                      onValueChange={field.onChange}
+                      value={field.value as string}
+                      defaultValue=""
+                    >
+                      <SelectTrigger className="w-full border-0 border-b border-[#e4e5e4] outline-none focus:outline-none focus:ring-0 focus:border-b shadow-none rounded-none">
+                        <SelectValue
+                          placeholder="Select Position"
+                          className="text-secondary"
+                        />
+                      </SelectTrigger>
+
+                      <SelectContent className="border-none shadow-none outline-none ring-0 focus:ring-0 focus:outline-none">
+                        {openings.map((opening, i) => (
+                          <SelectItem
+                            key={i}
+                            value={opening.title}
+                            className="text-secondary focus:bg-transparent focus:outline-none focus:ring-0 focus:border-none hover:bg-gray-100"
+                          >
+                            {opening.title}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+
+                  )}
+                />
+              </div>
+            </div>
+              {errors.position && <p className="text-red-500 text-xs mt-1">{errors.position?.message}</p>}
+
       </div>
     </motion.div>
 

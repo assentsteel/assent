@@ -5,15 +5,25 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { containersVariants, textItemsVariants } from "../../common/MotionAnimation";
+import { Worker, Viewer } from "@react-pdf-viewer/core";
+import "@react-pdf-viewer/core/lib/styles/index.css";
+import { useState } from "react";
+import { useSearchContext } from "@/contexts/searchContext";
+
 gsap.registerPlugin(ScrollTrigger);
 
 import Image from "next/image";
 
 
    import {   Sustainability  } from '@/public/types/Common';
+import Link from "next/link";
 
    const Policy = ({ data }: { data: Sustainability}) => {
   const containerRef = useRef(null);
+
+   const {setSearchActive} = useSearchContext();
+
+  const [isOpen, setIsOpen] = useState(false); 
 
   const textContainerVariants = {
     hidden: { opacity: 0 },
@@ -51,6 +61,29 @@ import Image from "next/image";
       transition: { duration: 0.5 },
     },
   };
+
+      useEffect(() => {
+        if (isOpen) {
+          const scrollY = window.scrollY;
+          document.body.dataset.scrollY = String(scrollY);
+          document.body.style.position = 'fixed';
+          document.body.style.overflow = 'hidden';
+          document.body.style.top = `-${scrollY}px`;
+          document.body.style.width = '100%';
+          //search context was used here to avoid conflicts between two contexts
+          setSearchActive(true);
+        } else {
+          const scrollY = document.body.dataset.scrollY;
+          document.body.style.position = '';
+          document.body.style.top = '';
+          document.body.style.width = '';
+          window.scrollTo(0, scrollY ? parseInt(scrollY) : 0);
+          //search context was used here to avoid conflicts between two contexts
+          setSearchActive(false);
+        }
+      }, [isOpen]);
+
+
   return (
     <section className="py-[50px] md:py-[70px] xl:py-[100px] overflow-hidden relative  ">
         <div className="container">
@@ -109,13 +142,13 @@ import Image from "next/image";
       {data.secondSection.fileName}
       </span>
       <div className="flex gap-3">
-                        <div>
+                        <Link href={data.secondSection.file} target="_blank"><div>
                           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16" fill="none">
                             <path d="M1.6084 15H12.6084M7.1084 1V11.5M7.1084 11.5L10.3167 8.4375M7.1084 11.5L3.90007 8.4375" stroke="#1F1F1F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
-                        </div>
+                        </div></Link>
                         <div>
-                                <Image src="/assets/img/icns/eye.png" alt="Logo" width={22} height={15} />
+                                <Image src="/assets/img/icns/eye.png" alt="Logo" width={22} height={15} onClick={() => setIsOpen(true)}/>
                         </div>
 
       </div>
@@ -157,6 +190,31 @@ import Image from "next/image";
           </div>
         </div>
       </div>
+
+            {isOpen && (
+                        <div
+                        className="fixed inset-0 z-[2000] flex items-center justify-center bg-black bg-opacity-60"
+                        onClick={() => setIsOpen(false)}
+                      > 
+                <div className="relative w-[80%] md:w-[65%] xl:w-[40%] h-[80%] bg-white rounded-lg shadow-lg overflow-hidden"
+                 onClick={(e) => e.stopPropagation()} >
+                            <button
+                    className="absolute top-2 right-5 text-black hover:text-red-600 text-2xl font-bold z-[1] "
+                    onClick={() => setIsOpen(false)}
+                            >
+                    &times;
+                            </button>
+      
+                  <div className="w-full h-full mt-10">
+                    <Worker workerUrl={`https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.js`}>
+                      <Viewer fileUrl={data.secondSection.file || ""} />
+                    </Worker>
+                  </div>
+                </div> 
+                </div>
+            )}
+
+
     </section>
   );
 };
