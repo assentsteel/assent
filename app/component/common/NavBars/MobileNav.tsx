@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { menuItems } from "./data";
 import Image from "next/image";
 import { ChevronDown } from "lucide-react";
+
 import {
   FaFacebookF,
   FaInstagram,
