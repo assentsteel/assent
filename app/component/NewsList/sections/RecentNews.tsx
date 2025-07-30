@@ -74,9 +74,9 @@ import Link from "next/link";
     {latestNews.slice(0, 1).map((item, index) => {
       
       return (
-        <Link href={`/news-details/${item.slug}`}>
+        <Link href={`/news-details/${item.slug}`} key={index}>
         <motion.div
-          key={index}
+          
 
   variants={textParent}
   initial="initial"
