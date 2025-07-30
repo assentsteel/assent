@@ -74,6 +74,7 @@ import Link from "next/link";
     {latestNews.slice(0, 1).map((item, index) => {
       
       return (
+        <Link href={`/news-details/${item.slug}`}>
         <motion.div
           key={index}
 
@@ -97,7 +98,7 @@ import Link from "next/link";
             </motion.p>
             <motion.h3 variants={textChild}  className="line-clamp-2 text-white text-md xxl:text-lg leading-[1.1] xl:leading-[1.5] mb-2 lg:mb-5 font-[600]">{item.mainTitle}</motion.h3>
             <motion.div variants={textChild} className="flex justify-between">
-            <Link href={`/news-details/${item.slug}`}>
+
               <div className="flex gap-4 items-center border-b border-secondary pb-[10px] transition-all duration-500">
               <p className="text-xs uppercase text-white font-[500] inline-flex leading-[1]">Read More</p>
                 <div className="min-w-[20px] min-h-[20px] bg-white rounded-full flex items-center justify-center translate-x-0 group-hover:translate-x-[5px] transition-all duration-500">
@@ -106,10 +107,10 @@ import Link from "next/link";
                         </svg>
                 </div>
               </div>
-              </Link>
             </motion.div>
           </motion.div>
         </motion.div>
+        </Link>
       );
     })}
   </motion.div>
@@ -117,20 +118,19 @@ import Link from "next/link";
     initial="hidden"
     animate="visible"
     exit="exit" className="flex flex-col gap-4 lg:gap-6 xxl:gap-10">
-    {latestNews.slice(1).map((item, index) => {
+    {latestNews.slice(1,3).map((item, index) => {
 
       return (
+        <Link href={`/news-details/${item.slug}`} key={index} className="vi h-[300px] lg:h-1/2 relative group blueover rounded-[15px]"   style={{
+          background: `url(${typeof item.thumbnail === "string" ? item.thumbnail : item.thumbnail})`,
+          backgroundSize: "cover"
+        }}>
         <motion.div
-  key={index}
   variants={textParent}
   initial="initial"
   whileHover="hover"
-  className="vi h-[300px] lg:h-1/2 relative group blueover rounded-[15px]"
-  style={{
-    background: `url(${typeof item.thumbnail === "string" ? item.thumbnail : item.thumbnail})`,
-    backgroundSize: "cover"
-  }}
 >
+
           <div className="absolute bottom-0 z-10 px-5 xxl:px-10 pb-5 xxl:pb-10 w-full">
             <motion.p variants={textChild} className="text-xs text-white font-[500] mb-1">   {new Date(item.createdAt).toLocaleDateString("en-US", {
     year: "numeric",
@@ -140,7 +140,6 @@ import Link from "next/link";
             <motion.h3 variants={textChild} className="line-clamp-2 text-white text-md xxl:text-lg leading-[1.1] xl:leading-[1.5] mb-2 lg:mb-5 font-[600]">{item.mainTitle}</motion.h3>
             <motion.div variants={textChild} className="flex justify-between">
              
-            <Link href={`/news-details/${item.slug}`}>
             <div className="flex gap-4 items-center border-b border-secondary pb-[10px] transition-all duration-500">
                 <p className="text-xs uppercase text-white font-[500] inline-flex leading-[1]">Read More</p>
                 <div className="min-w-[20px] min-h-[20px] bg-white rounded-full flex items-center justify-center translate-x-0 group-hover:translate-x-[5px] transition-all duration-500">
@@ -149,10 +148,10 @@ import Link from "next/link";
                         </svg>
                 </div>
               </div>
-            </Link>
             </motion.div>
           </div>
         </motion.div>
+          </Link>
       );
     })}
 

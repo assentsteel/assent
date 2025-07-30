@@ -44,9 +44,9 @@ gsap.registerPlugin(ScrollTrigger);
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-2  xl:grid-cols-3 gap-x-4 lg:gap-x-6 xxl:gap-x-10 ">
           {data.map((item, index) => (
+                              <Link href={`/news-details/${item.slug}`} key={index} className="itemsmn">
            <motion.div
-           key={index}
-           className="itemsmn"
+
            variants={cardVariants}
            initial="hidden"
            whileInView="visible"
@@ -82,7 +82,7 @@ gsap.registerPlugin(ScrollTrigger);
                   <h3 className="line-clamp-2 text-black text-sm mt-2 lg:mt-5  leading-[1.3] xl:leading-[1.8] mb-4 lg:mb-[10px] font-[400]">
                     {item.mainTitle}
                   </h3>
-                  <Link href={`/news-details/${item.slug}`}>
+
                   <div className="flex justify-between mb-5 lg:mb-0">
                     <div className=" flex gap-4 items-center w-fit m-0 border-b  border-secondary pb-[10px]   transition-all duration-500 ">
                       <p className="text-xs uppercase text-black font-[500] inline-flex  leading-[1] ">
@@ -104,11 +104,11 @@ gsap.registerPlugin(ScrollTrigger);
                       </motion.div>
                     </div>
                     </div>
-                    </Link>
                 </div>
               </div>
-              <div className="locks  lg:block lg:col-span-2 xl:col-span-3 h-[1px] bg-[#ccc] my-8 xl:my-[60px]"></div>
+              <div className="  lg:block lg:col-span-2 xl:col-span-3 h-[1px] bg-[#ccc] my-8 xl:my-[60px]"></div>
             </motion.div>
+          </Link>
           ))}
         </div>
         <div className="text-center mt-5 md:mt-[60px]">

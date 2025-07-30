@@ -22,8 +22,8 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ message: "Projects reordered successfully",success:true }, { status: 200 })
     } catch (error) {
         console.log(error)
-        return NextResponse.json({ message: "Internal Server Error",success:false }, { status: 500 })
         session.abortTransaction()
+        return NextResponse.json({ message: "Internal Server Error",success:false }, { status: 500 })
     }
     finally{
         session.endSession()
