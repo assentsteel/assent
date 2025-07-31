@@ -118,7 +118,8 @@ export type News =
         createdAt: string,
         metaTitle: string,
         metaDescription: string,
-        _id: number
+        _id: number,
+        date: string
       }[]
   } 
   export type Newsdetails =  
