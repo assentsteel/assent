@@ -36,6 +36,7 @@ interface NewsFormProps {
     metaTitle: string;
     metaDescription: string;
     images: string []
+    date:string;
 }
 
 const NewsForm = ({ editMode }: { editMode?: boolean }) => {
@@ -49,6 +50,7 @@ const NewsForm = ({ editMode }: { editMode?: boolean }) => {
 
     const handleAddNews = async (data: NewsFormProps) => {
         try {
+            console.log(data)
             const response = await fetch(editMode ? `/api/admin/news?id=${id}` : "/api/admin/news", {
                 method: editMode ? "PATCH" : "POST",
                 body: JSON.stringify(data),
@@ -80,6 +82,8 @@ const NewsForm = ({ editMode }: { editMode?: boolean }) => {
                 setValue("metaTitle", data.data.metaTitle);
                 setValue("metaDescription", data.data.metaDescription);
                 setValue("images", data.data.images);
+                const isoDate = new Date(data.data.date).toISOString().split("T")[0];
+                setValue("date", isoDate);
                 setImageUrls(data.data.images);
             } else {
                 const data = await response.json();
@@ -185,6 +189,14 @@ const NewsForm = ({ editMode }: { editMode?: boolean }) => {
                     })} />
                     {errors.slug && <p className='text-red-500'>{errors.slug.message}</p>}
                 </div>
+
+                <div>
+                    <Label className=''>Date</Label>
+                    <Input type='date' placeholder='Date' max={new Date().toISOString().split("T")[0]} {...register("date", { required: "Date is required" })} />
+                    {errors.date && <p className='text-red-500'>{errors.date.message}</p>}
+                </div>
+
+                
                 <div className='flex flex-col gap-2'>
                     <Label className=''>Category</Label>
                     <Controller

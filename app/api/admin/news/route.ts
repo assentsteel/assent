@@ -6,10 +6,10 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req:NextRequest) {
     try {
         await connectDB();
-        const {mainTitle,subTitle,slug,content,images,category,metaTitle,metaDescription,thumbnail,thumbnailAlt,coverImage,coverImageAlt} = await req.json();
+        const {mainTitle,subTitle,slug,content,images,category,metaTitle,metaDescription,thumbnail,thumbnailAlt,coverImage,coverImageAlt,date} = await req.json();
         const news = await News.findOne({})
         if(news){
-            news.news.push({mainTitle,subTitle,slug,content,images,category,metaTitle,metaDescription,thumbnail,thumbnailAlt,coverImage,coverImageAlt})
+            news.news.push({mainTitle,subTitle,slug,content,images,category,metaTitle,metaDescription,thumbnail,thumbnailAlt,coverImage,coverImageAlt,date})
             await news.save()
             return NextResponse.json({message: "News added successfully"},{status: 200});
         }
@@ -27,12 +27,14 @@ export async function PATCH(req:NextRequest) {
         await connectDB();
         const {searchParams} = new URL(req.url);
         const id = searchParams.get("id");
-        const {mainTitle,subTitle,slug,content,images,category,metaTitle,metaDescription,thumbnail,thumbnailAlt,coverImage,coverImageAlt} = await req.json();
+        const {mainTitle,subTitle,slug,content,images,category,metaTitle,metaDescription,thumbnail,thumbnailAlt,coverImage,coverImageAlt,date} = await req.json();
+        console.log(date)
         const news = await News.findOne({});
         if(news){
             news.news = news.news.map((news:{_id:string}) => {
                 if(news._id.toString() === id){
-                    return {mainTitle,subTitle,slug,content,images,category,metaTitle,metaDescription,thumbnail,thumbnailAlt,coverImage,coverImageAlt}
+                    console.log(date)
+                    return {mainTitle,subTitle,slug,content,images,category,metaTitle,metaDescription,thumbnail,thumbnailAlt,coverImage,coverImageAlt,date}
                 }
                 return news
             })
