@@ -25,7 +25,6 @@ export function ThreeDUploader({
 }: ThreeDUploaderProps) {
   const [isUploading, setIsUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [isUploadComplete, setIsUploadComplete] = useState(false);
   const [fileName, setFileName] = useState<string>(() => {
     if (value) {
       const parts = value.split("/");
@@ -51,7 +50,6 @@ export function ThreeDUploader({
       try {
         setIsUploading(true);
         setError(null);
-        setIsUploadComplete(false);
 
         // const formData = new FormData();
         // formData.append("file", file);
@@ -72,7 +70,6 @@ export function ThreeDUploader({
         const uploadResult = await uploadToDropbox(file, filePath);
         setFileName(file.name);
         onChange(uploadResult, file.name);
-        setIsUploadComplete(true);
       } catch (err) {
         setError(err instanceof Error ? err.message : "Failed to upload file");
       } finally {
@@ -92,7 +89,6 @@ export function ThreeDUploader({
   const removeFile = useCallback(() => {
     setFileName("");
     onChange("", "");
-    setIsUploadComplete(false);
   }, [onChange]);
 
   return (
@@ -118,7 +114,7 @@ export function ThreeDUploader({
           )}
         >
           <input {...getInputProps()} />
-          {isUploading || !isUploadComplete ? (
+          {isUploading ? (
             <>
               <Loader2 className="h-10 w-10 animate-spin text-gray-400" />
               <p className="text-sm text-gray-600">Uploading...</p>
