@@ -6,61 +6,45 @@ import { OrbitControls } from "@react-three/drei";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { assets } from "@/public/assets/assets";
+import {   Engineering } from '@/public/types/Common';   
 
 const ModelViewer = dynamic(() => import("./ModelViewer"), { ssr: false });
-
-const items = [
-  {
-    id: "spine-truss",
-    type: "glb",
-    url: "/assets/models/2309-SPINE TRUSS.glb",
-    thumbnail: assets.thdIcon,
-  },
-  {
-    id: "sample-image",
-    type: "jpg",
-    url: "/assets/img/engineering/modelslide.png",
-    thumbnail: assets.modelslide,
-  },
-  // Add more items here if needed
-];
  
 
-     import {   Engineering } from '@/public/types/Common';   
     const ProjectModels = ({ data }: { data: Engineering}) => {   
   const [activeIndex, setActiveIndex] = useState(0);
-  const selectedItem = items[activeIndex];
+  const selectedItem = data.thirdSection.items[activeIndex];
 
   const handlePrev = () => {
     setActiveIndex(
-      (prevIndex) => (prevIndex - 1 + items.length) % items.length
+      (prevIndex) => (prevIndex - 1 + data.thirdSection.items.length) % data.thirdSection.items.length
     );
   };
 
   const handleNext = () => {
-    setActiveIndex((prevIndex) => (prevIndex + 1) % items.length);
+    setActiveIndex((prevIndex) => (prevIndex + 1) % data.thirdSection.items.length);
   };
 
   const renderViewer = () => {
-    if (selectedItem.type === "glb") {
+    if (selectedItem.style === "3d-file") {
       return (
         <Canvas camera={{ position: [0, 1, 15] }}>
           <ambientLight intensity={1} />
           <directionalLight position={[5, 5, 5]} />
           <OrbitControls enableZoom={true} />
           <ModelViewer
-            url={selectedItem.url}
+            url={selectedItem.threeDFile}
             position={[0, 0, 0]}
             scale={1.2}
           />
         </Canvas>
       );
-    } else if (selectedItem.type === "jpg") {
+    } else if (selectedItem.style === "image") {
       return (
         <div className="w-full h-full flex items-center justify-center">
           <Image
-            src={selectedItem.url}
-            alt="Selected image"
+            src={selectedItem.image}
+            alt={selectedItem.imageAlt}
             width={600}
             height={600}
             className="object-contain max-h-full max-w-full"
@@ -104,9 +88,9 @@ const items = [
 
               {/* Thumbnails */}
               <div className="flex gap-2 border p-3 rounded-full">
-                {items.map((item, index) => (
+                {data.thirdSection.items.map((item, index) => (
                   <div
-                    key={item.id}
+                    key={index}
                     onClick={() => setActiveIndex(index)}
                     className={`w-[50px] h-[50px] rounded-full overflow-hidden border-2 cursor-pointer ${
                       activeIndex === index
@@ -115,8 +99,8 @@ const items = [
                     }`}
                   >
                     <Image
-                      src={item.thumbnail}
-                      alt={`Thumbnail ${index}`}
+                      src={item.style === "3d-file" ? item.threeDFileThumbnail : item.imageThumbnail}
+                      alt={item.style === "3d-file" ? item.threeDFileAltThumbnail : item.imageAltThumbnail}
                       width={50}
                       height={50}
                       className="object-cover w-full h-full"
