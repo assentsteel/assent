@@ -99,8 +99,8 @@ const ModelViewer = dynamic(() => import("./ModelViewer"), { ssr: false });
                     }`}
                   >
                     <Image
-                      src={item.style === "3d-file" ? item.threeDFileThumbnail : item.imageThumbnail}
-                      alt={item.style === "3d-file" ? item.threeDFileAltThumbnail : item.imageAltThumbnail}
+                      src={item.style === "3d-file" ? item.threeDFileThumbnail : item.image}
+                      alt={item.style === "3d-file" ? item.threeDFileAltThumbnail : item.imageAlt}
                       width={50}
                       height={50}
                       className="object-cover w-full h-full"

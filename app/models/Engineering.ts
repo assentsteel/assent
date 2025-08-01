@@ -80,12 +80,6 @@ const EngineeringSchema = new mongoose.Schema({
                 imageAlt:{
                     type:String,
                 },
-                imageThumbnail:{
-                    type:String,
-                },
-                imageAltThumbnail:{
-                    type:String,
-                },
                 threeDFile:{
                     type:String,
                 },

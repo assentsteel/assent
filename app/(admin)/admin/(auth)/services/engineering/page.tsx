@@ -47,8 +47,6 @@ interface EngineeringFormProps {
             style: string;
             image: string;
             imageAlt: string;
-            imageThumbnail: string;
-            imageAltThumbnail: string;
             threeDFile: string;
             threeDFileAlt: string;
             threeDFileThumbnail: string;
@@ -588,27 +586,7 @@ const EngineeringPage = () => {
                                                         </div>
 
 
-                                                        <div className='flex flex-col gap-1'>
-                                                            <Label className='font-bold'>Image Thumbnail</Label>
-                                                            <Controller
-                                                                name={`thirdSection.items.${index}.imageThumbnail`}
-                                                                control={control}
-                                                                rules={{ required: "Image Thumbnail is required" }}
-                                                                render={({ field }) => (
-                                                                    <ImageUploader
-                                                                        value={field.value}
-                                                                        onChange={field.onChange}
-                                                                    />
-                                                                )}
-                                                            />
-                                                            {errors.thirdSection?.items?.[index]?.imageThumbnail && (
-                                                                <p className="text-red-500">{errors.thirdSection?.items?.[index]?.imageThumbnail.message}</p>
-                                                            )}
-                                                            <Label className='font-bold'>Alt Tag</Label>
-                                                            <Input type='text' placeholder='Alt Tag' {...register(`thirdSection.items.${index}.imageAltThumbnail`, {
-                                                                required: "Value is required"
-                                                            })} />
-                                                        </div>
+                                                        
 
                                                     </>
                                                 )}
@@ -628,7 +606,7 @@ const EngineeringPage = () => {
 
                                 </div>
                                 <div className='flex justify-end mt-2'>
-                                    <Button type='button' addItem onClick={() => thirdSectionAppend({ image: "", imageAlt: "", imageThumbnail: "", imageAltThumbnail: "", threeDFile: "", threeDFileAlt: "",style: "", threeDFileThumbnail: "", threeDFileAltThumbnail: "" })}>Add Item</Button>
+                                    <Button type='button' addItem onClick={() => thirdSectionAppend({ image: "", imageAlt: "", threeDFile: "", threeDFileAlt: "",style: "", threeDFileThumbnail: "", threeDFileAltThumbnail: "" })}>Add Item</Button>
                                 </div>
                             </div>
                         </div>
