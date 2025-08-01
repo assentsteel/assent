@@ -97,7 +97,7 @@ export function ThreeDUploader({
 
   return (
     <div className={cn("space-y-4 w-full", className)}>
-      {value && fileName ? (
+      {value && fileName && isUploadComplete ? (
         <div className="flex items-center justify-between p-4 border rounded-lg">
           <div className="flex items-center space-x-2">
             <File className="h-5 w-5 text-blue-500" />
