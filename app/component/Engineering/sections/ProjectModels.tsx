@@ -35,7 +35,7 @@ const ModelViewer = dynamic(() => import("./ModelViewer"), { ssr: false });
           <ModelViewer
             url={selectedItem.threeDFile}
             position={[0, 0, 0]}
-            scale={1.2}
+            scale={0.3}
           />
         </Canvas>
       );
