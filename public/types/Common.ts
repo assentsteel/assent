@@ -537,16 +537,15 @@ export type NavTab = {
       fourthSection: {
         title: string,
         description: string,
-        items: [
-          {
-            title: string,
-            images: [
-              {
-                imageAlt: string,
-                image: string
-              }
-            ]
-          }
+        items: [{
+          style:string,
+          imageAlt: string,
+          image: string,
+          threeDFile:string,
+          threeDFileAlt:string,
+          threeDFileThumbnail:string,
+          threeDFileAltThumbnail:string
+        }
         ]
       },
       fifthSection: {
