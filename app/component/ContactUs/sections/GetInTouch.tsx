@@ -38,13 +38,20 @@ const GetInTouch: React.FC<PlatformsSectionProps> = () => {
   const hasScrolledRef = useRef(false);
 
 useEffect(()=>{
-  if(type){
+  if(type === "rfq"){
     setFormIndex(2)
+  }
+  if(type === "vendor"){
+    setFormIndex(1)
   }
 },[type])
 
 useEffect(() => {
   if (formIndex === 2 && rfqFormRef.current && !hasScrolledRef.current) {
+    rfqFormRef.current.scrollIntoView({ behavior: "smooth" });
+    hasScrolledRef.current = true;
+  }
+  if (formIndex === 1 && rfqFormRef.current && !hasScrolledRef.current) {
     rfqFormRef.current.scrollIntoView({ behavior: "smooth" });
     hasScrolledRef.current = true;
   }
