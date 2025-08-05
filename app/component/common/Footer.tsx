@@ -54,16 +54,21 @@ const Footer = () => {
             <motion.h3 variants={fadeInLeft} className="text-lg font-semibold mb-5 lg:mb-[50px]">Quick Links</motion.h3>
             <ul className="space-y-2 grid lg:grid-cols-2 lg:w-[75%]">
               {[
-                { label: "Leadership Team", href: "/team" },
-                { label: "Global Presence", href: "/global-presence" },
-                { label: "Awards & Accreditations", href: "/accreditations" },
-                { label: "Careers", href: "/careers" },
+                { label: "About", href: "/about" },
                 { label: "News", href: "/news" },
-                { label: "Request for Quotation", href: "/contact-us" },
-                { label: "Vendor Registration", href: "/" },
+                { label: "Sustainability", href: "/sustainability" },
+                { label: "Careers", href: "/careers" },
+                { label: "Media", href: "/gallery" }, 
+                { label: "Vendor", href: "/" },
+                { label: "Contact", href: "/contact-us" },
+                { label: "RFQ", href: "/contact-us" },
               ].map((link, index) => (
                 <motion.li key={index} variants={fadeInLeft}>
-                  <Link href={link.label === "Request for Quotation" ? {pathname: "/contact-us", query: {type: "rfq"}} : link.href} className="hover:text-secondary transition-all ease-in-out duration-500">
+                  <Link href={link.label === "RFQ"
+  ? { pathname: "/contact-us", query: { type: "rfq" } }
+  : link.label === "if-wewant-to-activate-vendor-tab"
+  ? { pathname: "/contact-us", query: { type: "vendor" } }
+  : link.href} className="hover:text-secondary transition-all ease-in-out duration-500">
                     {link.label}
                   </Link>
                 </motion.li>
