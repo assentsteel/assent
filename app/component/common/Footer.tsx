@@ -33,7 +33,7 @@ const Footer = () => {
       <div className="container">
         <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-[40px] xxl:gap-[50px] xxxl:gap-[100px] mb-[30px] md:mb-[70px]">
           {/* Contact Info */}
-          <div className="md:col-span-4 md:order-last overflow-hidden">
+          <div className="md:col-span-4 lg:order-last overflow-hidden">
             <motion.div variants={fadeInLeft}>
               <Image src="/assets/img/logo-wh.svg" className="mb-5 lg:mb-[50px]" alt="Assent Steel" width={150} height={50} />
               <h3 className="text-sm font-semibold mt-4">Head Office</h3>
@@ -52,30 +52,59 @@ const Footer = () => {
           {/* Quick Links */}
           <motion.div variants={fadeIn} className="md:col-span-8 overflow-hidden">
             <motion.h3 variants={fadeInLeft} className="text-lg font-semibold mb-5 lg:mb-[50px]">Quick Links</motion.h3>
-            <ul className="space-y-2 grid lg:grid-cols-2 lg:w-[75%]">
+           <div className="space-y-2 grid md:grid-cols-3 lg:w-[75%] items-baseline">
+           <ul className="space-y-2 grid lg:grid-cols-1 ">
               {[
                 { label: "About", href: "/about" },
-                { label: "News", href: "/news" },
                 { label: "Sustainability", href: "/sustainability" },
-                { label: "Careers", href: "/careers" },
                 { label: "Media", href: "/gallery" }, 
-                { label: "Vendor", href: "/" },
                 { label: "Contact", href: "/contact-us" },
-                { label: "RFQ", href: "/contact-us" },
               ].map((link, index) => (
                 <motion.li key={index} variants={fadeInLeft}>
-                  <Link href={link.label === "RFQ"
-  ? { pathname: "/contact-us", query: { type: "rfq" } }
-  : link.label === "if-wewant-to-activate-vendor-tab"
-  ? { pathname: "/contact-us", query: { type: "vendor" } }
-  : link.href} className="hover:text-secondary transition-all ease-in-out duration-500">
+                  <Link href={link.href} className="hover:text-secondary transition-all ease-in-out duration-500">
                     {link.label}
                   </Link>
                 </motion.li>
               ))}
             </ul>
+            <ul className="space-y-2 grid lg:grid-cols-1 ">
+              {[
+                { label: "Engineering", href: "/engineering" },
+                { label: "Fabrication", href: "/fabrication" },
+                { label: "Blasting Painting", href: "/blasting" },
+                { label: "Steel Erection", href: "/services" }, 
+              ].map((link, index) => (
+                <motion.li key={index} variants={fadeInLeft}>
+                  <Link href={link.href} className="hover:text-secondary transition-all ease-in-out duration-500">
+                    {link.label}
+                  </Link>
+                </motion.li>
+              ))}
+            </ul>
+           <ul className="space-y-2 grid lg:grid-cols-1 ">
+              {[ 
+                { label: "News", href: "/news" }, 
+                { label: "Careers", href: "/careers" }, 
+                // { label: "Vendor", href: "/" }, 
+                { label: "RFQ", href: "/contact-us" },
+              ].map((link, index) => (
+                <motion.li key={index} variants={fadeInLeft}>
+                  <Link href={link.label === "RFQ"
+                  ? { pathname: "/contact-us", query: { type: "rfq" } }
+                  : link.label === "if-wewant-to-activate-vendor-tab"
+                  ? { pathname: "/contact-us", query: { type: "vendor" } }
+                  : link.href} className="hover:text-secondary transition-all ease-in-out duration-500">
+                    {link.label}
+                  </Link>
+                </motion.li>
+              ))}
+            </ul>
+            
+           
+           </div>
 
           </motion.div>
+          
         </motion.div>
 
         <div className="lg:grid grid-cols-1  xxl:grid-cols-12 gap-8 xxl:gap-[50px] xxxl:gap-[100px] items-center">
