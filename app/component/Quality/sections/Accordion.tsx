@@ -65,7 +65,7 @@ gsap.registerPlugin(ScrollTrigger);
                   </p> */}
                   <Image src={da.logo} alt={da.title} width={40} height={40} />
                   <div>
-                    <h3 className={`  text-md   group-hover:text-secondary transition-all duration-300 cursor-pointer leading-[1] ${activeIndex === index ? 'text-secondary font-[600]' : 'text-primary font-[400] '} `}> {da.title}</h3>
+                    <h3 className={`  text-md   group-hover:text-secondary transition-all duration-300 leading-[1] ${activeIndex === index ? 'text-secondary font-[600]' : 'text-primary font-[400] '} `}> {da.title}</h3>
                     <AnimatePresence mode="wait">
                       {activeIndex === index && (
                         <motion.div key="content" initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto", marginTop: "20px" }} exit={{ opacity: 0, height: 0, marginTop: 0 }} transition={{ duration: 0.4 }} className="text-territory text-sm font-[400] leading-[1.7]" >

@@ -90,7 +90,7 @@ import Link from "next/link";
   className="absolute bottom-0 z-10 px-5 xxl:px-10 pb-5 xxl:pb-10 w-full"
 >
             <motion.p variants={textChild} className="text-xs text-white font-[500] mb-1"> 
-            {new Date(item.createdAt).toLocaleDateString("en-US", {
+            {new Date(item.date ? item.date : item.createdAt).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
     day: "numeric"

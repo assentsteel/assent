@@ -12,7 +12,7 @@ gsap.registerPlugin(ScrollTrigger);
         const MoreNews = ({ data, id }: { data: News | undefined ,id:number}) => {
   const containerRef = useRef(null);
 console.log(data);
-const filteredNews = data?.news.filter((item) => item._id !== id);
+const filteredNews = data?.news.filter((item) => item._id !== id).sort((a, b) => new Date(b.date ? b.date : b.createdAt).getTime() - new Date(a.date ? a.date : a.createdAt).getTime());
   useEffect(() => {
     if (containerRef.current) {
       gsap.from(containerRef.current, {

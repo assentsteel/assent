@@ -138,13 +138,33 @@ const Footer = () => {
           {/* Social Links */}
           <motion.div variants={fadeIn} className="lg:col-span-8 xxl:col-span-4  block justify-center">
             <div className="flex gap-2 md:gap-6 border-t border-white/35 pt-5 xxl:pt-[70px] max-md:justify-center">
-              {[FaLinkedinIn, FaFacebookF, FaInstagram, FaYoutube].map((Icon, index) => (
+              {/* {[FaLinkedinIn, FaFacebookF, FaInstagram, FaYoutube].map((Icon, index) => (
                 <motion.div key={index} variants={scaleUp}>
                   <Link href="#" className="text-md hover:text-secondary hover:scale-125 transition-all ease-in-out duration-500 h-[45px] xxxl:h-[58px] items-center flex">
                     <Icon />
                   </Link>
                 </motion.div>
-              ))}
+              ))} */}
+              <motion.div variants={scaleUp}>
+                  <Link target="_blank" href="https://www.linkedin.com/company/assentsteel/" className="text-md hover:text-secondary hover:scale-125 transition-all ease-in-out duration-500 h-[45px] xxxl:h-[58px] items-center flex">
+                    <FaLinkedinIn />
+                  </Link>
+                </motion.div>
+                <motion.div variants={scaleUp}>
+                  <Link target="_blank" href="https://www.facebook.com/assentsteel/" className="text-md hover:text-secondary hover:scale-125 transition-all ease-in-out duration-500 h-[45px] xxxl:h-[58px] items-center flex">
+                    <FaFacebookF />
+                  </Link>
+                </motion.div>
+                <motion.div variants={scaleUp}>
+                  <Link target="_blank" href="https://www.instagram.com/assentsteel/?hl=en" className="text-md hover:text-secondary hover:scale-125 transition-all ease-in-out duration-500 h-[45px] xxxl:h-[58px] items-center flex">
+                    <FaInstagram />
+                  </Link>
+                </motion.div>
+                <motion.div variants={scaleUp}>
+                  <Link target="_blank" href="https://www.youtube.com/@assentsteel" className="text-md hover:text-secondary hover:scale-125 transition-all ease-in-out duration-500 h-[45px] xxxl:h-[58px] items-center flex">
+                    <FaYoutube />
+                  </Link>
+                </motion.div>
             </div>
           </motion.div>
         </div>

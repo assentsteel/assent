@@ -46,7 +46,7 @@ const Iconslide = ({ data }: { data: Sustainability }) => {
           >
             {data.cardImages.map((item, index) => (
               <SwiperSlide key={index} className="growslide" >
-                <motion.div  className="cursor-pointer   "
+                <motion.div  className=""
     whileHover={{ scale: 1.05, rotateY: 10, rotateX: 0 }}
     transition={{ type: "spring", stiffness: 200, damping: 10 }}>
 

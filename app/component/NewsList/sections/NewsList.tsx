@@ -69,7 +69,7 @@ gsap.registerPlugin(ScrollTrigger);
                 <div className=" pt-[10px] w-full">
                   <div className="flex justify-between items-center">
                     <p className="text-xs text-[#595959] font-[400] leading-[1.9] "> 
-                      {new Date(item.createdAt).toLocaleDateString("en-US", {
+                      {new Date(item.date ? item.date : item.createdAt).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
     day: "numeric"
