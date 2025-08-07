@@ -54,7 +54,7 @@ gsap.registerPlugin(ScrollTrigger);
           {data.thirdSection.countries.map((item, index) => (
             <motion.div key={index} variants={itemVariants}>
               <motion.div className="relative group  h-full " whileHover={{ scale: 1.015 }} transition={{ type: "spring", stiffness: 300 }} >
-                <Link href={`${item.slug=="north-america" ? `/global-presence-america/${item.slug}` : item.slug=="europe" ? `/global-presence-europe/${item.slug}` : item.slug=="africa" ? `/global-presence-africa/${item.slug}` : ""}`}>
+                <Link className={`cursor-${item.slug == "australia" || item.slug == "united-kingdom" ? "default" : "pointer"}`} href={`${item.slug=="north-america" ? `/global-presence-america/${item.slug}` : item.slug=="europe" ? `/global-presence-europe/${item.slug}` : item.slug=="africa" ? `/global-presence-africa/${item.slug}` : ""}`}>
                   <figure className="overlayclr lg:max-h-[650px] h-full overflow-hidden rounded-[15px]">
                     <Image src={item.image} alt="" className=" w-full object-cover h-[350px] md:h-full" priority width={500} height={500} />
                   </figure>
@@ -63,14 +63,14 @@ gsap.registerPlugin(ScrollTrigger);
                     <p className="text-md text-white font-[500] pr-0 lg:pr-6 mb-3">
                       {item.title}
                     </p>
-                    <div className="flex w-fit gap-4 items-center border-b border-secondary pb-[10px] transition-all duration-500">
+                    {item.slug == "australia" || item.slug =="united-kingdom" ? null : <div className="flex w-fit gap-4 items-center border-b border-secondary pb-[10px] transition-all duration-500">
                       <p className="text-xs uppercase text-white font-[500] inline-flex leading-[1]">Read More</p>
                       <div className="min-w-[20px] min-h-[20px] bg-white rounded-full flex items-center justify-center translate-x-0 group-hover:translate-x-[5px] transition-all duration-500">
                         <svg stroke="#5BA646" fill="#5BA646" strokeWidth="0" viewBox="0 0 320 512" height="10px" width="8px" xmlns="http://www.w3.org/2000/svg">
                           <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
                         </svg>
                       </div>
-                    </div>
+                    </div>}
                   </div>
                 </Link>
               </motion.div>

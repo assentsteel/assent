@@ -6,12 +6,16 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { textContainerVariants, textItemVariants } from "../../common/MotionAnimation";
 gsap.registerPlugin(ScrollTrigger);
+import CountUp from "react-countup";
+import { useInView } from "react-intersection-observer";
  
   
   import { GlobalReachtype } from '@/public/types/Common'; 
   
   const GlobalReach = ({ data,bgcolor }: { data: GlobalReachtype , bgcolor?: string }) => {
   const containerRef = useRef(null);
+
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 });
 
   useEffect(() => {
     if (containerRef.current) {
@@ -29,6 +33,13 @@ gsap.registerPlugin(ScrollTrigger);
     }
   }, []);
 
+  function extractNumber(value: string): number {
+    const cleaned = value.replace(/,/g, '');
+    const match = cleaned.match(/[\d.]+/);
+    return match ? parseFloat(match[0]) : 0;
+  }
+
+
   return (
     <div className={`py-[50px] md:py-[70px] xl:py-[100px] overflow-hidden relative ${bgcolor ? bgcolor : ''} `}>
       <div className="container">
@@ -42,6 +53,7 @@ gsap.registerPlugin(ScrollTrigger);
           </motion.h2>
         </div>
         <motion.div
+         ref={ref}
   className="grid grid-cols-12 "
   variants={textContainerVariants}
   initial="hidden"
@@ -65,7 +77,7 @@ gsap.registerPlugin(ScrollTrigger);
               bgcolor ? 'text-white' : 'text-territory'
             }`}
           >
-            {item.number}
+            {inView ? <CountUp start={0} end={extractNumber(item.number)} duration={2} delay={0.3} decimals={extractNumber(item.number) % 1 !== 0 ? 1 : 0} /> : 0}
             <span className="text-secondary">+</span>
           </h3>
           <p

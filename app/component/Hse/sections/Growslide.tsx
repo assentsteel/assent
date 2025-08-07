@@ -10,6 +10,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Autoplay, Pagination } from "swiper/modules";
 gsap.registerPlugin(ScrollTrigger);
+import CountUp from "react-countup";
+import { useInView } from "react-intersection-observer";
  
 
 import { Hse } from '@/public/types/Common'; 
@@ -19,7 +21,13 @@ import { Hse } from '@/public/types/Common';
 const Growslide = ({ data }: { data: Hse }) => {   
 
   const swiperRef = useRef<SwiperType | null>(null);
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 });
 
+  function extractNumber(value: string): number {
+    const cleaned = value.replace(/,/g, '');
+    const match = cleaned.match(/[\d.]+/);
+    return match ? parseFloat(match[0]) : 0;
+  }
 
   return (
     <section className="pb-[50px] md:pb-[70px] xl:pb-[100px] overflow-hidden">
@@ -27,7 +35,7 @@ const Growslide = ({ data }: { data: Hse }) => {
 
 
         <div className="relative">
-          <motion.div  initial={{ opacity: 0, y: 50 }}
+          <motion.div  ref={ref} initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
               viewport={{ once: true, amount: 0.5 }}>
@@ -51,7 +59,7 @@ const Growslide = ({ data }: { data: Hse }) => {
     whileHover={{ scale: 1.05, rotateY: 10, rotateX: 0 }}
     transition={{ type: "spring", stiffness: 200, damping: 10 }}>
 
-                  <h3 className="text-40 font-semibold text-primary leading-none pt-[25px]">{item.number}</h3>
+                  <h3 className="text-40 font-semibold text-primary leading-none pt-[25px]"> {inView ? <CountUp start={0} end={extractNumber(item.number)} duration={2} delay={0.3} decimals={extractNumber(item.number) % 1 !== 0 ? 1 : 0} /> : 0}<span>{item.number.includes("+") && "+" } {item.number.split(" ").length > 1 ? item.number.split(" ")[1] : ""}</span></h3>
                   <p className="text-md text-territory leading-none font-normal py-[25px] ">{item.value}</p>
                 </motion.div>
               </SwiperSlide>

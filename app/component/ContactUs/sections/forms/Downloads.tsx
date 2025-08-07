@@ -1,9 +1,12 @@
-import React from 'react'
+"use client"
+
+import React, { useRef, useState } from 'react'
 import { motion } from "framer-motion";
 import { downloadFormSchema } from "@/app/schemas/downloadForm";
 import { z } from "zod";
 import {useForm,Controller} from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod";
+import ReCAPTCHA from 'react-google-recaptcha';
 
 
 type DownloadForm = z.infer<typeof downloadFormSchema>
@@ -13,6 +16,11 @@ const Downloads = () => {
     const {register,handleSubmit,formState:{errors},control,reset} = useForm<DownloadForm>({
         resolver:zodResolver(downloadFormSchema)
     })
+
+        const recaptcha = useRef<ReCAPTCHA>(null)
+        const [error,setError] = useState("")
+
+
     const containerVariants = {
         hidden: {},
         show: {
@@ -30,6 +38,12 @@ const Downloads = () => {
 
         const onSubmit = async(data: DownloadForm) => {
             try {
+                const captchaValue = recaptcha?.current?.getValue()
+                if (!captchaValue) {
+                  setError("Please verify yourself to continue")
+                  return;
+                }
+                setError("")
                 const response = await fetch("/api/admin/contact", {
                     method: "POST",
                     headers: {
@@ -107,6 +121,10 @@ const Downloads = () => {
       />
       {errors.purpose && <p className="text-red-500 text-xs mt-1">{errors.purpose.message}</p>}
     </motion.div>
+
+    <ReCAPTCHA sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""} ref={recaptcha} className='mt-5'/>
+    
+        {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
 
     {/* Submit Button */}
     <motion.div variants={fadeUp}>

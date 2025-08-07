@@ -172,7 +172,7 @@ import Link from "next/link";
                   >
                     <div className="flex justify-between items-center mt-4 md:mt-5 mb-4 md:mb-5">
                       <p className="text-sm font-[500] text-territory">
-                      {new Date(data.data.createdAt).toLocaleDateString("en-US", {
+                      {new Date(data.data.date ? data.data.date : data.data.createdAt).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
     day: "numeric"

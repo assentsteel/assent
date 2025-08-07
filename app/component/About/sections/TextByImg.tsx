@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 gsap.registerPlugin(ScrollTrigger);
  
 import { textbyimg } from '@/public/types/Common'; 
+import Link from "next/link";
 
 
 
@@ -83,7 +84,7 @@ const TextByImg = ({ data,kmbtn }: { data: textbyimg, kmbtn?: boolean }) => {
           
           </motion.div>
           {kmbtn &&
-            <motion.button
+            <Link href={"/gallery"}><motion.button
              initial="hidden"
           whileInView="visible"
           variants={imageVariants}
@@ -91,6 +92,7 @@ const TextByImg = ({ data,kmbtn }: { data: textbyimg, kmbtn?: boolean }) => {
               className="mt-auto m-auto h-[40px] lg:h-[48px] text-territory max-w-[315px] w-[315px] md:m-left border border-secondary py-2 px-6 rounded-full hover:bg-secondary hover:text-white transition text-xs  font-medium uppercase">
               view more
             </motion.button>
+            </Link>
           }
         </div>
    

@@ -64,7 +64,7 @@ const Initiatives = ({ data }: { data: Sustainability }) => {
         <Image src={assets.arrowgreen} alt="" className={`${activeIndex === index ? ' ' : 'brightness-0 opacity-[1]'} `} width={20} height={20}/>
           <div>
           <h3
-          className={`  text-md   group-hover:text-secondary transition-all duration-300 cursor-pointer leading-[1] font-[500] text-territory
+          className={`  text-md   group-hover:text-secondary transition-all duration-300 leading-[1] font-[500] text-territory
           `}
         > {da.title}
           </h3>

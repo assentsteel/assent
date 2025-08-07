@@ -130,6 +130,7 @@ export type News =
           category: string,
           content: string,
           createdAt: string, 
+          date: string,
           images: string[],  
           mainTitle: string,
           metaDescription: string
