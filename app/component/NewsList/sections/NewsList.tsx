@@ -71,8 +71,7 @@ gsap.registerPlugin(ScrollTrigger);
                     <p className="text-xs text-[#595959] font-[400] leading-[1.9] "> 
                       {new Date(item.date ? item.date : item.createdAt).toLocaleDateString("en-US", {
     year: "numeric",
-    month: "long",
-    day: "numeric"
+    month: "long"
   })}
                     </p>
                     <p className="text-xs text-[#595959] font-[400] leading-[1.9] ">

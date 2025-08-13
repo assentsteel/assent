@@ -92,8 +92,7 @@ import Link from "next/link";
             <motion.p variants={textChild} className="text-xs text-white font-[500] mb-1"> 
             {new Date(item.date ? item.date : item.createdAt).toLocaleDateString("en-US", {
     year: "numeric",
-    month: "long",
-    day: "numeric"
+    month: "long"
   })}
             </motion.p>
             <motion.h3 variants={textChild}  className="line-clamp-2 text-white text-md xxl:text-lg leading-[1.1] xl:leading-[1.5] mb-2 lg:mb-5 font-[600]">{item.mainTitle}</motion.h3>
@@ -135,7 +134,6 @@ import Link from "next/link";
             <motion.p variants={textChild} className="text-xs text-white font-[500] mb-1">   {new Date(item.createdAt).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
-    day: "numeric"
   })}</motion.p>
             <motion.h3 variants={textChild} className="line-clamp-2 text-white text-md xxl:text-lg leading-[1.1] xl:leading-[1.5] mb-2 lg:mb-5 font-[600]">{item.mainTitle}</motion.h3>
             <motion.div variants={textChild} className="flex justify-between">

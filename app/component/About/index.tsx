@@ -27,7 +27,7 @@ const Index = async ({ data }: { data: About  }) => {
       <AboutUs data={data} />
       <Achievements data={data} />
       <SingleImage data={data}/>
-      <TextByImg data={data.secondSection} kmbtn={false} />
+      <TextByImg data={data.secondSection}/>
       <Aboutslider data={data} />
       <SingleImageText data={data.purposeSection} textright={true}  maxwidth={'max-w-[56ch]'} />
       <Tabsection data={data}  />

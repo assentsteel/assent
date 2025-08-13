@@ -166,7 +166,7 @@ const ContactPage = () => {
                                 
                                 <div className='flex flex-col gap-2'>
                                     <Label className='font-bold'>Email</Label>
-                                    <Input type='text' placeholder='Email' {...register(`firstSection.items.${index}.email`)} />
+                                    <Textarea placeholder='Email' {...register(`firstSection.items.${index}.email`)} />
                                 </div>
                                 <div className='flex flex-col gap-2'>
                                     <Label className='font-bold'>Fax</Label>

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperType } from "swiper";
@@ -11,6 +11,7 @@ import { assets } from "@/public/assets/assets";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import dynamic from "next/dynamic";
+import { useSearchContext } from "@/contexts/searchContext";
  
   
    import { Fabrication } from '@/public/types/Common'; 
@@ -26,6 +27,11 @@ import dynamic from "next/dynamic";
   // );
 
     const swiperRef = useRef<SwiperType | null>(null);
+    const [selectedModel, setSelectedModel] = useState<string | null>(null);
+      const {setSearchActive} = useSearchContext();
+
+
+
     // const [activeIndex, setActiveIndex] = useState(0);
 
   // const handleMouseEnter = (index: number) => {
@@ -60,6 +66,25 @@ import dynamic from "next/dynamic";
   //     return newIndexes;
   //   });
   // };
+
+    useEffect(() => {
+      if (selectedModel) {
+        const scrollY = window.scrollY;
+        document.body.dataset.scrollY = String(scrollY);
+        // document.body.style.position = 'fixed';
+        document.body.style.overflow = 'hidden';
+        document.body.style.top = `-${scrollY}px`;
+        document.body.style.width = '100%';
+        setSearchActive(true);
+      } else {
+        const scrollY = document.body.dataset.scrollY;
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        window.scrollTo(0, scrollY ? parseInt(scrollY) : 0);
+        setSearchActive(false);
+      }
+    }, [selectedModel]);
 
   return (
     <section className="relative">
@@ -154,16 +179,16 @@ import dynamic from "next/dynamic";
           >
              {data.fourthSection.items.map((item, index) => (
               <SwiperSlide key={index} className="" >
-        <motion.div  className="cursor-pointer">
+        <motion.div  className="cursor-pointer" onClick={() => {setSelectedModel(item.threeDFile)}}>
                 <figure className="rounded-custom overflow-hidden h-[250px] lg:h-[300px] xl:h-[400px]">
-                  {/* <Image
-                    src={project.banner}
+                  <Image
+                    src={item.threeDFileThumbnail}
                     width={1000}
                     height={500}
-                    alt={project.title}
+                    alt={item.threeDFileAltThumbnail}
                     className="rounded-lg h-full w-full"
-                  /> */}
-                  <Canvas camera={{ position: [0, 1, 15] }} className="bg-slate-200">
+                  />
+                  {/* <Canvas camera={{ position: [0, 1, 15] }} className="bg-slate-200">
                             <ambientLight intensity={1} />
                             <directionalLight position={[5, 5, 5]} />
                             <OrbitControls enableZoom={true} />
@@ -172,7 +197,7 @@ import dynamic from "next/dynamic";
                               position={[0, 0, 0]}
                               scale={0.7}
                             />
-                          </Canvas>
+                          </Canvas> */}
                 </figure>
                 {/* <p className="text-sm text-[#595959] leading-none font-normal py-[25px] border-b border-[#1F1F1F]">{project.sector}</p>
                 <h3 className="text-lg font-semibold leading-none pt-[25px]">{project.title}</h3> */}
@@ -210,6 +235,31 @@ import dynamic from "next/dynamic";
         </div>
       </div>
     </section>
+
+    {selectedModel && (
+                   <div
+                     className="fixed inset-0 z-[2000] flex items-center justify-center bg-black/80 p-4 w-full h-full"
+                   >
+                     <div className="relative w-3/4 h-3/4">
+                       <button
+                         className="absolute top-2 right-2 text-white text-2xl z-10 flex justify-center items-center bg-primary rounded-full w-[25px] h-[25px]"
+                         onClick={() => {setSelectedModel(null)}}
+                       >
+                         &times;
+                       </button>
+                       <Canvas camera={{ position: [0, 1, 15] }} className="bg-slate-200">
+                            <ambientLight intensity={1} />
+                            <directionalLight position={[5, 5, 5]} />
+                            <OrbitControls enableZoom={true} />
+                            <ModelViewer
+                              url={selectedModel}
+                              position={[0, 0, 0]}
+                              scale={0.7}
+                            />
+                          </Canvas>
+                     </div>
+                   </div>
+                 )}
         </div>
       </div>
     </section>

@@ -59,12 +59,12 @@ const MapSection = ({register,control,index,type}:MapSectionProps) => {
                                 <div>
                                 <div className='flex flex-col gap-2'>
                                         <Label className='pl-3 font-bold'>Email</Label>
-                                        <Input type='text' placeholder='Email' {...register(`section.${index}.items.${itemIndex}.email`)} />
+                                        <Textarea placeholder='Email' {...register(`section.${index}.items.${itemIndex}.email`)} />
                                     </div>
-                                    <div className='flex flex-col gap-2'>
+                                    {/* <div className='flex flex-col gap-2'>
                                         <Label className='pl-3 font-bold'>Fax</Label>
                                         <Input type='text' placeholder='Fax' {...register(`section.${index}.items.${itemIndex}.fax`)} />
-                                    </div>
+                                    </div> */}
                                 </div>
                                 
     

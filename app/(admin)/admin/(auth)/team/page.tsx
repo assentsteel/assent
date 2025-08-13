@@ -28,6 +28,7 @@ interface TeamFormProps {
             image:string;
             imageAlt:string;
             linkedIn:string;
+            description:string;
         }[]
     }
 }
@@ -188,6 +189,10 @@ const TeamPage = () => {
                                     <Label className='font-bold'>LinkedIn</Label>
                                     <Input type='text' placeholder='LinkedIn' {...register(`teamSection.items.${index}.linkedIn`)} />
                                 </div>
+                                <div className='flex flex-col gap-1'>
+                            <Label className='font-bold'>Description</Label>
+                            <Textarea placeholder='Description' {...register(`teamSection.items.${index}.description`)} />
+                        </div>
                             </div>
 
                         </div>
@@ -197,7 +202,7 @@ const TeamPage = () => {
 
                 </div>
                 <div className='flex justify-end mt-2'>
-                        <Button type='button' addItem onClick={() => append({ name: "", designation: "", linkedIn: "",image:"",imageAlt:"" })}>Add Member</Button>
+                        <Button type='button' addItem onClick={() => append({ name: "", designation: "", linkedIn: "",image:"",imageAlt:"",description:"" })}>Add Member</Button>
                     </div>
                 </div>
 

@@ -236,7 +236,8 @@ export type News =
             designation: string,
             image: string,
             imageAlt: string,
-            linkedIn: string
+            linkedIn: string,
+            description: string
           }
         ]
       }
@@ -325,10 +326,15 @@ export type News =
         imageAlt: string,
         title: string,
         description: string,
-        items: [
+        years: [
           {
-            number: string,
-            value: string
+            title: string,
+            items: [
+              {
+                number: string,
+                value: string
+              }
+            ]
           }
         ]
       }
