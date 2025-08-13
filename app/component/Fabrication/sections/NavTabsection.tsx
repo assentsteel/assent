@@ -17,13 +17,13 @@ gsap.registerPlugin(ScrollTrigger);
   const [activeTab, setActiveTab] = useState(0); // default first tab
 
   const tabs = data.items.map((item) => item.title);
-  useEffect(() => {
-  const interval = setInterval(() => {
-    setActiveTab((prev) => (prev + 1) % tabs.length);
-  }, 4000);
+//   useEffect(() => {
+//   const interval = setInterval(() => {
+//     setActiveTab((prev) => (prev + 1) % tabs.length);
+//   }, 4000);
 
-  return () => clearInterval(interval); // cleanup on unmount
-}, [tabs.length]);
+//   return () => clearInterval(interval); // cleanup on unmount
+// }, [tabs.length]);
   const activeContent = data.items[activeTab];
   const [isMobile, setIsMobile] = useState(false);
 

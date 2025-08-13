@@ -41,10 +41,14 @@ const Footer = () => {
                 Dubai Industrial City, UAE.
                 <br /> P.O.Box: 38438
               </p>
-              <div className="flex flex-col 2xl:flex-row gap-2 2xl:gap-7 mt-[30px]">
+              <div className="flex flex-col  gap-2 2xl:gap-7 mt-[30px]">
                 <p className="flex gap-2"> <span className="text-secondary">T:</span> +971 4 247 1200 </p>
                 <p className="flex gap-2">
-                  <span className="text-secondary">E:</span> info@assentsteel.com
+                  <span className="text-secondary">E:</span>
+                  <span className="flex flex-col"> <span>info@assentsteel.com</span>
+                  <span>contactus@assentsteel.com</span>
+                 </span>
+                  
                 </p>
               </div>
             </motion.div>

@@ -78,14 +78,21 @@ const hseSchema = new mongoose.Schema({
         description:{
             type:String
         },
-        items:[{
-            number:{
-                type:String
-            },
-            value:{
-                type:String
+        years:[
+            {
+                title:{
+                    type:String
+                },
+                items:[{
+                    number:{
+                        type:String
+                    },
+                    value:{
+                        type:String
+                    }
+                }]
             }
-        }]
+        ]
     }
 })
 

@@ -16,6 +16,7 @@ const teamSchema = new mongoose.Schema({
             image:{ type: String, required: true },
             imageAlt:{ type: String },
             linkedIn:{ type: String },
+            description:{ type: String },
             }
         ]
     }

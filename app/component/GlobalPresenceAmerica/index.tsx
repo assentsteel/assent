@@ -11,6 +11,7 @@ import { GpAmerica } from '@/public/types/Common';
 const Index = async ({data}:{data:GpAmerica}) => { 
   const breadcrumb = [
     { label: "Home", href: "/" },
+    { label: "Global Presence", href: "/global-presence" },
     { label: data.data.title, href: "" },
     // { label: `${data && data.data.sector}`, href: "#" },
   ]; 

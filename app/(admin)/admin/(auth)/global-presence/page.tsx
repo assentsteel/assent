@@ -245,7 +245,7 @@ const GlobalPresencePage = () => {
 
                             <div className='flex flex-col gap-1'>
                             <Label className='font-bold'>Title</Label>
-                            <Input type='text' placeholder='Title' {...register("thirdSection.title", {
+                            <Textarea placeholder='Title' {...register("thirdSection.title", {
                                 required: "Title is required"
                             })} />
                             {errors.thirdSection?.title && <p className='text-red-500'>{errors.thirdSection?.title.message}</p>}

@@ -7,11 +7,10 @@ import { motion } from "framer-motion";
 gsap.registerPlugin(ScrollTrigger);
  
 import { textbyimg } from '@/public/types/Common'; 
-import Link from "next/link";
 
 
 
-const TextByImg = ({ data,kmbtn }: { data: textbyimg, kmbtn?: boolean }) => {   
+const TextByImg = ({ data }: { data: textbyimg, kmbtn?: boolean }) => {   
   
 
   const containerRef = useRef(null);
@@ -83,7 +82,7 @@ const TextByImg = ({ data,kmbtn }: { data: textbyimg, kmbtn?: boolean }) => {
            
           
           </motion.div>
-          {kmbtn &&
+          {/* {kmbtn &&
             <Link href={"/gallery"}><motion.button
              initial="hidden"
           whileInView="visible"
@@ -93,7 +92,7 @@ const TextByImg = ({ data,kmbtn }: { data: textbyimg, kmbtn?: boolean }) => {
               view more
             </motion.button>
             </Link>
-          }
+          } */}
         </div>
    
     </div>

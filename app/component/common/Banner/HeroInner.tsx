@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { usePathname } from "next/navigation";
+
 
 interface HeroSectionProps {
   imageSrc: string;
@@ -14,6 +16,8 @@ const HeroInner: React.FC<HeroSectionProps> = ({
   title,
   breadcrumbs,
 }) => {
+  const pathname = usePathname();
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -67,7 +71,7 @@ const HeroInner: React.FC<HeroSectionProps> = ({
             className="text-white text-xxl leading-none  font-[600] mb-5 lg:mb-9">
             <span
              >
-              {title && title}
+              {pathname === "/about" ? "" : title && title}
             </span>
           </motion.h1>
           <motion.div

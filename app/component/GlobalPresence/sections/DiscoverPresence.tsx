@@ -48,7 +48,9 @@ gsap.registerPlugin(ScrollTrigger);
   return (
     <section className="py-[50px] md:py-[70px] xl:py-[100px]    relative  ">
       <div className="container">
-        <motion.h3 variants={slideInTop} initial="hidden" whileInView="visible" exit="exit" className="text-xl font-semibold text-primary  leading-[1.2] mb-5 md:mb-10">Discover Our <br /> Presence in Other Countries</motion.h3>
+        <motion.div variants={slideInTop} initial="hidden" whileInView="visible" exit="exit" className="text-xl font-semibold text-primary  leading-[1.2] mb-5 md:mb-10 flex flex-col">{data.thirdSection.title.split("\n").map((word, index) => (
+          <span key={index}>{word}</span>
+        ))}</motion.div>
         <motion.div className="grid grid-cols-1 md:grid-cols-2  lg:grid-cols-5 gap-8" variants={containerVariants} initial="hidden" whileInView="show" viewport={{ once: true }} >
 
           {data.thirdSection.countries.map((item, index) => (
