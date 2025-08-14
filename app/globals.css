@@ -73,10 +73,10 @@ p {
 }
 @layer utilities {
   .section-spacing {
-    @apply py-[50px] md:py-[70px] lg:py-[120px];
+    @apply py-[50px] md:py-[70px] lg:py-[80px] xl:py-[100px] xxl:py-[120px];
   }
   .left-spacing {
-    @apply pl-[15px] lg:pl-[calc((100%-930px)/2)] xl:pl-[calc((100%-1110px)/2)] xxl:pl-[calc((100%-1390px)/2)] xxxl:pl-[calc((100%-1620px)/2)] ;
+    @apply pl-[15px] lg:pl-[calc((100%-930px)/2)] xl:pl-[calc((100%-1400px)/2)] xxl:pl-[calc((100%-1390px)/2)] xxxl:pl-[calc((100%-1620px)/2)] ;
   }
 }
 .frscfes > div:nth-child(1), .frscfes > div:nth-child(3), .frscfes > div:nth-child(5) {
