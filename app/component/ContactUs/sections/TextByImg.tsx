@@ -130,7 +130,6 @@ gsap.registerPlugin(ScrollTrigger);
                 </div>
               </motion.div>
               <motion.div
-                key={index}
                 className="flex gap-5 items-start"
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -146,7 +145,6 @@ gsap.registerPlugin(ScrollTrigger);
                 
               </motion.div>
               <motion.div
-                key={index}
                 className="flex gap-5 items-start"
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -164,7 +162,6 @@ gsap.registerPlugin(ScrollTrigger);
                 
               </motion.div>
               <motion.div
-                key={index}
                 className="flex gap-5 items-start"
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}

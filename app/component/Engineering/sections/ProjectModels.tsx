@@ -55,7 +55,7 @@ const ModelViewer = dynamic(() => import("./ModelViewer"), { ssr: false });
   };
 
   return (
-    <section className="pt-[50px] md:pt-[70px] xl:pt-[100px] pb-[0px] md:pb-[0px] xl:pb-[0px] overflow-hidden relative">
+    <section className="pt-[50px] md:pt-[70px] xl:pt-[80px] xxl:pt-[100px] pb-[0px] md:pb-[0px] xl:pb-[0px] overflow-hidden relative">
       <div className="container">
         <div className="lg:flex items-center">
           {/* Viewer Section */}

@@ -59,7 +59,7 @@ const Teamlist = ({ data }: { data: Team }) => {
 
 
   return (
-    <section className="py-[50px] md:py-[70px] xl:py-[100px]     overflow-hidden relative  ">
+    <section className="py-[50px] md:py-[70px] xl:py-[80px] xxl:py-[100px]     overflow-hidden relative  ">
       <div className="container">
         <div>
           <motion.h2

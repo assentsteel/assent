@@ -55,7 +55,7 @@ const TextByImg = ({ data }: { data: textbyimg, kmbtn?: boolean }) => {
   }, []);
 
   return (
-    <section className="py-[50px] md:py-[70px] xl:py-[100px] pts  overflow-hidden relative ">
+    <section className="py-[50px] md:py-[70px] xl:py-[80px] xxl:py-[100px]  overflow-hidden relative ">
       <div className="container">
   <div className="lg:flex items-center">
     {/* Text Section */}

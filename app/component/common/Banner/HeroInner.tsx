@@ -44,7 +44,7 @@ const HeroInner: React.FC<HeroSectionProps> = ({
   };
 
   return (
-    <section className="relative w-full md:h-[500px] h-[400px] overflow-hidden  ovrbanner">
+    <section className="relative w-full md:h-[500px] h-[400px] overflow-hidden  ovrbanner xl:h-[400px] xxl:h-[500px]">
       <div className="relative w-full h-full overlaybanner">
         <div className="overlay absolute bottom-0 w-full h-1/3   z-[1]"></div>
 

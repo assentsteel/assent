@@ -37,7 +37,7 @@ gsap.registerPlugin(ScrollTrigger);
     exit: { opacity: 0, x: -30, transition: { duration: 0.4 } },
   };
   return (
-    <section className="pt-0 md:pt-[70px] xl:pt-[100px] pb-[50px] md:pb-[70px] xl:pb-[100px]   overflow-hidden relative ">
+    <section className="pt-0 md:pt-[70px] xl:pt-[80px] xxl:pt-[100px] pb-[50px] md:pb-[70px] xl:pb-[100px]   overflow-hidden relative ">
       <div className="container">
 
         <div className="">
