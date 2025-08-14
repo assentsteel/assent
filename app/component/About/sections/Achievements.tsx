@@ -59,7 +59,7 @@ const Achievements = ({ data }: { data: About }) => {
   }
 
   return (
-    <section className="py-0 md:py-[70px] xl:py-[100px]   overflow-hidden relative ">
+    <section className="py-0 md:py-[70px] xl:py-[80px] xxl:py-[100px]  overflow-hidden relative ">
 
 <div className="container" ref={ref}>
   <div className="border-t">

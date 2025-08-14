@@ -16,7 +16,7 @@ title,
 
 
   return (
-     <section className="py-[30px] md:py-[70px] xl:py-[100px]   overflow-hidden relative ">
+     <section className="py-[30px] md:py-[70px] xl:py-[80px] xxl:py-[100px]   overflow-hidden relative ">
          <div className="container">
            <div className=" ">
               <motion.h1  variants={slideInLeft}

@@ -74,7 +74,7 @@ const Aboutslider = ({ data }: { data: About }) => {
   }, []);
 
   return (
-    <section className="py-[50px] md:py-[70px] xl:py-[100px] bg-primary  overflow-hidden relative ">
+    <section className="py-[50px] md:py-[70px] xl:py-[80px] xxl:py-[100px] bg-primary  overflow-hidden relative ">
       <div className="container">
         <div>
           <div className="flex justify-between items-center">
@@ -134,7 +134,6 @@ const Aboutslider = ({ data }: { data: About }) => {
             <Splide
     options={{
       perPage: 3.28,
-      isNavigation: true,
       gap: "1rem",
       focus: 1,
       pagination: false,

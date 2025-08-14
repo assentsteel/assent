@@ -32,8 +32,6 @@ const Index = async ({data}:{data:GpAmerica}) => {
         <Location data={data.data.sections[4]} />
         </div>
 
-
-
     </>
   );
 }

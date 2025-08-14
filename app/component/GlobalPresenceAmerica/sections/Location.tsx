@@ -101,7 +101,6 @@ gsap.registerPlugin(ScrollTrigger);
                     transition={{ duration: 0.4 }}
                   > 
                       <motion.div
-                        key={index}
                         className="flex gap-5 items-start"
                         initial={{ opacity: 0, y: 15 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -116,7 +115,6 @@ gsap.registerPlugin(ScrollTrigger);
                         </div>
                       </motion.div> 
                       <motion.div
-                        key={index}
                         className="flex gap-5 items-start"
                         initial={{ opacity: 0, y: 15 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -131,7 +129,6 @@ gsap.registerPlugin(ScrollTrigger);
                         </div>
                       </motion.div> 
                       <motion.div
-                        key={index}
                         className="flex gap-5 items-start"
                         initial={{ opacity: 0, y: 15 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -234,7 +231,7 @@ gsap.registerPlugin(ScrollTrigger);
                   <path
                     d="M707 179H739V211H707V179Z"
                     fill="white"
-                    fill-opacity="0.04"
+                    fillOpacity="0.04"
                     className=" cursor-pointer"
                     onMouseEnter={() => setIsHoveredAsia(true)}
         onMouseLeave={() => setIsHoveredAsia(false)}
@@ -284,7 +281,7 @@ gsap.registerPlugin(ScrollTrigger);
                    <path
                     d="M584 188H616V220H584V188Z"
                     fill="white"
-                    fill-opacity="0.04"
+                    fillOpacity="0.04"
                     className=" cursor-pointer"
                     onMouseEnter={() => setIsHoveredIraq(true)}
                     onMouseLeave={() => setIsHoveredIraq(false)}
@@ -334,7 +331,7 @@ gsap.registerPlugin(ScrollTrigger);
                   <path
                     d="M558 254H590V286H558V254Z"
                     fill="white"
-                    fill-opacity="0.04"
+                    fillOpacity="0.04"
                     className=" cursor-pointer"
                     onMouseEnter={() => setIsHoveredGcc(true)}
                     onMouseLeave={() => setIsHoveredGcc(false)}
@@ -383,7 +380,7 @@ gsap.registerPlugin(ScrollTrigger);
                   <path
                     d="M497 309H529V341H497V309Z"
                     fill="white"
-                    fill-opacity="0.04"
+                    fillOpacity="0.04"
                     className=" cursor-pointer"
                     onMouseEnter={() => setIsHoveredAfrica(true)}
                     onMouseLeave={() => setIsHoveredAfrica(false)}

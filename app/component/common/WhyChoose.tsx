@@ -10,7 +10,7 @@ import Image  from "next/image";
       const WhyChoose = ({ data }: { data: whychoose}) => {  
 
   return (
-    <section className="overflow-hidden   py-[50px] md:py-[70px] xl:py-[100px] ">
+    <section className="overflow-hidden   py-[50px] md:py-[70px] xl:py-[60px] xxl:py-[70px] ">
       <div className="container">
         <div className="  pb-[50px] md:pb-[70px] xl:pb-[100px]">
             <h2 className="mb-5 lg:mb-8 text-xl font-extrabold text-territory">{data.title}</h2>

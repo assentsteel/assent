@@ -48,7 +48,7 @@ import { Abtpurpose  } from '@/public/types/Common';
 
 
   return (
-    <section className="py-[50px] md:py-[70px] xl:py-[100px] cpt0  overflow-hidden relative cpt0">
+    <section className="py-[50px] md:py-[70px] xl:py-[80px] xxl:py-[100px] cpt0  overflow-hidden relative cpt0">
       <div className="container">
                <motion.div
           initial="hidden"
