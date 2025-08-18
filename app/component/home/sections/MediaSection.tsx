@@ -8,12 +8,12 @@ import { motion } from "framer-motion";
 
 import { News } from '@/public/types/Common';
 const MediaSection = ({data}: {data: News}) => { 
-  const latestNews = data.news[data.news.length - 1];
-  const lastTwoItems =  data.news.slice(-3, -1);
+  const latestNews = data.news.sort((a, b) => new Date(b.date ? b.date : b.createdAt).getTime() - new Date(a.date ? a.date : a.createdAt).getTime())[0];
+  const lastTwoItems =  data.news.sort((a, b) => new Date(b.date ? b.date : b.createdAt).getTime() - new Date(a.date ? a.date : a.createdAt).getTime()).slice(1, 3);
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+    const day = String(date.getDate()).padStart(2, "0");     
+    const month = String(date.getMonth() + 1).padStart(2, "0"); 
     const year = date.getFullYear();
     return `${day}-${month}-${year}`;
   };
@@ -59,7 +59,7 @@ const MediaSection = ({data}: {data: News}) => {
                     News
                   </span>
                   <span className="text-white text-xs uppercase"> 
-           {formatDate(latestNews.createdAt)} 
+           {formatDate(latestNews.date ? latestNews.date : latestNews.createdAt)} 
                   </span>
                 </div>
                 <h3 className="text-lg font-semibold mt-0  mb-[30px] leading-normal">
@@ -99,7 +99,7 @@ const MediaSection = ({data}: {data: News}) => {
                     News
                   </span>
                   <span className="text-territory text-xs uppercase">
-                    {formatDate(item.createdAt)}
+                    {formatDate(item.date ? item.date : item.createdAt)}
                   </span>
                 </div>
 
