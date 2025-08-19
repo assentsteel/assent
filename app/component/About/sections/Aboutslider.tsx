@@ -156,7 +156,7 @@ const Aboutslider = ({ data }: { data: About }) => {
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
-          className="font-[600] text-[45px] lg:text-[90px] text-[#54739F] pt-8 lg:pt-[40px]"
+          className="font-[600] text-[45px] lg:text-[90px] xl:text-[60px] text-[#54739F] pt-8 lg:pt-[40px]"
         >
           {src.year}
         </motion.p>

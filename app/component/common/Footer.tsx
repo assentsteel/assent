@@ -51,6 +51,37 @@ const Footer = () => {
                   
                 </p>
               </div>
+              <motion.div variants={fadeIn} className="lg:col-span-8 xxl:col-span-4  block justify-center mt-5">
+            <div className="gap-2 md:gap-6 border-t xxl:border-t border-white/35 pt-5 xxl:pt-[70px] max-md:justify-center hidden xl:flex xxl:hidden">
+              {/* {[FaLinkedinIn, FaFacebookF, FaInstagram, FaYoutube].map((Icon, index) => (
+                <motion.div key={index} variants={scaleUp}>
+                  <Link href="#" className="text-md hover:text-secondary hover:scale-125 transition-all ease-in-out duration-500 h-[45px] xxxl:h-[58px] items-center flex">
+                    <Icon />
+                  </Link>
+                </motion.div>
+              ))} */}
+              <motion.div variants={scaleUp}>
+                  <Link target="_blank" href="https://www.linkedin.com/company/assentsteel/" className="text-md hover:text-secondary hover:scale-125 transition-all ease-in-out duration-500 h-[45px] xxxl:h-[58px] items-center flex">
+                    <FaLinkedinIn />
+                  </Link>
+                </motion.div>
+                <motion.div variants={scaleUp}>
+                  <Link target="_blank" href="https://www.facebook.com/assentsteel/" className="text-md hover:text-secondary hover:scale-125 transition-all ease-in-out duration-500 h-[45px] xxxl:h-[58px] items-center flex">
+                    <FaFacebookF />
+                  </Link>
+                </motion.div>
+                <motion.div variants={scaleUp}>
+                  <Link target="_blank" href="https://www.instagram.com/assentsteel/?hl=en" className="text-md hover:text-secondary hover:scale-125 transition-all ease-in-out duration-500 h-[45px] xxxl:h-[58px] items-center flex">
+                    <FaInstagram />
+                  </Link>
+                </motion.div>
+                <motion.div variants={scaleUp}>
+                  <Link target="_blank" href="https://www.youtube.com/@assentsteel" className="text-md hover:text-secondary hover:scale-125 transition-all ease-in-out duration-500 h-[45px] xxxl:h-[58px] items-center flex">
+                    <FaYoutube />
+                  </Link>
+                </motion.div>
+            </div>
+          </motion.div>
             </motion.div>
           </div>
           {/* Quick Links */}
@@ -114,9 +145,9 @@ const Footer = () => {
         <div className="lg:grid grid-cols-1  xxl:grid-cols-12 gap-8 xxl:gap-[50px] xxxl:gap-[100px] items-center">
           {/* Buttons and Certifications */}
           <motion.div variants={fadeIn} className="md:col-span-8">
-            <div className="flex md:flex-row flex-col gap-5 md:gap-[70px] justify-between border-t border-white/35 pt-8 xxl:pt-[70px] pb-5 lg:pb-0 items-center">
+            <div className="flex md:flex-row flex-col gap-5 md:gap-[70px] justify-between border-t xl:border-t-0 xxl:border-t border-white/35 pt-8 xxl:pt-[70px] pb-5 lg:pb-0 items-center">
               <div className="flex items-center flex-col md:flex-row gap-4 justify-between w-full">
-                <div className="flex md:flex-row flex-col gap-4 overflow-hidden pt-2 lg:pt-0 wst57">
+                <div className="flex md:flex-row flex-col gap-4 overflow-hidden pt-2 lg:pt-0 wst57 xl:border-t xl:pt-8 xxl:pt-0 xxl:border-none">
                 {["DOWNLOAD BROCHURE", "PRE-QUALIFICATION"].map((btn, index) => (
                   <motion.button key={index} variants={scaleUp} className="border border-secondary py-2 px-4 rounded-full hover:bg-secondary hover:text-primary h-[40px] md:h-[58px] transition-all ease-in-out duration-500">
                     {btn}
@@ -124,7 +155,7 @@ const Footer = () => {
                 ))}
 
                 </div>
-                <div className="flex gap-2 md:gap-1 items-center flex-col md:flex-row">
+                <div className="flex gap-2 md:gap-1 items-center flex-col md:flex-row xl:border-t xl:pt-8 xxl:pt-0 xxl:border-none">
                   <Image src="/assets/img/icns/fcer1.png" alt="Certifications" width={156} height={58} className=" w-auto h-[36px] md:h-auto rounded-sm" />
 
                   <Image src="/assets/img/icns/fcer2.png" alt="Certifications" width={43} height={58} className=" w-auto h-[36px] md:h-auto rounded-sm" />
@@ -141,7 +172,7 @@ const Footer = () => {
 
           {/* Social Links */}
           <motion.div variants={fadeIn} className="lg:col-span-8 xxl:col-span-4  block justify-center">
-            <div className="flex gap-2 md:gap-6 border-t border-white/35 pt-5 xxl:pt-[70px] max-md:justify-center">
+            <div className="flex gap-2 md:gap-6 border-t xl:hidden xxl:border-t border-white/35 pt-5 xxl:pt-[70px] max-md:justify-center xxl:flex">
               {/* {[FaLinkedinIn, FaFacebookF, FaInstagram, FaYoutube].map((Icon, index) => (
                 <motion.div key={index} variants={scaleUp}>
                   <Link href="#" className="text-md hover:text-secondary hover:scale-125 transition-all ease-in-out duration-500 h-[45px] xxxl:h-[58px] items-center flex">
