@@ -785,7 +785,21 @@ export type NavTab = {
                 fax: string
               }
             ]
-          }
+          },
+          {
+            title: string,
+            type: string,
+            items: [
+              {
+                title: string,
+                project: string,
+                clientLocation: string,
+                quantity: string,
+                image: string,
+                imageAlt: string,
+              }
+            ]
+          },
         ],
         _id: string
       },
