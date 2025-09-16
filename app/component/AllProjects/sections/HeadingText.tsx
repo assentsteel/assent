@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 gsap.registerPlugin(ScrollTrigger);
-import { useParams } from "next/navigation";
+
 
  interface ProjectItem {
   banner: string;
@@ -32,11 +32,12 @@ import { useParams } from "next/navigation";
   _id: string;
   thumbnail: string;
   category: string;
+  categorySlug: string;
 }
 
  const HeadingText = ({ data, categoryslug,locationData,sectorData,categoryData }: { data: ProjectItem[],categoryslug: string,locationData: { name: string; }[],sectorData: { name: string; }[],categoryData: { name: string; }[] }) => { 
-  console.log(data)
-  const params = useParams();
+  // console.log(data)
+  // const params = useParams();
   // const dropdowns = [
   //   {
   //     label: "Country",
@@ -358,7 +359,7 @@ whileHover={{ scale: 1.015 }}
 transition={{ type: "spring", stiffness: 300 }}
 > 
 
-        <Link href={`/projects-details/${params.slug}/${item.slug}`}> 
+        <Link href={`/projects-details/${item.categorySlug}/${item.slug}`}> 
         <figure className="overlayclr xxl:h-[511px]  h-[450px]">
           <Image
             src={item.thumbnail}
