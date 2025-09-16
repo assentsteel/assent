@@ -78,7 +78,7 @@ gsap.registerPlugin(ScrollTrigger);
           viewport={{ once: true, amount: 0.2 }} dangerouslySetInnerHTML={{__html: data.thirdSection.description}}> 
               
               </motion.div>
-              <Link href="/gallery">
+              <Link href="/gallery-details/assent-steel-excellence-academy">
               <motion.button
              initial="hidden"
           whileInView="visible"

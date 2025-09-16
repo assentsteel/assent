@@ -151,11 +151,12 @@ const Footer = () => {
             <div className="flex md:flex-row flex-col gap-5 md:gap-[70px] justify-between border-t xl:border-t-0 xxl:border-t border-white/35 pt-8 xxl:pt-[70px] pb-5 lg:pb-0 items-center">
               <div className="flex items-center flex-col md:flex-row gap-4 justify-between w-full">
                 <div className="flex md:flex-row flex-col gap-4 overflow-hidden pt-2 lg:pt-0 wst57 xl:border-t xl:pt-10 xxl:pt-0 border-t-0 xxl:border-t-0">
-                {["DOWNLOAD BROCHURE", "PRE-QUALIFICATION"].map((btn, index) => (
-                  <motion.button key={index} variants={scaleUp} className="border border-secondary py-2 px-4 rounded-full hover:bg-secondary hover:text-primary h-[40px] md:h-[58px] transition-all ease-in-out duration-500">
-                    {btn}
-                  </motion.button>
-                ))}
+                <Link href="/assets/ASSENT STEEL Corpoarte Profile 2025.pdf" target="_blank"><motion.button variants={scaleUp} className="border border-secondary py-2 px-4 rounded-full hover:bg-secondary hover:text-primary h-[40px] md:h-[58px] transition-all ease-in-out duration-500">
+                    DOWNLOAD BROCHURE
+                  </motion.button></Link>
+                  <Link href="/assets/PQD final 2.pdf" target="_blank"><motion.button variants={scaleUp} className="border border-secondary py-2 px-4 rounded-full hover:bg-secondary hover:text-primary h-[40px] md:h-[58px] transition-all ease-in-out duration-500">
+                  PRE-QUALIFICATION
+                </motion.button></Link>
 
                 </div>
                 <div className="flex gap-2 md:gap-1 items-center flex-col md:flex-row xl:border-t xl:pt-10 xxl:border-t-0 xxl:pt-0">
