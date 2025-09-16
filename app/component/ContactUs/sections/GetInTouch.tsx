@@ -38,6 +38,7 @@ const GetInTouch: React.FC<PlatformsSectionProps> = () => {
   const hasScrolledRef = useRef(false);
 
 useEffect(()=>{
+
   if(type === "rfq"){
     setFormIndex(2)
   }

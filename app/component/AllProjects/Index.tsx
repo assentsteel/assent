@@ -17,7 +17,8 @@ const Index = async ({ data,locationData,sectorData }: { data:AllProjects,locati
   const projectData = data.data.categories.flatMap((category) =>
     category.projects.map((project) => ({
       ...project,
-      category: category.name // or category if you want the whole object
+      category: category.name,
+      categorySlug: category.slug // or category if you want the whole object
     }))
   );
   return (
