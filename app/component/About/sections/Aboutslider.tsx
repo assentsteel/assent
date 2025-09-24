@@ -9,7 +9,6 @@ import { motion } from "framer-motion";
 import gsap from "gsap"; 
 import { assets } from "@/public/assets/assets"; 
 import { About } from '@/public/types/Common'; 
-import { Item } from "@radix-ui/react-select";
 
 
 
