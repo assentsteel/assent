@@ -44,20 +44,28 @@ const HeroInner: React.FC<HeroSectionProps> = ({
   };
 
   return (
-    <section className="relative w-full md:h-[500px] h-[400px] overflow-hidden  ovrbanner xl:h-[400px] xxl:h-[500px]">
-      <div className="relative w-full h-full overlaybanner">
+    <section className={pathname == "/team" ? "relative w-full overflow-hidden ovrbanner" : "relative w-full md:h-[500px] h-[400px] overflow-hidden  ovrbanner  xxl:h-[500px]"}>
+      <div className="relative w-full h-full">
         <div className="overlay absolute bottom-0 w-full h-1/3   z-[1]"></div>
-
-        <figure className=" relative w-full  h-full overflow-hidden  ">
+        {pathname == "/team" && <Image
+            className="w-full bottom-0"
+            src={imageSrc}
+            width={1500}
+            height={500}
+            objectFit={"contain"}
+            alt={title}
+            priority
+          />}
+        {pathname !== "/team" && <figure className=" relative w-screen  h-full overflow-hidden">
           <Image
             className="w-full h-full"
             src={imageSrc}
             fill
-            objectFit="cover"
+            objectFit={"cover"}
             alt={title}
             priority
           />
-        </figure>
+        </figure>}
 
         <motion.div
           initial="hidden"
@@ -71,12 +79,12 @@ const HeroInner: React.FC<HeroSectionProps> = ({
             className="text-white text-xxl leading-none  font-[600] mb-5 lg:mb-9">
             <span
              >
-              {pathname === "/about" ? "" : title && title}
+              {pathname === "/about" || pathname === "/team" || pathname === "/accreditations" ? "" : title && title}
             </span>
           </motion.h1>
           <motion.div
             variants={textVariantsleft}>
-          <ul className="flex items-center flex-wrap gap-2 mb-5 lg:mb-[70px]">
+          {pathname !== "/team" && <ul className="flex items-center flex-wrap gap-2 mb-5 lg:mb-[70px]">
             {breadcrumbs.map((breadcrumb, index) => (
               <li
                 key={index}
@@ -107,7 +115,7 @@ const HeroInner: React.FC<HeroSectionProps> = ({
                 {index < breadcrumbs.length - 1 &&   <svg stroke="#5BA646" fill="#5BA646" strokeWidth="0" viewBox="0 0 320 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"></path></svg> }
               </li>
             ))}
-          </ul>
+          </ul>}
           </motion.div>
         </motion.div>
       </div>
