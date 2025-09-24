@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 import gsap from "gsap"; 
 import { assets } from "@/public/assets/assets"; 
 import { About } from '@/public/types/Common'; 
+import { Item } from "@radix-ui/react-select";
 
 
 
@@ -215,7 +216,9 @@ const Aboutslider = ({ data }: { data: About }) => {
               <h3 className="text-white text-lg font-[600] mb-5 lg:mb-[40px]">
                 {src.title}
               </h3>
-              <p className="text-white max-w-[50ch]">{src.description}</p>
+              <p className="text-white max-w-[50ch] flex flex-col">{src.description.split('\n').map((item, index) => (
+                <span key={index}>{item}</span>
+              ))}</p>
             </div>
           </motion.div>
         </div>

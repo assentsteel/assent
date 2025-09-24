@@ -46,7 +46,7 @@ gsap.registerPlugin(ScrollTrigger);
             viewport={{ once: true }}
           >
             <h2 className="text-xl font-semibold mb-5 lg:mb-[50px] leading-none text-white ">
-              Showcasing Our Finest Projects in Africa
+            {data.title}
             </h2>
           </motion.div>
 
@@ -136,7 +136,7 @@ gsap.registerPlugin(ScrollTrigger);
               className="w-full !overflow-visible"
               onSwiper={(swiper) => (swiperRef.current = swiper)}
             >
-              {data.items.map((project, index) => (
+              {data?.items?.map((project, index) => (
                 <SwiperSlide key={index} className="">
                   <motion.div className="cursor-pointer ">
                     <div className="relative group">
