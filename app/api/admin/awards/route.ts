@@ -6,10 +6,10 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req:NextRequest) {
     try {
         await connectDB();
-        const {title,image,imageAlt} = await req.json();
+        const {title,image,imageAlt,file} = await req.json();
         const awards = await Award.findOne({})
         if(awards){
-            awards.awards.push({title,image,imageAlt})
+            awards.awards.push({title,image,imageAlt,file})
             await awards.save()
             return NextResponse.json({message: "Award added successfully"},{status: 200});
         }
@@ -27,12 +27,12 @@ export async function PATCH(req:NextRequest) {
         await connectDB();
         const {searchParams} = new URL(req.url);
         const id = searchParams.get("id");
-        const {title,image,imageAlt} = await req.json();
+        const {title,image,imageAlt,file} = await req.json();
         const awards = await Award.findOne({});
         if(awards){
             awards.awards = awards.awards.map((awards:{_id:string}) => {
                 if(awards._id.toString() === id){
-                    return {title,image,imageAlt}
+                    return {title,image,imageAlt,file}
                 }
                 return awards
             })

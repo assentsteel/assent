@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-
+import { usePathname } from "next/navigation";
 import { slideInLeft, slideInTop } from "../../common/MotionAnimation"
 
 interface HeroSectionProps {
@@ -13,16 +13,16 @@ const Herotext: React.FC<HeroSectionProps> = ({
 title,
   breadcrumbs,
 }) => {
-
+const pathName = usePathname();
 
   return (
      <section className="py-[30px] md:py-[70px] xl:py-[80px] xxl:py-[100px]   overflow-hidden relative ">
          <div className="container">
            <div className=" ">
-              <motion.h1  variants={slideInLeft}
+              {pathName !== '/blasting' && <motion.h1  variants={slideInLeft}
     initial="hidden"
     animate="visible"
-    exit="exit" className="text-xxl font-[600] text-territory mb-4 lg:mb-10 leading-[1]">{title}</motion.h1>
+    exit="exit" className="text-xxl font-[600] text-territory mb-4 lg:mb-10 leading-[1]">{title}</motion.h1>}
               <motion.ul className="flex items-center flex-wrap gap-2 " variants={slideInTop}
     initial="hidden"
     animate="visible"

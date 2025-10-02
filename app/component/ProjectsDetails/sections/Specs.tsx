@@ -42,6 +42,7 @@ const Specs: React.FC<PlatformsSectionProps> = ({ data }) => {
   return (
     <section className="py-[50px] md:py-[70px] xl:py-[100px]  overflow-hidden relative ">
       <div className="container">
+        <div className="text-primary text-xxl leading-none  font-[600] mb-5 lg:mb-9">{data.pageTitle}</div>
       <motion.div
         className="flex gap-5 items-center"
         variants={cardVariants}
