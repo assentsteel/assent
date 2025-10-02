@@ -27,7 +27,7 @@ import Link from "next/link";
             setCurrentUrl(window.location.href);
           }
         }, []);
-
+        
 
         const handleFetchProjects = async () => {
           try {
