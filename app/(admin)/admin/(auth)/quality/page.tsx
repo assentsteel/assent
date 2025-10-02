@@ -13,6 +13,7 @@ const ReactQuill = dynamic(() => import('react-quill-new'), { ssr: false })
 import 'react-quill-new/dist/quill.snow.css';
 import dynamic from 'next/dynamic'
 import AdminItemContainer from '@/app/component/common/AdminItemContainer';
+import { FileUploader } from '@/components/ui/file-uploader';
 
 interface QualityFormProps {
 
@@ -31,6 +32,7 @@ interface QualityFormProps {
       items:{
         image:string;
         imageAlt:string;
+        file:string;
       }[]
     };
     thirdSection: {
@@ -258,6 +260,28 @@ const QualityPage = () => {
                             </div>
 
 
+                            <div className='flex flex-col gap-2'>
+                                <div className='flex flex-col gap-2'>
+                                    <Label className='font-bold'>File</Label>
+                                    <Controller
+                                        name={`certificateSection.items.${index}.file`}
+                                        control={control}
+                                        rules={{ required: "File is required" }}
+                                        render={({ field }) => (
+                                            <FileUploader
+                                                value={field.value}
+                                                onChange={field.onChange}
+                                            />
+                                        )}
+                                    />
+                                    {errors.certificateSection?.items?.[index]?.file && (
+                                        <p className="text-red-500">{errors.certificateSection?.items?.[index]?.file.message}</p>
+                                    )}
+                                </div>
+
+                            </div>
+
+
                         </div>
                     ))}
 
@@ -265,7 +289,7 @@ const QualityPage = () => {
 
                 </div>
                 <div className='flex justify-end mt-2'>
-                        <Button type='button' addItem onClick={() => certificateSectionAppend({ image: "", imageAlt: "" })}>Add Item</Button>
+                        <Button type='button' addItem onClick={() => certificateSectionAppend({ image: "", imageAlt: "", file: "" })}>Add Item</Button>
                     </div>
                 </div>
                     
