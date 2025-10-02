@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { Worker, Viewer } from "@react-pdf-viewer/core";
 import "@react-pdf-viewer/core/lib/styles/index.css";
