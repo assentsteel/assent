@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { ImageUploader } from "@/components/ui/image-uploader";
+import { FileUploader } from "@/components/ui/file-uploader";
 
 
 export default function News() {
@@ -24,18 +25,19 @@ export default function News() {
   const [title, setTitle] = useState<string>("");
   const [image, setImage] = useState<string>("");
   const [imageAlt, setImageAlt] = useState<string>("");
+  const [file, setFile] = useState<string>("");
 
   const [banner, setBanner] = useState<string>("");
   const [bannerAlt, setBannerAlt] = useState<string>("");
 
-  const [awardList, setAwardList] = useState<{_id: string, title: string, image: string, imageAlt: string}[]>([]);
+  const [awardList, setAwardList] = useState<{_id: string, title: string, image: string, imageAlt: string, file: string}[]>([]);
 
   
   const handleAddAward = async() => {
     try {
       const response = await fetch("/api/admin/awards",{
         method: "POST",
-        body: JSON.stringify({ title, image, imageAlt }),
+        body: JSON.stringify({ title, image, imageAlt, file }),
       });
       if(response.ok) {
         const data = await response.json();
@@ -78,7 +80,7 @@ export default function News() {
     try {
       const response = await fetch(`/api/admin/awards?id=${id}`,{
         method: "PATCH",
-        body: JSON.stringify({ title, image, imageAlt }),
+        body: JSON.stringify({ title, image, imageAlt, file }),
       });
       if(response.ok) {
         const data = await response.json();
@@ -87,6 +89,7 @@ export default function News() {
         setTitle("");
         setImage("");
         setImageAlt("")
+        setFile("");
       }else{
         const data = await response.json();
         alert(data.message);
@@ -197,6 +200,13 @@ export default function News() {
                     <Label>Alt Text</Label>
                     <Input type="text" placeholder="Alt Text" value={imageAlt} onChange={(e) => setImageAlt(e.target.value)} />
                     </div>
+                    <div>
+                    <Label>File</Label>
+                    <FileUploader
+                    onChange={(url)=>setFile(url)}
+                    value={file}
+                    />
+                    </div>
                   </div>
                 </DialogHeader>
                 <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={handleAddAward}>Save</DialogClose>
@@ -212,7 +222,7 @@ export default function News() {
               </div>
               <div className="flex gap-5">
               <Dialog>
-              <DialogTrigger onClick={()=>{setTitle(item.title); setImage(item.image); setImageAlt(item.imageAlt)}}><MdEdit/></DialogTrigger>
+              <DialogTrigger onClick={()=>{setTitle(item.title); setImage(item.image); setImageAlt(item.imageAlt); setFile(item.file)}}><MdEdit/></DialogTrigger>
               <DialogContent>
                 <DialogHeader>
                   <DialogTitle>Edit Award</DialogTitle>
@@ -231,6 +241,13 @@ export default function News() {
                     <div>
                     <Label>Alt Text</Label>
                     <Input type="text" placeholder="Alt Text" value={imageAlt} onChange={(e) => setImageAlt(e.target.value)} />
+                    </div>
+                    <div>
+                    <Label>File</Label>
+                    <FileUploader
+                    onChange={(url)=>setFile(url)}
+                    value={file}
+                    />
                     </div>
                   </div>
                 </DialogHeader>

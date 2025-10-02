@@ -16,7 +16,7 @@ const LogoTicker = ({ data }: { data: Home }) => {
             className="flex gap-[50px] lg:gap-[150px] flex-none min-w-max"
             animate={{ x: "-50%" }}
             transition={{
-              duration: 230,
+              duration: 30,
               repeat: Infinity,
               ease: "linear",
             }}

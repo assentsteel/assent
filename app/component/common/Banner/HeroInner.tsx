@@ -79,7 +79,7 @@ const HeroInner: React.FC<HeroSectionProps> = ({
             className="text-white text-xxl leading-none  font-[600] mb-5 lg:mb-9">
             <span
              >
-              {pathname === "/about" || pathname === "/team" || pathname === "/accreditations" ? "" : title && title}
+              {pathname === "/about" || pathname === "/team" || pathname === "/accreditations" || pathname.startsWith("/projects-details") || pathname.startsWith("/sustainability") ? "" : title && title}
             </span>
           </motion.h1>
           <motion.div

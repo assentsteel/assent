@@ -53,15 +53,15 @@ const Slidethumb: React.FC<PlatformsSectionProps> = ({ data }) => {
     }
   };
 
-  const slideInLeft = {
-    hidden: { opacity: 0, x: -30 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: { duration: 0.6, ease: "easeOut" },
-    },
-    exit: { opacity: 0, x: -30, transition: { duration: 0.4 } },
-  };
+  // const slideInLeft = {
+  //   hidden: { opacity: 0, x: -30 },
+  //   visible: {
+  //     opacity: 1,
+  //     x: 0,
+  //     transition: { duration: 0.6, ease: "easeOut" },
+  //   },
+  //   exit: { opacity: 0, x: -30, transition: { duration: 0.4 } },
+  // };
   const slideInTop = {
     hidden: { opacity: 0, y: -30 },
     visible: {
@@ -103,7 +103,7 @@ const Slidethumb: React.FC<PlatformsSectionProps> = ({ data }) => {
                 thumbs={{ swiper: thumbsSwiper }}
                 slidesPerView={1}
                 spaceBetween={10}
-                className="rounded-xl overflow-hidden lg:h-[628px] md:h-[450px] h-[300px]"
+                className="rounded-xl overflow-hidden lg:h-[528px] md:h-[350px] h-[300px]"
               >
                 {data.images.map((src, index) => (
                   <SwiperSlide key={index}>
@@ -181,13 +181,13 @@ const Slidethumb: React.FC<PlatformsSectionProps> = ({ data }) => {
           </div>
           <div className="w-full lg:w-1/2 pr-0 lg:pr-[44px] mt-6 lg:mt-0 ">
               <div>
-                <motion.h2 className="text-xl  text-primary font-[600] leading-[1.2] mb-4 lg:mb-10"
+                {/* <motion.h2 className="text-xl  text-primary font-[600] leading-[1.2] mb-4 lg:mb-10"
                 variants={slideInLeft}
                 initial="hidden"
                  whileInView="visible"
                 exit="exit">
                   {data.title}
-                </motion.h2>
+                </motion.h2> */}
 
                 <motion.div className="text-territory text-base font-[400] leading-[1.8] mb-0 lg:mb-10"
                  variants={slideInTop}

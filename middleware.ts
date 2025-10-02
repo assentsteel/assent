@@ -29,11 +29,6 @@ export async function middleware(request: NextRequest) {
       console.log(error);
       return NextResponse.redirect(new URL("/admin/login", request.url));
     }
-  }else if(path.startsWith("/admin/login")){
-    const token = request.cookies.get("adminToken")?.value || "";
-    if(token){
-      return NextResponse.redirect(new URL("/admin", request.url));
-    }
   }
 
   return response;
