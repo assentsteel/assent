@@ -37,6 +37,9 @@ const qualitySchema = new mongoose.Schema({
             },
             imageAlt:{
                 type:String
+            },
+            file:{
+                type:String
             }
         }]
     },
