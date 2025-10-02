@@ -153,6 +153,7 @@ export type News =
       metaDescription: string,
       awards: [
         {
+          file: string,
           title: string,
           image: string,
           imageAlt: string
