@@ -7,14 +7,27 @@ import { Worker, Viewer } from "@react-pdf-viewer/core";
 import "@react-pdf-viewer/core/lib/styles/index.css";
 
 import { Awards } from "@/public/types/Common";
+import { useSearchContext } from "@/contexts/searchContext";
 
 const AccreditationsList = ({ data }: { data: Awards }) => { 
   const [selectedPdf, setSelectedPdf] = useState<string | null>(null);
+  const {setSearchActive} = useSearchContext();
   useEffect(() => {
     if (selectedPdf) {
-      document.body.style.overflow = "hidden";
+      const scrollY = window.scrollY;
+        document.body.dataset.scrollY = String(scrollY);
+        // document.body.style.position = 'fixed';
+        document.body.style.overflow = 'hidden';
+        document.body.style.top = `-${scrollY}px`;
+        document.body.style.width = '100%';
+        setSearchActive(true);
     } else {
-      document.body.style.overflow = "";
+      const scrollY = document.body.dataset.scrollY;
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        window.scrollTo(0, scrollY ? parseInt(scrollY) : 0);
+        setSearchActive(false);
     }
 
     // Clean up on unmount

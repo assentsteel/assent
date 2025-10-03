@@ -158,7 +158,7 @@ import {gdVariants, slideInTop } from "./MotionAnimation";
                     alt={src.imageAlt}
                     width={600}
                     height={400}
-                    className="w-full h-auto object-cover rounded-[18px]"
+                    className="w-full h-[400px] object-cover rounded-[18px]"
                     priority
                     />
                     </motion.div>
@@ -169,6 +169,7 @@ import {gdVariants, slideInTop } from "./MotionAnimation";
             {/* Custom Navigation Buttons */}
 
               </motion.div>
+              
           </div>
         </div>
       </div>
