@@ -82,7 +82,7 @@ const Achievements = ({ data }: { data: About }) => {
                 className="text-primary font-[600] text-[20px] md:text-40 mb-[4px]"
                 variants={cardVariants}
               >
-                {inView ? <CountUp start={0} end={extractNumber(item.number)} duration={2} delay={0.3} decimals={extractNumber(item.number) % 1 !== 0 ? 1 : 0} /> : 0}<span>{item.number.includes("+") ? "+" : " " + item.number.split(" ")[1]}</span>
+                {inView ? <CountUp start={0} end={extractNumber(item.number)} duration={2} delay={0.3} decimals={extractNumber(item.number) % 1 !== 0 ? 1 : 0} /> : 0}<span>{item.number.includes("+") ? "+" : " " + item.number.split(" ").slice(1).join(" ")}</span>
                 {/* <span className="text-[17px] 2xl:text-[24px]">{stat.suffix}</span> */}
                 {/* <span className="text-[15px] md:text-sm">{item.number}</span> */}
               </motion.p>
