@@ -7,11 +7,31 @@ import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { useParams } from 'next/navigation'
 import { useRouter } from 'next/navigation'
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+    DialogClose,
+} from "@/components/ui/dialog"
+import { IoIosImages } from "react-icons/io";
+import { MdDelete } from "react-icons/md";
+import { Input } from "@/components/ui/input"
+import Link from 'next/link';
+import { FaEdit } from "react-icons/fa";
+import { RiAiGenerateText } from 'react-icons/ri'
 
 const AdminIndiGallery = () => {
     const {id} = useParams();
     const router = useRouter();
+    const [category, setCategory] = useState<string>("")
+    const [categoryList, setCategoryList] = useState<{_id: string, title: string,slug:string,thumbnail:string,altText:string}[]>([])
     const [imageUrls, setImageUrls] = useState<string[]>([]);
+    const [slug, setSlug] = useState<string>("")
+    const [thumbnail, setThumbnail] = useState<string>("")
+    const [altText, setAltText] = useState<string>("")
     const handleImageUpload = (url: string) => {
         setImageUrls([...imageUrls, url]);
     };
@@ -42,12 +62,86 @@ const AdminIndiGallery = () => {
             const response = await fetch(`/api/admin/gallery?id=${id}`);
             if (response.ok) {
                 const data = await response.json();
-                setImageUrls(data.data);
+                console.log(data);
+                setImageUrls(data.data.images);
+                setCategoryList(data.data.categories);
             }
         } catch (error) {
             console.log("Error in fetching images", error);
         }
     }
+
+    const handleAddCategory = async() => {
+        try {
+            const response = await fetch(`/api/admin/gallery/inside/category?id=${id}`,{
+                method: "POST",
+                body: JSON.stringify({ name: category,slug:slug,thumbnail:thumbnail,altText:altText }),
+            });
+            if(response.ok) {
+                const data = await response.json();
+                setCategory("");
+                alert(data.message);
+                fetchImages();
+                // fetchGalleryData();
+            }else{
+                const data = await response.json();
+                alert(data.message);
+            }
+        } catch (error) {
+            console.log("Error adding category", error);
+        }
+    }
+
+
+    const handleEditCategory = async(categoryId: string) => {
+        try {
+            const response = await fetch(`/api/admin/gallery/inside/category?id=${categoryId}`,{
+                method: "PATCH",
+                body: JSON.stringify({ name: category,slug:slug,thumbnail:thumbnail,altText:altText, galleryId: id }),
+            });
+            if(response.ok) {
+                const data = await response.json();
+                alert(data.message);
+                fetchImages();
+                // fetchGalleryData();
+            }else{
+                const data = await response.json();
+                alert(data.message);
+            }
+        } catch (error) {
+            console.log("Error editing category", error);
+        }
+    }
+
+    const handleDeleteCategory = async(categoryId: string) => {
+        try {
+            const response = await fetch(`/api/admin/gallery/inside/category?id=${categoryId}`,{
+                method: "DELETE",
+                body: JSON.stringify({ galleryId: id }),
+            });
+            if(response.ok) {
+                const data = await response.json();
+                alert(data.message);
+                fetchImages();
+                // fetchGalleryData();
+            }else{
+                const data = await response.json();
+                alert(data.message);
+            }
+        } catch (error) {
+            console.log("Error deleting category", error);
+        }
+    }
+
+    const handleAutoGenerate = () => {
+        if (!category) return;
+        const slug = category
+            .toLowerCase()
+            .trim()
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/^-+|-+$/g, ''); // remove leading/trailing dashes
+        setSlug(slug);
+    };
 
     useEffect(() => {
         fetchImages();
@@ -55,6 +149,112 @@ const AdminIndiGallery = () => {
 
   return (
     <div className='flex flex-col gap-5'>
+    <div className="flex flex-col gap-2 p-5 rounded-md bg-white shadow-md">
+                <div className='flex justify-between items-center'>
+            <Label className="block text-sm">Categories</Label>
+            <Dialog>
+                        <DialogTrigger className='bg-primary text-white px-3 py-1 rounded-md font-semibold' onClick={()=>setCategory("")}>Add Item</DialogTrigger>
+                        <DialogContent>
+                            <DialogHeader>
+                                <DialogTitle>Add Item</DialogTitle>
+                                <DialogDescription className='flex flex-col gap-2'>
+                                    <div>
+                                    <Label className="block text-sm">Title</Label>
+                                    <Input type="text" value={category} onChange={(e) => setCategory(e.target.value)} />
+                                    </div>
+                                    <div>
+                                        <div className='flex gap-2'>
+                                    <Label className="block text-sm">Slug</Label>
+                                    <div className='mb-2 flex gap-2 items-center bg-green-600 text-white p-1 rounded-md cursor-pointer w-fit' onClick={handleAutoGenerate}>
+                                                                                    <p>Auto Generate</p>
+                                                                                    <RiAiGenerateText />
+                                                                                </div>
+                                    </div>
+                                    <Input type="text" value={slug} onChange={(e) => setSlug(e.target.value)} />
+                                    </div>
+                                    <div>
+                                    <Label className="block text-sm">Thumbnail</Label>
+                                    <ImageUploader value={thumbnail} onChange={(url) => setThumbnail(url)} />
+                                    </div>
+                                    <div>
+                                    <Label className="block text-sm">Alt Text</Label>
+                                    <Input type="text" value={altText} onChange={(e) => setAltText(e.target.value)} />
+                                    </div>
+                                </DialogDescription>
+                            </DialogHeader>
+                            <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={handleAddCategory}>Save</DialogClose>
+                        </DialogContent>
+
+                    </Dialog>
+                    </div>
+            <div className='flex flex-col gap-4 py-3'>
+                {categoryList?.map((item)=>(
+                    <div className='flex justify-between items-center border rounded-md p-4 hover:bg-gray-100  hover:shadow-md transform  transition-all' key={item._id}>
+                    <div>
+                        <p>{item.title}</p>
+                    </div>
+                    <div className='flex gap-8 items-center'>
+                        <Dialog>
+                            <DialogTrigger onClick={()=>{setCategory(item.title);setSlug(item.slug);setThumbnail(item.thumbnail);setAltText(item.altText)}}><FaEdit className='text-lg cursor-pointer' /></DialogTrigger>
+                            <DialogContent>
+                                <DialogHeader>
+                                    <DialogTitle>Edit Item</DialogTitle>
+                                    <DialogDescription className='flex flex-col gap-2'>
+                                    <div>
+                                    <Label className="block text-sm">Title</Label>
+                                    <Input type="text" value={category} onChange={(e) => setCategory(e.target.value)} />
+                                    </div>
+                                    <div>
+                                        <div className='flex gap-2'>
+                                    <Label className="block text-sm">Slug</Label>
+                                    <div className='mb-2 flex gap-2 items-center bg-green-600 text-white p-1 rounded-md cursor-pointer w-fit' onClick={handleAutoGenerate}>
+                                                                                    <p>Auto Generate</p>
+                                                                                    <RiAiGenerateText />
+                                                                                </div>
+                                    </div>
+                                    <Input type="text" value={slug} onChange={(e) => setSlug(e.target.value)} />
+                                    </div>
+                                    <div>
+                                    <Label className="block text-sm">Thumbnail</Label>
+                                    <ImageUploader value={thumbnail} onChange={(url) => setThumbnail(url)} />
+                                    </div>
+                                    <div>
+                                    <Label className="block text-sm">Alt Text</Label>
+                                    <Input type="text" value={altText} onChange={(e) => setAltText(e.target.value)} />
+                                    </div>
+                                </DialogDescription>
+                                </DialogHeader>
+                                <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={()=>handleEditCategory(item._id)}>Save</DialogClose>
+                            </DialogContent>
+    
+                        </Dialog>
+    
+                        <Link href={`/admin/gallery/${id}/${item._id}`}><IoIosImages className='text-lg cursor-pointer' /></Link>
+    
+                        <Dialog>
+                                      <DialogTrigger><MdDelete className='text-lg cursor-pointer' /></DialogTrigger>
+                                      <DialogContent>
+                                        <DialogHeader>
+                                          <DialogTitle>Are you sure?</DialogTitle>
+                                        </DialogHeader>
+                                        <div className="flex gap-2">
+                                          <DialogClose className="bg-black text-white px-2 py-1 rounded-md">No</DialogClose>
+                                          <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={()=>handleDeleteCategory(item._id)}>Yes</DialogClose>
+                                        </div>
+                        
+                                      </DialogContent>
+                        
+                                    </Dialog>
+    
+    
+                        
+                    </div>
+                </div>
+                ))}
+                </div>
+
+            </div>
+
                     <Label className="block text-sm">Images</Label>
                     <div className="mt-2">
                         <ImageUploader onChange={(url: string) => handleImageUpload(url)} deleteAfterUpload={true} />

@@ -20,6 +20,13 @@ const gallerySchema = new mongoose.Schema({
         type:[String],
         default:[]
     },
+    categories:[{
+        title:{type:String},
+        slug:{type:String},
+        thumbnail:{type:String},
+        altText:{type:String},
+        images:[{type:String}]
+    }],
     metaTitle: {
         type: String,
     },

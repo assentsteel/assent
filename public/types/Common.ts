@@ -91,8 +91,20 @@ export type Gallerydata =
 {
   message: string;
   success: boolean;
-  data: string[]
+  data: {
+    categories: categories[],
+    images: string[]
+  } | []
 }
+
+export type categories = {
+  title: string,
+  thumbnail: string,
+  thumbnailAlt: string,
+  slug: string,
+  images: string[]
+}
+
 export type News =  
   {
     metaTitle: string,
