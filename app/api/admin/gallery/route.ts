@@ -60,14 +60,14 @@ export async function GET(req:NextRequest) {
         if(slug){
             const gallery = await Gallery.findOne({slug:slug});
             if(gallery){
-                return NextResponse.json({message: "Gallery fetched successfully",data: gallery.images,success:true},{status: 200});
+                return NextResponse.json({message: "Gallery fetched successfully",data: gallery,success:true},{status: 200});
             }else{
                 return NextResponse.json({message: "Error in fetching gallery",success:false},{status: 500}); 
             }
         }else if(id){
             const gallery = await Gallery.findOne({_id:id});
             if(gallery){
-                return NextResponse.json({message: "Gallery fetched successfully",data: gallery.images,success:true},{status: 200});
+                return NextResponse.json({message: "Gallery fetched successfully",data: gallery,success:true},{status: 200});
             }else{
                 return NextResponse.json({message: "Error in fetching gallery",success:false},{status: 500}); 
             }
