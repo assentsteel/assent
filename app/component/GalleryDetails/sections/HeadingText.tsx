@@ -113,11 +113,11 @@ console.log(data);
 
       >
         <Link href={`/gallery-details/${slug}/${item.slug}`}>
-          <figure className="overlayclr">
+          <figure className="overlayclr h-[350px]">
             <Image
               src={item.thumbnail}
               alt=""
-              className="rounded-[15px] w-full object-cover"
+              className="rounded-[15px] w-full object-cover h-full"
               priority
               width={500}
               height={500}
