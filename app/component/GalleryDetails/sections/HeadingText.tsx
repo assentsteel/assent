@@ -77,7 +77,7 @@ console.log(data);
         whileInView="show"
         viewport={{ once: true }}
       >
-        <div className="columns-2 md:columns-3 lg:columns-3 gap-4">
+        <div className={`columns-2 md:columns-3 ${Array.isArray(data.data) || data.data.categories.length > 0 ? "lg:columns-4" : "lg:columns-3"} gap-4`}>
           {Array.isArray(data.data) ? (data?.data?.map((image, index) => (
             <motion.div
               key={index}
@@ -113,11 +113,11 @@ console.log(data);
 
       >
         <Link href={`/gallery-details/${slug}/${item.slug}`}>
-          <figure className="overlayclr h-[350px]">
+          <figure className="overlayclr lg:h-[500px] md:h-[400px] h-[300px]">
             <Image
               src={item.thumbnail}
               alt=""
-              className="rounded-[15px] w-full object-cover h-full"
+              className="rounded-[15px] h-full w-full object-cover"
               priority
               width={500}
               height={500}

@@ -1,9 +1,8 @@
 import React from 'react'
-import Image from 'next/image'
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 
-const ItemCard = ({title,id,index}: {title:string,index:number,id:string}) => {
+const ItemCard = ({title,id}: {title:string,index:number,id:string}) => {
   const {attributes, listeners, setNodeRef, transform} = useSortable({
     id,
 })

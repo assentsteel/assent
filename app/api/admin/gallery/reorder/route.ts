@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
       await connectDB();
   
       // Build bulk operations for efficiency
-      const bulkOps = items.map((item: any, index: number) => ({
+      const bulkOps = items.map((item:{_id:string,index:number}, index: number) => ({
         updateOne: {
           filter: { _id: item._id },
           update: { $set: { index } },
