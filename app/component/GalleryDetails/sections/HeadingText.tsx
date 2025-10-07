@@ -107,7 +107,7 @@ console.log(data);
               />
             </motion.div>
           )) : data?.data?.categories.map((item, index) => (
-            <div key={index}  >
+            <div key={index}  className="mb-5">
       <div
         className="relative group"
 
