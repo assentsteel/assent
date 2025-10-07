@@ -77,7 +77,7 @@ console.log(data);
         whileInView="show"
         viewport={{ once: true }}
       >
-        <div className="columns-2 md:columns-3 lg:columns-4 gap-4">
+        <div className="columns-2 md:columns-3 lg:columns-3 gap-4">
           {Array.isArray(data.data) ? (data?.data?.map((image, index) => (
             <motion.div
               key={index}
@@ -95,7 +95,7 @@ console.log(data);
           ))) : data.data.images.length > 0 ? data.data.images.map((image, index)=>(
 <motion.div
               key={index}
-              className="mb-4 break-inside-avoid rounded-lg overflow-hidden group cursor-pointer"
+              className="mb-4 rounded-lg overflow-hidden group cursor-pointer"
               onClick={() => setSelectedImage(image)}
             >
               <Image
