@@ -102,8 +102,8 @@ console.log(data);
                 src={image}
                 alt={'demo'}
                 className="w-full h-auto object-cover rounded-lg transform transition duration-300 group-hover:scale-105 group-hover:brightness-90"
-              width={500}
-              height={500}
+              width={1500}
+              height={1500}
               />
             </motion.div>
           )) : data?.data?.categories.map((item, index) => (
@@ -155,14 +155,15 @@ console.log(data);
       <AnimatePresence>
         {selectedImage && (
           <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 w-full h-full"
             initial="hidden"
             animate="visible"
             exit="exit"
             variants={modalVariants}
             onClick={() => setSelectedImage(null)}
           >
-            <div className="relative max-w-xl w-full">
+            <div className="relative max-w-full w-full flex justify-center items-center">
+              <div className="relative w-3/4 h-auto">
               <button
                 className="absolute top-2 right-2 text-white text-2xl z-10 flex justify-center items-center bg-primary rounded-full w-[25px] h-[25px]"
                 onClick={() => setSelectedImage(null)}
@@ -173,9 +174,10 @@ console.log(data);
                 src={selectedImage}
                 alt="popup"
                 className="w-full h-auto rounded-lg"
-                width={500}
-                height={500}
+                width={800}
+                height={700}
               />
+              </div>
             </div>
           </motion.div>
         )}
