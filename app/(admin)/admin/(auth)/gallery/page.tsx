@@ -11,6 +11,11 @@ import { ImageUploader } from '@/components/ui/image-uploader';
 import Link from 'next/link'
 import { RiAiGenerateText } from 'react-icons/ri'
 import { Button } from '@/components/ui/button'
+import { TbReorder } from "react-icons/tb";
+import { GiConfirmed } from "react-icons/gi";
+import { closestCorners, DndContext, DragEndEvent } from '@dnd-kit/core'
+import { arrayMove, SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
+import ItemCard from './ItemCard'
 
 const AdminGallery = () => {
 
@@ -24,6 +29,7 @@ const AdminGallery = () => {
       const [pageTitle, setPageTitle] = useState<string>("");
       const [itemMetaTitle, setItemMetaTitle] = useState<string>("");
       const [itemMetaDescription, setItemMetaDescription] = useState<string>("");
+      const [reorderMode, setReorderMode] = useState(false);
 
     const handleAddItem = async () => {
         try {
@@ -165,6 +171,38 @@ const AdminGallery = () => {
         setSlug(slug);
     };
 
+            const getTaskPos = (id: string) => items.findIndex((item: {_id:string}) => (item._id == id))
+            const handleDragEnd = (event: DragEndEvent) => {
+                const { active, over } = event;
+        
+                if (!over || active.id === over.id) return;
+        
+                const oldIndex = getTaskPos(active.id as string);
+                const newIndex = getTaskPos(over.id as string);
+        
+                const newPosition = arrayMove(items, oldIndex, newIndex);
+                setItems(newPosition);
+            };
+
+            const handleConfirmReorder = async() => {
+                try {
+                    const response = await fetch("/api/admin/gallery/reorder", {
+                        method: "POST",
+                        body: JSON.stringify({ items }),
+                    });
+                    if (response.ok) {
+                        const data = await response.json();
+                        alert(data.message);
+                        fetchItems();
+                    } else {
+                        const data = await response.json();
+                        alert(data.message);
+                    }
+                } catch (error) {
+                    console.log("Error saving details", error);
+                }
+            }
+
 
     return (
         <div>
@@ -192,10 +230,22 @@ const AdminGallery = () => {
                                           </div>
                 <div className='flex items-center gap-2 justify-between'>
                     <h2 className='text-md font-semibold'>Items</h2>
+                    <div className='flex justify-between items-center gap-5'>
+                    <div className='flex gap-5'>
+                            <Button className="bg-green-600 text-white" type="button" onClick={() => {
+                                if(reorderMode){
+                                    setReorderMode(false) 
+                                    handleConfirmReorder()
+                                }else{
+                                    setReorderMode(true);
+                                }
+                                }}>{reorderMode ? <GiConfirmed /> : <TbReorder />}</Button>
+                            </div>
                     <Dialog>
                         <DialogTrigger className="bg-primary text-white px-2 py-1 rounded-md" onClick={() => { setTitle(""); setThumbnail(""); setThumbnailAlt("");setSlug("") }}>Add Item</DialogTrigger>
                         <DialogContent className="h-[600px] overflow-auto">
                             <DialogHeader>
+                                
                                 <DialogTitle>Add Item</DialogTitle>
                                 <div className="flex flex-col gap-4">
 
@@ -236,8 +286,20 @@ const AdminGallery = () => {
                         </DialogContent>
 
                     </Dialog>
+                    </div>
                 </div>
-                <div className='flex flex-col gap-2 h-[200px] overflow-y-auto'>
+
+                {reorderMode && <div className='flex flex-col gap-2 h-[200px] overflow-y-auto'>
+                    <DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
+                                <SortableContext items={items.map((item) => item._id)} strategy={verticalListSortingStrategy}>
+                                    {items.map((item, index) => (
+                                        <ItemCard key={item._id} title={item.title} index={index} id={item._id} />
+                                    ))}
+                                </SortableContext>
+                            </DndContext>
+                </div>}
+
+                {!reorderMode && <div className='flex flex-col gap-2 h-[200px] overflow-y-auto'>
                     {items.map((item, index) => (
                         <div className='flex items-center justify-between border p-2 rounded-md' key={index}>
                             <div>
@@ -305,7 +367,7 @@ const AdminGallery = () => {
                             </div>
                         </div>
                     ))}
-                </div>
+                </div>}
             </div>
         </div>
     )

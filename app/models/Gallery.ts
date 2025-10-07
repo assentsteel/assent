@@ -33,6 +33,7 @@ const gallerySchema = new mongoose.Schema({
     metaDescription: {
         type: String,
     },
+    index: { type: Number, default: 0 },
 })
 
 export default mongoose.models.Gallery || mongoose.model("Gallery", gallerySchema)

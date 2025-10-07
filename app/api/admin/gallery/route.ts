@@ -72,7 +72,7 @@ export async function GET(req:NextRequest) {
                 return NextResponse.json({message: "Error in fetching gallery",success:false},{status: 500}); 
             }
         }else{
-            const gallery = await Gallery.find({});
+            const gallery = await Gallery.find({}).sort({index:1});
             if(gallery){
                 return NextResponse.json({message: "Gallery fetched successfully",data: gallery,success:true},{status: 200});
             }
