@@ -77,7 +77,7 @@ console.log(data);
         whileInView="show"
         viewport={{ once: true }}
       >
-        <div className={`columns-2 md:columns-3 ${Array.isArray(data.data) || data.data.categories.length > 0 ? "lg:columns-4" : "lg:columns-3"} gap-4`}>
+        <div className={`columns-2 md:columns-3 ${Array.isArray(data.data) || data?.data?.categories?.length > 0 ? "lg:columns-4" : "lg:columns-3"} gap-4`}>
           {Array.isArray(data.data) ? (data?.data?.map((image, index) => (
             <motion.div
               key={index}
@@ -92,7 +92,7 @@ console.log(data);
               height={500}
               />
             </motion.div>
-          ))) : data.data.images.length > 0 ? data.data.images.map((image, index)=>(
+          ))) : data?.data?.images?.length > 0 ? data?.data?.images?.map((image, index)=>(
 <motion.div
               key={index}
               className="mb-4 rounded-lg overflow-hidden group cursor-pointer"
@@ -106,7 +106,7 @@ console.log(data);
               height={1500}
               />
             </motion.div>
-          )) : data?.data?.categories.map((item, index) => (
+          )) : data?.data?.categories?.map((item, index) => (
             <div key={index}  className="mb-5">
       <div
         className="relative group"
