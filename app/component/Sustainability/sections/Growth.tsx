@@ -1,7 +1,8 @@
 import React from "react";
 import Image from "next/image";
+import { Sustainability } from "@/public/types/Common";
 
-const Growth = () => {
+const Growth = ({ data }: { data: Sustainability["firstSection"] }) => {
   return (
     <section className="container rounded-[15px]">
       {/* Wrapper with conditional background */}
@@ -14,8 +15,8 @@ const Growth = () => {
         {/* Image only visible on LG+ */}
         <div className="hidden lg:block absolute inset-0">
           <Image
-            src={"/assets/img/sustainability/growth.jpg"}
-            alt="growth"
+            src={data.image}
+            alt={data.imageAlt}
             fill
             className="object-cover"
           />
@@ -41,15 +42,7 @@ const Growth = () => {
       px-4 md:px-6
     "
           >
-            Integration of ESG and GHG performance metrics into business
-            planning and procurement strategies. Commitment to Global Goals:
-            Aligned with the United Nations Sustainable Development Goals (UN
-            SDGs) and UAE Vision 2030, ASSENT STEEL is committed to creating
-            long-term value for all stakeholders while minimizing environmental
-            impact and maximizing positive social outcomes. Through innovation,
-            responsible manufacturing, and strategic partnerships, we are
-            building a future where steel stands for sustainability, resilience,
-            and progress.
+            {data.description}
           </p>
         </div>
       </div>

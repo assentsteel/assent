@@ -21,28 +21,12 @@ import { Sustainability } from "@/public/types/Common";
 import Link from "next/link";
 
 const Policy = ({ data }: { data: Sustainability }) => {
-  const fileList = [
-    {
-      name: "Quality Management Policy",
-      description: "Internal quality management procedures.",
-      file: "/files/sample1.pdf",
-    },
-    {
-      name: "Environmental Safety Document",
-      description: "Environmental and compliance guidelines.",
-      file: "/files/sample2.pdf",
-    },
-    {
-      name: "Code of Conduct Handbook",
-      description: "Company code of conduct rules.",
-      file: "/files/sample3.pdf",
-    },
-  ];
   const containerRef = useRef(null);
 
   const { setSearchActive } = useSearchContext();
 
   const [isOpen, setIsOpen] = useState(false);
+  const [pdfFile, setPdfFile] = useState("");
 
   const textContainerVariants = {
     hidden: { opacity: 0 },
@@ -152,13 +136,17 @@ const Policy = ({ data }: { data: Sustainability }) => {
                     </motion.p>
 
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-[20px] w-fit">
-                      {fileList.map((file, idx) => {
-                        const shortName = file.name
-                          .split(" ")
-                          .map((w) => w[0])
-                          .join("")
-                          .substring(0, 3)
-                          .toUpperCase();
+                      {data.secondSection.files.map((file, idx) => {
+                        const trimmed = file.fileName.trim();
+                        const shortName =
+                          trimmed.length === 3
+                            ? trimmed.toUpperCase()
+                            : trimmed
+                                .split(" ")
+                                .map((w) => w[0])
+                                .join("")
+                                .substring(0, 3)
+                                .toUpperCase();
 
                         return (
                           <div
@@ -197,6 +185,10 @@ const Policy = ({ data }: { data: Sustainability }) => {
 
                               {/* Eye icon */}
                               <Image
+                                onClick={() => {
+                                  setPdfFile(file.file);
+                                  setIsOpen(true);
+                                }}
                                 src="/assets/img/icns/eye.png"
                                 alt="View"
                                 width={20}
@@ -266,7 +258,7 @@ const Policy = ({ data }: { data: Sustainability }) => {
               <Worker
                 workerUrl={`https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.js`}
               >
-                <Viewer fileUrl={data.secondSection.file || ""} />
+                <Viewer fileUrl={pdfFile || ""} />
               </Worker>
             </div>
           </div>

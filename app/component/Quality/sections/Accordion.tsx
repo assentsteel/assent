@@ -91,7 +91,7 @@ const Accordion = ({ data }: { data: Quality }) => {
                           }}
                           exit={{ opacity: 0, height: 0, marginTop: 0 }}
                           transition={{ duration: 0.4 }}
-                          className="text-territory/80 text-[17px] lg:text-[19px] font-[400] leading-[1.7]"
+                          className="text-territory/80 text-[17px] lg:text-[19px] font-[400] leading-[1.7] overflow-hidden"
                         >
                           <div>{da.description}</div>
                         </motion.div>

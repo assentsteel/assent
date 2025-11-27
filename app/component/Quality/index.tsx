@@ -31,7 +31,7 @@ const Index = async ({ data }: { data: Quality }) => {
         textright={true}
       />
       <TextImg data={data} />
-      <FiveSWorkplace />
+      <FiveSWorkplace data={data.thirdSection} />
       <div className="custw">
         <Accordion data={data} />
       </div>

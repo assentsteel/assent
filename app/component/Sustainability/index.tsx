@@ -8,6 +8,7 @@ import NavTabsection from "../Fabrication/sections/NavTabsection";
 import Growslide from "./sections/Iconslide";
 import Initiatives from "./sections/Initiatives";
 import { Sustainability } from "@/public/types/Common";
+import SecondIntro from "./sections/SecondIntro";
 import Growth from "./sections/Growth";
 
 const Index = async ({ data }: { data: Sustainability }) => {
@@ -26,10 +27,10 @@ const Index = async ({ data }: { data: Sustainability }) => {
       <div className="pb-[30px] md:pb-[40px] xl:pb-[60px] pt-[50px] md:pt-[70px] xl:pt-[100px]">
         <IntroBold data={data.firstSection} />
       </div>
-      <Growth />
+      <Growth data={data.firstSection} />
       <Listsec data={data} />
       <div className="pt-[50px] md:pt-[70px] xl:pt-[100px]">
-        <IntroBold data={data.firstSection} />
+        <SecondIntro data={data.firstSection} />
       </div>
       <Policy data={data} />
       <TextByImgSlide data={data} kmbtn={false} />
