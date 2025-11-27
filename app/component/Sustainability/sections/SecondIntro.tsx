@@ -6,9 +6,9 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
-import { introbold } from "@/public/types/Common";
+import { SecondIntro } from "@/public/types/Common";
 
-const IntroBold = ({ data }: { data: introbold }) => {
+const SecondIntroBold = ({ data }: { data: SecondIntro }) => {
   const containerRef = useRef(null);
 
   const textContainerVariants = {
@@ -62,7 +62,7 @@ const IntroBold = ({ data }: { data: introbold }) => {
                 custom="x"
                 variants={textVariants}
               >
-                {data.title}
+                {data.secondTitle}
               </motion.h2>
             </motion.div>
           </div>
@@ -84,7 +84,7 @@ const IntroBold = ({ data }: { data: introbold }) => {
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.3 }}
                     transition={{ delay: 0.2, duration: 0.5 }}
-                    dangerouslySetInnerHTML={{ __html: data.description }}
+                    dangerouslySetInnerHTML={{ __html: data.secondDescription }}
                   ></motion.div>
                 </div>
               </motion.div>
@@ -96,4 +96,4 @@ const IntroBold = ({ data }: { data: introbold }) => {
   );
 };
 
-export default IntroBold;
+export default SecondIntroBold;

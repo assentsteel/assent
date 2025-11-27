@@ -1,6 +1,6 @@
 "use client";
 
-import Image  from "next/image";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { motion, AnimatePresence } from "framer-motion";
@@ -9,21 +9,29 @@ import { assets } from "@/public/assets/assets";
 import { tabItemVariant } from "../../common/MotionAnimation";
 gsap.registerPlugin(ScrollTrigger);
 
+import { NavTab } from "@/public/types/Common";
 
-
-  import { NavTab } from '@/public/types/Common';
-
-  const   NavTabsection = ({ data,navigation, bgcolor, textwhite, }: { data: NavTab, navigation?: boolean, bgcolor?: string, textwhite?: boolean }) => {
+const NavTabsection = ({
+  data,
+  navigation,
+  bgcolor,
+  textwhite,
+}: {
+  data: NavTab;
+  navigation?: boolean;
+  bgcolor?: string;
+  textwhite?: boolean;
+}) => {
   const [activeTab, setActiveTab] = useState(0); // default first tab
 
   const tabs = data.items.map((item) => item.title);
-//   useEffect(() => {
-//   const interval = setInterval(() => {
-//     setActiveTab((prev) => (prev + 1) % tabs.length);
-//   }, 4000);
+  //   useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setActiveTab((prev) => (prev + 1) % tabs.length);
+  //   }, 4000);
 
-//   return () => clearInterval(interval); // cleanup on unmount
-// }, [tabs.length]);
+  //   return () => clearInterval(interval); // cleanup on unmount
+  // }, [tabs.length]);
   const activeContent = data.items[activeTab];
   const [isMobile, setIsMobile] = useState(false);
 
@@ -75,7 +83,6 @@ gsap.registerPlugin(ScrollTrigger);
     exit: { opacity: 0, x: -30, transition: { duration: 0.4 } },
   };
 
-
   const currentTabSet = 0;
   const paginatedTabs = tabs;
   return (
@@ -85,7 +92,7 @@ gsap.registerPlugin(ScrollTrigger);
       }`}
     >
       <div className="container">
-        <div className="mb-5 lg:mb-[70px] flex justify-between">
+        <div className="mb-5 lg:mb-[60px] flex justify-between">
           <motion.h2
             className={`text-xl   font-[600] leading-[1.2] ${
               textwhite ? "text-white" : "text-primary"
@@ -108,12 +115,14 @@ gsap.registerPlugin(ScrollTrigger);
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.3 }}
-onClick={() => setActiveTab((prev) => Math.max(prev - 1, 0))}
+                onClick={() => setActiveTab((prev) => Math.max(prev - 1, 0))}
                 disabled={activeTab === 0}
-
-                            className={`bg-white text-black border px-3 py-1 rounded-full w-[48px] h-[48px] hover:border-white hover:bg-secondary group transition flex items-center justify-center ${
-                              activeTab === 0 ? "opacity-50 cursor-not-allowed hover:bg-[#dddddd]" : ""
-                            }`}  >
+                className={`bg-white text-black border px-3 py-1 rounded-full w-[48px] h-[48px] hover:border-white hover:bg-secondary group transition flex items-center justify-center ${
+                  activeTab === 0
+                    ? "opacity-50 cursor-not-allowed hover:bg-[#dddddd]"
+                    : ""
+                }`}
+              >
                 <Image
                   src={assets.greenarrow}
                   alt=""
@@ -130,13 +139,16 @@ onClick={() => setActiveTab((prev) => Math.max(prev - 1, 0))}
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: 0.1 }}
-           onClick={() => setActiveTab((prev) => Math.min(prev + 1, tabs.length - 1))}
+                onClick={() =>
+                  setActiveTab((prev) => Math.min(prev + 1, tabs.length - 1))
+                }
                 disabled={activeTab === tabs.length - 1}
                 className={`bg-white text-black border px-3 py-1 rounded-full w-[48px] h-[48px] hover:border-white hover:bg-secondary group transition flex items-center justify-center ${
                   activeTab === tabs.length - 1
                     ? "opacity-50 cursor-not-allowed hover:bg-[#dddddd]"
                     : ""
-                }`} >
+                }`}
+              >
                 <Image
                   src={assets.greenarrow}
                   alt=""
@@ -151,17 +163,17 @@ onClick={() => setActiveTab((prev) => Math.max(prev - 1, 0))}
         <div>
           {!isMobile && (
             <motion.div
-              className={`flex border-t border-b    ${
+              className={`flex gap-20 border-t border-b    ${
                 textwhite ? "border-[#ffffff85]" : "border-[#00000025]"
-              } justify-between flex-wrap tabmns mb-8 lg:mb-[60px]`}
-               variants={tabItemVariant}
+              } flex-wrap tabmns mb-8 lg:mb-[60px]`}
+              variants={tabItemVariant}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
               exit="exit"
             >
               {paginatedTabs.map((tab, index) => {
-                const actualIndex = currentTabSet  + index;
+                const actualIndex = currentTabSet + index;
                 return (
                   <button
                     key={actualIndex}
@@ -192,8 +204,8 @@ onClick={() => setActiveTab((prev) => Math.max(prev - 1, 0))}
                 exit="hidden"
                 className="lg:flex items-center"
               >
-                <div className="w-full lg:w-3/5 pr-0 lg:pr-[44px]">
-                  <div className="mb-8 lg:mb-0">
+                <div className="w-full lg:w-1/2 pr-0">
+                  <div className="mb-8 lg:mb-0 max-w-[765px]">
                     <h2
                       className={`text-lg ${
                         textwhite ? "text-white" : "text-black"
@@ -202,14 +214,18 @@ onClick={() => setActiveTab((prev) => Math.max(prev - 1, 0))}
                       {activeContent.title}
                     </h2>
                     <div className="text-territory text-sm font-[400] leading-[1.8] mb-6 lg:mb-10">
-                   <div className={`insts ${
-                            textwhite ? "text-white" : "text-black "
-                          }`} dangerouslySetInnerHTML={{__html: activeContent.description}}></div>
-
+                      <div
+                        className={`insts ${
+                          textwhite ? "text-white" : "text-black "
+                        }`}
+                        dangerouslySetInnerHTML={{
+                          __html: activeContent.description,
+                        }}
+                      ></div>
                     </div>
                   </div>
                 </div>
-                <div className="w-full lg:w-2/5 pl-0 lg:pl-[44px]">
+                <div className="w-full lg:w-1/2 pl-0 lg:pl-[44px]">
                   <motion.figure
                     className="image-wrapper"
                     variants={fadeInUp}
@@ -220,8 +236,8 @@ onClick={() => setActiveTab((prev) => Math.max(prev - 1, 0))}
                     <Image
                       src={activeContent.image}
                       alt={activeContent.title}
-                      className="rounded-[15px] object-cover"
-                      width={500}
+                      className="rounded-[15px] object-cover min-h-[450px] 2xl:min-h-[500px] w-full"
+                      width={800}
                       height={500}
                     />
                   </motion.figure>
@@ -250,14 +266,14 @@ onClick={() => setActiveTab((prev) => Math.max(prev - 1, 0))}
                       initial="hidden"
                       animate="visible"
                       exit="hidden"
-                      className={`p-4 ${
-        bgcolor ? 'bg-white' : ""
-      }`}
+                      className={`p-4 ${bgcolor ? "bg-white" : ""}`}
                     >
-
                       <div className="text-sm font-[400] leading-[1.8] text-territory mb-4">
-
-                          <div dangerouslySetInnerHTML={{__html: content.description}}></div>
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: content.description,
+                          }}
+                        ></div>
                       </div>
                       <Image
                         src={content.image}
