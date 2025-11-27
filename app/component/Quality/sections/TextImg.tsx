@@ -1,18 +1,15 @@
 "use client";
- ;
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
 import Link from "next/link";
-gsap.registerPlugin(ScrollTrigger); 
- 
+gsap.registerPlugin(ScrollTrigger);
 
-          import { Quality } from '@/public/types/Common';   
-          
-          const TextImg = ({ data }: { data: Quality }) => {   
+import { Quality } from "@/public/types/Common";
 
+const TextImg = ({ data }: { data: Quality }) => {
   const containerRef = useRef(null);
   const textVariants = {
     hidden: { opacity: 0, x: -30 },
@@ -55,65 +52,68 @@ gsap.registerPlugin(ScrollTrigger);
   }, []);
 
   return (
-    <section className="py-[50px] md:py-[70px] xl:py-[100px]   overflow-hidden relative ">
+    <section className="pb-[50px] md:pb-[70px] xl:pb-[100px] overflow-hidden relative ">
       <div className="container">
-  <div className="lg:flex items-center">
-    {/* Text Section */}
-    <div  className="w-full lg:w-3/5 pr-0 lg:pr-[35px]"
-    >
+        <div className="lg:flex items-center">
+          {/* Text Section */}
+          <div className="w-full lg:w-3/5 pr-0 lg:pr-[35px]">
+            <div className="mb-8 lg:mb-0">
+              <motion.h2
+                className="text-xl text-primary font-[600] leading-[1.2] mb-4 lg:mb-10"
+                viewport={{ once: true, amount: 0.2 }}
+                variants={textVariants}
+                initial="hidden"
+                whileInView="visible"
+              >
+                {data.thirdSection.title}
+              </motion.h2>
 
-        <div className="mb-8 lg:mb-0"  >
-          <motion.h2 className="text-xl text-primary font-[600] leading-[1.2] mb-4 lg:mb-10"
+              <motion.div
+                className="text-territory text-base font-[400] leading-[1.8] mb-6 lg:mb-10"
+                initial="hidden"
+                whileInView="visible"
+                variants={imageVariants}
+                viewport={{ once: true, amount: 0.2 }}
+                dangerouslySetInnerHTML={{
+                  __html: data.thirdSection.description,
+                }}
+              ></motion.div>
+              <Link href="/gallery-details/assent-steel-excellence-academy">
+                <motion.button
+                  initial="hidden"
+                  whileInView="visible"
+                  variants={imageVariants}
+                  viewport={{ once: true, amount: 0.2 }}
+                  className="mt-auto m-auto h-[40px] lg:h-[48px] text-territory max-w-[315px] w-[315px] md:m-left border border-secondary py-2 px-6 rounded-full hover:bg-secondary hover:text-white transition text-xs  font-medium uppercase"
+                >
+                  view more
+                </motion.button>
+              </Link>
+            </div>
+          </div>
+
+          {/* Image Section */}
+          <motion.div
+            className="w-full lg:w-2/5 pl-0 lg:pl-[35px]"
             viewport={{ once: true, amount: 0.2 }}
             variants={textVariants}
             initial="hidden"
-            whileInView="visible">
-            {data.thirdSection.title}
-          </motion.h2>
-
-          <motion.div className="text-territory text-base font-[400] leading-[1.8] mb-6 lg:mb-10"
-          initial="hidden"
-          whileInView="visible"
-          variants={imageVariants}
-          viewport={{ once: true, amount: 0.2 }} dangerouslySetInnerHTML={{__html: data.thirdSection.description}}> 
-              
-              </motion.div>
-              <Link href="/gallery-details/assent-steel-excellence-academy">
-              <motion.button
-             initial="hidden"
-          whileInView="visible"
-          variants={imageVariants}
-              viewport={{ once: true, amount: 0.2 }}
-              className="mt-auto m-auto h-[40px] lg:h-[48px] text-territory max-w-[315px] w-[315px] md:m-left border border-secondary py-2 px-6 rounded-full hover:bg-secondary hover:text-white transition text-xs  font-medium uppercase">
-              view more
-            </motion.button>
-              </Link>
-        </div>
-
-    </div>
-
-    {/* Image Section */}
-    <motion.div
-      className="w-full lg:w-2/5 pl-0 lg:pl-[35px]"
-      viewport={{ once: true, amount: 0.2 }}
-            variants={textVariants}
-            initial="hidden"
             whileInView="visible"
-    >
-        <div >
-          <figure className="image-wrapper">
-            <Image
-              src={data.thirdSection.image}
-              alt={data.thirdSection.imageAlt}
-              className="rounded-[15px] "
-              width={600}
-              height={400}
-            />
-          </figure>
+          >
+            <div>
+              <figure className="image-wrapper">
+                <Image
+                  src={data.thirdSection.image}
+                  alt={data.thirdSection.imageAlt}
+                  className="rounded-[15px] "
+                  width={600}
+                  height={400}
+                />
+              </figure>
+            </div>
+          </motion.div>
         </div>
-    </motion.div>
-  </div>
-</div>
+      </div>
     </section>
   );
 };
