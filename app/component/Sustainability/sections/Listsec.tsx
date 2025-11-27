@@ -60,6 +60,7 @@ const Listsec = ({ data }: { data: Sustainability }) => {
 
             return (
               <motion.div
+                key={index}
                 variants={gdsVariants}
                 initial="hidden"
                 whileInView="visible"
