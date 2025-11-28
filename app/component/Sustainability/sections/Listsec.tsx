@@ -71,20 +71,31 @@ const Listsec = ({ data }: { data: Sustainability }) => {
                   onMouseEnter={() => setHoveredIndex(index)}
                   onMouseLeave={() => setHoveredIndex(null)}
                   className="
-      grabg border border-secondary rounded-[117px] 
-      w-full sm:max-w-[320px]
-      min-h-[80px] md:min-h-[100px] xl:min-h-[120px]
-      flex justify-center items-center group 
-      transition-all duration-500 
-      hover:bg-cover hover:bg-center hover:border-white
-    "
+    grabg relative overflow-hidden
+    border border-secondary rounded-[117px] 
+    w-full sm:max-w-[320px]
+    min-h-[80px] md:min-h-[100px] xl:min-h-[120px]
+    flex justify-center items-center group 
+    transition-all duration-500 
+    hover:bg-cover hover:bg-center hover:border-white
+  "
                   style={{
                     backgroundImage: isHovered
                       ? `url(${bgImage})`
                       : defaultGradient,
                   }}
                 >
-                  <div className="flex gap-[15px] sm:gap-[10px] items-center">
+                  {/* HOVER BLACK OVERLAY */}
+                  <div
+                    className="
+      absolute inset-0 bg-black/50 
+      opacity-0 group-hover:opacity-100 
+      transition-opacity duration-300
+    "
+                  ></div>
+
+                  {/* CONTENT stays ON TOP */}
+                  <div className="relative flex gap-[15px] sm:gap-[10px] items-center z-10">
                     <Image
                       src={Item.logo}
                       alt={Item.logoAlt}
