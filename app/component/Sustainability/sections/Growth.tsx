@@ -42,7 +42,7 @@ const Growth = ({ data }: { data: Sustainability["firstSection"] }) => {
       px-4 md:px-6
     "
           >
-            {data.description}
+            {data.imageDescription}
           </p>
         </div>
       </div>
