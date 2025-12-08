@@ -47,7 +47,7 @@ const IntroBold = ({ data }: { data: introbold }) => {
     },
   };
   return (
-    <section className="overflow-hidden relative pt-10 ">
+    <section className="overflow-hidden relative pt-10">
       <div className="container">
         <div className="grid grid-cols-12   ">
           <div className="col-span-12 lg:col-span-6">
