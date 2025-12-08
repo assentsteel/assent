@@ -21,12 +21,15 @@ const SecondBlock = ({ data }: SecondBlockProps) => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: "easeOut" },
+      transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] },
     },
   };
 
   return (
-    <section className="pb-[50px] md:pb-[70px] xl:pb-[80px] xxl:pb-[100px] pt-10 overflow-hidden relative">
+    <section
+      className="pb-[50px] md:pb-[70px] xl:pb-[80px] xxl:pb-[100px] pt-10
+     overflow-hidden relative"
+    >
       <div className="container">
         {/* BLOCK WITH BACKGROUND IMAGE + GRADIENT */}
         <motion.div
