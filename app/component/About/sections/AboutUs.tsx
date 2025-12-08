@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, easeOut } from "framer-motion";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -26,7 +26,7 @@ const AboutUs = ({ data }: { data: About | GlobalPresence }) => {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: [0.25, 0.1, 0.25, 1], // FIXED
+        ease: easeOut, // V12-friendly easing function
       },
     },
   };
