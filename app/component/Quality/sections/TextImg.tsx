@@ -54,9 +54,9 @@ const TextImg = ({ data }: { data: Quality }) => {
   return (
     <section className="pb-[50px] md:pb-[70px] xl:pb-[100px] overflow-hidden relative ">
       <div className="container">
-        <div className="lg:flex items-center">
+        <div className="lg:flex lg:items-stretch">
           {/* Text Section */}
-          <div className="w-full lg:w-3/5 pr-0 lg:pr-[35px]">
+          <div className="w-full lg:w-3/5 pr-0 lg:pr-[35px] h-full flex flex-col">
             <div className="mb-8 lg:mb-0">
               <motion.h2
                 className="text-xl text-primary font-[600] leading-[1.2] mb-4 lg:mb-10"
@@ -100,17 +100,17 @@ const TextImg = ({ data }: { data: Quality }) => {
             initial="hidden"
             whileInView="visible"
           >
-            <div>
-              <figure className="image-wrapper">
+            
+              
                 <Image
                   src={data.thirdSection.image}
                   alt={data.thirdSection.imageAlt}
-                  className="rounded-[15px] "
+                  className="rounded-[15px] h-full w-full object-cover"
                   width={600}
                   height={400}
                 />
-              </figure>
-            </div>
+              
+            
           </motion.div>
         </div>
       </div>

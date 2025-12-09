@@ -507,7 +507,24 @@ figure.rtroverlay::after {
   margin-bottom: 10px;
   margin-left: 19px;
   font-size: 19px;
-  color: #1F1F1F;
+  color: #000000;
+}
+
+.sustainability-area-of-focus p{
+  margin-bottom: 15px;
+  color:#ffffff;
+}
+
+.sustainability-area-of-focus li {
+  list-style: disc;
+  margin-bottom: 10px;
+  margin-left: 19px;
+  font-size: 19px;
+  color: #ffffff;
+}
+
+.fabrication-machineries p{
+margin-bottom: 15px;
 }
 
 .ql-editor p {
@@ -521,6 +538,16 @@ figure.rtroverlay::after {
     width: 57%;
   }
 }
+
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 
 /* Hide the calendar button (icon) */
 .react-date-picker__button {

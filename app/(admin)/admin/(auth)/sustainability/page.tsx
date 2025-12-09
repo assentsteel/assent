@@ -830,10 +830,9 @@ const SustainabilityPage = () => {
                   </div>
                   <div className="flex flex-col gap-2">
                     <Label className="font-bold">Description</Label>
-                    <Textarea
-                      placeholder="Description"
-                      {...register(`fourthSection.items.${index}.description`)}
-                    />
+                    <Controller name={`fourthSection.items.${index}.description`} control={control} rules={{ required: "Description is required" }} render={({ field }) => {
+                                                    return <ReactQuill theme="snow" value={field.value} onChange={field.onChange} />
+                                                }} />
                   </div>
                 </div>
               </div>
