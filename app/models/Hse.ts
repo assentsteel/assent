@@ -1,99 +1,114 @@
 import mongoose from "mongoose";
 
 const hseSchema = new mongoose.Schema({
-    metaTitle:{
-        type:String
+  metaTitle: {
+    type: String,
+  },
+  metaDescription: {
+    type: String,
+  },
+  pageTitle: {
+    type: String,
+  },
+  firstSection: {
+    title: {
+      type: String,
     },
-    metaDescription:{
-        type:String
+    description: {
+      type: String,
     },
-    pageTitle:{
-        type:String
+    image: {
+      type: String,
     },
-    firstSection:{
-        title:{
-            type:String
-        },
-        description:{
-            type:String
-        },
-        image:{
-            type:String
-        },
-        imageAlt:{
-            type:String
-        }
+    imageAlt: {
+      type: String,
     },
-    secondSection:{
-        title:{
-            type:String
+    secondDescription: {
+      type: String,
+    },
+    secondImage: {
+      type: String,
+    },
+    secondImageAlt: {
+      type: String,
+    },
+  },
+  secondSection: {
+    title: {
+      type: String,
+    },
+    items: [
+      {
+        image: {
+          type: String,
         },
-        items:[{
-            image:{
-                type:String
+        imageAlt: {
+          type: String,
+        },
+        title: {
+          type: String,
+        },
+        description: {
+          type: String,
+        },
+        files: [
+          {
+            file: {
+              type: String,
             },
-            imageAlt:{
-                type:String
+            title: {
+              type: String,
             },
-            title:{
-                type:String
-            },
-            description:{
-                type:String
-            },
-            files:[{
-                file:{
-                    type:String
-                },
-                title:{
-                    type:String
-                }
-            }]
-        }]
+          },
+        ],
+      },
+    ],
+  },
+  thirdSection: {
+    title: {
+      type: String,
     },
-    thirdSection:{
-        title:{
-            type:String
-        },
-        description:{
-            type:String
-        },
-        image:{
-            type:String
-        },
-        imageAlt:{
-            type:String
-        }
+    description: {
+      type: String,
     },
-    fourthSection:{
-        image:{
-            type:String
+    image: {
+      type: String,
+    },
+    imageAlt: {
+      type: String,
+    },
+  },
+  fourthSection: {
+    image: {
+      type: String,
+    },
+    imageAlt: {
+      type: String,
+    },
+    title: {
+      type: String,
+    },
+    description: {
+      type: String,
+    },
+    years: [
+      {
+        title: {
+          type: String,
         },
-        imageAlt:{
-            type:String
-        },
-        title:{
-            type:String
-        },
-        description:{
-            type:String
-        },
-        years:[
-            {
-                title:{
-                    type:String
-                },
-                items:[{
-                    number:{
-                        type:String
-                    },
-                    value:{
-                        type:String
-                    }
-                }]
-            }
-        ]
-    }
-})
+        items: [
+          {
+            number: {
+              type: String,
+            },
+            value: {
+              type: String,
+            },
+          },
+        ],
+      },
+    ],
+  },
+});
 
 export default mongoose.models.HSE || mongoose.model("HSE", hseSchema);

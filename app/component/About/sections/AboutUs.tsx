@@ -1,18 +1,17 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, easeOut } from "framer-motion";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
-import { About,GlobalPresence } from '@/public/types/Common'; 
+import { About, GlobalPresence } from "@/public/types/Common";
 
 const AboutUs = ({ data }: { data: About | GlobalPresence }) => {
+  const containerRef = useRef(null);
 
-   const containerRef = useRef(null);
-
-   const textContainerVariants = {
+  const textContainerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -22,8 +21,16 @@ const AboutUs = ({ data }: { data: About | GlobalPresence }) => {
 
   const textItemVariants = {
     hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: easeOut, // V12-friendly easing function
+      },
+    },
   };
+
   useEffect(() => {
     if (containerRef.current) {
       gsap.from(containerRef.current, {
@@ -54,65 +61,60 @@ const AboutUs = ({ data }: { data: About | GlobalPresence }) => {
   return (
     <section className="pt-[120px] pb-5 md:pb-0 overflow-hidden relative xl:pt-[80px] xxl:pt-[120px]">
       <div className="container">
-      <div className="grid grid-cols-12  left-spacing pr-[15px] md:pr-0">
-        <div className="col-span-12 lg:col-span-4">
-          <motion.div
-            variants={textContainerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-          >
-            <div className="overflow-hidden mb-[20px] lg:mb-[48px]">
-            <motion.p
-              variants={textItemVariants}
-              className="text-md uppercase text-[#595959] font-medium border-b inline-flex border-secondary pb-[10px] lg:pb-[25px] leading-none "
+        <div className="grid grid-cols-12  left-spacing pr-[15px] md:pr-0">
+          <div className="col-span-12 lg:col-span-4">
+            <motion.div
+              variants={textContainerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
             >
-             {data.firstSection.mainTitle}
-            </motion.p>
+              <div className="overflow-hidden mb-[20px] lg:mb-[48px]">
+                <motion.p
+                  variants={textItemVariants}
+                  className="text-md uppercase text-[#595959] font-medium border-b inline-flex border-secondary pb-[10px] lg:pb-[25px] leading-none "
+                >
+                  {data.firstSection.mainTitle}
+                </motion.p>
+              </div>
+            </motion.div>
+          </div>
+
+          <motion.div className="col-span-12 lg:col-span-8 right-0 pl-[0px] lg:pl-[50px]">
+            <div>
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                className=""
+              >
+                <div>
+                  <motion.h2
+                    className="text-xl text-primary font-[600] leading-[1.2] mb-4 lg:mb-6"
+                    custom="x"
+                    variants={textVariants}
+                  >
+                    {data.firstSection.subTitle}
+                  </motion.h2>
+
+                  {data.firstSection.description
+                    .split("\n")
+                    .map((text, index) => (
+                      <motion.div
+                        key={index}
+                        className="text-sm font-normal mb-3 lg:mb-6 text-territory leading-[1.6]"
+                        custom="y"
+                        variants={textVariants}
+                        transition={{ delay: 0.2 * (index + 1), duration: 0.5 }}
+                        dangerouslySetInnerHTML={{ __html: text }}
+                      ></motion.div>
+                    ))}
+                </div>
+              </motion.div>
             </div>
-
-
           </motion.div>
         </div>
-
-<motion.div
-  className="col-span-12 lg:col-span-8 right-0 pl-[0px] lg:pl-[50px]"
->
-  <div>
-  <motion.div
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.3 }}
-      className=""
-              >
-
-                  <div >
-                 <motion.h2
-        className="text-xl text-primary font-[600] leading-[1.2] mb-4 lg:mb-6"
-        custom="x"
-        variants={textVariants}
-      >
-        {data.firstSection.subTitle}
-      </motion.h2>
-
-      {data.firstSection.description.split("\n").map((text, index) => (
-        <motion.div
-          key={index}
-          className="text-sm font-normal mb-3 lg:mb-6 text-territory leading-[1.6]"
-          custom="y"
-          variants={textVariants}
-          transition={{ delay: 0.2 * (index + 1), duration: 0.5 }}
-          dangerouslySetInnerHTML={{__html: text}}
-        >
-          
-        </motion.div>
-      ))}
-     </div>
-    </motion.div>
-  </div>
-</motion.div>
-        </div>
-        </div>
+      </div>
     </section>
   );
 };
