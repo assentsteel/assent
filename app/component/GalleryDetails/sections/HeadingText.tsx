@@ -77,7 +77,7 @@ console.log(data);
         whileInView="show"
         viewport={{ once: true }}
       >
-        <div className={`columns-2 md:columns-3 ${Array.isArray(data.data) || data?.data?.categories?.length > 0 ? "lg:columns-4" : "lg:columns-3"} gap-4`}>
+        <div className={`grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4`}>
           {Array.isArray(data.data) ? (data?.data?.map((image, index) => (
             <motion.div
               key={index}

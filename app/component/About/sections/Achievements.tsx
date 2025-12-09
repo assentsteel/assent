@@ -79,7 +79,7 @@ const Achievements = ({ data }: { data: About }) => {
           <div className="border-l border-[#f6f6f6] px-3 py-2 md:px-10 md:py-4 group-hover:border-0">
             <div className="overflow-hidden">
               <motion.p
-                className="text-primary font-[600] text-[20px] md:text-40 mb-[4px]"
+                className="text-primary font-[600] text-[20px] md:text-40 mb-[4px] h-[120px] w-3/4"
                 variants={cardVariants}
               >
                 {inView ? <CountUp start={0} end={extractNumber(item.number)} duration={2} delay={0.3} decimals={extractNumber(item.number) % 1 !== 0 ? 1 : 0} /> : 0}<span>{item.number.includes("+") ? "+" : " " + item.number.split(" ").slice(1).join(" ")}</span>
