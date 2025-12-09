@@ -19,7 +19,7 @@ const SmoothScroll = () => {
     requestAnimationFrame(raf);
 
     return () => {
-      lenis.destroy(); // Cleanup to prevent memory leaks
+      lenis.destroy();
     };
   }, []);
 
