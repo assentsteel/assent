@@ -52,7 +52,7 @@ const Footer = () => {
               <h3 className="text-sm font-semibold mt-4">Head Office</h3>
               <p>
                 Dubai Industrial City, UAE.
-                <br /> P.O.Box: 38438
+                <br /> P.O.Box: 38436
               </p>
               <div className="flex flex-col  gap-2 2xl:gap-7 mt-[30px]">
                 <p className="flex gap-2">
