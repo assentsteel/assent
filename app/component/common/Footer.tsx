@@ -199,8 +199,8 @@ const Footer = () => {
 
         <div className="lg:grid grid-cols-1  xxl:grid-cols-12 gap-8 xxl:gap-[50px] xxxl:gap-[100px] items-center">
           {/* Buttons and Certifications */}
-          <motion.div variants={fadeIn} className="md:col-span-8">
-            <div className="flex md:flex-row flex-col gap-5 md:gap-[70px] justify-between border-t xl:border-t-0 xxl:border-t border-white/35 pt-8 xxl:pt-[70px] pb-5 lg:pb-0 items-center">
+          <motion.div variants={fadeIn} className="xl:col-span-9 md:col-span-8">
+            <div className="flex md:flex-row flex-col gap-5 md:gap-[70px] justify-between border-t xl:border-t-0 xxl:border-t border-white/35 pt-8 xxl:pt-[50px] xxxl:pt-[61px] pb-5 lg:pb-0 items-center">
               <div className="flex lg:items-center flex-col lg:flex-row gap-4 justify-between w-full">
                 <div className="flex md:flex-row flex-col gap-4 overflow-hidden pt-2 lg:pt-0 wst5 xl:border-t xl:pt-10 xxl:pt-0 border-t-0 xxl:border-t-0">
                   <Link
@@ -225,14 +225,14 @@ const Footer = () => {
                 </div>
                 <div className="flex gap-2 md:gap-1 md:items-center flex-row xl:border-t xl:pt-10 xxl:border-t-0 xxl:pt-0">
                   <Image
-                    src="/assets/img/icns/fcer1.png"
+                    src="/assets/img/icns/WEBSITE-FOOTER-LOGO.jpg"
                     alt="Certifications"
                     width={156}
-                    height={58}
-                    className=" w-auto h-[36px] md:h-auto rounded-sm"
+                    height={158}
+                    className="w-[30rem] h-auto md:h-auto rounded-sm"
                   />
 
-                  <Image
+                  {/* <Image
                     src="/assets/img/icns/fcer2.png"
                     alt="Certifications"
                     width={43}
@@ -254,7 +254,7 @@ const Footer = () => {
                     width={81}
                     height={58}
                     className=" w-auto h-[36px] md:h-auto rounded-sm"
-                  />
+                  /> */}
                 </div>
               </div>
             </div>
@@ -263,9 +263,9 @@ const Footer = () => {
           {/* Social Links */}
           <motion.div
             variants={fadeIn}
-            className="lg:col-span-8 xxl:col-span-4  block justify-center xl:hidden xxl:block"
+            className="lg:col-span-8 xxl:col-span-3  block justify-center xl:hidden xxl:block"
           >
-            <div className="flex gap-2 md:gap-6 border-t border-white/35 pt-5 xxl:pt-[70px] max-md:justify-center">
+            <div className="flex gap-2 md:gap-6 border-t border-white/35 pt-5 xxl:pt-[70px] max-md:justify-center xl:justify-end xxxl:justify-start">
               {/* {[FaLinkedinIn, FaFacebookF, FaInstagram, FaYoutube].map((Icon, index) => (
                 <motion.div key={index} variants={scaleUp}>
                   <Link href="#" className="text-md hover:text-secondary hover:scale-125 transition-all ease-in-out duration-500 h-[45px] xxxl:h-[58px] items-center flex">
