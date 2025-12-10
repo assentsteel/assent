@@ -193,7 +193,7 @@ const NavTabsection = ({
                     }}
 
                     onClick={() => setActiveTab(actualIndex)}
-                    className={`py-[13px] text-sm font-[400] relative top-[-1.9px] flex-shrink-0 ${textwhite ? "text-white" : "text-black"
+                    className={`py-[13px] text-sm font-[400] relative  flex-shrink-0 ${textwhite ? "text-white" : "text-black"
                       } ${activeTab === actualIndex
                         ? "font-[700] border-t-2 border-secondary"
                         : ""
