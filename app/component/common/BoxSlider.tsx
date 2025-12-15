@@ -155,13 +155,14 @@ const BoxSlider = ({ data }: { data: Quality }) => {
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true, amount: 0.2 }}
+                        className="bg-white rounded-[15px] h-[400px] lg:h-[498px]"
                       >
                         <Image
                           src={src.image}
                           alt={src.imageAlt}
                           width={600}
                           height={400}
-                          className="w-full h-[400px] lg:h-[498px] object-cover rounded-[15px]"
+                          className="w-full h-full object-contain rounded-[15px] object-center"
                           priority
                         />
                       </motion.div>
