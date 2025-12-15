@@ -27,6 +27,7 @@ export type About = {
     title: string;
     items: [
       {
+        _id:string;
         year: string;
         title: string;
         description: string;

@@ -44,6 +44,7 @@ const SecondBlock = ({ data }: SecondBlockProps) => {
             backgroundPosition: "center",
           }}
         >
+          <div className="absolute inset-0 bg-black bg-opacity-50 z-10 rounded-[15px] lg:hidden"></div>
           {/* CONTENT */}
           <motion.div
             initial="hidden"
