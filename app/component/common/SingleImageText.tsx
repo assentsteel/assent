@@ -54,6 +54,7 @@ const SingleImageText = ({
   return (
     <section className="py-[50px] md:py-[70px] xl:py-[80px] xxl:py-[100px] cpt0  overflow-hidden relative cpt0">
       <div className="container">
+        
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -72,6 +73,7 @@ const SingleImageText = ({
             backgroundPosition: "center",
           }}
         >
+          <div className="absolute inset-0 bg-black bg-opacity-50 z-10 rounded-[15px] lg:hidden"></div>
           <motion.div
             variants={staggerContainer}
             initial="hidden"

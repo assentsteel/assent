@@ -34,7 +34,7 @@ const Growslide = ({ data }: { data: Hse }) => {
   return (
     <section className="pb-[50px] md:pb-[70px] xl:pb-[100px] overflow-hidden">
       <div className="container">
-      <div className="lg:flex lg:flex-row flex flex-col gap-2"  ref={ref}>
+      <div className="lg:flex lg:flex-row flex  gap-2 flex-wrap"  ref={ref}>
           {data.fourthSection.years.map((year, index) => (
   <motion.div
     key={index} // Move key here
@@ -71,7 +71,7 @@ const Growslide = ({ data }: { data: Hse }) => {
               modules={[Autoplay, Pagination]}
                autoplay={{ delay: 2000, disableOnInteraction: false }}
               loop
-            slidesPerView={1.2}
+            slidesPerView={1}
             breakpoints={{
               640: { slidesPerView: 2 },
               1024: { slidesPerView: 4 },

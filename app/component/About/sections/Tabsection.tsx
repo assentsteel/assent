@@ -8,6 +8,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
  
 import { About } from '@/public/types/Common'; 
+import { assets } from "@/public/assets/assets";
 
 
 
@@ -166,13 +167,24 @@ const fadeInUp = {
   data.coreValues.items.map((content, index) => (
     <div
       key={index}
-      className="mb-6 border border-[#00000020] rounded-[10px] overflow-hidden"
+      className="mb-4 border border-[#00000020] rounded-[10px] overflow-hidden"
     >
       <button
-        className="w-full text-left p-4 bg-[#f9f9f9] font-[600] text-black"
+        className="w-full text-left p-4 bg-[#f9f9f9] font-[600] text-black flex justify-between"
         onClick={() => toggleAccordion(index)}
       >
         {tabs[index]}
+
+        <Image
+                            src={assets.greenarrow}
+                            alt=""
+                            width={11}
+                            height={18}
+                            className={`transition-transform duration-300 ${
+    openAccordions[index] ? "rotate-90" : "rotate-[270deg]"
+  }`}
+                          />
+                          
       </button>
 
       <AnimatePresence initial={false}>

@@ -75,6 +75,12 @@ const NavTabsection = ({
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   };
+
+    const fadeInDown = {
+    hidden: { opacity: 0, y: -20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  };
+
   const slideInLeft = {
     hidden: { opacity: 0, x: -30 },
     visible: {
@@ -259,20 +265,31 @@ const NavTabsection = ({
             data.items.map((content, index) => (
               <div
                 key={index}
-                className="mb-6 border border-[#00000020] rounded-[10px] overflow-hidden"
+                className="mb-3 border border-[#00000020] rounded-[10px] overflow-hidden"
               >
                 <button
-                  className="w-full text-left p-4 bg-[#f9f9f9] font-[600] text-black"
+                  className="w-full text-left p-4 bg-[#f9f9f9] font-[600] text-black flex justify-between"
                   onClick={() => toggleAccordion(index)}
                 >
                   {tabs[index]}
+
+                          <Image
+                                              src={assets.greenarrow}
+                                              alt=""
+                                              width={11}
+                                              height={18}
+                                              className={`transition-transform duration-300 ${
+                      openAccordions[index] ? "rotate-90" : "rotate-[270deg]"
+                    }`}
+                                            />
+
                 </button>
 
                 <AnimatePresence initial={false}>
                   {openAccordions[index] && (
                     <motion.div
                       key={`accordion-${index}`}
-                      variants={fadeInUp}
+                      variants={fadeInDown}
                       initial="hidden"
                       animate="visible"
                       exit="hidden"
