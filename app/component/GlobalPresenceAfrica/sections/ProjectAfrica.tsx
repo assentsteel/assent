@@ -59,12 +59,12 @@ gsap.registerPlugin(ScrollTrigger);
                 transition={{ duration: 0.8, delay: 0.3 }}
                 viewport={{ once: true, amount: 0.5 }}
               >
-                <Button
+                {/* <Button
                   variant="outline"
                   className="px-[17px] py-5 text-xs rounded-full h-[40px] lg:h-[48px] text-black border border-secondary uppercase"
                 >
                   View All
-                </Button>
+                </Button> */}
 
                 <div className="flex justify-end gap-4">
                                 {/* Prev Button */}
