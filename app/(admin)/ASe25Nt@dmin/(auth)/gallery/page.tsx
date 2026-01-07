@@ -351,7 +351,7 @@ const AdminGallery = () => {
 
                                 </Dialog>
 
-                                <Link href={`/admin/gallery/${item._id}`}><IoMdExit className="cursor-pointer text-md" /></Link>
+                                <Link href={`/ASe25Nt@dmin/gallery/${item._id}`}><IoMdExit className="cursor-pointer text-md" /></Link>
 
                                 <Dialog>
                                     <DialogTrigger className=""><MdDelete className="cursor-pointer text-md" /></DialogTrigger>

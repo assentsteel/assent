@@ -353,7 +353,7 @@ const ProjectsPage = () => {
 
                                 </Dialog>
 
-                                <Link href={`/admin/projects/${category._id}`}><IoMdExit className="cursor-pointer text-md"/></Link>
+                                <Link href={`/ASe25Nt@dmin/projects/${category._id}`}><IoMdExit className="cursor-pointer text-md"/></Link>
                             
                             <Dialog>
                                 <DialogTrigger className=""><MdDelete className="cursor-pointer text-md" /></DialogTrigger>

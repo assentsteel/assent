@@ -1,6 +1,6 @@
 "use client"
 
-import ClientSideLink from '@/app/(admin)/admin/client-side-link';
+import ClientSideLink from '@/app/(admin)/ASe25Nt@dmin/client-side-link';
 import React, { useState } from 'react'
 import {
     HomeIcon,
@@ -31,39 +31,39 @@ const AdminNavbar = () => {
   }
 
     const navItems = [
-        { name: "Home", href: "/admin/home", icon: HomeIcon },
-        { name: "About", href: "/admin/about", icon: UserGroupIcon },
-        // { name: "Clients", href: "/admin/clients", icon: PresentationChartBarIcon },
+        { name: "Home", href: "/ASe25Nt@dmin/home", icon: HomeIcon },
+        { name: "About", href: "/ASe25Nt@dmin/about", icon: UserGroupIcon },
+        // { name: "Clients", href: "/ASe25Nt@dmin/clients", icon: PresentationChartBarIcon },
         { name: "Services", href: "#", icon: EnvelopeIcon,hasChild:true,children: [
-            { name: "Engineering", href: "/admin/services/engineering" },
-            { name: "Fabrication", href: "/admin/services/fabrication" },
-            { name: "Blasting", href: "/admin/services/blasting" },
-            { name: "Steel Erection", href: "/admin/services/steel-erection" },
+            { name: "Engineering", href: "/ASe25Nt@dmin/services/engineering" },
+            { name: "Fabrication", href: "/ASe25Nt@dmin/services/fabrication" },
+            { name: "Blasting", href: "/ASe25Nt@dmin/services/blasting" },
+            { name: "Steel Erection", href: "/ASe25Nt@dmin/services/steel-erection" },
           ] },
-        // { name: "Industries", href: "/admin/industries", icon: BriefcaseIcon },
+        // { name: "Industries", href: "/ASe25Nt@dmin/industries", icon: BriefcaseIcon },
         { name: "Global Presence", href: "##", icon: GlobeAltIcon , hasChild:true,children: [
-          { name: "Main Page", href: "/admin/global-presence" },
+          { name: "Main Page", href: "/ASe25Nt@dmin/global-presence" },
           ...countries.map((country: { _id: string,title:string }) => (
-            { name: country.title, href: `/admin/global-presence/${country._id}` }
+            { name: country.title, href: `/ASe25Nt@dmin/global-presence/${country._id}` }
           )),
         ] },
-        { name: "Projects", href: "/admin/projects", icon: Workflow },
-        { name: "News", href: "/admin/news", icon: NewspaperIcon },
-        { name: "Gallery", href: "/admin/gallery", icon: GalleryThumbnails },
-        { name: "Awards", href: "/admin/awards", icon:AwardIcon },
-        { name: "Team", href: "/admin/team", icon:UserGroupIcon },
+        { name: "Projects", href: "/ASe25Nt@dmin/projects", icon: Workflow },
+        { name: "News", href: "/ASe25Nt@dmin/news", icon: NewspaperIcon },
+        { name: "Gallery", href: "/ASe25Nt@dmin/gallery", icon: GalleryThumbnails },
+        { name: "Awards", href: "/ASe25Nt@dmin/awards", icon:AwardIcon },
+        { name: "Team", href: "/ASe25Nt@dmin/team", icon:UserGroupIcon },
         { name: "Careers", href: "####", icon:BriefcaseIcon,hasChild:true,children: [
-          { name: "Main Page", href: "/admin/careers" },
-          {name:"Enquiries",href:"/admin/careers/enquiries"}
+          { name: "Main Page", href: "/ASe25Nt@dmin/careers" },
+          {name:"Enquiries",href:"/ASe25Nt@dmin/careers/enquiries"}
         ] },
         { name: "Contact", href: "###", icon: EnvelopeIcon,hasChild:true,children: [
-          { name: "Main Page", href: "/admin/contact" },
-          {name:"Enquiries",href:"/admin/contact/enquiries"}
+          { name: "Main Page", href: "/ASe25Nt@dmin/contact" },
+          {name:"Enquiries",href:"/ASe25Nt@dmin/contact/enquiries"}
         ] },
-        { name: "Quality", href: "/admin/quality", icon: ThumbsUp },
-        { name: "HSE", href: "/admin/hse", icon: HeartHandshake },
-        { name: "Sustainability", href: "/admin/sustainability", icon: LeafIcon },
-        { name: "Settings", href: "/admin/settings", icon: Settings},
+        { name: "Quality", href: "/ASe25Nt@dmin/quality", icon: ThumbsUp },
+        { name: "HSE", href: "/ASe25Nt@dmin/hse", icon: HeartHandshake },
+        { name: "Sustainability", href: "/ASe25Nt@dmin/sustainability", icon: LeafIcon },
+        { name: "Settings", href: "/ASe25Nt@dmin/settings", icon: Settings},
       ];
 
   return (

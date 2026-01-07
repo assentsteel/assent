@@ -91,7 +91,7 @@ const CategoryPage = () => {
         return (
             <div className="flex items-center justify-center h-full flex-col gap-2">
                 <p>No projects found, add one by clicking the button below</p>
-                <Link href={`/admin/projects/${categoryId}/add`}>
+                <Link href={`/ASe25Nt@dmin/projects/${categoryId}/add`}>
                     <Button className="text-white">Add Project</Button>
                 </Link>
             </div>
@@ -103,7 +103,7 @@ const CategoryPage = () => {
             <div className="flex justify-between mb-5">
                 <h3 className="text-md font-semibold">Projects</h3>
                 <div className="flex items-center gap-2">
-                <Link href={reorderMode ? `#` : `/admin/projects/${categoryId}/add`}>
+                <Link href={reorderMode ? `#` : `/ASe25Nt@dmin/projects/${categoryId}/add`}>
                     <Button className="text-white text-[16px]" disabled={reorderMode}>Add Project</Button>
                 </Link>
                 <Button className={`text-white text-[16px] ${reorderMode ? "bg-yellow-700" : "bg-green-700"}`} onClick={() => reorderMode ? confirmPosition() : setReorderMode(!reorderMode)}>{reorderMode ? "Done" : "Reorder"}</Button>
@@ -134,7 +134,7 @@ const CategoryPage = () => {
                     </div>
                     <div className="flex items-center gap-10">
 
-                        <Link href={`/admin/projects/${categoryId}/edit/${project._id}`}><MdEdit className="cursor-pointer text-md" /></Link>
+                        <Link href={`/ASe25Nt@dmin/projects/${categoryId}/edit/${project._id}`}><MdEdit className="cursor-pointer text-md" /></Link>
 
                         <Dialog>
                             <DialogTrigger className=""><MdDelete className="cursor-pointer text-md" /></DialogTrigger>

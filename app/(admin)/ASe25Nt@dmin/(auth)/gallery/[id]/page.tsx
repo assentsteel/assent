@@ -229,7 +229,7 @@ const AdminIndiGallery = () => {
     
                         </Dialog>
     
-                        <Link href={`/admin/gallery/${id}/${item._id}`}><IoIosImages className='text-lg cursor-pointer' /></Link>
+                        <Link href={`/ASe25Nt@dmin/gallery/${id}/${item._id}`}><IoIosImages className='text-lg cursor-pointer' /></Link>
     
                         <Dialog>
                                       <DialogTrigger><MdDelete className='text-lg cursor-pointer' /></DialogTrigger>
