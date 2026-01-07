@@ -271,7 +271,7 @@ export default function News() {
       <div className="h-[400px] w-full p-2 border-2 border-gray-300 rounded-md overflow-y-hidden">
         <div className="flex justify-between border-b-2 pb-2">
           <Label className="text-sm font-bold">News</Label>
-          <Button onClick={()=>router.push("/admin/news/add")} className="text-white text-[16px]">Add News</Button>
+          <Button onClick={()=>router.push("/ASe25Nt@dmin/news/add")} className="text-white text-[16px]">Add News</Button>
         </div>
         <div className="mt-2 flex flex-col gap-2 overflow-y-scroll h-3/4">
           {newsList?.map((item)=>(
@@ -283,7 +283,7 @@ export default function News() {
               </div>
             </div>
             <div className="flex gap-5">
-              <MdEdit onClick={()=>router.push(`/admin/news/edit/${item._id}`)}/>
+              <MdEdit onClick={()=>router.push(`/ASe25Nt@dmin/news/edit/${item._id}`)}/>
               
               <Dialog>
               <DialogTrigger><MdDelete/></DialogTrigger>

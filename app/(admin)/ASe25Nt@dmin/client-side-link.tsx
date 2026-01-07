@@ -38,7 +38,7 @@ function ClientSideLink({
       });
       const data = await res.json();
       if (data.success) {
-        window.location.href = "/admin/login";
+        window.location.href = "/ASe25Nt@dmin/login";
       }
     } catch (error) {
       console.log(error);
