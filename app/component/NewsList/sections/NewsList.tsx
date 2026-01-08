@@ -44,7 +44,7 @@ gsap.registerPlugin(ScrollTrigger);
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-2  xl:grid-cols-3 gap-x-4 lg:gap-x-6 xxl:gap-x-10 ">
           {data.map((item, index) => (
-                              <Link href={`/news-details/${item.slug}`} key={index} className="itemsmn">
+                              <Link href={`/news/${item.slug}`} key={index} className="itemsmn">
            <motion.div
 
            variants={cardVariants}

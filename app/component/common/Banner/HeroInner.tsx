@@ -45,7 +45,7 @@ const HeroInner: React.FC<HeroSectionProps> = ({
   return (
     <section
       className={
-        pathname == "/team"
+        pathname == "/our-team"
           ? "relative w-full overflow-hidden ovrbanner"
           : "relative w-full md:h-[500px] h-[400px] overflow-hidden  ovrbanner  xxl:h-[500px]"
       }
@@ -55,7 +55,7 @@ const HeroInner: React.FC<HeroSectionProps> = ({
         {pathname.startsWith("/sustainability") && (
           <div className="absolute inset-0 bg-black/20 z-[1]"></div>
         )}
-        {pathname == "/team" && (
+        {pathname == "/our-team" && (
           <Image
             className="w-full bottom-0"
             src={imageSrc}
@@ -66,7 +66,7 @@ const HeroInner: React.FC<HeroSectionProps> = ({
             priority
           />
         )}
-        {pathname !== "/team" && (
+        {pathname !== "/our-team" && (
           <figure className=" relative w-screen  h-full overflow-hidden">
             <Image
               className="w-full h-full"
@@ -92,15 +92,15 @@ const HeroInner: React.FC<HeroSectionProps> = ({
           >
             <span>
               {pathname === "/about" ||
-              pathname === "/team" ||
-              pathname === "/accreditations" ||
-              pathname.startsWith("/projects-details")
+              pathname === "/our-team" ||
+              pathname === "/awards-and-accreditations" ||
+              pathname.startsWith("/project/")
                 ? ""
                 : title && title}
             </span>
           </motion.h1>
           <motion.div variants={textVariantsleft}>
-            {pathname !== "/team" && (
+            {pathname !== "/our-team" && (
               <ul className="flex items-center flex-wrap gap-2 mb-5 lg:mb-[70px]">
                 {breadcrumbs.map((breadcrumb, index) => (
                   <li

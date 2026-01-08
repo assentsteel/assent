@@ -74,7 +74,7 @@ import Link from "next/link";
     {latestNews.slice(0, 1).map((item, index) => {
       
       return (
-        <Link href={`/news-details/${item.slug}`} key={index}>
+        <Link href={`/news/${item.slug}`} key={index}>
         <motion.div
           
 
@@ -120,7 +120,7 @@ import Link from "next/link";
     {latestNews.slice(1,3).map((item, index) => {
 
       return (
-        <Link href={`/news-details/${item.slug}`} key={index} className="vi h-[300px] lg:h-1/2 relative group blueover rounded-[15px]"   style={{
+        <Link href={`/news/${item.slug}`} key={index} className="vi h-[300px] lg:h-1/2 relative group blueover rounded-[15px]"   style={{
           background: `url(${typeof item.thumbnail === "string" ? item.thumbnail : item.thumbnail})`,
           backgroundSize: "cover"
         }}>

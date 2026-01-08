@@ -67,7 +67,7 @@ const filteredNews = data?.news.filter((item) => item._id !== id).sort((a, b) =>
                     {item.mainTitle}
                   </h3>
                   <div className="flex justify-between mb-5 lg:mb-0">
-                    <Link href={`/news-details/${item.slug}`}>
+                    <Link href={`/news/${item.slug}`}>
                     <div className=" flex gap-4 items-center w-fit m-0 border-b  border-secondary pb-[10px]   transition-all duration-500 ">
                       <p className="text-xs uppercase text-black font-[500] inline-flex  leading-[1] ">
                         Read More
