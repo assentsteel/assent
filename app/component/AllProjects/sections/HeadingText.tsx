@@ -359,7 +359,7 @@ whileHover={{ scale: 1.015 }}
 transition={{ type: "spring", stiffness: 300 }}
 > 
 
-        <Link href={`/projects-details/${item.categorySlug}/${item.slug}`}> 
+        <Link href={`/project/${item.categorySlug}/${item.slug}`}> 
         <figure className="overlayclr xxl:h-[511px]  h-[450px]">
           <Image
             src={item.thumbnail}

@@ -152,10 +152,10 @@ const Footer = () => {
               </ul>
               <ul className="space-y-2 grid lg:grid-cols-1 ">
                 {[
-                  { label: "Engineering", href: "/engineering" },
-                  { label: "Fabrication", href: "/fabrication" },
-                  { label: "Blasting Painting", href: "/blasting" },
-                  { label: "Steel Erection", href: "/services" },
+                  { label: "Engineering", href: "/steel-engineering-services" },
+                  { label: "Fabrication", href: "/steel-fabrication-services" },
+                  { label: "Blasting Painting", href: "/steel-blasting-painting-fire-proofing" },
+                  { label: "Steel Erection", href: "/steel-erection-services" },
                 ].map((link, index) => (
                   <motion.li key={index} variants={fadeInLeft}>
                     <Link

@@ -19,7 +19,7 @@ const pathName = usePathname();
      <section className="py-[30px] md:py-[70px] xl:py-[80px] xxl:py-[100px]   overflow-hidden relative ">
          <div className="container">
            <div className=" ">
-              {pathName !== '/blasting' && <motion.h1  variants={slideInLeft}
+              {pathName !== '/steel-blasting-painting-fire-proofing' && <motion.h1  variants={slideInLeft}
     initial="hidden"
     animate="visible"
     exit="exit" className="text-xxl font-[600] text-territory mb-4 lg:mb-10 leading-[1]">{title}</motion.h1>}

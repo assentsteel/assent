@@ -12,7 +12,7 @@ import Morepjts from "./sections/Morepjts";
 
   const breadcrumb = [
     { label: "Home", href: "/" },
-    { label: "Projects", href: `/projects-list/${categorySlug}` },
+    { label: "Projects", href: `/projects/${categorySlug}` },
     { label: "Construction", href: "" },
     { label: data.sector, href: "" },
     { label: data.pageTitle, href: "" },
