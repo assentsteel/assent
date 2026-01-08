@@ -56,18 +56,17 @@
 //   );
 // }
 
-
 import GlobalPresenceAfrica from "@/app/component/GlobalPresenceAfrica";
 import GlobalPresenceAmerica from "@/app/component/GlobalPresenceAmerica";
 import GlobalPresenceEurope from "@/app/component/GlobalPresenceEurope";
 import { notFound } from "next/navigation";
 
-type PageProps = {
-  params: { slug: string };
-};
-
-export default async function Page({ params }: PageProps) {
-  const { slug } = params;
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params; // ✅ REQUIRED by Next.js
 
   const response = await fetch(
     `${process.env.BASE_URL}/api/admin/global-presence/country?slug=${slug}`,
@@ -78,9 +77,6 @@ export default async function Page({ params }: PageProps) {
 
   const data = await response.json();
 
-  /**
-   * Decide region based on slug
-   */
   if (slug.includes("north-america")) {
     return <GlobalPresenceAmerica data={data} />;
   }
