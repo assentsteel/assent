@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 const contactSchema = new mongoose.Schema({
     metaTitle: String,
     metaDescription: String,
+    ogType: String,
+    ogImage: String,
     banner: String,
     bannerAlt: String,
     pageTitle: String,

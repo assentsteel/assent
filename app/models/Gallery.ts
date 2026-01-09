@@ -25,7 +25,11 @@ const gallerySchema = new mongoose.Schema({
         slug:{type:String},
         thumbnail:{type:String},
         altText:{type:String},
-        images:[{type:String}]
+        images:[{type:String}],
+        metaTitle:{type:String},
+        metaDescription:{type:String},
+        ogType:{type:String},
+        ogImage:{type:String}
     }],
     metaTitle: {
         type: String,

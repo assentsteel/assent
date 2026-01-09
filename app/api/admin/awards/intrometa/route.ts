@@ -5,8 +5,8 @@ import Award from "@/app/models/Award";
 export async function POST(req:NextRequest) {
     try {
         await connectDB();
-        const { metaTitle, metaDescription, pageTitle, banner, bannerAlt } = await req.json();
-        const awards = await Award.findOneAndUpdate({}, { metaTitle, metaDescription, pageTitle, banner, bannerAlt }, { upsert: true });
+        const { metaTitle, metaDescription, pageTitle, banner, bannerAlt,ogType,ogImage } = await req.json();
+        const awards = await Award.findOneAndUpdate({}, { metaTitle, metaDescription, pageTitle, banner, bannerAlt,ogType,ogImage }, { upsert: true });
         if(awards){
             return NextResponse.json({ message: "Details saved successfully" }, { status: 200 });
         }else{
