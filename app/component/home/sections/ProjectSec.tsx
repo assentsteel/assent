@@ -144,7 +144,7 @@ export default function ProjectsSection({ data }: { data: Projectswfull }) {
                   .map((project, index) => (
                     <SwiperSlide key={index} className="">
                       <Link
-                        href={`/project/${data.categories[activeCategory]?.slug}/${project.slug}`}
+                        href={`/projects/${data.categories[activeCategory]?.slug}/${project.slug}`}
                       >
                         <motion.div
                           className="cursor-pointer"
