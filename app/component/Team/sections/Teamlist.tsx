@@ -83,13 +83,48 @@ const Teamlist = ({ data }: { data: Team }) => {
         </div>
 
         <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xxl:grid-cols-4  mb-[32px] gap-8"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+        >
+        <motion.div variants={itemVariants} onClick={() => setSelectedMember(data.teamSection.items[0])}>
+            <div className="relative group rounded-[15px] overflow-hidden h-full group">
+              <div className="bg-[#CACBCA] group-hover:bg-primary relative transition-all duration-500 ">
+                <figure className=" ">
+                  <Image
+                    src={data.teamSection.items[0].image}
+                    alt=""
+                    width={500}
+                    height={500}
+                    className="grayscale-[1] group-hover:grayscale-0 transition-all duration-400 w-full object-cover"
+                  />
+                </figure>
+              </div>
+              <div className="">
+                <div className="px-5 py-5 lg:px-10 lg:py-5 bg-[#F5F5F5] rounded-b-[15px]" >
+                  <p className="text-md font-semibold text-territory ">{data.teamSection.items[0].name}</p>
+                  <p className="text-[#595959]">{data.teamSection.items[0].designation} </p>
+                </div>
+              </div>
+
+
+            </div>
+          </motion.div>
+          </motion.div>
+
+        <motion.div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xxl:grid-cols-4  gap-8"
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
         >
-          {data.teamSection.items.map((item, index) => (
+
+          
+
+          {data.teamSection.items.slice(1,data.teamSection.items.length).map((item, index) => (
             <motion.div key={index} variants={itemVariants} onClick={() => setSelectedMember(item)}>
               <div className="relative group rounded-[15px] overflow-hidden h-full group">
                 <div className="bg-[#CACBCA] group-hover:bg-primary relative transition-all duration-500 ">

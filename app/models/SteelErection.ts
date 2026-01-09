@@ -9,6 +9,12 @@ const steelErectionSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    ogType:{
+        type:String
+    },
+    ogImage:{
+        type:String
+    },
     pageTitle:{
         type:String,
         required:true
