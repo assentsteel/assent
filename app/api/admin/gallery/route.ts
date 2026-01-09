@@ -18,8 +18,8 @@ export async function POST(req:NextRequest) {
                 return NextResponse.json({message: "Error in updating item",success:false},{status: 500});
             }
         }
-        const {title,thumbnail,thumbnailAlt,slug,itemMetaTitle,itemMetaDescription} = await req.json();
-        const gallery = await Gallery.create({title,thumbnail,thumbnailAlt,slug,metaTitle:itemMetaTitle,metaDescription:itemMetaDescription})
+        const {title,thumbnail,thumbnailAlt,slug,itemMetaTitle,itemMetaDescription,itemOgType,itemOgImage} = await req.json();
+        const gallery = await Gallery.create({title,thumbnail,thumbnailAlt,slug,metaTitle:itemMetaTitle,metaDescription:itemMetaDescription,ogType:itemOgType,ogImage:itemOgImage})
         if(gallery){
             return NextResponse.json({message: "Item added successfully",success:true},{status: 200});
         }
@@ -37,8 +37,8 @@ export async function PATCH(req:NextRequest) {
         await connectDB();
         const {searchParams} = new URL(req.url);
         const id = searchParams.get("id");
-        const {title,thumbnail,thumbnailAlt,slug,itemMetaTitle,itemMetaDescription} = await req.json();
-        const gallery = await Gallery.findOneAndUpdate({_id:id},{title,thumbnail,thumbnailAlt,slug,metaTitle:itemMetaTitle,metaDescription:itemMetaDescription});
+        const {title,thumbnail,thumbnailAlt,slug,itemMetaTitle,itemMetaDescription,itemOgType,itemOgImage} = await req.json();
+        const gallery = await Gallery.findOneAndUpdate({_id:id},{title,thumbnail,thumbnailAlt,slug,metaTitle:itemMetaTitle,metaDescription:itemMetaDescription,ogType:itemOgType,ogImage:itemOgImage});
         if(gallery){
             return NextResponse.json({message: "Item updated successfully",success:true},{status: 200});
         }
