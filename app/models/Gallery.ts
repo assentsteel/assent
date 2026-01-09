@@ -33,6 +33,12 @@ const gallerySchema = new mongoose.Schema({
     metaDescription: {
         type: String,
     },
+    ogType: {
+        type: String,
+    },
+    ogImage: {
+        type: String,
+    },
     index: { type: Number, default: 0 },
 })
 

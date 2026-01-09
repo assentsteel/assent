@@ -22,6 +22,7 @@ import { Input } from "@/components/ui/input"
 import Link from 'next/link';
 import { FaEdit } from "react-icons/fa";
 import { RiAiGenerateText } from 'react-icons/ri'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 const AdminIndiGallery = () => {
     const {id} = useParams();
@@ -32,6 +33,10 @@ const AdminIndiGallery = () => {
     const [slug, setSlug] = useState<string>("")
     const [thumbnail, setThumbnail] = useState<string>("")
     const [altText, setAltText] = useState<string>("")
+    const [itemMetaTitle, setItemMetaTitle] = useState<string>("");
+      const [itemMetaDescription, setItemMetaDescription] = useState<string>("");
+      const [itemOgType, setItemOgType] = useState<string>("");
+      const [itemOgImage, setItemOgImage] = useState<string>("");
     const handleImageUpload = (url: string) => {
         setImageUrls([...imageUrls, url]);
     };
@@ -153,7 +158,7 @@ const AdminIndiGallery = () => {
                 <div className='flex justify-between items-center'>
             <Label className="block text-sm">Categories</Label>
             <Dialog>
-                        <DialogTrigger className='bg-primary text-white px-3 py-1 rounded-md font-semibold' onClick={()=>setCategory("")}>Add Item</DialogTrigger>
+                        <DialogTrigger className='bg-primary text-white px-3 py-1 rounded-md font-semibold' onClick={()=>{setCategory("");setSlug("");setThumbnail("");setAltText("");setItemMetaDescription("");setItemMetaTitle("");setItemOgImage("");setItemOgType("")}}>Add Item</DialogTrigger>
                         <DialogContent>
                             <DialogHeader>
                                 <DialogTitle>Add Item</DialogTitle>
@@ -180,6 +185,49 @@ const AdminIndiGallery = () => {
                                     <Label className="block text-sm">Alt Text</Label>
                                     <Input type="text" value={altText} onChange={(e) => setAltText(e.target.value)} />
                                     </div>
+                                    <div>
+                                        <Label>Meta Title</Label>
+                                        <Input type="text" placeholder="Meta Title" value={itemMetaTitle} onChange={(e) => setItemMetaTitle(e.target.value)} />
+                                    </div>
+                                    <div>
+                                        <Label>Meta Description</Label>
+                                        <Input type="text" placeholder="Meta Description" value={itemMetaDescription} onChange={(e) => setItemMetaDescription(e.target.value)} />
+                                    </div>
+
+                                    <div className='flex flex-col gap-2 w-1/2'>
+                <Label className='font-bold'>Og Type</Label>
+                                                
+                                                        <Select
+                                                            onValueChange={setItemOgType}
+                                                            value={itemOgType}
+                                                            defaultValue="website"
+                                                        >
+                                                            <SelectTrigger className="w-full">
+                                                                <SelectValue placeholder="Select Style" />
+                                                            </SelectTrigger>
+                                                            <SelectContent>
+                                                                <SelectItem value="website">
+                                                                    website
+                                                                </SelectItem>
+                                                                <SelectItem value="article">
+                                                                article
+                                                                </SelectItem>
+                                                            </SelectContent>
+                                                        </Select>
+
+
+                                            </div>
+
+
+                                            <div className='flex flex-col gap-2 w-1/2'>
+                                                <Label className='font-bold'>Og Image</Label>
+                                                
+                                                        <ImageUploader
+                                                            value={itemOgImage}
+                                                            onChange={setItemOgImage}
+                                                        />
+                                                    
+                                            </div>
                                 </DialogDescription>
                             </DialogHeader>
                             <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={handleAddCategory}>Save</DialogClose>

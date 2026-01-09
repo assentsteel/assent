@@ -5,8 +5,8 @@ import GalleryMeta from "@/app/models/GalleryMeta";
 export async function POST(req:NextRequest) {
     try {
         await connectDB();
-        const { metaTitle, metaDescription, pageTitle } = await req.json();
-        const gallery = await GalleryMeta.findOneAndUpdate({}, { metaTitle, metaDescription, pageTitle },{upsert:true});
+        const { metaTitle, metaDescription, pageTitle,ogType,ogImage } = await req.json();
+        const gallery = await GalleryMeta.findOneAndUpdate({}, { metaTitle, metaDescription, pageTitle,ogType,ogImage },{upsert:true});
         if(gallery){
             return NextResponse.json({ message: "Details saved successfully" }, { status: 200 });
         }else{
