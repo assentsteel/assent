@@ -28,7 +28,7 @@ const AdminIndiGallery = () => {
     const {id} = useParams();
     const router = useRouter();
     const [category, setCategory] = useState<string>("")
-    const [categoryList, setCategoryList] = useState<{_id: string, title: string,slug:string,thumbnail:string,altText:string}[]>([])
+    const [categoryList, setCategoryList] = useState<{_id: string, title: string,slug:string,thumbnail:string,altText:string,metaTitle:string,metaDescription:string,ogType:string,ogImage:string}[]>([])
     const [imageUrls, setImageUrls] = useState<string[]>([]);
     const [slug, setSlug] = useState<string>("")
     const [thumbnail, setThumbnail] = useState<string>("")
@@ -80,7 +80,7 @@ const AdminIndiGallery = () => {
         try {
             const response = await fetch(`/api/admin/gallery/inside/category?id=${id}`,{
                 method: "POST",
-                body: JSON.stringify({ name: category,slug:slug,thumbnail:thumbnail,altText:altText }),
+                body: JSON.stringify({ name: category,slug:slug,thumbnail:thumbnail,altText:altText,metaTitle:itemMetaTitle,metaDescription:itemMetaDescription,ogType:itemOgType,ogImage:itemOgImage }),
             });
             if(response.ok) {
                 const data = await response.json();
@@ -102,7 +102,7 @@ const AdminIndiGallery = () => {
         try {
             const response = await fetch(`/api/admin/gallery/inside/category?id=${categoryId}`,{
                 method: "PATCH",
-                body: JSON.stringify({ name: category,slug:slug,thumbnail:thumbnail,altText:altText, galleryId: id }),
+                body: JSON.stringify({ name: category,slug:slug,thumbnail:thumbnail,altText:altText, galleryId: id,metaTitle:itemMetaTitle,metaDescription:itemMetaDescription,ogType:itemOgType,ogImage:itemOgImage }),
             });
             if(response.ok) {
                 const data = await response.json();
@@ -162,7 +162,7 @@ const AdminIndiGallery = () => {
                         <DialogContent>
                             <DialogHeader>
                                 <DialogTitle>Add Item</DialogTitle>
-                                <DialogDescription className='flex flex-col gap-2'>
+                                <DialogDescription className='flex flex-col gap-2 h-[400px] overflow-y-auto'>
                                     <div>
                                     <Label className="block text-sm">Title</Label>
                                     <Input type="text" value={category} onChange={(e) => setCategory(e.target.value)} />
@@ -243,11 +243,11 @@ const AdminIndiGallery = () => {
                     </div>
                     <div className='flex gap-8 items-center'>
                         <Dialog>
-                            <DialogTrigger onClick={()=>{setCategory(item.title);setSlug(item.slug);setThumbnail(item.thumbnail);setAltText(item.altText)}}><FaEdit className='text-lg cursor-pointer' /></DialogTrigger>
+                            <DialogTrigger onClick={()=>{setCategory(item.title);setSlug(item.slug);setThumbnail(item.thumbnail);setAltText(item.altText);setItemMetaTitle(item.metaTitle);setItemMetaDescription(item.metaDescription);setItemOgImage(item.ogImage);setItemOgType(item.ogType)}}><FaEdit className='text-lg cursor-pointer' /></DialogTrigger>
                             <DialogContent>
                                 <DialogHeader>
                                     <DialogTitle>Edit Item</DialogTitle>
-                                    <DialogDescription className='flex flex-col gap-2'>
+                                    <DialogDescription className='flex flex-col gap-2 h-[400px] overflow-y-auto'>
                                     <div>
                                     <Label className="block text-sm">Title</Label>
                                     <Input type="text" value={category} onChange={(e) => setCategory(e.target.value)} />
@@ -270,6 +270,49 @@ const AdminIndiGallery = () => {
                                     <Label className="block text-sm">Alt Text</Label>
                                     <Input type="text" value={altText} onChange={(e) => setAltText(e.target.value)} />
                                     </div>
+                                    <div>
+                                        <Label>Meta Title</Label>
+                                        <Input type="text" placeholder="Meta Title" value={itemMetaTitle} onChange={(e) => setItemMetaTitle(e.target.value)} />
+                                    </div>
+                                    <div>
+                                        <Label>Meta Description</Label>
+                                        <Input type="text" placeholder="Meta Description" value={itemMetaDescription} onChange={(e) => setItemMetaDescription(e.target.value)} />
+                                    </div>
+
+                                    <div className='flex flex-col gap-2 w-1/2'>
+                <Label className='font-bold'>Og Type</Label>
+                                                
+                                                        <Select
+                                                            onValueChange={setItemOgType}
+                                                            value={itemOgType}
+                                                            defaultValue="website"
+                                                        >
+                                                            <SelectTrigger className="w-full">
+                                                                <SelectValue placeholder="Select Style" />
+                                                            </SelectTrigger>
+                                                            <SelectContent>
+                                                                <SelectItem value="website">
+                                                                    website
+                                                                </SelectItem>
+                                                                <SelectItem value="article">
+                                                                article
+                                                                </SelectItem>
+                                                            </SelectContent>
+                                                        </Select>
+
+
+                                            </div>
+
+
+                                            <div className='flex flex-col gap-2 w-1/2'>
+                                                <Label className='font-bold'>Og Image</Label>
+                                                
+                                                        <ImageUploader
+                                                            value={itemOgImage}
+                                                            onChange={setItemOgImage}
+                                                        />
+                                                    
+                                            </div>
                                 </DialogDescription>
                                 </DialogHeader>
                                 <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={()=>handleEditCategory(item._id)}>Save</DialogClose>

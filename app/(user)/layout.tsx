@@ -17,6 +17,18 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "ASSENT",
   description: "",
+
+  openGraph: {
+    type: "website",
+  },
+
+  other: {
+    "business:contact_data:street_address": "Dubai Industrial City",
+    "business:contact_data:locality": "Dubai",
+    "business:contact_data:region": "Dubai",
+    "business:contact_data:postal_code": "38436",
+    "business:contact_data:country_name": "United Arab Emirates (the)",
+  },
 };
 
 export const dynamic = 'force-dynamic';
