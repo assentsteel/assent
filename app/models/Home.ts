@@ -7,6 +7,12 @@ const homeSchema = new mongoose.Schema({
     metaDescription: {
         type: String,
     },
+    ogType:{
+        type:String
+    },
+    ogImage:{
+        type:String
+    },
     banner: {
         type: String,
     },

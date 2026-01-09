@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect, useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { useForm,Controller } from 'react-hook-form'
 import { useParams } from 'next/navigation'
 import { IoMdCloseCircle } from "react-icons/io";
 import { sectionTypes } from './data'
@@ -16,16 +16,25 @@ import NumberValueNoTitle from './NumberValueNoTitle'
 import Projects from './Projects'
 import { MdExpandMore } from "react-icons/md";
 import AdminItemContainer from '@/app/component/common/AdminItemContainer';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Label } from '@/components/ui/label'
+import { ImageUploader } from '@/components/ui/image-uploader'
+import { Input } from '@/components/ui/input'
 
 export interface GlobalPresenceFormProps {
     pageTitle: string;
     slug: string;
     section: Section[];
+    ogType:string;
+    ogImage:string;
+    metaTitle:string;
+    metaDescription:string;
 }
 
 interface BaseSection {
     type: string;
     title: string;
+
   }
   
   interface BannerSectionType extends BaseSection {
@@ -79,7 +88,7 @@ const IndividualGlobalPresence = () => {
     const params = useParams();
     const countryId = params.countryId;
 
-    const { register, handleSubmit, control, reset } = useForm<GlobalPresenceFormProps>({
+    const { register, handleSubmit, control, reset,setValue } = useForm<GlobalPresenceFormProps>({
         defaultValues: {
             section: []
         }
@@ -100,11 +109,25 @@ const IndividualGlobalPresence = () => {
             try {
                 const response = await fetch(`/api/admin/global-presence/country?id=${countryId}`);
                 const data = await response.json();
+
+                console.log(data)
+
+                setValue("metaTitle",data.data.metaTitle)
+                setValue("metaDescription",data.data.metaDescription)
+                setValue("ogImage",data.data.ogImage)
+                setValue("ogType",data.data.ogType)
                 
                 if(data.data.sections.length > 0){
                     setSections(data.data.sections);
                 }
-                reset({ section: data.data.sections });
+                reset({
+                  metaTitle: data.data.metaTitle,
+                  metaDescription: data.data.metaDescription,
+                  ogType: data.data.ogType,
+                  ogImage: data.data.ogImage,
+                  section: data.data.sections,
+                });
+                
             } catch (error) {
                 console.log(error);
             }
@@ -170,6 +193,61 @@ const IndividualGlobalPresence = () => {
                         </div>
                     ))}
                 </div>}
+
+                <div className='flex flex-col gap-2'>
+                    <Label className='font-bold'>Meta Title</Label>
+                    <Input type='text' placeholder='Meta Title' {...register("metaTitle")} />
+                </div>
+                <div className='flex flex-col gap-2'>
+                    <Label className='font-bold'>Meta Description</Label>
+                    <Input type='text' placeholder='Meta Description' {...register("metaDescription")} />
+                </div>
+
+                <div className='flex flex-col gap-2 w-1/2'>
+                <Label className='font-bold'>Og Type</Label>
+                                                <Controller
+                                                    name={`ogType`}
+                                                    control={control}
+                                                    
+                                                    render={({ field }) => (
+                                                        <Select
+                                                            onValueChange={field.onChange}
+                                                            value={field.value}
+                                                            defaultValue="website"
+                                                        >
+                                                            <SelectTrigger className="w-full">
+                                                                <SelectValue placeholder="Select Style" />
+                                                            </SelectTrigger>
+                                                            <SelectContent>
+                                                                <SelectItem value="website">
+                                                                    website
+                                                                </SelectItem>
+                                                                <SelectItem value="article">
+                                                                article
+                                                                </SelectItem>
+                                                            </SelectContent>
+                                                        </Select>
+                                                    )}
+                                                />
+
+                                            </div>
+
+
+                                            <div className='flex flex-col gap-2 w-1/2'>
+                                                <Label className='font-bold'>Og Image</Label>
+                                                <Controller
+                                                    name={`ogImage`}
+                                                    control={control}
+                                                    
+                                                    render={({ field }) => (
+                                                        <ImageUploader
+                                                            value={field.value}
+                                                            onChange={field.onChange}
+                                                            
+                                                        />
+                                                    )}
+                                                />
+                                            </div>
 
                 <Button type="submit" className="text-white text-[16px]" onClick={handleSubmit(handleAddGlobalPresence)}>Save</Button>
     </div>
