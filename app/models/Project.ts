@@ -87,6 +87,12 @@ const projectSchema = new mongoose.Schema({
             metaDescription:{
                 type:String,
             },
+            ogType:{
+                type:String
+            },
+            ogImage:{
+                type:String
+            },
             images:[String],
             index:{
                 type:Number,
