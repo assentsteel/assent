@@ -104,13 +104,13 @@ const Morepjts: React.FC<PlatformsSectionProps> = ({sector,projectId }) => {
                  whileInView="visible"
              exit="exit"
            >
-          <Link href={`/projects-list/${filteredProjects[0].categorySlug}`}><button className="border whitespace-nowrap font-[500] border-secondary text-xs text-territory uppercase rounded-full py-[8px] px-[20px]  w-fit">
+          <Link href={`/projects/${filteredProjects[0].categorySlug}`}><button className="border whitespace-nowrap font-[500] border-secondary text-xs text-territory uppercase rounded-full py-[8px] px-[20px]  w-fit">
             View All
           </button></Link>
           </motion.div></div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
   {filteredProjects.slice(0, 4).filter((item: { _id: string; }) => item._id !== projectId).map((item, index) => (
-    <Link href={`/projects-details/${item.categorySlug}/${item.slug}`} key={index}>
+    <Link href={`/project/${item.categorySlug}/${item.slug}`} key={index}>
     <motion.div
       variants={cardVariants}
       initial="hidden"

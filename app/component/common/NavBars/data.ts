@@ -15,7 +15,7 @@ export const menuItems: MenuItem[] = [
       },
       {
         title: "Teams",
-        url: "/team",
+        url: "/our-team",
       },
       {
         title: "Global Presence",
@@ -23,7 +23,7 @@ export const menuItems: MenuItem[] = [
       },
       {
         title: "Award & Accreditations ",
-        url: "/accreditations",
+        url: "/awards-and-accreditations",
       },
     ],
   },
@@ -33,19 +33,19 @@ export const menuItems: MenuItem[] = [
     children: [
       {
         title: "Engineering ",
-        url: "/engineering",
+        url: "/steel-engineering-services",
       },
       {
         title: "Fabrication",
-        url: "/fabrication",
+        url: "/steel-fabrication-services",
       },
       {
         title: "Blasting painting",
-        url: "/blasting",
+        url: "/steel-blasting-painting-fire-proofing",
       },
       {
         title: "Steel Erection ",
-        url: "/services",
+        url: "/steel-erection-services",
       },
     ],
   },
@@ -55,15 +55,15 @@ export const menuItems: MenuItem[] = [
     children: [
       {
         title: "Commercial Projects  ",
-        url: `/projects-list/commercial-projects`,
+        url: `/projects/commercial`,
       },
       {
         title: "Industrial Oil & Gas Projects",
-        url: `/projects-list/industrial-oil-gas-projects`,
+        url: `/projects/industrial-oil-gas`,
       },
       {
         title: "Data Centre Projects  ",
-        url: `/projects-list/data-centre-projects`,
+        url: `/projects/data-centres`,
       },
     ],
   },

@@ -66,7 +66,7 @@ const MediaSection = ({data}: {data: News}) => {
                   {latestNews.mainTitle}
                 </h3>
                 <Link
-                  href={`/news-details/${latestNews.slug}`}
+                  href={`/news/${latestNews.slug}`}
                   className="text-xs border-b border-secondary text-white uppercase group pb-[16px] inline-flex items-center gap-[18px]"
                 >
                   Read More{" "}
@@ -107,7 +107,7 @@ const MediaSection = ({data}: {data: News}) => {
                   {item.mainTitle}
                 </h3>
                 <Link
-                  href={`/news-details/${item.slug}`}
+                  href={`/news/${item.slug}`}
                   className="text-xs border-b border-secondary uppercase group pb-[16px] inline-flex items-center gap-[18px] text-territory font-medium"
                 >
                   Read More{" "}

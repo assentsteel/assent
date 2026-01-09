@@ -91,7 +91,7 @@ const Navbar = ({ categories }: { categories: { name: string; slug: string; }[] 
             >
               <div className="grid grid-cols-1 py-4">
                 {categories.map((item, i) => (
-                  <HoveredLink href={`/projects-list/${item.slug}`} key={i}>
+                  <HoveredLink href={`/projects/${item.slug}`} key={i}>
                     <div className="hover:bg-black/5 pl-3 pr-[80px] py-2 rounded-[8px] transition-transform duration-300 hover:text-secondary hover:scale-105 flex gap-2 items-center self-start spckbtn whts">
                       <Image
                         src={"/assets/img/icons/arrow.svg"}

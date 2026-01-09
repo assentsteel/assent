@@ -70,7 +70,7 @@ export default function ProjectsSection({ data }: { data: Projectswfull }) {
               transition={{ duration: 0.8, delay: 0.3 }}
               viewport={{ once: true, amount: 0.5 }}
             >
-              <Link href={`/projects-list`}>
+              <Link href={`/projects`}>
                 <Button
                   variant="outline"
                   className="px-[17px] py-5 text-xs rounded-full h-[40px] lg:h-[48px] text-black border border-secondary uppercase"
@@ -144,7 +144,7 @@ export default function ProjectsSection({ data }: { data: Projectswfull }) {
                   .map((project, index) => (
                     <SwiperSlide key={index} className="">
                       <Link
-                        href={`/projects-details/${data.categories[activeCategory]?.slug}/${project.slug}`}
+                        href={`/project/${data.categories[activeCategory]?.slug}/${project.slug}`}
                       >
                         <motion.div
                           className="cursor-pointer"
