@@ -94,7 +94,7 @@ const HeroInner: React.FC<HeroSectionProps> = ({
               {pathname === "/about" ||
               pathname === "/our-team" ||
               pathname === "/awards-and-accreditations" ||
-              pathname.startsWith("/project/")
+              pathname.startsWith("/projects/")
                 ? ""
                 : title && title}
             </span>
