@@ -24,7 +24,7 @@ const [search,setSearch] = useState("")
 useEffect(()=>{
   const applyFilters = (filters: { value: string; label: string }[]) => {
     console.log(filters)
-    const latestNews = data.news.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+    const latestNews = data.news.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
     if(filters.length === 0){
       setFilteredResults(latestNews);
       return;
@@ -41,7 +41,7 @@ useEffect(()=>{
         : true;
 
       const matchDate = date.value != "Date"
-        ? item.createdAt.slice(0, 10) == date.value
+        ? item.date?.slice(0, 10) == date.value
         : true;
 
         const matchSearch = search.value

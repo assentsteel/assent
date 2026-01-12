@@ -12,7 +12,7 @@ const Index = async ({ data, slug,locationData,sectorData }: { data: Projectsw, 
   };
   const breadcrumb = [
     { label: "Home", href: "/" },
-    { label: "Projects", href: "" },
+    { label: "Projects", href: "/projects" },
     { label: unslugify(slug), href: "" },
 
     // { label: `${data && data.data.sector}`, href: "#" },
