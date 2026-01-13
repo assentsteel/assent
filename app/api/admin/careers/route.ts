@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import Career from "@/app/models/Career";
 import { verifyAdmin } from "@/lib/verifyAdmin";
 import CareerRequest from "@/app/models/CareerRequest";
+import {sendContactAction} from "@/lib/mail/contactAction"
 
 export async function PATCH(req:NextRequest) {
     try {
@@ -45,6 +46,7 @@ export async function POST(request: NextRequest) {
         await connectDB();
         const body = await request.json();
         console.log(body)
+        await sendContactAction({...body,type:"careerForm"})
         const career = await CareerRequest.create(body);
         if(!career){
             return NextResponse.json({ message: "Something went wrong" }, { status: 404 });

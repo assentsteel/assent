@@ -19,6 +19,9 @@ export async function getToEmail(type: string) {
   
       case "downloadForm":
         return emails.toEmailDownload;
+
+        case "careerForm":
+        return emails.toEmailCareer;
   
       default:
         return null;

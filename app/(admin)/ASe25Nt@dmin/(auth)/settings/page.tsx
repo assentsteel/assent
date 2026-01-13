@@ -28,6 +28,7 @@ const Settings = () => {
         const [toEmailGeneral,setToEmailGeneral] = useState("")
         const [toEmailRegistration,setToEmailRegistration] = useState("")
         const [toEmailDownload,setToEmailDownload] = useState("")
+        const [toEmailCareer,setToEmailCareer] = useState("")
         
         const onSubmit = async(data: FormValues | FormValues2) => {
             try {
@@ -51,7 +52,7 @@ const Settings = () => {
             try {
                 const response = await fetch("/api/admin/emails", {
                     method: "PATCH",
-                    body: JSON.stringify({toEmailDownload,toEmailGeneral,toEmailRegistration}),
+                    body: JSON.stringify({toEmailDownload,toEmailGeneral,toEmailRegistration,toEmailCareer}),
                 });
                 if (response.ok) {
                     const data = await response.json();
@@ -90,6 +91,7 @@ const Settings = () => {
                     setToEmailDownload(data.data.toEmailDownload)
                     setToEmailRegistration(data.data.toEmailRegistration)
                     setToEmailGeneral(data.data.toEmailGeneral)
+                    setToEmailCareer(data.data.toEmailCareer)
                 } else {
                     const data = await response.json();
                     alert(data.message);
@@ -235,6 +237,10 @@ const Settings = () => {
                         <div className="space-y-4">
                             <Label className=''>To email (Download Form)</Label>
                             <Input value={toEmailDownload} onChange={(e)=>setToEmailDownload(e.target.value)}></Input>
+                        </div>
+                        <div className="space-y-4">
+                            <Label className=''>To email (Career Form)</Label>
+                            <Input value={toEmailCareer} onChange={(e)=>setToEmailCareer(e.target.value)}></Input>
                         </div>
                         <div className="flex justify-center">
                             <Button type="button" className='w-full cursor-pointer text-white text-[16px]' onClick={()=>EmailSectionSubmit()}>Submit</Button>

@@ -5,7 +5,9 @@ import { sendMail } from "./sendMail";
 import { GeneralEnquiryEmail } from "@/templates/GeneralEnquiryEmail";
 import { RegistrationFormEmail } from "@/templates/RegistrationFormEmail";
 import { DownloadFormEmail } from "@/templates/DownloadFormEmail";
+import { CareerFormEmail } from "@/templates/CareerFormEmail";
 import { getToEmail } from "@/app/helpers/getToEmail";
+
 
 interface GeneralEnquiry {
   type: "generalEnquiry";
@@ -38,9 +40,25 @@ interface DownloadForm {
   purpose: string;
 }
 
+interface CareerForm {
+  type: "careerForm";
+  firstname: string;
+  lastname: string;
+  email: string;
+  phonenumber: string;
+  gender: string;
+  dateofbirth: string | Date;
+  nationality: string;
+  currentlocation: string;
+  workexperience: string;
+  position: string;
+  file: string; // resume / CV URL or filename
+}
+
+
 
 export async function sendContactAction(
-  data: GeneralEnquiry | RegistrationForm | DownloadForm
+  data: GeneralEnquiry | RegistrationForm | DownloadForm | CareerForm
 ) {
 
   const toEmail = await getToEmail(data.type);
@@ -49,7 +67,6 @@ export async function sendContactAction(
     throw new Error(`No recipient email configured for ${data.type}`);
   }
 
-  console.log(toEmail,data.type)
 
   switch (data.type) {
     case "generalEnquiry":
@@ -100,6 +117,27 @@ export async function sendContactAction(
         },
       });
       break;
+
+      case "careerForm":
+  await sendMail({
+    to: toEmail,
+    subject: "New Career Application",
+    template: (p) => CareerFormEmail(p),
+    props: {
+      firstname: data.firstname,
+      lastname: data.lastname,
+      email: data.email,
+      phonenumber: data.phonenumber,
+      gender: data.gender,
+      dateofbirth: data.dateofbirth,
+      nationality: data.nationality,
+      currentlocation: data.currentlocation,
+      workexperience: data.workexperience,
+      position: data.position,
+      file: data.file,
+    },
+  });
+  break;
   }
 }
 
