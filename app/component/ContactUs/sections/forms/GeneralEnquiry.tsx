@@ -7,7 +7,6 @@ import { generalEnquirySchema } from "@/app/schemas/generalEnquiry";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import ReCAPTCHA from 'react-google-recaptcha';
-import { sendContactAction } from '@/lib/mail/contactAction';
 
 type GeneralEnquiryForm = z.infer<typeof generalEnquirySchema>
 
