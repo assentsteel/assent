@@ -29,10 +29,7 @@ export const generalEnquirySchema = z.object({
         .refine((val) => /^\d{10}$/.test(val.toString()), { message: "Phone number must be exactly 10 digits" })
     ),
 
-type: z.preprocess(
-    (val) => typeof val === "string" ? xss(val) : val,
-    z.string().min(1, "Type is required")
-  ),
+    type: z.literal("generalEnquiry"),
     message: z.preprocess(
         (val) => typeof val === "string" ? xss(val) : val,
         z.string({ required_error: "Message is required" }).min(1, "Message is required")
