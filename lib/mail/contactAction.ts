@@ -1,0 +1,105 @@
+"use server";
+
+import { sendMail } from "./sendMail";
+
+import { GeneralEnquiryEmail } from "@/templates/GeneralEnquiryEmail";
+import { RegistrationFormEmail } from "@/templates/RegistrationFormEmail";
+import { DownloadFormEmail } from "@/templates/DownloadFormEmail";
+import { getToEmail } from "@/app/helpers/getToEmail";
+
+interface GeneralEnquiry {
+  type: "generalEnquiry";
+  name: string;
+  emailid: string;
+  contactnumber: number;
+  message: string;
+}
+
+interface RegistrationForm {
+  type: "registrationForm";
+  nameofthecompany: string;
+  typeofproduct: string;
+  contactperson: string;
+  designation: string;
+  contactno: string;
+  emailid: string;
+  tradelicense: string;
+  vatregistration: string;
+}
+
+interface DownloadForm {
+  type: "downloadForm";
+  name: string;
+  emailid: string;
+  contactno: string;
+  designation: string;
+  companyname: string;
+  requestType: string;
+  purpose: string;
+}
+
+
+export async function sendContactAction(
+  data: GeneralEnquiry | RegistrationForm | DownloadForm
+) {
+
+  const toEmail = await getToEmail(data.type);
+
+  if (!toEmail) {
+    throw new Error(`No recipient email configured for ${data.type}`);
+  }
+
+  console.log(toEmail,data.type)
+
+  switch (data.type) {
+    case "generalEnquiry":
+      await sendMail({
+        to: toEmail,
+        subject: "New General Enquiry",
+        template: (p) => GeneralEnquiryEmail(p),
+        props: {
+          name: data.name,
+          email: data.emailid,
+          phone: data.contactnumber,
+          message: data.message,
+        },
+      });
+      break;
+
+    case "registrationForm":
+      await sendMail({
+        to: toEmail,
+        subject: "New Registration Form Submission",
+        template: (p) => RegistrationFormEmail(p),
+        props: {
+          contactPerson: data.contactperson,
+          email: data.emailid,
+          phone: data.contactno,
+          companyName: data.nameofthecompany,
+          productType: data.typeofproduct,
+          designation: data.designation,
+          tradeLicense: data.tradelicense,
+          vatRegistration: data.vatregistration,
+        },
+      });
+      break;
+
+    case "downloadForm":
+      await sendMail({
+        to: toEmail,
+        subject: "New Download Request",
+        template: (p) => DownloadFormEmail(p),
+        props: {
+          name: data.name,
+          email: data.emailid,
+          phone: data.contactno,
+          companyName: data.companyname,
+          designation: data.designation,
+          requestType: data.requestType,
+          purpose: data.purpose,
+        },
+      });
+      break;
+  }
+}
+

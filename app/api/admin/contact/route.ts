@@ -3,6 +3,8 @@ import connectDB from "@/lib/mongodb";
 import Contact from "@/app/models/Contact";
 import { verifyAdmin } from "@/lib/verifyAdmin";
 import Enquiry from "@/app/models/Enquiry";
+import {sendContactAction} from "@/lib/mail/contactAction"
+
 
 export async function PATCH(req:NextRequest) {
     try {
@@ -44,6 +46,7 @@ export async function POST(req:NextRequest) {
         await connectDB();
         const body = await req.json();
         console.log(body)
+        await sendContactAction(body)
         switch(body.type){
             case "generalEnquiry":
                 const generalEnquiry = await Enquiry.findOne({});
