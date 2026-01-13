@@ -73,8 +73,8 @@ const JoinTeam = ({ openings }: { openings: OpeningProps }) => {
       return;
     }
 
-    if (file.size > 10 * 1024 * 1024) {
-      alert("File must be smaller than 10MB.");
+    if (file.size > 5 * 1024 * 1024) {
+      alert("File must be smaller than 5MB.");
       e.target.value = "";
       return;
     }
@@ -305,7 +305,7 @@ const JoinTeam = ({ openings }: { openings: OpeningProps }) => {
                   <p>
                     {fileName || (
                       <span className="text-[1F1F1FB5] font-400 text-[16px]">
-                        Max. 10 MB. pdf, doc, docx
+                        Max. 5 MB. pdf, doc, docx
                       </span>
                     )}
                   </p>
