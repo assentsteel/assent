@@ -76,7 +76,7 @@ import { Swiper as SwiperType } from "swiper";
               loop
               slidesPerView={1}
               spaceBetween={20}
-              className="rounded-xl overflow-hidden h-[200px] md:h-auto"
+              className="rounded-xl overflow-hidden h-[200px] md:h-auto xl:h-[500px] 3xl:max-h-[600px]"
             >
               {data.firstSection.items.map((src, index) => (
                 <SwiperSlide key={index}>

@@ -214,7 +214,7 @@ const Footer = () => {
                       DOWNLOAD BROCHURE
                     </motion.button>
                   </Link>
-                  <Link href="/assets/PQD final 2.pdf" target="_blank">
+                  <Link href="/assets/PQD-final-2_compressed.pdf" target="_blank">
                     <motion.button
                       variants={scaleUp}
                       className="border border-secondary py-2 px-4 rounded-full hover:bg-secondary hover:text-primary h-[40px] md:h-[58px] transition-all ease-in-out duration-500"
