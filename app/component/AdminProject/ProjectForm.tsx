@@ -72,7 +72,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
             if (response.ok) {
                 const data = await response.json();
                 alert(data.message);
-                router.push("/admin/projects/"+id);
+                router.push("/ASe25Nt@dmin/projects/"+id);
             }
         } catch (error) {
             console.log("Error in adding blog", error);
