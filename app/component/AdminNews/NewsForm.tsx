@@ -60,7 +60,7 @@ const NewsForm = ({ editMode }: { editMode?: boolean }) => {
             if (response.ok) {
                 const data = await response.json();
                 alert(data.message);
-                router.push("/admin/news");
+                router.push("/ASe25Nt@dmin/news");
             }
         } catch (error) {
             console.log("Error in adding news", error);
