@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 const teamSchema = new mongoose.Schema({
     metaTitle:{ type: String },
     metaDescription:{ type: String },
+    ogType:{ type: String },
+    ogImage:{ type: String },
     banner:{type:String,required:true},
     bannerAlt:{type:String,required:true},
     pageTitle:{ type: String, required: true },
@@ -16,6 +18,7 @@ const teamSchema = new mongoose.Schema({
             image:{ type: String, required: true },
             imageAlt:{ type: String },
             linkedIn:{ type: String },
+            description:{ type: String },
             }
         ]
     }

@@ -1,16 +1,18 @@
+
 import React from "react";
-import { boxcontent } from "./data";
 import HeroInner from "../common/Banner/HeroInner";
 import Specs from "./sections/Specs";
 import Slidethumb from "../common/Slidethumb";
 import Morepjts from "./sections/Morepjts"; 
+
   
   import { Projectswfull } from '@/public/types/Common'; 
-  const Index = async ({ data }: { data: Projectswfull['categories'][number]['projects'][number] }) => {  
-    console.log(data)
+  const Index = async ({ data,categorySlug }: { data: Projectswfull['categories'][number]['projects'][number],categorySlug: string }) => {  
+
+
   const breadcrumb = [
-    { label: "Homse", href: "/" },
-    { label: "Projects", href: "" },
+    { label: "Home", href: "/" },
+    { label: "Projects", href: `/projects/${categorySlug}` },
     { label: "Construction", href: "" },
     { label: data.sector, href: "" },
     { label: data.pageTitle, href: "" },
@@ -28,7 +30,7 @@ import Morepjts from "./sections/Morepjts";
       />
       <Specs data={data} />
       <Slidethumb data={data} />
-      <Morepjts data={boxcontent.data} />
+      <Morepjts sector={data.sector} projectId={data._id}/>
 
     </>
   );

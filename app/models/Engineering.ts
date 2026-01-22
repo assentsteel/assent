@@ -7,6 +7,12 @@ const EngineeringSchema = new mongoose.Schema({
     metaDescription:{
         type:String
     },
+    ogType:{
+        type:String
+    },
+    ogImage:{
+        type:String
+    },
     pageTitle:{
         type:String,
         required:true
@@ -69,27 +75,31 @@ const EngineeringSchema = new mongoose.Schema({
         description:{
             type:String
         },
-        image:{
-            type:String,
-            required:true
-        },
-        imageAlt:{
-            type:String,
-        },
-        imageThumbnail:{
-            type:String,
-            required:true
-        },
-        imageAltThumbnail:{
-            type:String,
-        },
-        threeDFile:{
-            type:String,
-            required:true
-        },
-        threeDFileAlt:{
-            type:String,
-        } 
+        items:[
+            {
+                style:{
+                    type:String,
+                },
+                image:{
+                    type:String,
+                },
+                imageAlt:{
+                    type:String,
+                },
+                threeDFile:{
+                    type:String,
+                },
+                threeDFileAlt:{
+                    type:String,
+                },
+                threeDFileThumbnail:{
+                    type:String,
+                },
+                threeDFileAltThumbnail:{
+                    type:String,
+                } 
+            }
+        ] 
     },
     fourthSection:{
         image:{

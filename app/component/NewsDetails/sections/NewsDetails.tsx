@@ -11,13 +11,24 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import { motion } from "framer-motion";
-
+ 
 
   import { News, Newsdetails } from '@/public/types/Common';
+import Link from "next/link";
 
 
       const NewsDetails = ({ data }: { data: Newsdetails }) => {
         const [newsList, setNewsList] = useState<News>();
+
+        const [currentUrl, setCurrentUrl] = useState("");
+
+        useEffect(() => {
+          if (typeof window !== "undefined") {
+            setCurrentUrl(window.location.href);
+          }
+        }, []);
+        
+
         const handleFetchProjects = async () => {
           try {
             const response = await fetch("/api/admin/news");
@@ -36,6 +47,7 @@ import { motion } from "framer-motion";
         useEffect(() => {
           handleFetchProjects();
         }, []);
+        console.log(data)
 
   const prevRef = useRef(null);
   const nextRef = useRef(null);
@@ -80,7 +92,7 @@ import { motion } from "framer-motion";
         <div className="flex flex-col lg:flex-row ">
           <div className="lg:w-5/6 pr-4 lg:pr-6 xxl:pr-[135px] ">
             <div className=" ">
-              <div className="relative w-full  ">
+              <div className="relative w-full bg-gray-100 ">
                 <motion.div
                   variants={slideInTop}
                   initial="hidden"
@@ -111,7 +123,7 @@ import { motion } from "framer-motion";
                         <Image
                           src={src}
                           alt={`Slide ${index + 1}`}
-                          className="w-full h-[300px] md:h-[400px] lg:h-[570px] object-cover"
+                          className="w-full h-[300px] md:h-[400px] lg:h-[570px] object-contain"
                           width={1215}
                           height={570}
                         />
@@ -160,7 +172,7 @@ import { motion } from "framer-motion";
                   >
                     <div className="flex justify-between items-center mt-4 md:mt-5 mb-4 md:mb-5">
                       <p className="text-sm font-[500] text-territory">
-                      {new Date(data.data.createdAt).toLocaleDateString("en-US", {
+                      {new Date(data.data.date ? data.data.date : data.data.createdAt).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
     day: "numeric"
@@ -169,7 +181,7 @@ import { motion } from "framer-motion";
                     </div>
                     <div className="flex gap-5 lg:gap-10">
                       <Image src={assets.share} alt="" />
-                      <Image src={assets.linkedin} alt="" />
+                      <Link href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(currentUrl)}`} target="_blank"><Image src={assets.linkedin} alt="" /></Link>
                     </div>
                   </motion.div>
                 </div>
@@ -215,7 +227,7 @@ import { motion } from "framer-motion";
                   </p>
                 </div>
               </div>
-              <MoreNews data={newsList} />
+              <MoreNews data={newsList} id={data.data._id}/>
             </motion.div>
           </div>
         </div>

@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { menuItems } from "./data";
 import Image from "next/image";
 import { ChevronDown } from "lucide-react";
+
 import {
   FaFacebookF,
   FaInstagram,
@@ -161,9 +162,9 @@ const MobileNav = () => {
             <div className="flex-1 overflow-hidden h-full"><ul className="grid grid-cols-2 list-disc gap-5 text-xs px-4 h-full overflow-y-auto">
               {result.map((item: {type: string, project: {title: string, slug: string}, category: string, item: {mainTitle: string, slug: string, title: string}}, index: number) => {
                 if(item.project){
-                  return <Link href={`/projects-details/${item.category}/${item.project.slug}`} key={index} className="cursor-pointer" onClick={()=>setSearchActive(false)}><li>{item.project.title}</li></Link>
+                  return <Link href={`/projects/${item.category}/${item.project.slug}`} key={index} className="cursor-pointer" onClick={()=>setSearchActive(false)}><li>{item.project.title}</li></Link>
                 }else if(item.type == "news"){
-                  return <Link href={`/news-details/${item.item.slug}`} key={index} className="cursor-pointer" onClick={()=>setSearchActive(false)}><li>{item.item.mainTitle}</li></Link>
+                  return <Link href={`/news/${item.item.slug}`} key={index} className="cursor-pointer" onClick={()=>setSearchActive(false)}><li>{item.item.mainTitle}</li></Link>
                 }else if(item.type == "gallery"){
                   return <Link href={`/gallery-details/${item.item.slug}`} key={index} className="cursor-pointer" onClick={()=>setSearchActive(false)}><li>{item.item.title}</li></Link>
                 }
@@ -272,7 +273,7 @@ const MobileNav = () => {
             {/* Contact Link */}
             <li>
               <Link
-                href="/contact"
+                href="/contact-us"
                 onClick={() => setMenuOpen(false)}
                 className="font-semibold">
                 Contact Us

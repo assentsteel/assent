@@ -5,12 +5,15 @@ const awardSchema = new mongoose.Schema({
     bannerAlt:{type:String,required:true},
     metaTitle:{ type: String },
     metaDescription:{ type: String },
+    ogType:{ type: String },
+    ogImage:{ type: String },
     pageTitle:{ type: String, required: true },
     awards:[
         {
             title:{ type: String, required: true },
             image: { type: String, required: true },
             imageAlt:{ type: String },
+            file:{ type: String },
         }
     ]
 });

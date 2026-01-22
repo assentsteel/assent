@@ -1,15 +1,20 @@
-"use client"; 
-import Image  from "next/image";
+"use client";
+import Image from "next/image";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
 gsap.registerPlugin(ScrollTrigger);
- 
-import { Sustainability } from '@/public/types/Common'; 
- 
-const   TextByImgSlide = ({ data,kmbtn }: { data: Sustainability, kmbtn?: boolean }) => {   
 
+import { Sustainability } from "@/public/types/Common";
+
+const TextByImgSlide = ({
+  data,
+  kmbtn,
+}: {
+  data: Sustainability;
+  kmbtn?: boolean;
+}) => {
   const containerRef = useRef(null);
   const textVariants = {
     hidden: { opacity: 0, x: -30 },
@@ -52,72 +57,68 @@ const   TextByImgSlide = ({ data,kmbtn }: { data: Sustainability, kmbtn?: boolea
   }, []);
 
   return (
-    <section className="py-[50px] md:py-[70px] xl:py-[100px] pts  overflow-hidden relative ">
+    <section className="py-[50px] md:py-[70px] xl:py-[100px] overflow-hidden relative ">
       <div className="container">
-  <div className="lg:flex items-center">
-    {/* Text Section */}
-    <div
-      className="w-full lg:w-1/2 pr-0 lg:pr-[44px]"
+        <div className="lg:flex items-center">
+          {/* Text Section */}
+          <div className="w-full lg:w-1/2 pr-0 lg:pr-[44px]">
+            <div className="mb-8 lg:mb-0">
+              <motion.h2
+                className="text-xl text-primary font-[600] leading-[1.2] mb-4 lg:mb-10"
+                viewport={{ once: true, amount: 0.2 }}
+                variants={textVariants}
+                initial="hidden"
+                whileInView="visible"
+              >
+                {data.thirdSection.title}
+              </motion.h2>
 
+              <motion.div
+                className="text-territory text-base font-[400] leading-[1.8] mb-6 lg:mb-10"
+                initial="hidden"
+                whileInView="visible"
+                variants={imageVariants}
+                viewport={{ once: true, amount: 0.2 }}
+                dangerouslySetInnerHTML={{
+                  __html: data.thirdSection.description,
+                }}
+              ></motion.div>
+              {kmbtn && (
+                <motion.button
+                  initial="hidden"
+                  whileInView="visible"
+                  variants={imageVariants}
+                  viewport={{ once: true, amount: 0.2 }}
+                  className="mt-auto m-auto h-[40px] lg:h-[48px] text-territory max-w-[315px] w-[315px] md:m-left border border-secondary py-2 px-6 rounded-full hover:bg-secondary hover:text-white transition text-xs  font-medium uppercase"
+                >
+                  view more
+                </motion.button>
+              )}
+            </div>
+          </div>
 
-
-    > 
-        <div className="mb-8 lg:mb-0" >
-          <motion.h2 className="text-xl text-primary font-[600] leading-[1.2] mb-4 lg:mb-10"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={textVariants}
+          {/* Image Section */}
+          <motion.div
+            className="w-full lg:w-1/2 pl-0 lg:pl-[44px]"
             initial="hidden"
-            whileInView="visible">
-            {data.thirdSection.title}
-          </motion.h2>
-
-          <motion.div className="text-territory text-base font-[400] leading-[1.8] mb-6 lg:mb-10"
-          initial="hidden"
-          whileInView="visible"
-          variants={imageVariants}
-          viewport={{ once: true, amount: 0.2 }} dangerouslySetInnerHTML={{__html: data.thirdSection.description}}> 
-           
-          
+            whileInView="visible"
+            variants={imageVariants}
+            viewport={{ once: true, amount: 0.2 }}
+          >
+            <div>
+              <figure className="image-wrapper">
+                <Image
+                  src={data.thirdSection.items[0].image}
+                  alt={data.thirdSection.items[0].imageAlt || ""}
+                  className="rounded-[15px]"
+                  width={4860}
+                  height={1725}
+                />
+              </figure>
+            </div>
           </motion.div>
-          {kmbtn &&
-            <motion.button
-             initial="hidden"
-          whileInView="visible"
-          variants={imageVariants}
-              viewport={{ once: true, amount: 0.2 }}
-              className="mt-auto m-auto h-[40px] lg:h-[48px] text-territory max-w-[315px] w-[315px] md:m-left border border-secondary py-2 px-6 rounded-full hover:bg-secondary hover:text-white transition text-xs  font-medium uppercase">
-              view more
-            </motion.button>
-          }
         </div>
-   
-    </div>
-
-    {/* Image Section */}
-    <motion.div
-      className="w-full lg:w-1/2 pl-0 lg:pl-[44px]"
-      initial="hidden"
-      whileInView="visible"
-      variants={imageVariants}
-      viewport={{ once: true, amount: 0.2 }}
-    >
-      
-        <div >
-          <figure className="image-wrapper"> 
-              <Image
-                src={data.thirdSection.items[0].image}
-                alt={data.thirdSection.items[0].imageAlt || ""}
-                className="rounded-[15px]"
-                width={4860}
-                height={1725}
-              /> 
-           
-          </figure>
-        </div>
-   
-    </motion.div>
-  </div>
-</div>
+      </div>
     </section>
   );
 };

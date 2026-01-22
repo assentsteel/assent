@@ -8,12 +8,19 @@ import { motion } from "framer-motion";
 
 import { News } from '@/public/types/Common';
 const MediaSection = ({data}: {data: News}) => { 
-  const latestNews = data.news[data.news.length - 1];
-  const lastTwoItems =  data.news.slice(-3, -1);
+const sortedNews = [...data.news].sort(
+  (a, b) =>
+    new Date(b.date).getTime() -
+    new Date(a.date).getTime()
+);
+
+const latestNews = sortedNews[0];
+const lastTwoItems = sortedNews.slice(1, 3);
+
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+    const day = String(date.getDate()).padStart(2, "0");     
+    const month = String(date.getMonth() + 1).padStart(2, "0"); 
     const year = date.getFullYear();
     return `${day}-${month}-${year}`;
   };
@@ -59,14 +66,14 @@ const MediaSection = ({data}: {data: News}) => {
                     News
                   </span>
                   <span className="text-white text-xs uppercase"> 
-           {formatDate(latestNews.createdAt)} 
+           {formatDate(latestNews.date ? latestNews.date : latestNews.createdAt)} 
                   </span>
                 </div>
                 <h3 className="text-lg font-semibold mt-0  mb-[30px] leading-normal">
                   {latestNews.mainTitle}
                 </h3>
                 <Link
-                  href={`/news-details/${latestNews.slug}`}
+                  href={`/news/${latestNews.slug}`}
                   className="text-xs border-b border-secondary text-white uppercase group pb-[16px] inline-flex items-center gap-[18px]"
                 >
                   Read More{" "}
@@ -99,7 +106,7 @@ const MediaSection = ({data}: {data: News}) => {
                     News
                   </span>
                   <span className="text-territory text-xs uppercase">
-                    {formatDate(item.createdAt)}
+                    {formatDate(item.date ? item.date : item.createdAt)}
                   </span>
                 </div>
 
@@ -107,7 +114,7 @@ const MediaSection = ({data}: {data: News}) => {
                   {item.mainTitle}
                 </h3>
                 <Link
-                  href={`/news-details/${item.slug}`}
+                  href={`/news/${item.slug}`}
                   className="text-xs border-b border-secondary uppercase group pb-[16px] inline-flex items-center gap-[18px] text-territory font-medium"
                 >
                   Read More{" "}

@@ -6,12 +6,15 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {  gdsVariants, gdVariants, slideInTop } from "../../common/MotionAnimation";
 gsap.registerPlugin(ScrollTrigger);
+import CountUp from "react-countup";
+import { useInView } from "react-intersection-observer";
  
   
 import { GpEuReachdata} from '@/public/types/Common';   
         
        const Excellence = ({ data }: { data: GpEuReachdata }) => {    
   const containerRef = useRef(null); 
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 });
   useEffect(() => {
     if (containerRef.current) {
       gsap.from(containerRef.current, {
@@ -28,6 +31,12 @@ import { GpEuReachdata} from '@/public/types/Common';
     }
   }, []);
 
+  function extractNumber(value: string): number {
+    const cleaned = value.replace(/,/g, '');
+    const match = cleaned.match(/[\d.]+/);
+    return match ? parseFloat(match[0]) : 0;
+  }
+
   return (
     <div className="py-[50px] md:py-[70px] xl:py-[100px] overflow-hidden relative bg-primary ">
       <div className="container">
@@ -41,6 +50,7 @@ import { GpEuReachdata} from '@/public/types/Common';
   </div>
 
   <motion.div
+  ref={ref}
   className="grid grid-cols-12"
   variants={gdVariants}
   initial="hidden"
@@ -63,7 +73,7 @@ import { GpEuReachdata} from '@/public/types/Common';
           <div className="w-full md:w-1/2">
             <div className="mb-4 md:mb-0 lg:flex gap-2 items-baseline">
               <h3 className="text-xl font-semibold text-white">
-                {item.number}
+              {inView ? <CountUp start={0} end={extractNumber(item.number)} duration={2} delay={0.3} decimals={extractNumber(item.number) % 1 !== 0 ? 1 : 0} /> : 0}<span>{item.number.includes("+") && "+" } {item.number.split(" ").length > 1 ? item.number.split(" ")[1] : ""}</span>
               </h3>
               <span className="text-md text-white">{item.value}</span>
             </div>

@@ -1,8 +1,7 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import { motion } from "framer-motion";
-import Link from "next/link";
+import { motion } from "framer-motion"; 
 
 
 
@@ -52,8 +51,7 @@ const Boxgrid = ({ data, maxchwidth, colnum }: { data: Engineering, colnum?: num
           >
             {/* Item 1 */}
            {data.secondSection.items.map((expertise, index) => (
-  <div key={index}>
-    <Link href={`#`}>
+  <div key={index}> 
       <div
         style={{
           backgroundImage: `url(${expertise.image})`,
@@ -86,8 +84,7 @@ const Boxgrid = ({ data, maxchwidth, colnum }: { data: Engineering, colnum?: num
             </div>
           </div>
         </div>
-      </div>
-    </Link>
+      </div> 
   </div>
 ))}
 

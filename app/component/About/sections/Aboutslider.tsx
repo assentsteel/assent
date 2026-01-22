@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import { motion } from "framer-motion";
@@ -14,7 +14,12 @@ import { About } from '@/public/types/Common';
 
 const Aboutslider = ({ data }: { data: About }) => {  
    
-  
+  const [activeAboutReadMore, setActiveAboutReadMore] = useState<string | null>(null);
+
+    const toggleReadMore = (id: string) => {
+    setActiveAboutReadMore(prev => (prev === id ? null : id));
+  };
+
   const containerRef = useRef(null);
   const textVariants = {
     hidden: { opacity: 0, x: -30 },
@@ -74,7 +79,7 @@ const Aboutslider = ({ data }: { data: About }) => {
   }, []);
 
   return (
-    <section className="py-[50px] md:py-[70px] xl:py-[100px] bg-primary  overflow-hidden relative ">
+    <section className="py-[50px] md:py-[70px] xl:py-[80px] xxl:py-[100px] bg-primary  overflow-hidden relative">
       <div className="container">
         <div>
           <div className="flex justify-between items-center">
@@ -134,13 +139,12 @@ const Aboutslider = ({ data }: { data: About }) => {
             <Splide
     options={{
       perPage: 3.28,
-      isNavigation: true,
       gap: "1rem",
       focus: 1,
       pagination: false,
                 cover: true,
                 autoplay: true,
-      interval: 3000,
+      interval: 8000,
     pauseOnHover: false,
     resetProgress: false,
       arrows: false,
@@ -157,7 +161,12 @@ const Aboutslider = ({ data }: { data: About }) => {
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
-          className="font-[600] text-[45px] lg:text-[90px] text-[#54739F] pt-8 lg:pt-[40px]"
+          className="font-[600] text-[45px] lg:text-[90px] text-[#54739F] pt-8 lg:pt-[40px] cursor-pointer"
+          onClick={() => {
+            if (mainRef.current) {
+              mainRef.current.go(index);
+            }
+          }}
         >
           {src.year}
         </motion.p>
@@ -173,7 +182,7 @@ const Aboutslider = ({ data }: { data: About }) => {
       gap: "1rem",
                 arrows: false,
                 autoplay: true,
-      interval: 3000,
+      interval: 8000,
     pauseOnHover: false,
     resetProgress: false,
     }}
@@ -195,7 +204,7 @@ const Aboutslider = ({ data }: { data: About }) => {
                 alt={src.imageAlt}
                 width={600}
                 height={400}
-                className="w-full h-auto rounded-xl object-cover"
+                className="w-full h-[300px] rounded-xl object-cover"
               />
             </div>
           </motion.div>
@@ -207,11 +216,28 @@ const Aboutslider = ({ data }: { data: About }) => {
             variants={fadeUp}
             viewport={{ once: true, amount: 0.3 }}
           >
-            <div className="pt-10 md:pt-[50px] lg:pt-[100px] md:pl-[50px] lg:pl-[90px]">
+            <div className="pt-10 md:pt-[50px] lg:pt-[100px] md:pl-[50px] lg:pl-[90px] min-h-[400px]">
               <h3 className="text-white text-lg font-[600] mb-5 lg:mb-[40px]">
                 {src.title}
               </h3>
-              <p className="text-white max-w-[50ch]">{src.description}</p>
+              <p className="text-white max-w-[50ch] flex flex-col">
+                {src.description.split('\n').join(' ').split(" ").length > 40 && activeAboutReadMore !== src._id
+                      ? src.description.split(" ").slice(0, 40).join(" ") + "..."
+                      : src.description.split('\n').map((item,index)=>(
+                                <span key={index}>{item}</span>
+                      ))}
+
+                    {src.description.split('\n').join(' ').split(" ").length > 40 && (
+                      <span
+                        className="text-secondary cursor-pointer"
+                        onClick={() =>
+                          toggleReadMore(src._id)
+                        }
+                      >
+                        {activeAboutReadMore === src._id ? " Read Less" : " Read More"}
+                      </span>
+                    )}
+              </p>
             </div>
           </motion.div>
         </div>

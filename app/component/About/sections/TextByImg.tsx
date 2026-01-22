@@ -10,7 +10,7 @@ import { textbyimg } from '@/public/types/Common';
 
 
 
-const TextByImg = ({ data,kmbtn }: { data: textbyimg, kmbtn?: boolean }) => {   
+const TextByImg = ({ data }: { data: textbyimg, kmbtn?: boolean }) => {   
   
 
   const containerRef = useRef(null);
@@ -55,7 +55,7 @@ const TextByImg = ({ data,kmbtn }: { data: textbyimg, kmbtn?: boolean }) => {
   }, []);
 
   return (
-    <section className="py-[50px] md:py-[70px] xl:py-[100px] pts  overflow-hidden relative ">
+    <section className="py-[50px] md:py-[70px] xl:py-[80px] xxl:py-[100px]  overflow-hidden relative ">
       <div className="container">
   <div className="lg:flex items-center">
     {/* Text Section */}
@@ -82,8 +82,8 @@ const TextByImg = ({ data,kmbtn }: { data: textbyimg, kmbtn?: boolean }) => {
            
           
           </motion.div>
-          {kmbtn &&
-            <motion.button
+          {/* {kmbtn &&
+            <Link href={"/gallery"}><motion.button
              initial="hidden"
           whileInView="visible"
           variants={imageVariants}
@@ -91,7 +91,8 @@ const TextByImg = ({ data,kmbtn }: { data: textbyimg, kmbtn?: boolean }) => {
               className="mt-auto m-auto h-[40px] lg:h-[48px] text-territory max-w-[315px] w-[315px] md:m-left border border-secondary py-2 px-6 rounded-full hover:bg-secondary hover:text-white transition text-xs  font-medium uppercase">
               view more
             </motion.button>
-          }
+            </Link>
+          } */}
         </div>
    
     </div>

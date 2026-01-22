@@ -20,12 +20,30 @@ const gallerySchema = new mongoose.Schema({
         type:[String],
         default:[]
     },
+    categories:[{
+        title:{type:String},
+        slug:{type:String},
+        thumbnail:{type:String},
+        altText:{type:String},
+        images:[{type:String}],
+        metaTitle:{type:String},
+        metaDescription:{type:String},
+        ogType:{type:String},
+        ogImage:{type:String}
+    }],
     metaTitle: {
         type: String,
     },
     metaDescription: {
         type: String,
     },
+    ogType: {
+        type: String,
+    },
+    ogImage: {
+        type: String,
+    },
+    index: { type: Number, default: 0 },
 })
 
 export default mongoose.models.Gallery || mongoose.model("Gallery", gallerySchema)

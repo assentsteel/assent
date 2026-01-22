@@ -2,7 +2,7 @@
 
 import {  useRef, useEffect } from "react";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperType } from "swiper";
 import "swiper/css";
@@ -46,7 +46,7 @@ gsap.registerPlugin(ScrollTrigger);
             viewport={{ once: true }}
           >
             <h2 className="text-xl font-semibold mb-5 lg:mb-[50px] leading-none text-white ">
-              Showcasing Our Finest Projects in Africa
+            {data.title}
             </h2>
           </motion.div>
 
@@ -59,12 +59,12 @@ gsap.registerPlugin(ScrollTrigger);
                 transition={{ duration: 0.8, delay: 0.3 }}
                 viewport={{ once: true, amount: 0.5 }}
               >
-                <Button
+                {/* <Button
                   variant="outline"
                   className="px-[17px] py-5 text-xs rounded-full h-[40px] lg:h-[48px] text-black border border-secondary uppercase"
                 >
                   View All
-                </Button>
+                </Button> */}
 
                 <div className="flex justify-end gap-4">
                                 {/* Prev Button */}
@@ -136,7 +136,7 @@ gsap.registerPlugin(ScrollTrigger);
               className="w-full !overflow-visible"
               onSwiper={(swiper) => (swiperRef.current = swiper)}
             >
-              {data.items.map((project, index) => (
+              {data?.items?.map((project, index) => (
                 <SwiperSlide key={index} className="">
                   <motion.div className="cursor-pointer ">
                     <div className="relative group">

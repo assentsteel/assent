@@ -73,5 +73,9 @@ export const careerFormSchema = z.object({
         {
           message: "Only PDF, DOC, and DOCX files are allowed",
         }
+      ),
+      position: z.preprocess(
+        (val) => typeof val === "string" ? xss(val) : val,
+        z.string({ required_error: "Position is required" }).min(1, "Position is required")
       )
   })

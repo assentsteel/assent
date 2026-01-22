@@ -5,12 +5,14 @@ import News from "@/app/models/News";
 export async function POST(req:NextRequest) {
     try {
         await connectDB();
-        const { metaTitle, metaDescription, pageTitle } = await req.json();
+        const { metaTitle, metaDescription, pageTitle, ogType, ogImage } = await req.json();
         const news = await News.findOne({});
         if(news){
             news.metaTitle = metaTitle;
             news.metaDescription = metaDescription;
             news.pageTitle = pageTitle;
+            news.ogType = ogType;
+            news.ogImage = ogImage;
             await news.save();
             return NextResponse.json({ message: "Details saved successfully" }, { status: 200 });
         }else{

@@ -1,9 +1,12 @@
-import React from 'react'
+"use client"
+
+import React, { useRef, useState } from 'react'
 import { motion } from "framer-motion";
 import { z } from "zod";
 import { generalEnquirySchema } from "@/app/schemas/generalEnquiry";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import ReCAPTCHA from 'react-google-recaptcha';
 
 type GeneralEnquiryForm = z.infer<typeof generalEnquirySchema>
 
@@ -13,6 +16,8 @@ const GeneralEnquiry = () => {
     const {register,formState:{errors},handleSubmit,reset} = useForm<GeneralEnquiryForm>({
         resolver:zodResolver(generalEnquirySchema)
     })
+    const recaptcha = useRef<ReCAPTCHA>(null)
+    const [error,setError] = useState("")
 
     const containerVariants = {
         hidden: {},
@@ -33,6 +38,12 @@ const GeneralEnquiry = () => {
         const onSubmit = async (data: GeneralEnquiryForm) => {
           console.log(data)
           try {
+            const captchaValue = recaptcha?.current?.getValue()
+            if (!captchaValue) {
+              setError("Please verify yourself to continue")
+              return;
+            }
+            setError("")
             const response = await fetch("/api/admin/contact", {
               method: "POST",
               headers: {
@@ -92,6 +103,10 @@ const GeneralEnquiry = () => {
         <p className="text-red-500 text-xs mt-1">{errors.message?.message}</p>
       )}
     </motion.div>
+
+    <ReCAPTCHA sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""} ref={recaptcha} className='mt-5'/>
+
+    {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
 
     <input type="hidden" {...register("type")} value="generalEnquiry" />
 

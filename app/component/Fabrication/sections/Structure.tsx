@@ -1,52 +1,90 @@
 "use client";
 
 import Image from "next/image";
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper as SwiperType } from "swiper";
+import "swiper/css";
+import "swiper/css/navigation";
+import { assets } from "@/public/assets/assets";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
+import dynamic from "next/dynamic";
+import { useSearchContext } from "@/contexts/searchContext";
  
   
    import { Fabrication } from '@/public/types/Common'; 
+
+   const ModelViewer = dynamic(() => import("../../Engineering/sections/ModelViewer"), { ssr: false });
      
     const   Structure = ({ data,maxchwidth }: { data: Fabrication, maxchwidth?: string }) => {   
-  const [currentImageIndexes, setCurrentImageIndexes] = useState(
-    data.fourthSection.items.map(() => 0)
-  );
-  const [intervals, setIntervals] = useState<(NodeJS.Timeout | null)[]>(
-    data.fourthSection.items.map(() => null)
-  );
+  // const [currentImageIndexes, setCurrentImageIndexes] = useState(
+  //   data.fourthSection.items.map(() => 0)
+  // );
+  // const [intervals, setIntervals] = useState<(NodeJS.Timeout | null)[]>(
+  //   data.fourthSection.items.map(() => null)
+  // );
 
-  const handleMouseEnter = (index: number) => {
-    if (intervals[index]) return;
+    const swiperRef = useRef<SwiperType | null>(null);
+    const [selectedModel, setSelectedModel] = useState<string | null>(null);
+      const {setSearchActive} = useSearchContext();
 
-    const interval = setInterval(() => {
-      setCurrentImageIndexes((prev) => {
-        const newIndexes = [...prev];
-        newIndexes[index] =
-          (newIndexes[index] + 1) % data.fourthSection.items[index].images.length;
-        return newIndexes;
-      });
-    }, 1000);
 
-    const updatedIntervals = [...intervals];
-    updatedIntervals[index] = interval;
-    setIntervals(updatedIntervals);
-  };
 
-  const handleMouseLeave = (index: number) => {
-    const interval = intervals[index];
-    if (interval) {
-      clearInterval(interval);
-      const updatedIntervals = [...intervals];
-      updatedIntervals[index] = null;
-      setIntervals(updatedIntervals);
-    }
+    // const [activeIndex, setActiveIndex] = useState(0);
 
-    setCurrentImageIndexes((prev) => {
-      const newIndexes = [...prev];
-      newIndexes[index] = 0;
-      return newIndexes;
-    });
-  };
+  // const handleMouseEnter = (index: number) => {
+  //   if (intervals[index]) return;
+
+  //   const interval = setInterval(() => {
+  //     setCurrentImageIndexes((prev) => {
+  //       const newIndexes = [...prev];
+  //       newIndexes[index] =
+  //         (newIndexes[index] + 1) % data.fourthSection.items[index].images.length;
+  //       return newIndexes;
+  //     });
+  //   }, 1000);
+
+  //   const updatedIntervals = [...intervals];
+  //   updatedIntervals[index] = interval;
+  //   setIntervals(updatedIntervals);
+  // };
+
+  // const handleMouseLeave = (index: number) => {
+  //   const interval = intervals[index];
+  //   if (interval) {
+  //     clearInterval(interval);
+  //     const updatedIntervals = [...intervals];
+  //     updatedIntervals[index] = null;
+  //     setIntervals(updatedIntervals);
+  //   }
+
+  //   setCurrentImageIndexes((prev) => {
+  //     const newIndexes = [...prev];
+  //     newIndexes[index] = 0;
+  //     return newIndexes;
+  //   });
+  // };
+
+    useEffect(() => {
+      if (selectedModel) {
+        const scrollY = window.scrollY;
+        document.body.dataset.scrollY = String(scrollY);
+        // document.body.style.position = 'fixed';
+        document.body.style.overflow = 'hidden';
+        document.body.style.top = `-${scrollY}px`;
+        document.body.style.width = '100%';
+        setSearchActive(true);
+      } else {
+        const scrollY = document.body.dataset.scrollY;
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        window.scrollTo(0, scrollY ? parseInt(scrollY) : 0);
+        setSearchActive(false);
+      }
+    }, [selectedModel]);
 
   return (
     <section className="relative">
@@ -81,78 +119,147 @@ import { motion, AnimatePresence } from "framer-motion";
             </motion.div>
           </div>
 
-          <div className="my-[50px] md:my-[70px] xl:my-[100px]">
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[10px] md:gap-[70px] xl:gap-[130px]">
-              {data.fourthSection.items.map((items, index) => (
-                <div
-  key={index}
-  className="flex flex-col items-center gap-3 md:gap-5 justify-center group" // <-- Add 'group' here
-  onMouseEnter={() => handleMouseEnter(index)}
-  onMouseLeave={() => handleMouseLeave(index)}
->
-                 <motion.div
-  initial="hidden"
-  whileInView="visible"
-  viewport={{ once: true, amount: 0.3 }}
-  variants={{
-    hidden: { opacity: 0, x: 50 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: { duration: 1, ease: "easeOut" },
-    },
-  }}
-  className="w-full"
->
-  <div className="relative w-full min-h-[100px]  lg:min-h-full">{/* Ensures image doesn't collapse */}
-    <AnimatePresence mode="wait">
-      <motion.div
-        key={currentImageIndexes[index]}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.5 }}
-        className="absolute inset-0 cursor-pointer"
-      >
-        <Image
-          src={items.images[currentImageIndexes[index]].image}
-          alt={items.images[currentImageIndexes[index]].imageAlt}
-          fill
-          style={{ objectFit: "contain" }}
-        />
-      </motion.div>
-    </AnimatePresence>
-  </div>
+   <div className="flex lg:justify-end gap-4 mb-5">
+                                {/* Prev Button */}
+                                <motion.button
+                                  whileHover={{ scale: 1.1 }}
+                                  whileTap={{ scale: 0.95 }}
+                                  initial={{ opacity: 0, y: 10 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  transition={{ duration: 0.3 }}
+                                  onClick={() => swiperRef.current?.slidePrev()}
+                                  className="bg-white text-black px-3 py-1 border border-[#595959] rounded-full w-[48px] h-[48px] hover:bg-secondary group transition flex items-center justify-center"
+                                >
+                                  <Image
+                                    src={assets.greenarrow}
+                                    alt=""
+                                    width={11}
+                                    height={18}
+                                    className="group-hover:brightness-0 group-hover:invert"
+                                  />
+                                </motion.button>
 
-  {/* Pagination dots */}
-  <div className="flex items-center justify-center gap-2 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-    {items.images.map((_, imgIndex) => (
-      <button
-        key={imgIndex}
-        onClick={() => {
-          const newIndexes = [...currentImageIndexes];
-          newIndexes[index] = imgIndex;
-          setCurrentImageIndexes(newIndexes);
-        }}
-        className={`w-3 h-3 rounded-full border border-gray-400 transition-all duration-300 ${
-          imgIndex === currentImageIndexes[index]
-            ? "bg-primary border-primary scale-110"
-            : "bg-white hover:bg-gray-200"
-        }`}
-      />
-    ))}
-  </div>
+                                {/* Next Button */}
+                                <motion.button
+                                  whileHover={{ scale: 1.1 }}
+                                  whileTap={{ scale: 0.95 }}
+                                  initial={{ opacity: 0, y: 10 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  transition={{ duration: 0.3, delay: 0.1 }}
+                                  onClick={() => swiperRef.current?.slideNext()}
+                                  className="bg-white text-black px-3 py-1 border border-[#595959] rounded-full w-[48px] h-[48px] hover:bg-secondary group transition flex items-center justify-center"
+                                >
+                                  <Image
+                                    src={assets.greenarrow}
+                                    alt=""
+                                    width={11}
+                                    height={18}
+                                    className="group-hover:brightness-0 group-hover:invert rotate-180"
+                                  />
+                                </motion.button>
+                              </div>
 
-  {/* Title - properly placed below the image */}
-  <div className="mt-4">
-    <p className="text-lg font-medium text-center">{items.title}</p>
-  </div>
-</motion.div>
+          <section className="overflow-hidden">
+      <div className="">
 
-                </div>
-              ))}
-            </div>
-          </div>
+        <div className="relative">
+          <motion.div  initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              viewport={{ once: true, amount: 0.5 }}>
+          <Swiper
+            spaceBetween={30}
+            slidesPerView={1.2}
+            breakpoints={{
+              640: { slidesPerView: 2.1 },
+              1024: { slidesPerView: 3.1 },
+            }}
+            className="w-full !overflow-visible"
+            onSwiper={(swiper) => (swiperRef.current = swiper)}
+          >
+             {data.fourthSection.items.map((item, index) => (
+              <SwiperSlide key={index} className="" >
+        <motion.div  className="cursor-pointer" onClick={() => {setSelectedModel(item.threeDFile)}}>
+                <figure className="rounded-custom overflow-hidden h-[250px] lg:h-[300px] xl:h-[400px]">
+                  <Image
+                    src={item.threeDFileThumbnail}
+                    width={1000}
+                    height={500}
+                    alt={item.threeDFileAltThumbnail}
+                    className="rounded-lg h-full w-full"
+                  />
+                  {/* <Canvas camera={{ position: [0, 1, 15] }} className="bg-slate-200">
+                            <ambientLight intensity={1} />
+                            <directionalLight position={[5, 5, 5]} />
+                            <OrbitControls enableZoom={true} />
+                            <ModelViewer
+                              url={item.threeDFile}
+                              position={[0, 0, 0]}
+                              scale={0.7}
+                            />
+                          </Canvas> */}
+                </figure>
+                {/* <p className="text-sm text-[#595959] leading-none font-normal py-[25px] border-b border-[#1F1F1F]">{project.sector}</p>
+                <h3 className="text-lg font-semibold leading-none pt-[25px]">{project.title}</h3> */}
+                </motion.div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+          </motion.div>
+
+{/* <div className="flex justify-center w-full">
+          <div className="flex gap-2 border p-3 rounded-full w-fit">
+                          {data.fourthSection.items.map((item, index) => (
+                            <div
+                              key={index}
+                              onClick={() => setActiveIndex(index)}
+                              className={`w-[50px] h-[50px] rounded-full overflow-hidden border-2 cursor-pointer ${
+                                activeIndex === index
+                                  ? "border-secondary"
+                                  : "border-[#f2f2f2]"
+                              }`}
+                            >
+                              <Image
+                                src={item.style === "3d-file" ? item.threeDFileThumbnail : item.image}
+                                alt={item.style === "3d-file" ? item.threeDFileAltThumbnail : item.imageAlt}
+                                width={50}
+                                height={50}
+                                className="object-cover w-full h-full"
+                              />
+                            </div>
+                          ))}
+                        </div>
+                        </div> */}
+
+
+        </div>
+      </div>
+    </section>
+
+    {selectedModel && (
+                   <div
+                     className="fixed inset-0 z-[2000] flex items-center justify-center bg-black/80 p-4 w-full h-full"
+                   >
+                     <div className="relative w-3/4 h-3/4">
+                       <button
+                         className="absolute top-2 right-2 text-white text-2xl z-10 flex justify-center items-center bg-primary rounded-full w-[25px] h-[25px]"
+                         onClick={() => {setSelectedModel(null)}}
+                       >
+                         &times;
+                       </button>
+                       <Canvas camera={{ position: [0, 1, 15] }} className="bg-slate-200">
+                            <ambientLight intensity={1} />
+                            <directionalLight position={[5, 5, 5]} />
+                            <OrbitControls enableZoom={true} />
+                            <ModelViewer
+                              url={selectedModel}
+                              position={[0, 0, 0]}
+                              scale={0.7}
+                            />
+                          </Canvas>
+                     </div>
+                   </div>
+                 )}
         </div>
       </div>
     </section>

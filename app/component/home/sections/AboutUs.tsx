@@ -64,7 +64,7 @@ const AboutUs = ({ data }: { data: Home }) => {
             <div className="overflow-hidden mb-[30px] lg:mb-[70px] pb-2">
             <motion.h2
               variants={textItemVariants}
-              className="text-xl leading-none text-primary font-semibold "
+              className="text-xl lg:leading-[55px] leading-[40px] text-primary font-semibold "
             >
               {data.firstSection.subTitle}
             </motion.h2>

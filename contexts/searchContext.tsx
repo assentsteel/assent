@@ -1,7 +1,7 @@
 // context/SearchContext.tsx
 "use client";
 
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import SmoothScroll from "@/app/component/common/SmoothScroll";
 
 const SearchContext = createContext<{
@@ -11,6 +11,8 @@ const SearchContext = createContext<{
   searchActive: false,
   setSearchActive: () => {},
 });
+
+
 
 export const useSearchContext = () => useContext(SearchContext);
 

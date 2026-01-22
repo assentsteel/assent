@@ -7,6 +7,12 @@ const globalPresenceSchema = new mongoose.Schema({
     metaDescription:{
         type:String
     },
+    ogType:{
+        type:String
+    },
+    ogImage:{
+        type:String
+    },
     banner:{
         type:String
     },
@@ -61,6 +67,18 @@ const globalPresenceSchema = new mongoose.Schema({
                     type:String
                 },
                 slug:{
+                    type:String
+                },
+                metaTitle:{
+                    type:String
+                },
+                metaDescription:{
+                    type:String
+                },
+                ogType:{
+                    type:String
+                },
+                ogImage:{
                     type:String
                 },
                 sections:{

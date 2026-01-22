@@ -130,7 +130,6 @@ gsap.registerPlugin(ScrollTrigger);
                 </div>
               </motion.div>
               <motion.div
-                key={index}
                 className="flex gap-5 items-start"
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -146,7 +145,6 @@ gsap.registerPlugin(ScrollTrigger);
                 
               </motion.div>
               <motion.div
-                key={index}
                 className="flex gap-5 items-start"
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -157,12 +155,13 @@ gsap.registerPlugin(ScrollTrigger);
                   <p className="text-[14px] uppercase mb-[10px] opacity-75 tracking-[2px]">
                   EMAIL
                   </p>
-                  <p className="max-w-[25ch]">{item.email}</p>
+                  {item.email.split("\n").map((email, index) => (
+                    <p key={index} className="max-w-[25ch]">{email}</p>
+                  ))}
                 </div>
                 
               </motion.div>
               <motion.div
-                key={index}
                 className="flex gap-5 items-start"
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}

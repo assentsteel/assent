@@ -10,7 +10,13 @@ const galleryMetaSchema = new mongoose.Schema({
     pageTitle: {
         type: String,
         required: true
-    }
+    },
+    ogType: {
+        type: String,
+    },
+    ogImage: {
+        type: String,
+    },
 })
 
 export default mongoose.models.GalleryMeta || mongoose.model("GalleryMeta", galleryMetaSchema)

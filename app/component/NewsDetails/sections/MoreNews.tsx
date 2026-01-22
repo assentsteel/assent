@@ -9,9 +9,10 @@ gsap.registerPlugin(ScrollTrigger);
     import { News } from '@/public/types/Common'; 
      
       
-        const MoreNews = ({ data }: { data: News | undefined }) => {
+        const MoreNews = ({ data, id }: { data: News | undefined ,id:number}) => {
   const containerRef = useRef(null);
-
+console.log(data);
+const filteredNews = data?.news.filter((item) => item._id !== id).sort((a, b) => new Date(b.date ? b.date : b.createdAt).getTime() - new Date(a.date ? a.date : a.createdAt).getTime());
   useEffect(() => {
     if (containerRef.current) {
       gsap.from(containerRef.current, {
@@ -28,14 +29,14 @@ gsap.registerPlugin(ScrollTrigger);
     }
   }, []);
 
-  if (!data) return null;  // Return null if data is undefined
+  if (!filteredNews) return null;  // Return null if data is undefined
 
   return (
     <section className="pb-[50px] md:pb-[70px] xl:pb-[100px] overflow-hidden relative ">
       <div >
 
         <div className=" ">
-          {data?.news.slice(0, 3).map((item, index) => (
+          {filteredNews?.slice(0, 3).map((item, index) => (
 
             <div key={index} >
               <div className="relative group lg:h-auto  rounded-[15px]">
@@ -66,7 +67,7 @@ gsap.registerPlugin(ScrollTrigger);
                     {item.mainTitle}
                   </h3>
                   <div className="flex justify-between mb-5 lg:mb-0">
-                    <Link href={`/news-details/${item.slug}`}>
+                    <Link href={`/news/${item.slug}`}>
                     <div className=" flex gap-4 items-center w-fit m-0 border-b  border-secondary pb-[10px]   transition-all duration-500 ">
                       <p className="text-xs uppercase text-black font-[500] inline-flex  leading-[1] ">
                         Read More

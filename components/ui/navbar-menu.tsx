@@ -90,21 +90,23 @@ export const Menu = ({
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (
-        searchRef.current &&
         event.target instanceof Node &&
-        !searchRef.current.contains(event.target)
+        searchRef.current &&
+        !searchRef.current.contains(event.target) &&
+        searchButtonRef.current &&
+        !searchButtonRef.current.contains(event.target)
       ) {
-        setSearchActive(false); // close the dropdown
+        setSearchActive(false);
       }
     }
-
+  
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
-  const [result, setResult] = useState([]);
+  const [result, setResult] = useState<[] | null>(null);
   const [loading, setLoading] = useState(false);
 
   const handleSearch = async (e: React.FormEvent) => {
@@ -136,18 +138,19 @@ export const Menu = ({
   useEffect(() => {
     if (searchActive) {
       const scrollY = window.scrollY;
-      document.body.style.position = 'fixed';
+      document.body.dataset.scrollY = String(scrollY);
+      // document.body.style.position = 'fixed';
+      document.body.style.overflow = 'hidden';
       document.body.style.top = `-${scrollY}px`;
-      document.body.style.left = '0';
-      document.body.style.right = '0';
+      document.body.style.width = '100%';
       globalSetSearchActive(true);
     } else {
-      const scrollY = document.body.style.top;
+      const scrollY = document.body.dataset.scrollY;
       document.body.style.position = '';
       document.body.style.top = '';
-      window.scrollTo(0, parseInt(scrollY || '0') * -1);
+      document.body.style.width = '';
+      window.scrollTo(0, scrollY ? parseInt(scrollY) : 0);
       globalSetSearchActive(false);
-      setResult([]);
     }
   }, [searchActive]);
 
@@ -176,19 +179,19 @@ export const Menu = ({
               href="/contact-us"
               className="self-start text-white bg-secondary hover:bg-primary group rounded-full text-xs font-normal transition duration-300 ease-in-out uppercase flex items-center justify-center gap-[15px] py-[11px] px-[19px] h-48px">
 
-              Contact <div className="rounded-full w-[20px] h-[20px] text-secondary bg-territory group-hover:bg-secondary group-hover:text-primary flex items-center text-[14px] justify-center transition duration-300 ease-in-out"><FaChevronRight /></div>
+              Contact <div className="rounded-full w-[20px] h-[20px] text-secondary bg-white group-hover:bg-secondary group-hover:text-primary flex items-center text-[14px] justify-center transition duration-300 ease-in-out"><FaChevronRight /></div>
             </Link>
           </div>
         </div>
         <div className="px-[20px] xxl:px-[20px] xxxl:px-[50px]">
-          <div className="cins w-[48px] h-[48px] flex items-center justify-center border border-[#1F1F1F] rounded-full text-center cursor-pointer" ref={searchButtonRef} onClick={()=>setSearchActive(!searchActive)}>
+          <div className="cins w-[48px] h-[48px] flex items-center justify-center border border-[#1F1F1F] rounded-full text-center cursor-pointer" onClick={(e)=>{e.stopPropagation();setSearchActive((prev)=>!prev);setResult(null)}} ref={searchButtonRef}>
             {searchActive ? <IoClose className="text-sm text-secondary"/> : <IoSearchOutline className="text-sm text-secondary"/>}
           </div>
         </div>
       </nav>
 
         <>
-        <div className={`fixed inset-0 bg-black/30 backdrop-blur-sm z-10 h-screen w-full duration-300 ${searchActive ? "translate-y-[0%]" : "translate-y-[-100%]"}`}></div>
+        <div className={`absolute inset-0 bg-black/30 backdrop-blur-sm z-10 h-screen w-full duration-300 ${searchActive ? "translate-y-[0%]" : "translate-y-[-100%]"}`}></div>
         <div  ref={searchRef} className={`w-full bg-white z-10 h-[500px] shadow-xl absolute top-24 right-0 duration-300 flex flex-col ${searchActive ? "translate-y-[0%]" : "translate-y-[-100%]"}`}>
         <div className="container h-full">
           {/* <div className="absolute top-[20px] xxxl:right-[60px] right-[30px]" onClick={() => setSearchActive(!searchActive)}>
@@ -209,7 +212,7 @@ export const Menu = ({
           </form>
 
           <div className="mt-5 px-4 flex flex-col gap-5 text-black h-3/4">
-            {result.length>0 ? <div className="text-md font-semibold">Results</div> : null}
+            {result && result.length>0 ? <div className="text-md font-semibold">Results</div> : null}
             {loading ? (<div className="flex justify-center items-center h-full"><div className="loader">
             <div className="bar1"></div>
             <div className="bar2"></div>
@@ -224,16 +227,16 @@ export const Menu = ({
             <div className="bar11"></div>
             <div className="bar12"></div>
         </div></div>) : (
-            <div className="flex-1 overflow-hidden h-full"><ul className="grid grid-cols-2 list-disc gap-5 text-xs px-4 h-full overflow-y-auto">
-              {result.map((item: {type: string, project: {title: string, slug: string}, category: string, item: {mainTitle: string, slug: string, title: string}}, index: number) => {
+            <div className="flex-1 overflow-hidden h-full"><ul className="grid grid-cols-2 list-disc gap-5 text-xs px-4 h-fit overflow-y-auto">
+              {result && result.length>0 ? result.map((item: {type: string, project: {title: string, slug: string}, category: string, item: {mainTitle: string, slug: string, title: string}}, index: number) => {
                 if(item.project){
-                  return <Link href={`/projects-details/${item.category}/${item.project.slug}`} key={index} className="cursor-pointer" onClick={()=>setSearchActive(false)}><li>{item.project.title}</li></Link>
+                  return <Link href={`/projects/${item.category}/${item.project.slug}`} key={index} className="cursor-pointer" onClick={()=>{setSearchActive(false);setResult(null)}}><li>{item.project.title}</li></Link>
                 }else if(item.type == "news"){
-                  return <Link href={`/news-details/${item.item.slug}`} key={index} className="cursor-pointer" onClick={()=>setSearchActive(false)}><li>{item.item.mainTitle}</li></Link>
+                  return <Link href={`/news/${item.item.slug}`} key={index} className="cursor-pointer" onClick={()=>{setSearchActive(false);setResult(null)}}><li>{item.item.mainTitle}</li></Link>
                 }else if(item.type == "gallery"){
-                  return <Link href={`/gallery-details/${item.item.slug}`} key={index} className="cursor-pointer" onClick={()=>setSearchActive(false)}><li>{item.item.title}</li></Link>
+                  return <Link href={`/gallery-details/${item.item.slug}`} key={index} className="cursor-pointer" onClick={()=>{setSearchActive(false);setResult(null)}}><li>{item.item.title}</li></Link>
                 }
-              })}
+              }) : (result?.length==0?<div>No Results</div>:null)}
             </ul></div>)}
           </div>
 

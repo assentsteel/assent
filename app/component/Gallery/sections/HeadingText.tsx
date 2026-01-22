@@ -50,11 +50,11 @@ gsap.registerPlugin(ScrollTrigger);
 
       >
         <Link href={`/gallery-details/${item.slug}`}>
-          <figure className="overlayclr">
+          <figure className="overlayclr lg:h-[500px] md:h-[400px] h-[300px]">
             <Image
               src={item.thumbnail}
               alt=""
-              className="rounded-[15px] w-full object-cover"
+              className="rounded-[15px] h-full w-full object-cover"
               priority
               width={500}
               height={500}

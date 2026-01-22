@@ -15,7 +15,7 @@ type GalleryItem = {
 
  
 
-const Index = async ({data,slug}:{data:Gallerydata,slug:string}) => { 
+const Index = async ({data,slug,categorySlug}:{data:Gallerydata,slug:string,categorySlug?:string}) => { 
    
   const response = await fetch(`${process.env.BASE_URL}/api/admin/gallery`, {
     next: { revalidate: 60 }  
@@ -28,6 +28,8 @@ const Index = async ({data,slug}:{data:Gallerydata,slug:string}) => {
   const galleryData = await response.json();
   const galleryList = galleryData.data;  
   const currentGallery = galleryList?.find((item: GalleryItem) => item.slug === slug);
+  const currentCategory = currentGallery?.categories?.find((item: GalleryItem) => item.slug === categorySlug);
+
   
   if (!currentGallery) {
     throw new Error('Gallery item not found');
@@ -36,15 +38,17 @@ const Index = async ({data,slug}:{data:Gallerydata,slug:string}) => {
   const breadcrumb = [
     { label: "Home", href: "/" },
     { label: "Gallery", href: "/gallery" },
-    { label: currentGallery.title, href: "" },
+    { label: currentGallery.title, href: `/gallery-details/${slug}` },
+    currentCategory && { label: currentCategory?.title, href: "" },
 
     // { label: `${data && data.data.sector}`, href: "#" },
-  ];
+  ].filter(Boolean);
+
 
   return (
     <>
 
-      <Herotext breadcrumbs={breadcrumb} title={currentGallery.title} />
+      <Herotext breadcrumbs={breadcrumb} title={currentCategory?.title || currentGallery.title} />
 
 
       <HeadingText data={data} />

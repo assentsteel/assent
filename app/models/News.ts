@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 const newsSchema = new mongoose.Schema({
     metaTitle:{ type: String },
     metaDescription:{ type: String },
+    ogType:{ type: String },
+    ogImage:{ type: String },
     banner:{ type: String },
     bannerAlt:{ type: String},
     pageTitle:{ type: String, required: true },
@@ -22,8 +24,11 @@ const newsSchema = new mongoose.Schema({
             images:{ type: Array, required: true },
             category: { type: String, required: true },
             createdAt: { type: Date, default: Date.now },
+            date: { type: Date },
             metaTitle: { type: String },
             metaDescription: { type: String },
+            ogType: { type: String },
+            ogImage: { type: String },
         }
     ]
 });

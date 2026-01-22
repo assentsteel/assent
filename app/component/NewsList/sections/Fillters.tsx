@@ -122,7 +122,7 @@ const Fillters = ({ data,setUpdated,clearFilters,search,setSearch }: { data: {na
     exit: { opacity: 0, x: -30, transition: { duration: 0.4 } },
   };
   return (
-    <section className=" pt-[50px] md:pt-[70px] xl:pt-[100px]     relative ">
+    <section className=" pt-[50px] md:pt-[70px] xl:pt-[80px] xxl:pt-[100px]     relative ">
       <motion.div  variants={slideInLeft}
     initial="hidden"
     whileInView="visible"

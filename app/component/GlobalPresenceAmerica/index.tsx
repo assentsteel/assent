@@ -8,9 +8,11 @@ import Excellence from "./sections/Excellence";
 import Location from "./sections/Location";
 import Abtsect from "./sections/Abtsect";
 import { GpAmerica } from '@/public/types/Common';
+import ProjectAfrica from "../GlobalPresenceAfrica/sections/ProjectAfrica";
 const Index = async ({data}:{data:GpAmerica}) => { 
   const breadcrumb = [
     { label: "Home", href: "/" },
+    { label: "Global Presence", href: "/global-presence" },
     { label: data.data.title, href: "" },
     // { label: `${data && data.data.sector}`, href: "#" },
   ]; 
@@ -27,11 +29,12 @@ const Index = async ({data}:{data:GpAmerica}) => {
       </section>
       <Abtsect data={data.data.sections[2]} />
       <SingleImageText data={data.data.sections[3]} maxwidth={'max-w-[68ch]'} textright={true} />  
+      <div className="py-[50px] md:py-[70px] xl:py-[100px]   ">
+      <ProjectAfrica data={data.data.sections[5]} />
+    </div>
     <div className="custw">
         <Location data={data.data.sections[4]} />
         </div>
-
-
 
     </>
   );

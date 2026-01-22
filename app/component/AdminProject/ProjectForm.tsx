@@ -20,6 +20,11 @@ import { useParams } from 'next/navigation'
 import { ImageUploader } from '@/components/ui/image-uploader'
 import Image from 'next/image'
 import { RiAiGenerateText } from 'react-icons/ri'
+import {closestCorners, DndContext, DragEndEvent} from '@dnd-kit/core'
+import {arrayMove, SortableContext, verticalListSortingStrategy} from '@dnd-kit/sortable'
+import ImageCard from './ImageCard'
+import { TbReorder } from "react-icons/tb";
+import { GiConfirmed } from "react-icons/gi";
 
 
 
@@ -42,6 +47,8 @@ interface ProjectFormProps {
     thumbnailAlt: string;
     metaTitle: string;
     metaDescription: string;
+    ogType:string;
+    ogImage:string;
     images: string []
 }
 
@@ -52,6 +59,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
 
     const [sectorList, setSectorList] = useState<{ name: string }[]>([]);
     const [locationList, setLocationList] = useState<{ name: string }[]>([]);
+    const [reorderMode, setReorderMode] = useState(false);
 
     const { register, handleSubmit, setValue, watch, control, formState: { errors } } = useForm<ProjectFormProps>();
 
@@ -64,7 +72,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
             if (response.ok) {
                 const data = await response.json();
                 alert(data.message);
-                router.push("/admin/projects/"+id);
+                router.push("/ASe25Nt@dmin/projects/"+id);
             }
         } catch (error) {
             console.log("Error in adding blog", error);
@@ -93,6 +101,8 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                 setValue("thumbnailAlt", data.data.thumbnailAlt);
                 setValue("metaTitle", data.data.metaTitle);
                 setValue("metaDescription", data.data.metaDescription);
+                setValue("ogType", data.data.ogType);
+                setValue("ogImage", data.data.ogImage);
                 setValue("images", data.data.images);
                 setImageUrls(data.data.images);
             } else {
@@ -170,6 +180,27 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
             imageUrls.filter((_, index) => index !== indexToRemove)
         );
     }; 
+
+
+        const getTaskPos = (id:string) => imageUrls.findIndex((item:string)=>( item == id))
+        const handleDragEnd = (event: DragEndEvent) => {
+            console.log("works");
+            const { active, over } = event;
+          
+            if (!over || active.id === over.id) return;
+          
+            const oldIndex = getTaskPos(active.id as string);
+            const newIndex = getTaskPos(over.id as string);
+          
+            const newPosition = arrayMove(imageUrls, oldIndex, newIndex);
+            setImageUrls(newPosition);
+            setValue("images", newPosition);
+            
+          };
+
+          useEffect(() => {
+            console.log(imageUrls);
+          }, [imageUrls]);
 
 
 
@@ -323,11 +354,26 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                 <div className='flex flex-col gap-2 border p-2 rounded-md'>
                    
                 <div>
+                    <div className='flex justify-between items-center'>
                     <Label className="block text-sm pl-2 ">Images</Label>
-                    <div className="mt-2">
-                        <ImageUploader onChange={handleImageUpload} deleteAfterUpload={true} />
+                    <Button className="bg-green-600 text-white" type="button" onClick={() => setReorderMode(!reorderMode)}>{reorderMode ? <GiConfirmed /> : <TbReorder />}</Button>
                     </div>
-                    <div className="mt-4 grid grid-cols-3 gap-4">
+                    <div className="mt-2">
+                        <ImageUploader onChange={handleImageUpload} deleteAfterUpload={true} multiple={true}/>
+                    </div>
+
+                    {reorderMode && <div className="mt-4 grid grid-cols-3 gap-4">
+                        <DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
+                            <SortableContext items={imageUrls} strategy={verticalListSortingStrategy}>
+                        {imageUrls.map((url, index) => (
+                            <ImageCard key={url} url={url} index={index} handleRemoveImage={handleRemoveImage} id={url} />
+                        ))}
+                        </SortableContext>
+                        </DndContext>
+                    </div>}
+
+
+                    {!reorderMode && <div className="mt-4 grid grid-cols-3 gap-4">
                         {imageUrls.map((url, index) => (
                             <div key={index} className="relative h-40">
                                 <Image
@@ -346,7 +392,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                                 </button>
                             </div>
                         ))}
-                    </div>
+                    </div>}
                 </div>
 
                 
@@ -380,6 +426,51 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                             <Label>Meta Description</Label>
                             <Input type="text" {...register("metaDescription")} />
                         </div>
+                        <div className='flex flex-col gap-2 w-1/2'>
+                <Label className='font-bold'>Og Type</Label>
+                                                <Controller
+                                                    name={`ogType`}
+                                                    control={control}
+                                                    
+                                                    render={({ field }) => (
+                                                        <Select
+                                                            onValueChange={field.onChange}
+                                                            value={field.value}
+                                                            defaultValue="website"
+                                                        >
+                                                            <SelectTrigger className="w-full">
+                                                                <SelectValue placeholder="Select Style" />
+                                                            </SelectTrigger>
+                                                            <SelectContent>
+                                                                <SelectItem value="website">
+                                                                    website
+                                                                </SelectItem>
+                                                                <SelectItem value="article">
+                                                                article
+                                                                </SelectItem>
+                                                            </SelectContent>
+                                                        </Select>
+                                                    )}
+                                                />
+
+                                            </div>
+
+
+                                            <div className='flex flex-col gap-2 w-1/2'>
+                                                <Label className='font-bold'>Og Image</Label>
+                                                <Controller
+                                                    name={`ogImage`}
+                                                    control={control}
+                                                    
+                                                    render={({ field }) => (
+                                                        <ImageUploader
+                                                            value={field.value}
+                                                            onChange={field.onChange}
+                                                            isLogo
+                                                        />
+                                                    )}
+                                                />
+                                            </div>
                     </div>
                 </div>
 

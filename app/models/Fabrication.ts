@@ -7,6 +7,12 @@ const FabricationSchema = new mongoose.Schema({
     metaDescription:{
         type:String,
     },
+    ogType:{
+        type:String
+    },
+    ogImage:{
+        type:String
+    },
     pageTitle:{
         type:String,
         required:true
@@ -88,19 +94,31 @@ const FabricationSchema = new mongoose.Schema({
             required:true
         },
         items:[{
-            title:{
+            style:{
                 type:String,
                 required:true
             },
-            images:[{
-                imageAlt:{
-                    type:String,
-                },
-                image:{
-                    type:String,
-                    required:true
-                }
-            }]
+            image:{
+                type:String,
+                required:true
+            },
+            imageAlt:{
+                type:String,
+            },
+            threeDFile:{
+                type:String,
+                required:true
+            },
+            threeDFileAlt:{
+                type:String,
+            },
+            threeDFileThumbnail:{
+                type:String,
+                required:true
+            },
+            threeDFileAltThumbnail:{
+                type:String,
+            }
         }]
     },
     fifthSection:{

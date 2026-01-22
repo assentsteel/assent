@@ -1,0 +1,47 @@
+import Index from "@/app/component/GalleryDetails/Index";
+ 
+import { Metadata } from "next";
+
+export async function generateMetadata({params}: {params: Promise<{slug: string}>}): Promise<Metadata> {
+  const slug = (await params).slug;
+  const response = await fetch(`${process.env.BASE_URL}/api/admin/gallery`, { next: { revalidate: 60 } });
+  const data = await response.json();
+
+  const metadataTitle = data?.data?.find((item: {slug: string}) => item.slug === slug)?.metaTitle || "Assent";
+  const metadataDescription =
+    data?.data?.find((item: {slug: string}) => item.slug === slug)?.metaDescription || "Assent";
+    const ogImage = data?.data?.ogImage
+    const ogType = data?.data?.ogType || "website"
+
+  return {
+    title: metadataTitle,
+    description: metadataDescription,
+    openGraph: {
+      title: metadataTitle,
+      description: metadataDescription,
+      url: process.env.BASE_URL,
+      siteName: "Assent",
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: metadataTitle,
+        },
+      ],
+      type: ogType,
+    },
+  };
+}
+
+export default async function Home({params}: {params: Promise<{slug: string, categorySlug: string}>}) {
+  const slug = (await params).slug;
+  const categorySlug = (await params).categorySlug;
+  const response = await fetch(`${process.env.BASE_URL}/api/admin/gallery/inside?gallerySlug=${slug}&categorySlug=${categorySlug}`, { next: { revalidate: 60 } });
+  const data = await response.json(); 
+  return (
+    <>
+    <Index data={data} slug={slug} categorySlug={categorySlug}/>
+    </>
+  );
+}

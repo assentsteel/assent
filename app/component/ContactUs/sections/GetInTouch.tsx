@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import GeneralEnquiry from "./forms/GeneralEnquiry";
 import RegistrationForm from "./forms/RegistrationForm";
 import Downloads from "./forms/Downloads";
+import { useSearchParams } from "next/navigation";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -31,8 +32,31 @@ const GetInTouch: React.FC<PlatformsSectionProps> = () => {
 
   const containerRef = useRef(null);
   const [formIndex, setFormIndex] = React.useState(1);
+  const searchParams = useSearchParams();
+  const type = searchParams.get("type");
+  const rfqFormRef = useRef<HTMLDivElement>(null);
+  const hasScrolledRef = useRef(false);
 
+useEffect(()=>{
 
+  if(type === "rfq"){
+    setFormIndex(2)
+  }
+  if(type === "vendor"){
+    setFormIndex(1)
+  }
+},[type])
+
+useEffect(() => {
+  if (formIndex === 2 && rfqFormRef.current && !hasScrolledRef.current) {
+    rfqFormRef.current.scrollIntoView({ behavior: "smooth" });
+    hasScrolledRef.current = true;
+  }
+  if (formIndex === 1 && rfqFormRef.current && !hasScrolledRef.current) {
+    rfqFormRef.current.scrollIntoView({ behavior: "smooth" });
+    hasScrolledRef.current = true;
+  }
+}, [formIndex]);
 
   useEffect(() => {
     if (containerRef.current) {
@@ -82,13 +106,13 @@ const GetInTouch: React.FC<PlatformsSectionProps> = () => {
     ]
 
   return (
-    <section className="py-[50px] md:py-[70px] xl:py-[100px]   overflow-hidden relative ">
+    <section className="py-[50px] md:py-[70px] xl:py-[80px] xxl:py-[100px]   overflow-hidden relative ">
       <div className="container">
   <div
     
   >
     {/* Buttons Row */}
-    <motion.div
+    <motion.div ref={rfqFormRef}
       className="flex flex-col md:flex-row gap-2 pb-5 lg:pb-[40px] mb-5 lg:mb-[40px] border-b border-[#00000015]"
       variants={fadeUp}
     >

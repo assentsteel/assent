@@ -53,15 +53,15 @@ const Slidethumb: React.FC<PlatformsSectionProps> = ({ data }) => {
     }
   };
 
-  const slideInLeft = {
-    hidden: { opacity: 0, x: -30 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: { duration: 0.6, ease: "easeOut" },
-    },
-    exit: { opacity: 0, x: -30, transition: { duration: 0.4 } },
-  };
+  // const slideInLeft = {
+  //   hidden: { opacity: 0, x: -30 },
+  //   visible: {
+  //     opacity: 1,
+  //     x: 0,
+  //     transition: { duration: 0.6, ease: "easeOut" },
+  //   },
+  //   exit: { opacity: 0, x: -30, transition: { duration: 0.4 } },
+  // };
   const slideInTop = {
     hidden: { opacity: 0, y: -30 },
     visible: {
@@ -103,7 +103,7 @@ const Slidethumb: React.FC<PlatformsSectionProps> = ({ data }) => {
                 thumbs={{ swiper: thumbsSwiper }}
                 slidesPerView={1}
                 spaceBetween={10}
-                className="rounded-xl overflow-hidden lg:h-[628px] md:h-[450px] h-[300px]"
+                className="rounded-xl overflow-hidden lg:h-[528px] md:h-[350px] h-[300px]"
               >
                 {data.images.map((src, index) => (
                   <SwiperSlide key={index}>
@@ -120,7 +120,7 @@ const Slidethumb: React.FC<PlatformsSectionProps> = ({ data }) => {
               </Swiper>
 
               {/* Thumbnails Swiper */}
-              <div className="absolute bottom-8 p-[14px] rounded-[20px] bg-[#ffffff30] backdrop-blur-xs lg:bottom-[40px] left-1/2 -translate-x-1/2 z-20 w-full max-w-fit px-4">
+              <div className="absolute max-sm:bottom-14 max-md:bottom-28 max-lg:bottom-20 p-[14px] rounded-[20px] bg-[#ffffff30] backdrop-blur-xs lg:bottom-[40px] left-1/2 -translate-x-1/2 z-20 w-full max-w-fit">
                 <Swiper
                   onSwiper={(swiper) => setThumbsSwiper(swiper)}
                   slidesPerView={3}
@@ -132,7 +132,7 @@ const Slidethumb: React.FC<PlatformsSectionProps> = ({ data }) => {
                   {data.images.map((src, i) => (
                     <SwiperSlide
                       key={i}
-                      className="!w-[50px] !h-[50px] flex items-center justify-center rounded-full overflow-hidden border-2 border-transparent hover:border-secondary cursor-pointer"
+                      className="!w-[40px] !h-[40px] lg:!w-[50px] lg:!h-[50px] flex items-center justify-center rounded-full overflow-hidden border-2 border-transparent hover:border-secondary cursor-pointer"
                     >
                       
                         <Image
@@ -152,7 +152,7 @@ const Slidethumb: React.FC<PlatformsSectionProps> = ({ data }) => {
               <div className="absolute bottom-8  lg:bottom-[50px] right-4 flex gap-2 z-10 w-full justify-between left-0 px-6 lg:px-[30px]">
                 <button
                   ref={prevRef}
-                  className="bg-white text-black px-3 py-1 rounded-full w-[48px] h-[48px] hover:bg-secondary group transition flex items-center justify-center"
+                  className="bg-white text-black lg:px-3 py-1 rounded-full w-[24px] h-[24px] lg:w-[48px] lg:h-[48px] hover:bg-secondary group transition flex items-center justify-center"
                 >
                   <Image
                     src={assets.greenarrow}
@@ -162,9 +162,10 @@ const Slidethumb: React.FC<PlatformsSectionProps> = ({ data }) => {
                     className="group-hover:brightness-0 group-hover:invert "
                   />
                 </button>
+                
                 <button
                   ref={nextRef}
-                  className="bg-white text-black px-3 py-1 rounded-full w-[48px] h-[48px] hover:bg-secondary group transition flex items-center justify-center"
+                  className="bg-white text-black lg:px-3 py-1 rounded-full lg:w-[48px] lg:h-[48px] w-[24px] h-[24px] hover:bg-secondary group transition flex items-center justify-center"
                 >
                   <Image
                     src={assets.greenarrow}
@@ -180,13 +181,13 @@ const Slidethumb: React.FC<PlatformsSectionProps> = ({ data }) => {
           </div>
           <div className="w-full lg:w-1/2 pr-0 lg:pr-[44px] mt-6 lg:mt-0 ">
               <div>
-                <motion.h2 className="text-xl  text-primary font-[600] leading-[1.2] mb-4 lg:mb-10"
+                {/* <motion.h2 className="text-xl  text-primary font-[600] leading-[1.2] mb-4 lg:mb-10"
                 variants={slideInLeft}
                 initial="hidden"
                  whileInView="visible"
                 exit="exit">
                   {data.title}
-                </motion.h2>
+                </motion.h2> */}
 
                 <motion.div className="text-territory text-base font-[400] leading-[1.8] mb-0 lg:mb-10"
                  variants={slideInTop}
