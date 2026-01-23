@@ -10,7 +10,7 @@ interface HeroSectionProps {
   breadcrumbs: { label: string; href: string }[];
 }
 
-const HeroInner: React.FC<HeroSectionProps> = ({
+const HeroWithoutTitle: React.FC<HeroSectionProps> = ({
   imageSrc,
   title,
   breadcrumbs,
@@ -25,14 +25,6 @@ const HeroInner: React.FC<HeroSectionProps> = ({
     },
   };
 
-  const textVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: "easeOut" },
-    },
-  };
   const textVariantsleft = {
     hidden: { opacity: 0, x: -20 },
     visible: {
@@ -86,19 +78,7 @@ const HeroInner: React.FC<HeroSectionProps> = ({
           variants={containerVariants}
           className="absolute inset-0 flex flex-col justify-end items-start text-left z-[2] container "
         >
-          {/* <motion.h1
-            variants={textVariants}
-            className="text-white text-xxl leading-none  font-[600] mb-5 lg:mb-9"
-          >
-            <span>
-              {pathname === "/about" ||
-              pathname === "/our-team" ||
-              pathname === "/awards-and-accreditations" ||
-              pathname.startsWith("/projects/")
-                ? ""
-                : title && title}
-            </span>
-          </motion.h1> */}
+         
           <motion.div variants={textVariantsleft}>
             {pathname !== "/our-team" && (
               <ul className="flex items-center flex-wrap gap-2 mb-5 lg:mb-[70px]">
@@ -159,4 +139,4 @@ const HeroInner: React.FC<HeroSectionProps> = ({
   );
 };
 
-export default HeroInner;
+export default HeroWithoutTitle;
