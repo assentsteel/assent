@@ -1,6 +1,6 @@
 import React from "react";
 
-import HeroInner from "../common/Banner/HeroInner";
+import HeroInner from "../common/Banner/HeroWithoutTitle";
 import Teamlist from "./sections/Teamlist";
 
 import { Team } from "@/public/types/Common";

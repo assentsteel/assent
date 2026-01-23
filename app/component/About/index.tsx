@@ -1,5 +1,5 @@
 import React from "react";
-import HeroInner from "../common/Banner/HeroInner";
+import HeroInner from "../common/Banner/HeroWithoutTitle";
 import AboutUs from "./sections/AboutUs";
 import Achievements from "./sections/Achievements";
 import TextByImg from "./sections/TextByImg";

@@ -61,7 +61,7 @@ const Teamlist = ({ data }: { data: Team }) => {
         <section className="py-[50px] md:py-[70px] xl:py-[80px] xxl:py-[100px]     overflow-hidden relative  ">
             <div className="container">
                 <div>
-                    <motion.h2
+                    <motion.h1
                         variants={slideInLeft}
                         initial="hidden"
                         animate="visible"
@@ -69,7 +69,7 @@ const Teamlist = ({ data }: { data: Team }) => {
                         className="font-semibold text-primary text-xl mb-8"
                     >
                         {data.teamSection.title}
-                    </motion.h2>
+                    </motion.h1>
                     <motion.div
                         variants={slideInTop}
                         initial="hidden"
