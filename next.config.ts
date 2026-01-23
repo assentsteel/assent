@@ -1276,7 +1276,32 @@ const nextConfig: NextConfig = {
         source: "/vision-and-mission",
         destination: "/",
         permanent: true,
-      },      
+      }, 
+       {
+        source: '/mpmessage',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/news-detail/workforce-beach-outing',
+        destination: '/news/',
+        permanent: true,
+      },
+      {
+        source: '/asp',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/asms',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/projects-oil',
+        destination: '/projects/industrial-oil-gas/',
+        permanent: true,
+      },     
     ];
   },
 };
