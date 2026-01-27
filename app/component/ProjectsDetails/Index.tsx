@@ -13,12 +13,14 @@ import Morepjts from "./sections/Morepjts";
   const breadcrumb = [
     { label: "Home", href: "/" },
     { label: "Projects", href: `/projects/${categorySlug}` },
-    { label: "Construction", href: "" },
-    { label: data.sector, href: "" },
+    // { label: "Construction", href: "" },
+    { label: categorySlug, href: "" },
     { label: data.pageTitle, href: "" },
 
     // { label: `${data && data.data.sector}`, href: "#" },
   ];
+
+  console.log(data, "fv")
 
   return (
     <>
