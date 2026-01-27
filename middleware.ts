@@ -3,26 +3,62 @@ import { NextRequest } from "next/server";
 import * as jose from "jose";
 
 export async function middleware(request: NextRequest) {
+  const url = request.nextUrl.clone();
+  const path = url.pathname;
+
+  /* =================================
+     🔥 CLEAN QUERY REDIRECTS (NEW)
+     ================================= */
+
+  if (path === "/projects-plants" && url.searchParams.has("sector")) {
+    url.pathname = "/projects/industrial-oil-gas";
+    url.search = ""; // remove ALL query params
+    return NextResponse.redirect(url, 302);
+  }
+
+  if (path === "/projects-oil-gas-industry" && url.searchParams.has("sector")) {
+    url.pathname = "/projects/industrial-oil-gas";
+    url.search = ""; // remove ALL query params
+    return NextResponse.redirect(url, 302);
+  }
+
+  /* =================================
+     EXISTING LOGIC (UNCHANGED)
+     ================================= */
+
   const response = NextResponse.next();
-  const path = request.nextUrl.pathname;
 
   // CORS headers
-  response.headers.set("Access-Control-Allow-Origin", "https://docs-rho-wine.vercel.app");
-  response.headers.set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-  response.headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  response.headers.set(
+    "Access-Control-Allow-Origin",
+    "https://docs-rho-wine.vercel.app"
+  );
+  response.headers.set(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PUT, DELETE, OPTIONS"
+  );
+  response.headers.set(
+    "Access-Control-Allow-Headers",
+    "Content-Type, Authorization"
+  );
 
   // Define protected and public admin routes
   const isLoginPage = path === "/ASe25Nt@dmin/login";
-  const isProtectedRoute = path.startsWith("/ASe25Nt@dmin") && !isLoginPage;
+  const isProtectedRoute =
+    path.startsWith("/ASe25Nt@dmin") && !isLoginPage;
 
   const token = request.cookies.get("adminToken")?.value || "";
-  const secret = new TextEncoder().encode(process.env.JWT_SECRET || "your-secret-key");
+  const secret = new TextEncoder().encode(
+    process.env.JWT_SECRET || "your-secret-key"
+  );
 
   // 🔹 1. If user is on login page and already has a valid token → redirect to /admin
   if (isLoginPage && token) {
     try {
       await jose.jwtVerify(token, secret);
-      return NextResponse.redirect(new URL("/ASe25Nt@dmin", request.url));
+      return NextResponse.redirect(
+        new URL("/ASe25Nt@dmin", request.url)
+      );
     } catch {
       // invalid token — let them stay on login
     }
@@ -31,14 +67,18 @@ export async function middleware(request: NextRequest) {
   // 🔹 2. If user is on a protected route and no valid token → redirect to login
   if (isProtectedRoute) {
     if (!token) {
-      return NextResponse.redirect(new URL("/ASe25Nt@dmin/login", request.url));
+      return NextResponse.redirect(
+        new URL("/ASe25Nt@dmin/login", request.url)
+      );
     }
 
     try {
       await jose.jwtVerify(token, secret);
       return NextResponse.next();
     } catch {
-      return NextResponse.redirect(new URL("/ASe25Nt@dmin/login", request.url));
+      return NextResponse.redirect(
+        new URL("/ASe25Nt@dmin/login", request.url)
+      );
     }
   }
 
@@ -46,6 +86,13 @@ export async function middleware(request: NextRequest) {
   return response;
 }
 
+
 export const config = {
-  matcher: ["/api/:path*", "/ASe25Nt@dmin/:path*"],
+  matcher: [
+    "/projects-plants",
+    "/projects-oil-gas-industry",
+    "/api/:path*",
+    "/ASe25Nt@dmin/:path*",
+  ],
 };
+
