@@ -32,16 +32,15 @@ const nextConfig: NextConfig = {
             value: '19',
           },
         ],
-        destination: '/projects/industrial-oil-gas/',
+        destination: '/projects/industrial-oil-gas?',
         permanent: true,
       },
       {
         source: '/projects-oil-gas-industry',
         has: [{ type: 'query', key: 'sector' }],
-        destination: '/projects/industrial-oil-gas/',
+        destination: '/projects/industrial-oil-gas?',
         permanent: true,
       },
-
       {
         source: "/news-detail/adnoc-strategic-collaboration-agreement-with-assent-steel-for-steel-structure-fabrication-works",
         destination: "/news",
