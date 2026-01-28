@@ -1,6 +1,12 @@
 import Index from "@/app/component/NewsDetails/Index";
 import { Metadata } from "next";
 
+
+const NO_INDEX_SLUGS = [
+  "globalsurf-post-lourve",
+  "global-surf",
+];
+
 export async function generateMetadata({params}: {params: Promise<{slug: string}>}): Promise<Metadata> {
   const slug = (await params).slug;
   const response = await fetch(`${process.env.BASE_URL}/api/admin/news?slug=${slug}`, { next: { revalidate: 60 } });
@@ -15,6 +21,9 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
   return {
     title: metadataTitle,
     description: metadataDescription,
+    robots: NO_INDEX_SLUGS.includes(slug)
+      ? { index: false, follow: false }
+      : { index: true, follow: true },
     openGraph: {
       title: metadataTitle,
       description: metadataDescription,
