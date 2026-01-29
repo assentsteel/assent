@@ -21,7 +21,7 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
   return {
     title: metadataTitle,
     description: metadataDescription,
-    robots: NO_INDEX_SLUGS.includes(slug)
+    robots: NO_INDEX_SLUGS.includes(slug) 
       ? { index: false, follow: false }
       : { index: true, follow: true },
     openGraph: {
