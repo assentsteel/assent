@@ -15,6 +15,9 @@
   return {
     title: metadataTitle,
     description: metadataDescription,
+      alternates: {
+      canonical: "https://www.assentsteel.com/awards-and-accreditations",
+    },
     openGraph: {
       title: metadataTitle,
       description: metadataDescription,

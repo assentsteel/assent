@@ -58,10 +58,15 @@ export async function generateMetadata({
   const ogType = metaSource?.ogType || "website";
   const ogImage =
     metaSource?.thumbnail || metaSource?.images?.[0];
-
+  const canonicalUrl = categoryMatch
+    ? `${process.env.BASE_URL}/gallery/${slug}/${categorySlug}`
+    : `${process.env.BASE_URL}/gallery/${slug}`;
   return {
     title,
     description,
+    alternates: {
+      canonical: canonicalUrl,
+    },
     openGraph: {
       title,
       description,

@@ -12,10 +12,14 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
     data?.data?.find((item: {slug: string}) => item.slug === slug)?.metaDescription || "Assent";
     const ogImage = data?.data?.ogImage
     const ogType = data?.data?.ogType || "website"
+    const canonicalUrl = `${process.env.BASE_URL}/gallery/${slug}`;
 
   return {
     title: metadataTitle,
     description: metadataDescription,
+      alternates: {
+      canonical: canonicalUrl,
+    },
     openGraph: {
       title: metadataTitle,
       description: metadataDescription,
