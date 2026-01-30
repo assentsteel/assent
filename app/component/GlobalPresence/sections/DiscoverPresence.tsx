@@ -56,7 +56,7 @@ gsap.registerPlugin(ScrollTrigger);
           {data.thirdSection.countries.map((item, index) => (
             <motion.div key={index} variants={itemVariants}>
               <motion.div className="relative group  h-full " whileHover={{ scale: 1.015 }} transition={{ type: "spring", stiffness: 300 }} >
-                <Link className={`cursor-${item.slug == "australia" || item.slug == "united-kingdom" ? "default" : "pointer"}`} href={`${item.slug=="steel-engineering-service-in-north-america" ? `/global-presence/${item.slug}` : item.slug=="steel-engineering-service-in-europe" ? `/global-presence/${item.slug}` : item.slug=="steel-engineering-service-in-africa" ? `/global-presence/${item.slug}` : ""}`}>
+                <Link className={`cursor-${item.slug == "australia" || item.slug == "united-kingdom" ? "default" : "pointer"}`} href={`${item.slug=="steel-engineering-and-fabrication-in-north-america" ? `/global-presence/${item.slug}` : item.slug=="steel-engineering-and-fabrication-in-europe" ? `/global-presence/${item.slug}` : item.slug=="steel-engineering-and-fabrication-in-africa" ? `/global-presence/${item.slug}` : ""}`}>
                   <figure className="overlayclr lg:max-h-[650px] h-full overflow-hidden rounded-[15px]">
                     <Image src={item.image} alt="" className=" w-full object-cover h-[350px] md:h-full" priority width={500} height={500} />
                   </figure>

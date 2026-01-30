@@ -72,10 +72,14 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
     data?.data?.metaDescription || "Assent";
     const ogImage = data?.data?.ogImage
     const ogType = data?.data?.ogType || "website"
+    const canonicalUrl = `https://www.assentsteel.com/global-presence/${slug}`;
 
   return {
     title: metadataTitle,
     description: metadataDescription,
+      alternates: {
+      canonical: canonicalUrl,
+    },
     openGraph: {
       title: metadataTitle,
       description: metadataDescription,
