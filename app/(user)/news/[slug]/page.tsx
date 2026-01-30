@@ -17,16 +17,21 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
     data?.data?.metaDescription || "Assent";
     const ogImage = data?.data?.ogImage
     const ogType = data?.data?.ogType || "website"
+    const canonicalUrl = `${process.env.BASE_URL}/news/${slug}`;
 
   return {
     title: metadataTitle,
     description: metadataDescription,
+      alternates: {
+      canonical: canonicalUrl,
+    },
     robots: NO_INDEX_SLUGS.includes(slug) 
       ? { index: false, follow: false }
       : { index: true, follow: true },
     openGraph: {
       title: metadataTitle,
       description: metadataDescription,
+      
       url: process.env.BASE_URL,
       siteName: "Assent",
       images: [

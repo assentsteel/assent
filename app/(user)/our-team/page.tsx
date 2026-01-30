@@ -14,6 +14,9 @@ import Index from "@/app/component/Team/Index";
   return {
     title: metadataTitle,
     description: metadataDescription,
+     alternates: {
+      canonical: "https://www.assentsteel.com/our-team",
+    },
     openGraph: {
       title: metadataTitle,
       description: metadataDescription,

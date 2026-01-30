@@ -14,6 +14,9 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: metadataTitle,
     description: metadataDescription,
+      alternates: {
+      canonical: "https://www.assentsteel.com/contact-us",
+    },
     openGraph: {
       title: metadataTitle,
       description: metadataDescription,

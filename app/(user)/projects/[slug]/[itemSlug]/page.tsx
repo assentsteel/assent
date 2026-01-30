@@ -15,10 +15,14 @@ export async function generateMetadata({params}: {params: Promise<{slug: string,
     data?.data?.metaDescription || "Assent";
     const ogImage = data?.data?.ogImage
     const ogType = data?.data?.ogType || "website"
+     const canonicalUrl = `${process.env.BASE_URL}/projects/${slug}/${itemSlug}`;
 
   return {
     title: metadataTitle,
     description: metadataDescription,
+      alternates: {
+      canonical: canonicalUrl,
+    },
     openGraph: {
       title: metadataTitle,
       description: metadataDescription,
