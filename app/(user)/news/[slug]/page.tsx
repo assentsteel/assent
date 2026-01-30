@@ -50,8 +50,74 @@ export default async function Home({params}: {params: Promise<{slug: string}>}) 
   const slug = (await params).slug;
   const response = await fetch(`${process.env.BASE_URL}/api/admin/news?slug=${slug}`, { next: { revalidate: 60 } });
   const data = await response.json();
+   const article = data.data;
+   const ARTICLE_SCHEMA_SLUGS = [
+  "engineering-marvels",
+];
   return (
     <>
+    {/* Article Schema */}
+      {ARTICLE_SCHEMA_SLUGS.includes(slug) && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Article",
+              "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": `https://www.assentsteel.com/news/${slug}`,
+              },
+              "headline": article.title,
+              "image": article.image,
+              "datePublished": article.publishedAt, // ISO format
+              "author": {
+                "@type": "Organization",
+                "name": "Assent Steel Industries",
+              },
+              "publisher": {
+                "@type": "Organization",
+                "name": "Assent Steel Industries",
+                "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://www.assentsteel.com/assets/img/logo.svg",
+                },
+              },
+            }),
+          }}
+        />
+      )}
+
+       {/* Article Schema – applies to ALL /news/* pages */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "mainEntityOfPage": {
+              "@type": "WebPage",
+              "@id": `https://www.assentsteel.com/news/${slug}`,
+            },
+            "headline": article?.title,
+            "image": article?.image,
+            "datePublished": article?.publishedAt, // ISO format preferred
+            "author": {
+              "@type": "Organization",
+              "name": "Assent Steel Industries",
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "Assent Steel Industries",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.assentsteel.com/assets/img/logo.svg",
+              },
+            },
+          }),
+        }}
+      />
+
     <Index data={data}  />
     </>
   );
