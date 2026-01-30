@@ -1320,6 +1320,22 @@ const nextConfig: NextConfig = {
         destination: '/projects/industrial-oil-gas/',
         permanent: true,
       },
+      {
+        source: '/global-presence/steel-engineering-service-in-north-america',
+        destination: '/global-presence/steel-engineering-and-fabrication-in-north-america',
+        permanent: true,
+      },
+       {
+        source: '/global-presence/steel-engineering-service-in-europe',
+        destination: '/global-presence/steel-engineering-and-fabrication-in-europe',
+        permanent: true,
+      },
+      {
+        source: '/global-presence/steel-engineering-service-in-africa',
+        destination: '/global-presence/steel-engineering-and-fabrication-in-africa',
+        permanent: true,
+      },
+
     ];
   },
 };
