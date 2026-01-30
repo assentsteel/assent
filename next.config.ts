@@ -2,12 +2,12 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    dangerouslyAllowSVG:true,
-    unoptimized:true,
-    domains: ["dl.dropboxusercontent.com","plus.unsplash.com"] // Add Dropbox domain here
+    dangerouslyAllowSVG: true,
+    unoptimized: true,
+    domains: ["dl.dropboxusercontent.com", "plus.unsplash.com"] // Add Dropbox domain here
   },
-  compiler:{
-    removeConsole : process.env.NODE_ENV === 'production'
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production'
   },
   webpack(config, { nextRuntime }) {
     if (nextRuntime === "nodejs") {
@@ -16,11 +16,29 @@ const nextConfig: NextConfig = {
 
     return config;
   },
-    async redirects() {
+  async redirects() {
     return [
       {
         source: "/core-values-that-make-assent-the-excellent-choice-as-steel-fabricator-and-steel-erector",
         destination: "/news",
+        permanent: true,
+      },
+      {
+        source: '/projects-plants',
+        has: [
+          {
+            type: 'query',
+            key: 'sector',
+            value: '19',
+          },
+        ],
+        destination: '/projects/industrial-oil-gas?',
+        permanent: true,
+      },
+      {
+        source: '/projects-oil-gas-industry',
+        has: [{ type: 'query', key: 'sector' }],
+        destination: '/projects/industrial-oil-gas?',
         permanent: true,
       },
       {
@@ -753,9 +771,9 @@ const nextConfig: NextConfig = {
         destination: "/news",
         permanent: true,
       },
-      
+
       // -------- Press / Other --------
-      
+
       {
         source: "/press-detail/5-iconic-steel-structures-by-assent",
         destination: "/",
@@ -801,9 +819,9 @@ const nextConfig: NextConfig = {
         destination: "/",
         permanent: true,
       },
-      
+
       // -------- Projects --------
-      
+
       {
         source: "/project/abu-dhabi-plaza",
         destination: "/projects/commercial/abu-dhabi-plaza",
@@ -879,9 +897,9 @@ const nextConfig: NextConfig = {
         destination: "/projects/industrial-oil-gas/clean-fuel-project-mab-1",
         permanent: true,
       },
-      
+
       // -------- Redirects to generic projects page --------
-      
+
       {
         source: "/project/construction-of-adidas-logistic-center",
         destination: "/projects",
@@ -1276,8 +1294,8 @@ const nextConfig: NextConfig = {
         source: "/vision-and-mission",
         destination: "/",
         permanent: true,
-      }, 
-       {
+      },
+      {
         source: '/mpmessage',
         destination: '/',
         permanent: true,
@@ -1301,7 +1319,7 @@ const nextConfig: NextConfig = {
         source: '/projects-oil',
         destination: '/projects/industrial-oil-gas/',
         permanent: true,
-      },     
+      },
     ];
   },
 };
