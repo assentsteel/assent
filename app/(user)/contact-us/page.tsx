@@ -38,8 +38,40 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function Page() {
   const response = await fetch(`${process.env.BASE_URL}/api/admin/contact`, { next: { revalidate: 60 } });
   const data = await response.json();
+
   return (
     <>
+    {/* Breadcrumb Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "item": {
+                  "@type": "WebSite",
+                  "@id": "https://www.assentsteel.com/",
+                  "name": "Home"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "item": {
+                  "@type": "WebPage",
+                  "@id": "https://www.assentsteel.com/contact-us",
+                  "name": "Contact Us"
+                }
+              }
+            ]
+          }),
+        }}
+      />
+
       <Index data={data.data}/>
     </>
   );
