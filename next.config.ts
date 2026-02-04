@@ -1,20 +1,61 @@
 import type { NextConfig } from "next";
 
+const securityHeaders = [
+  {
+    key: "X-Content-Type-Options",
+    value: "nosniff",
+  },
+  {
+    key: "X-Frame-Options",
+    value: "DENY",
+  },
+  {
+    key: "Referrer-Policy",
+    value: "strict-origin-when-cross-origin",
+  },
+  {
+    key: "Permissions-Policy",
+    value: "camera=(), microphone=(), geolocation=()",
+  },
+  {
+    key: "Content-Security-Policy",
+    value: [
+      "default-src 'self'",
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+      "style-src 'self' 'unsafe-inline'",
+      "img-src 'self' data: https://dl.dropboxusercontent.com https://plus.unsplash.com",
+      "font-src 'self' data: https:",
+      "connect-src 'self' https:",
+      "frame-ancestors 'none'",
+    ].join("; "),
+  },
+];
+
 const nextConfig: NextConfig = {
   images: {
     dangerouslyAllowSVG: true,
     unoptimized: true,
-    domains: ["dl.dropboxusercontent.com", "plus.unsplash.com"] // Add Dropbox domain here
+    domains: ["dl.dropboxusercontent.com", "plus.unsplash.com"],
   },
+
   compiler: {
-    removeConsole: process.env.NODE_ENV === 'production'
+    removeConsole: process.env.NODE_ENV === "production",
   },
+
   webpack(config, { nextRuntime }) {
     if (nextRuntime === "nodejs") {
       config.resolve.alias.canvas = false;
     }
-
     return config;
+  },
+
+  async headers() {
+    return [
+      {
+        source: "/(.*)",
+        headers: securityHeaders,
+      },
+    ];
   },
   async redirects() {
     return [
