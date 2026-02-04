@@ -21,12 +21,15 @@ const securityHeaders = [
     key: "Content-Security-Policy",
     value: [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+      "script-src 'self'",
       "style-src 'self' 'unsafe-inline'",
       "img-src 'self' data: https://dl.dropboxusercontent.com https://plus.unsplash.com",
       "font-src 'self' data: https:",
       "connect-src 'self' https:",
+      "object-src 'none'",
+      "base-uri 'self'",
       "frame-ancestors 'none'",
+      "form-action 'self'",
     ].join("; "),
   },
 ];
@@ -49,7 +52,7 @@ const nextConfig: NextConfig = {
     return config;
   },
 
-  async headers() {
+ async headers() {
     return [
       {
         source: "/(.*)",
