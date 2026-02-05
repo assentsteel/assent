@@ -21,9 +21,10 @@ const securityHeaders = [
     key: "Content-Security-Policy",
     value: [
       "default-src 'self'",
-      "script-src 'self'",
-      "style-src 'self' 'unsafe-inline'",
+      "script-src 'self' 'unsafe-inline'",      // required for Next.js
+      "style-src 'self' 'unsafe-inline'",       // required for styles
       "img-src 'self' data: https://dl.dropboxusercontent.com https://plus.unsplash.com",
+      "media-src 'self' https://dl.dropboxusercontent.com",
       "font-src 'self' data: https:",
       "connect-src 'self' https:",
       "object-src 'none'",
