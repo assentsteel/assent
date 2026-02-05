@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   images: {
     dangerouslyAllowSVG: true,
     unoptimized: true,
-    domains: ["dl.dropboxusercontent.com", "plus.unsplash.com"] // Add Dropbox domain here
+    domains: ["dl.dropboxusercontent.com", "plus.unsplash.com"] 
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production'
