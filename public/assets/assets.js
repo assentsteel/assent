@@ -227,9 +227,30 @@ import wsa4 from "./img/icns/wsa4.svg";
 import wsa5 from "./img/icns/wsa5.svg";
 import wsa6 from "./img/icns/wsa6.svg";
 import ve from "./img/icns/ves.svg";
-
-
-
+import banneraus from "./img/australianproject/banner_aus.jpg";
+import hww1 from "./img/australianproject/hww1.jpg";
+import hww2 from "./img/australianproject/hww2.jpg";
+import hww3 from "./img/australianproject/hww3.jpg";
+import kc1 from "./img/australianproject/kc1.jpg";
+import kc2 from "./img/australianproject/kc2.jpg";
+import kc3 from "./img/australianproject/kc3.jpg";
+import kc4 from "./img/australianproject/kc4.jpg";
+import partneras from "./img/australianproject/partneras.jpg";
+import ser_aus1 from "./img/australianproject/ser_aus1.jpg";
+import ser_aus2 from "./img/australianproject/ser_aus2.jpg";
+import ser_aus3 from "./img/australianproject/ser_aus3.jpg";
+import ser_aus4 from "./img/australianproject/ser_aus4.jpg";
+import whyaus1 from "./img/australianproject/whyas1.jpg";
+import whyaus2 from "./img/australianproject/whya2.jpg";
+import whyaus3 from "./img/australianproject/whya3.jpg";
+import whyaus4 from "./img/australianproject/whya4.jpg";
+import auspro1 from "./img/australianproject/auspro1.svg";
+import auspro2 from "./img/australianproject/auspro2.svg";
+import auspro3 from "./img/australianproject/auspro3.svg";
+import sf from "./img/australianproject/sf.svg";
+import sp from "./img/australianproject/sp.svg";
+import se from "./img/australianproject/se.svg";
+import seraus from "./img/australianproject/ser.svg";
 
 
 
@@ -252,13 +273,37 @@ export const assets = {
   sr4,
   sr5,
   sr6,
+  banneraus,
+  hww1,
+  hww2,
+  hww3,
+  kc1,
+  kc2,
+  kc3,
+  kc4,
+  partneras,
+  ser_aus1,
+  ser_aus2,
+  ser_aus3,
+  ser_aus4,
+  whyaus1,
+  whyaus2,
+  whyaus3,
+  whyaus4,
+  auspro1,
+  auspro2,
+  auspro3,
+  sf,
+  sp,
+  se,
+  seraus,
   vr1,
   vr2,
   vr3,
   vr4,
   sk,
   vr5,
-vr6,
+  vr6,
   hrbn1,
   hrbn2,
   hrbn3,
