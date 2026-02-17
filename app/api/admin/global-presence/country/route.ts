@@ -48,6 +48,11 @@ export async function PATCH(request: NextRequest) {
         }
         const item = globalPresence.thirdSection.countries.find((item: { _id: string }) => item._id == id);
         if (item) {
+            console.log(body)
+            item.metaTitle = body.metaTitle
+            item.metaDescription = body.metaDescription
+            item.ogType = body.ogType
+            item.ogImage = body.ogImage
             item.sections = body.section;
             await globalPresence.save();
             return NextResponse.json({ message: "Global Presence updated successfully" }, { status: 200 });

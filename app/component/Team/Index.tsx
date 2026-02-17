@@ -1,28 +1,21 @@
-import React from "react"; 
+import React from "react";
 
-import HeroInner from  "../common/Banner/HeroInner";
+import HeroInner from "../common/Banner/HeroWithoutTitle";
 import Teamlist from "./sections/Teamlist";
 
-import { Team } from '@/public/types/Common';
- 
+import { Team } from "@/public/types/Common";
 
-const Index = async ({ data }: { data: Team }) => { 
-  const breadcrumb = [
-    { label: "Home", href: "/" },
-    { label: "Leadership Team", href: "" },
+const Index = async ({ data }: { data: Team }) => {
+    const breadcrumb = [
+        { label: "Home", href: "/" },
+        { label: "Leadership Team", href: "" },
+    ];
 
-  ];
-
-  return (
-    <>
-<HeroInner          imageSrc={data.banner}
-        title={data.pageTitle}
-        breadcrumbs={breadcrumb}
-      />
-      <Teamlist data={data} />
-
-    </>
-
-  );
-}
-export default Index
+    return (
+        <>
+            <HeroInner imageSrc={data.banner} title={data.pageTitle} breadcrumbs={breadcrumb} />
+            <Teamlist data={data} />
+        </>
+    );
+};
+export default Index;

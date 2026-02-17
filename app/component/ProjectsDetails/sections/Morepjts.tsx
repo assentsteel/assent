@@ -110,7 +110,7 @@ const Morepjts: React.FC<PlatformsSectionProps> = ({sector,projectId }) => {
           </motion.div></div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
   {filteredProjects.slice(0, 4).filter((item: { _id: string; }) => item._id !== projectId).map((item, index) => (
-    <Link href={`/project/${item.categorySlug}/${item.slug}`} key={index}>
+    <Link href={`/projects/${item.categorySlug}/${item.slug}`} key={index}>
     <motion.div
       variants={cardVariants}
       initial="hidden"

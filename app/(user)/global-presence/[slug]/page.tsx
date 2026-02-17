@@ -60,6 +60,43 @@ import GlobalPresenceAfrica from "@/app/component/GlobalPresenceAfrica";
 import GlobalPresenceAmerica from "@/app/component/GlobalPresenceAmerica";
 import GlobalPresenceEurope from "@/app/component/GlobalPresenceEurope";
 import { notFound } from "next/navigation";
+import { Metadata } from "next";
+
+export async function generateMetadata({params}: {params: Promise<{slug: string}>}): Promise<Metadata> {
+  const slug = (await params).slug;
+  const response = await fetch(`${process.env.BASE_URL}/api/admin/global-presence/country?slug=${slug}`, { next: { revalidate: 60 } });
+  const data = await response.json();
+
+  const metadataTitle = data?.data?.metaTitle || "Assent";
+  const metadataDescription =
+    data?.data?.metaDescription || "Assent";
+    const ogImage = data?.data?.ogImage
+    const ogType = data?.data?.ogType || "website"
+    const canonicalUrl = `https://www.assentsteel.com/global-presence/${slug}`;
+
+  return {
+    title: metadataTitle,
+    description: metadataDescription,
+      alternates: {
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title: metadataTitle,
+      description: metadataDescription,
+      url: process.env.BASE_URL,
+      siteName: "Assent",
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: metadataTitle,
+        },
+      ],
+      type: ogType,
+    },
+  };
+}
 
 export default async function Page({
   params,

@@ -16,20 +16,27 @@ import { GiConfirmed } from "react-icons/gi";
 import { closestCorners, DndContext, DragEndEvent } from '@dnd-kit/core'
 import { arrayMove, SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import ItemCard from './ItemCard'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Controller, useForm } from "react-hook-form";
 
 const AdminGallery = () => {
 
     const [title, setTitle] = useState("");
     const [thumbnail, setThumbnail] = useState("");
     const [thumbnailAlt, setThumbnailAlt] = useState("");
-    const [items, setItems] = useState<{ _id: string; title: string; thumbnail: string; thumbnailAlt: string,slug:string,metaTitle:string,metaDescription:string }[]>([]);
+    const [items, setItems] = useState<{ _id: string; title: string; thumbnail: string; thumbnailAlt: string,slug:string,metaTitle:string,metaDescription:string;ogType:string;ogImage:string; }[]>([]);
     const [slug, setSlug] = useState<string>("")
       const [metaTitle, setMetaTitle] = useState<string>("");
       const [metaDescription, setMetaDescription] = useState<string>("");
       const [pageTitle, setPageTitle] = useState<string>("");
       const [itemMetaTitle, setItemMetaTitle] = useState<string>("");
       const [itemMetaDescription, setItemMetaDescription] = useState<string>("");
+      const [itemOgType, setItemOgType] = useState<string>("");
+      const [itemOgImage, setItemOgImage] = useState<string>("");
       const [reorderMode, setReorderMode] = useState(false);
+
+
+      const { control,setValue,getValues } = useForm();
 
     const handleAddItem = async () => {
         try {
@@ -38,7 +45,7 @@ const AdminGallery = () => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ title, thumbnail, thumbnailAlt,slug,itemMetaTitle,itemMetaDescription }),
+                body: JSON.stringify({ title, thumbnail, thumbnailAlt,slug,itemMetaTitle,itemMetaDescription,itemOgType,itemOgImage }),
             });
             const data = await res.json();
             if (data.success) {
@@ -64,7 +71,7 @@ const AdminGallery = () => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ title, thumbnail, thumbnailAlt,slug,itemMetaTitle,itemMetaDescription }),
+                body: JSON.stringify({ title, thumbnail, thumbnailAlt,slug,itemMetaTitle,itemMetaDescription,itemOgType,itemOgImage }),
             });
             const data = await res.json();
             if (data.success) {
@@ -75,6 +82,8 @@ const AdminGallery = () => {
                 setSlug("");
                 setItemMetaTitle("");
                 setItemMetaDescription("");
+                setItemOgType("");
+                setItemOgImage("");
                 fetchItems();
             }
         } catch (error) {
@@ -121,6 +130,8 @@ const AdminGallery = () => {
             setMetaTitle(data.data.metaTitle);
             setMetaDescription(data.data.metaDescription);
             setPageTitle(data.data.pageTitle);
+            setValue("ogType",data.data.ogType);
+            setValue("ogImage",data.data.ogImage);
           }else{
             const data = await response.json();
             alert(data.message);
@@ -135,7 +146,7 @@ const AdminGallery = () => {
         try {
           const response = await fetch("/api/admin/gallery/intrometa",{
             method: "POST",
-            body: JSON.stringify({ metaTitle, metaDescription, pageTitle }),
+            body: JSON.stringify({ metaTitle, metaDescription, pageTitle,ogType:getValues("ogType"),ogImage:getValues("ogImage") }),
           });
           if(response.ok) {
             const data = await response.json();
@@ -226,6 +237,50 @@ const AdminGallery = () => {
                                                       <Label>Meta Description</Label>
                                                       <Input type="text" defaultValue={metaDescription} onChange={(e) => setMetaDescription(e.target.value)} />
                                                   </div>
+                                                  <div className='flex flex-col gap-2 w-1/2'>
+                <Label className='font-bold'>Og Type</Label>
+                                                <Controller
+                                                    name={`ogType`}
+                                                    control={control}
+                                                    
+                                                    render={({ field }) => (
+                                                        <Select
+                                                            onValueChange={field.onChange}
+                                                            value={field.value}
+                                                            defaultValue="website"
+                                                        >
+                                                            <SelectTrigger className="w-full">
+                                                                <SelectValue placeholder="Select Style" />
+                                                            </SelectTrigger>
+                                                            <SelectContent>
+                                                                <SelectItem value="website">
+                                                                    website
+                                                                </SelectItem>
+                                                                <SelectItem value="article">
+                                                                article
+                                                                </SelectItem>
+                                                            </SelectContent>
+                                                        </Select>
+                                                    )}
+                                                />
+
+                                            </div>
+
+
+                                            <div className='flex flex-col gap-2 w-1/2'>
+                                                <Label className='font-bold'>Og Image</Label>
+                                                <Controller
+                                                    name={`ogImage`}
+                                                    control={control}
+                                                    
+                                                    render={({ field }) => (
+                                                        <ImageUploader
+                                                            value={field.value}
+                                                            onChange={field.onChange}
+                                                        />
+                                                    )}
+                                                />
+                                            </div>
                                               </div>
                                           </div>
                 <div className='flex items-center gap-2 justify-between'>
@@ -280,6 +335,41 @@ const AdminGallery = () => {
                                         <Input type="text" placeholder="Meta Description" value={itemMetaDescription} onChange={(e) => setItemMetaDescription(e.target.value)} />
                                     </div>
 
+                                    <div className='flex flex-col gap-2 w-1/2'>
+                <Label className='font-bold'>Og Type</Label>
+                                                
+                                                        <Select
+                                                            onValueChange={setItemOgType}
+                                                            value={itemOgType}
+                                                            defaultValue="website"
+                                                        >
+                                                            <SelectTrigger className="w-full">
+                                                                <SelectValue placeholder="Select Style" />
+                                                            </SelectTrigger>
+                                                            <SelectContent>
+                                                                <SelectItem value="website">
+                                                                    website
+                                                                </SelectItem>
+                                                                <SelectItem value="article">
+                                                                article
+                                                                </SelectItem>
+                                                            </SelectContent>
+                                                        </Select>
+
+
+                                            </div>
+
+
+                                            <div className='flex flex-col gap-2 w-1/2'>
+                                                <Label className='font-bold'>Og Image</Label>
+                                                
+                                                        <ImageUploader
+                                                            value={itemOgImage}
+                                                            onChange={setItemOgImage}
+                                                        />
+                                                    
+                                            </div>
+
                                 </div>
                             </DialogHeader>
                             <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={handleAddItem}>Save</DialogClose>
@@ -307,7 +397,7 @@ const AdminGallery = () => {
                             </div>
                             <div className="flex items-center gap-10">
                                 <Dialog>
-                                    <DialogTrigger className="" onClick={() => { setTitle(item.title); setThumbnail(item.thumbnail); setThumbnailAlt(item.thumbnailAlt);setSlug(item.slug);setItemMetaTitle(item.metaTitle);setItemMetaDescription(item.metaDescription) }}><MdEdit className="cursor-pointer text-md" /></DialogTrigger>
+                                    <DialogTrigger className="" onClick={() => { setTitle(item.title); setThumbnail(item.thumbnail); setThumbnailAlt(item.thumbnailAlt);setSlug(item.slug);setItemMetaTitle(item.metaTitle);setItemMetaDescription(item.metaDescription);setItemOgType(item.ogType);setItemOgImage(item.ogImage) }}><MdEdit className="cursor-pointer text-md" /></DialogTrigger>
                                     <DialogContent className="h-[600px] overflow-auto">
                                         <DialogHeader>
                                             <DialogTitle>Edit Item</DialogTitle>
@@ -343,6 +433,41 @@ const AdminGallery = () => {
                                                     <Label>Meta Description</Label>
                                                     <Input type="text" placeholder="Meta Description" value={itemMetaDescription} onChange={(e) => setItemMetaDescription(e.target.value)} />
                                                 </div>
+
+                                                <div className='flex flex-col gap-2 w-1/2'>
+                <Label className='font-bold'>Og Type</Label>
+                                                
+                                                        <Select
+                                                            onValueChange={setItemOgType}
+                                                            value={itemOgType}
+                                                            defaultValue="website"
+                                                        >
+                                                            <SelectTrigger className="w-full">
+                                                                <SelectValue placeholder="Select Style" />
+                                                            </SelectTrigger>
+                                                            <SelectContent>
+                                                                <SelectItem value="website">
+                                                                    website
+                                                                </SelectItem>
+                                                                <SelectItem value="article">
+                                                                article
+                                                                </SelectItem>
+                                                            </SelectContent>
+                                                        </Select>
+
+
+                                            </div>
+
+
+                                            <div className='flex flex-col gap-2 w-1/2'>
+                                                <Label className='font-bold'>Og Image</Label>
+                                                
+                                                        <ImageUploader
+                                                            value={itemOgImage}
+                                                            onChange={setItemOgImage}
+                                                        />
+                                                    
+                                            </div>
 
                                             </div>
                                         </DialogHeader>

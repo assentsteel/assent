@@ -19,6 +19,9 @@ export async function POST(request: NextRequest) {
             tag.bodyScript = bodyScript;
             await tag.save();
             return NextResponse.json({ message: "Tag updated successfully" }, { status: 200 });
+        }else{
+            await Tag.create({headerScript,bodyScript})
+            return NextResponse.json({ message: "Tag updated successfully" }, { status: 200 });
         }
     } catch (error) {
         console.log("Error saving tag", error);

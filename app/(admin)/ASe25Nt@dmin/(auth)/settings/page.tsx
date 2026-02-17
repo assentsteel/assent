@@ -1,6 +1,6 @@
 "use client"
 
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useEffect } from 'react'
 import { Label } from '@/components/ui/label'
@@ -19,16 +19,40 @@ interface FormValues2 {
     newPassword: string;
 }
 
+
 const Settings = () => {
 
         const { register, handleSubmit,setValue,getValues } = useForm<FormValues | FormValues2>();
         const [currentPasswordIsCorrect, setCurrentPasswordIsCorrect] = React.useState<boolean>(false);
+
+        const [toEmailGeneral,setToEmailGeneral] = useState("")
+        const [toEmailRegistration,setToEmailRegistration] = useState("")
+        const [toEmailDownload,setToEmailDownload] = useState("")
+        const [toEmailCareer,setToEmailCareer] = useState("")
         
         const onSubmit = async(data: FormValues | FormValues2) => {
             try {
                 const response = await fetch("/api/admin/tags", {
                     method: "POST",
                     body: JSON.stringify(data),
+                });
+                if (response.ok) {
+                    const data = await response.json();
+                    alert(data.message);
+                } else {
+                    const data = await response.json();
+                    alert(data.message);
+                }
+            } catch (error) {
+                console.log("Error saving details", error);
+            }
+        }
+
+        const EmailSectionSubmit = async() => {
+            try {
+                const response = await fetch("/api/admin/emails", {
+                    method: "PATCH",
+                    body: JSON.stringify({toEmailDownload,toEmailGeneral,toEmailRegistration,toEmailCareer}),
                 });
                 if (response.ok) {
                     const data = await response.json();
@@ -57,9 +81,29 @@ const Settings = () => {
                 console.log("Error fetching details", error);
             }
         }
+
+
+        const fetchEmails = async() => {
+            try {
+                const response = await fetch("/api/admin/emails");
+                if (response.ok) {
+                    const data = await response.json();
+                    setToEmailDownload(data.data.toEmailDownload)
+                    setToEmailRegistration(data.data.toEmailRegistration)
+                    setToEmailGeneral(data.data.toEmailGeneral)
+                    setToEmailCareer(data.data.toEmailCareer)
+                } else {
+                    const data = await response.json();
+                    alert(data.message);
+                }
+            } catch (error) {
+                console.log("Error fetching details", error);
+            }
+        }
     
         useEffect(() => {
             fetchTag();
+            fetchEmails();
         }, []);
 
         const checkCurrentPassword = async() => {
@@ -175,6 +219,34 @@ const Settings = () => {
                     </form>)
                     
                     }
+        </AdminItemContainer>
+
+
+        <AdminItemContainer>
+            <Label main>Email Section</Label>
+        <div className='flex flex-col gap-5 border-r-gray-300 p-5'>
+            <div className='flex flex-col gap-5'>
+                        <div className="space-y-4">
+                            <Label className=''>To email (General Enquiry)</Label>
+                            <Input value={toEmailGeneral} onChange={(e)=>setToEmailGeneral(e.target.value)}></Input>
+                        </div>
+                        <div className="space-y-4">
+                            <Label className=''>To email (Registration Form)</Label>
+                            <Input value={toEmailRegistration} onChange={(e)=>setToEmailRegistration(e.target.value)}></Input>
+                        </div>
+                        <div className="space-y-4">
+                            <Label className=''>To email (Download Form)</Label>
+                            <Input value={toEmailDownload} onChange={(e)=>setToEmailDownload(e.target.value)}></Input>
+                        </div>
+                        <div className="space-y-4">
+                            <Label className=''>To email (Career Form)</Label>
+                            <Input value={toEmailCareer} onChange={(e)=>setToEmailCareer(e.target.value)}></Input>
+                        </div>
+                        <div className="flex justify-center">
+                            <Button type="button" className='w-full cursor-pointer text-white text-[16px]' onClick={()=>EmailSectionSubmit()}>Submit</Button>
+                        </div>
+                    </div>
+        </div>
         </AdminItemContainer>
 
         

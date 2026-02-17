@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 const careerSchema = new mongoose.Schema({
     metaTitle: String,
     metaDescription: String,
+    ogType: String,
+    ogImage: String,
     pageTitle: String,
     banner: String,
     bannerAlt: String,

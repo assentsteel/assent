@@ -13,10 +13,31 @@ export async function generateMetadata({params}: {params: Promise<{slug: string,
   const metadataTitle = data?.data?.metaTitle || "Assent";
   const metadataDescription =
     data?.data?.metaDescription || "Assent";
+    const ogImage = data?.data?.ogImage
+    const ogType = data?.data?.ogType || "website"
+     const canonicalUrl = `${process.env.BASE_URL}/projects/${slug}/${itemSlug}`;
 
   return {
     title: metadataTitle,
     description: metadataDescription,
+      alternates: {
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title: metadataTitle,
+      description: metadataDescription,
+      url: process.env.BASE_URL,
+      siteName: "Assent",
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: metadataTitle,
+        },
+      ],
+      type: ogType,
+    },
   };
 }
 

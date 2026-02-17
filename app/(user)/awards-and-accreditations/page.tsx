@@ -9,10 +9,30 @@
   const metadataTitle = data?.data?.metaTitle || "Assent";
   const metadataDescription =
     data?.data?.metaDescription || "Assent";
+    const ogImage = data?.data?.ogImage
+    const ogType = data?.data?.ogType || "website"
 
   return {
     title: metadataTitle,
     description: metadataDescription,
+      alternates: {
+      canonical: "https://www.assentsteel.com/awards-and-accreditations",
+    },
+    openGraph: {
+      title: metadataTitle,
+      description: metadataDescription,
+      url: process.env.BASE_URL,
+      siteName: "Assent",
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: metadataTitle,
+        },
+      ],
+      type: ogType,
+    },
   };
 }
 

@@ -15,6 +15,8 @@ import {
 import { Input } from "@/components/ui/input"
 import { ImageUploader } from "@/components/ui/image-uploader";
 import { FileUploader } from "@/components/ui/file-uploader";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { useForm, Controller } from "react-hook-form";
 
 
 export default function News() {
@@ -32,7 +34,8 @@ export default function News() {
 
   const [awardList, setAwardList] = useState<{_id: string, title: string, image: string, imageAlt: string, file: string}[]>([]);
 
-  
+  const { setValue, control, getValues } = useForm();
+
   const handleAddAward = async() => {
     try {
       const response = await fetch("/api/admin/awards",{
@@ -66,6 +69,8 @@ export default function News() {
         setPageTitle(data.data.pageTitle);
         setBanner(data.data.banner);
         setBannerAlt(data.data.bannerAlt);
+        setValue("ogType",data.data.ogType);
+        setValue("ogImage",data.data.ogImage);
         setAwardList(data.data.awards);
       }else{
         const data = await response.json();
@@ -123,7 +128,7 @@ export default function News() {
     try {
       const response = await fetch("/api/admin/awards/intrometa",{
         method: "POST",
-        body: JSON.stringify({ metaTitle, metaDescription, pageTitle, banner, bannerAlt }),
+        body: JSON.stringify({ metaTitle, metaDescription, pageTitle, banner, bannerAlt,ogType:getValues("ogType"),ogImage:getValues("ogImage") }),
       });
       if(response.ok) {
         const data = await response.json();
@@ -173,6 +178,51 @@ export default function News() {
                                           <Label>Meta Description</Label>
                                           <Input type="text" value={metaDescription} onChange={(e) => setMetaDescription(e.target.value)} />
                                       </div>
+                                      <div className='flex flex-col gap-2 w-1/2'>
+                <Label className='font-bold'>Og Type</Label>
+                                                <Controller
+                                                    name={`ogType`}
+                                                    control={control}
+                                                    
+                                                    render={({ field }) => (
+                                                        <Select
+                                                            onValueChange={field.onChange}
+                                                            value={field.value}
+                                                            defaultValue="website"
+                                                        >
+                                                            <SelectTrigger className="w-full">
+                                                                <SelectValue placeholder="Select Style" />
+                                                            </SelectTrigger>
+                                                            <SelectContent>
+                                                                <SelectItem value="website">
+                                                                    website
+                                                                </SelectItem>
+                                                                <SelectItem value="article">
+                                                                article
+                                                                </SelectItem>
+                                                            </SelectContent>
+                                                        </Select>
+                                                    )}
+                                                />
+
+                                            </div>
+
+
+                                            <div className='flex flex-col gap-2 w-1/2'>
+                                                <Label className='font-bold'>Og Image</Label>
+                                                <Controller
+                                                    name={`ogImage`}
+                                                    control={control}
+                                                    
+                                                    render={({ field }) => (
+                                                        <ImageUploader
+                                                            value={field.value}
+                                                            onChange={field.onChange}
+                                                            isLogo
+                                                        />
+                                                    )}
+                                                />
+                                            </div>
                                   </div>
                               </div>
 

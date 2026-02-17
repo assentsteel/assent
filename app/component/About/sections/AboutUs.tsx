@@ -89,13 +89,13 @@ const AboutUs = ({ data }: { data: About | GlobalPresence }) => {
                 className=""
               >
                 <div>
-                  <motion.h2
+                  <motion.h1
                     className="text-xl text-primary font-[600] leading-[1.2] mb-4 lg:mb-6"
                     custom="x"
                     variants={textVariants}
                   >
                     {data.firstSection.subTitle}
-                  </motion.h2>
+                  </motion.h1>
 
                   {data.firstSection.description
                     .split("\n")

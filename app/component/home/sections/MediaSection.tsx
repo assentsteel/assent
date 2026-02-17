@@ -8,8 +8,15 @@ import { motion } from "framer-motion";
 
 import { News } from '@/public/types/Common';
 const MediaSection = ({data}: {data: News}) => { 
-  const latestNews = data.news.sort((a, b) => new Date(b.date ? b.date : b.createdAt).getTime() - new Date(a.date ? a.date : a.createdAt).getTime())[0];
-  const lastTwoItems =  data.news.sort((a, b) => new Date(b.date ? b.date : b.createdAt).getTime() - new Date(a.date ? a.date : a.createdAt).getTime()).slice(1, 3);
+const sortedNews = [...data.news].sort(
+  (a, b) =>
+    new Date(b.date).getTime() -
+    new Date(a.date).getTime()
+);
+
+const latestNews = sortedNews[0];
+const lastTwoItems = sortedNews.slice(1, 3);
+
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     const day = String(date.getDate()).padStart(2, "0");     

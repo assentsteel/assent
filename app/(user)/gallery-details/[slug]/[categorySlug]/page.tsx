@@ -2,18 +2,80 @@ import Index from "@/app/component/GalleryDetails/Index";
  
 import { Metadata } from "next";
 
-export async function generateMetadata({params}: {params: Promise<{slug: string}>}): Promise<Metadata> {
-  const slug = (await params).slug;
-  const response = await fetch(`${process.env.BASE_URL}/api/admin/gallery`, { next: { revalidate: 60 } });
+type GalleryCategory = {
+  _id: string;
+  title: string;
+  slug: string;
+  thumbnail?: string;
+  images?: string[];
+  metaTitle?: string;
+  metaDescription?: string;
+  ogType?: string;
+};
+
+type GalleryItem = {
+  _id: string;
+  title: string;
+  slug: string;
+  thumbnail?: string;
+  images?: string[];
+  categories?: GalleryCategory[];
+  metaTitle?: string;
+  metaDescription?: string;
+  ogType?: string;
+};
+
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string; categorySlug?: string }>;
+}): Promise<Metadata> {
+  const { slug, categorySlug } = await params;
+
+  const response = await fetch(
+    `${process.env.BASE_URL}/api/admin/gallery`,
+    { next: { revalidate: 60 } }
+  );
+
   const data = await response.json();
+  const galleries = data?.data || [];
 
-  const metadataTitle = data?.data?.find((item: {slug: string}) => item.slug === slug)?.metaTitle || "Assent";
-  const metadataDescription =
-    data?.data?.find((item: {slug: string}) => item.slug === slug)?.metaDescription || "Assent";
+  const galleryMatch = galleries.find(
+    (item: { slug: string }) => item.slug === slug
+  );
 
+  const categoryMatch = categorySlug
+    ? galleries
+        .flatMap((item: GalleryItem) => item.categories || [])
+        .find((cat: { slug: string }) => cat.slug === categorySlug)
+    : null;
+
+  const metaSource = categoryMatch || galleryMatch;
+
+  const title = metaSource?.metaTitle || "Assent";
+  const description = metaSource?.metaDescription || "Assent";
+  const ogType = metaSource?.ogType || "website";
+  const ogImage =
+    metaSource?.thumbnail || metaSource?.images?.[0];
+  const canonicalUrl = categoryMatch
+    ? `${process.env.BASE_URL}/gallery/${slug}/${categorySlug}`
+    : `${process.env.BASE_URL}/gallery/${slug}`;
   return {
-    title: metadataTitle,
-    description: metadataDescription,
+    title,
+    description,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title,
+      description,
+      type: ogType,
+      siteName: "Assent",
+      images: ogImage
+        ? [{ url: ogImage, width: 1200, height: 630, alt: title }]
+        : [],
+    },
   };
 }
 
