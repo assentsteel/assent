@@ -1,0 +1,114 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { motion, AnimatePresence } from "framer-motion";
+gsap.registerPlugin(ScrollTrigger);
+
+import { Accaus } from "@/public/types/Common";
+const AccordionAus = ({ data }: { data: Accaus }) => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      gsap.from(containerRef.current, {
+        opacity: 0,
+        width: 100,
+        duration: 1.5,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 60%", // Starts when the top of the section is 85% in view
+          toggleActions: "play none none none",
+        },
+      });
+    }
+  }, []);
+  const slideInLeft = {
+    hidden: { opacity: 0, x: -30 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+    exit: { opacity: 0, x: -30, transition: { duration: 0.4 } },
+  };
+  return (
+    <section className="pb-[50px] md:pb-[70px] xl:pb-[100px] cpt0  overflow-hidden relative ">
+      <div className="container">
+        <div className="lg:grid lg:grid-cols-[auto_496px] xl:grid-cols-[auto_696px] 2xl:grid-cols-[auto_964px] lg:items-center xxl:items-start lg:gap-4 xl:gap-7 2xl:gap-[106px]">
+          <div className=" ">
+            <motion.h2
+              viewport={{ once: true, amount: 0.2 }}
+              variants={slideInLeft}
+              initial="hidden"
+              exit="exit"
+              whileInView="visible"
+              className="text-lg  text-primary font-[600] leading-[1.2] mb-4 lg:mb-7 max-w-[10ch]"
+            >
+              {data.title}
+            </motion.h2>
+            <p className="text-tertiary text-sm font-[400] leading-[1.5] lg:max-w-[47ch]">
+              {data.description}
+            </p>
+          </div>
+
+          <div className="mt-6 lg:mt-0">
+            {data.items.map((da, index) => (
+              <motion.div
+                key={index}
+                className="group border-b first:border-t border-[#00000015] last:border-b-0 py-5 lg:py-[20px] xxl:py-[34px] transition-all duration-300"
+                onMouseEnter={() => setActiveIndex(index)}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                viewport={{ once: true, amount: 0.2 }} // triggers only once when 20% is in view
+              >
+                <div className="flex items-start gap-5 md:gap-10 lg:gap-[50px] xl:gap-[100px]">
+                  {/* NUMBER instead of LOGO */}
+                  <p className="text-[#1F1F1F80] text-lg lg:text-[30px] font-[400] leading-[1.33]">
+                    {String(index + 1).padStart(2, "0")}
+                  </p>
+                  <div className="pt-[4px]">
+                    <h3
+                      className={`text-[22px] md:text-[24px] group-hover:text-secondary transition-all duration-300 leading-[120%] ${
+                        activeIndex === index
+                          ? "text-secondary font-[600]"
+                          : "text-[#1F1F1F] font-[500]"
+                      }`}
+                    >
+                      {da.title}
+                    </h3>
+
+                    <AnimatePresence mode="wait">
+                      {activeIndex === index && (
+                        <motion.div
+                          key="content"
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{
+                            opacity: 1,
+                            height: "auto",
+                            marginTop: "15px",
+                          }}
+                          exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                          transition={{ duration: 0.4 }}
+                          className="text-territory/80 text-[17px] lg:text-[19px] font-[400] leading-[1.7] overflow-hidden"
+                        >
+                          <div>{da.description}</div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default AccordionAus;

@@ -110,6 +110,31 @@ import engser6 from "./img/engineering/eng-ser6.svg";
 import engser7 from "./img/engineering/eng-ser7.svg";
 import modelslide from "./img/engineering/modelslide.png";
 import ftbanner from "./img/engineering/ftbanner.jpg";
+import banner_aus from "./img/australianproject/banner_aus.jpg"; 
+import ser_aus1 from "./img/australianproject/ser_aus1.jpg"; 
+import ser_aus2 from "./img/australianproject/ser_aus2.jpg"; 
+import ser_aus3 from "./img/australianproject/ser_aus3.jpg"; 
+import ser_aus4 from "./img/australianproject/ser_aus4.jpg";
+import hww1 from "./img/australianproject/hww1.jpg";
+import hww2 from "./img/australianproject/hww2.jpg";
+import hww3 from "./img/australianproject/hww3.jpg";
+import whyas1 from "./img/australianproject/whyas1.jpg";
+import whyas2 from "./img/australianproject/whya2.jpg";
+import whyas3 from "./img/australianproject/whya3.jpg";
+import whyas4 from "./img/australianproject/whya4.jpg";
+import se from "./img/australianproject/se.svg";
+import sf from "./img/australianproject/sf.svg";
+import ser3 from "./img/australianproject/ser.svg";
+import sp from "./img/australianproject/sp.svg"; 
+import kc1 from "./img/australianproject/kc1.jpg"; 
+import kc2 from "./img/australianproject/kc2.jpg"; 
+import kc3 from "./img/australianproject/kc3.jpg"; 
+import kc4 from "./img/australianproject/kc4.jpg"; 
+import partneras from "./img/australianproject/partneras.jpg"; 
+ 
+
+ 
+
 import spcic1 from "./img/engineering/icn1.png";
 import spcic2 from "./img/engineering/icn2.png";
 import spcic3 from "./img/engineering/icn3.png";
@@ -234,6 +259,7 @@ import ve from "./img/icns/ves.svg";
 
 
 export const assets = {
+  partneras,
   wsa1,
   wsa2,
   wsa3,
@@ -246,12 +272,20 @@ export const assets = {
   whs4,
   whs5,
   whs6,
+  se,
+  sf,
+  ser3,
+  sp,
   sr1,
   sr2,
   sr3,
   sr4,
   sr5,
   sr6,
+  kc1,
+  kc2,
+  kc3,
+  kc4,
   vr1,
   vr2,
   vr3,
@@ -272,6 +306,14 @@ vr6,
   lin,
   teambanner,
   team1,
+  banner_aus,
+  ser_aus1,
+  ser_aus2,
+  ser_aus3,
+  ser_aus4,
+  hww1,
+  hww2,
+  hww3,
   team2,
   team3,
   team4,
@@ -283,6 +325,10 @@ vr6,
   afslide1,
   afslide2,
   afslide3,
+  whyas1,
+  whyas2,
+  whyas3,
+  whyas4,
   eursecb,
   eurbanner,
   americabanner,

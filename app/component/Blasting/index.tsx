@@ -27,7 +27,7 @@ const Index = async ({ data }: { data: Blasting }) => {
      <SingleImageText data={data.secondSection} maxwidth={'max-w-[68ch]'} textright={false} />
         <div className="ptst0"><TextByImg data={data.thirdSection} /></div>
 
-  <section className="pt-[50px]  xl:pt-[80px]">
+  <section className="pt-0">
       <Boxgds
       colnum={3}
         data={data.fourthSection} />

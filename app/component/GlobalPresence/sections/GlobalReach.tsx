@@ -43,8 +43,8 @@ import { useInView } from "react-intersection-observer";
   return (
     <div className={`py-[50px] md:py-[70px] xl:py-[100px] overflow-hidden relative ${bgcolor ? bgcolor : ''} `}>
       <div className="container">
-        <div className="mb-4 lg:mb-[60px]">
-          <motion.h2 className={`text-xl  font-semibold ${bgcolor ? 'text-white': 'text-territory' }`}
+        <div className="mb-4 lg:mb-[80px]">
+          <motion.h2 className={`text-xl  font-semibold leading-[1.365] ${bgcolor ? 'text-white': 'text-territory' }`}
                 variants={textContainerVariants}
                 initial="hidden"
                 whileInView="visible"
@@ -70,10 +70,10 @@ import { useInView } from "react-intersection-observer";
         <div
           className={`border-b ${
             bgcolor ? 'border-white' : 'border-territory'
-          } mb-4 pb-4 lg:mb-8 lg:pb-8`}
+          } mb-4 pb-4 lg:mb-[30px] lg:pb-[30px]`}
         >
           <h3
-            className={`text-40 font-semibold ${
+            className={`text-40 font-semibold leading-[1.5] ${
               bgcolor ? 'text-white' : 'text-territory'
             }`}
           >
@@ -89,7 +89,7 @@ import { useInView } from "react-intersection-observer";
           </p>
         </div>
         <p
-          className={`text-sm ${
+          className={`text-sm leading-[1.6] ${
             bgcolor ? 'text-white' : 'text-territory'
           } opacity-80`}
         >
