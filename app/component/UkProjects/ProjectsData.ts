@@ -18,8 +18,8 @@ export const reach = {
   heading: "World-Class Steel Fabrication Capacity for UK ",
   data: [
     {
-      count: "130000 +t/yr",
-      title: "Fabrication Capacity",
+      count: "130000 +",
+      title: "T/yr Fabrication Capacity",
       details:
         "Annual structural steel fabrication capacity supporting large and complex UK infrastructure, industrial, and building projects. ",
     },

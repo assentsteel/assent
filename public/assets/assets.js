@@ -161,6 +161,31 @@ import uksafe1 from "./img/ukprojects/safe1.svg";
 import uksafe2 from "./img/ukprojects/safe2.svg"; 
 import uksafe3 from "./img/ukprojects/safe3.svg";  
 
+import afrbanner from "./img/africanproject/banner.jpg";   
+import afrrole1 from "./img/africanproject/role1.jpg"; 
+import afrrole2 from "./img/africanproject/role2.jpg"; 
+import afrrole3 from "./img/africanproject/role3.jpg"; 
+import afrrole4 from "./img/africanproject/role4.jpg"; 
+import afrhww1 from "./img/africanproject/hww1.jpg"; 
+import afrhww2 from "./img/africanproject/hww2.jpg"; 
+import afrhww3 from "./img/africanproject/hww3.jpg";  
+import afrkey1 from "./img/africanproject/key1.jpg"; 
+import afrkey2 from "./img/africanproject/key2.jpg"; 
+import afrkey3 from "./img/africanproject/key3.jpg"; 
+import afrkey4 from "./img/africanproject/key4.jpg";  
+import afrwhy1 from "./img/africanproject/why1.jpg"; 
+import afrwhy2 from "./img/africanproject/why2.jpg"; 
+import afrwhy3 from "./img/africanproject/why3.jpg"; 
+import afrwhy4 from "./img/africanproject/why4.jpg"; 
+import afrfbanner from "./img/africanproject/fbanner.jpg"; 
+import afrser1 from "./img/africanproject/ser1.svg"; 
+import afrser2 from "./img/africanproject/ser2.svg"; 
+import afrser3 from "./img/africanproject/ser3.svg"; 
+import afrser4 from "./img/africanproject/ser4.svg"; 
+import afrsafe1 from "./img/africanproject/sus1.svg"; 
+import afrsafe2 from "./img/africanproject/sus2.svg"; 
+import afrsafe3 from "./img/africanproject/sus3.svg";  
+
 
 
 
@@ -291,6 +316,30 @@ import ve from "./img/icns/ves.svg";
 
 
 export const assets = {
+  afrbanner,
+  afrrole1,
+  afrrole2,
+  afrrole3,
+  afrrole4,
+  afrhww1,
+  afrhww2,
+  afrhww3, 
+  afrkey1,
+  afrkey2,
+  afrkey3,
+  afrkey4,
+  afrwhy1,
+  afrwhy2,
+  afrwhy3,
+  afrwhy4,
+  afrfbanner,
+  afrser1,
+  afrser2,
+  afrser3,
+  afrser4,
+  afrsafe1,
+  afrsafe2,
+  afrsafe3,
   ukbanner,
   ukrole1,
   ukrole2,
