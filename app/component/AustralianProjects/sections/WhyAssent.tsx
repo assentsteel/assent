@@ -3,8 +3,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { motion, AnimatePresence } from "framer-motion";
-import { assets } from "@/public/assets/assets";
+import { motion, AnimatePresence } from "framer-motion"; 
 import { slideInLeft } from "../../common/MotionAnimation";
 gsap.registerPlugin(ScrollTrigger);
 
