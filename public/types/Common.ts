@@ -1,3 +1,5 @@
+import { StaticImageData } from "next/image";
+
 export type About = {
   banner: string;
   bannerAlt: string;
@@ -58,6 +60,12 @@ export type Abtpurpose = {
   title: string;
   description: string;
   image: string;
+  imageAlt: string;
+};
+export type ainglelabel = {
+  title: string;
+  description: string;
+  image: StaticImageData;
   imageAlt: string;
 };
 export type textbyimg = {
@@ -417,6 +425,55 @@ export type Sustainability = {
   };
   cardImages: [string];
 };
+export type HowWework = {
+  title: string;
+  items: {
+    image: StaticImageData;
+    imageAlt: string;
+    title: string;
+    description: string;
+  }[];
+};
+export type typefaq = {
+  title: string;
+  items: { 
+    title: string;
+    description: string;
+  }[];
+};
+export type whyus = {
+  title: string;
+  description: string;
+  items: {
+    image: StaticImageData;
+    imageAlt: string;
+    title: string;
+    description: string;
+  }[];
+};
+export type keycap ={
+    title: string;
+    desc: string;
+    items: 
+      {
+        image: StaticImageData;
+        imageAlt: string;
+        title: string;
+        description: string;
+      }[]; 
+  }; 
+
+  
+export type Accaus = {  
+    title: string;
+    description: string;
+    items:  
+      {
+        
+        title: string;
+        description: string;
+      }[];
+  }; 
 export type NavTab = {
   title: string;
   items: [
@@ -433,7 +490,21 @@ export type introbold = {
   description: string;
   image?: string;
   imageAlt?: string;
+  titlecase?: boolean;
+  maxwidth?:number;
 };
+export type gridbox = {
+    title: string;
+    description: string;
+    items:  
+      { 
+        title: string;
+        description: string;
+        logo: string;
+        logoAlt: string;
+      }[]
+      footerdata?: string;
+  };
 export type SecondIntro = {
   secondTitle: string;
   secondDescription: string;
@@ -705,7 +776,32 @@ export type Services = {
       }
     ];
   };
+}; 
+export type Sectwo = {
+  title: string;
+  description: string;
+  innertitle: string;
+  items: {
+    image: StaticImageData;
+    imageAlt: string;
+    title: string;
+    description: string;
+  }[];
 };
+
+export type Partnerst= {
+  title: string;
+  description: string;
+  innertitle: string;
+  items: { 
+    title: string;
+    description: string;
+  }[];
+};
+
+ 
+
+
 export type GlobalPresence = {
   metaTitle: string;
   metaDescription: string;

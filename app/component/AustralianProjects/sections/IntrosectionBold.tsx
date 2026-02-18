@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 import { introbold } from "@/public/types/Common";
 
-const IntroBold = ({ data }: { data: introbold }) => {
+const IntrosectionBold = ({ data }: { data: introbold }) => {
   const containerRef = useRef(null);
 
   const textContainerVariants = {
@@ -47,10 +47,10 @@ const IntroBold = ({ data }: { data: introbold }) => {
     },
   };
   return (
-    <section className="overflow-hidden relative pt-10">
+    <section className="overflow-hidden relative pt-2 md:pt-[30px] xl:pt-[80px] 2xl:pt-[100px] ">
       <div className="container">
-        <div className="grid grid-cols-12   ">
-          <div className="col-span-12 lg:col-span-6">
+        <div className="grid grid-cols-1    lg:grid-cols-[auto,547px]  xl:grid-cols-[auto,647px]  2xl:grid-cols-[auto,847px] gap-5   ">
+          <div className=" ">
             <motion.div
               variants={textContainerVariants}
               initial="hidden"
@@ -58,7 +58,7 @@ const IntroBold = ({ data }: { data: introbold }) => {
               viewport={{ once: true, amount: 0.3 }}
             >
               <motion.h2
-                className={`text-xl text-primary font-[600] leading-[1.2] mb-4 lg:mb-0  ${data.titlecase == true ? `uppercase` : ``}`}
+                className={`text-xl text-primary font-[600] leading-[1.365]  ${data.titlecase == true ? `uppercase` : ``}`}
                 custom="x"
                 variants={textVariants}
                 style={{ maxWidth: data.maxwidth ? `${data.maxwidth}ch` : 'auto' }}
@@ -69,7 +69,7 @@ const IntroBold = ({ data }: { data: introbold }) => {
             </motion.div>
           </div>
 
-          <motion.div className="col-span-12 lg:col-span-6 right-0 pl-[0px] lg:pl-[50px]">
+          <motion.div className="  ">
             <div>
               <motion.div
                 initial="hidden"
@@ -98,4 +98,4 @@ const IntroBold = ({ data }: { data: introbold }) => {
   );
 };
 
-export default IntroBold;
+export default IntrosectionBold;

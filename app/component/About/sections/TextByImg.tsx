@@ -55,7 +55,7 @@ const TextByImg = ({ data }: { data: textbyimg, kmbtn?: boolean }) => {
   }, []);
 
   return (
-    <section className="py-[50px] md:py-[70px] xl:py-[80px] xxl:py-[100px]  overflow-hidden relative ">
+    <section className="py-[50px] md:py-[70px] xl:py-[80px] xxl:py-[100px]  overflow-hidden relative pts">
       <div className="container">
   <div className="lg:flex items-center">
     {/* Text Section */}
@@ -99,7 +99,7 @@ const TextByImg = ({ data }: { data: textbyimg, kmbtn?: boolean }) => {
 
     {/* Image Section */}
     <motion.div
-      className="w-full lg:w-1/2 pl-0 lg:pl-[44px]"
+      className="w-full lg:w-1/2 pl-0 lg:pl-[44px] "
       initial="hidden"
       whileInView="visible"
       variants={imageVariants}
