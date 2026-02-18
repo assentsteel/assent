@@ -12,7 +12,7 @@ const GridBox = ({ data, maxchwidth, colnum, }: { data: gridbox, colnum?: number
   return (
     <section className="bg-primary   relative">
     <div className="container mx-auto   ">
-      <div className="flex flex-col py-[50px] md:py-[70px] xl:py-[100px] ">
+      <div className="flex flex-col py100 ">
         <div className="mb-5 lg:mb-[60px]">
           <motion.div
             initial="hidden"
@@ -52,16 +52,13 @@ const GridBox = ({ data, maxchwidth, colnum, }: { data: gridbox, colnum?: number
             {/* Item 1 */}
            {data.items.map((expertise, index) => (
   <div key={index}> 
-      <div
-        style={{
-          backgroundImage: `url(${expertise.image})`,
-        }}
+      <div 
         className="group dddd relative"
       >
         <div className="flex relative z-10 bg-primary group-hover:bg-secondary flex-col justify-between gap-3 border p-5 transition-all duration-500 md:h-[300px] lg:h-[340px] lg:gap-0 lg:p-10 xl:h-[414px]">
 
           {/* Image Wrapper */}
-          <div className="group-hover:hidden group-hover:md:block  group-hover:opacity-0 transition-all duration-500 align-center   flex h-[68px] w-[68px] rounded-[5px] justify-center  p-2 transition-colors duration-500 bg-secondary group-hover:bg-white md:h-[50px] md:w-[50px]">
+          <div className="group-hover:h-0  group-hover:opacity-0 transition-all duration-500 align-center   flex h-[68px] w-[68px] rounded-[5px] justify-center  p-2 transition-colors duration-500 bg-secondary group-hover:bg-white md:h-[50px] md:w-[50px]">
             <Image
               src={expertise.logo}
               alt={expertise.logoAlt}
@@ -73,12 +70,12 @@ const GridBox = ({ data, maxchwidth, colnum, }: { data: gridbox, colnum?: number
 
           {/* Content */}
           <div>
-            <h3 className="text-md leading-[1.21] font-semibold titlesp transition-colors duration-300 text-white group-hover:text-white">
+            <h3 className="group-hover:pb-5 text-md leading-[1.21] font-semibold titlesp transition-colors duration-300 text-white group-hover:text-white">
               {expertise.title}
             </h3>
 
             <div className="overflow-hidden">
-              <p className="text-19 font-normal cntsmd hided-content max-h-0 w-[102%] overflow-hidden group-hover:pt-5 text-white opacity-0 transition-all duration-500 group-hover:max-h-[15rem] group-hover:opacity-100">
+              <p className="text-19 font-normal cntsmd hided-content max-h-0 w-[102%] overflow-auto  text-white opacity-0 transition-all duration-500 group-hover:max-h-[11rem] xl:group-hover:max-h-[16rem] group-hover:opacity-100">
                 {expertise.description}
               </p>
             </div>

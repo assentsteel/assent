@@ -1,19 +1,19 @@
 import React from "react";
-import FirstSection from "./sections/FirstSection";
-import IntrosectionBold from "./sections/IntrosectionBold";
-import GlobalReach from "../../component/GlobalPresence/sections/GlobalReach";
-import HeadingText from "./sections/HeadingText";
-import KeyCapabilities from "./sections/KeyCapabilities"
-import { singletextimg, reach,sectwo,howwework,keycap,gridsbox,whyus,susbata,partnershipdata ,accauss ,ainglelabeldata,faqdata} from "./australianProjectsData";
+import FirstSection from "../AustralianProjects/sections/FirstSection";
+import IntrosectionBold from "../AustralianProjects/sections/IntrosectionBold";
+import GlobalReach from "../GlobalPresence/sections/GlobalReach";
+import HeadingText from "../AustralianProjects/sections/HeadingText";
+import KeyCapabilities from "../AustralianProjects/sections/KeyCapabilities"
+import { singletextimg, reach,sectwo,howwework,keycap,gridsbox,whyus,susbata,partnershipdata ,accauss ,ainglelabeldata,faqdata} from "./ProjectsData";
 import { GlobalReachtype } from "@/public/types/Common";
-import HowweWork from "./sections/HowweWork "; 
-import Faq from "./sections/Faq";
-import GridBox from "./sections/GridBox";
-import WhyAssent from "./sections/WhyAssent";
-import SaftySustainablity from "./sections/SaftySustainablity"
-import PartnershipModel from "./sections/PartnershipModel"
-import AccordionAus from "./sections/AccordionAus"
- import SingleImageText from "./sections/SingleImageText"
+import HowweWork from "../AustralianProjects/sections/HowweWork "; 
+import Faq from "../AustralianProjects/sections/Faq";
+import GridBox from "../AustralianProjects/sections/GridBox";
+import WhyAssent from "../AustralianProjects/sections/WhyAssent";
+import SaftySustainablity from "../AustralianProjects/sections/SaftySustainablity"
+import PartnershipModel from "../AustralianProjects/sections/PartnershipModel"
+import AccordionAus from "../AustralianProjects/sections/AccordionAus"
+ import SingleImageText from "../AustralianProjects/sections/SingleImageText"
 const Index = () => {
   const sectionData = singletextimg?.data?.[0];
 

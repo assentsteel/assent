@@ -54,7 +54,7 @@ gsap.registerPlugin(ScrollTrigger);
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
   };
   return (
-    <section className="pt-[50px] md:pt-[70px] xl:pt-[100px]  overflow-hidden relative  ">
+    <section className="pt100  overflow-hidden relative  ">
       <div className="container">
         <div className="grid grid-cols-12   ">
           <div className="col-span-12 lg:col-span-12">
@@ -79,14 +79,14 @@ gsap.registerPlugin(ScrollTrigger);
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}>
 
-                <div className="text-sm font-normal  text-territory leading-[1.6] "
+                <div className="text-sm font-normal  text-territory leading-[1.53] "
                 dangerouslySetInnerHTML={{__html: data.description}}> 
                 </div>
               </motion.div>
             </div>
           </div>
         </div>
-        <h2 className="text-lg  text-primary font-[600] leading-[1.2]   mt-5 2xl:mt-[60px]">{data.innertitle}</h2>
+        <h2 className="text-lg  text-primary font-[600] leading-[1.267]   mt-5 2xl:mt-[60px]">{data.innertitle}</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-[30px] mt-5 lg:mt-[30px]">
         {data.items.map((item, index) => (
           <motion.div
@@ -109,7 +109,7 @@ gsap.registerPlugin(ScrollTrigger);
 
               <div className="absolute bottom-0 px-4 pb-4 lg:px-[30px] lg:pb-[30px]">
                 <motion.p
-                  className="text-md xl:text-[24px] text-white font-[600] pb-[20px] border-b-2 border-white transform transition-transform duration-500 group-hover:border-secondary"
+                  className="text-md xl:text-[24px] text-white leading-[1.417] font-[600] pb-[20px] border-b-2 border-white transform transition-transform duration-500 group-hover:border-secondary"
                   whileHover={{ x: 5 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >

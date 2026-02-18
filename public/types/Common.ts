@@ -469,8 +469,7 @@ export type Accaus = {
     description: string;
     items:  
       {
-        logo: StaticImageData;
-        logoAlt: string;
+        
         title: string;
         description: string;
       }[];
@@ -498,9 +497,7 @@ export type gridbox = {
     title: string;
     description: string;
     items:  
-      {
-        image: StaticImageData;
-        imageAlt: string;
+      { 
         title: string;
         description: string;
         logo: string;

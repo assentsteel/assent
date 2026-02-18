@@ -597,3 +597,16 @@ margin-bottom: 15px;
 .parsed-content ul li {
   font-size: clamp(1.0625rem, 1.5vw, 1.1875rem);
 }
+.pb100 {
+  @apply pb-[40px] md:pb-[50px] lg:pb-[60px]  xl:pb-[70px] 2xl:pb-[100px];
+}
+.pb90 {
+  @apply pb-[40px] md:pb-[50px] lg:pb-[60px]  xl:pb-[70px] 2xl:pb-[90px];
+}
+.pt100 {
+  @apply pt-[40px] md:pt-[50px] lg:pt-[60px]  xl:pt-[70px] 2xl:pt-[100px];
+}
+.py100 {
+  @apply py-[40px] md:py-[50px] lg:py-[60px]  xl:py-[70px] 2xl:py-[100px];
+}
+.pt60 {@apply py-[40px] md:py-[50px] xl:pt-[60px]}

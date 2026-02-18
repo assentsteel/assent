@@ -36,7 +36,7 @@ const AccordionAus = ({ data }: { data: Accaus }) => {
     exit: { opacity: 0, x: -30, transition: { duration: 0.4 } },
   };
   return (
-    <section className="pb-[50px] md:pb-[70px] xl:pb-[100px] cpt0  overflow-hidden relative ">
+    <section className="pb100 cpt0  overflow-hidden relative ">
       <div className="container">
         <div className="lg:grid lg:grid-cols-[auto_496px] xl:grid-cols-[auto_696px] 2xl:grid-cols-[auto_964px] lg:items-center xxl:items-start lg:gap-4 xl:gap-7 2xl:gap-[106px]">
           <div className=" ">

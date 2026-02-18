@@ -53,7 +53,7 @@ export const reach = {
         "Large scale manufacturing facility supporting the fabrication of heavy and complex structural steel for Australian mining, infrastructure, industrial, and building projects. ",
     },
     {
-      count: "500,000",
+      count: "500000",
       title: "Steel Fabricated ",
       details:
         "Extensive fabrication experience across global projects, delivering structural steel packages relevant to Australian construction and industrial requirements. ",
@@ -222,7 +222,7 @@ export const partnershipdata =
         imageAlt: 'Safety and quality management ',
         title: 'Safety and quality management ',
         description: 'Fabrication activities are carried out under defined safety and quality management systems, supporting compliance with project specific HSE and inspection requirements.  ',
-        logo: assets.se,
+        logo: assets.sa1,
         logoAlt: 'Safety and quality management ',
       },
       {
@@ -230,7 +230,7 @@ export const partnershipdata =
         imageAlt: 'Environmental and resource considerations',
         title: 'Environmental and resource considerations',
         description: 'Fabrication activities are carried out under defined safety and quality management systems, supporting compliance with project specific HSE and inspection requirements.',
-        logo: assets.sf,
+        logo: assets.sa2,
         logoAlt: 'Environmental and resource considerations',
       },
       {
@@ -238,7 +238,7 @@ export const partnershipdata =
         imageAlt: 'Supply chain transparency and traceability ',
         title: 'Supply chain transparency and traceability ',
         description: 'Fabrication activities are carried out under defined safety and quality management systems, supporting compliance with project specific HSE and inspection requirements.',
-        logo: assets.ser3,
+        logo: assets.sa3,
         logoAlt: 'Supply chain transparency and traceability ',
       }
     ],

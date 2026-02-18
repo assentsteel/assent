@@ -30,9 +30,20 @@ import { whyus } from "@/public/types/Common";
       });
     }
   }, []);
-
+const textVariants = {
+    hidden: (direction = "x") => ({
+      opacity: 0,
+      [direction]: direction === "x" ? -30 : 20,
+    }),
+    visible: {
+      opacity: 1,
+      x: 0,
+      y: 0,
+      transition: { duration: 0.5 },
+    },
+  };
   return (
-    <section className="pt-[50px] md:pt-[70px] xl:pt-[100px] pb-[40px] md:pb-[60px] xl:pb-[90px]   overflow-hidden relative ">
+    <section className="py100   overflow-hidden relative ">
       <div className="container">
         <div>
           <motion.h2
@@ -41,16 +52,22 @@ import { whyus } from "@/public/types/Common";
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
             exit="exit"
-            className="text-xl font-[600] leading-[1.2] mb-4 lg:mb-7  text-primary      "
+            className="text-xl font-[600] leading-[1.2] mb-4 lg:mb-[30px]  text-primary      "
           >
             {data.title}
           </motion.h2>
-          <p className="text-sm text-tertiary font-[400] leading-[1.5] mb-5 2xl:mb-[60px] max-w-[105ch]">
+          <motion.p className="text-sm text-tertiary font-[400] leading-[1.5] mb-5 xl:mb-[40px] 2xl:mb-[60px] max-w-[105ch]"
+          custom="y"
+                    variants={textVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ delay: 0.2, duration: 0.5 }}>
             {data.description}
-          </p>
+          </motion.p>
           
         </div>
-          <div className="lg:grid   lg:grid-cols-[457px_auto] xl:grid-cols-[550px_auto] 2xl:grid-cols-[797px_auto] lg:items-center xxl:items-center gap-5 lg:gap-[66px]">
+          <div className="lg:grid   lg:grid-cols-[457px_auto] xl:grid-cols-[500px_auto] 2xl:grid-cols-[797px_auto] lg:items-center xxl:items-center gap-5 lg:gap-[66px]">
              <div className="w-full     ">
             {/* {data.items.map((item, index) => ( */}
               <motion.div
@@ -83,7 +100,7 @@ import { whyus } from "@/public/types/Common";
               >
                 <motion.div
                   key={index}
-                  className="group py-5 lg:py-[20px] xxl:py-[30px] transition-all duration-300 cursor-pointer"
+                  className="group py-5 lg:py-[20px] 2xl:py-[30px] transition-all duration-300 cursor-pointer"
                   onMouseEnter={() => setActiveIndex(index)}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -99,7 +116,7 @@ import { whyus } from "@/public/types/Common";
                         {/* TITLE */}
                         <h3 className={`${
                         activeIndex === index ? "text-secondary" : "text-territory"
-                      } capitalize text-[17px] md:text-md group-hover:text-secondary transition-all duration-300 leading-[1] font-[500]  pr-6`}>
+                      } capitalize text-[17px] md:text-md group-hover:text-secondary transition-all duration-300 leading-[1.22] font-[500]  pr-6`}>
                           {da.title}
                         </h3>
  

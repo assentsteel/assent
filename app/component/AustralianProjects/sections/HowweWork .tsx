@@ -32,7 +32,7 @@ import { HowWework } from "@/public/types/Common";
   }, []);
 
   return (
-    <section className="pt-[50px] md:pt-[70px] xl:pt-[60px] pb-[30px] md:pb-[50px] xl:pb-[90px]   overflow-hidden relative ">
+    <section className="pt60 pb100   overflow-hidden relative ">
       <div className="container">
         <div>
           <motion.h2
@@ -41,17 +41,17 @@ import { HowWework } from "@/public/types/Common";
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
             exit="exit"
-            className="text-lg  text-primary font-[600] leading-[1.2]   mb-5 2xl:mb-[40px]"
+            className="text-lg  text-primary font-[600] leading-[1.27] mb-2  xl:mb-5 2xl:mb-[40px]"
           >
             {data.title}
           </motion.h2>
           
         </div>
-          <div className="lg:grid   lg:grid-cols-[400px_auto]  xl:grid-cols-[450px_auto] 2xl:grid-cols-[656px_auto] lg:items-center xxl:items-center gap-5 lg:gap-[66px]">
+          <div className="lg:grid   lg:grid-cols-[400px_auto]  xl:grid-cols-[550px_auto] 2xl:grid-cols-[656px_auto] lg:items-center xxl:items-center gap-5 lg:gap-[66px]">
              <div className="w-full     ">
             {/* {data.items.map((item, index) => ( */}
               <motion.div
-                className=" hidden md:block"
+                className=" hidden lg:block"
                 // key={index}
                 variants={slideInLeft}
                 initial="hidden"
@@ -72,7 +72,7 @@ import { HowWework } from "@/public/types/Common";
               </motion.div>
             {/* ))} */}
           </div>
-          <div className="w-full   mt-6 lg:mt-0">
+          <div className="w-full     ">
             {data.items.map((da, index) => (
               <div
                 className="border-b last:border-b-0 border-[#00000015]"
@@ -87,6 +87,8 @@ import { HowWework } from "@/public/types/Common";
                   transition={{ duration: 0.4, delay: index * 0.1 }}
                 >
                   {/* FIXED ROW */}
+
+                    <div className="flex-1">
                   <div className="flex gap-3 xl:gap-5 items-start">
                     {/* LEFT ARROW (rotates when active) */}
                     <Image
@@ -105,7 +107,7 @@ import { HowWework } from "@/public/types/Common";
                         {/* TITLE */}
                         <h3 className={`${
                         activeIndex === index ? "text-secondary" : "text-territory"
-                      } capitalize text-[17px] md:text-md group-hover:text-secondary transition-all duration-300 leading-[1] font-[500]  pr-6`}>
+                      } capitalize text-[17px] md:text-md group-hover:text-secondary transition-all duration-300 leading-[1.2] font-[500]  pr-6`}>
                           {da.title}
                         </h3>
 
@@ -121,6 +123,9 @@ import { HowWework } from "@/public/types/Common";
                         />
                       </div>
 
+                    </div>
+                  </div>
+
                       {/* DESCRIPTION DROPDOWN */}
                       <AnimatePresence mode="wait">
                         {activeIndex === index && (
@@ -131,14 +136,14 @@ import { HowWework } from "@/public/types/Common";
                             animate={{
                               opacity: 1,
                               height: "auto",
-                              marginTop: "20px",
+                              marginTop: "10px",
                             }}
                             exit={{ opacity: 0, height: 0, marginTop: 0 }}
                             transition={{ duration: 0.4 }}
-                            className="max-w-[70ch] text-territory text-sm font-[400] leading-[1.7] pr-6 overflow-hidden"
+                            className="max-w-[70ch] text-territory text-sm font-[400] leading-[1.7] lg:pr-6 overflow-hidden lg:ps-[38px]"
                           >
                             <motion.div
-                className=" mb-3 md:hidden" 
+                className=" mt-3 mb-3 lg:hidden" 
               >
                 <figure className="image-wrapper h-full ">
                   <Image
@@ -155,8 +160,7 @@ import { HowWework } from "@/public/types/Common";
                           </motion.div>
                         )}
                       </AnimatePresence>
-                    </div>
-                  </div>
+                      </div>
                 </motion.div>
               </div>
             ))}

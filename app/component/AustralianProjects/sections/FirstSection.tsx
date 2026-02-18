@@ -21,7 +21,7 @@ const FirstSection: React.FC<FirstSectionProps> = ({ data }) => {
   }
 
   return (
-    <section className="pt-[29px] lg:pt-[60px] pb-[50px] md:pb-[70px] xl:pb-[100px] overflow-hidden relative">
+    <section className="pt-[29px] lg:pt-[60px] pb100 overflow-hidden relative">
       <div className="container mx-auto px-4">
         <div>
           <motion.figure

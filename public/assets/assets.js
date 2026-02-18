@@ -131,7 +131,39 @@ import kc2 from "./img/australianproject/kc2.jpg";
 import kc3 from "./img/australianproject/kc3.jpg"; 
 import kc4 from "./img/australianproject/kc4.jpg"; 
 import partneras from "./img/australianproject/partneras.jpg"; 
+import sa1 from "./img/australianproject/sa1.svg"; 
+import sa2 from "./img/australianproject/sa2.svg"; 
+import sa3 from "./img/australianproject/sa3.svg"; 
  
+import ukbanner from "./img/ukprojects/banner.jpg"; 
+import ukrole1 from "./img/ukprojects/role1.jpg"; 
+import ukrole2 from "./img/ukprojects/role2.jpg"; 
+import ukrole3 from "./img/ukprojects/role3.jpg"; 
+import ukrole4 from "./img/ukprojects/role4.jpg"; 
+import ukhww1 from "./img/ukprojects/hww1.jpg"; 
+import ukhww2 from "./img/ukprojects/hww2.jpg"; 
+import ukhww3 from "./img/ukprojects/hww3.jpg"; 
+import ukhww4 from "./img/ukprojects/hww4.jpg"; 
+import ukkey1 from "./img/ukprojects/key1.jpg"; 
+import ukkey2 from "./img/ukprojects/key2.jpg"; 
+import ukkey3 from "./img/ukprojects/key3.jpg"; 
+import ukkey4 from "./img/ukprojects/key4.jpg";  
+import ukwhy1 from "./img/ukprojects/why1.jpg"; 
+import ukwhy2 from "./img/ukprojects/why2.jpg"; 
+import ukwhy3 from "./img/ukprojects/why3.jpg"; 
+import ukwhy4 from "./img/ukprojects/why4.jpg"; 
+import ukfbanner from "./img/ukprojects/fbanner.jpg"; 
+import ukser1 from "./img/ukprojects/ser1.svg"; 
+import ukser2 from "./img/ukprojects/ser2.svg"; 
+import ukser3 from "./img/ukprojects/ser3.svg"; 
+import ukser4 from "./img/ukprojects/ser4.svg"; 
+import uksafe1 from "./img/ukprojects/safe1.svg"; 
+import uksafe2 from "./img/ukprojects/safe2.svg"; 
+import uksafe3 from "./img/ukprojects/safe3.svg";  
+
+
+
+
 
  
 
@@ -259,6 +291,34 @@ import ve from "./img/icns/ves.svg";
 
 
 export const assets = {
+  ukbanner,
+  ukrole1,
+  ukrole2,
+  ukrole3,
+  ukrole4,
+  ukhww1,
+  ukhww2,
+  ukhww3,
+  ukhww4,
+  ukkey1,
+  ukkey2,
+  ukkey3,
+  ukkey4,
+  ukwhy1,
+  ukwhy2,
+  ukwhy3,
+  ukwhy4,
+  ukfbanner,
+  ukser1,
+  ukser2,
+  ukser3,
+  ukser4,
+  uksafe1,
+  uksafe2,
+  uksafe3, 
+  sa1,
+  sa2,
+  sa3,
   partneras,
   wsa1,
   wsa2,

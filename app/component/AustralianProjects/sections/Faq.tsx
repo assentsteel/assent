@@ -30,21 +30,45 @@ import { typefaq } from "@/public/types/Common";
       });
     }
   }, []);
-
+ const textContainerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.3, delayChildren: 0.5 },
+    },
+  };
+   const textVariants = {
+    hidden: (direction = "x") => ({
+      opacity: 0,
+      [direction]: direction === "x" ? -30 : 20,
+    }),
+    visible: {
+      opacity: 1,
+      x: 0,
+      y: 0,
+      transition: { duration: 0.5 },
+    },
+  };
   return (
-    <section className="  pb-[40px] md:pb-[60px] xl:pb-[90px]   overflow-hidden relative ">
+    <section className="  pb90   overflow-hidden relative ">
       <div className="container">
         <div>
-           <motion.h2
-            variants={slideInLeft}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-              className="text-xl  text-primary font-[600] leading-[1.2] xl:leading-[1] mb-5 lg:mb-[60px]" 
-          >
-            {data.title}
-          </motion.h2>
           
+          <motion.div
+              variants={textContainerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              <motion.h2
+                className={`text-xl  text-primary font-[600] leading-[1.2] xl:leading-[1] mb-5 lg:mb-[60px]`}
+                custom="x"
+                variants={textVariants} 
+
+              >
+                {data.title}
+              </motion.h2>
+            </motion.div>
         </div>
           <div className=" ">
             

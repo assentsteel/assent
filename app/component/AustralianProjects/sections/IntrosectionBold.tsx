@@ -47,7 +47,7 @@ const IntrosectionBold = ({ data }: { data: introbold }) => {
     },
   };
   return (
-    <section className="overflow-hidden relative pt-2 md:pt-[30px] xl:pt-[100px] ">
+    <section className="overflow-hidden relative pt-2 md:pt-[30px] xl:pt-[80px] 2xl:pt-[100px] ">
       <div className="container">
         <div className="grid grid-cols-1    lg:grid-cols-[auto,547px]  xl:grid-cols-[auto,647px]  2xl:grid-cols-[auto,847px] gap-5   ">
           <div className=" ">

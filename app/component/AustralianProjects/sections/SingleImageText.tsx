@@ -51,7 +51,7 @@ const SingleImageText = ({
     }
   }, []); 
   return (
-    <section className="pb-[50px] md:pb-[70px] xl:pb-[80px] xxl:pb-[100px] cpt0  overflow-hidden relative cpt0">
+    <section className="pb100 cpt0  overflow-hidden relative cpt0">
       <div className="container">
      
           <motion.div
@@ -95,11 +95,11 @@ const SingleImageText = ({
                 <motion.p
                   key={index}
                   variants={fadeUp}
-                  className="mb-4 last:mb-0 text-white text-sm font-[400] leading-[1.8] max-w-[84.5ch]"
+                  className=" text-white text-sm font-[400] leading-[1.53] max-w-[84.5ch]"
                   dangerouslySetInnerHTML={{ __html: paragraph }}
                 />
               ))}
-              <Link href="/contact-us" className="border whitespace-nowrap font-[500] border-secondary text-[15px] text-white uppercase rounded-full py-[8px] px-[20px] 2xl:py-[12px] 2xl:px-[90px] mt-5 md:mt-[40px] w-fit">
+              <Link href="/contact-us" className="border whitespace-nowrap font-[500] border-secondary text-[15px] text-white uppercase rounded-full py-[8px] px-[20px] 2xl:py-[12px] 2xl:px-[99px] mt-5 md:mt-[40px] w-fit">
                 Contact us 
               </Link>
           </motion.div>

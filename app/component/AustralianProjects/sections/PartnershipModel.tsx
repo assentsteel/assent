@@ -54,7 +54,7 @@ gsap.registerPlugin(ScrollTrigger);
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
   };
   return (
-    <section className="pt-[50px] md:pt-[70px] xl:pt-[100px] pb-[20px] md:pb-[40px] xl:pb-[100px]  overflow-hidden relative  ">
+    <section className="py100  overflow-hidden relative  ">
       <div className="container">
         <div className="grid grid-cols-12   ">
           <div className="col-span-12 lg:col-span-12">
@@ -73,20 +73,20 @@ gsap.registerPlugin(ScrollTrigger);
           </div>
           <div className="col-span-12 lg:col-span-12 ">
             <div>
-              <motion.div className="overflow-hidden max-w-[140ch]"
+              <motion.div className="overflow-hidden max-w-[122ch]"
                variants={slideInbtm}
                initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}>
 
-                <div className="text-sm font-normal  text-territory leading-[1.6] "
+                <div className="text-sm font-normal  text-territory leading-[1.48] "
                 dangerouslySetInnerHTML={{__html: data.description}}> 
                 </div>
               </motion.div>
             </div>
           </div>
         </div>
-        <h2 className="text-lg  text-primary font-[600] leading-[1.2]   mt-7 2xl:mt-[60px]">{data.innertitle}</h2>
+        <h2 className="text-lg  text-primary font-[600] leading-[1.27]   mt-7 2xl:mt-[60px]">{data.innertitle}</h2>
         <div className=" mt-5 lg:mt-[60px]">
         {data.items.map((item, index) => (
           <motion.div

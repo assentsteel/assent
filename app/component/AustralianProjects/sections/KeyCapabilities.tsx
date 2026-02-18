@@ -109,7 +109,7 @@ const KeyCapabilities = ({
 
   return (
     <section
-      className={`  pb-[50px] md:pb-[70px] xl:pb-[100px] overflow-hidden relative ${bgcolor ? bgcolor : ""
+      className={`  pb100 overflow-hidden relative ${bgcolor ? bgcolor : ""
         }`}
     >
       <div className="container">
@@ -127,7 +127,7 @@ const KeyCapabilities = ({
             {data.title}
           </motion.h2>
           <motion.p
-            className={`max-w-[100ch] mt-4 lg:mt-[40px] text-sm leading-[1.66] ${textwhite ? "text-white" : "text-territory"
+            className={`max-w-[100ch] mt-4 lg:mt-[40px] text-sm leading-[1.48] ${textwhite ? "text-white" : "text-territory"
               }`}
             variants={slideInLeft}
             initial="hidden"
@@ -209,7 +209,7 @@ const KeyCapabilities = ({
                     }}
 
                     onClick={() => setActiveTab(actualIndex)}
-                    className={`py-[13px] text-sm font-[400] relative  flex-shrink-0 ${textwhite ? "text-white" : "text-black"
+                    className={`py-[18px] text-sm font-[400] relative  flex-shrink-0 ${textwhite ? "text-white" : "text-black"
                       } ${activeTab === actualIndex
                         ? "font-[700] border-t-2 border-secondary"
                         : ""
@@ -237,13 +237,13 @@ const KeyCapabilities = ({
                   <div className="mb-8 lg:mb-0 max-w-[765px]">
                     <h2
                       className={`text-lg ${textwhite ? "text-white" : "text-black"
-                        } font-[600] leading-[1.2] mb-3 lg:mb-[24px]`}
+                        } font-[600] leading-[1.27] mb-3 lg:mb-[24px]`}
                     >
                       {activeContent.title}
                     </h2>
                     <div className="text-territory text-sm font-[400] leading-[1.8] mb-6 lg:mb-10">
                       <div
-                        className={`${pathName.startsWith(`/sustainability`) == true ? "sustainability-area-of-focus" : "insts"}`}
+                        className={`leading-[1.53] ${pathName.startsWith(`/sustainability`) == true ? "sustainability-area-of-focus" : "insts"}`}
                         dangerouslySetInnerHTML={{
                           __html: activeContent.description,
                         }}
