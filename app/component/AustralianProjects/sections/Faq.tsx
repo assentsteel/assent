@@ -70,67 +70,84 @@ import { typefaq } from "@/public/types/Common";
         </div>
           <div className=" ">
             
-          <div className="w-full   mt-6 lg:mt-0">
-            {data.items.map((da, index) => (
-              <div
-                className="border-b first:border-t border-[#00000015]"
-                key={index}
+         <div className="w-full mt-6 lg:mt-0">
+  {data.items.map((da, index) => (
+    <div
+      className="border-b first:border-t border-[#00000015]"
+      key={index}
+    >
+      <motion.div
+        key={index}
+        className="group py-6 lg:py-[25px] xxl:py-[42.5px] cursor-pointer"
+        onMouseEnter={() => {
+          if (activeIndex !== index) {
+            setActiveIndex(-1);
+            setTimeout(() => setActiveIndex(index), 350);
+          }
+        }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: index * 0.1 }}
+      >
+        <div className="flex gap-5 items-start">
+          <div className="flex-1">
+            <div className="flex justify-between">
+              <h3 className="capitalize text-[17px] md:text-md text-primary transition-colors duration-300 leading-[1.2] xl:leading-[1] font-[500] pr-3 xl:pr-6">
+                {da.title}
+              </h3>
+
+              <motion.div
+                animate={{ rotate: activeIndex === index ? 180 : 0 }}
+                transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
               >
+                <Image
+                  src="/assets/img/icons/arrow_down.png"
+                  alt="logo"
+                  width={17}
+                  height={8}
+                  className="w-[17px] h-[8px]"
+                />
+              </motion.div>
+            </div>
+
+            {/* DESCRIPTION DROPDOWN */}
+            <AnimatePresence initial={false}>
+              {activeIndex === index && (
                 <motion.div
-                  key={index}
-                  className="group py-6 lg:py-[25px] xxl:py-[42.5px] transition-all duration-300 cursor-pointer"
-                  onMouseEnter={() => setActiveIndex(index)}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  key={`content-${index}`}
+                  initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                  animate={{
+                    opacity: 1,
+                    height: "auto",
+                    marginTop: "16px",
+                    transition: {
+                      height: { duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] },
+                      opacity: { duration: 0.25, delay: 0.08 },
+                      marginTop: { duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] },
+                    },
+                  }}
+                  exit={{
+                    opacity: 0,
+                    height: 0,
+                    marginTop: 0,
+                    transition: {
+                      opacity: { duration: 0.2, ease: "easeIn" },
+                      height: { duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.15 },
+                      marginTop: { duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.15 },
+                    },
+                  }}
+                  className="max-w-[105ch] text-territory text-sm font-[400] leading-[1.58] pr-6 overflow-hidden"
                 >
-                  {/* FIXED ROW */}
-                  <div className="flex gap-5 items-start">
-                   
-                    {/* TITLE + DESCRIPTION */}
-                    <div className="flex-1">
-                      <div className="flex justify-between ">
-                        {/* TITLE */}
-                        <h3 className={` capitalize text-[17px] md:text-md text-primary transition-all duration-300 leading-[1.2] xl:leading-[1] font-[500]  pr-3 xl:pr-6 `}>
-                          {da.title}
-                        </h3>
-
-                        {/* RIGHT ARROW (aligns EXACTLY with the title) */}
-                        <Image
-                          src="/assets/img/icons/arrow_down.png"
-                          alt="logo"
-                          width={17}
-                          height={8}
-                          className={`w-[17px] h-[8px] transition-all duration-300 ${
-                            activeIndex === index ? "rotate-180" : ""
-                          }`}
-                        />
-                      </div>
-
-                      {/* DESCRIPTION DROPDOWN */}
-                      <AnimatePresence mode="wait">
-                        {activeIndex === index && (
-                          <motion.div
-                            key="content"
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{
-                              opacity: 1,
-                              height: "auto", 
-                            }}
-                            exit={{ opacity: 0, height: 0, marginTop: 0 }}
-                            transition={{ duration: 0.4 }}
-                            className="max-w-[105ch] text-territory text-sm font-[400] leading-[1.58] pr-6 overflow-hidden !mt-4 lg:!mt-[30px]"
-                          >
-                            <p >{da.description}</p>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  </div>
+                  <p>{da.description}</p>
                 </motion.div>
-              </div>
-            ))}
+              )}
+            </AnimatePresence>
           </div>
+        </div>
+      </motion.div>
+    </div>
+  ))}
+</div>
 
        
         </div>
