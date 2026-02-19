@@ -38,7 +38,7 @@ const AccordionAus = ({ data }: { data: Accaus }) => {
   return (
     <section className="pb100 cpt0  overflow-hidden relative ">
       <div className="container">
-        <div className="lg:grid lg:grid-cols-[auto_496px] xl:grid-cols-[auto_696px] 2xl:grid-cols-[auto_964px] lg:items-center xxl:items-start lg:gap-4 xl:gap-7 2xl:gap-[106px]">
+        <div className="xl:min-h-[400px] lg:grid   xl:grid-cols-[auto_696px] 2xl:grid-cols-[auto_964px] lg:items-center xxl:items-start lg:gap-4 xl:gap-7 2xl:gap-[106px]">
           <div className=" ">
             <motion.h2
               viewport={{ once: true, amount: 0.2 }}
@@ -60,7 +60,12 @@ const AccordionAus = ({ data }: { data: Accaus }) => {
               <motion.div
                 key={index}
                 className="group border-b first:border-t border-[#00000015] last:border-b-0 py-5 lg:py-[20px] xxl:py-[34px] transition-all duration-300"
-                onMouseEnter={() => setActiveIndex(index)}
+                onMouseEnter={() => {
+  if (activeIndex !== index) {
+    setActiveIndex(-1); // trigger exit first
+    setTimeout(() => setActiveIndex(index), 250); // match exit height delay + duration = 0.15 + 0.25 = 400ms ≈ 350ms safe
+  }
+}}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
@@ -82,24 +87,37 @@ const AccordionAus = ({ data }: { data: Accaus }) => {
                       {da.title}
                     </h3>
 
-                    <AnimatePresence mode="wait">
-                      {activeIndex === index && (
-                        <motion.div
-                          key="content"
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{
-                            opacity: 1,
-                            height: "auto",
-                            marginTop: "15px",
-                          }}
-                          exit={{ opacity: 0, height: 0, marginTop: 0 }}
-                          transition={{ duration: 0.4 }}
-                          className="text-territory/80 text-[17px] lg:text-[19px] font-[400] leading-[1.7] overflow-hidden"
-                        >
-                          <div>{da.description}</div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
+                  <AnimatePresence initial={false}>
+  {activeIndex === index && (
+    <motion.div
+      key={`content-${index}`}
+      initial={{ opacity: 0, height: 0, marginTop: 0 }}
+      animate={{
+        opacity: 1,
+        height: "auto",
+        marginTop: "15px",
+        transition: {
+          height: { duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] },
+          opacity: { duration: 0.25, delay: 0.05 },
+          marginTop: { duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] },
+        },
+      }}
+      exit={{
+        opacity: 0,
+        height: 0,
+        marginTop: 0,
+        transition: {
+          opacity: { duration: 0.2, ease: "easeIn" },
+          height: { duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.15 },
+          marginTop: { duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.15 },
+        },
+      }}
+      className="text-territory/80 text-[17px] lg:text-[19px] font-[400] leading-[1.7] overflow-hidden"
+    >
+      <div>{da.description}</div>
+    </motion.div>
+  )}
+</AnimatePresence>
                   </div>
                 </div>
               </motion.div>

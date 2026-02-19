@@ -186,6 +186,59 @@ import afrsafe1 from "./img/africanproject/sus1.svg";
 import afrsafe2 from "./img/africanproject/sus2.svg"; 
 import afrsafe3 from "./img/africanproject/sus3.svg";  
 
+import eubanner from "./img/europeprojects/banner.jpg";    
+import eurrole1 from "./img/europeprojects/role1.jpg"; 
+import eurrole2 from "./img/europeprojects/role2.jpg"; 
+import eurrole3 from "./img/europeprojects/role3.jpg"; 
+import eurrole4 from "./img/europeprojects/role4.jpg"; 
+import eurhww1 from "./img/europeprojects/hww1.jpg"; 
+import eurhww2 from "./img/europeprojects/hww2.jpg"; 
+import eurhww3 from "./img/europeprojects/hww3.jpg";  
+import eurokey1 from "./img/europeprojects/key1.jpg"; 
+import eurokey2 from "./img/europeprojects/key2.jpg"; 
+import eurokey3 from "./img/europeprojects/key3.jpg"; 
+import eurokey4 from "./img/europeprojects/key4.jpg";  
+import eurowhy1 from "./img/europeprojects/why1.jpg"; 
+import eurowhy2 from "./img/europeprojects/why2.jpg"; 
+import eurowhy3 from "./img/europeprojects/why3.jpg"; 
+import eurowhy4 from "./img/europeprojects/why4.jpg"; 
+import eurofbanner from "./img/europeprojects/fbanner.jpg"; 
+import euroser1 from "./img/europeprojects/ser1.svg"; 
+import euroser2 from "./img/europeprojects/ser2.svg"; 
+import euroser3 from "./img/europeprojects/ser3.svg"; 
+import euroser4 from "./img/europeprojects/ser4.svg"; 
+import eurosafe1 from "./img/europeprojects/safe1.svg"; 
+import eurosafe2 from "./img/europeprojects/safe2.svg"; 
+import eurosafe3 from "./img/europeprojects/safe3.svg";  
+
+
+import usbanner from "./img/americanprojects/banner.jpg";    
+import usrole1 from "./img/americanprojects/role1.jpg";  
+import usrole2 from "./img/americanprojects/role2.jpg";  
+import usrole3 from "./img/americanprojects/role3.jpg"; 
+import usrole4 from "./img/americanprojects/role4.jpg"; 
+import ushww1 from "./img/americanprojects/hww1.jpg"; 
+import ushww2 from "./img/americanprojects/hww2.jpg"; 
+import ushww3 from "./img/americanprojects/hww3.jpg";  
+import uskey1 from "./img/americanprojects/key1.jpg"; 
+import uskey2 from "./img/americanprojects/key2.jpg"; 
+import uskey3 from "./img/americanprojects/key3.jpg"; 
+import uskey4 from "./img/americanprojects/key4.jpg";  
+import uswhy1 from "./img/americanprojects/why1.jpg"; 
+import uswhy2 from "./img/americanprojects/why2.jpg"; 
+import uswhy3 from "./img/americanprojects/why3.jpg"; 
+import uswhy4 from "./img/americanprojects/why4.jpg"; 
+import usfbanner from "./img/americanprojects/fbanner.jpg"; 
+import usser1 from "./img/americanprojects/safe1.svg"; 
+import usser2 from "./img/americanprojects/safe2.svg"; 
+import usser3 from "./img/americanprojects/safe3.svg"; 
+import usser4 from "./img/americanprojects/safe4.svg"; 
+import ussafe1 from "./img/americanprojects/sus1.svg"; 
+import ussafe2 from "./img/americanprojects/sus2.svg"; 
+import ussafe3 from "./img/americanprojects/sus3.svg";  
+
+
+
 
 
 
@@ -316,6 +369,54 @@ import ve from "./img/icns/ves.svg";
 
 
 export const assets = {
+  usbanner,
+  usrole1,
+  usrole2,
+  usrole3,
+  usrole4,
+  ushww1,
+  ushww2,
+  ushww3,
+  uskey1,
+  uskey2,
+  uskey3,
+  uskey4,
+  uswhy1,
+  uswhy2,
+  uswhy3,
+  uswhy4,
+  usfbanner,
+  usser1,
+  usser2,
+  usser3,
+  usser4,
+  ussafe1,
+  ussafe2,
+  ussafe3,
+  eubanner,
+  eurrole1,
+  eurrole2,
+  eurrole3,
+  eurrole4,
+  eurhww1,
+  eurhww2,
+  eurhww3,
+  eurokey1,
+  eurokey2,
+  eurokey3,
+  eurokey4,
+  eurowhy1,
+  eurowhy2,
+  eurowhy3,
+  eurowhy4,
+  eurofbanner,
+  euroser1,
+  euroser2,
+  euroser3,
+  euroser4,
+  eurosafe1,
+  eurosafe2,
+  eurosafe3,
   afrbanner,
   afrrole1,
   afrrole2,

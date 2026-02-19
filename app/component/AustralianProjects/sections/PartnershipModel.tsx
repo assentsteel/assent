@@ -97,8 +97,8 @@ gsap.registerPlugin(ScrollTrigger);
             className="border-b border-[#E6E6E6] last:border-b-0 first:border-t px-[20px] hover:bg-[linear-gradient(360deg,_#D9D9D9_0%,_rgba(217,217,217,0)_100%)] transition-colors duration-300"
           >
              <div className="flex flex-col lg:flex-row gap-3 lg:gap-5 xl:gap-10 2xl:gap-[235px] lg:items-center justify-between py-7 lg:py-[44px] ">
-              <h3 className="text-md font-[500] text-black">{item.title}</h3>
-              <p className="text-sm font-normal text-territory max-w-[58ch]">{item.description}</p>
+              <h3 className="text-md font-[500] text-black lg:w-1/2">{item.title}</h3>
+              <p className="text-sm font-normal text-territory max-w-[58ch] lg:w-1/2">{item.description}</p>
              </div>
           </motion.div>
         ))}

@@ -167,7 +167,7 @@ import { HowWework } from "@/public/types/Common";
           </div>
 
        
-        </div>
+          </div>
       </div>
     </section>
   );

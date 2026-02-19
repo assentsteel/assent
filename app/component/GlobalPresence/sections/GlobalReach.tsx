@@ -16,8 +16,7 @@ import { useInView } from "react-intersection-observer";
   const containerRef = useRef(null);
 
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 });
-console.log(data)
-console.log('bgcolor')
+ 
   useEffect(() => {
     if (containerRef.current) {
       gsap.from(containerRef.current, {
@@ -48,6 +47,14 @@ const extractSuffix = (value: string) => {
   const match = value?.match(/[^\d.\s]+$/);
   return match ? match[0] : "+";
 };
+const isStringOnly = (value: string) => {
+  if (!value) return true;
+  // If letters exist before OR after the number, it's a label not a count
+  return /[a-zA-Z]/.test(value.split(/[\d.]+/)[0]) || // letters before number
+         /^[^+\-%x×]+[a-zA-Z]/.test(value) ||          // letters embedded in value
+         /[a-zA-Z].*\d.*[a-zA-Z]/.test(value);          // letters sandwich a number
+};
+
 const textVariants = {
     hidden: (direction = "x") => ({
       opacity: 0,
@@ -105,22 +112,33 @@ const textVariants = {
     bgcolor ? "text-white" : "text-territory"
   }`}
 >
-  {inView ? (
+{inView ? (
+  isStringOnly(item.number) ? (
+    // Pure string — display as-is
+    <span>{item.number}</span>
+  ) : (
+    // Has numbers — animate count
     <>
       <CountUp
         start={0}
-        end={extractNumber(item.number)}
+        end={extractNumber(item.number)!}
         duration={2}
         delay={0.3}
-        decimals={extractNumber(item.number) % 1 !== 0 ? 1 : 0}
+        decimals={extractNumber(item.number)! % 1 !== 0 ? 1 : 0}
       />
       <span className="text-secondary">
         {extractSuffix(item.number)}
       </span>
     </>
+  )
+) : (
+  isStringOnly(item.number) ? (
+    // Pure string before inView — show empty or placeholder
+    <span>&nbsp;</span>
   ) : (
     0
-  )}
+  )
+)}
 </h3>
           <p
             className={`text-md ${
