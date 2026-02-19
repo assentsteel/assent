@@ -1,5 +1,5 @@
 "use client";
-import { motion, useMotionValue, useTransform, animate } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
 import { Sectwo } from "@/public/types/Common";
