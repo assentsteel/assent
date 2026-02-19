@@ -1,10 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useRef } from "react";
-import Image from "next/image";
+import { useEffect, useRef } from "react"; 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Card from "./Card"
 gsap.registerPlugin(ScrollTrigger);
 
  
@@ -49,10 +49,7 @@ gsap.registerPlugin(ScrollTrigger);
       });
     }
   }, []);
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
-  };
+ 
   return (
     <section className="pt100  overflow-hidden relative  ">
       <div className="container">
@@ -88,41 +85,7 @@ gsap.registerPlugin(ScrollTrigger);
         </div>
         <h2 className="text-lg  text-primary font-[600] leading-[1.267]   mt-5 2xl:mt-[60px]">{data.innertitle}</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-[30px] mt-5 lg:mt-[30px]">
-        {data.items.map((item, index) => (
-          <motion.div
-            key={index}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={fadeInUp}
-          >
-            <div className="relative group">
-              <motion.figure className="overlayclr" whileHover={{ scale: 1.02 }} transition={{ duration: 0.3 }}>
-                <Image
-                  src={item.image}
-                  alt={item.imageAlt}
-                  width={500}
-                  height={500}
-                  className="rounded-[15px] w-full object-cover h-[411px] xl:h-[401px] 2xl:h-[511px]"
-                />
-              </motion.figure>
-
-              <div className="absolute bottom-0 px-4 pb-4 lg:px-[30px] lg:pb-[30px]">
-                <motion.p
-                  className="text-md xl:text-[24px] text-white leading-[1.417] font-[600] pb-[20px] border-b-2 border-white transform transition-transform duration-500 group-hover:border-secondary"
-                  whileHover={{ x: 5 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  {item.title}
-                </motion.p>
-                <div className=" max-h-0 group-hover:max-h-[400px] overflow-hidden transition-all duration-500">
-                     <p className="mt-[20px] text-sm text-white opacity-0 h-0 overflow-hidden group-hover:opacity-100 group-hover:h-auto transition-all duration-500 delay-100">{item.description}</p>
-            
-                </div>
-               </div>
-            </div>
-          </motion.div>
-        ))}
+       <Card data={{ items: data.items }} />
 </div>
 
       </div>

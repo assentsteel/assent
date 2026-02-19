@@ -609,4 +609,4 @@ margin-bottom: 15px;
 .py100 {
   @apply py-[40px] md:py-[50px] lg:py-[60px]  xl:py-[70px] 2xl:py-[100px];
 }
-.pt60 {@apply py-[40px] md:py-[50px] xl:pt-[60px]}
+.pt60 {@apply pt-[40px] md:pt-[50px] xl:pt-[60px]}
