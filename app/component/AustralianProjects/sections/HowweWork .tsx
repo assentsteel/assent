@@ -80,7 +80,7 @@ import { HowWework } from "@/public/types/Common";
               >
                 <motion.div
                   key={index}
-                  className="group py-5 lg:py-[20px] xxl:py-[30px] transition-all duration-300 cursor-pointer"
+                  className="group last:pb-0 last:lg:pb-[20px] last:xxl:pb-[30px] py-5 lg:py-[20px] xxl:py-[30px] transition-all duration-300 cursor-pointer"
                   onMouseEnter={() => setActiveIndex(index)}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}

@@ -27,19 +27,19 @@ export const keycap ={
         image: assets.kc2,
         imageAlt: 'Alignment with Australian and International Standards ',
         title: 'Alignment with Australian and International Standards ',
-        description: 'Fabrication of heavy structural steel and built-up assemblies at Assent Steels’ manufacturing facilities in the UAE. Capability includes heavy sections and long-span structures exceeding 100 metres, commonly required for mining plants, industrial facilities, and large-scale building projects.',
+        description: 'Engineering, fabrication, and quality processes aligned with recognised international standards, including ISO and ASTM. Australian regulatory and project requirements, such as AS and NZS standards, are addressed through project specific specifications, inspection regimes, and documentation. ',
       },
       {
         image: assets.kc3,
         imageAlt: 'Logistics and Delivery to Australia ',
         title: 'Logistics and Delivery to Australia ',
-        description: 'Fabrication of heavy structural steel and built-up assemblies at Assent Steels’ manufacturing facilities in the UAE. Capability includes heavy sections and long-span structures exceeding 100 metres, commonly required for mining plants, industrial facilities, and large-scale building projects.',
+        description: 'Experience managing fabrication sequencing, packing, and shipment of structural steel from the UAE to Australian ports. Coordination with EPCs and contractors to support phased deliveries, long lead items, and site installation schedules. ',
       },
       {
         image: assets.kc4,
         imageAlt: 'Digital Engineering and Quality Control ',
         title: 'Digital Engineering and Quality Control ',
-        description: 'Fabrication of heavy structural steel and built-up assemblies at Assent Steels’ manufacturing facilities in the UAE. Capability includes heavy sections and long-span structures exceeding 100 metres, commonly required for mining plants, industrial facilities, and large-scale building projects.',
+        description: 'Use of BIM based detailing and model coordination, supported by CNC fabrication for dimensional accuracy. Structured QA and QC systems provide full material traceability, inspection records, and compliance verification prior to shipment. ',
       },
     ]
   }; 
@@ -81,17 +81,17 @@ export const sectwo =
         image: assets.ser_aus2,
         imageAlt: "Energy and industrial",
         title: "Energy and industrial",
-        description: "Structural steel for processing plants, materials handling systems, and supporting infrastructure.",
+        description: "Steel structures for power generation, industrial facilities, and energy related developments. ",
       }, {
         image: assets.ser_aus3,
         imageAlt: "Infrastructure and Transport ",
         title: "Infrastructure and Transport ",
-        description: "Structural steel for processing plants, materials handling systems, and supporting infrastructure.",
+        description: "Fabricated steel for bridges, ports, terminals, and transport related assets.",
       }, {
         image: assets.ser_aus4,
         imageAlt: "Commercial and high rise",
         title: "Commercial and high rise",
-        description: "Structural steel for processing plants, materials handling systems, and supporting infrastructure.",
+        description: "Structural steel for multi storey buildings and complex architectural frameworks. ",
       } 
     ]
   };
@@ -129,27 +129,27 @@ export const partnershipdata =
         description: "Assent Steels does not operate fabrication facilities in Australia. Australian projects are supported through offshore fabrication at our UAE facilities, combined with coordination through local erection, logistics, and delivery partners as required by the project. 9/2",
       }, { 
         title: "What types of projects do you support in Australia ",
-        description: "Assent Steels does not operate fabrication facilities in Australia. Australian projects are supported through offshore fabrication at our UAE facilities, combined with coordination through local erection, logistics, and delivery partners as required by the project. 9/2",
+        description: "ASSENT STEEL supports structural steel packages for mining and resources, energy and industrial facilities, infrastructure and transport assets, and commercial or high-rise developments. The focus is on projects with complex engineering, heavy steel requirements, or large-scale delivery needs. ",
       } , 
       { 
         title: "How does fabrication and delivery to Australia work",
-        description: "Assent Steels does not operate fabrication facilities in Australia. Australian projects are supported through offshore fabrication at our UAE facilities, combined with coordination through local erection, logistics, and delivery partners as required by the project. 9/2",
+        description: "Steel fabrication is carried out at ASSENT STEEL’s manufacturing facilities under defined quality control processes. Finished steel is then shipped to Australian ports, with logistics and delivery coordinated in line with project schedules, site access, and local requirements. ",
       }, 
       { 
         title: "Can you comply with Australian standards and client specifications ",
-        description: "Assent Steels does not operate fabrication facilities in Australia. Australian projects are supported through offshore fabrication at our UAE facilities, combined with coordination through local erection, logistics, and delivery partners as required by the project. 9/2",
+        description: "Yes. Fabrication and quality processes are aligned with international standards and project specific requirements commonly used on Australian projects. Engineering, coatings, documentation, and inspection regimes are executed in accordance with client and project specifications. ",
       }, 
       { 
         title: "Which services can Australian client's access",
-        description: "Assent Steels does not operate fabrication facilities in Australia. Australian projects are supported through offshore fabrication at our UAE facilities, combined with coordination through local erection, logistics, and delivery partners as required by the project. 9/2",
+        description: "Australian clients can engage ASSENT STEEL for steel engineering, offshore steel fabrication, steel erection support through local partners, and steel painting and blasting. Services can be delivered individually or as an integrated end to end package. ",
       }, 
       { 
         title: "How do you manage quality and safety for Australian projects ",
-        description: "Assent Steels does not operate fabrication facilities in Australia. Australian projects are supported through offshore fabrication at our UAE facilities, combined with coordination through local erection, logistics, and delivery partners as required by the project. 9/2",
+        description: "Quality and safety are managed through structured QA and HSE systems, material traceability, inspections, and testing. Documentation and quality records are maintained throughout fabrication and delivery and are available for client and third-party review. ",
       }, 
       { 
         title: "How can we start a discussion or submit an enquiry",
-        description: "Assent Steels does not operate fabrication facilities in Australia. Australian projects are supported through offshore fabrication at our UAE facilities, combined with coordination through local erection, logistics, and delivery partners as required by the project. 9/2",
+        description: "Enquiries can be submitted through the contact form on this page or via the provided contact details for Australia related projects. Sharing project scope, timelines, location, and key specifications allows for a more efficient technical and commercial response. ",
       }
     ]
   };
@@ -166,12 +166,12 @@ export const partnershipdata =
         image: assets.hww2,
         imageAlt: "Fabrication and logistics",
         title: "Fabrication and logistics",
-        description: "Structural steel for processing plants, materials handling systems, and supporting infrastructure.",
+        description: "Steel fabrication carried out at ASSENT STEEL’s manufacturing facilities in the UAE, followed by planned shipping and delivery to key Australian ports.",
       }, {
         image: assets.hww3,
         imageAlt: "On site erection support",
         title: "On site erection support",
-        description: "Structural steel for processing plants, materials handling systems, and supporting infrastructure.",
+        description: "Collaboration with local erection contractors and construction teams to support safe and efficient installation. ",
       } 
     ]
   };
@@ -183,7 +183,7 @@ export const partnershipdata =
         image: assets.hww1,
         imageAlt: 'Steel Engineering ',
         title: 'Steel Engineering ',
-        description: 'Fabrication of heavy and complex structural steel at large scale facilities in the UAE. Scope includes built up members, long span structures, and industrial steelwork produced to defined tolerances and inspection requirements. ',
+        description: 'Structural steel engineering, connection design, and detailing to support Australian consultants, contractors, and EPC or EPCM partners. Scope focuses on constructability, connection resolution, and alignment with project specifications. ',
         logo: assets.se,
         logoAlt: 'Steel Engineering ',
       },
@@ -191,7 +191,7 @@ export const partnershipdata =
         image: assets.hww1,
         imageAlt: 'Steel Fabrication ',
         title: 'Steel Fabrication ',
-        description: 'Fabrication of heavy and complex structural steel at large scale facilities in the UAE. Scope includes built up members, long span structures, and industrial steelwork produced to defined tolerances and inspection requirements. ',
+        description: 'Fabrication of heavy and complex structural steel at large scale facilities in the UAE. Scope includes built up members, long span structures, and industrial steelwork produced to defined tolerances and inspection requirements. ',
         logo: assets.sf,
         logoAlt: 'Steel Fabrication ',
       },
@@ -199,7 +199,7 @@ export const partnershipdata =
         image: assets.hww1,
         imageAlt: 'Steel Erection ',
         title: 'Steel Erection ',
-        description: 'Fabrication of heavy and complex structural steel at large scale facilities in the UAE. Scope includes built up members, long span structures, and industrial steelwork produced to defined tolerances and inspection requirements. ',
+        description: 'Erection support delivered through coordination with local Australian erection contractors and construction teams. Scope includes erection planning, sequencing input, and technical support to align fabricated steel with site conditions and installation schedules. ',
         logo: assets.ser3,
         logoAlt: 'Steel Erection ',
       },
@@ -207,7 +207,7 @@ export const partnershipdata =
         image: assets.hww1,
         imageAlt: 'Steel Painting and Blasting ',
         title: 'Steel Painting and Blasting ',
-        description: 'Fabrication of heavy and complex structural steel at large scale facilities in the UAE. Scope includes built up members, long span structures, and industrial steelwork produced to defined tolerances and inspection requirements. ',
+        description: 'Surface preparation, blasting, and protective coating systems applied in controlled conditions. Coating systems are selected to suit Australian environmental exposure requirements. ',
         logo: assets.sp,
         logoAlt: 'Steel Painting and Blasting ',
       }
@@ -221,7 +221,7 @@ export const partnershipdata =
         image: assets.hww1,
         imageAlt: 'Safety and quality management ',
         title: 'Safety and quality management ',
-        description: 'Fabrication activities are carried out under defined safety and quality management systems, supporting compliance with project specific HSE and inspection requirements.  ',
+        description: 'Fabrication activities are carried out under defined safety and quality management systems, supporting compliance with project specific HSE and inspection requirements. ',
         logo: assets.sa1,
         logoAlt: 'Safety and quality management ',
       },
@@ -229,7 +229,7 @@ export const partnershipdata =
         image: assets.hww1,
         imageAlt: 'Environmental and resource considerations',
         title: 'Environmental and resource considerations',
-        description: 'Fabrication activities are carried out under defined safety and quality management systems, supporting compliance with project specific HSE and inspection requirements.',
+        description: 'Fabrication processes are planned to support efficient use of materials, controlled waste handling, and responsible surface treatment practices, aligned with client sustainability objectives.',
         logo: assets.sa2,
         logoAlt: 'Environmental and resource considerations',
       },
@@ -237,7 +237,7 @@ export const partnershipdata =
         image: assets.hww1,
         imageAlt: 'Supply chain transparency and traceability ',
         title: 'Supply chain transparency and traceability ',
-        description: 'Fabrication activities are carried out under defined safety and quality management systems, supporting compliance with project specific HSE and inspection requirements.',
+        description: 'Material certification, inspection records, and documentation are maintained to support traceability and compliance with Australian project and regulatory expectations where required.',
         logo: assets.sa3,
         logoAlt: 'Supply chain transparency and traceability ',
       }
@@ -253,22 +253,22 @@ export const partnershipdata =
         image: assets.whyas1,
         imageAlt: "Global fabrication capacity",
         title: "Global fabrication capacity",
-        description: "Assent Steel is dedicated to integrating environmental and social considerations into its operations. The company aligns its practices with the UN's Sustainable Development Goals.",
+        description: "Offshore fabrication from large scale UAE facilities supports projects that require high volumes of heavy or complex structural steel.",
       }, {
         image: assets.whyas2,
         imageAlt: "Experience on large and complex assets",
         title: "Experience on large and complex assets",
-        description: "Structural steel for processing plants, materials handling systems, and supporting infrastructure.",
+        description: "Proven delivery on mining, energy, industrial, and infrastructure projects comparable in scale and complexity to Australian developments. ",
       }, {
         image: assets.whyas3,
         imageAlt: "Quality and safety systems",
         title: "Quality and safety systems",
-        description: "Structural steel for processing plants, materials handling systems, and supporting infrastructure.",
+        description: "Structured QA and HSE processes aligned with international client and project requirements. ",
       } , {
         image: assets.whyas4,
         imageAlt: "Ability to scale for large programs",
         title: "Ability to scale for large programs",
-        description: "Structural steel for processing plants, materials handling systems, and supporting infrastructure.",
+        description: "Capacity to support single large projects or multi-phase programs with consistent fabrication and delivery control.",
       } 
     ]
   };
@@ -288,13 +288,13 @@ export const partnershipdata =
         logo: assets.whyas1,
         logoAlt: "",
         title: "Engineering review and commercial proposal ",
-        description: "Review of drawings, specifications, quantities, and programme requirements.",
+        description: "Technical assessment, detailing approach, fabrication scope, and pricing aligned to project needs. ",
       }, 
       {
         logo: assets.whyas1,
         logoAlt: "",
         title: "Fabrication, logistics, and site coordination",
-        description: "Review of drawings, specifications, quantities, and programme requirements.",
+        description: "Offshore fabrication in the UAE, shipment to Australia, and coordination with erection teams on site. ",
       }  
     ]
   };
