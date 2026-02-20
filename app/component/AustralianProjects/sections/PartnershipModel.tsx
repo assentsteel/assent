@@ -72,16 +72,16 @@ gsap.registerPlugin(ScrollTrigger);
           </div>
           <div className="col-span-12 lg:col-span-12 ">
             <div>
-              <motion.div className="overflow-hidden max-w-[122ch]"
-               variants={slideInbtm}
+              <div className="overflow-hidden max-w-[122ch]" >
+
+                <motion.div className="text-sm font-normal  text-territory leading-[1.48] "
+                variants={slideInbtm}
                initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, amount: 0.3 }}>
-
-                <div className="text-sm font-normal  text-territory leading-[1.48] "
+                viewport={{ once: true, amount: 0.3 }}
                 dangerouslySetInnerHTML={{__html: data.description}}> 
-                </div>
-              </motion.div>
+                </motion.div>
+              </div>
             </div>
           </div>
         </div>

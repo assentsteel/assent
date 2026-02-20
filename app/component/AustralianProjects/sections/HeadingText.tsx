@@ -23,15 +23,7 @@ gsap.registerPlugin(ScrollTrigger);
     },
     exit: { opacity: 0, x: -30, transition: { duration: 0.4 } },
   };
-  const slideInbtm = {
-    hidden: { opacity: 0, y: -30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: "easeOut" },
-    },
-    exit: { opacity: 0, y: -30, transition: { duration: 0.4 } },
-  };
+   
 
 
   useEffect(() => {
@@ -70,12 +62,20 @@ gsap.registerPlugin(ScrollTrigger);
           </div>
           <div className="col-span-12 lg:col-span-12 ">
             <div>
-              <motion.div className="overflow-hidden max-w-[140ch]"
-               variants={slideInbtm}
-               initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.3 }}>
-
+             
+<motion.div className="overflow-hidden max-w-[140ch]"
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.3 }} // Trigger animation once when 50% visible
+                        variants={{
+                          hidden: { opacity: 0, y: 50 }, // Start below and invisible
+                          visible: {
+                            opacity: 1,
+                            y: 0,
+                            transition: { duration: 1, ease: "easeOut" },
+                          }, // Slide up and fade in
+                        }}
+                      > 
                 <div className="text-sm font-normal  text-territory leading-[1.53] "
                 dangerouslySetInnerHTML={{__html: data.description}}> 
                 </div>
@@ -83,7 +83,21 @@ gsap.registerPlugin(ScrollTrigger);
             </div>
           </div>
         </div>
+        <motion.div 
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, amount: 0.3 }} // Trigger animation once when 50% visible
+                                variants={{
+                                  hidden: { opacity: 0, y: 50 }, // Start below and invisible
+                                  visible: {
+                                    opacity: 1,
+                                    y: 0,
+                                    transition: { duration: 1, ease: "easeOut" },
+                                  }, // Slide up and fade in
+                                }}
+                              > 
         <h2 className="text-lg  text-primary font-[600] leading-[1.267]   mt-5 2xl:mt-[60px]">{data.innertitle}</h2>
+       </motion.div>.
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-[30px] mt-5 lg:mt-[30px]">
        <Card data={{ items: data.items }} />
 </div>

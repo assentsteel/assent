@@ -99,9 +99,23 @@ const SingleImageText = ({
                   dangerouslySetInnerHTML={{ __html: paragraph }}
                 />
               ))}
-              <Link href="/contact-us" className="border whitespace-nowrap font-[500] border-secondary text-[15px] text-white uppercase rounded-full py-[8px] px-[20px] 2xl:py-[12px] 2xl:px-[99px] mt-5 md:mt-[40px] w-fit">
+              <motion.div className="mt-5 md:mt-[40px]"
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, amount: 0.3 }} // Trigger animation once when 50% visible
+                                variants={{
+                                  hidden: { opacity: 0, y: 50 }, // Start below and invisible
+                                  visible: {
+                                    opacity: 1,
+                                    y: 0,
+                                    transition: { duration: 1, ease: "easeOut" },
+                                  }, // Slide up and fade in
+                                }}
+                              > 
+              <Link href="/contact-us" className="border whitespace-nowrap font-[500] border-secondary text-[15px] text-white uppercase rounded-full py-[8px] px-[20px] 2xl:py-[12px] 2xl:px-[99px]  w-fit">
                 Contact us 
               </Link>
+              </motion.div>
           </motion.div>
         </motion.div>
     
