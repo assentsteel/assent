@@ -239,8 +239,6 @@
 
 // export default NewsDetails;
 
-
-
 "use client";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
@@ -271,26 +269,25 @@ const NewsDetails = ({ data }: { data: Newsdetails }) => {
     data?.data?.images && data.data.images.length > 0
       ? data.data.images
       : data?.data?.thumbnail
-      ? [data.data.thumbnail]
-      : [];
+        ? [data.data.thumbnail]
+        : [];
 
   /* ---------------- CONNECT NAVIGATION AFTER MOUNT ---------------- */
-useEffect(() => {
-  if (!swiperInstance || !prevRef.current || !nextRef.current) return;
+  useEffect(() => {
+    if (!swiperInstance || !prevRef.current || !nextRef.current) return;
 
-  const navigation = swiperInstance.navigation;
-  const params = swiperInstance.params.navigation;
+    const navigation = swiperInstance.navigation;
+    const params = swiperInstance.params.navigation;
 
-  if (!navigation || typeof params !== "object") return;
+    if (!navigation || typeof params !== "object") return;
 
-  params.prevEl = prevRef.current;
-  params.nextEl = nextRef.current;
+    params.prevEl = prevRef.current;
+    params.nextEl = nextRef.current;
 
-  navigation.destroy();
-  navigation.init();
-  navigation.update();
-}, [swiperInstance]);
-
+    navigation.destroy();
+    navigation.init();
+    navigation.update();
+  }, [swiperInstance]);
 
   const handleFetchProjects = async () => {
     try {
@@ -325,13 +322,21 @@ useEffect(() => {
 
   const slideInTop = {
     hidden: { opacity: 0, y: -30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
     exit: { opacity: 0, y: -30, transition: { duration: 0.4 } },
   };
 
   const slideInLeft = {
     hidden: { opacity: 0, x: -30 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
     exit: { opacity: 0, x: -30, transition: { duration: 0.4 } },
   };
 
@@ -341,8 +346,12 @@ useEffect(() => {
         <div className="flex flex-col lg:flex-row ">
           <div className="lg:w-5/6 pr-4 lg:pr-6 xxl:pr-[135px] ">
             <div className="relative w-full bg-gray-100 ">
-              <motion.div variants={slideInTop} initial="hidden" animate="visible" exit="exit">
-
+              <motion.div
+                variants={slideInTop}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+              >
                 {/* ---------------- SWIPER ---------------- */}
                 <Swiper
                   modules={[Navigation]}
@@ -368,50 +377,104 @@ useEffect(() => {
                 {/* ---------------- NAV BUTTONS ---------------- */}
                 {imagesToShow.length > 1 && (
                   <div className="absolute bottom-4 right-4 flex gap-2 lg:gap-[30px] z-10">
-                    <button ref={prevRef} className="bg-white rounded-full w-[48px] h-[48px] hover:bg-secondary group transition flex items-center justify-center">
-                      <Image src={assets.greenarrow} alt="" width={11} height={18} className="group-hover:brightness-0 group-hover:invert" />
+                    <button
+                      ref={prevRef}
+                      className="bg-white rounded-full w-[48px] h-[48px] hover:bg-secondary group transition flex items-center justify-center"
+                    >
+                      <Image
+                        src={assets.greenarrow}
+                        alt=""
+                        width={11}
+                        height={18}
+                        className="group-hover:brightness-0 group-hover:invert"
+                      />
                     </button>
-                    <button ref={nextRef} className="bg-white rounded-full w-[48px] h-[48px] hover:bg-secondary group transition flex items-center justify-center">
-                      <Image src={assets.greenarrow} alt="" width={11} height={18} className="group-hover:brightness-0 group-hover:invert rotate-180" />
+                    <button
+                      ref={nextRef}
+                      className="bg-white rounded-full w-[48px] h-[48px] hover:bg-secondary group transition flex items-center justify-center"
+                    >
+                      <Image
+                        src={assets.greenarrow}
+                        alt=""
+                        width={11}
+                        height={18}
+                        className="group-hover:brightness-0 group-hover:invert rotate-180"
+                      />
                     </button>
                   </div>
                 )}
-
               </motion.div>
             </div>
 
             {/* ---------------- CONTENT (unchanged) ---------------- */}
-            <motion.div variants={slideInLeft} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} exit="exit" className="flex justify-between items-center mt-4 md:mt-5 mb-4 md:mb-5">
+            <motion.div
+              variants={slideInLeft}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              exit="exit"
+              className="flex justify-between items-center mt-4 md:mt-5 mb-4 md:mb-5"
+            >
+            <div className="flex justify-between items-center mt-4 md:mt-5 mb-4 md:mb-5">
               <p className="text-sm font-[500] text-territory">
-                {new Date(data.data.date ?? data.data.createdAt).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
+                {new Date(
+                  data.data.date ?? data.data.createdAt,
+                ).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
               </p>
               {data.data?.link && (
-                <Link href={data.data?.link || "#"} target="_blank" className="cursor-pointer">
+                <Link
+                  href={data.data?.link || "#"}
+                  target="_blank"
+                  className="cursor-pointer"
+                >
                   <Image src={assets.linkedin} alt="linkedin" />
                 </Link>
               )}
+            </div>
             </motion.div>
 
-            <motion.h2 variants={slideInLeft} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} exit="exit" className="font-[600] text-lg leading-[1.65] text-primary mb-4 lg:mb-[30px]">
+            <motion.h2
+              variants={slideInLeft}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              exit="exit"
+              className="font-[600] text-lg leading-[1.65] text-primary mb-4 lg:mb-[30px]"
+            >
               {data.data.mainTitle}
             </motion.h2>
 
-<div className="mbp10">
-  <motion.div
-    variants={slideInTop}
-    initial="hidden"
-    whileInView="visible"
-    viewport={{ once: true, amount: 0.3 }}
-    exit="exit"
-    dangerouslySetInnerHTML={{ __html: data.data.content }}
-  />
-</div>
-
+            <div className="mbp10">
+              <motion.div
+                variants={slideInTop}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                exit="exit"
+                dangerouslySetInnerHTML={{ __html: data.data.content }}
+              />
+            </div>
           </div>
 
           <div className="lg:w-1/6 ">
-            <motion.div variants={slideInTop} initial="hidden" animate="visible" exit="exit">
-              <p className="text-md uppercase text-[#595959] font-medium border-b inline-flex border-secondary pb-2 lg:pb-[12px] leading-[1.46] ">More news</p>
+            <motion.div
+              variants={slideInTop}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+            >
+              <div className="flex justify-between mb-5 lg:mb-10">
+  <div className="overflow-hidden ">
+
+              <p className="text-md uppercase text-[#595959] font-medium border-b inline-flex border-secondary pb-2 lg:pb-[12px] leading-[1.46] ">
+                More news
+              </p>
+              </div>
+              </div>
               <MoreNews data={newsList} id={data.data._id} />
             </motion.div>
           </div>
