@@ -154,6 +154,7 @@ export type Newsdetails = {
     subTitle: string;
     thumbnail: string;
     thumbnailAlt: string;
+    link: string;
     _id: number;
   };
 };
