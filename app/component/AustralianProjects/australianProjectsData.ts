@@ -7,7 +7,7 @@ export const singletextimg = {
       id: 1,
       title: "Structural Steel Expertise for Australian Projects ",
       paragraphs: [
-        "Assent Steels provides structural steel fabrication and engineering services for Australian projects across the energy, mining, infrastructure, and building sectors. Fabrication is carried out at the company’s large-scale manufacturing facilities in the GCC, supplying heavy and complex structural steel packages to developments across Australia.  With experience supporting major industrial and infrastructure assets, we work with Australian contractors, consultants, and project stakeholders to deliver steel packages that align with project specifications and construction programmes."
+        "ASSENT STEEL provides structural steel fabrication and engineering services for Australian projects across the energy, mining, infrastructure, and building sectors. Fabrication is carried out at the company’s large-scale manufacturing facilities in the GCC, supplying heavy and complex structural steel packages to developments across Australia. With experience supporting major industrial and infrastructure assets, we work with Australian contractors, consultants, and project stakeholders to deliver steel packages that align with project specifications and construction programmes."
       ],
       image: assets.banner_aus
     }
@@ -15,13 +15,13 @@ export const singletextimg = {
 };
 export const keycap ={
     title: 'Key Capabilities for Australia ',
-    desc:'Assent Steels’ capabilities are focused on supporting Australian projects with demanding structural, technical, and programme requirements. These capabilities address challenges related to heavy steel, complex geometry, and large-scale delivery. Each capability supports predictable fabrication and site integration. ',
+    desc:'ASSENT STEEL’s capabilities are focused on supporting Australian projects with demanding structural, technical, and programme requirements. These capabilities address challenges related to heavy steel, complex geometry, and large-scale delivery. Each capability supports predictable fabrication and site integration. ',
     items: [
       {
         image: assets.kc1,
         imageAlt: 'Complex Structural Steel ',
         title: 'Complex Structural Steel ',
-        description: 'Fabrication of heavy structural steel and built-up assemblies at Assent Steels’ manufacturing facilities in the UAE. Capability includes heavy sections and long-span structures exceeding 100 metres, commonly required for mining plants, industrial facilities, and large-scale building projects.',
+        description: 'Fabrication of heavy structural steel and built-up assemblies at ASSENT STEEL’s manufacturing facilities in the UAE. Capability includes heavy sections and long-span structures exceeding 100 metres, commonly required for mining plants, industrial facilities, and large-scale building projects.',
       }, 
       {
         image: assets.kc2,
@@ -69,7 +69,7 @@ export const reach = {
 export const sectwo =  
   {
     title: "Our Role in the Australian Market ",
-    description: "Assent Steels delivers fabricated steel packages designed to integrate with local design requirements and site erection methodologies. This approach supports efficient installation and reduces coordination risk during construction.",
+    description: "ASSENT STEEL delivers fabricated steel packages designed to integrate with local design requirements and site erection methodologies. This approach supports efficient installation and reduces coordination risk during construction.",
     innertitle:'Sectors We Serve in Australia ',
     items: [
       {
@@ -99,7 +99,7 @@ export const sectwo =
 export const partnershipdata =  
   {
     title: "Partnership Model and Engagement",
-    description: "Assent Steels works with Australian clients through a collaborative partnership model that integrates offshore fabrication with local project delivery. Engagement is structured to support different contracting models and project stages, from early engineering input to site erection. ",
+    description: "ASSENT STEEL works with Australian clients through a collaborative partnership model that integrates offshore fabrication with local project delivery. Engagement is structured to support different contracting models and project stages, from early engineering input to site erection. ",
     innertitle:'How We Partner',
     items: [
       { 
@@ -126,7 +126,7 @@ export const partnershipdata =
     items: [
       { 
         title: "Do you have a physical presence in Australia",
-        description: "Assent Steels does not operate fabrication facilities in Australia. Australian projects are supported through offshore fabrication at our UAE facilities, combined with coordination through local erection, logistics, and delivery partners as required by the project. 9/2",
+        description: "ASSENT STEEL does not operate fabrication facilities in Australia. Australian projects are supported through offshore fabrication at our UAE facilities, combined with coordination through local erection, logistics, and delivery partners as required by the project. 9/2",
       }, { 
         title: "What types of projects do you support in Australia ",
         description: "ASSENT STEEL supports structural steel packages for mining and resources, energy and industrial facilities, infrastructure and transport assets, and commercial or high-rise developments. The focus is on projects with complex engineering, heavy steel requirements, or large-scale delivery needs. ",
@@ -215,7 +215,7 @@ export const partnershipdata =
   };
     export const susbata = {
     title: 'Safety, Sustainability, and Regulatory Alignment for Australian Projects',
-    description: 'Assent Steels supports Australian projects by applying structured safety, quality, and environmental practices throughout engineering, fabrication, and delivery activities. These practices are aligned with international standards commonly referenced on Australian industrial and infrastructure developments.',
+    description: 'ASSENT STEEL supports Australian projects by applying structured safety, quality, and environmental practices throughout engineering, fabrication, and delivery activities. These practices are aligned with international standards commonly referenced on Australian industrial and infrastructure developments.',
     items: [
       {
         image: assets.hww1,
@@ -246,8 +246,8 @@ export const partnershipdata =
   };
  export const whyus =  
   {
-    title: "Why Assent Steels for Australia", 
-    description:"Australian projects often require structural steel solutions that can scale beyond local capacity while maintaining alignment with project specifications, schedules, and quality expectations. Assent Steels supports these requirements by combining large scale fabrication capability in the UAE with experience on complex industrial and infrastructure assets relevant to the Australian market. Assent Steels brings a delivery model that complements local contractors and consultants rather than replacing them, supporting projects that involve heavy sections, long lead items, or phased construction programs.",
+    title: "Why ASSENT STEEL for Australia", 
+    description:"Australian projects often require structural steel solutions that can scale beyond local capacity while maintaining alignment with project specifications, schedules, and quality expectations. ASSENT STEEL supports these requirements by combining large scale fabrication capability in the UAE with experience on complex industrial and infrastructure assets relevant to the Australian market. ASSENT STEEL brings a delivery model that complements local contractors and consultants rather than replacing them, supporting projects that involve heavy sections, long lead items, or phased construction programs.",
     items: [
       {
         image: assets.whyas1,
@@ -276,7 +276,7 @@ export const partnershipdata =
  export const accauss =  
   {
     title: "Engagement Process", 
-    description:"For Australian enquiries, Assent Steels supports engagement through dedicated regional contacts and established channels for requests for quotation and technical discussions.",
+    description:"For Australian enquiries, ASSENT STEEL supports engagement through dedicated regional contacts and established channels for requests for quotation and technical discussions.",
      items: [
       {
         logo: assets.whyas1,
@@ -302,8 +302,8 @@ export const partnershipdata =
  
  export const ainglelabeldata =  
   {
-    title: "Partner with Assent Steels in Australia ", 
-    description:"Engage Assent Steels early to support Australian projects requiring structural steel engineering and offshore fabrication capacity. Early discussions enable clearer scope definition, programme alignment, and coordinated delivery for complex industrial, infrastructure, and commercial developments. For tenders, pre-contract reviews, or upcoming project opportunities, contact the Assent Steels team to discuss requirements, timelines, and delivery approach. ",
+    title: "Partner with ASSENT STEEL in Australia ", 
+    description:"Engage ASSENT STEEL early to support Australian projects requiring structural steel engineering and offshore fabrication capacity. Early discussions enable clearer scope definition, programme alignment, and coordinated delivery for complex industrial, infrastructure, and commercial developments. For tenders, pre-contract reviews, or upcoming project opportunities, contact the ASSENT STEEL team to discuss requirements, timelines, and delivery approach. ",
        image: assets.partneras,
         imageAlt: "logo",
         

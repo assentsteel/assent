@@ -156,7 +156,7 @@ const slideIndLeft = {
             <div className="flex justify-end items-center gap-4">
               {/* Prev Button */}
               <motion.button
-                whileHover={{ scale: 1.1 }}
+                whileHover={{ scale: 1 }}
                 whileTap={{ scale: 0.95 }}
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -164,7 +164,7 @@ const slideIndLeft = {
                 transition={{ duration: 0.3 }}
                 onClick={() => setActiveTab((prev) => Math.max(prev - 1, 0))}
                 disabled={activeTab === 0}
-                className={`bg-white text-black border px-3 py-1 rounded-full w-[48px] h-[48px] hover:border-white hover:bg-secondary group transition flex items-center justify-center ${activeTab === 0
+                className={`bg-white text-black border border-[#595959] hover:border-transparent px-3 py-1 rounded-full w-[48px] h-[48px] hover:border-white hover:bg-secondary group transition flex items-center justify-center ${activeTab === 0
                     ? "opacity-50 cursor-not-allowed hover:bg-[#dddddd]"
                     : ""
                   }`}
@@ -180,7 +180,7 @@ const slideIndLeft = {
 
               {/* Next Button */}
               <motion.button
-                whileHover={{ scale: 1.1 }}
+                whileHover={{ scale: 1 }}
                 whileTap={{ scale: 0.95 }}
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -189,7 +189,7 @@ const slideIndLeft = {
                   setActiveTab((prev) => Math.min(prev + 1, tabs.length - 1))
                 }
                 disabled={activeTab === tabs.length - 1}
-                className={`bg-white text-black border px-3 py-1 rounded-full w-[48px] h-[48px] hover:border-white hover:bg-secondary group transition flex items-center justify-center ${activeTab === tabs.length - 1
+                className={`bg-white text-black border border-[#595959] hover:border-transparent px-3 py-1 rounded-full w-[48px] h-[48px] hover:border-white hover:bg-secondary group transition flex items-center justify-center ${activeTab === tabs.length - 1
                     ? "opacity-50 cursor-not-allowed hover:bg-[#dddddd]"
                     : ""
                   }`}
@@ -255,7 +255,7 @@ const slideIndLeft = {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
                 exit="hidden"
-                className="lg:grid grid-cols-[auto_497px] xl:grid-cols-[auto_597px] 2xl:grid-cols-[auto_797px]  items-center gap-5 xl:gap-8 2xl:gap-[123px]"
+                className="lg:grid grid-cols-[auto_55%] xl:grid-cols-[auto_55%] 2xl:grid-cols-[auto_55%] xxl:grid-cols-[auto_797px]  items-center gap-5 lg:gap-10   2xl:gap-[123px]"
               >
                 <div className="w-ful">
                   <div className="mb-8 lg:mb-0 max-w-[765px]">

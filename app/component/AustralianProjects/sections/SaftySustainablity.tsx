@@ -84,16 +84,16 @@ const SaftySustainablity = ({ data, maxchwidth, colnum, }: { data: gridbox, coln
                   // }}
                   className="group bggraygrad relative"
                 >
-                  <div className="flex relative z-10  flex-col justify-between gap-3 border p-5 transition-all duration-500 md:h-[300px] lg:h-[340px] lg:gap-0 lg:p-10 xl:h-[414px]">
+                  <div className="flex relative z-10  flex-col justify-between gap-3 border p-5 transition-all duration-500 md:h-[300px] lg:h-[340px] lg:gap-0 lg:p-10 xl:h-[325px]">
           
                     {/* Image Wrapper */}
-                    <div className="group-hover:h-0  group-hover:opacity-0 transition-all duration-500 align-center   flex h-[68px] w-[68px] rounded-[5px] justify-center  p-2 transition-colors duration-500 bg-secondary group-hover:bg-white md:h-[50px] md:w-[50px]">
+                    <div className="group-hover:h-0  group-hover:opacity-0 transition-all duration-500 align-center   flex h-[50px] w-[50px] lg:h-[68px] lg:w-[68px] rounded-[5px] justify-center  p-2 transition-colors duration-500 bg-secondary group-hover:bg-white ">
                       <Image
                         src={expertise.logo}
                         alt={expertise.logoAlt}
-                        width={50}
-                        height={50}
-                        className="fltrcls transition duration-500 brightness-0 invert-[1] group-hover:brightness-[1] group-hover:invert-0"
+                        width={48}
+                        height={48}
+                        className="fltrcls transition h-[30px] w-[30px] lg:h-[48px] lg:w-[48px] duration-500 brightness-0 invert-[1] group-hover:brightness-[1] group-hover:invert-0"
                       />
                     </div>
           

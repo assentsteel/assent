@@ -49,7 +49,7 @@ const IntrosectionBold = ({ data }: { data: introbold }) => {
   return (
     <section className="overflow-hidden relative pt-2 md:pt-[30px] xl:pt-[80px] 2xl:pt-[100px] ">
       <div className="container">
-        <div className="grid grid-cols-1    lg:grid-cols-[auto,547px]  xl:grid-cols-[auto,647px]  2xl:grid-cols-[auto,847px] gap-5   ">
+        <div className="lg:grid      lg:grid-cols-[auto,65%]  xl:grid-cols-[auto,65%] 2xl:grid-cols-[auto,59%]  xxxl:grid-cols-[auto,847px] gap-5   ">
           <div className=" ">
             <motion.div
               variants={textContainerVariants}
@@ -58,7 +58,7 @@ const IntrosectionBold = ({ data }: { data: introbold }) => {
               viewport={{ once: true, amount: 0.3 }}
             >
               <motion.h2
-                className={`text-xl text-primary font-[600] leading-[1.365]  ${data.titlecase == true ? `uppercase` : ``}`}
+                className={` mb-5 lg:mb-0 text-xl text-primary font-[600] leading-[1.365]  ${data.titlecase == true ? `uppercase` : ``}`}
                 custom="x"
                 variants={textVariants}
                 style={{ maxWidth: data.maxwidth ? `${data.maxwidth}ch` : 'auto' }}

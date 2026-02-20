@@ -3,8 +3,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { motion, AnimatePresence } from "framer-motion";
-import { assets } from "@/public/assets/assets";
+import { motion, AnimatePresence } from "framer-motion"; 
 import { slideInLeft } from "../../common/MotionAnimation";
 gsap.registerPlugin(ScrollTrigger);
 
@@ -47,7 +46,7 @@ import { HowWework } from "@/public/types/Common";
           </motion.h2>
           
         </div>
-          <div className="lg:grid   lg:grid-cols-[400px_auto]  xl:grid-cols-[550px_auto] 2xl:grid-cols-[656px_auto] lg:items-center xxl:items-center gap-5 lg:gap-[66px]">
+          <div className="lg:grid   lg:grid-cols-[40%_auto]  xl:grid-cols-[40%_auto] 2xl:grid-cols-[40%_auto] xxxl:grid-cols-[656px_auto] lg:items-center xxl:items-center gap-5 lg:gap-[66px]">
              <div className="w-full     ">
             {/* {data.items.map((item, index) => ( */}
               <motion.div
@@ -80,7 +79,7 @@ import { HowWework } from "@/public/types/Common";
               >
                 <motion.div
                   key={index}
-                  className="group   py-5 lg:py-[20px] xxl:py-[30px] transition-all duration-300 cursor-pointer"
+                  className="group   py-5 lg:py-[20px] xxl:py-[40px] transition-all duration-300 cursor-pointer"
                   onMouseEnter={() => setActiveIndex(index)}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -92,10 +91,10 @@ import { HowWework } from "@/public/types/Common";
                   <div className="flex gap-3 xl:gap-5 items-start">
                     {/* LEFT ARROW (rotates when active) */}
                     <Image
-                      src={assets.arrowgreen}
+                      src={`/assets/img/tickic.svg`}
                       alt=""
-                      width={20}
-                      height={20}
+                      width={24}
+                      height={24}
                       className={`transition-all duration-300 ${
                         activeIndex === index ? "" : "brightness-0 opacity-[1]"
                       }`}
@@ -156,7 +155,7 @@ import { HowWework } from "@/public/types/Common";
                   />
                 </figure>
               </motion.div>
-                            <p>{da.description}</p>
+                            <p className="text-territory">{da.description}</p>
                           </motion.div>
                         )}
                       </AnimatePresence>

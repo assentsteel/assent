@@ -43,7 +43,7 @@ const GridBox = ({ data, maxchwidth, colnum, }: { data: gridbox, colnum?: number
 
         <div>
           <motion.div
-            className={`grid grid-cols-1 gap-5  md:grid-cols-2 xl:grid-cols-3 xl:gap-0  ${colnum ? `xxl:grid-cols-${colnum}` : 'xxl:grid-cols-4'} `}
+            className={`grid grid-cols-1 gap-5  md:grid-cols-2 xl:grid-cols-4 xl:gap-0  ${colnum ? `xxl:grid-cols-${colnum}` : 'xxl:grid-cols-4'} `}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }} // Trigger animation once when 50% visible
@@ -65,13 +65,13 @@ const GridBox = ({ data, maxchwidth, colnum, }: { data: gridbox, colnum?: number
         <div className="flex relative z-10 bg-primary group-hover:bg-secondary flex-col justify-between gap-3 border p-5 transition-all duration-500 md:h-[300px] lg:h-[340px] lg:gap-0 lg:p-10 xl:h-[414px]">
 
           {/* Image Wrapper */}
-          <div className="group-hover:h-0  group-hover:opacity-0 transition-all duration-500 align-center   flex h-[68px] w-[68px] rounded-[5px] justify-center  p-2 transition-colors duration-500 bg-secondary group-hover:bg-white md:h-[50px] md:w-[50px]">
+          <div className="group-hover:h-0  group-hover:opacity-0 transition-all duration-500 align-center   flex h-[50px] w-[50px] lg:h-[68px] lg:w-[68px] rounded-[5px] justify-center  p-2 transition-colors duration-500 bg-secondary group-hover:bg-white ">
             <Image
               src={expertise.logo}
               alt={expertise.logoAlt}
-              width={50}
-              height={50}
-              className="fltrcls transition duration-500 brightness-0 invert-[1] group-hover:brightness-[1] group-hover:invert-0"
+              width={48}
+              height={48}
+              className="fltrcls transition h-[30px] w-[30px] lg:h-[48px] lg:w-[48px] duration-500 brightness-0 invert-[1] group-hover:brightness-[1] group-hover:invert-0"
             />
           </div>
 

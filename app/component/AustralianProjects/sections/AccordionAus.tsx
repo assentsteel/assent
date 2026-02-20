@@ -38,7 +38,7 @@ const AccordionAus = ({ data }: { data: Accaus }) => {
   return (
     <section className="pb100 cpt0  overflow-hidden relative ">
       <div className="container">
-        <div className="xl:min-h-[400px] lg:grid   xl:grid-cols-[auto_696px] 2xl:grid-cols-[auto_964px] lg:items-center xxl:items-start lg:gap-4 xl:gap-7 2xl:gap-[106px]">
+        <div className="xl:min-h-[400px] xl:grid  xl:grid-cols-[auto_60%]  2xl:grid-cols-[auto_60%]  xxxl:grid-cols-[auto_964px] lg:items-start xxl:items-start lg:gap-7 xl:gap-7 xxxl:gap-[106px]">
           <div className=" ">
             <motion.h2
               viewport={{ once: true, amount: 0.2 }}
@@ -46,7 +46,7 @@ const AccordionAus = ({ data }: { data: Accaus }) => {
               initial="hidden"
               exit="exit"
               whileInView="visible"
-              className="text-lg  text-primary font-[600] leading-[1.2] mb-4 lg:mb-7 max-w-[10ch]"
+              className="text-lg  text-primary font-[600] leading-[1.2] mb-4 lg:mb-7 2xl:max-w-[10ch]"
             >
               {data.title}
             </motion.h2>
@@ -63,13 +63,13 @@ const AccordionAus = ({ data }: { data: Accaus }) => {
                           }, // Slide up and fade in
                         }}
                       > 
-            <p className="text-tertiary text-sm font-[400] leading-[1.5] lg:max-w-[47ch]">
+            <p className="text-tertiary text-sm font-[400] leading-[1.5] 2xl:max-w-[47ch]">
               {data.description}
             </p>
             </motion.div>
           </div>
 
-          <div className="mt-6 lg:mt-0">
+          <div className="mt-6 lg:mt-7 xl:mt-0">
             {data.items.map((da, index) => (
               <motion.div
                 key={index}
@@ -109,7 +109,7 @@ const AccordionAus = ({ data }: { data: Accaus }) => {
       animate={{
         opacity: 1,
         height: "auto",
-        marginTop: "15px",
+        marginTop: "9px",
         transition: {
           height: { duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] },
           opacity: { duration: 0.25, delay: 0.05 },
@@ -126,7 +126,7 @@ const AccordionAus = ({ data }: { data: Accaus }) => {
           marginTop: { duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.15 },
         },
       }}
-      className="text-territory/80 text-[17px] lg:text-[19px] font-[400] leading-[1.7] overflow-hidden"
+      className="text-territory/80 text-[17px] lg:text-[19px] font-[500] leading-[1.6] overflow-hidden"
     >
       <div>{da.description}</div>
     </motion.div>

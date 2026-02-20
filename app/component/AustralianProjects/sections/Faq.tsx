@@ -59,7 +59,7 @@ import { typefaq } from "@/public/types/Common";
               viewport={{ once: true, amount: 0.3 }}
             >
               <motion.h2
-                className={`text-xl  text-primary font-[600] leading-[1.2] xl:leading-[1] mb-5 lg:mb-[60px]`}
+                className={`text-xl  text-primary font-[600] leading-[1.2]  mb-5 lg:mb-[60px]`}
                 custom="x"
                 variants={textVariants} 
 
@@ -73,12 +73,12 @@ import { typefaq } from "@/public/types/Common";
          <div className="w-full mt-6 lg:mt-0">
   {data.items.map((da, index) => (
     <div
-      className="border-b first:border-t border-[#00000015]"
+      className="border-b first:border-t border-[#00000020]"
       key={index}
     >
       <motion.div
         key={index}
-        className="group py-6 lg:py-[25px] xxl:py-[42.5px] cursor-pointer"
+        className="group py-6 lg:py-[30px] xxl:py-[42.5px] cursor-pointer"
         onMouseEnter={() => {
           if (activeIndex !== index) {
             setActiveIndex(-1);
@@ -92,7 +92,7 @@ import { typefaq } from "@/public/types/Common";
         <div className="flex gap-5 items-start">
           <div className="flex-1">
             <div className="flex justify-between">
-              <h3 className="capitalize text-[17px] md:text-md text-primary transition-colors duration-300 leading-[1.2] xl:leading-[1] font-[500] pr-3 xl:pr-6">
+              <h3 className="capitalize text-[17px] md:text-md text-primary transition-colors duration-300 leading-[1.2] xl:leading-[1] font-[600] pr-3 xl:pr-6">
                 {da.title}
               </h3>
 

@@ -22,28 +22,29 @@ function Card({ item }: { item: { image: string | StaticImageData; imageAlt: str
       onTouchEnd={() => setHovered(false)}
     >
       {/* Image */}
-      <motion.figure
-        className="overlayclr overflow-hidden rounded-[15px]"
-        animate={{ scale: hovered ? 1.02 : 1 }}
-        transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-      >
-        <Image
-          src={item.image}
-          alt={item.imageAlt}
-          width={500}
-          height={500}
-          className="w-full object-cover h-[411px] xl:h-[401px] 2xl:h-[511px]"
-        />
-      </motion.figure>
+     <motion.figure className="overlayclr overflow-hidden rounded-[15px]">
+  <motion.div
+    animate={{ scale: hovered ? 1.02 : 1 }}
+    transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+    className="w-full h-full"
+  >
+    <Image
+      src={item.image}
+      alt={item.imageAlt}
+      width={500}
+      height={500}
+      className="w-full object-cover h-[411px] xl:h-[401px] 2xl:h-[511px]"
+    />
+  </motion.div>
+</motion.figure>
 
       {/* Text overlay */}
-      <div className="absolute bottom-0 px-4 pb-4 lg:px-[30px] lg:pb-[30px] w-full">
+      <div className="absolute bottom-0 px-4 pb-4 lg:px-[30px] lg:pb-[30px] w-full z-[2]">
         {/* Title + animated underline */}
         <motion.p
           className="text-md xl:text-[24px] text-white leading-[1.417] font-[600] pb-[20px] border-b-2 transition-colors duration-300"
           style={{ borderColor: hovered ? "#5ba646" : "white" }}
-          animate={{ x: hovered ? 5 : 0 }}
-          transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            
         >
           {item.title}
         </motion.p>
