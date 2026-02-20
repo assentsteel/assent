@@ -415,7 +415,7 @@ const NewsDetails = ({ data }: { data: Newsdetails }) => {
               exit="exit"
               className="flex justify-between items-center mt-4 md:mt-5 mb-4 md:mb-5"
             >
-            <div className="flex justify-between items-center mt-4 md:mt-5 mb-4 md:mb-5">
+            <div className="flex justify-between items-center mt-4 md:mt-5 mb-4 md:mb-5 w-full">
               <p className="text-sm font-[500] text-territory">
                 {new Date(
                   data.data.date ?? data.data.createdAt,
