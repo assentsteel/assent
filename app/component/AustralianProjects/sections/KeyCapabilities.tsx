@@ -134,14 +134,23 @@ const slideIndLeft = {
           >
             {data.title}
           </motion.h2>
-          <motion.p
+         <motion.div 
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, amount: 0.3 }} // Trigger animation once when 50% visible
+                                variants={{
+                                  hidden: { opacity: 0, y: 50 }, // Start below and invisible
+                                  visible: {
+                                    opacity: 1,
+                                    y: 0,
+                                    transition: { duration: 1, ease: "easeOut" },
+                                  }, // Slide up and fade in
+                                }}
+                              >  <p
             className={`max-w-[100ch] mt-4 lg:mt-[40px] text-sm leading-[1.48] ${textwhite ? "text-white" : "text-territory"
               }`}
-            variants={slideInLeft}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            exit="exit">{data.desc}</motion.p>
+            >{data.desc}</p>
+            </motion.div>
           </div>
           {!isMobile && navigation && (
             <div className="flex justify-end items-center gap-4">

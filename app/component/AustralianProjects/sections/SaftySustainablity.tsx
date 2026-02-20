@@ -102,12 +102,24 @@ const SaftySustainablity = ({ data, maxchwidth, colnum, }: { data: gridbox, coln
                       <h3 className="text-md 2xl:text-lg leading-[1.27] font-semibold titlesp transition-colors duration-300 text-primary group-hover:text-primary max-w-[22ch]">
                         {expertise.title}
                       </h3>
-             
-                      <div className="overflow-hidden">
+              
+                        <motion.div className="overflow-hidden  "
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.3 }} // Trigger animation once when 50% visible
+                        variants={{
+                          hidden: { opacity: 0, y: 50 }, // Start below and invisible
+                          visible: {
+                            opacity: 1,
+                            y: 0,
+                            transition: { duration: 1, ease: "easeOut" },
+                          }, // Slide up and fade in
+                        }}
+                      > 
                         <p className="text-19 font-normal text-tertiary cntsmd hided-content max-h-0 w-[102%] overflow-hidden group-hover:pt-5  opacity-0 transition-all duration-500 group-hover:max-h-[15.4rem] group-hover:opacity-100">
                           {expertise.description}
                         </p>
-                      </div>
+                      </motion.div>
                     </div>
                   </div>
                 </div> 
@@ -115,15 +127,27 @@ const SaftySustainablity = ({ data, maxchwidth, colnum, }: { data: gridbox, coln
           ))}
           
                     </motion.div>
-        </div>
-          <div className="mt-5 lg:mt-[30px] text-sm max-w-[55ch] max-w-[97ch]"> 
+        </div> 
+            <motion.div className="mt-5 lg:mt-[30px] text-sm max-w-[55ch] max-w-[97ch]"
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.3 }} // Trigger animation once when 50% visible
+                        variants={{
+                          hidden: { opacity: 0, y: 50 }, // Start below and invisible
+                          visible: {
+                            opacity: 1,
+                            y: 0,
+                            transition: { duration: 1, ease: "easeOut" },
+                          }, // Slide up and fade in
+                        }}
+                      > 
              <motion.p
                   className="text-19 leading-[1.53] text-tertiary transform transition-transform duration-500 "
                   whileHover={{ x: 5 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
                   {data.footerdata}
-                </motion.p></div>
+                </motion.p></motion.div>
 
       </div>
       </div>
