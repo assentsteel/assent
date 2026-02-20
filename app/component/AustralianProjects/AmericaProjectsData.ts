@@ -287,3 +287,8 @@ export const partnershipdata =
  
  
  
+
+
+
+  
+

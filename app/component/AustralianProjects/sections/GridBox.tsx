@@ -2,6 +2,7 @@
 import Image from "next/image";
 import React from "react";
 import { motion } from "framer-motion"; 
+import { slideInLeft } from "../../common/MotionAnimation";
 
 
 
@@ -14,7 +15,15 @@ const GridBox = ({ data, maxchwidth, colnum, }: { data: gridbox, colnum?: number
     <div className="container mx-auto   ">
       <div className="flex flex-col py100 ">
         <div className="mb-5 lg:mb-[60px]">
-          <motion.div
+         
+            <motion.h2
+                          variants={slideInLeft}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.3 }}
+                        exit="exit" className="text-xl text-white font-[600] leading-[1.2] mb-4 lg:mb-7" style={{ maxWidth: maxchwidth ? `${maxchwidth}ch` : undefined }}>{data.title}
+                        </motion.h2>
+           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }} // Trigger animation once when 50% visible
@@ -26,9 +35,7 @@ const GridBox = ({ data, maxchwidth, colnum, }: { data: gridbox, colnum?: number
                 transition: { duration: 1, ease: "easeOut" },
               }, // Slide up and fade in
             }}
-          >
-            <h2 className="text-xl text-white font-[600] leading-[1.2] mb-4 lg:mb-7" style={{ maxWidth: maxchwidth ? `${maxchwidth}ch` : undefined }}>{data.title}</h2>
-            <p className="text-19   font-400   text-white   lg:max-w-[97ch]">
+          >  <p className="text-19   font-400   text-white   lg:max-w-[97ch]">
               {data.description}
             </p>
           </motion.div>

@@ -451,6 +451,17 @@ export type whyus = {
     description: string;
   }[];
 };
+
+export type whyustre = {
+  title: string;
+  description: string;
+  items: {
+    image: StaticImageData;
+    imageAlt: string;
+    title: string;
+    description: string;
+  }[];
+};
 export type keycap ={
     title: string;
     desc: string;
@@ -463,7 +474,17 @@ export type keycap ={
       }[]; 
   }; 
 
-  
+  export type keycaptur ={
+    title: string;
+    desc: string;
+    items: 
+      {
+        image: StaticImageData;
+        imageAlt: string;
+        title: string;
+        description: string;
+      }[]; 
+  };  
 export type Accaus = {  
     title: string;
     description: string;
@@ -485,13 +506,23 @@ export type NavTab = {
     }
   ];
 };
-export type introbold = {
+export type introboldold = {
   title: string;
   description: string;
   image?: string;
   imageAlt?: string;
   titlecase?: boolean;
   maxwidth?:number;
+};
+export type introbold = { 
+    data: {
+    id: number;
+    title: string;
+    paragraphs: string[];
+    image: StaticImageData;
+  }[];
+  titlecase?: boolean;
+  maxwidth?: number;
 };
 export type gridbox = {
     title: string;
@@ -777,7 +808,7 @@ export type Services = {
     ];
   };
 }; 
-export type Sectwo = {
+export type Sectwotp = {
   title: string;
   description: string;
   innertitle: string;
@@ -846,7 +877,22 @@ export type GlobalReachtype = {
     }
   ];
 };
-
+export type GlobalRtps = {
+  heading: string;
+  data: {
+    count: string;
+    title: string;
+    details: string;
+  }[];
+};
+export type FirstSectionProps = {
+  data?: {
+    id: number;
+    title: string;
+    paragraphs: string[];
+    image: StaticImageData;
+  };
+};
 export type GpAmerica = {
   data: {
     title: string;

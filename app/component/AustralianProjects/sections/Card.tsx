@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
-import { Sectwo } from "@/public/types/Common";
+import { Sectwotp } from "@/public/types/Common";
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
@@ -68,7 +68,7 @@ function Card({ item }: { item: { image: string | StaticImageData; imageAlt: str
   );
 }
 
-export default function CardGrid({ data }: { data: { items: Sectwo["items"] } }) {
+export default function CardGrid({ data }: { data: { items: Sectwotp["items"] } }) {
   return (
     <>
       {data.items.map((item, index) => (
