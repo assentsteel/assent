@@ -48,7 +48,8 @@ const NewsList = ({
         <section className="pb-[50px] md:pb-[70px] xl:pb-[100px]   relative ">
             <div className="container">
                 <div className="grid grid-cols-1 lg:grid-cols-2  xl:grid-cols-3 gap-x-4 lg:gap-x-6 xxl:gap-x-10 ">
-                    {data.map((item, index) => (
+                    {data.slice(0, visibleCount).map((item, index) => (
+
                         <Link href={`/news/${item.slug}`} key={index} className="itemsmn">
                             <motion.div
                                 variants={cardVariants}
@@ -122,7 +123,7 @@ const NewsList = ({
                 <div className="text-center mt-5 md:mt-[60px]">
                     {visibleCount < data.length && (
                         <button
-                            onClick={() => setVisibleCount((prev) => prev + 9)}
+                            onClick={() => setVisibleCount((prev) => prev + visibleCount)}
                             className="border flex gap-3 items-center justify-center m-auto whitespace-nowrap font-[500] border-secondary text-xs text-territory uppercase rounded-full py-[8px] px-[20px]  w-fit"
                         >
                             Load More

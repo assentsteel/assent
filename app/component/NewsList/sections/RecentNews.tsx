@@ -11,7 +11,8 @@ import Link from "next/link";
 
 const RecentNews = ({ data }: { data: News }) => {
     const containerRef = useRef(null);
-    const latestNews = [...data.news].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    const latestNews = data.news;
+
 
     useEffect(() => {
         if (containerRef.current) {
