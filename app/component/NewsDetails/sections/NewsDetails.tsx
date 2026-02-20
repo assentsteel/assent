@@ -256,11 +256,11 @@ import { Navigation } from "swiper/modules";
 import { motion } from "framer-motion";
 import { News, Newsdetails } from "@/public/types/Common";
 import Link from "next/link";
+import type { Swiper as SwiperType } from "swiper";
 
 const NewsDetails = ({ data }: { data: Newsdetails }) => {
   const [newsList, setNewsList] = useState<News>();
-  const [currentUrl, setCurrentUrl] = useState("");
-  const [swiperInstance, setSwiperInstance] = useState<any>(null);
+  const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
 
   const prevRef = useRef<HTMLButtonElement | null>(null);
   const nextRef = useRef<HTMLButtonElement | null>(null);
@@ -275,20 +275,22 @@ const NewsDetails = ({ data }: { data: Newsdetails }) => {
       : [];
 
   /* ---------------- CONNECT NAVIGATION AFTER MOUNT ---------------- */
-  useEffect(() => {
-    if (!swiperInstance || !prevRef.current || !nextRef.current) return;
+useEffect(() => {
+  if (!swiperInstance || !prevRef.current || !nextRef.current) return;
 
-    swiperInstance.params.navigation.prevEl = prevRef.current;
-    swiperInstance.params.navigation.nextEl = nextRef.current;
+  const navigation = swiperInstance.navigation;
+  const params = swiperInstance.params.navigation;
 
-    swiperInstance.navigation.destroy();
-    swiperInstance.navigation.init();
-    swiperInstance.navigation.update();
-  }, [swiperInstance]);
+  if (!navigation || typeof params !== "object") return;
 
-  useEffect(() => {
-    if (typeof window !== "undefined") setCurrentUrl(window.location.href);
-  }, []);
+  params.prevEl = prevRef.current;
+  params.nextEl = nextRef.current;
+
+  navigation.destroy();
+  navigation.init();
+  navigation.update();
+}, [swiperInstance]);
+
 
   const handleFetchProjects = async () => {
     try {
@@ -384,8 +386,8 @@ const NewsDetails = ({ data }: { data: Newsdetails }) => {
                 {new Date(data.data.date ?? data.data.createdAt).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
               </p>
               {data.data?.link && (
-                <Link href={data.data?.link || "#"} target="_blank">
-                  <Image src={assets.linkedin} alt="" />
+                <Link href={data.data?.link || "#"} target="_blank" className="cursor-pointer">
+                  <Image src={assets.linkedin} alt="linkedin" />
                 </Link>
               )}
             </motion.div>
