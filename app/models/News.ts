@@ -20,6 +20,7 @@ const newsSchema = new mongoose.Schema({
             slug: { type: String, required: true },
             content: { type: String, required: true },
             thumbnail: { type: String, required: true },
+            link: { type: String },
             thumbnailAlt: { type: String, required: true },
             images:{ type: Array, required: true },
             category: { type: String, required: true },
