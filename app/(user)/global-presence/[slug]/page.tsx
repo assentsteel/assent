@@ -143,7 +143,7 @@ export default async function Page({
 
   if (!response.ok) notFound();
 
-  if (slug.includes("america")) {
+  if (slug.includes("usa")) {
     return <AustralianProjects {...americaData} />;   
   } 
   if (slug.includes("europe")) {
