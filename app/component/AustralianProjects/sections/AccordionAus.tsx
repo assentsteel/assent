@@ -38,7 +38,7 @@ const AccordionAus = ({ data }: { data: Accaus }) => {
   return (
     <section className="pb100 cpt0  overflow-hidden relative ">
       <div className="container">
-        <div className="xl:min-h-[400px] xl:grid  xl:grid-cols-[auto_60%]  2xl:grid-cols-[auto_60%]  xxxl:grid-cols-[auto_964px] lg:items-start xxl:items-start lg:gap-7 xl:gap-7 xxxl:gap-[106px]">
+        <div className="2xl:min-h-[400px] xl:grid  xl:grid-cols-[auto_60%]  2xl:grid-cols-[auto_60%]  xxxl:grid-cols-[auto_964px] lg:items-start xxl:items-start lg:gap-7 xl:gap-7 xxxl:gap-[106px]">
           <div className=" ">
             <motion.h2
               viewport={{ once: true, amount: 0.2 }}
