@@ -396,7 +396,17 @@ useEffect(() => {
               {data.data.mainTitle}
             </motion.h2>
 
-            <motion.div variants={slideInTop} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} exit="exit" dangerouslySetInnerHTML={{ __html: data.data.content }} />
+<div className="mbp10">
+  <motion.div
+    variants={slideInTop}
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true, amount: 0.3 }}
+    exit="exit"
+    dangerouslySetInnerHTML={{ __html: data.data.content }}
+  />
+</div>
+
           </div>
 
           <div className="lg:w-1/6 ">
