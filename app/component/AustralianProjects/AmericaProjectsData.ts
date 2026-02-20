@@ -7,7 +7,7 @@ export const singletextimg = {
       id: 1,
       title: "AISC-Certified Structural Steel Fabrication for US Projects  ",
       paragraphs: [
-        "Assent Steels supports US projects with structural steel fabrication and engineering services, with fabrication carried out at large-scale manufacturing facilities in the GCC. Our GCC facilities operate under AISC-certified quality systems and support projects that require heavy structural steel, precise execution, and coordinated delivery to US construction sites. ",
+        "ASSENT STEEL supports US projects with structural steel fabrication and engineering services, with fabrication carried out at large-scale manufacturing facilities in the GCC. Our GCC facilities operate under AISC-certified quality systems and support projects that require heavy structural steel, precise execution, and coordinated delivery to US construction sites. ",
         "US projects are supported through integrated fabrication, logistics planning, and site delivery coordination, enabling alignment with local construction schedules and erection practices. "
       ],
       image: assets.usbanner
@@ -41,7 +41,7 @@ export const reach = {
 export const sectwo =  
   {
     title: "Our Role in US Steel Construction ",
-    description: "Assent Steels supports projects where scale, technical complexity, and compliance with American standards are critical. We partner with US contractors and project teams to supply fabricated structural steel packages aligned with US engineering practices. This role focuses on supporting efficient site execution through coordinated fabrication and delivery. ",
+    description: "ASSENT STEEL supports projects where scale, technical complexity, and compliance with American standards are critical. We partner with US contractors and project teams to supply fabricated structural steel packages aligned with US engineering practices. This role focuses on supporting efficient site execution through coordinated fabrication and delivery. ",
     innertitle:'Sectors We Serve in the United States ',
     items: [
       {
@@ -121,7 +121,7 @@ export const keycap ={
   }; 
 export const gridsbox = {
     title: 'Services for US Projects  ',
-    description: 'Assent Steels provides integrated structural steel services for US projects, covering engineering coordination, fabrication, surface treatment, and delivery to construction sites nationwide. Services are delivered in alignment with American codes, project specifications, and construction sequencing requirements. ',
+    description: 'ASSENT STEEL provides integrated structural steel services for US projects, covering engineering coordination, fabrication, surface treatment, and delivery to construction sites nationwide. Services are delivered in alignment with American codes, project specifications, and construction sequencing requirements. ',
     items: [
       { 
         title: 'Steel Engineering  ',
@@ -151,8 +151,8 @@ export const gridsbox = {
   };
 export const whyus =  
   {
-    title: "Why Assent Steels for the USA  ", 
-    description:"US projects often involve demanding compliance requirements, high fabrication volumes, and tight construction programmes. This delivery approach helps project teams manage capacity constraints, technical complexity, and programme risk while maintaining alignment with project requirements and schedules. Rather than competing with local contractors, Assent Steels complements US project teams by providing additional fabrication capacity and technical support for steel scopes that require scale, precision, and disciplined quality control. ",
+    title: "Why ASSENT STEEL for the USA  ", 
+    description:"US projects often involve demanding compliance requirements, high fabrication volumes, and tight construction programmes. This delivery approach helps project teams manage capacity constraints, technical complexity, and programme risk while maintaining alignment with project requirements and schedules. Rather than competing with local contractors, ASSENT STEEL complements US project teams by providing additional fabrication capacity and technical support for steel scopes that require scale, precision, and disciplined quality control. ",
     items: [
       {
         image: assets.uswhy1,
@@ -179,7 +179,7 @@ export const whyus =
   };
   export const susbata = {
     title: 'Sustainability and Compliance in the US Context  ',
-    description: 'Assent Steels supports US projects through fabrication and delivery practices designed to meet American compliance, inspection, and documentation expectations. The focus is on aligning fabrication outputs with project-specific requirements commonly applied across US industrial and construction developments. ',
+    description: 'ASSENT STEEL supports US projects through fabrication and delivery practices designed to meet American compliance, inspection, and documentation expectations. The focus is on aligning fabrication outputs with project-specific requirements commonly applied across US industrial and construction developments. ',
     items: [
       { 
         title: 'Standards and regulatory alignment',
@@ -205,7 +205,7 @@ export const whyus =
 export const partnershipdata =  
   {
     title: "Partnership Model and Engagement ",
-    description: "Assent Steels works with US clients through a collaborative engagement model that integrates offshore fabrication with local project delivery. The approach is designed to support different contracting structures and project stages, from early technical input through to site delivery. ",
+    description: "ASSENT STEEL works with US clients through a collaborative engagement model that integrates offshore fabrication with local project delivery. The approach is designed to support different contracting structures and project stages, from early technical input through to site delivery. ",
     innertitle:'How We Partner  ',
     items: [
       { 
@@ -248,8 +248,8 @@ export const partnershipdata =
   };
    export const ainglelabeldata =  
   {
-    title: "Partner with Assent Steels in the United States ", 
-    description:"Assent Steels supports US projects that require reliable structural steel fabrication, disciplined compliance, and coordinated delivery for complex construction programmes. Early engagement allows project teams to assess scope, schedules, and fabrication requirements with greater certainty. For tenders, technical discussions, or upcoming steel packages, connect with the Assent Steels team to explore fabrication capacity, delivery approach, and project alignment. ",
+    title: "Partner with ASSENT STEEL in the United States ", 
+    description:"ASSENT STEEL supports US projects that require reliable structural steel fabrication, disciplined compliance, and coordinated delivery for complex construction programmes. Early engagement allows project teams to assess scope, schedules, and fabrication requirements with greater certainty. For tenders, technical discussions, or upcoming steel packages, connect with the ASSENT STEEL team to explore fabrication capacity, delivery approach, and project alignment. ",
        image: assets.usfbanner,
         imageAlt: "logo",
         
@@ -261,11 +261,11 @@ export const partnershipdata =
     items: [
       { 
         title: "Do you fabricate steel for US projects?",
-        description: "Yes. Assent Steels provides structural steel fabrication for projects across the United States, with fabrication aligned to American standards and coordinated delivery to US construction sites. ",
+        description: "Yes. ASSENT STEEL provides structural steel fabrication for projects across the United States, with fabrication aligned to American standards and coordinated delivery to US construction sites. ",
       },   
       { 
         title: "Where is steel fabrication carried out for US projects? ",
-        description: "Steel fabrication is carried out at Assent Steels’ large-scale manufacturing facilities in the GCC, with production aligned to US project specifications and inspection requirements. ",
+        description: "Steel fabrication is carried out at ASSENT STEEL’s large-scale manufacturing facilities in the GCC, with production aligned to US project specifications and inspection requirements. ",
       },  
       { 
         title: "What types of projects do you support in the USA? ",

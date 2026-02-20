@@ -66,7 +66,7 @@ const textVariants = {
           </motion.p>
           
         </div>
-          <div className="lg:grid   lg:grid-cols-[457px_auto] xl:grid-cols-[500px_auto] 2xl:grid-cols-[797px_auto] lg:items-center xxl:items-center gap-5 lg:gap-[66px]">
+          <div className="lg:grid   lg:grid-cols-[50%_auto] xl:grid-cols-[50%_auto] 2xl:grid-cols-[50%_auto] xxxl:grid-cols-[797px_auto] lg:items-center xxl:items-center gap-5 lg:gap-10 2xl:gap-[66px]">
              <div className="w-full     ">
             {/* {data.items.map((item, index) => ( */}
               <motion.div
@@ -115,7 +115,7 @@ const textVariants = {
                         {/* TITLE */}
                         <h3 className={`${
                         activeIndex === index ? "text-secondary" : "text-territory"
-                      } capitalize text-[17px] md:text-md group-hover:text-secondary transition-all duration-300 leading-[1.22] font-[500]  pr-6`}>
+                      } capitalize text-[17px] md:text-md group-hover:text-secondary transition-all duration-300 leading-[1.22] font-[600]  pr-6`}>
                           {da.title}
                         </h3>
  

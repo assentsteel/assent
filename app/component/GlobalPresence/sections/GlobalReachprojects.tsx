@@ -47,12 +47,17 @@ const extractSuffix = (value: string) => {
   const match = value?.match(/[^\d.\s]+$/);
   return match ? match[0] : "+";
 };
+ 
 const isStringOnly = (value: string) => {
   if (!value) return true;
-  // If letters exist before OR after the number, it's a label not a count
-  return /[a-zA-Z]/.test(value.split(/[\d.]+/)[0]) || // letters before number
-         /^[^+\-%x×]+[a-zA-Z]/.test(value) ||          // letters embedded in value
-         /[a-zA-Z].*\d.*[a-zA-Z]/.test(value);          // letters sandwich a number
+  return (
+    /[a-zA-Z]/.test(value.split(/[\d.]+/)[0]) ||  // letters before number e.g. "EN 1090"
+    /[a-zA-Z].*\d.*[a-zA-Z]/.test(value)           // letters wrap number e.g. "ISO 9001 A"
+  );
+};
+
+const isMSuffix = (value: string) => {
+  return /\d[mM]$/.test(value?.trim());
 };
 
 const textVariants = {
@@ -97,15 +102,13 @@ const textVariants = {
 >
   {data.data?.map((item, index) => (
     <motion.div
-      className="col-span-12 lg:col-span-4 lg:px-4 last:pb-0 pb-5 lg:pb-0"
+      className="col-span-12 lg:col-span-4 lg:px-4 last:pb-0 pb-5 lg:pb-0 group first:lg:ps-0 last:lg:pe-0"
       key={index}
       variants={textItemVariants}
     >
       <div>
         <div
-          className={`border-b ${
-            bgcolor ? 'border-white' : 'border-territory'
-          } mb-4 pb-4 lg:mb-[30px] lg:pb-[30px]`}
+          className={`border-b border-white group-hover:border-secondary transition-colors duration-300 mb-4 pb-4 lg:mb-[30px] lg:pb-[30px]`}
         >
       <h3
   className={`text-40 font-semibold leading-[1.5] ${
@@ -114,26 +117,23 @@ const textVariants = {
 >
 {inView ? (
   isStringOnly(item.count) ? (
-    // Pure string — display as-is
     <span>{item.count}</span>
   ) : (
-    // Has numbers — animate count
     <>
       <CountUp
         start={0}
-        end={extractNumber(item.count)!}
+        end={extractNumber(item.count)}
         duration={2}
         delay={0.3}
-        decimals={extractNumber(item.count)! % 1 !== 0 ? 1 : 0}
+        decimals={extractNumber(item.count) % 1 !== 0 ? 1 : 0}
       />
-      <span className="text-secondary">
+      <span className={isMSuffix(item.count) ? "text-secondary" : "text-secondary"}>
         {extractSuffix(item.count)}
       </span>
     </>
   )
 ) : (
   isStringOnly(item.count) ? (
-    // Pure string before inView — show empty or placeholder
     <span>&nbsp;</span>
   ) : (
     0

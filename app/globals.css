@@ -176,13 +176,35 @@ figure.rtroverlay::after {
   inset: 0;
 }
 
+/* Base overlay — always visible */
 .overlayclr::after {
   content: "";
-  background: linear-gradient(180deg, rgba(29, 37, 45, 0) 43.29%, rgba(29, 37, 45, 0.56758) 60.3%, #1D252D 91.49%);
+  background: linear-gradient(
+    180deg,
+    rgba(29, 37, 45, 0) 43.29%,
+    rgba(29, 37, 45, 0.56758) 60.3%,
+    #1D252D 91.49%
+  );
   border-radius: 15px;
   position: absolute;
-  top: 0;
   inset: 0;
+}
+
+/* Hover dark overlay — fades in on top */
+.overlayclr::before {
+  content: "";
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+  border-radius: 15px;
+  position: absolute;
+  inset: 0;
+  opacity: 0;                         /* ← hidden by default */
+  transition: opacity 0.4s ease;      /* ← smooth fade */
+  z-index: 1;
+}
+
+/* Fade in dark overlay on hover */
+.cardsts .group:hover .overlayclr::before {
+  opacity: 1;
 }
 
 .blueover::after {
