@@ -90,7 +90,15 @@ const KeyCapabilities = ({
     },
     exit: { opacity: 0, x: -30, transition: { duration: 0.4 } },
   };
-
+const slideIndLeft = {
+    hidden: { opacity: 0, x: -80 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+    exit: { opacity: 0, x: -30, transition: { duration: 0.4 } },
+  };
   const currentTabSet = 0;
   const paginatedTabs = tabs;
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
@@ -225,6 +233,13 @@ const KeyCapabilities = ({
           <AnimatePresence mode="wait">
             {!isMobile && (
               <motion.div
+ variants={slideIndLeft}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            exit="exit"
+> 
+              <motion.div
                 key={activeTab} // triggers reanimation on tab switch
                 variants={fadeInUp}
                 initial="hidden"
@@ -269,6 +284,7 @@ const KeyCapabilities = ({
                   </motion.figure>
                 </div>
               </motion.div>
+                  </motion.div>
             )}
           </AnimatePresence>
           {isMobile &&

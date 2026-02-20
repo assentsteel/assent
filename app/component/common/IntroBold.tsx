@@ -6,9 +6,9 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
-import { introbold } from "@/public/types/Common";
+import { introboldold } from "@/public/types/Common";
 
-const IntroBold = ({ data }: { data: introbold }) => {
+const IntroBold = ({ data }: { data: introboldold }) => {
   const containerRef = useRef(null);
 
   const textContainerVariants = {

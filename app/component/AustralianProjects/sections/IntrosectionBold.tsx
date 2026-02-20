@@ -64,7 +64,7 @@ const IntrosectionBold = ({ data }: { data: introbold }) => {
                 style={{ maxWidth: data.maxwidth ? `${data.maxwidth}ch` : 'auto' }}
 
               >
-                {data.title}
+                {data.data[0].title}
               </motion.h2>
             </motion.div>
           </div>
@@ -86,7 +86,7 @@ const IntrosectionBold = ({ data }: { data: introbold }) => {
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.3 }}
                     transition={{ delay: 0.2, duration: 0.5 }}
-                    dangerouslySetInnerHTML={{ __html: data.description }}
+                    dangerouslySetInnerHTML={{ __html: data.data[0].paragraphs.join(" ") }}
                   ></motion.div>
                 </div>
               </motion.div>

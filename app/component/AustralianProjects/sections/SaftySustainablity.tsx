@@ -3,6 +3,7 @@ import Image from "next/image";
 import React from "react";
 import { motion } from "framer-motion"; 
 
+import { slideInLeft } from "../../common/MotionAnimation";
 
 
         import {   gridbox } from '@/public/types/Common';
@@ -25,7 +26,16 @@ const SaftySustainablity = ({ data, maxchwidth, colnum, }: { data: gridbox, coln
     <div className="container mx-auto border-b pb100 ">
       <div className="flex flex-col   ">
         <div className="mb-5 lg:mb-[60px]">
-          <motion.div
+         
+            <motion.h2
+              variants={slideInLeft}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            exit="exit"
+             className="text-xl text-primary font-[600] leading-[1.2] mb-4 lg:mb-[30px]" style={{ maxWidth: maxchwidth ? `${maxchwidth}ch` : undefined }}>{data.title}
+             </motion.h2>
+             <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }} // Trigger animation once when 50% visible
@@ -38,8 +48,6 @@ const SaftySustainablity = ({ data, maxchwidth, colnum, }: { data: gridbox, coln
               }, // Slide up and fade in
             }}
           >
-            <h2 className="text-xl text-primary font-[600] leading-[1.2] mb-4 lg:mb-[30px]" style={{ maxWidth: maxchwidth ? `${maxchwidth}ch` : undefined }}>{data.title}</h2>
-            
              <motion.p className="text-19   font-400   text-tertiary   lg:max-w-[92ch]"
           custom="y"
                     variants={textVariants}

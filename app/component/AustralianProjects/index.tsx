@@ -1,11 +1,11 @@
 import React from "react";
 import FirstSection from "./sections/FirstSection";
 import IntrosectionBold from "./sections/IntrosectionBold";
-import GlobalReach from "../../component/GlobalPresence/sections/GlobalReach";
+import GlobalReachprojects from "../../component/GlobalPresence/sections/GlobalReachprojects";
 import HeadingText from "./sections/HeadingText";
 import KeyCapabilities from "./sections/KeyCapabilities"
-import { singletextimg, reach,sectwo,howwework,keycap,gridsbox,whyus,susbata,partnershipdata ,accauss ,ainglelabeldata,faqdata} from "./australianProjectsData";
-import { GlobalReachtype } from "@/public/types/Common";
+// import { singletextimg, reach,sectwo,howwework,keycap,gridsbox,whyus,susbata,partnershipdata ,accauss ,ainglelabeldata,faqdata} from "./australianProjectsData";
+ 
 import HowweWork from "./sections/HowweWork "; 
 import Faq from "./sections/Faq";
 import GridBox from "./sections/GridBox";
@@ -14,43 +14,60 @@ import SaftySustainablity from "./sections/SaftySustainablity"
 import PartnershipModel from "./sections/PartnershipModel"
 import AccordionAus from "./sections/AccordionAus"
  import SingleImageText from "./sections/SingleImageText"
-const Index = () => {
-  const sectionData = singletextimg?.data?.[0];
+      import { introbold,GlobalRtps,Sectwotp,HowWework,keycaptur,gridbox,whyustre,Partnerst,Accaus,ainglelabel ,typefaq} from '@/public/types/Common';
+ 
+  
+        //  const Index = ({ sectwo ,singletextimg}: { sectwo: Sectwotp,  }) => {
+          const Index = ({
+            singletextimg,
+      reach,      
+  sectwo,
+  howwework,
+  keycap,
+  gridsbox,
+  whyus,
+  partnershipdata,
+  accauss,
+  ainglelabeldata,
+  susbata,
+  faqdata
+}: {
+  singletextimg:introbold;
+  reach:GlobalRtps;
+  sectwo: Sectwotp;
+  howwework: HowWework;
+  keycap: keycaptur;
+  gridsbox: gridbox;
+  whyus:whyustre;
+  susbata: gridbox;
+  partnershipdata: Partnerst;
+  accauss: Accaus;
+  ainglelabeldata: ainglelabel;
+  faqdata: typefaq;
+}) => {
+
+ const sectionData = singletextimg?.data?.[0];
 
   return (
     <>
       {sectionData && ( 
          <IntrosectionBold
-          data={{
-            title: sectionData.title,
-            description: sectionData.paragraphs.join(" "),
-            titlecase:true,
-            maxwidth:21
-          }}
+          data={singletextimg          }
         /> 
-      )}
+      )} 
 
       <FirstSection data={sectionData} />
- 
-      <GlobalReach
+
+      <GlobalReachprojects
         bgcolor="bg-primary"
-        data={
-          {
-            title: reach.heading,
-            items: reach.data.map((item) => ({
-              number: item.count,
-              value: item.title,
-              description: item.details,
-            })),
-          } as unknown as GlobalReachtype
-        }
-      /> 
+        data={reach        }
+      />   
        <HeadingText data={sectwo} />
-       <HowweWork data={howwework} />
-       <KeyCapabilities 
+      <HowweWork data={howwework} />
+     <KeyCapabilities 
         data={keycap}
         navigation={true} />
-        <GridBox 
+      <GridBox 
       colnum={4} 
         data={gridsbox} />
         <WhyAssent data={whyus}/>
@@ -61,7 +78,7 @@ const Index = () => {
        <PartnershipModel data={partnershipdata} />
        <AccordionAus data={accauss} />
      <SingleImageText data={ainglelabeldata}  textright={false}  />
-     <Faq data={faqdata} />
+     <Faq data={faqdata} />  
 
 
 

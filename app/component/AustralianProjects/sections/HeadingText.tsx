@@ -9,8 +9,8 @@ gsap.registerPlugin(ScrollTrigger);
 
  
   
-      import { Sectwo } from '@/public/types/Common';   
-        const HeadingText = ({ data }: { data: Sectwo }) => {
+      import { Sectwotp } from '@/public/types/Common';   
+        const HeadingText = ({ data }: { data: Sectwotp }) => {
  
   const containerRef = useRef(null);
 
