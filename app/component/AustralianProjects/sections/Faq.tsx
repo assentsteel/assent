@@ -99,13 +99,14 @@ import { typefaq } from "@/public/types/Common";
               <motion.div
                 animate={{ rotate: activeIndex === index ? 180 : 0 }}
                 transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+                className="min-w-[16px] h-fit relative top-1"
               >
                 <Image
                   src="/assets/img/icons/arrow_down.png"
                   alt="logo"
                   width={17}
                   height={8}
-                  className="w-[17px] h-[8px]"
+                  className="min-w-[16px] h-[7px]"
                 />
               </motion.div>
             </div>

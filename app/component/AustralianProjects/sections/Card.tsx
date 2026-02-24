@@ -18,8 +18,7 @@ function Card({ item }: { item: { image: string | StaticImageData; imageAlt: str
       className="relative group"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      onTouchStart={() => setHovered(true)}
-      onTouchEnd={() => setHovered(false)}
+      onTouchStart={() => setHovered(true)} 
     >
       {/* Image */}
      <motion.figure className="overlayclr overflow-hidden rounded-[15px]">
