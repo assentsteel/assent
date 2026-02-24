@@ -38,7 +38,7 @@ const AccordionAus = ({ data }: { data: Accaus }) => {
   return (
     <section className="pb100 cpt0  overflow-hidden relative ">
       <div className="container">
-        <div className="2xl:min-h-[400px] xl:grid  xl:grid-cols-[auto_60%]  2xl:grid-cols-[auto_60%]  xxxl:grid-cols-[auto_964px] lg:items-start xxl:items-start lg:gap-7 xl:gap-7 xxxl:gap-[106px]">
+        <div className="2xl:min-h-[365px] xl:grid  xl:grid-cols-[auto_60%]  2xl:grid-cols-[auto_60%]  xxxl:grid-cols-[auto_964px] lg:items-start xxl:items-start lg:gap-7 xl:gap-7 xxxl:gap-[106px]">
           <div className=" ">
             <motion.h2
               viewport={{ once: true, amount: 0.2 }}
@@ -73,7 +73,7 @@ const AccordionAus = ({ data }: { data: Accaus }) => {
             {data.items.map((da, index) => (
               <motion.div
                 key={index}
-                className="group border-b first:border-t border-[#00000015] last:border-b-0 py-5 lg:py-[20px] xxl:py-[34px] transition-all duration-300"
+                className="group border-b first:border-t border-[#00000015] last:border-b-0 py-5 lg:py-[20px] xxl:py-[34px] last:!pb-0 transition-all duration-300"
                 onMouseEnter={() => {
   if (activeIndex !== index) {
     setActiveIndex(-1); // trigger exit first

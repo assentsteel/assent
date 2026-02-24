@@ -280,7 +280,7 @@ const slideIndLeft = {
                     >
                       {activeContent.title}
                     </h2>
-                    <div className="text-territory text-sm font-[400] leading-[1.8] mb-6 lg:mb-10">
+                    <div className="text-territory text-sm font-[400] leading-[1.8] mb-6 lg:mb-0">
                       <div
                         className={`leading-[1.53] ${pathName.startsWith(`/sustainability`) == true ? "sustainability-area-of-focus" : "insts"}`}
                         dangerouslySetInnerHTML={{

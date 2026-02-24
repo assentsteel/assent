@@ -7,7 +7,7 @@ export const singletextimg = {
       id: 1,
       title: "Delivering Heavy Structural Steel for Africa’s Largest Projects ",
       paragraphs: [
-        "AASSENT STEEL supports projects across Southern, West, and East Africa through large-scale structural steel fabrication and coordinated delivery to ports across the continent. With fabrication executed at advanced manufacturing facilities in the UAE, we serve resource-driven and infrastructure-led developments requiring heavy steel capability and disciplined execution. ",
+        "ASSENT STEEL supports projects across Southern, West, and East Africa through large-scale structural steel fabrication and coordinated delivery to ports across the continent. With fabrication executed at advanced manufacturing facilities in the UAE, we serve resource-driven and infrastructure-led developments requiring heavy steel capability and disciplined execution. ",
         "African projects are supported through integrated engineering coordination, controlled fabrication processes, and established shipping routes to major continental ports, enabling delivery aligned with construction schedules. "
       ],
       image: assets.afrbanner
@@ -41,7 +41,7 @@ export const reach = {
 export const sectwo =  
   {
     title: "Our Role in the African Market ",
-    description: "AASSENT STEEL is typically engaged on African projects requiring heavy structural steel packages beyond local fabrication capacity. We support EPC contractors and asset owners through structured fabrication planning and coordinated supply to designated African ports. ",
+    description: "ASSENT STEEL is typically engaged on African projects requiring heavy structural steel packages beyond local fabrication capacity. We support EPC contractors and asset owners through structured fabrication planning and coordinated supply to designated African ports. ",
     innertitle:'Sectors We Serve in Africa ',
     items: [
       {
@@ -151,8 +151,8 @@ export const gridsbox = {
   };
 export const whyus =  
   {
-    title: "Why AASSENT STEEL for Africa", 
-    description:"African projects often require heavy structural steel delivered reliably across multiple countries and challenging logistics environment. AASSENT STEEL supports these requirements through high-capacity fabrication and established delivery coordination major ports across Southern, West and East Africa. We complement local contractors by providing additional fabrication scale and technical support for complex mining, oil and gas, power, and infrastructure developments. ",
+    title: "Why ASSENT STEEL for Africa", 
+    description:"African projects often require heavy structural steel delivered reliably across multiple countries and challenging logistics environment. ASSENT STEEL supports these requirements through high-capacity fabrication and established delivery coordination major ports across Southern, West and East Africa. We complement local contractors by providing additional fabrication scale and technical support for complex mining, oil and gas, power, and infrastructure developments. ",
     items: [
       {
         image: assets.afrwhy1,
@@ -179,7 +179,7 @@ export const whyus =
   };
   export const susbata = {
     title: 'Sustainability and Compliance in the African Context',
-    description: 'AASSENT STEEL supports African projects through structured quality, safety, and environmental practices aligned with regional regulatory expectations. Fabrication processes are planned to support compliance with standards such as SANS and BS EN where required by project specifications. ',
+    description: 'ASSENT STEEL supports African projects through structured quality, safety, and environmental practices aligned with regional regulatory expectations. Fabrication processes are planned to support compliance with standards such as SANS and BS EN where required by project specifications. ',
     items: [
       { 
         title: 'Standards and regulatory alignment',
@@ -248,8 +248,8 @@ export const partnershipdata =
   };
    export const ainglelabeldata =  
   {
-    title: "Partner with AASSENT STEEL in Africa  ", 
-    description:"AASSENT STEEL supports mining, energy, oil and gas, and infrastructure developments across Africa with heavy structural steel fabrication and coordinated port delivery. Early engagement enables project teams to align fabrication planning, logistics, and schedule requirements from the outset. For upcoming tenders, mining expansions, power projects, or multi-country developments, connect with AASSENT STEEL to discuss project scope, preferred port delivery, and execution timelines. ",
+    title: "Partner with ASSENT STEEL in Africa  ", 
+    description:"ASSENT STEEL supports mining, energy, oil and gas, and infrastructure developments across Africa with heavy structural steel fabrication and coordinated port delivery. Early engagement enables project teams to align fabrication planning, logistics, and schedule requirements from the outset. For upcoming tenders, mining expansions, power projects, or multi-country developments, connect with ASSENT STEEL to discuss project scope, preferred port delivery, and execution timelines. ",
        image: assets.afrfbanner,
         imageAlt: "logo",
         
@@ -261,7 +261,7 @@ export const partnershipdata =
     items: [
       { 
         title: "Do you deliver structural steel to African ports? ",
-        description: "Yes. AASSENT STEEL coordinates delivery to major African ports including Durban, Cape Town, Lagos, Luanda, Tema, and Dar es Salaam, with shipment planned to support project schedules. ",
+        description: "Yes. ASSENT STEEL coordinates delivery to major African ports including Durban, Cape Town, Lagos, Luanda, Tema, and Dar es Salaam, with shipment planned to support project schedules. ",
       },  
       { 
         title: "Where is fabrication carried out for African projects? ",
@@ -273,7 +273,7 @@ export const partnershipdata =
       },  
       { 
         title: "Can you handle heavy mining steel requirements? ",
-        description: "Yes. AASSENT STEEL fabricates heavy structures including processing plant frames, conveyor systems, crusher supports, and concentrator steelwork for mining developments. ",
+        description: "Yes. ASSENT STEEL fabricates heavy structures including processing plant frames, conveyor systems, crusher supports, and concentrator steelwork for mining developments. ",
       },  
       { 
         title: "How do you manage logistics across multiple African countries?",
@@ -284,7 +284,7 @@ export const partnershipdata =
         description: "Services include structural steel engineering coordination, heavy fabrication, corrosion protection, and coordinated delivery to construction sites across the continent. ",
       },  
       { 
-        title: "How can we engage AASSENT STEEL for an African project? ",
+        title: "How can we engage ASSENT STEEL for an African project? ",
         description: "Project teams can initiate discussions by sharing scope, preferred port location, timelines, and applicable standards for technical and commercial review.  ",
       },   
     ]
