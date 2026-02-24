@@ -36,6 +36,24 @@ const KeyCapabilities = ({
   // }, [tabs.length]);
   const activeContent = data.items[activeTab];
   const [isMobile, setIsMobile] = useState(false);
+const sourceRef = useRef<HTMLDivElement>(null);
+
+  const [minHeight, setMinHeight] = useState(0);
+
+
+  useEffect(() => {
+    if (!sourceRef.current) return;
+
+    const observer = new ResizeObserver(() => {
+      if (sourceRef.current) {
+        setMinHeight(sourceRef.current.offsetHeight);
+      }
+    });
+
+    observer.observe(sourceRef.current);
+
+    return () => observer.disconnect();
+  }, []);
 
   const containerRef = useRef(null);
   useEffect(() => {
@@ -64,17 +82,13 @@ const KeyCapabilities = ({
   const [openAccordions, setOpenAccordions] = useState<Record<number, boolean>>(
     {}
   );
-  const toggleAccordion = (index: number) => {
-    setOpenAccordions((prev) => ({
-      ...prev,
-      [index]: !prev[index],
-    }));
-  };
-
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-  };
+  
+const toggleAccordion = (index: number) => {
+  setOpenAccordions((prev) => ({
+    [index]: !prev[index], // remove ...prev to close others
+  }));
+};
+  
 
     const fadeInDown = {
     hidden: { opacity: 0, y: -20 },
@@ -247,16 +261,17 @@ const slideIndLeft = {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
             exit="exit"
+            style={{ minHeight: `${minHeight}px` }}
 > 
               <motion.div
                 key={activeTab} // triggers reanimation on tab switch
-                variants={fadeInUp}
+                variants={slideIndLeft}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
                 exit="hidden"
-                className="lg:grid grid-cols-[auto_55%] xl:grid-cols-[auto_55%] 2xl:grid-cols-[auto_55%] xxl:grid-cols-[auto_797px]  items-center gap-5 lg:gap-10   2xl:gap-[123px]"
-              >
+                className="lg:grid grid-cols-[auto_50%] xl:grid-cols-[auto_50%] 2xl:grid-cols-[auto_50%] xxxl:grid-cols-[auto_49.2%]  items-center gap-5 lg:gap-10   2xl:gap-[123px]"
+            ref={sourceRef}  >
                 <div className="w-ful">
                   <div className="mb-8 lg:mb-0 max-w-[765px]">
                     <h2
@@ -278,7 +293,7 @@ const slideIndLeft = {
                 <div className="w-full pl-0  ">
                   <motion.figure
                     className="image-wrapper"
-                    variants={fadeInUp}
+                    variants={slideIndLeft}
                     initial="hidden"
                     animate="visible"
                     transition={{ delay: 0.2 }}
@@ -340,7 +355,7 @@ const slideIndLeft = {
                       <Image
                         src={content.image}
                         alt={content.title}
-                        className="rounded-[15px] object-cover"
+                        className="rounded-[15px] object-cover h-[260px] sm:h-[350px]"
                         width={800}
                         height={500}
                       />

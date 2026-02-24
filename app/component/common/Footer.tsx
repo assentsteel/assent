@@ -38,9 +38,9 @@ const Footer = () => {
     >
       <ScrollToTop />
       <div className="container">
-        <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-[40px] xxl:gap-[50px] xxxl:gap-[100px] mb-[30px] md:mb-[70px]">
+        <motion.div className="grid grid-cols-1 md:grid-cols-[56%_auto] xxl:grid-cols-[70%_auto] xxxl:grid-cols-[962px_auto] gap-[30px] xxl:gap-[50px] xxxl:gap-[137px]  mb-[30px] xxxl:mb-[70px]">
           {/* Contact Info */}
-          <div className="md:col-span-4 lg:order-last overflow-hidden">
+          <div className="  md:order-last overflow-hidden">
             <motion.div variants={fadeInLeft}>
               <Image
                 src="/assets/img/logo-wh.svg"
@@ -49,82 +49,33 @@ const Footer = () => {
                 width={150}
                 height={50}
               />
-              <h3 className="text-sm font-semibold mt-4">Head Office</h3>
+              <h3 className="text-sm font-bold mt-4">Head Office</h3>
               <p>
                 Dubai Industrial City, UAE.
                 <br /> P.O.Box: 38436
               </p>
-              <div className="flex flex-col  gap-2 2xl:gap-7 mt-[30px]">
+              <div className="flex flex-col  gap-2 2xl:gap-3 mt-[30px]">
                 <p className="flex gap-2">
                   {" "}
-                  <span className="text-secondary">T:</span> +971 4 247 1200{" "}
+                <a href="tel:+97142471200"> <span className="text-secondary font-bold">T:</span> +971 4 247 1200{" "}</a> 
                 </p>
                 <p className="flex gap-2">
-                  <span className="text-secondary">E:</span>
-                  <span className="flex flex-col">
+                  <span className="text-secondary font-bold">E:</span>
+                  <span className="flex flex-col xxxl:flex-row xxxl:gap-2">
                     {" "}
-                    <span>info@assentsteel.com</span>
-                    <span>contactus@assentsteel.com</span>
+                   <a href="mailto:info@assentsteel.com"><span>info@assentsteel.com,</span></a> 
+                 <a href="mailto:contactus@assentsteel.com"><span>contactus@assentsteel.com</span></a>   
                   </span>
                 </p>
               </div>
 
-              <motion.div
-                variants={fadeIn}
-                className="lg:col-span-8 xxl:col-span-4  justify-center mt-10 hidden xl:block xxl:hidden"
-              >
-                <div className="flex gap-2 md:gap-6 border-t border-white/35 pt-5 xxl:pt-[70px] max-md:justify-center">
-                  {/* {[FaLinkedinIn, FaFacebookF, FaInstagram, FaYoutube].map((Icon, index) => (
-                <motion.div key={index} variants={scaleUp}>
-                  <Link href="#" className="text-md hover:text-secondary hover:scale-125 transition-all ease-in-out duration-500 h-[45px] xxxl:h-[58px] items-center flex">
-                    <Icon />
-                  </Link>
-                </motion.div>
-              ))} */}
-                  <motion.div variants={scaleUp}>
-                    <Link
-                      target="_blank"
-                      href="https://www.linkedin.com/company/assentsteel/"
-                      className="text-md hover:text-secondary hover:scale-125 transition-all ease-in-out duration-500 h-[45px] xxxl:h-[58px] items-center flex"
-                    >
-                      <FaLinkedinIn />
-                    </Link>
-                  </motion.div>
-                  <motion.div variants={scaleUp}>
-                    <Link
-                      target="_blank"
-                      href="https://www.facebook.com/assentsteel/"
-                      className="text-md hover:text-secondary hover:scale-125 transition-all ease-in-out duration-500 h-[45px] xxxl:h-[58px] items-center flex"
-                    >
-                      <FaFacebookF />
-                    </Link>
-                  </motion.div>
-                  <motion.div variants={scaleUp}>
-                    <Link
-                      target="_blank"
-                      href="https://www.instagram.com/assentsteel/?hl=en"
-                      className="text-md hover:text-secondary hover:scale-125 transition-all ease-in-out duration-500 h-[45px] xxxl:h-[58px] items-center flex"
-                    >
-                      <FaInstagram />
-                    </Link>
-                  </motion.div>
-                  <motion.div variants={scaleUp}>
-                    <Link
-                      target="_blank"
-                      href="https://www.youtube.com/@assentsteel"
-                      className="text-md hover:text-secondary hover:scale-125 transition-all ease-in-out duration-500 h-[45px] xxxl:h-[58px] items-center flex"
-                    >
-                      <FaYoutube />
-                    </Link>
-                  </motion.div>
-                </div>
-              </motion.div>
+           
             </motion.div>
           </div>
           {/* Quick Links */}
           <motion.div
             variants={fadeIn}
-            className="md:col-span-8 overflow-hidden"
+            className="  overflow-hidden"
           >
             <motion.h3
               variants={fadeInLeft}
@@ -132,7 +83,7 @@ const Footer = () => {
             >
               Quick Links
             </motion.h3>
-            <div className="space-y-2 grid md:grid-cols-3 lg:w-[75%] items-baseline">
+            <div className="space-y-2 grid md:grid-cols-3 xxxl:w-[85%] items-baseline">
               <ul className="space-y-2 grid lg:grid-cols-1 ">
                 {[
                   { label: "About", href: "/about" },
@@ -143,7 +94,7 @@ const Footer = () => {
                   <motion.li key={index} variants={fadeInLeft}>
                     <Link
                       href={link.href}
-                      className="hover:text-secondary transition-all ease-in-out duration-500"
+                      className="hover:text-secondary transition-all ease-in-out duration-500 text-sm"
                     >
                       {link.label}
                     </Link>
@@ -160,7 +111,7 @@ const Footer = () => {
                   <motion.li key={index} variants={fadeInLeft}>
                     <Link
                       href={link.href}
-                      className="hover:text-secondary transition-all ease-in-out duration-500"
+                      className="hover:text-secondary transition-all ease-in-out duration-500 text-sm"
                     >
                       {link.label}
                     </Link>
@@ -186,7 +137,7 @@ const Footer = () => {
                             }
                           : link.href
                       }
-                      className="hover:text-secondary transition-all ease-in-out duration-500"
+                      className="hover:text-secondary transition-all ease-in-out duration-500 text-sm"
                     >
                       {link.label}
                     </Link>
@@ -197,11 +148,11 @@ const Footer = () => {
           </motion.div>
         </motion.div>
 
-        <div className="lg:grid grid-cols-1  xxl:grid-cols-12 gap-8 xxl:gap-[50px] xxxl:gap-[100px] items-center">
+        <div className="grid grid-cols-1 xxl:grid-cols-[70%_auto] xxxl:grid-cols-[962px_auto] lg:gap-[40px] xxl:gap-[50px] xxxl:gap-[137px]   xxxl:mb-[70px] items-center">
           {/* Buttons and Certifications */}
-          <motion.div variants={fadeIn} className="xl:col-span-9 md:col-span-8">
+          <motion.div variants={fadeIn} className=" ">
             <div className="flex md:flex-row flex-col gap-5 md:gap-[70px] justify-between border-t xl:border-t-0 xxl:border-t border-white/35 pt-8 xxl:pt-[50px] xxxl:pt-[61px] pb-5 lg:pb-0 items-center">
-              <div className="flex lg:items-center flex-col lg:flex-row gap-4 justify-between w-full">
+              <div className="flex xl:grid   flex-col xl:grid-cols-[50%_auto] gap-4 justify-between w-full">
                 <div className="flex md:flex-row flex-col gap-4 overflow-hidden pt-2 lg:pt-0 wst5 xl:border-t xl:pt-10 xxl:pt-0 border-t-0 xxl:border-t-0">
                   <Link
                     href="/assets/ASSENT_STEEL_INDUSTRIES_L.L.C.pdf"
@@ -229,7 +180,7 @@ const Footer = () => {
                     alt="Certifications"
                     width={156}
                     height={158}
-                    className="w-[30rem] h-auto md:h-auto rounded-sm"
+                    className="w-full xl:w-[30rem] h-auto md:h-auto rounded-sm"
                   />
 
                   {/* <Image
@@ -263,9 +214,9 @@ const Footer = () => {
           {/* Social Links */}
           <motion.div
             variants={fadeIn}
-            className="lg:col-span-8 xxl:col-span-3  block justify-center xl:hidden xxl:block"
+            className="  block justify-center  "
           >
-            <div className="flex gap-2 md:gap-6 border-t border-white/35 pt-5 xxl:pt-[70px] max-md:justify-center xl:justify-end xxxl:justify-start">
+            <div className="flex gap-2 md:gap-6 border-t border-white/35 pt-5 xxl:pt-[70px] max-md:justify-center  xxxl:justify-start">
               {/* {[FaLinkedinIn, FaFacebookF, FaInstagram, FaYoutube].map((Icon, index) => (
                 <motion.div key={index} variants={scaleUp}>
                   <Link href="#" className="text-md hover:text-secondary hover:scale-125 transition-all ease-in-out duration-500 h-[45px] xxxl:h-[58px] items-center flex">

@@ -46,7 +46,7 @@ import { HowWework } from "@/public/types/Common";
           </motion.h2>
           
         </div>
-          <div className="lg:grid   lg:grid-cols-[40%_auto]  xl:grid-cols-[40%_auto] 2xl:grid-cols-[40%_auto] xxxl:grid-cols-[656px_auto] lg:items-center xxl:items-center gap-5 lg:gap-[66px]">
+          <div className="lg:grid   lg:grid-cols-[40%_auto]  xl:grid-cols-[40%_auto] 2xl:grid-cols-[40%_auto] xxxl:grid-cols-[656px_auto] lg:items-center xxl:items-center gap-5 lg:grid   lg:grid-cols-[40%_auto]  xl:grid-cols-[40%_auto] 2xl:grid-cols-[40%_auto] xxxl:grid-cols-[656px_auto] lg:items-center xxl:items-center gap-5 lg:gap-[40px]  xl:gap-[66px] ">
              <div className="w-full     ">
             {/* {data.items.map((item, index) => ( */}
               <motion.div
@@ -139,16 +139,16 @@ import { HowWework } from "@/public/types/Common";
                             }}
                             exit={{ opacity: 0, height: 0, marginTop: 0 }}
                             transition={{ duration: 0.4 }}
-                            className="max-w-[70ch] text-territory text-sm font-[400] leading-[1.7] lg:pr-6 overflow-hidden lg:ps-[38px]"
+                            className="xl:max-w-[70ch] text-territory text-sm font-[400] leading-[1.7] lg:pr-6 overflow-hidden lg:ps-[38px]"
                           >
                             <motion.div
-                className=" mt-3 mb-3 lg:hidden" 
+                className=" mt-3 mb-3 lg:hidden " 
               >
-                <figure className="image-wrapper h-full ">
+                <figure className="image-wrapper h-full  !h-[auto] sm:!h-[350px] xl:!h-[auto]">
                   <Image
                     src={data.items[activeIndex].image}
                     alt=""
-                    className="rounded-[15px] w-full object-cover "
+                    className="rounded-[15px] w-full h-auto sm:h-full xl:h-auto object-cover "
                     priority
                     width={500}
                     height={500}

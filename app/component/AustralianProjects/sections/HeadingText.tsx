@@ -97,7 +97,7 @@ gsap.registerPlugin(ScrollTrigger);
                                 }}
                               > 
         <h2 className="text-lg  text-primary font-[600] leading-[1.267]   mt-5 2xl:mt-[60px]">{data.innertitle}</h2>
-       </motion.div>.
+       </motion.div>
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-[30px] mt-5 lg:mt-[30px] cardsts">
        <Card data={{ items: data.items }} />
 </div>
