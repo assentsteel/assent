@@ -33,7 +33,7 @@ const SaftySustainablity = ({ data, maxchwidth, colnum, }: { data: gridbox, coln
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
             exit="exit"
-             className="text-xl text-primary font-[600] leading-[1.2] mb-4 lg:mb-[30px]" style={{ maxWidth: maxchwidth ? `${maxchwidth}ch` : undefined }}>{data.title}
+             className="text-xl text-primary font-[600] leading-[1.2] xxl:leading-[1.36] mb-4 lg:mb-[30px]" style={{ maxWidth: maxchwidth ? `${maxchwidth}ch` : undefined }}>{data.title}
              </motion.h2>
              <motion.div
             initial="hidden"
@@ -116,7 +116,7 @@ const SaftySustainablity = ({ data, maxchwidth, colnum, }: { data: gridbox, coln
                           }, // Slide up and fade in
                         }}
                       > 
-                        <p className="text-19 font-normal text-tertiary cntsmd hided-content max-h-0 w-[102%] overflow-hidden group-hover:pt-5  opacity-0 transition-all duration-500 group-hover:max-h-[15.4rem] group-hover:opacity-100">
+                        <p className="text-19 font-normal text-tertiary cntsmd hided-content max-h-0 w-full overflow-hidden group-hover:pt-5  opacity-0 transition-all duration-500 group-hover:max-h-[15.4rem] group-hover:opacity-100">
                           {expertise.description}
                         </p>
                       </motion.div>
