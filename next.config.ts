@@ -1375,6 +1375,22 @@ const nextConfig: NextConfig = {
         source: '/structural-steel-expertise-for-europe-projects',
         destination: '/global-presence/europe',
         permanent: true,
+      }, 
+      {
+        source: '/global-presence/steel-engineering-and-fabrication-in-africa',
+        destination: '/global-presence/africa',
+        permanent: true,
+      },  
+
+      {
+        source: '/global-presence/steel-engineering-and-fabrication-in-united-kingdom',
+        destination: '/global-presence/united-kingdom',
+        permanent: true,
+      },  
+      {
+        source: '/global-presence/steel-engineering-and-fabrication-in-europe',
+        destination: '/global-presence/europe',
+        permanent: true,
       },  
      
       
