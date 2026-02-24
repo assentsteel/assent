@@ -143,19 +143,24 @@ export default async function Page({
 
   if (!response.ok) notFound();
 
-  if (slug.includes("usa")) {
+  // if (slug.includes("usa")) {
+    if (slug === "usa") {
     return <AustralianProjects {...americaData} />;   
   } 
-  if (slug.includes("europe")) {
+    // if (slug.includes("europe")) {
+    if (slug === "europe") {
     return <AustralianProjects {...europeData} />;   
   } 
-  if (slug.includes("africa")) {
+  // if (slug.includes("africa")) {
+    if (slug === "africa") { 
     return <AustralianProjects {...africaData} />;   
   } 
-  if (slug.includes("united-kingdom")) {
+  // if (slug.includes("united-kingdom")) {
+    if (slug === "united-kingdom") { 
     return <AustralianProjects {...ukData} />;   
   }
-  if (slug.includes("australia")) {
+  // if (slug.includes("australia")) {
+    if (slug === "australia") { 
     return <AustralianProjects {...australiaProps} />;  // ✅ single spread
   }
 

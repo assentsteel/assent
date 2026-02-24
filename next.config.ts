@@ -1322,20 +1322,62 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/global-presence/steel-engineering-service-in-north-america',
-        destination: '/global-presence/steel-engineering-and-fabrication-in-north-america',
+        destination: '/global-presence/usa',
         permanent: true,
       },
        {
         source: '/global-presence/steel-engineering-service-in-europe',
-        destination: '/global-presence/steel-engineering-and-fabrication-in-europe',
+        destination: '/global-presence/europe',
         permanent: true,
       },
       {
         source: '/global-presence/steel-engineering-service-in-africa',
-        destination: '/global-presence/steel-engineering-and-fabrication-in-africa',
+        destination: '/global-presence/africa',
+        permanent: true,
+      },
+      {
+        source: '/global-presence/steel-engineering-and-fabrication-in-north-america',
+        destination: '/global-presence/usa',
+        permanent: true,
+      },
+      {
+        source: '/global-presence/structural-steel-expertise-for-australian-projects',
+        destination: '/global-presence/australia',
+        permanent: true,
+      },
+      {
+        source: '/global-presence/structural-steel-expertise-for-uk-projects',
+        destination: '/global-presence/united-kingdom',
+        permanent: true,
+      },
+      {
+        source: '/global-presence/structural-steel-expertise-for-uk-projects',
+        destination: '/global-presence/united-kingdom',
         permanent: true,
       },
 
+      {
+        source: '/structural-steel-expertise-for-australian-projects',
+        destination: '/global-presence/australia',
+        permanent: true,
+      },
+      {
+        source: '/structural-steel-expertise-for-uk-projects',
+        destination: '/global-presence/united-kingdom',
+        permanent: true,
+      }, 
+      {
+        source: '/structural-steel-expertise-for-african-projects',
+        destination: '/global-presence/africa',
+        permanent: true,
+      }, 
+      {
+        source: '/structural-steel-expertise-for-europe-projects',
+        destination: '/global-presence/europe',
+        permanent: true,
+      },  
+     
+      
     ];
   },
 };
