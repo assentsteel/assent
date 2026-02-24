@@ -1280,11 +1280,11 @@ const nextConfig: NextConfig = {
         destination: "/global-presence/steel-engineering-service-in-europe",
         permanent: true,
       },
-      // {
-      //   source: "/steel-engineering-service-in-us",
-      //   destination: "/global-presence/steel-engineering-service-in-north-america",
-      //   permanent: true,
-      // },
+      {
+        source: "/steel-engineering-service-in-us",
+        destination: "/global-presence/usa",
+        permanent: true,
+      },
       {
         source: "/subsidiaries",
         destination: "/",
