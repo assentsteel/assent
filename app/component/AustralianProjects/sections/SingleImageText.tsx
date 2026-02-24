@@ -59,7 +59,7 @@ const SingleImageText = ({
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
           variants={fadeUp}
-          className={`rounded-[15px] pb-6 p-4 md:pb-4 lg:pt-[116px] lg:pb-[96px] lg:px-[100px] bg-cover relative ${
+          className={`rounded-[15px] px-5 md:px-4 pb-7 p-4 md:pb-4 lg:pt-[116px] lg:pb-[96px] lg:px-[100px] bg-cover relative ${
             textright
               ? `blueoverlayrt`
               : "blueoverlay bg-[position:right_center]"
@@ -78,7 +78,7 @@ const SingleImageText = ({
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
-            className={`flex flex-col justify-center relative z-10 h-full ${
+            className={`flex flex-col justify-center relative z-10 h-full gap-3 md:gap-0 ${
               maxwidth ? maxwidth : ""
             } ${textright ? "lg:ml-auto" : ""}`}
           >

@@ -66,7 +66,7 @@ const textVariants = {
           </motion.p>
           
         </div>
-          <div className="lg:grid   lg:grid-cols-[50%_auto] xl:grid-cols-[50%_auto] 2xl:grid-cols-[50%_auto] xxxl:grid-cols-[797px_auto] lg:items-center xxl:items-center gap-5 lg:gap-10 2xl:gap-[66px]">
+          <div className="lg:grid   lg:grid-cols-[45%_auto] xl:grid-cols-[50%_auto] 2xl:grid-cols-[50%_auto] xxxl:grid-cols-[797px_auto] lg:items-center xxl:items-center gap-5 lg:gap-10 2xl:gap-[66px]">
              <div className="w-full     ">
             {/* {data.items.map((item, index) => ( */}
               <motion.div
@@ -99,7 +99,7 @@ const textVariants = {
               >
                 <motion.div
                   key={index}
-                  className="group py-5 lg:py-[20px] 2xl:py-[30px] transition-all duration-300 cursor-pointer"
+                  className="group py-5 lg:py-[10px] xl:py-[20px]  2xl:py-[30px] transition-all duration-300 cursor-pointer"
                   onMouseEnter={() => setActiveIndex(index)}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -130,11 +130,11 @@ const textVariants = {
                             animate={{
                               opacity: 1,
                               height: "auto",
-                              marginTop: "20px",
+                               
                             }}
-                            exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                            exit={{ opacity: 0, height: 0,  }}
                             transition={{ duration: 0.4 }}
-                            className="max-w-[70ch] text-territory text-sm font-[400] leading-[1.7] pr-6 overflow-hidden"
+                            className="lg:max-w-[70ch] text-territory text-sm !mt-4 lg:!mt-2 xl:!mt-[20px] font-[400] leading-[1.7] xl:pe-6 overflow-hidden"
                           >
                              <motion.div
                 className=" mb-4 lg:hidden" 
@@ -143,7 +143,7 @@ const textVariants = {
                   <Image
                     src={data.items[activeIndex].image}
                     alt=""
-                    className="rounded-[15px] w-full object-cover "
+                    className="rounded-[15px] w-full object-cover h-[260px] sm:h-[350px] "
                     priority
                     width={500}
                     height={500}

@@ -140,7 +140,7 @@ export const partnershipdata =
         description: "Yes. Fabrication and quality processes are aligned with international standards and project specific requirements commonly used on Australian projects. Engineering, coatings, documentation, and inspection regimes are executed in accordance with client and project specifications. ",
       }, 
       { 
-        title: "Which services can Australian client's access",
+        title: "Which services can Australian clients access",
         description: "Australian clients can engage ASSENT STEEL for steel engineering, offshore steel fabrication, steel erection support through local partners, and steel painting and blasting. Services can be delivered individually or as an integrated end to end package. ",
       }, 
       { 
