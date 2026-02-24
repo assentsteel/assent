@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useRef ,useState} from "react";
+import { useEffect, useRef} from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
@@ -45,14 +45,14 @@ const IntrosectionBold = ({ data }: { data: introbold }) => {
       transition: { duration: 0.5 },
     },
   };
-  const [isWide, setIsWide] = useState(false);
+//   const [isWide, setIsWide] = useState(false);
 
-useEffect(() => {
-  const check = () => setIsWide(window.innerWidth > 992);
-  check();
-  window.addEventListener('resize', check);
-  return () => window.removeEventListener('resize', check);
-}, []);
+// useEffect(() => {
+//   const check = () => setIsWide(window.innerWidth > 992);
+//   check();
+//   window.addEventListener('resize', check);
+//   return () => window.removeEventListener('resize', check);
+// }, []);
 
  
   return (
