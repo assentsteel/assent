@@ -67,7 +67,7 @@ const IntrosectionBold = ({ data }: { data: introbold }) => {
               viewport={{ once: true, amount: 0.3 }}
             >
               <motion.h2
-                className={` mb-5 lg:mb-0 text-xl text-primary font-[600] leading-[1.365]  ${data.titlecase == true ? `uppercase` : ``}`}
+                className={` mb-5 lg:mb-0 text-xl text-primary font-[600] leading-[1.365]  ${data.titlecase == true ? `uppercase` : `uppercase`}`}
                 custom="x"
                 variants={textVariants}
                 style={{ 

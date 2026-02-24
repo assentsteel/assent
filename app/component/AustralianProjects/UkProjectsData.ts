@@ -266,7 +266,7 @@ export const partnershipdata =
       }, 
       { 
         title: "How does steel fabrication and delivery from Dubai to the UK work? ",
-        description: "Steel fabrication is carried out at ASSENT STEEL facilities in Dubai under defined QA and QC processes. Finished steel is packed, shipped to UK ports, and coordinated with local logistics and erection partners. ",
+        description: "Steel fabrication is carried out at ASSENT STEEL's facilities in Dubai under defined QA and QC processes. Finished steel is packed, shipped to UK ports, and coordinated with local logistics and erection partners. ",
       }, 
       { 
         title: "Can you comply with UK standards and client specifications? ",
