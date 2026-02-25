@@ -254,43 +254,134 @@
 // }
 
 
+// import AustralianProjects from "@/app/component/AustralianProjects";
+// import { notFound } from "next/navigation";
+// import { Metadata } from "next";
+// import { GlobalPresencePageData } from "@/app/component/AustralianProjects/types";
+
+// // ─── Metadata ─────────────────────────────────────────────────────────────────
+
+// export async function generateMetadata({
+//   params,
+// }: {
+//   params: Promise<{ slug: string }>;
+// }): Promise<Metadata> {
+//   const slug = (await params).slug;
+
+//   const response = await fetch(
+//     `${process.env.BASE_URL}/api/admin/global-presence/${slug}`,
+//     { next: { revalidate: 60 } }
+//   );
+//   const json = await response.json();
+//   const data: GlobalPresencePageData = json?.data;
+
+//   const metadataTitle = data?.metaTitle || "Assent";
+//   const metadataDescription = data?.metaDescription || "Assent";
+//   const canonicalUrl = `https://www.assentsteel.com/global-presence/${slug}`;
+
+//   return {
+//     title: metadataTitle,
+//     description: metadataDescription,
+//     alternates: { canonical: canonicalUrl },
+//     openGraph: {
+//       title: metadataTitle,
+//       description: metadataDescription,
+//       url: process.env.BASE_URL,
+//       siteName: "Assent",
+//       type: "website",
+//     },
+//   };
+// }
+
+// // ─── Page ─────────────────────────────────────────────────────────────────────
+// export default async function Page({
+//   params,
+// }: {
+//   params: Promise<{ slug: string }>;
+// }) {
+//   const { slug } = await params;
+
+//   const listResponse = await fetch(
+//     `${process.env.BASE_URL}/api/admin/global-presence/countries`,
+//     { next: { revalidate: 60 } }
+//   );
+
+//   if (!listResponse.ok) notFound();
+
+//   const listJson = await listResponse.json();
+//   console.log(listJson, "hisham")
+
+//   const countries: { slug: string }[] = listJson?.data ?? [];
+
+
+//   const validSlugs = countries.map((c) => c.slug);
+
+//   if (!validSlugs.includes(slug)) notFound();
+
+//   const response = await fetch(
+//     `${process.env.BASE_URL}/api/admin/global-presence/${slug}`,
+//     { next: { revalidate: 60 } }
+//   );
+
+//   if (!response.ok) notFound();
+
+//   const json = await response.json();
+//   const data: GlobalPresencePageData = json?.data;
+
+//   if (!data) notFound();
+
+//   return <AustralianProjects data={data} />;
+// }
+
+
+
+
 import AustralianProjects from "@/app/component/AustralianProjects";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { GlobalPresencePageData } from "@/app/component/AustralianProjects/types";
 
 // ─── Metadata ─────────────────────────────────────────────────────────────────
-
+// ─── Metadata ─────────────────────────────────────────────────────────────────
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const slug = (await params).slug;
-
-  const response = await fetch(
-    `${process.env.BASE_URL}/api/admin/global-presence/${slug}`,
-    { next: { revalidate: 60 } }
-  );
-  const json = await response.json();
-  const data: GlobalPresencePageData = json?.data;
-
-  const metadataTitle = data?.metaTitle || "Assent";
-  const metadataDescription = data?.metaDescription || "Assent";
   const canonicalUrl = `https://www.assentsteel.com/global-presence/${slug}`;
 
-  return {
-    title: metadataTitle,
-    description: metadataDescription,
-    alternates: { canonical: canonicalUrl },
-    openGraph: {
+  try {
+    const response = await fetch(
+      `${process.env.BASE_URL}/api/admin/global-presence/${slug}`,
+      { next: { revalidate: 60 } }
+    );
+
+    if (!response.ok) {
+      return { title: "Assent", description: "Assent", alternates: { canonical: canonicalUrl } };
+    }
+
+    const json = await response.json();
+    const data: GlobalPresencePageData = json?.data;
+
+    const metadataTitle = data?.metaTitle || "Assent";
+    const metadataDescription = data?.metaDescription || "Assent";
+
+    return {
       title: metadataTitle,
       description: metadataDescription,
-      url: process.env.BASE_URL,
-      siteName: "Assent",
-      type: "website",
-    },
-  };
+      alternates: { canonical: canonicalUrl },
+      openGraph: {
+        title: metadataTitle,
+        description: metadataDescription,
+        url: process.env.BASE_URL,
+        siteName: "Assent",
+        type: "website",
+      },
+    };
+  } catch {
+    return { title: "Assent", description: "Assent", alternates: { canonical: canonicalUrl } };
+  }
 }
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
@@ -301,31 +392,37 @@ export default async function Page({
 }) {
   const { slug } = await params;
 
-  const listResponse = await fetch(
-    `${process.env.BASE_URL}/api/admin/global-presence/countries`,
-    { next: { revalidate: 60 } }
-  );
+  let listResponse: Response;
+  try {
+    listResponse = await fetch(
+      `${process.env.BASE_URL}/api/admin/global-presence/countries`,
+      { next: { revalidate: 60 } }
+    );
+  } catch {
+    notFound();
+  }
 
-  if (!listResponse.ok) notFound();
+  if (!listResponse!.ok) notFound();
 
-  const listJson = await listResponse.json();
-  console.log(listJson, "hisham")
-
+  const listJson = await listResponse!.json();
   const countries: { slug: string }[] = listJson?.data ?? [];
-
-
   const validSlugs = countries.map((c) => c.slug);
 
   if (!validSlugs.includes(slug)) notFound();
 
-  const response = await fetch(
-    `${process.env.BASE_URL}/api/admin/global-presence/${slug}`,
-    { next: { revalidate: 60 } }
-  );
+  let response: Response;
+  try {
+    response = await fetch(
+      `${process.env.BASE_URL}/api/admin/global-presence/${slug}`,
+      { next: { revalidate: 60 } }
+    );
+  } catch {
+    notFound();
+  }
 
-  if (!response.ok) notFound();
+  if (!response!.ok) notFound();
 
-  const json = await response.json();
+  const json = await response!.json();
   const data: GlobalPresencePageData = json?.data;
 
   if (!data) notFound();
