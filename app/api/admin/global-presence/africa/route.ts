@@ -1,17 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
-import GlobalPresence from "@/app/models/GlobalPresence";
+import GlobalPresenceAfrica from "@/app/models/GlobalPresenceAfrica";
 import { verifyAdmin } from "@/lib/verifyAdmin";
 
 
 export async function GET() {
     try {
         await connectDB();
-        const globalPresence = await GlobalPresence.findOne({});
-        if (!globalPresence) {
-            return NextResponse.json({ message: "Global Presence not found" }, { status: 404 });
+        const hse = await GlobalPresenceAfrica.findOne({});
+        if (!hse) {
+            return NextResponse.json({ message: "GlobalPresenceAfrica not found" }, { status: 404 });
         }
-        return NextResponse.json({data:globalPresence,message:"Global Presence fetched successfully"}, { status: 200 });
+        return NextResponse.json({data:hse,message:"GlobalPresenceAfrica fetched successfully"}, { status: 200 });
     } catch (error) {
         console.log(error);
         return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
@@ -26,14 +26,13 @@ export async function PATCH(request: NextRequest) {
             return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
         }
         await connectDB();
-        const globalPresence = await GlobalPresence.findOneAndUpdate({}, body,{upsert:true,new:true});
-        if (!globalPresence) {
-            return NextResponse.json({ message: "Global Presence not found" }, { status: 404 });
+        const hse = await GlobalPresenceAfrica.findOneAndUpdate({}, body,{upsert:true,new:true});
+        if (!hse) {
+            return NextResponse.json({ message: "GlobalPresenceAfrica not found" }, { status: 404 });
         }
-        return NextResponse.json({data:globalPresence,message:"Global Presence updated successfully"}, { status: 200 });
+        return NextResponse.json({data:hse,message:"GlobalPresenceAfrica updated successfully"}, { status: 200 });
     } catch (error) {
         console.log(error);
         return NextResponse.json({ message: "Internal Server Error" }, { status: 500 });
     }
 }
-

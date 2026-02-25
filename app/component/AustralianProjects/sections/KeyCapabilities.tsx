@@ -10,7 +10,7 @@ import { tabItemVariant } from "../../common/MotionAnimation";
 gsap.registerPlugin(ScrollTrigger);
 import { usePathname } from "next/navigation";
 
-import { keycap } from "@/public/types/Common";
+import { GPFifthSection } from "../../AustralianProjects/types";
 
 const KeyCapabilities = ({
   data,
@@ -18,13 +18,13 @@ const KeyCapabilities = ({
   bgcolor,
   textwhite,
 }: {
-  data: keycap;
+  data: GPFifthSection;
   navigation?: boolean;
   bgcolor?: string;
   textwhite?: boolean;
 }) => {
   const [activeTab, setActiveTab] = useState(0);
-  const pathName = usePathname() // default first tab
+  const pathName = usePathname(); // default first tab
 
   const tabs = data.items.map((item) => item.title);
   //   useEffect(() => {
@@ -36,10 +36,9 @@ const KeyCapabilities = ({
   // }, [tabs.length]);
   const activeContent = data.items[activeTab];
   const [isMobile, setIsMobile] = useState(false);
-const sourceRef = useRef<HTMLDivElement>(null);
+  const sourceRef = useRef<HTMLDivElement>(null);
 
   const [minHeight, setMinHeight] = useState(0);
-
 
   useEffect(() => {
     if (!sourceRef.current) return;
@@ -80,17 +79,16 @@ const sourceRef = useRef<HTMLDivElement>(null);
     }
   }, []);
   const [openAccordions, setOpenAccordions] = useState<Record<number, boolean>>(
-    {}
+    {},
   );
-  
-const toggleAccordion = (index: number) => {
-  setOpenAccordions((prev) => ({
-    [index]: !prev[index], // remove ...prev to close others
-  }));
-};
-  
 
-    const fadeInDown = {
+  const toggleAccordion = (index: number) => {
+    setOpenAccordions((prev) => ({
+      [index]: !prev[index], // remove ...prev to close others
+    }));
+  };
+
+  const fadeInDown = {
     hidden: { opacity: 0, y: -20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   };
@@ -104,7 +102,7 @@ const toggleAccordion = (index: number) => {
     },
     exit: { opacity: 0, x: -30, transition: { duration: 0.4 } },
   };
-const slideIndLeft = {
+  const slideIndLeft = {
     hidden: { opacity: 0, x: -80 },
     visible: {
       opacity: 1,
@@ -117,7 +115,6 @@ const slideIndLeft = {
   const paginatedTabs = tabs;
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
-
   useEffect(() => {
     if (tabRefs.current[activeTab]) {
       tabRefs.current[activeTab].scrollIntoView({
@@ -128,42 +125,46 @@ const slideIndLeft = {
     }
   }, [activeTab]);
 
-
   return (
     <section
-      className={`  pb100 overflow-hidden relative ${bgcolor ? bgcolor : ""
-        }`}
+      className={`  pb100 overflow-hidden relative ${bgcolor ? bgcolor : ""}`}
     >
       <div className="container">
         <div className="mb-5 lg:mb-[60px] flex justify-between items-end">
           <div>
             <motion.h2
-            className={`text-xl   font-[600] leading-[1.2] ${textwhite ? "text-white" : "text-primary"
+              className={`text-xl   font-[600] leading-[1.2] ${
+                textwhite ? "text-white" : "text-primary"
               }`}
-            variants={slideInLeft}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            exit="exit"
-          >
-            {data.title}
-          </motion.h2>
-         <motion.div 
-                                initial="hidden"
-                                whileInView="visible"
-                                viewport={{ once: true, amount: 0.3 }} // Trigger animation once when 50% visible
-                                variants={{
-                                  hidden: { opacity: 0, y: 50 }, // Start below and invisible
-                                  visible: {
-                                    opacity: 1,
-                                    y: 0,
-                                    transition: { duration: 1, ease: "easeOut" },
-                                  }, // Slide up and fade in
-                                }}
-                              >  <p
-            className={`max-w-[100ch] mt-4 lg:mt-[40px] text-sm leading-[1.48] ${textwhite ? "text-white" : "text-territory"
-              }`}
-            >{data.desc}</p>
+              variants={slideInLeft}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              exit="exit"
+            >
+              {data.title}
+            </motion.h2>
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }} // Trigger animation once when 50% visible
+              variants={{
+                hidden: { opacity: 0, y: 50 }, // Start below and invisible
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 1, ease: "easeOut" },
+                }, // Slide up and fade in
+              }}
+            >
+              {" "}
+              <p
+                className={`max-w-[100ch] mt-4 lg:mt-[40px] text-sm leading-[1.48] ${
+                  textwhite ? "text-white" : "text-territory"
+                }`}
+              >
+                {data.description}
+              </p>
             </motion.div>
           </div>
           {!isMobile && navigation && (
@@ -178,10 +179,11 @@ const slideIndLeft = {
                 transition={{ duration: 0.3 }}
                 onClick={() => setActiveTab((prev) => Math.max(prev - 1, 0))}
                 disabled={activeTab === 0}
-                className={`bg-white text-black border border-[#595959] hover:border-transparent px-3 py-1 rounded-full w-[48px] h-[48px] hover:border-white hover:bg-secondary group transition flex items-center justify-center ${activeTab === 0
+                className={`bg-white text-black border border-[#595959] hover:border-transparent px-3 py-1 rounded-full w-[48px] h-[48px] hover:border-white hover:bg-secondary group transition flex items-center justify-center ${
+                  activeTab === 0
                     ? "opacity-50 cursor-not-allowed hover:bg-[#dddddd]"
                     : ""
-                  }`}
+                }`}
               >
                 <Image
                   src={assets.greenarrow}
@@ -203,10 +205,11 @@ const slideIndLeft = {
                   setActiveTab((prev) => Math.min(prev + 1, tabs.length - 1))
                 }
                 disabled={activeTab === tabs.length - 1}
-                className={`bg-white text-black border border-[#595959] hover:border-transparent px-3 py-1 rounded-full w-[48px] h-[48px] hover:border-white hover:bg-secondary group transition flex items-center justify-center ${activeTab === tabs.length - 1
+                className={`bg-white text-black border border-[#595959] hover:border-transparent px-3 py-1 rounded-full w-[48px] h-[48px] hover:border-white hover:bg-secondary group transition flex items-center justify-center ${
+                  activeTab === tabs.length - 1
                     ? "opacity-50 cursor-not-allowed hover:bg-[#dddddd]"
                     : ""
-                  }`}
+                }`}
               >
                 <Image
                   src={assets.greenarrow}
@@ -222,8 +225,9 @@ const slideIndLeft = {
         <div>
           {!isMobile && (
             <motion.div
-              className={`flex gap-[53px] border-t border-b    ${textwhite ? "border-[#ffffff85]" : "border-[#00000025]"
-                } overflow-x-auto no-scrollbar whitespace-nowrap mb-8 lg:mb-[60px]`}
+              className={`flex gap-[53px] border-t border-b    ${
+                textwhite ? "border-[#ffffff85]" : "border-[#00000025]"
+              } overflow-x-auto no-scrollbar whitespace-nowrap mb-8 lg:mb-[60px]`}
               variants={tabItemVariant}
               initial="hidden"
               whileInView="visible"
@@ -238,13 +242,14 @@ const slideIndLeft = {
                     ref={(el) => {
                       tabRefs.current[actualIndex] = el;
                     }}
-
                     onClick={() => setActiveTab(actualIndex)}
-                    className={`py-[18px] text-sm font-[400] relative  flex-shrink-0 ${textwhite ? "text-white" : "text-black"
-                      } ${activeTab === actualIndex
+                    className={`py-[18px] text-sm font-[400] relative  flex-shrink-0 ${
+                      textwhite ? "text-white" : "text-black"
+                    } ${
+                      activeTab === actualIndex
                         ? "font-[700] border-t-2 border-secondary"
                         : ""
-                      }`}
+                    }`}
                   >
                     {tab}
                   </button>
@@ -256,59 +261,61 @@ const slideIndLeft = {
           <AnimatePresence mode="wait">
             {!isMobile && (
               <motion.div
- variants={slideIndLeft}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            exit="exit"
-            style={{ minHeight: `${minHeight}px` }}
-> 
-              <motion.div
-                key={activeTab} // triggers reanimation on tab switch
                 variants={slideIndLeft}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
-                exit="hidden"
-                className="lg:grid grid-cols-[auto_50%] xl:grid-cols-[auto_50%] 2xl:grid-cols-[auto_50%] xxxl:grid-cols-[auto_49.2%]  items-center gap-5 lg:gap-10   2xl:gap-[123px]"
-            ref={sourceRef}  >
-                <div className="w-ful">
-                  <div className="mb-8 lg:mb-0 max-w-[765px]">
-                    <h2
-                      className={`text-lg ${textwhite ? "text-white" : "text-black"
+                exit="exit"
+                style={{ minHeight: `${minHeight}px` }}
+              >
+                <motion.div
+                  key={activeTab} // triggers reanimation on tab switch
+                  variants={slideIndLeft}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.3 }}
+                  exit="hidden"
+                  className="lg:grid grid-cols-[auto_50%] xl:grid-cols-[auto_50%] 2xl:grid-cols-[auto_50%] xxxl:grid-cols-[auto_49.2%]  items-center gap-5 lg:gap-10   2xl:gap-[123px]"
+                  ref={sourceRef}
+                >
+                  <div className="w-ful">
+                    <div className="mb-8 lg:mb-0 max-w-[765px]">
+                      <h2
+                        className={`text-lg ${
+                          textwhite ? "text-white" : "text-black"
                         } font-[600] leading-[1.27] mb-3 lg:mb-[24px]`}
-                    >
-                      {activeContent.title}
-                    </h2>
-                    <div className="text-territory text-sm font-[400] leading-[1.8] mb-6 lg:mb-0">
-                      <div
-                        className={`leading-[1.53] ${pathName.startsWith(`/sustainability`) == true ? "sustainability-area-of-focus" : "insts"}`}
-                        dangerouslySetInnerHTML={{
-                          __html: activeContent.description,
-                        }}
-                      ></div>
+                      >
+                        {activeContent.title}
+                      </h2>
+                      <div className="text-territory text-sm font-[400] leading-[1.8] mb-6 lg:mb-0">
+                        <div
+                          className={`leading-[1.53] ${pathName.startsWith(`/sustainability`) == true ? "sustainability-area-of-focus" : "insts"}`}
+                          dangerouslySetInnerHTML={{
+                            __html: activeContent.description,
+                          }}
+                        ></div>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="w-full pl-0  ">
-                  <motion.figure
-                    className="image-wrapper"
-                    variants={slideIndLeft}
-                    initial="hidden"
-                    animate="visible"
-                    transition={{ delay: 0.2 }}
-                  >
-                    <Image
-                      src={activeContent.image}
-                      alt={activeContent.title}
-                      className="rounded-[15px] object-cover min-h-[350px] 2xl:min-h-[500px] w-full"
-                      width={800}
-                      height={500}
-                    />
-                  </motion.figure>
-                </div>
+                  <div className="w-full pl-0  ">
+                    <motion.figure
+                      className="image-wrapper"
+                      variants={slideIndLeft}
+                      initial="hidden"
+                      animate="visible"
+                      transition={{ delay: 0.2 }}
+                    >
+                      <Image
+                        src={activeContent.image}
+                        alt={activeContent.title}
+                        className="rounded-[15px] object-cover min-h-[350px] 2xl:min-h-[500px] w-full"
+                        width={800}
+                        height={500}
+                      />
+                    </motion.figure>
+                  </div>
+                </motion.div>
               </motion.div>
-                  </motion.div>
             )}
           </AnimatePresence>
           {isMobile &&
@@ -323,16 +330,15 @@ const slideIndLeft = {
                 >
                   {tabs[index]}
 
-                          <Image
-                                              src={assets.greenarrow}
-                                              alt=""
-                                              width={11}
-                                              height={18}
-                                              className={`transition-transform duration-300 ${
+                  <Image
+                    src={assets.greenarrow}
+                    alt=""
+                    width={11}
+                    height={18}
+                    className={`transition-transform duration-300 ${
                       openAccordions[index] ? "rotate-90" : "rotate-[270deg]"
                     }`}
-                                            />
-
+                  />
                 </button>
 
                 <AnimatePresence initial={false}>
