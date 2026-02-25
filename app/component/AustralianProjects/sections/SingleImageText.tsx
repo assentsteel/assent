@@ -3,15 +3,15 @@ import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger); 
-import { ainglelabel } from "@/public/types/Common";
+gsap.registerPlugin(ScrollTrigger);
+import { GPEleventhSection } from "../types";
 import Link from "next/link";
 const SingleImageText = ({
   data,
   textright,
   maxwidth,
 }: {
-  data: ainglelabel;
+  data: GPEleventhSection;
   textright?: boolean;
   maxwidth?: string;
 }) => {
@@ -49,12 +49,11 @@ const SingleImageText = ({
         },
       });
     }
-  }, []); 
+  }, []);
   return (
     <section className="pb100 cpt0  overflow-hidden relative cpt0">
       <div className="container">
-     
-          <motion.div
+        <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
@@ -66,7 +65,7 @@ const SingleImageText = ({
           }`}
           style={{
             background: `url(${
-             typeof data.image === "string" ? data.image: data.image.src 
+              typeof data.image === "string" ? data.image : data.image
             })`,
             backgroundSize: "cover",
             backgroundPosition: "center",
@@ -89,36 +88,34 @@ const SingleImageText = ({
               {data.title}
             </motion.h2>
 
-            {data.description
-              .split("\n")
-              .map((paragraph: string, index: number) => (
-                <motion.p
-                  key={index}
-                  variants={fadeUp}
-                  className=" text-white text-sm font-[400] leading-[1.53] max-w-[84.5ch]"
-                  dangerouslySetInnerHTML={{ __html: paragraph }}
-                />
-              ))}
-              <motion.div className="mt-5 md:mt-[40px]"
-                                initial="hidden"
-                                whileInView="visible"
-                                viewport={{ once: true, amount: 0.3 }} // Trigger animation once when 50% visible
-                                variants={{
-                                  hidden: { opacity: 0, y: 50 }, // Start below and invisible
-                                  visible: {
-                                    opacity: 1,
-                                    y: 0,
-                                    transition: { duration: 1, ease: "easeOut" },
-                                  }, // Slide up and fade in
-                                }}
-                              > 
-              <Link href="/contact-us" className="border whitespace-nowrap font-[500] border-secondary text-[15px] text-white uppercase rounded-full py-[8px] px-[20px] 2xl:py-[12px] 2xl:px-[99px]  w-fit">
-                Contact us 
+            <motion.p
+              variants={fadeUp}
+              className=" text-white text-sm font-[400] leading-[1.53] max-w-[84.5ch]"
+              dangerouslySetInnerHTML={{ __html: data.description }}
+            />
+            <motion.div
+              className="mt-5 md:mt-[40px]"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }} // Trigger animation once when 50% visible
+              variants={{
+                hidden: { opacity: 0, y: 50 }, // Start below and invisible
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 1, ease: "easeOut" },
+                }, // Slide up and fade in
+              }}
+            >
+              <Link
+                href={data.cta.url}
+                className="border whitespace-nowrap font-[500] border-secondary text-[15px] text-white uppercase rounded-full py-[8px] px-[20px] 2xl:py-[12px] 2xl:px-[99px]  w-fit"
+              >
+                {data.cta.text}
               </Link>
-              </motion.div>
+            </motion.div>
           </motion.div>
         </motion.div>
-    
       </div>
     </section>
   );

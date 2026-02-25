@@ -4,19 +4,26 @@ import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { textContainerVariants, textItemVariants } from "../../common/MotionAnimation";
+import {
+  textContainerVariants,
+  textItemVariants,
+} from "../../common/MotionAnimation";
 gsap.registerPlugin(ScrollTrigger);
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
- 
-  
-  import { GlobalRtps } from '@/public/types/Common'; 
-  
-  const GlobalReachprojects = ({ data,bgcolor }: { data: GlobalRtps , bgcolor?: string }) => {
+import type { GPSecondSection } from "../../AustralianProjects/types";
+
+const GlobalReachprojects = ({
+  data,
+  bgcolor,
+}: {
+  data: GPSecondSection;
+  bgcolor?: string;
+}) => {
   const containerRef = useRef(null);
 
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 });
- 
+
   useEffect(() => {
     if (containerRef.current) {
       gsap.from(containerRef.current, {
@@ -38,29 +45,29 @@ import { useInView } from "react-intersection-observer";
   //   const match = cleaned.match(/[\d.]+/);
   //   return match ? parseFloat(match[0]) : 0;
   // }
-const extractNumber = (value: string) => {
-  const match = value?.match(/[\d.]+/);
-  return match ? parseFloat(match[0]) : 0;
-};
+  const extractNumber = (value: string) => {
+    const match = value?.match(/[\d.]+/);
+    return match ? parseFloat(match[0]) : 0;
+  };
 
-const extractSuffix = (value: string) => {
-  const match = value?.match(/[^\d.\s]+$/);
-  return match ? match[0] : "+";
-};
- 
-const isStringOnly = (value: string) => {
-  if (!value) return true;
-  return (
-    /[a-zA-Z]/.test(value.split(/[\d.]+/)[0]) ||  // letters before number e.g. "EN 1090"
-    /[a-zA-Z].*\d.*[a-zA-Z]/.test(value)           // letters wrap number e.g. "ISO 9001 A"
-  );
-};
+  const extractSuffix = (value: string) => {
+    const match = value?.match(/[^\d.\s]+$/);
+    return match ? match[0] : "+";
+  };
 
-const isMSuffix = (value: string) => {
-  return /\d[mM]$/.test(value?.trim());
-};
+  const isStringOnly = (value: string) => {
+    if (!value) return true;
+    return (
+      /[a-zA-Z]/.test(value.split(/[\d.]+/)[0]) || // letters before number e.g. "EN 1090"
+      /[a-zA-Z].*\d.*[a-zA-Z]/.test(value) // letters wrap number e.g. "ISO 9001 A"
+    );
+  };
 
-const textVariants = {
+  const isMSuffix = (value: string) => {
+    return /\d[mM]$/.test(value?.trim());
+  };
+
+  const textVariants = {
     hidden: (direction = "x") => ({
       opacity: 0,
       [direction]: direction === "x" ? -30 : 20,
@@ -73,93 +80,99 @@ const textVariants = {
     },
   };
   return (
-    <div className={`py100 overflow-hidden relative ${bgcolor ? bgcolor : ''} `}>
+    <div
+      className={`py100 overflow-hidden relative ${bgcolor ? bgcolor : ""} `}
+    >
       <div className="container">
         <div className="mb-4 lg:mb-[80px]">
-          
           <motion.div
-              variants={textContainerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
+            variants={textContainerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            <motion.h2
+              className={`text-xl  font-semibold leading-[1.365] ${bgcolor ? "text-white" : "text-territory"}`}
+              custom="x"
+              variants={textVariants}
             >
-              <motion.h2
-                className={`text-xl  font-semibold leading-[1.365] ${bgcolor ? 'text-white': 'text-territory' }`}
-                custom="x"
-                variants={textVariants}
-              >
-                {data.heading}
-              </motion.h2>
-            </motion.div>
+              {data.title}
+            </motion.h2>
+          </motion.div>
         </div>
         <motion.div
-         ref={ref}
-  className="grid grid-cols-12 "
-  variants={textContainerVariants}
-  initial="hidden"
-  whileInView="visible"
-  viewport={{ once: true, amount: 0.3 }}
->
-  {data.data?.map((item, index) => (
-    <motion.div
-      className="col-span-12 lg:col-span-4 lg:px-4 last:pb-0 pb-5 lg:pb-0 group first:lg:ps-0 last:lg:pe-0"
-      key={index}
-      variants={textItemVariants}
-    >
-      <div>
-        <div
-          className={`border-b border-white group-hover:border-secondary transition-colors duration-300 mb-4 pb-4 lg:mb-[30px] lg:pb-[30px]`}
+          ref={ref}
+          className="grid grid-cols-12 "
+          variants={textContainerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
         >
-      <h3
-  className={`text-40 font-semibold leading-[1.5] ${
-    bgcolor ? "text-white" : "text-territory"
-  }`}
->
-{inView ? (
-  isStringOnly(item.count) ? (
-    <span>{item.count}</span>
-  ) : (
-    <>
-      <CountUp
-        start={0}
-        end={extractNumber(item.count)}
-        duration={2}
-        delay={0.3}
-        decimals={extractNumber(item.count) % 1 !== 0 ? 1 : 0}
-      />
-      <span className={isMSuffix(item.count) ? "text-secondary" : "text-secondary"}>
-        {extractSuffix(item.count)}
-      </span>
-    </>
-  )
-) : (
-  isStringOnly(item.count) ? (
-    <span>&nbsp;</span>
-  ) : (
-    0
-  )
-)}
-</h3>
-          <p
-            className={`text-md ${
-              bgcolor ? 'text-white' : 'text-territory'
-            }`}
-          >
-            {item.title}
-          </p>
-        </div>
-        <p
-          className={`text-sm leading-[1.6] ${
-            bgcolor ? 'text-white' : 'text-territory'
-          } opacity-80`}
-        >
-          {item.details}
-        </p>
-      </div>
-    </motion.div>
-  ))}
-</motion.div>
-
+          {data.items?.map((item, index) => (
+            <motion.div
+              className="col-span-12 lg:col-span-4 lg:px-4 last:pb-0 pb-5 lg:pb-0 group first:lg:ps-0 last:lg:pe-0"
+              key={index}
+              variants={textItemVariants}
+            >
+              <div>
+                <div
+                  className={`border-b border-white group-hover:border-secondary transition-colors duration-300 mb-4 pb-4 lg:mb-[30px] lg:pb-[30px]`}
+                >
+                  <h3
+                    className={`text-40 font-semibold leading-[1.5] ${
+                      bgcolor ? "text-white" : "text-territory"
+                    }`}
+                  >
+                    {inView ? (
+                      isStringOnly(item.value) ? (
+                        <span>{item.value}</span>
+                      ) : (
+                        <>
+                          <CountUp
+                            start={0}
+                            end={extractNumber(item.value)}
+                            duration={2}
+                            delay={0.3}
+                            decimals={
+                              extractNumber(item.value) % 1 !== 0 ? 1 : 0
+                            }
+                          />
+                          <span
+                            className={
+                              isMSuffix(item.value)
+                                ? "text-secondary"
+                                : "text-secondary"
+                            }
+                          >
+                            {extractSuffix(item.value)}
+                          </span>
+                        </>
+                      )
+                    ) : isStringOnly(item.value) ? (
+                      <span>&nbsp;</span>
+                    ) : (
+                      0
+                    )}
+                  </h3>
+                  <p
+                    className={`text-md ${
+                      bgcolor ? "text-white" : "text-territory"
+                    }`}
+                  >
+                    {item.title}
+                  </p>
+                </div>
+                <p
+                  className={`text-sm leading-[1.6] ${
+                    bgcolor ? "text-white" : "text-territory"
+                  } opacity-80`}
+                >
+                  {item.description}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </div>
   );

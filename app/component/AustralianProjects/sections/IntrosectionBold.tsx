@@ -1,15 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useRef} from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
-import { introbold } from "@/public/types/Common";
+import { GPFirstSection } from "../types";
 
-const IntrosectionBold = ({ data }: { data: introbold }) => {
-  const containerRef = useRef(null); 
+const IntrosectionBold = ({ data }: { data: GPFirstSection  }) => {
+  const containerRef = useRef(null);
   const textContainerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -45,16 +45,15 @@ const IntrosectionBold = ({ data }: { data: introbold }) => {
       transition: { duration: 0.5 },
     },
   };
-//   const [isWide, setIsWide] = useState(false);
+  //   const [isWide, setIsWide] = useState(false);
 
-// useEffect(() => {
-//   const check = () => setIsWide(window.innerWidth > 992);
-//   check();
-//   window.addEventListener('resize', check);
-//   return () => window.removeEventListener('resize', check);
-// }, []);
+  // useEffect(() => {
+  //   const check = () => setIsWide(window.innerWidth > 992);
+  //   check();
+  //   window.addEventListener('resize', check);
+  //   return () => window.removeEventListener('resize', check);
+  // }, []);
 
- 
   return (
     <section className="overflow-hidden relative pt-2 md:pt-[30px] xl:pt-[80px] 2xl:pt-[100px] ">
       <div className="container">
@@ -70,14 +69,16 @@ const IntrosectionBold = ({ data }: { data: introbold }) => {
                 className={` mb-5 lg:mb-0 text-xl text-primary font-[600] leading-[1.365]  ${data.titlecase == true ? `uppercase` : `uppercase`}`}
                 custom="x"
                 variants={textVariants}
-                style={{ 
-  maxWidth: window.innerWidth > 992 
-    ? (data.maxwidth ? `${data.maxwidth}ch` : '26ch') 
-    : '26ch' 
-}}
-
+                style={{
+                  maxWidth:
+                    window.innerWidth > 992
+                      ? data.maxwidth
+                        ? `${data.maxwidth}ch`
+                        : "26ch"
+                      : "26ch",
+                }}
               >
-                {data.data[0].title}
+                {data.title}
               </motion.h2>
             </motion.div>
           </div>
@@ -99,7 +100,9 @@ const IntrosectionBold = ({ data }: { data: introbold }) => {
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.3 }}
                     transition={{ delay: 0.2, duration: 0.5 }}
-                    dangerouslySetInnerHTML={{ __html: data.data[0].paragraphs.join(" ") }}
+                    dangerouslySetInnerHTML={{
+                      __html: data.description,
+                    }}
                   ></motion.div>
                 </div>
               </motion.div>

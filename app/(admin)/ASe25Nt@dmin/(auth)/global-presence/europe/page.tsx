@@ -157,7 +157,6 @@ const GlobalPresenceEuropePage = () => {
     setValue,
     control,
     formState: { errors },
-    watch,
   } = useForm<GlobalPresenceEurope>();
 
   const {

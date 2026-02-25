@@ -157,7 +157,7 @@ const GlobalPresenceAustraliaPage = () => {
     setValue,
     control,
     formState: { errors },
-    watch,
+    // watch,
   } = useForm<GlobalPresenceAustralia>();
 
   const {

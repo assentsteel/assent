@@ -519,7 +519,7 @@ export type introbold = {
     data: {
     id: number;
     title: string;
-    paragraphs: string[];
+    paragraphs: string;
     image: StaticImageData;
   }[];
   titlecase?: boolean;

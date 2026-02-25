@@ -19,21 +19,21 @@ import {
   ThumbsUp,
   Workflow,
 } from "lucide-react";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 
 const AdminNavbar = () => {
   const [openLink, setOpenLink] = useState<string | null>(null);
 
-  useEffect(() => {
-    fetchCountries();
-  }, []);
+  // useEffect(() => {
+  //   fetchCountries();
+  // }, []);
 
-  const [countries, setCountries] = useState([]);
-  const fetchCountries = async () => {
-    const response = await fetch("/api/admin/global-presence");
-    const data = await response.json();
-    setCountries(data.data.thirdSection.countries);
-  };
+  // const [countries, setCountries] = useState([]);
+  // const fetchCountries = async () => {
+  //   const response = await fetch("/api/admin/global-presence");
+  //   const data = await response.json();
+  //   setCountries(data.data.thirdSection.countries);
+  // };
 
   const navItems = [
     { name: "Home", href: "/ASe25Nt@dmin/home", icon: HomeIcon },

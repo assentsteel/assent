@@ -6,8 +6,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion, AnimatePresence } from "framer-motion";
 gsap.registerPlugin(ScrollTrigger);
 
-import { Accaus } from "@/public/types/Common";
-const AccordionAus = ({ data }: { data: Accaus }) => {
+import { GPTenthSection } from "../types";
+const AccordionAus = ({ data }: { data: GPTenthSection }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const containerRef = useRef(null);
 
@@ -50,22 +50,22 @@ const AccordionAus = ({ data }: { data: Accaus }) => {
             >
               {data.title}
             </motion.h2>
-             <motion.div
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.3 }} // Trigger animation once when 50% visible
-                        variants={{
-                          hidden: { opacity: 0, y: 50 }, // Start below and invisible
-                          visible: {
-                            opacity: 1,
-                            y: 0,
-                            transition: { duration: 1, ease: "easeOut" },
-                          }, // Slide up and fade in
-                        }}
-                      > 
-            <p className="text-tertiary text-sm font-[400] leading-[1.5] 2xl:max-w-[47ch]">
-              {data.description}
-            </p>
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }} // Trigger animation once when 50% visible
+              variants={{
+                hidden: { opacity: 0, y: 50 }, // Start below and invisible
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 1, ease: "easeOut" },
+                }, // Slide up and fade in
+              }}
+            >
+              <p className="text-tertiary text-sm font-[400] leading-[1.5] 2xl:max-w-[47ch]">
+                {data.description}
+              </p>
             </motion.div>
           </div>
 
@@ -75,11 +75,11 @@ const AccordionAus = ({ data }: { data: Accaus }) => {
                 key={index}
                 className="group border-b first:border-t border-[#00000015] last:border-b-0 py-5 lg:py-[20px] xxl:py-[34px] last:!pb-0 transition-all duration-300"
                 onMouseEnter={() => {
-  if (activeIndex !== index) {
-    setActiveIndex(-1); // trigger exit first
-    setTimeout(() => setActiveIndex(index), 250); // match exit height delay + duration = 0.15 + 0.25 = 400ms ≈ 350ms safe
-  }
-}}
+                  if (activeIndex !== index) {
+                    setActiveIndex(-1); // trigger exit first
+                    setTimeout(() => setActiveIndex(index), 250); // match exit height delay + duration = 0.15 + 0.25 = 400ms ≈ 350ms safe
+                  }
+                }}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
@@ -101,37 +101,51 @@ const AccordionAus = ({ data }: { data: Accaus }) => {
                       {da.title}
                     </h3>
 
-                  <AnimatePresence initial={false}>
-  {activeIndex === index && (
-    <motion.div
-      key={`content-${index}`}
-      initial={{ opacity: 0, height: 0, marginTop: 0 }}
-      animate={{
-        opacity: 1,
-        height: "auto",
-        marginTop: "9px",
-        transition: {
-          height: { duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] },
-          opacity: { duration: 0.25, delay: 0.05 },
-          marginTop: { duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] },
-        },
-      }}
-      exit={{
-        opacity: 0,
-        height: 0,
-        marginTop: 0,
-        transition: {
-          opacity: { duration: 0.2, ease: "easeIn" },
-          height: { duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.15 },
-          marginTop: { duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.15 },
-        },
-      }}
-      className="text-territory/80 text-[17px] lg:text-[19px] font-[500] leading-[1.6] overflow-hidden"
-    >
-      <div>{da.description}</div>
-    </motion.div>
-  )}
-</AnimatePresence>
+                    <AnimatePresence initial={false}>
+                      {activeIndex === index && (
+                        <motion.div
+                          key={`content-${index}`}
+                          initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                          animate={{
+                            opacity: 1,
+                            height: "auto",
+                            marginTop: "9px",
+                            transition: {
+                              height: {
+                                duration: 0.35,
+                                ease: [0.25, 0.46, 0.45, 0.94],
+                              },
+                              opacity: { duration: 0.25, delay: 0.05 },
+                              marginTop: {
+                                duration: 0.35,
+                                ease: [0.25, 0.46, 0.45, 0.94],
+                              },
+                            },
+                          }}
+                          exit={{
+                            opacity: 0,
+                            height: 0,
+                            marginTop: 0,
+                            transition: {
+                              opacity: { duration: 0.2, ease: "easeIn" },
+                              height: {
+                                duration: 0.25,
+                                ease: [0.25, 0.46, 0.45, 0.94],
+                                delay: 0.15,
+                              },
+                              marginTop: {
+                                duration: 0.25,
+                                ease: [0.25, 0.46, 0.45, 0.94],
+                                delay: 0.15,
+                              },
+                            },
+                          }}
+                          className="text-territory/80 text-[17px] lg:text-[19px] font-[500] leading-[1.6] overflow-hidden"
+                        >
+                          <div>{da.description}</div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
                 </div>
               </motion.div>
