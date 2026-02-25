@@ -309,7 +309,6 @@ export default async function Page({
   if (!listResponse.ok) notFound();
 
   const listJson = await listResponse.json();
-  console.log(listJson, "hisham")
 
   const countries: { slug: string }[] = listJson?.data ?? [];
 
