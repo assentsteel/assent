@@ -6,6 +6,12 @@ import { motion } from "framer-motion";
 import { Boxgd } from "@/public/types/Common";
 import CountUp from "react-countup";
 
+const hasContent = (html: string | undefined): boolean => {
+    if (!html) return false;
+    const text = html.replace(/<[^>]*>/g, "").trim();
+    return text.length > 0;
+};
+
 const Boxgds = ({ data, maxchwidth, colnum }: { data: Boxgd; maxchwidth?: string; colnum?: number }) => {
     return (
         <section className="bg-primary   relative">
@@ -15,14 +21,14 @@ const Boxgds = ({ data, maxchwidth, colnum }: { data: Boxgd; maxchwidth?: string
                         <motion.div
                             initial="hidden"
                             whileInView="visible"
-                            viewport={{ once: true, amount: 0.3 }} // Trigger animation once when 50% visible
+                            viewport={{ once: true, amount: 0.3 }}
                             variants={{
-                                hidden: { opacity: 0, y: 50 }, // Start below and invisible
+                                hidden: { opacity: 0, y: 50 },
                                 visible: {
                                     opacity: 1,
                                     y: 0,
                                     transition: { duration: 1, ease: "easeOut" },
-                                }, // Slide up and fade in
+                                },
                             }}
                         >
                             <h2
@@ -41,20 +47,20 @@ const Boxgds = ({ data, maxchwidth, colnum }: { data: Boxgd; maxchwidth?: string
                             } `}
                             initial="hidden"
                             whileInView="visible"
-                            viewport={{ once: true, amount: 0.3 }} // Trigger animation once when 50% visible
+                            viewport={{ once: true, amount: 0.3 }}
                             variants={{
-                                hidden: { opacity: 0, y: 50 }, // Start below and invisible
+                                hidden: { opacity: 0, y: 50 },
                                 visible: {
                                     opacity: 1,
                                     y: 0,
                                     transition: { duration: 1, ease: "easeOut" },
-                                }, // Slide up and fade in
+                                },
                             }}
                         >
                             {/* Item 1 */}
                             {data.items.map((expertise, index) => (
-                                <div key={index} className="custom-grid group">
-                                    <div className="flex relative z-10 bg-primary bgd  flex-col justify-between  gap-8 md:gap-0  px-5 py-[50px] xl:py-[100px] group-hover:lg:py-[30px] transition-all duration-500 md:h-[400px] lg:h-[408px]   lg:p-10  ">
+                                <div key={index} className={`custom-grid ${hasContent(expertise.description) ? "custom-grid-hover group" : ""}`}>
+                                    <div className={`flex relative z-10 bg-primary flex-col justify-between gap-8 md:gap-0 px-5 py-[50px] xl:py-[100px] transition-all duration-500 md:h-[400px] lg:h-[408px] lg:p-10 ${hasContent(expertise.description) ? "bgd group-hover:lg:py-[30px]" : ""}`}>
                                         {/* Image Wrapper */}
                                         <div className="align-center   flex h-[64px] w-[64px] rounded-[5px] justify-center   transition-colors duration-500    ">
                                             <Image
@@ -91,9 +97,11 @@ const Boxgds = ({ data, maxchwidth, colnum }: { data: Boxgd; maxchwidth?: string
                                                     );
                                                 })()}
                                             </h3>
-                                            <p className="text-lg font-semibold cntsmd hided-content  overflow-hidden pt-2 text-white group-hover:text-primary  ">
-                                                {expertise.value}
-                                            </p>
+                                            {expertise.value.trim() !== "" && (
+                                                <p className="text-lg font-semibold cntsmd hided-content  overflow-hidden pt-2 text-white group-hover:text-primary  ">
+                                                    {expertise.value}
+                                                </p>
+                                            )}
 
                                             <div className="overflow-hidden">
                                                 {/* {expertise.description && (
@@ -103,10 +111,10 @@ const Boxgds = ({ data, maxchwidth, colnum }: { data: Boxgd; maxchwidth?: string
                 ))}
               </ul>
             )} */}
-                                                {expertise.description && (
+                                                {hasContent(expertise.description) && (
                                                     <div
                                                         className="insts pl-2 list-disc list-inside marker:mr-1 text-md font-normal cntsmd hided-content max-h-0 w-[102%] overflow-hidden pt-2 text-white group-hover:text-primary opacity-0 transition-all duration-500 group-hover:max-h-[15rem] group-hover:opacity-100"
-                                                        dangerouslySetInnerHTML={{ __html: expertise.description }}
+                                                        dangerouslySetInnerHTML={{ __html: expertise.description! }}
                                                     ></div>
                                                 )}
                                             </div>

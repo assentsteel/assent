@@ -144,7 +144,6 @@ const FabricationSchema = new mongoose.Schema({
             },
             value:{
                 type:String,
-                required:true
             },
             description:{
                 type:String,
