@@ -697,9 +697,7 @@ const FabricationPage = () => {
 
                                                 <div className='flex flex-col gap-2'>
                                                     <Label className='font-bold'>Value</Label>
-                                                    <Input type='text' placeholder='Value' {...register(`fifthSection.items.${index}.value`, {
-                                                        required: "Value is required"
-                                                    })} />
+                                                    <Input type='text' placeholder='Value' {...register(`fifthSection.items.${index}.value`)} />
                                                     {errors.fifthSection?.items?.[index]?.value && <p className='text-red-500'>{errors.fifthSection?.items?.[index]?.value.message}</p>}
                                                 </div>
 
