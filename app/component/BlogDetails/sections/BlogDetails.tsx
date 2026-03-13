@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef,useState } from "react";
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -14,20 +14,20 @@ import { motion } from "framer-motion";
  
 
   import { Bogs } from '@/public/types/Common';
-import Link from "next/link";
+// import Link from "next/link";  
 
 import {blogData} from "@/app/component/BlogList/data";
 
       const BlogDetails = ({ data }: { data: Bogs }) => {
         // const [blogsList, setBlogsList] = useState<Blogs>();
 
-        const [currentUrl, setCurrentUrl] = useState("");
+        // const [currentUrl, setCurrentUrl] = useState("");
 
-        useEffect(() => {
-          if (typeof window !== "undefined") {
-            setCurrentUrl(window.location.href);
-          }
-        }, []);
+        // useEffect(() => {
+        //   if (typeof window !== "undefined") {
+        //     setCurrentUrl(window.location.href);
+        //   }
+        // }, []);
         
 
         // const handleFetchProjects = async () => {
@@ -180,10 +180,10 @@ import {blogData} from "@/app/component/BlogList/data";
   })}
                       </p>
                     </div>
-                    <div className="flex gap-5 lg:gap-10">
+                    {/* <div className="flex gap-5 lg:gap-10">
                       <Image src={assets.share} alt="" />
                       <Link href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(currentUrl)}`} target="_blank"><Image src={assets.linkedin} alt="" /></Link>
-                    </div>
+                    </div> */}
                   </motion.div>
                 </div>
                 <motion.div
