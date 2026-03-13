@@ -180,10 +180,10 @@ import {blogData} from "@/app/component/BlogList/data";
   })}
                       </p>
                     </div>
-                    <div className="flex gap-5 lg:gap-10">
+                    {/* <div className="flex gap-5 lg:gap-10">
                       <Image src={assets.share} alt="" />
                       <Link href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(currentUrl)}`} target="_blank"><Image src={assets.linkedin} alt="" /></Link>
-                    </div>
+                    </div> */}
                   </motion.div>
                 </div>
                 <motion.div
