@@ -140,7 +140,68 @@ export type News = {
     date: string;
   }[];
 };
+export type Bogs = {
+    mainTitle: string;
+    subTitle: string;
+    slug: string;
+    content: string;
+    thumbnail: string;
+    thumbnailAlt: string;
+    images: string[];
+    category: string;
+    date: string;
+    metaTitle: string;
+    metaDescription: string;
+    _id: number;
+    createdAt: string;
+}
+export type Blogs = {
+  data: {
+    metaTitle: string
+    metaDescription: string
+    pageTitle: string
+
+    categories: {
+      name: string
+    }[]
+
+    news: {
+      mainTitle: string
+      subTitle: string
+      slug: string
+      content: string
+      thumbnail: string
+      thumbnailAlt: string
+      images: string[]
+      category: string
+      date: string
+      metaTitle: string
+      metaDescription: string
+      _id: number
+      createdAt: string
+    }[]
+
+  }[]
+}
 export type Newsdetails = {
+  data: {
+    category: string;
+    content: string;
+    createdAt: string;
+    date: string;
+    images: string[];
+    mainTitle: string;
+    metaDescription: string;
+    metaTitle: string;
+    slug: string;
+    subTitle: string;
+    thumbnail: string;
+    thumbnailAlt: string;
+    _id: number;
+  };
+};
+
+export type Blogdetails = {
   data: {
     category: string;
     content: string;

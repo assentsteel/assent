@@ -7,14 +7,14 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 gsap.registerPlugin(ScrollTrigger);
 
-import { News } from "@/public/types/Common";
+import { Blogs } from "@/public/types/Common";
 
-const NewsList = ({
+const BlogsList = ({
     data,
     visibleCount,
     setVisibleCount,
 }: {
-    data: News["news"];
+    data: Blogs["data"][0]["news"];
     visibleCount: number;
     setVisibleCount: Dispatch<SetStateAction<number>>;
 }) => {
@@ -49,7 +49,7 @@ const NewsList = ({
             <div className="container">
                 <div className="grid grid-cols-1 lg:grid-cols-2  xl:grid-cols-3 gap-x-4 lg:gap-x-6 xxl:gap-x-10 gap-8 xl:gap-[60px]">
                     {data.map((item, index) => (
-                        <Link href={`/news/${item.slug}`} key={index} className="itemsmn">
+                        <Link href={`/blogs/${item.slug}`} key={index} className="itemsmn">
                             <motion.div
                                 variants={cardVariants}
                                 initial="hidden"
@@ -71,7 +71,8 @@ const NewsList = ({
                                         />
                                     </figure>
 
-                                    <div className=" pt-[10px] w-full">     <div className="flex flex-col justify-between h-full">
+                                    <div className=" pt-[10px] w-full">
+                                       <div className="flex flex-col justify-between h-full">
                                         <div>
                                              <div className="flex justify-between items-center">
                                             <p className="text-xs text-[#595959] font-[400] leading-[1.9] ">
@@ -116,11 +117,12 @@ const NewsList = ({
                                                 </motion.div>
                                             </div>
                                         </div>
+                                       </div>
+
                                     </div>
+                                    </div> 
                                 </div>
-                                </div>
-                                </div>
-                             </motion.div>
+                            </motion.div>
                         </Link>
                     ))}
                 </div>
@@ -150,4 +152,4 @@ const NewsList = ({
     );
 };
 
-export default NewsList;
+export default BlogsList;
