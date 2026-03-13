@@ -6,13 +6,12 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
 gsap.registerPlugin(ScrollTrigger);
 
-import { News } from "@/public/types/Common";
+import { Blogs } from "@/public/types/Common";
 import Link from "next/link";
 
-const RecentNews = ({ data }: { data: News }) => {
+const RecentBlogs = ({ data }: { data: Blogs }) => {
     const containerRef = useRef(null);
-    const latestNews = data.news;
-
+    const latestBlogs = [...data.data[0].news].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
     useEffect(() => {
         if (containerRef.current) {
@@ -64,16 +63,16 @@ const RecentNews = ({ data }: { data: News }) => {
                             exit="exit"
                             className="text-md uppercase text-[#595959] font-medium border-b inline-flex border-secondary pb-[10px] lg:pb-[18px] leading-[1.46] "
                         >
-                            Recent news
+                            Recent Blogs
                         </motion.p>
                     </div>
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 xxl:gap-10">
                     <motion.div variants={slideIntop} initial="hidden" animate="visible" exit="exit">
-                        {latestNews.slice(0, 1).map((item, index) => {
+                        {latestBlogs.slice(0, 1).map((item, index) => {
                             return (
-                                <Link href={`/news/${item.slug}`} key={index}>
+                                <Link href={`/blogs/${item.slug}`} key={index}>
                                     <motion.div
                                         variants={textParent}
                                         initial="initial"
@@ -138,10 +137,10 @@ const RecentNews = ({ data }: { data: News }) => {
                         exit="exit"
                         className="flex flex-col gap-4 lg:gap-6 xxl:gap-10"
                     >
-                        {latestNews.slice(1, 3).map((item, index) => {
+                        {latestBlogs.slice(1, 3).map((item, index) => {
                             return (
                                 <Link
-                                    href={`/news/${item.slug}`}
+                                    href={`/blogs/${item.slug}`}
                                     key={index}
                                     className="vi h-[300px] lg:h-1/2 relative group blueover rounded-[15px]"
                                     style={{
@@ -155,7 +154,7 @@ const RecentNews = ({ data }: { data: News }) => {
                                         <div className="absolute bottom-0 z-10 px-5 xxl:px-10 pb-5 xxl:pb-10 w-full">
                                             <motion.p variants={textChild} className="text-xs text-white font-[500] mb-1">
                                                 {" "}
-                                                {new Date(item?.date).toLocaleDateString("en-US", {
+                                                {new Date(item.createdAt).toLocaleDateString("en-US", {
                                                     year: "numeric",
                                                     month: "long",
                                                 })}
@@ -198,4 +197,4 @@ const RecentNews = ({ data }: { data: News }) => {
     );
 };
 
-export default RecentNews;
+export default RecentBlogs;

@@ -363,12 +363,21 @@ import wsa5 from "./img/icns/wsa5.svg";
 import wsa6 from "./img/icns/wsa6.svg";
 import ve from "./img/icns/ves.svg";
 
-
+import blog1 from "./img/blogs/bl1.jpg"; 
+import blog2 from "./img/blogs/bl2.jpg"; 
+import blog3 from "./img/blogs/bl3.jpg"; 
+import blog4 from "./img/blogs/bl4.jpg"; 
+import blog5 from "./img/blogs/bl5.jpg"; 
 
 
 
 
 export const assets = {
+  blog1,
+  blog2,
+  blog3,
+  blog4,
+  blog5,
   usbanner,
   usrole1,
   usrole2,

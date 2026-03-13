@@ -632,3 +632,15 @@ margin-bottom: 15px;
   @apply py-[40px] md:py-[50px] lg:py-[60px]  xl:py-[70px] 2xl:py-[100px];
 }
 .pt60 {@apply pt-[40px] md:pt-[50px] xl:pt-[60px]}
+.blogcotentmn h2{
+  @apply text-[22px] md:text-[24px] 2xl:text-[28px] mb-3 lg:mb-4 leading-[1.1875];
+}
+.blogcotentmn h3{
+  @apply text-[20px] md:text-[22px] 2xl:text-[24px]  mb-2 lg:mb-3 leading-[1.1875];
+}
+.blogcotentmn p{
+  @apply text-[16px] ;
+}
+.blogcotentmn img{@apply mb-2;}
+.blogcotentmn ul li{ list-style: disc;}
+.blogcotentmn ul {padding-left: 20px; margin-bottom: 15px;}
