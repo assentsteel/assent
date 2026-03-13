@@ -11,7 +11,8 @@ import Link from "next/link";
 
 const RecentNews = ({ data }: { data: News }) => {
     const containerRef = useRef(null);
-    const latestNews = [...data.news].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    const latestNews = data.news;
+
 
     useEffect(() => {
         if (containerRef.current) {
@@ -154,7 +155,7 @@ const RecentNews = ({ data }: { data: News }) => {
                                         <div className="absolute bottom-0 z-10 px-5 xxl:px-10 pb-5 xxl:pb-10 w-full">
                                             <motion.p variants={textChild} className="text-xs text-white font-[500] mb-1">
                                                 {" "}
-                                                {new Date(item.createdAt).toLocaleDateString("en-US", {
+                                                {new Date(item?.date).toLocaleDateString("en-US", {
                                                     year: "numeric",
                                                     month: "long",
                                                 })}

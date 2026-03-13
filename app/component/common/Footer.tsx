@@ -155,7 +155,7 @@ const Footer = () => {
               <div className="flex xl:grid   flex-col xl:grid-cols-[50%_auto] gap-4 justify-between w-full">
                 <div className="flex md:flex-row flex-col gap-4 overflow-hidden pt-2 lg:pt-0 wst5 xl:border-t xl:pt-10 xxl:pt-0 border-t-0 xxl:border-t-0">
                   <Link
-                    href="/assets/ASSENT STEEL Corpoarte Profile 2025.pdf"
+                    href="/assets/ASSENT_STEEL_INDUSTRIES_L.L.C.pdf"
                     target="_blank"
                   >
                     <motion.button
@@ -270,7 +270,7 @@ const Footer = () => {
       >
         <div className="container text-left">
           <p className="text-xs text-white/50">
-            &copy; 2025 ASSENT STEEL. All rights reserved.
+            &copy; {new Date().getFullYear()} ASSENT STEEL. All rights reserved.
           </p>
         </div>
       </motion.div>

@@ -1,22 +1,142 @@
+// "use client";
+
+// import { motion } from "framer-motion";
+// import { useEffect, useRef } from "react";
+// import gsap from "gsap";
+// import { ScrollTrigger } from "gsap/ScrollTrigger";
+// gsap.registerPlugin(ScrollTrigger);
+
+// import { GPFirstSection } from "../types";
+
+// const IntrosectionBold = ({ data }: { data: GPFirstSection  }) => {
+//   const containerRef = useRef(null);
+//   const textContainerVariants = {
+//     hidden: { opacity: 0 },
+//     visible: {
+//       opacity: 1,
+//       transition: { staggerChildren: 0.3, delayChildren: 0.5 },
+//     },
+//   };
+
+//   useEffect(() => {
+//     if (containerRef.current) {
+//       gsap.from(containerRef.current, {
+//         opacity: 0,
+//         width: 100,
+//         duration: 1.5,
+//         ease: "power3.out",
+//         scrollTrigger: {
+//           trigger: containerRef.current,
+//           start: "top 60%", // Starts when the top of the section is 85% in view
+//           toggleActions: "play none none none",
+//         },
+//       });
+//     }
+//   }, []);
+//   const textVariants = {
+//     hidden: (direction = "x") => ({
+//       opacity: 0,
+//       [direction]: direction === "x" ? -30 : 20,
+//     }),
+//     visible: {
+//       opacity: 1,
+//       x: 0,
+//       y: 0,
+//       transition: { duration: 0.5 },
+//     },
+//   };
+//   //   const [isWide, setIsWide] = useState(false);
+
+//   // useEffect(() => {
+//   //   const check = () => setIsWide(window.innerWidth > 992);
+//   //   check();
+//   //   window.addEventListener('resize', check);
+//   //   return () => window.removeEventListener('resize', check);
+//   // }, []);
+
+//   return (
+//     <section className="overflow-hidden relative pt-2 md:pt-[30px] xl:pt-[80px] 2xl:pt-[100px] ">
+//       <div className="container">
+//         <div className="lg:grid      lg:grid-cols-[auto,65%]  xl:grid-cols-[auto,65%] 2xl:grid-cols-[auto,59%]  xxxl:grid-cols-[auto,847px] gap-5   ">
+//           <div className=" ">
+//             <motion.div
+//               variants={textContainerVariants}
+//               initial="hidden"
+//               whileInView="visible"
+//               viewport={{ once: true, amount: 0.3 }}
+//             >
+//               <motion.h2
+//                 className={` mb-5 lg:mb-0 text-xl text-primary font-[600] leading-[1.365]  ${data.titlecase == true ? `uppercase` : `uppercase`}`}
+//                 custom="x"
+//                 variants={textVariants}
+//                 style={{
+//                   maxWidth:
+//                     window.innerWidth > 992
+//                       ? data.maxwidth
+//                         ? `${data.maxwidth}ch`
+//                         : "26ch"
+//                       : "26ch",
+//                 }}
+//               >
+//                 {data.title}
+//               </motion.h2>
+//             </motion.div>
+//           </div>
+
+//           <motion.div className="  ">
+//             <div>
+//               <motion.div
+//                 initial="hidden"
+//                 whileInView="visible"
+//                 viewport={{ once: true, amount: 0.3 }}
+//                 className=""
+//               >
+//                 <div>
+//                   <motion.div
+//                     className="text-sm font-normal mb-5 last:mb-0  text-territory leading-[1.6]"
+//                     custom="y"
+//                     variants={textVariants}
+//                     initial="hidden"
+//                     whileInView="visible"
+//                     viewport={{ once: true, amount: 0.3 }}
+//                     transition={{ delay: 0.2, duration: 0.5 }}
+//                     dangerouslySetInnerHTML={{
+//                       __html: data.description,
+//                     }}
+//                   ></motion.div>
+//                 </div>
+//               </motion.div>
+//             </div>
+//           </motion.div>
+//         </div>
+//       </div>
+//     </section>
+//   );
+// };
+
+// export default IntrosectionBold;
+
+
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useRef} from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
-import { introbold } from "@/public/types/Common";
+import { GPFirstSection } from "../types";
 
-const IntrosectionBold = ({ data }: { data: introbold }) => {
-  const containerRef = useRef(null); 
-  const textContainerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.3, delayChildren: 0.5 },
-    },
-  };
+const IntrosectionBold = ({ data }: { data: GPFirstSection }) => {
+  const containerRef = useRef(null);
+  const [isWide, setIsWide] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsWide(window.innerWidth > 992);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   useEffect(() => {
     if (containerRef.current) {
@@ -27,12 +147,21 @@ const IntrosectionBold = ({ data }: { data: introbold }) => {
         ease: "power3.out",
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top 60%", // Starts when the top of the section is 85% in view
+          start: "top 60%",
           toggleActions: "play none none none",
         },
       });
     }
   }, []);
+
+  const textContainerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.3, delayChildren: 0.5 },
+    },
+  };
+
   const textVariants = {
     hidden: (direction = "x") => ({
       opacity: 0,
@@ -45,21 +174,12 @@ const IntrosectionBold = ({ data }: { data: introbold }) => {
       transition: { duration: 0.5 },
     },
   };
-//   const [isWide, setIsWide] = useState(false);
 
-// useEffect(() => {
-//   const check = () => setIsWide(window.innerWidth > 992);
-//   check();
-//   window.addEventListener('resize', check);
-//   return () => window.removeEventListener('resize', check);
-// }, []);
-
- 
   return (
-    <section className="overflow-hidden relative pt-2 md:pt-[30px] xl:pt-[80px] 2xl:pt-[100px] ">
+    <section className="overflow-hidden relative pt-2 md:pt-[30px] xl:pt-[80px] 2xl:pt-[100px]">
       <div className="container">
-        <div className="lg:grid      lg:grid-cols-[auto,65%]  xl:grid-cols-[auto,65%] 2xl:grid-cols-[auto,59%]  xxxl:grid-cols-[auto,847px] gap-5   ">
-          <div className=" ">
+        <div className="lg:grid lg:grid-cols-[auto,65%] xl:grid-cols-[auto,65%] 2xl:grid-cols-[auto,59%] xxxl:grid-cols-[auto,847px] gap-5">
+          <div>
             <motion.div
               variants={textContainerVariants}
               initial="hidden"
@@ -67,40 +187,40 @@ const IntrosectionBold = ({ data }: { data: introbold }) => {
               viewport={{ once: true, amount: 0.3 }}
             >
               <motion.h2
-                className={` mb-5 lg:mb-0 text-xl text-primary font-[600] leading-[1.365]  ${data.titlecase == true ? `uppercase` : `uppercase`}`}
+                className={`mb-5 lg:mb-0 text-xl text-primary font-[600] leading-[1.365] uppercase`}
                 custom="x"
                 variants={textVariants}
-                style={{ 
-  maxWidth: window.innerWidth > 992 
-    ? (data.maxwidth ? `${data.maxwidth}ch` : '26ch') 
-    : '26ch' 
-}}
-
+                style={{
+                  maxWidth: isWide // ✅ no more window access during SSR
+                    ? data.maxwidth
+                      ? `${data.maxwidth}ch`
+                      : "26ch"
+                    : "26ch",
+                }}
               >
-                {data.data[0].title}
+                {data.title}
               </motion.h2>
             </motion.div>
           </div>
 
-          <motion.div className="  ">
+          <motion.div>
             <div>
               <motion.div
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
-                className=""
               >
                 <div>
                   <motion.div
-                    className="text-sm font-normal mb-5 last:mb-0  text-territory leading-[1.6]"
+                    className="text-sm font-normal mb-5 last:mb-0 text-territory leading-[1.6]"
                     custom="y"
                     variants={textVariants}
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.3 }}
                     transition={{ delay: 0.2, duration: 0.5 }}
-                    dangerouslySetInnerHTML={{ __html: data.data[0].paragraphs.join(" ") }}
-                  ></motion.div>
+                    dangerouslySetInnerHTML={{ __html: data.description }}
+                  />
                 </div>
               </motion.div>
             </div>

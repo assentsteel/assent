@@ -3,14 +3,13 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { motion, AnimatePresence } from "framer-motion"; 
+import { motion, AnimatePresence } from "framer-motion";
 import { slideInLeft } from "../../common/MotionAnimation";
 gsap.registerPlugin(ScrollTrigger);
 
-import { whyus } from "@/public/types/Common";
- 
-  const WhyAssent = ({ data }: { data: whyus }) => {
+import { GPSeventhSection } from "../types";
 
+const WhyAssent = ({ data }: { data: GPSeventhSection }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const containerRef = useRef(null);
 
@@ -29,7 +28,7 @@ import { whyus } from "@/public/types/Common";
       });
     }
   }, []);
-const textVariants = {
+  const textVariants = {
     hidden: (direction = "x") => ({
       opacity: 0,
       [direction]: direction === "x" ? -30 : 20,
@@ -55,40 +54,41 @@ const textVariants = {
           >
             {data.title}
           </motion.h2>
-          <motion.p className="text-sm text-tertiary font-[400] leading-[1.5] mb-5 xl:mb-[40px] 2xl:mb-[60px] max-w-[105ch]"
-          custom="y"
-                    variants={textVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, amount: 0.3 }}
-                    transition={{ delay: 0.2, duration: 0.5 }}>
+          <motion.p
+            className="text-sm text-tertiary font-[400] leading-[1.5] mb-5 xl:mb-[40px] 2xl:mb-[60px] max-w-[105ch]"
+            custom="y"
+            variants={textVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+          >
             {data.description}
           </motion.p>
-          
         </div>
-          <div className="lg:grid   lg:grid-cols-[45%_auto] xl:grid-cols-[50%_auto] 2xl:grid-cols-[50%_auto] xxxl:grid-cols-[797px_auto] lg:items-center xxl:items-center gap-5 lg:gap-10 2xl:gap-[66px]">
-             <div className="w-full     ">
+        <div className="lg:grid   lg:grid-cols-[45%_auto] xl:grid-cols-[50%_auto] 2xl:grid-cols-[50%_auto] xxxl:grid-cols-[797px_auto] lg:items-center xxl:items-center gap-5 lg:gap-10 2xl:gap-[66px]">
+          <div className="w-full     ">
             {/* {data.items.map((item, index) => ( */}
-              <motion.div
-                className=" hidden lg:block"
-                // key={index}
-                variants={slideInLeft}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.3 }}
-                exit="exit"
-              >
-                <figure className="image-wrapper h-full ">
-                  <Image
-                    src={data.items[activeIndex].image}
-                    alt=""
-                    className="rounded-[15px] w-full object-cover "
-                    priority
-                    width={500}
-                    height={500}
-                  />
-                </figure>
-              </motion.div>
+            <motion.div
+              className=" hidden lg:block"
+              // key={index}
+              variants={slideInLeft}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              exit="exit"
+            >
+              <figure className="image-wrapper h-full ">
+                <Image
+                  src={data.items[activeIndex].image}
+                  alt=""
+                  className="rounded-[15px] w-full object-cover "
+                  priority
+                  width={500}
+                  height={500}
+                />
+              </figure>
+            </motion.div>
             {/* ))} */}
           </div>
           <div className="w-full   mt-6 lg:mt-0">
@@ -107,18 +107,19 @@ const textVariants = {
                 >
                   {/* FIXED ROW */}
                   <div className=" ">
-                    
-
                     {/* TITLE + DESCRIPTION */}
                     <div className="flex-1">
                       <div className="flex justify-between items-center">
                         {/* TITLE */}
-                        <h3 className={`${
-                        activeIndex === index ? "text-secondary" : "text-territory"
-                      } capitalize text-[17px] md:text-md group-hover:text-secondary transition-all duration-300 leading-[1.22] font-[600]  pr-6`}>
+                        <h3
+                          className={`${
+                            activeIndex === index
+                              ? "text-secondary"
+                              : "text-territory"
+                          } capitalize text-[17px] md:text-md group-hover:text-secondary transition-all duration-300 leading-[1.22] font-[600]  pr-6`}
+                        >
                           {da.title}
                         </h3>
- 
                       </div>
 
                       {/* DESCRIPTION DROPDOWN */}
@@ -130,26 +131,23 @@ const textVariants = {
                             animate={{
                               opacity: 1,
                               height: "auto",
-                               
                             }}
-                            exit={{ opacity: 0, height: 0,  }}
+                            exit={{ opacity: 0, height: 0 }}
                             transition={{ duration: 0.4 }}
                             className="lg:max-w-[70ch] text-territory text-sm !mt-4 lg:!mt-2 xl:!mt-[20px] font-[400] leading-[1.7] xl:pe-6 overflow-hidden"
                           >
-                             <motion.div
-                className=" mb-4 lg:hidden" 
-              >
-                <figure className="image-wrapper h-full ">
-                  <Image
-                    src={data.items[activeIndex].image}
-                    alt=""
-                    className="rounded-[15px] w-full object-cover h-[260px] sm:h-[350px] "
-                    priority
-                    width={500}
-                    height={500}
-                  />
-                </figure>
-              </motion.div>
+                            <motion.div className=" mb-4 lg:hidden">
+                              <figure className="image-wrapper h-full ">
+                                <Image
+                                  src={data.items[activeIndex].image}
+                                  alt=""
+                                  className="rounded-[15px] w-full object-cover h-[260px] sm:h-[350px] "
+                                  priority
+                                  width={500}
+                                  height={500}
+                                />
+                              </figure>
+                            </motion.div>
                             <p>{da.description}</p>
                           </motion.div>
                         )}
@@ -160,8 +158,6 @@ const textVariants = {
               </div>
             ))}
           </div>
-
-       
         </div>
       </div>
     </section>

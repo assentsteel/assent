@@ -3,14 +3,13 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { motion, AnimatePresence } from "framer-motion"; 
+import { motion, AnimatePresence } from "framer-motion";
 import { slideInLeft } from "../../common/MotionAnimation";
 gsap.registerPlugin(ScrollTrigger);
 
-import { HowWework } from "@/public/types/Common";
- 
-  const HowweWork = ({ data }: { data: HowWework }) => {
+import { GPFourthSection } from "../../AustralianProjects/types";
 
+const HowweWork = ({ data }: { data: GPFourthSection }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const containerRef = useRef(null);
 
@@ -44,31 +43,30 @@ import { HowWework } from "@/public/types/Common";
           >
             {data.title}
           </motion.h2>
-          
         </div>
-          <div className="lg:grid   lg:grid-cols-[40%_auto]  xl:grid-cols-[40%_auto] 2xl:grid-cols-[40%_auto] xxxl:grid-cols-[656px_auto] lg:items-center xxl:items-center gap-5 lg:grid   lg:grid-cols-[40%_auto]  xl:grid-cols-[40%_auto] 2xl:grid-cols-[40%_auto] xxxl:grid-cols-[656px_auto] lg:items-center xxl:items-center gap-5 lg:gap-[40px]  xl:gap-[66px] ">
-             <div className="w-full     ">
+        <div className="lg:grid   lg:grid-cols-[40%_auto]  xl:grid-cols-[40%_auto] 2xl:grid-cols-[40%_auto] xxxl:grid-cols-[656px_auto] lg:items-center xxl:items-center gap-5 lg:grid   lg:grid-cols-[40%_auto]  xl:grid-cols-[40%_auto] 2xl:grid-cols-[40%_auto] xxxl:grid-cols-[656px_auto] lg:items-center xxl:items-center gap-5 lg:gap-[40px]  xl:gap-[66px] ">
+          <div className="w-full     ">
             {/* {data.items.map((item, index) => ( */}
-              <motion.div
-                className=" hidden lg:block"
-                // key={index}
-                variants={slideInLeft}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.3 }}
-                exit="exit"
-              >
-                <figure className="image-wrapper h-full ">
-                  <Image
-                    src={data.items[activeIndex].image}
-                    alt=""
-                    className="rounded-[15px] w-full object-cover "
-                    priority
-                    width={500}
-                    height={500}
-                  />
-                </figure>
-              </motion.div>
+            <motion.div
+              className=" hidden lg:block"
+              // key={index}
+              variants={slideInLeft}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              exit="exit"
+            >
+              <figure className="image-wrapper h-full ">
+                <Image
+                  src={data.items[activeIndex].image}
+                  alt=""
+                  className="rounded-[15px] w-full object-cover "
+                  priority
+                  width={500}
+                  height={500}
+                />
+              </figure>
+            </motion.div>
             {/* ))} */}
           </div>
           <div className="w-full     ">
@@ -87,86 +85,86 @@ import { HowWework } from "@/public/types/Common";
                 >
                   {/* FIXED ROW */}
 
-                    <div className="flex-1">
-                  <div className="flex gap-3 xl:gap-5 items-start">
-                    {/* LEFT ARROW (rotates when active) */}
-                    <Image
-                      src={`/assets/img/tickic.svg`}
-                      alt=""
-                      width={24}
-                      height={24}
-                      className={`transition-all duration-300 ${
-                        activeIndex === index ? "" : "brightness-0 opacity-[1]"
-                      }`}
-                    />
+                  <div className="flex-1">
+                    <div className="flex gap-3 xl:gap-5 items-start">
+                      {/* LEFT ARROW (rotates when active) */}
+                      <Image
+                        src={`/assets/img/tickic.svg`}
+                        alt=""
+                        width={24}
+                        height={24}
+                        className={`transition-all duration-300 ${
+                          activeIndex === index
+                            ? ""
+                            : "brightness-0 opacity-[1]"
+                        }`}
+                      />
 
-                    {/* TITLE + DESCRIPTION */}
-                    <div className="flex-1">
-                      <div className="flex justify-between items-center">
-                        {/* TITLE */}
-                        <h3 className={`${
-                        activeIndex === index ? "text-secondary" : "text-territory"
-                      } capitalize text-[17px] md:text-md group-hover:text-secondary transition-all duration-300 leading-[1.2] font-[500]  pr-6`}>
-                          {da.title}
-                        </h3>
-
-                        {/* RIGHT ARROW (aligns EXACTLY with the title) */}
-                        <Image
-                          src="/assets/img/icons/arrow_down.png"
-                          alt="logo"
-                          width={17}
-                          height={8}
-                          className={`w-[17px] h-[8px] transition-all duration-300 ${
-                            activeIndex === index ? "rotate-180" : ""
-                          }`}
-                        />
-                      </div>
-
-                    </div>
-                  </div>
-
-                      {/* DESCRIPTION DROPDOWN */}
-                      <AnimatePresence mode="wait">
-                        {activeIndex === index && (
-                          
-                          <motion.div
-                            key="content"
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{
-                              opacity: 1,
-                              height: "auto",
-                              marginTop: "10px",
-                            }}
-                            exit={{ opacity: 0, height: 0, marginTop: 0 }}
-                            transition={{ duration: 0.4 }}
-                            className="xl:max-w-[70ch] text-territory text-sm font-[400] leading-[1.7] lg:pr-6 overflow-hidden lg:ps-[38px]"
+                      {/* TITLE + DESCRIPTION */}
+                      <div className="flex-1">
+                        <div className="flex justify-between items-center">
+                          {/* TITLE */}
+                          <h3
+                            className={`${
+                              activeIndex === index
+                                ? "text-secondary"
+                                : "text-territory"
+                            } capitalize text-[17px] md:text-md group-hover:text-secondary transition-all duration-300 leading-[1.2] font-[500]  pr-6`}
                           >
-                            <motion.div
-                className=" mt-3 mb-3 lg:hidden " 
-              >
-                <figure className="image-wrapper h-full  !h-[auto] sm:!h-[350px] xl:!h-[auto]">
-                  <Image
-                    src={data.items[activeIndex].image}
-                    alt=""
-                    className="rounded-[15px] w-full h-auto sm:h-full xl:h-auto object-cover "
-                    priority
-                    width={500}
-                    height={500}
-                  />
-                </figure>
-              </motion.div>
-                            <p className="text-territory">{da.description}</p>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
+                            {da.title}
+                          </h3>
+
+                          {/* RIGHT ARROW (aligns EXACTLY with the title) */}
+                          <Image
+                            src="/assets/img/icons/arrow_down.png"
+                            alt="logo"
+                            width={17}
+                            height={8}
+                            className={`w-[17px] h-[8px] transition-all duration-300 ${
+                              activeIndex === index ? "rotate-180" : ""
+                            }`}
+                          />
+                        </div>
                       </div>
+                    </div>
+
+                    {/* DESCRIPTION DROPDOWN */}
+                    <AnimatePresence mode="wait">
+                      {activeIndex === index && (
+                        <motion.div
+                          key="content"
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{
+                            opacity: 1,
+                            height: "auto",
+                            marginTop: "10px",
+                          }}
+                          exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                          transition={{ duration: 0.4 }}
+                          className="xl:max-w-[70ch] text-territory text-sm font-[400] leading-[1.7] lg:pr-6 overflow-hidden lg:ps-[38px]"
+                        >
+                          <motion.div className=" mt-3 mb-3 lg:hidden ">
+                            <figure className="image-wrapper h-full  !h-[auto] sm:!h-[350px] xl:!h-[auto]">
+                              <Image
+                                src={data.items[activeIndex].image}
+                                alt=""
+                                className="rounded-[15px] w-full h-auto sm:h-full xl:h-auto object-cover "
+                                priority
+                                width={500}
+                                height={500}
+                              />
+                            </figure>
+                          </motion.div>
+                          <p className="text-territory">{da.description}</p>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
                 </motion.div>
               </div>
             ))}
           </div>
-
-       
-          </div>
+        </div>
       </div>
     </section>
   );
