@@ -53,7 +53,7 @@ const RecentNews = ({ data }: { data: News }) => {
         hover: { opacity: 1, y: 0, transition: { duration: 0.3 } },
     };
     return (
-        <section className="pb-0 md:pb-[70px] xl:pb-[100px] overflow-hidden relative ">
+        <section className="pb-0  overflow-hidden relative ">
             <div className="container">
                 <div className="flex justify-between mb-[20px] lg:mb-10">
                     <div className="  ">
