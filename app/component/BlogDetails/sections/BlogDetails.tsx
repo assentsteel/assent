@@ -14,20 +14,20 @@ import { motion } from "framer-motion";
  
 
   import { Bogs } from '@/public/types/Common';
-import Link from "next/link";
+// import Link from "next/link";  
 
 import {blogData} from "@/app/component/BlogList/data";
 
       const BlogDetails = ({ data }: { data: Bogs }) => {
         // const [blogsList, setBlogsList] = useState<Blogs>();
 
-        const [currentUrl, setCurrentUrl] = useState("");
+        // const [currentUrl, setCurrentUrl] = useState("");
 
-        useEffect(() => {
-          if (typeof window !== "undefined") {
-            setCurrentUrl(window.location.href);
-          }
-        }, []);
+        // useEffect(() => {
+        //   if (typeof window !== "undefined") {
+        //     setCurrentUrl(window.location.href);
+        //   }
+        // }, []);
         
 
         // const handleFetchProjects = async () => {
