@@ -1,7 +1,6 @@
 
 import Index from "@/app/component/BlogList/Index";
 import { Metadata } from "next";
-import { blogData } from "@/app/component/BlogList/data";
 export async function generateMetadata(): Promise<Metadata> {
   const response = await fetch(`${process.env.BASE_URL}/api/admin/blogs`, { next: { revalidate: 60 } });
   const data = await response.json();

@@ -1,5 +1,4 @@
 import connectDB from "@/lib/mongodb";
-import News from "@/app/models/News";
 import { NextRequest, NextResponse } from "next/server";
 import Blogs from "@/app/models/Blogs";
 

@@ -1,7 +1,6 @@
 import Index from "@/app/component/BlogDetails/Index"
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
-import { blogData } from "@/app/component/BlogList/data"
 
 const NO_INDEX_SLUGS = ["globalsurf-post-lourve", "global-surf"]
 

@@ -10,9 +10,6 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
-import "react-quill-new/dist/quill.snow.css";
-import dynamic from "next/dynamic";
 import { useForm, Controller } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";

@@ -11,7 +11,7 @@ import Link from "next/link";
 
 const RecentBlogs = ({ data }: { data: Blogs }) => {
     const containerRef = useRef(null);
-    const latestBlogs = [...data.data[0].news].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    const latestBlogs = [...data.blogs].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
     useEffect(() => {
         if (containerRef.current) {
@@ -144,9 +144,8 @@ const RecentBlogs = ({ data }: { data: Blogs }) => {
                                     key={index}
                                     className="vi h-[300px] lg:h-1/2 relative group blueover rounded-[15px]"
                                     style={{
-                                        background: `url(${
-                                            typeof item.thumbnail === "string" ? item.thumbnail : item.thumbnail
-                                        })`,
+                                        background: `url(${typeof item.thumbnail === "string" ? item.thumbnail : item.thumbnail
+                                            })`,
                                         backgroundSize: "cover",
                                     }}
                                 >

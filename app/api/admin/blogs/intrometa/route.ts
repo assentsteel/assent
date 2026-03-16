@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
-import News from "@/app/models/News";
 import Blogs from "@/app/models/Blogs";
 
 export async function POST(req: NextRequest) {
