@@ -1,7 +1,6 @@
 import Index from "@/app/component/BlogDetails/Index"
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
-import { blogData } from "@/app/component/BlogList/data"
 
 const NO_INDEX_SLUGS = ["globalsurf-post-lourve", "global-surf"]
 
@@ -13,13 +12,17 @@ export async function generateMetadata({
 
   const { slug } = await params
 
-  const blog = blogData?.data?.[0]?.news?.find(
-    (item) => item.slug === slug
-  )
+  // const blog = blogData?.data?.[0]?.news?.find(
+  //   (item) => item.slug === slug
+  // )
 
-  if (!blog) return {}
+  const response = await fetch(`${process.env.BASE_URL}/api/admin/blogs?slug=${slug}`, { next: { revalidate: 60 } });
+  const data = await response.json();
+  const blog = data.data
 
-  const canonicalUrl = `https://www.assentsteel.com/news/${slug}`
+  if (!data) return {}
+
+  const canonicalUrl = `https://www.assentsteel.com/blogs/${slug}`
 
   return {
     title: blog.metaTitle,
@@ -59,9 +62,9 @@ export default async function Page({
 
   const { slug } = await params
 
-  const blog = blogData?.data?.[0]?.news?.find(
-    (item) => item.slug === slug
-  )
+  const response = await fetch(`${process.env.BASE_URL}/api/admin/blogs?slug=${slug}`, { next: { revalidate: 60 } });
+  const data = await response.json();
+  const blog = data.data
 
   if (!blog) {
     notFound()
@@ -78,7 +81,7 @@ export default async function Page({
             "@type": "Article",
             mainEntityOfPage: {
               "@type": "WebPage",
-              "@id": `https://www.assentsteel.com/news/${slug}`,
+              "@id": `https://www.assentsteel.com/blogs/${slug}`,
             },
             headline: blog.mainTitle,
             image: blog.thumbnail,

@@ -15,6 +15,7 @@ import {
   GalleryThumbnails,
   HeartHandshake,
   LeafIcon,
+  PaperclipIcon,
   Settings,
   ThumbsUp,
   Workflow,
@@ -85,6 +86,7 @@ const AdminNavbar = () => {
 
     { name: "Projects", href: "/ASe25Nt@dmin/projects", icon: Workflow },
     { name: "News", href: "/ASe25Nt@dmin/news", icon: NewspaperIcon },
+    { name: "Blogs", href: "/ASe25Nt@dmin/blogs", icon: PaperclipIcon },
     { name: "Gallery", href: "/ASe25Nt@dmin/gallery", icon: GalleryThumbnails },
     { name: "Awards", href: "/ASe25Nt@dmin/awards", icon: AwardIcon },
     { name: "Team", href: "/ASe25Nt@dmin/team", icon: UserGroupIcon },

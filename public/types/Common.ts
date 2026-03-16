@@ -29,7 +29,7 @@ export type About = {
     title: string;
     items: [
       {
-        _id:string;
+        _id: string;
         year: string;
         title: string;
         description: string;
@@ -98,11 +98,11 @@ export type Gallerydata = {
   message: string;
   success: boolean;
   data:
-    | {
-        categories: categories[];
-        images: string[];
-      }
-    | [];
+  | {
+    categories: categories[];
+    images: string[];
+  }
+  | [];
 };
 
 export type categories = {
@@ -141,6 +141,32 @@ export type News = {
   }[];
 };
 export type Bogs = {
+  mainTitle: string;
+  subTitle: string;
+  slug: string;
+  content: string;
+  thumbnail: string;
+  thumbnailAlt: string;
+  images: string[];
+  category: string;
+  date: string;
+  metaTitle: string;
+  metaDescription: string;
+  _id: number;
+  createdAt: string;
+}
+export type Blogs = {
+  metaTitle: string;
+  metaDescription: string;
+  pageTitle: string;
+  banner: string;
+  bannerAlt: string;
+  categories: [
+    {
+      name: string;
+    }
+  ];
+  blogs: {
     mainTitle: string;
     subTitle: string;
     slug: string;
@@ -149,39 +175,12 @@ export type Bogs = {
     thumbnailAlt: string;
     images: string[];
     category: string;
-    date: string;
+    createdAt: string;
     metaTitle: string;
     metaDescription: string;
     _id: number;
-    createdAt: string;
-}
-export type Blogs = {
-  data: {
-    metaTitle: string
-    metaDescription: string
-    pageTitle: string
-
-    categories: {
-      name: string
-    }[]
-
-    news: {
-      mainTitle: string
-      subTitle: string
-      slug: string
-      content: string
-      thumbnail: string
-      thumbnailAlt: string
-      images: string[]
-      category: string
-      date: string
-      metaTitle: string
-      metaDescription: string
-      _id: number
-      createdAt: string
-    }[]
-
-  }[]
+    date: string;
+  }[];
 }
 export type Newsdetails = {
   data: {
@@ -498,7 +497,7 @@ export type HowWework = {
 };
 export type typefaq = {
   title: string;
-  items: { 
+  items: {
     title: string;
     description: string;
   }[];
@@ -524,39 +523,39 @@ export type whyustre = {
     description: string;
   }[];
 };
-export type keycap ={
-    title: string;
-    desc: string;
-    items: 
-      {
-        image: StaticImageData;
-        imageAlt: string;
-        title: string;
-        description: string;
-      }[]; 
-  }; 
-
-  export type keycaptur ={
-    title: string;
-    desc: string;
-    items: 
-      {
-        image: StaticImageData;
-        imageAlt: string;
-        title: string;
-        description: string;
-      }[]; 
-  };  
-export type Accaus = {  
+export type keycap = {
+  title: string;
+  desc: string;
+  items:
+  {
+    image: StaticImageData;
+    imageAlt: string;
     title: string;
     description: string;
-    items:  
-      {
-        
-        title: string;
-        description: string;
-      }[];
-  }; 
+  }[];
+};
+
+export type keycaptur = {
+  title: string;
+  desc: string;
+  items:
+  {
+    image: StaticImageData;
+    imageAlt: string;
+    title: string;
+    description: string;
+  }[];
+};
+export type Accaus = {
+  title: string;
+  description: string;
+  items:
+  {
+
+    title: string;
+    description: string;
+  }[];
+};
 export type NavTab = {
   title: string;
   items: [
@@ -574,10 +573,10 @@ export type introboldold = {
   image?: string;
   imageAlt?: string;
   titlecase?: boolean;
-  maxwidth?:number;
+  maxwidth?: number;
 };
-export type introbold = { 
-    data: {
+export type introbold = {
+  data: {
     id: number;
     title: string;
     paragraphs: string;
@@ -587,17 +586,17 @@ export type introbold = {
   maxwidth?: number;
 };
 export type gridbox = {
+  title: string;
+  description: string;
+  items:
+  {
     title: string;
     description: string;
-    items:  
-      { 
-        title: string;
-        description: string;
-        logo: string;
-        logoAlt: string;
-      }[]
-      footerdata?: string;
-  };
+    logo: string;
+    logoAlt: string;
+  }[]
+  footerdata?: string;
+};
 export type SecondIntro = {
   secondTitle: string;
   secondDescription: string;
@@ -869,7 +868,7 @@ export type Services = {
       }
     ];
   };
-}; 
+};
 export type Sectwotp = {
   title: string;
   description: string;
@@ -882,17 +881,17 @@ export type Sectwotp = {
   }[];
 };
 
-export type Partnerst= {
+export type Partnerst = {
   title: string;
   description: string;
   innertitle: string;
-  items: { 
+  items: {
     title: string;
     description: string;
   }[];
 };
 
- 
+
 
 
 export type GlobalPresence = {

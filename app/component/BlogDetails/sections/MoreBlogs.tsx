@@ -1,18 +1,18 @@
 "use client";
-import {  useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
 gsap.registerPlugin(ScrollTrigger);
-  
-    import { Blogs } from '@/public/types/Common'; 
-     
-      
-        const MoreBlogs = ({ data, id }: { data: Blogs | undefined ,id:number}) => {
+
+import { Blogs } from '@/public/types/Common';
+
+
+const MoreBlogs = ({ data, id }: { data: Blogs | undefined, id: number }) => {
   const containerRef = useRef(null);
-console.log(data);
-const filteredBlogs = data?.data?.[0]?.news?.filter((item) => item._id !== id);
+  console.log(data);
+  const filteredBlogs = data?.blogs?.filter((item) => item._id !== id);
   useEffect(() => {
     if (containerRef.current) {
       gsap.from(containerRef.current, {
@@ -52,12 +52,12 @@ const filteredBlogs = data?.data?.[0]?.news?.filter((item) => item._id !== id);
 
                 <div className=" pt-[10px] w-full">
                   <div className="flex justify-between items-center">
-                    <p className="text-xs text-[#595959] font-[400] leading-[1.9] "> 
+                    <p className="text-xs text-[#595959] font-[400] leading-[1.9] ">
                       {new Date(item.createdAt).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric"
-  })}
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric"
+                      })}
                     </p>
                     <p className="text-xs text-[#595959] font-[400] leading-[1.9] ">
                       {item.category}
@@ -68,24 +68,24 @@ const filteredBlogs = data?.data?.[0]?.news?.filter((item) => item._id !== id);
                   </h3>
                   <div className="flex justify-between mb-5 lg:mb-0">
                     <Link href={`/blogs/${item.slug}`}>
-                    <div className=" flex gap-4 items-center w-fit m-0 border-b  border-secondary pb-[10px]   transition-all duration-500 ">
-                      <p className="text-xs uppercase text-black font-[500] inline-flex  leading-[1] ">
-                        Read More
-                      </p>
-                      <div className="min-w-[20px] min-h-[20px]   bg-black rounded-full flex items-center justify-center translate-x-0 group-hover:translate-x-[5px] transition-all duration-500">
-                        <svg
-                          stroke="#5BA646"
-                          fill="#5BA646"
-                          strokeWidth="0"
-                          viewBox="0 0 320 512"
-                          height="10px"
-                          width="8px"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"></path>
-                        </svg>
+                      <div className=" flex gap-4 items-center w-fit m-0 border-b  border-secondary pb-[10px]   transition-all duration-500 ">
+                        <p className="text-xs uppercase text-black font-[500] inline-flex  leading-[1] ">
+                          Read More
+                        </p>
+                        <div className="min-w-[20px] min-h-[20px]   bg-black rounded-full flex items-center justify-center translate-x-0 group-hover:translate-x-[5px] transition-all duration-500">
+                          <svg
+                            stroke="#5BA646"
+                            fill="#5BA646"
+                            strokeWidth="0"
+                            viewBox="0 0 320 512"
+                            height="10px"
+                            width="8px"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"></path>
+                          </svg>
+                        </div>
                       </div>
-                    </div>
                     </Link>
                   </div>
                 </div>

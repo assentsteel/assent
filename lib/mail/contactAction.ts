@@ -118,26 +118,26 @@ export async function sendContactAction(
       });
       break;
 
-      case "careerForm":
-  await sendMail({
-    to: toEmail,
-    subject: "New Career Application",
-    template: (p) => CareerFormEmail(p),
-    props: {
-      firstname: data.firstname,
-      lastname: data.lastname,
-      email: data.email,
-      phonenumber: data.phonenumber,
-      gender: data.gender,
-      dateofbirth: data.dateofbirth,
-      nationality: data.nationality,
-      currentlocation: data.currentlocation,
-      workexperience: data.workexperience,
-      position: data.position,
-      file: data.file,
-    },
-  });
-  break;
+    case "careerForm":
+      await sendMail({
+        to: toEmail,
+        subject: "New Career Application",
+        template: (p) => CareerFormEmail(p),
+        props: {
+          firstname: data.firstname,
+          lastname: data.lastname,
+          email: data.email,
+          phonenumber: data.phonenumber,
+          gender: data.gender,
+          dateofbirth: data.dateofbirth,
+          nationality: data.nationality,
+          currentlocation: data.currentlocation,
+          workexperience: data.workexperience,
+          position: data.position,
+          file: data.file,
+        },
+      });
+      break;
   }
 }
 

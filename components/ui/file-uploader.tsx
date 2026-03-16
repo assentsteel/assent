@@ -86,10 +86,24 @@ export function FileUploader({
     multiple: false,
   });
 
-  const removeFile = useCallback(() => {
-    setFileName("");
-    onChange("", "");
-  }, [onChange]);
+  const removeFile = async () => {
+    if (!value) return;
+
+    const response = await fetch("/api/admin/delete-file", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ url: value }),
+    });
+
+    if (response.ok) {
+      setFileName("");
+      onChange("", "");
+      alert("File deleted successfully")
+    }
+
+  };
 
   return (
     <div className={cn("space-y-4 w-full", className)}>
