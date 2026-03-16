@@ -91,7 +91,7 @@ import {blogData} from "@/app/component/BlogList/data";
     <section className="pb-[50px] md:pb-[70px] xl:pb-[100px] overflow-hidden relative ">
       <div className="container">
         <div className="flex flex-col lg:flex-row ">
-          <div className="lg:w-5/6 pr-4 lg:pr-6 xxl:pr-[135px] ">
+          <div className={`${blogData.data[0].news && blogData.data[0].news.length > 1 ? 'lg:w-5/6 pr-4 lg:pr-6 xxl:pr-[135px]' : 'lg:w-full'}  `}>
             <div className=" ">
               <div className="relative w-full bg-gray-100 rounded-xl">
                 <motion.div
@@ -125,7 +125,7 @@ import {blogData} from "@/app/component/BlogList/data";
                         <Image
                           src={src}
                           alt={`Slide ${index + 1}`}
-                          className="w-full h-[300px] md:h-[400px] lg:h-[570px] object-contain"
+                          className="w-full h-[300px] md:h-[400px] lg:h-[570px] object-cover"
                           width={1215}
                           height={570}
                         />
@@ -214,7 +214,7 @@ import {blogData} from "@/app/component/BlogList/data";
               </div>
 
           </div>
-
+{blogData.data[0].news && blogData.data[0].news.length > 1 && (
           <div className="lg:w-1/6 ">
             <motion.div
               variants={slideInTop}
@@ -232,6 +232,7 @@ import {blogData} from "@/app/component/BlogList/data";
               <MoreBlogs data={blogData} id={data._id}/>
             </motion.div>
           </div>
+  )}
         </div>
       </div>
     </section>

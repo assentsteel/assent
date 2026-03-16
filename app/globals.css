@@ -638,9 +638,7 @@ margin-bottom: 15px;
 .blogcotentmn h3{
   @apply text-[20px] md:text-[22px] 2xl:text-[24px]  mb-2 lg:mb-3 leading-[1.1875];
 }
-.blogcotentmn p{
-  @apply text-[16px] ;
-}
+ 
 .blogcotentmn img{@apply mb-4;}
-.blogcotentmn ul li{ list-style: disc;}
+.blogcotentmn ul li{ list-style: disc; font-size: 18px;}
 .blogcotentmn ul {padding-left: 20px; margin-bottom: 15px;}
