@@ -49,11 +49,11 @@ import {blogData} from "@/app/component/BlogList/data";
         //   handleFetchProjects();
         // }, []);
         // console.log(data)
-
-  const prevRef = useRef(null);
-  const nextRef = useRef(null);
+ 
   const containerRef = useRef(null);
 
+  const prevRef = useRef<HTMLButtonElement | null>(null);
+  const nextRef = useRef<HTMLButtonElement | null>(null);
   useEffect(() => {
     if (containerRef.current) {
       gsap.from(containerRef.current, {
@@ -93,7 +93,7 @@ import {blogData} from "@/app/component/BlogList/data";
         <div className="flex flex-col lg:flex-row ">
           <div className="lg:w-5/6 pr-4 lg:pr-6 xxl:pr-[135px] ">
             <div className=" ">
-              <div className="relative w-full bg-gray-100 ">
+              <div className="relative w-full bg-gray-100 rounded-xl">
                 <motion.div
                   variants={slideInTop}
                   initial="hidden"
@@ -102,6 +102,7 @@ import {blogData} from "@/app/component/BlogList/data";
                 >
                   <Swiper
                     modules={[Navigation]}
+                    autoplay={{ delay: 3000, disableOnInteraction: false }}
                     navigation={{
                       prevEl: prevRef.current,
                       nextEl: nextRef.current,

@@ -641,6 +641,6 @@ margin-bottom: 15px;
 .blogcotentmn p{
   @apply text-[16px] ;
 }
-.blogcotentmn img{@apply mb-2;}
+.blogcotentmn img{@apply mb-4;}
 .blogcotentmn ul li{ list-style: disc;}
 .blogcotentmn ul {padding-left: 20px; margin-bottom: 15px;}
