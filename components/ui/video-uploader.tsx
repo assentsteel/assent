@@ -77,11 +77,25 @@ export function VideoUploader({ value, onChange, className, deleteAfterUpload = 
     multiple: false,
   });
 
-  const removeVideo = useCallback(() => {
-    setLocalVideoUrl(null);
-    setIsUploadComplete(false);
-    onChange("", undefined);
-  }, [onChange]);
+  const removeVideo = async () => {
+
+    if (!displayUrl) return;
+
+    const response = await fetch("/api/admin/delete-video", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ url: displayUrl }),
+    });
+
+    if (response.ok) {
+      setLocalVideoUrl(null);
+      setIsUploadComplete(false);
+      onChange("", undefined);
+      alert("Video deleted successfully")
+    }
+  };
 
   const displayUrl = localVideoUrl || value;
 

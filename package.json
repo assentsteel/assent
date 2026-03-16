@@ -46,6 +46,7 @@
     "mongoose": "^8.10.0",
     "motion": "^12.1.0",
     "next": "15.1.9",
+    "node-cron": "^4.2.1",
     "node-fetch": "^2.6.1",
     "quill-html-edit-button": "^3.0.0",
     "react": "^19.0.1",

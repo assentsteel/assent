@@ -22,163 +22,163 @@ interface FormValues2 {
 
 const Settings = () => {
 
-        const { register, handleSubmit,setValue,getValues } = useForm<FormValues | FormValues2>();
-        const [currentPasswordIsCorrect, setCurrentPasswordIsCorrect] = React.useState<boolean>(false);
+    const { register, handleSubmit, setValue, getValues } = useForm<FormValues | FormValues2>();
+    const [currentPasswordIsCorrect, setCurrentPasswordIsCorrect] = React.useState<boolean>(false);
 
-        const [toEmailGeneral,setToEmailGeneral] = useState("")
-        const [toEmailRegistration,setToEmailRegistration] = useState("")
-        const [toEmailDownload,setToEmailDownload] = useState("")
-        const [toEmailCareer,setToEmailCareer] = useState("")
-        
-        const onSubmit = async(data: FormValues | FormValues2) => {
-            try {
-                const response = await fetch("/api/admin/tags", {
-                    method: "POST",
-                    body: JSON.stringify(data),
-                });
-                if (response.ok) {
-                    const data = await response.json();
+    const [toEmailGeneral, setToEmailGeneral] = useState("")
+    const [toEmailRegistration, setToEmailRegistration] = useState("")
+    const [toEmailDownload, setToEmailDownload] = useState("")
+    const [toEmailCareer, setToEmailCareer] = useState("")
+
+    const onSubmit = async (data: FormValues | FormValues2) => {
+        try {
+            const response = await fetch("/api/admin/tags", {
+                method: "POST",
+                body: JSON.stringify(data),
+            });
+            if (response.ok) {
+                const data = await response.json();
+                alert(data.message);
+            } else {
+                const data = await response.json();
+                alert(data.message);
+            }
+        } catch (error) {
+            console.log("Error saving details", error);
+        }
+    }
+
+    const EmailSectionSubmit = async () => {
+        try {
+            const response = await fetch("/api/admin/emails", {
+                method: "PATCH",
+                body: JSON.stringify({ toEmailDownload, toEmailGeneral, toEmailRegistration, toEmailCareer }),
+            });
+            if (response.ok) {
+                const data = await response.json();
+                alert(data.message);
+            } else {
+                const data = await response.json();
+                alert(data.message);
+            }
+        } catch (error) {
+            console.log("Error saving details", error);
+        }
+    }
+
+    const fetchTag = async () => {
+        try {
+            const response = await fetch("/api/admin/tags");
+            if (response.ok) {
+                const data = await response.json();
+                setValue('headerScript', data.tag.headerScript);
+                setValue('bodyScript', data.tag.bodyScript);
+            } else {
+                const data = await response.json();
+                alert(data.message);
+            }
+        } catch (error) {
+            console.log("Error fetching details", error);
+        }
+    }
+
+
+    const fetchEmails = async () => {
+        try {
+            const response = await fetch("/api/admin/emails");
+            if (response.ok) {
+                const data = await response.json();
+                setToEmailDownload(data.data.toEmailDownload)
+                setToEmailRegistration(data.data.toEmailRegistration)
+                setToEmailGeneral(data.data.toEmailGeneral)
+                setToEmailCareer(data.data.toEmailCareer)
+            } else {
+                const data = await response.json();
+                alert(data.message);
+            }
+        } catch (error) {
+            console.log("Error fetching details", error);
+        }
+    }
+
+    useEffect(() => {
+        fetchTag();
+        fetchEmails();
+    }, []);
+
+    const checkCurrentPassword = async () => {
+        try {
+            const currentPassword = getValues('currentPassword');
+            if (!currentPassword) {
+                alert("Please enter current password");
+                return;
+            }
+            const response = await fetch("/api/admin/settings/check-password", {
+                method: "POST",
+                body: JSON.stringify({ currentPassword }),
+            });
+            if (response.ok) {
+                const data = await response.json();
+                if (data.success) {
+                    setCurrentPasswordIsCorrect(true);
+                    setValue('currentPassword', "");
                     alert(data.message);
                 } else {
-                    const data = await response.json();
+                    setCurrentPasswordIsCorrect(false);
                     alert(data.message);
                 }
-            } catch (error) {
-                console.log("Error saving details", error);
+            } else {
+                const data = await response.json();
+                alert(data.message);
             }
+        } catch (error) {
+            console.log("Error saving details", error);
         }
+    }
 
-        const EmailSectionSubmit = async() => {
-            try {
-                const response = await fetch("/api/admin/emails", {
-                    method: "PATCH",
-                    body: JSON.stringify({toEmailDownload,toEmailGeneral,toEmailRegistration,toEmailCareer}),
-                });
-                if (response.ok) {
-                    const data = await response.json();
+
+    const submitNewPassword = async () => {
+        try {
+            const newPassword = getValues('newPassword');
+            if (!newPassword) {
+                alert("Please enter new password");
+                return;
+            }
+            const response = await fetch("/api/admin/settings/check-password", {
+                method: "PATCH",
+                body: JSON.stringify({ newPassword }),
+            });
+            if (response.ok) {
+                const data = await response.json();
+                if (data.success) {
+                    setCurrentPasswordIsCorrect(false);
+                    setValue('newPassword', "");
                     alert(data.message);
                 } else {
-                    const data = await response.json();
+                    setCurrentPasswordIsCorrect(false);
                     alert(data.message);
                 }
-            } catch (error) {
-                console.log("Error saving details", error);
+            } else {
+                const data = await response.json();
+                alert(data.message);
             }
+        } catch (error) {
+            console.log("Error saving details", error);
         }
-    
-        const fetchTag = async() => {
-            try {
-                const response = await fetch("/api/admin/tags");
-                if (response.ok) {
-                    const data = await response.json();
-                    setValue('headerScript', data.tag.headerScript);
-                    setValue('bodyScript', data.tag.bodyScript);
-                } else {
-                    const data = await response.json();
-                    alert(data.message);
-                }
-            } catch (error) {
-                console.log("Error fetching details", error);
-            }
-        }
+    }
 
 
-        const fetchEmails = async() => {
-            try {
-                const response = await fetch("/api/admin/emails");
-                if (response.ok) {
-                    const data = await response.json();
-                    setToEmailDownload(data.data.toEmailDownload)
-                    setToEmailRegistration(data.data.toEmailRegistration)
-                    setToEmailGeneral(data.data.toEmailGeneral)
-                    setToEmailCareer(data.data.toEmailCareer)
-                } else {
-                    const data = await response.json();
-                    alert(data.message);
-                }
-            } catch (error) {
-                console.log("Error fetching details", error);
-            }
-        }
-    
-        useEffect(() => {
-            fetchTag();
-            fetchEmails();
-        }, []);
-
-        const checkCurrentPassword = async() => {
-            try {
-                const currentPassword = getValues('currentPassword');
-                if(!currentPassword){
-                    alert("Please enter current password");
-                    return;
-                }
-                const response = await fetch("/api/admin/settings/check-password", {
-                    method: "POST",
-                    body: JSON.stringify({currentPassword}),
-                });
-                if (response.ok) {
-                    const data = await response.json();
-                    if(data.success){
-                        setCurrentPasswordIsCorrect(true);
-                        setValue('currentPassword',"");
-                        alert(data.message);
-                    }else{
-                        setCurrentPasswordIsCorrect(false);
-                        alert(data.message);
-                    }
-                } else {
-                    const data = await response.json();
-                    alert(data.message);
-                }
-            } catch (error) {
-                console.log("Error saving details", error);
-            }
-        }
-
-
-        const submitNewPassword = async() => {
-            try {
-                const newPassword = getValues('newPassword');
-                if(!newPassword){
-                    alert("Please enter new password");
-                    return;
-                }
-                const response = await fetch("/api/admin/settings/check-password", {
-                    method: "PATCH",
-                    body: JSON.stringify({newPassword}),
-                });
-                if (response.ok) {
-                    const data = await response.json();
-                    if(data.success){
-                        setCurrentPasswordIsCorrect(false);
-                        setValue('newPassword',"");
-                        alert(data.message);
-                    }else{
-                        setCurrentPasswordIsCorrect(false);
-                        alert(data.message);
-                    }
-                } else {
-                    const data = await response.json();
-                    alert(data.message);
-                }
-            } catch (error) {
-                console.log("Error saving details", error);
-            }
-        }
-
-
-  return (
-    <div className='grid grid-cols-2 gap-5'>
-        <AdminItemContainer>
-            <Label main>Meta Section</Label>
-        <div className='flex flex-col gap-5 border-r-gray-300 p-5'>
-            <form className='flex flex-col gap-5' onSubmit={handleSubmit(onSubmit)}>
+    return (
+        <div className='grid grid-cols-2 gap-5'>
+            <AdminItemContainer>
+                <Label main>Meta Section</Label>
+                <div className='flex flex-col gap-5 border-r-gray-300 p-5'>
+                    <form className='flex flex-col gap-5' onSubmit={handleSubmit(onSubmit)}>
                         <div className="space-y-4">
                             <Label className=''>Header Script</Label>
                             <Textarea {...register('headerScript')}></Textarea>
                         </div>
-            
+
                         <div className="space-y-4">
                             <Label className=''>Body Script</Label>
                             <Textarea {...register('bodyScript')}></Textarea>
@@ -187,71 +187,71 @@ const Settings = () => {
                             <Button type="submit" className='w-full cursor-pointer text-white text-[16px]'>Submit</Button>
                         </div>
                     </form>
-        </div>
-        </AdminItemContainer>
+                </div>
+            </AdminItemContainer>
 
-        <AdminItemContainer>
-        <Label main>Change Password</Label>
-            {!currentPasswordIsCorrect ? (<form className='flex flex-col gap-5 p-5'>
-                        <div className="space-y-4">
-                            <Label className=''>Current Password</Label>
-                            <Input {...register('currentPassword')}></Input>
-                        </div>
-            
-                        <div className="flex flex-col gap-1">
-                            <p className='text-[16px]'>Type in the current password and hit continue</p>
-                            <Button type="button" className='w-full cursor-pointer text-white text-[16px]' onClick={checkCurrentPassword}>Continue</Button>
-                        </div>
-                    </form>) 
-                    
-                    : 
-                    
+            <AdminItemContainer>
+                <Label main>Change Password</Label>
+                {!currentPasswordIsCorrect ? (<form className='flex flex-col gap-5 p-5'>
+                    <div className="space-y-4">
+                        <Label className=''>Current Password</Label>
+                        <Input {...register('currentPassword')}></Input>
+                    </div>
+
+                    <div className="flex flex-col gap-1">
+                        <p className='text-[16px]'>Type in the current password and hit continue</p>
+                        <Button type="button" className='w-full cursor-pointer text-white text-[16px]' onClick={checkCurrentPassword}>Continue</Button>
+                    </div>
+                </form>)
+
+                    :
+
                     (<form className='flex flex-col gap-5 p-5'>
                         <div className="space-y-4">
                             <Label className=''>New Password</Label>
                             <Input {...register('newPassword')}></Input>
                         </div>
-            
+
                         <div className="flex flex-col gap-1">
                             <p className='text-[16px]'>Type in the new password and hit continue</p>
                             <Button type="button" className='w-full cursor-pointer text-white text-[16px]' onClick={submitNewPassword}>Confirm</Button>
                         </div>
                     </form>)
-                    
-                    }
-        </AdminItemContainer>
+
+                }
+            </AdminItemContainer>
 
 
-        <AdminItemContainer>
-            <Label main>Email Section</Label>
-        <div className='flex flex-col gap-5 border-r-gray-300 p-5'>
-            <div className='flex flex-col gap-5'>
+            <AdminItemContainer>
+                <Label main>Email Section</Label>
+                <div className='flex flex-col gap-5 border-r-gray-300 p-5'>
+                    <div className='flex flex-col gap-5'>
                         <div className="space-y-4">
                             <Label className=''>To email (General Enquiry)</Label>
-                            <Input value={toEmailGeneral} onChange={(e)=>setToEmailGeneral(e.target.value)}></Input>
+                            <Input value={toEmailGeneral} onChange={(e) => setToEmailGeneral(e.target.value)}></Input>
                         </div>
                         <div className="space-y-4">
                             <Label className=''>To email (Registration Form)</Label>
-                            <Input value={toEmailRegistration} onChange={(e)=>setToEmailRegistration(e.target.value)}></Input>
+                            <Input value={toEmailRegistration} onChange={(e) => setToEmailRegistration(e.target.value)}></Input>
                         </div>
                         <div className="space-y-4">
                             <Label className=''>To email (Download Form)</Label>
-                            <Input value={toEmailDownload} onChange={(e)=>setToEmailDownload(e.target.value)}></Input>
+                            <Input value={toEmailDownload} onChange={(e) => setToEmailDownload(e.target.value)}></Input>
                         </div>
                         <div className="space-y-4">
                             <Label className=''>To email (Career Form)</Label>
-                            <Input value={toEmailCareer} onChange={(e)=>setToEmailCareer(e.target.value)}></Input>
+                            <Input value={toEmailCareer} onChange={(e) => setToEmailCareer(e.target.value)}></Input>
                         </div>
                         <div className="flex justify-center">
-                            <Button type="button" className='w-full cursor-pointer text-white text-[16px]' onClick={()=>EmailSectionSubmit()}>Submit</Button>
+                            <Button type="button" className='w-full cursor-pointer text-white text-[16px]' onClick={() => EmailSectionSubmit()}>Submit</Button>
                         </div>
                     </div>
-        </div>
-        </AdminItemContainer>
+                </div>
+            </AdminItemContainer>
 
-        
-    </div>
-  )
+
+        </div>
+    )
 }
 
 export default Settings

@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -11,45 +11,45 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import { motion } from "framer-motion";
- 
 
-  import { Bogs } from '@/public/types/Common';
+
+import { Blogs, Bogs } from '@/public/types/Common';
 // import Link from "next/link";  
 
-import {blogData} from "@/app/component/BlogList/data";
+import { blogData } from "@/app/component/BlogList/data";
 
-      const BlogDetails = ({ data }: { data: Bogs }) => {
-        // const [blogsList, setBlogsList] = useState<Blogs>();
+const BlogDetails = ({ data }: { data: Bogs }) => {
+  const [blogsList, setBlogsList] = useState<Blogs>();
 
-        // const [currentUrl, setCurrentUrl] = useState("");
+  // const [currentUrl, setCurrentUrl] = useState("");
 
-        // useEffect(() => {
-        //   if (typeof window !== "undefined") {
-        //     setCurrentUrl(window.location.href);
-        //   }
-        // }, []);
-        
+  // useEffect(() => {
+  //   if (typeof window !== "undefined") {
+  //     setCurrentUrl(window.location.href);
+  //   }
+  // }, []);
 
-        // const handleFetchProjects = async () => {
-        //   try {
-        //     const response = await fetch("/api/admin/news");
-        //     if (response.ok) {
-        //       const data = await response.json();
-        //       setBlogsList(data.data);
-        //     } else {
-        //       const data = await response.json();
-        //       alert(data.message);
-        //     }
-        //   } catch (error) {
-        //     console.log("Error fetching Blogs", error);
-        //   }
-        // };
 
-        // useEffect(() => {
-        //   handleFetchProjects();
-        // }, []);
-        // console.log(data)
- 
+  const handleFetchProjects = async () => {
+    try {
+      const response = await fetch("/api/admin/news");
+      if (response.ok) {
+        const data = await response.json();
+        setBlogsList(data.data);
+      } else {
+        const data = await response.json();
+        alert(data.message);
+      }
+    } catch (error) {
+      console.log("Error fetching Blogs", error);
+    }
+  };
+
+  useEffect(() => {
+    handleFetchProjects();
+  }, []);
+  // console.log(data)
+
   const containerRef = useRef(null);
 
   const prevRef = useRef<HTMLButtonElement | null>(null);
@@ -69,6 +69,9 @@ import {blogData} from "@/app/component/BlogList/data";
       });
     }
   }, []);
+
+
+
   const slideInTop = {
     hidden: { opacity: 0, y: -30 },
     visible: {
@@ -162,77 +165,77 @@ import {blogData} from "@/app/component/BlogList/data";
                 </motion.div>
               </div>
             </div>
-             <div  >
-                <div>
-                  <motion.div
-                    variants={slideInLeft}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, amount: 0.3 }}
-                    exit="exit"
-                    className="flex justify-between items-center mt-4 md:mt-5 mb-4 md:mb-5"
-                  >
-                    <div className="flex justify-between items-center mt-4 md:mt-5 mb-4 md:mb-5">
-                      <p className="text-sm font-[500] text-territory">
-                      {new Date(data.createdAt).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric"
-  })}
-                      </p>
-                    </div>
-                    {/* <div className="flex gap-5 lg:gap-10">
-                      <Image src={assets.share} alt="" />
-                      <Link href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(currentUrl)}`} target="_blank"><Image src={assets.linkedin} alt="" /></Link>
-                    </div> */}
-                  </motion.div>
-                </div>
+            <div  >
+              <div>
                 <motion.div
                   variants={slideInLeft}
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true, amount: 0.3 }}
                   exit="exit"
+                  className="flex justify-between items-center mt-4 md:mt-5 mb-4 md:mb-5"
                 >
-                  <h2 className="font-[600] text-lg leading-[1.65] text-primary mb-4 lg:mb-[30px]">
-                    {data.mainTitle}
-                  </h2>
+                  <div className="flex justify-between items-center mt-4 md:mt-5 mb-4 md:mb-5">
+                    <p className="text-sm font-[500] text-territory">
+                      {new Date(data.createdAt).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric"
+                      })}
+                    </p>
+                  </div>
+                  {/* <div className="flex gap-5 lg:gap-10">
+                      <Image src={assets.share} alt="" />
+                      <Link href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(currentUrl)}`} target="_blank"><Image src={assets.linkedin} alt="" /></Link>
+                    </div> */}
                 </motion.div>
-                <div className="mbp10 blogcotentmn">
-                    <div
-                      // variants={slideInTop}
-                      // initial="hidden"
-                      // whileInView="visible"
-                      // viewport={{ once: true, amount: 0.3 }}
-                      // exit="exit"
-                      dangerouslySetInnerHTML={{__html: data.content}}
-                    >
-
-                    </div>
+              </div>
+              <motion.div
+                variants={slideInLeft}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                exit="exit"
+              >
+                <h2 className="font-[600] text-lg leading-[1.65] text-primary mb-4 lg:mb-[30px]">
+                  {data.mainTitle}
+                </h2>
+              </motion.div>
+              <div className="mbp10 blogcotentmn">
+                <div
+                  // variants={slideInTop}
+                  // initial="hidden"
+                  // whileInView="visible"
+                  // viewport={{ once: true, amount: 0.3 }}
+                  // exit="exit"
+                  dangerouslySetInnerHTML={{ __html: data.content }}
+                >
 
                 </div>
+
               </div>
+            </div>
 
           </div>
-{blogData.data[0].news && blogData.data[0].news.length > 1 && (
-          <div className="lg:w-1/6 ">
-            <motion.div
-              variants={slideInTop}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-            >
-              <div className="flex justify-between mb-5 lg:mb-10">
-                <div className="overflow-hidden ">
-                  <p className="text-md uppercase text-[#595959] font-medium border-b inline-flex border-secondary pb-2 lg:pb-[12px] leading-[1.46] ">
-                    More Blogs
-                  </p>
+          {blogData.data[0].news && blogData.data[0].news.length > 1 && (
+            <div className="lg:w-1/6 ">
+              <motion.div
+                variants={slideInTop}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+              >
+                <div className="flex justify-between mb-5 lg:mb-10">
+                  <div className="overflow-hidden ">
+                    <p className="text-md uppercase text-[#595959] font-medium border-b inline-flex border-secondary pb-2 lg:pb-[12px] leading-[1.46] ">
+                      More Blogs
+                    </p>
+                  </div>
                 </div>
-              </div>
-              <MoreBlogs data={blogData} id={data._id}/>
-            </motion.div>
-          </div>
-  )}
+                <MoreBlogs data={blogsList} id={data._id} />
+              </motion.div>
+            </div>
+          )}
         </div>
       </div>
     </section>
