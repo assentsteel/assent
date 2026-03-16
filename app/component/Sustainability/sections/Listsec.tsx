@@ -29,7 +29,7 @@ const Listsec = ({ data }: { data: Sustainability }) => {
   }, [data.firstSection.items]);
 
   return (
-    <section className="pt-[30px] md:pt-[40px] xl:pt-[60px] overflow-hidden max-w-[1920] mx-auto">
+    <section className="pt-[30px] md:pt-[40px] xl:pt-[60px] overflow-hidden">
       <div className="container w-full">
         {/* Preload <link> tags for better performance */}
         {data.firstSection.items.map((item, idx) => {
