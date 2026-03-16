@@ -363,8 +363,8 @@ import wsa5 from "./img/icns/wsa5.svg";
 import wsa6 from "./img/icns/wsa6.svg";
 import ve from "./img/icns/ves.svg";
 
-import blog1 from "./img/blogs/a1.jpg"; 
-import blog2 from "./img/blogs/a2.jpg"; 
+import blog1 from "./img/blogs/aa1.jpg"; 
+import blog2 from "./img/blogs/aa2.jpg"; 
 import blog3 from "./img/blogs/a3.jpg"; 
 import blog4 from "./img/blogs/a4.jpg"; 
 import blog5 from "./img/blogs/a5.jpg"; 
