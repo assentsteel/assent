@@ -30,6 +30,7 @@ const blogsSchema = new mongoose.Schema({
             metaDescription: { type: String },
             ogType: { type: String },
             ogImage: { type: String },
+            schema: { type: String }
         }
     ]
 });
