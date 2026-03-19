@@ -91,6 +91,10 @@ export const menuItems: MenuItem[] = [
     url: "",
     children: [
       {
+        title: "Blogs",
+        url: "/blogs",
+      },
+      {
         title: "News",
         url: "/news",
       },
