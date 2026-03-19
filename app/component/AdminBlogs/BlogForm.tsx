@@ -18,6 +18,7 @@ import { ImageUploader } from "@/components/ui/image-uploader";
 import Image from "next/image";
 import { RiAiGenerateText } from "react-icons/ri";
 import TinyEditor from "../TinyMce/TinyEditor";
+import { Textarea } from "@/components/ui/textarea";
 
 interface BlogsFormProps {
     mainTitle: string;
@@ -36,6 +37,7 @@ interface BlogsFormProps {
     ogImage: string;
     images: string[];
     date: string;
+    schema: string;
 }
 
 const BlogsForm = ({ editMode }: { editMode?: boolean }) => {
@@ -390,6 +392,12 @@ const BlogsForm = ({ editMode }: { editMode?: boolean }) => {
                                 )}
                             />
                         </div>
+
+                        <div>
+                            <Label>Schema</Label>
+                            <Textarea {...register("schema")} />
+                        </div>
+
                     </div>
                 </div>
 
