@@ -16,7 +16,7 @@ import { motion } from "framer-motion";
 import { Blogs, Bogs } from '@/public/types/Common';
 // import Link from "next/link";  
 
-import { blogData } from "@/app/component/BlogList/data";
+// import { blogData } from "@/app/component/BlogList/data";
 
 const BlogDetails = ({ data }: { data: Bogs }) => {
   const [blogsList, setBlogsList] = useState<Blogs>();
