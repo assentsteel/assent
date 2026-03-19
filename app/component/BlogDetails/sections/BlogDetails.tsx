@@ -32,7 +32,7 @@ const BlogDetails = ({ data }: { data: Bogs }) => {
 
   const handleFetchProjects = async () => {
     try {
-      const response = await fetch("/api/admin/news");
+      const response = await fetch("/api/admin/blogs");
       if (response.ok) {
         const data = await response.json();
         setBlogsList(data.data);
@@ -94,7 +94,7 @@ const BlogDetails = ({ data }: { data: Bogs }) => {
     <section className="pb-[50px] md:pb-[70px] xl:pb-[100px] overflow-hidden relative ">
       <div className="container">
         <div className="flex flex-col lg:flex-row ">
-          <div className={`${blogData.data[0].news && blogData.data[0].news.length > 1 ? 'lg:w-5/6 pr-4 lg:pr-6 xxl:pr-[135px]' : 'lg:w-full'}  `}>
+          <div className={`lg:w-5/6 pr-4 lg:pr-6 xxl:pr-[135px] `}>
             <div className=" ">
               <div className="relative w-full bg-gray-100 rounded-xl">
                 <motion.div
@@ -216,8 +216,7 @@ const BlogDetails = ({ data }: { data: Bogs }) => {
               </div>
             </div>
 
-          </div>
-          {blogData.data[0].news && blogData.data[0].news.length > 1 && (
+          </div> 
             <div className="lg:w-1/6 ">
               <motion.div
                 variants={slideInTop}
@@ -235,7 +234,7 @@ const BlogDetails = ({ data }: { data: Bogs }) => {
                 <MoreBlogs data={blogsList} id={data._id} />
               </motion.div>
             </div>
-          )}
+        
         </div>
       </div>
     </section>
