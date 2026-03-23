@@ -27,12 +27,12 @@ export async function PATCH(req: NextRequest) {
         await connectDB();
         const { searchParams } = new URL(req.url);
         const id = searchParams.get("id");
-        const { mainTitle, subTitle, slug, content, images, category, metaTitle, metaDescription, thumbnail, thumbnailAlt, coverImage, coverImageAlt, date, ogType, ogImage, link, schema } = await req.json();
+        const { mainTitle, subTitle, slug, content, images, category, metaTitle, metaDescription, thumbnail, thumbnailAlt, date, ogType, ogImage, link, schema } = await req.json();
         const blogs = await Blogs.findOne({});
         if (blogs) {
             blogs.blogs = blogs.blogs.map((blogs: { _id: string }) => {
                 if (blogs._id.toString() === id) {
-                    return { mainTitle, subTitle, slug, content, images, category, metaTitle, metaDescription, thumbnail, thumbnailAlt, coverImage, coverImageAlt, date, ogType, ogImage, link, schema }
+                    return { mainTitle, subTitle, slug, content, images, category, metaTitle, metaDescription, thumbnail, thumbnailAlt, date, ogType, ogImage, link, schema }
                 }
                 return blogs
             })

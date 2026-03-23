@@ -87,6 +87,7 @@ const BlogsForm = ({ editMode }: { editMode?: boolean }) => {
                 setValue("category", data.data.category);
                 setValue("thumbnail", data.data.thumbnail);
                 setValue("link", data.data.link);
+                setValue("schema", data.data.schema);
                 setValue("thumbnailAlt", data.data.thumbnailAlt);
                 setValue("coverImage", data.data.coverImage);
                 setValue("coverImageAlt", data.data.coverImageAlt);
