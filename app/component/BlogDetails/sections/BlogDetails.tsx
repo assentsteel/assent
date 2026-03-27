@@ -1,15 +1,15 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
+// import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { assets } from "@/public/assets/assets";
+// import { assets } from "@/public/assets/assets";
 import MoreBlogs from "./MoreBlogs";
 gsap.registerPlugin(ScrollTrigger);
-import { Swiper, SwiperSlide } from "swiper/react";
+// import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
-import { Navigation } from "swiper/modules";
+// import { Navigation } from "swiper/modules";
 import { motion } from "framer-motion";
 
 
@@ -52,8 +52,8 @@ const BlogDetails = ({ data }: { data: Bogs }) => {
 
   const containerRef = useRef(null);
 
-  const prevRef = useRef<HTMLButtonElement | null>(null);
-  const nextRef = useRef<HTMLButtonElement | null>(null);
+  // const prevRef = useRef<HTMLButtonElement | null>(null);
+  // const nextRef = useRef<HTMLButtonElement | null>(null);
   useEffect(() => {
     if (containerRef.current) {
       gsap.from(containerRef.current, {
