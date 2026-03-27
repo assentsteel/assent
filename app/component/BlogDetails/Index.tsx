@@ -15,7 +15,7 @@ const Index = async ({data}:{data:Bogs}) => {
 
   return (
     <>
-      <Herotext breadcrumbs={breadcrumb} title={data.mainTitle} />
+      <Herotext breadcrumbs={breadcrumb} title={data.mainTitle} blogPage={true} />
       <BlogDetails data={data}    />
 
     </>
