@@ -1,15 +1,15 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
+// import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { assets } from "@/public/assets/assets";
+// import { assets } from "@/public/assets/assets";
 import MoreBlogs from "./MoreBlogs";
 gsap.registerPlugin(ScrollTrigger);
-import { Swiper, SwiperSlide } from "swiper/react";
+// import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
-import { Navigation } from "swiper/modules";
+// import { Navigation } from "swiper/modules";
 import { motion } from "framer-motion";
 
 
@@ -52,8 +52,8 @@ const BlogDetails = ({ data }: { data: Bogs }) => {
 
   const containerRef = useRef(null);
 
-  const prevRef = useRef<HTMLButtonElement | null>(null);
-  const nextRef = useRef<HTMLButtonElement | null>(null);
+  // const prevRef = useRef<HTMLButtonElement | null>(null);
+  // const nextRef = useRef<HTMLButtonElement | null>(null);
   useEffect(() => {
     if (containerRef.current) {
       gsap.from(containerRef.current, {
@@ -95,76 +95,7 @@ const BlogDetails = ({ data }: { data: Bogs }) => {
       <div className="container">
         <div className="flex flex-col lg:flex-row ">
           <div className={`lg:w-5/6 pr-4 lg:pr-6 xxl:pr-[135px] `}>
-            <div className=" ">
-              <div className="relative w-full bg-gray-100 rounded-xl">
-                <motion.div
-                  variants={slideInTop}
-                  initial="hidden"
-                  animate="visible"
-                  exit="exit"
-                >
-                  <Swiper
-                    modules={[Navigation]}
-                    autoplay={{ delay: 3000, disableOnInteraction: false }}
-                    navigation={{
-                      prevEl: prevRef.current,
-                      nextEl: nextRef.current,
-                    }}
-                    onInit={(swiper) => {
-                      if (typeof swiper.params.navigation === "object") {
-                        swiper.params.navigation.prevEl = prevRef.current;
-                        swiper.params.navigation.nextEl = nextRef.current;
-                      }
-                      swiper.navigation.init();
-                      swiper.navigation.update();
-                    }}
-                    loop
-                    slidesPerView={1}
-                    spaceBetween={20}
-                    className="rounded-xl overflow-hidden"
-                  >
-                    {data.images.map((src, index) => (
-                      <SwiperSlide key={index}>
-                        <Image
-                          src={src}
-                          alt={`Slide ${index + 1}`}
-                          className="w-full h-[300px] md:h-[400px] lg:h-[570px] object-cover"
-                          width={1215}
-                          height={570}
-                        />
-                      </SwiperSlide>
-                    ))}
-                  </Swiper>
-                  {/* Custom Navigation Buttons */}
-                  <div className="absolute bottom-4 right-4 flex gap-2 lg:gap-[30px] z-10">
-                    <button
-                      ref={prevRef}
-                      className="bg-white text-black px-3 py-1 rounded-full w-[48px] h-[48px] hover:bg-secondary group transition flex items-center justify-center"
-                    >
-                      <Image
-                        src={assets.greenarrow}
-                        alt=""
-                        width={11}
-                        height={18}
-                        className="group-hover:brightness-0 group-hover:invert "
-                      />
-                    </button>
-                    <button
-                      ref={nextRef}
-                      className="bg-white text-black px-3 py-1 rounded-full w-[48px] h-[48px] hover:bg-secondary group transition flex items-center justify-center"
-                    >
-                      <Image
-                        src={assets.greenarrow}
-                        alt=""
-                        width={11}
-                        height={18}
-                        className="group-hover:brightness-0 group-hover:invert rotate-180"
-                      />
-                    </button>
-                  </div>
-                </motion.div>
-              </div>
-            </div>
+            
             <div  >
               <div>
                 <motion.div
@@ -175,8 +106,8 @@ const BlogDetails = ({ data }: { data: Bogs }) => {
                   exit="exit"
                   className="flex justify-between items-center mt-4 md:mt-5 mb-4 md:mb-5"
                 >
-                  <div className="flex justify-between items-center mt-4 md:mt-5 mb-4 md:mb-5">
-                    <p className="text-sm font-[500] text-territory">
+                  <div className="flex justify-between items-center  ">
+                    <p className="text-[13px] md:text-sm font-[500] text-territory">
                       {new Date(data.createdAt).toLocaleDateString("en-US", {
                         year: "numeric",
                         month: "long",
@@ -190,17 +121,7 @@ const BlogDetails = ({ data }: { data: Bogs }) => {
                     </div> */}
                 </motion.div>
               </div>
-              <motion.div
-                variants={slideInLeft}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.3 }}
-                exit="exit"
-              >
-                <h2 className="font-[600] text-lg leading-[1.65] text-primary mb-4 lg:mb-[30px]">
-                  {data.mainTitle}
-                </h2>
-              </motion.div>
+            
               <div className="mbp10 blogcotentmn">
                 <div
                   // variants={slideInTop}

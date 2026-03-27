@@ -11,7 +11,11 @@ import { AnimatePresence, motion } from "framer-motion";
 
 // import { usePathname } from "next/navigation";
 
+import { usePathname } from "next/navigation";
+
 const Navbar = ({ categories }: { categories: { name: string; slug: string; }[] }) => {
+
+const pathname = usePathname();
   const [active, setActive] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState<null | boolean>(null);
 
@@ -147,13 +151,12 @@ const Navbar = ({ categories }: { categories: { name: string; slug: string; }[] 
       </Menu>
       // </header>
     );
-
     return (
       <>
         <AnimatePresence>
         {renderHeader()}
 
-        {scrollY > 550 && (
+      {scrollY > 550 && !pathname.includes("/blogs/") && (
           <motion.header
             key="navbar"
             initial={{ y: -100, opacity: 0 }}
@@ -161,6 +164,18 @@ const Navbar = ({ categories }: { categories: { name: string; slug: string; }[] 
             exit={{ y: -100, opacity: 0 }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
             className={`fixed top-0 left-0 w-full z-[999] bg-white text-black shadow-md`}
+          >
+            {renderHeader()}
+          </motion.header>
+        )}
+           {pathname.includes("/blogs/") && (
+          <motion.header
+            key="navbar"
+            initial={{ y: -100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -100, opacity: 0 }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+            className={`fixed top-0 left-0 w-full z-[999] bg-white text-black`}
           >
             {renderHeader()}
           </motion.header>

@@ -7,13 +7,14 @@ import { slideInLeft, slideInTop } from "../../common/MotionAnimation";
 interface HeroSectionProps {
     breadcrumbs: { label: string; href: string }[];
     title: string;
+    blogPage?: boolean;
 }
 
-const Herotext: React.FC<HeroSectionProps> = ({ title, breadcrumbs }) => {
+const Herotext: React.FC<HeroSectionProps> = ({ title, breadcrumbs, blogPage }) => {
     const pathName = usePathname();
 
     return (
-        <section className="py-[30px] md:py-[70px] xl:py-[80px] xxl:py-[100px]   overflow-hidden relative ">
+        <section className={`overflow-hidden relative ${blogPage ? 'pt-[30px] md:pt-[70px] xl:pt-[80px] xxl:pt-[100px] pb-0     ' : 'py-[30px] md:py-[70px] xl:py-[80px] xxl:py-[100px]   '}`}>
             <div className="container">
                 <div className=" ">
                     {pathName !== "/steel-blasting-painting-fire-proofing" && (
