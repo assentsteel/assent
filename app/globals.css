@@ -648,6 +648,7 @@ margin-bottom: 15px;
 }
 .blogcotentmn ul li{ @apply mb-3;}
 .blogcotentmn ul { @apply my-5 lg:ms-4;}
+.blogcotentmn p a{text-decoration: underline;}
 
 
 
