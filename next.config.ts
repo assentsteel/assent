@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   images: {
     dangerouslyAllowSVG: true,
     unoptimized: true,
-    domains: ["dl.dropboxusercontent.com", "plus.unsplash.com"] 
+    domains: ["dl.dropboxusercontent.com", "plus.unsplash.com"]
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production'
@@ -1325,7 +1325,7 @@ const nextConfig: NextConfig = {
         destination: '/global-presence/usa',
         permanent: true,
       },
-       {
+      {
         source: '/global-presence/steel-engineering-service-in-europe',
         destination: '/global-presence/europe',
         permanent: true,
@@ -1365,35 +1365,117 @@ const nextConfig: NextConfig = {
         source: '/structural-steel-expertise-for-uk-projects',
         destination: '/global-presence/united-kingdom',
         permanent: true,
-      }, 
+      },
       {
         source: '/structural-steel-expertise-for-african-projects',
         destination: '/global-presence/africa',
         permanent: true,
-      }, 
+      },
       {
         source: '/structural-steel-expertise-for-europe-projects',
         destination: '/global-presence/europe',
         permanent: true,
-      }, 
+      },
       {
         source: '/global-presence/steel-engineering-and-fabrication-in-africa',
         destination: '/global-presence/africa',
         permanent: true,
-      },  
+      },
 
       {
         source: '/global-presence/steel-engineering-and-fabrication-in-united-kingdom',
         destination: '/global-presence/united-kingdom',
         permanent: true,
-      },  
+      },
       {
         source: '/global-presence/steel-engineering-and-fabrication-in-europe',
         destination: '/global-presence/europe',
         permanent: true,
-      },  
-     
-      
+      },
+      {
+        source: '/steel-fabrication-servicess',
+        destination: '/steel-fabrication-services',
+        permanent: true,
+      },
+      {
+        source: '/news-details/dispatch-static-post',
+        destination: '/news/dispatch-static-post ',
+        permanent: true,
+      },
+      {
+        source: '/index.php',
+        destination: '/ ',
+        permanent: true,
+      },
+      {
+        source: '/fabrication',
+        destination: '/steel-fabrication-services',
+        permanent: true,
+      },
+      {
+        source: '/news-details/quality-at-every-step',
+        destination: '/news/quality-at-every-step ',
+        permanent: true,
+      },
+      {
+        source: '/news-details/dispatch-static-post',
+        destination: '/news/dispatch-static-post ',
+        permanent: true,
+      },
+      {
+        source: '/fabrication',
+        destination: '/steel-fabrication-services ',
+        permanent: true,
+      },
+      {
+        source: '/news-details/quality-at-every-step',
+        destination: '/news/quality-at-every-step ',
+        permanent: true,
+      },
+      {
+        source: '/ppe-exhibition-dec-2024',
+        destination: '/news/ppe-exhibition-dec-2024 ',
+        permanent: true,
+      },
+      {
+        source: '/news-details/team-outings',
+        destination: '/news/team-outings',
+        permanent: true,
+      },
+      {
+        source: '/accreditations',
+        destination: '/awards-and-accreditations',
+        permanent: true,
+      },
+      {
+        source: '/project/commercial/marsa-al-seef',
+        destination: '/projects/commercial/marsa-al-seef',
+        permanent: true,
+      },
+      {
+        source: '/news-details/info-painting-bays',
+        destination: '/news/info-painting-bays',
+        permanent: true,
+      },
+      {
+        source: '/news-details/project-update-westfield-erf-100-delivered',
+        destination: '/news/project-update-westfield-erf-100-delivered',
+        permanent: true,
+      },
+      {
+        source: '/gallery-details',
+        destination: '/gallery',
+        permanent: true,
+      },
+      {
+        source: '/projects-details/commercial/abu-dhabi-plaza',
+        destination: '/projects/commercial/abu-dhabi-plaza',
+        permanent: true,
+      },
+
+
+
+
     ];
   },
 };
