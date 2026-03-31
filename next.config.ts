@@ -1472,6 +1472,164 @@ const nextConfig: NextConfig = {
         destination: '/projects/commercial/abu-dhabi-plaza',
         permanent: true,
       },
+       
+      
+     
+   {
+        source: '/news-details/ppe-exhibition-dec-2024',
+        destination: '/news/ppe-exhibition-dec-2024',
+        permanent: true,
+      }, 
+      {
+        source: '/projects-details/commercial-projects/emirates-international-school',
+        destination: '/projects/commercial/emirates-international-school',
+        permanent: true,
+      },
+      {
+        source: '/projects-details/commercial-projects/tennis-complex',
+        destination: '/projects/commercial/tennis-complex',
+        permanent: true,
+      },
+      {
+        source: '/projects-details/commercial-projects/cargo-mega-terminal',
+        destination: '/projects/commercial/cargo-mega-terminal',
+        permanent: true,
+      },
+      {
+        source: '/projects-list',
+        destination: '/projects',
+        permanent: true,
+      },
+      {
+        source: '/projects-details/commercial/dubai-international-airport-expansion',
+        destination: '/projects/commercial/dubai-international-airport-expansion',
+        permanent: true,
+      },
+      {
+        source: '/projects-details/commercial-projects/coca-cola-arena',
+        destination: '/projects/commercial/coca-cola-arena',
+        permanent: true,
+      },
+      {
+        source: '/projects-details/commercial-projects/abu-dhabi-plaza',
+        destination: '/projects/commercial/abu-dhabi-plaza',
+        permanent: true,
+      },
+      {
+        source: '/projects-details/commercial-projects/dubai-international-airport-expansion',
+        destination: '/projects/commercial/dubai-international-airport-expansion',
+        permanent: true,
+      },
+      {
+        source: '/projects-details/commercial-projects/marsa-al-seef',
+        destination: '/projects/commercial/marsa-al-seef',
+        permanent: true,
+      },
+      {
+        source: '/projects-details/commercial-projects/dubai-harbour-views',
+        destination: '/projects/commercial/dubai-harbour-views',
+        permanent: true,
+      },
+      {
+        source: '/project/commercial/dubai-harbour-views',
+        destination: '/projects/commercial/dubai-harbour-views',
+        permanent: true,
+      },
+      {
+        source: '/projects-details/commercial-projects/al-maktoum-stadium',
+        destination: '/projects/commercial/al-maktoum-stadium',
+        permanent: true,
+      },
+      {
+        source: '/project/commercial/emirates-international-school',
+        destination: '/projects/commercial/emirates-international-school',
+        permanent: true,
+      },
+      {
+        source: '/project/commercial/coca-cola-arena',
+        destination: '/projects/commercial/coca-cola-arena',
+        permanent: true,
+      },
+      {
+        source: '/project/commercial/abu-dhabi-plaza',
+        destination: '/projects/commercial/abu-dhabi-plaza',
+        permanent: true,
+      },
+      {
+        source: '/project/commercial/cargo-mega-terminal',
+        destination: '/projects/commercial/cargo-mega-terminal',
+        permanent: true,
+      },
+      {
+        source: '/project/commercial/kuwait-international-airport',
+        destination: '/projects/commercial/kuwait-international-airport',
+        permanent: true,
+      },
+      {
+        source: '/project/commercial/al-maktoum-stadium',
+        destination: '/projects/commercial/al-maktoum-stadium',
+        permanent: true,
+      },
+      {
+        source: '/projects-details/commercial/emirates-international-school',
+        destination: '/projects/commercial/emirates-international-school',
+        permanent: true,
+      },
+      {
+        source: '/news-details/ppe-exhibition',
+        destination: '/news/ppe-exhibition',
+        permanent: true,
+      },
+      {
+        source: '/news-details/quality-lunch-learn-at-assent-steel',
+        destination: '/news/quality-lunch-learn-at-assent-steel',
+        permanent: true,
+      },
+      {
+        source: '/blasting',
+        destination: '/steel-blasting-painting-fire-proofing',
+        permanent: true,
+      },
+      {
+        source: '/news-details/uae-construction-project',
+        destination: '/news/uae-construction-project',
+        permanent: true,
+      },
+      {
+        source: '/projects-details/commercial-projects/kuwait-international-airport',
+        destination: '/projects/commercial/kuwait-international-airport',
+        permanent: true,
+      },
+      {
+        source: '/engineering',
+        destination: '/steel-engineering-services',
+        permanent: true,
+      },
+      {
+        source: '/project/commercial/tennis-complex',
+        destination: '/projects/commercial/tennis-complex',
+        permanent: true,
+      },
+      {
+        source: '/news-details/asea-opening',
+        destination: '/news/asea-opening',
+        permanent: true,
+      },
+      {
+        source: '/news-details/eid-mubarak-gr',
+        destination: '/news/eid-mubarak-gr',
+        permanent: true,
+      },
+      {
+        source: '/news/wearehiring-hr',
+        destination: '/news/we-are-hiring-hr ',
+        permanent: true,
+      },
+      {
+        source: '/news/oil-gas-project-germany',
+        destination: '/news/germany-oil-gas-steel-fabrication-project',
+        permanent: true,
+      },
 
 
 
