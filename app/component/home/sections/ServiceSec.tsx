@@ -70,7 +70,7 @@ const ServiceSec = ({ data }: { data: Home }) => {
                     className="flex justify-between items-center w-full pt-[30px] pb-[20px] lg:pt-[45px] lg:pb-[35px] overflow-hidden"
                     whileHover={{ opacity: 1 }}
                   >
-                    <h4 className="text-lg font-semibold text-white transition-opacity duration-500">
+                    <h4 className="text-[20px] lg:text-[22px] 3xl:text-[25px] max-w-[20ch] font-semibold text-white transition-opacity duration-500">
                       {" "}
                       {sector.title}{" "}
                     </h4>
