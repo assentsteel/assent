@@ -3,8 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   images: {
     dangerouslyAllowSVG: true,
-    unoptimized: true,
-    domains: ["dl.dropboxusercontent.com", "plus.unsplash.com"]
+    domains: ["dl.dropboxusercontent.com", "plus.unsplash.com"],
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production'
@@ -1472,14 +1471,14 @@ const nextConfig: NextConfig = {
         destination: '/projects/commercial/abu-dhabi-plaza',
         permanent: true,
       },
-       
-      
-     
-   {
+
+
+
+      {
         source: '/news-details/ppe-exhibition-dec-2024',
         destination: '/news/ppe-exhibition-dec-2024',
         permanent: true,
-      }, 
+      },
       {
         source: '/projects-details/commercial-projects/emirates-international-school',
         destination: '/projects/commercial/emirates-international-school',
@@ -1630,10 +1629,266 @@ const nextConfig: NextConfig = {
         destination: '/news/germany-oil-gas-steel-fabrication-project',
         permanent: true,
       },
-
-
-
-
+      {
+        source: '/news-details/glasses-donation',
+        destination: '/news/glasses-donation',
+        permanent: true,
+      },
+      {
+        source: '/news-details/team-outing',
+        destination: '/news/team-outing',
+        permanent: true,
+      },
+      {
+        source: '/news-details/thanksgiving-lunch-2024',
+        destination: '/news/thanksgiving-lunch-2024',
+        permanent: true,
+      },
+      {
+        source: '/news-details/long-service-awards',
+        destination: '/news/long-service-awards',
+        permanent: true,
+      },
+      {
+        source: '/news-details/info-post-mobile-trolley',
+        destination: '/news/info-post-mobile-trolley',
+        permanent: true,
+      },
+      {
+        source: '/news-details/quizz-static',
+        destination: '/news/quizz-static',
+        permanent: true,
+      },
+      {
+        source: '/news-details/team-work-superpower',
+        destination: '/news/team-work-superpower',
+        permanent: true,
+      },
+      {
+        source: '/news-details/eid-al-adha-15-or-16',
+        destination: '/news/eid-al-adha-15-or-16',
+        permanent: true,
+      },
+      {
+        source: '/news-details/sports-fest-2024-mon-tue',
+        destination: '/news/sports-fest-2024-mon-tue',
+        permanent: true,
+      },
+      {
+        source: '/news-details/hse-q1-safety-campaign',
+        destination: '/news/hse-q1-safety-campaign',
+        permanent: true,
+      },
+      {
+        source: '/news-details/workforce-outing-2024',
+        destination: '/news/workforce-outing-2024',
+        permanent: true,
+      },
+      {
+        source: '/news-details/engg-marvels-dubai-coca-cola-arena',
+        destination: '/news/engg-marvels-dubai-coca-cola-arena',
+        permanent: true,
+      },
+      {
+        source: '/news-details/lake-outing',
+        destination: '/news/lake-outing',
+        permanent: true,
+      },
+      {
+        source: '/news-details/5s-winner-celebration',
+        destination: '/news/5s-winner-celebration',
+        permanent: true,
+      },
+      {
+        source: '/news-details/supervisor-training',
+        destination: '/news/supervisor-training',
+        permanent: true,
+      },
+      {
+        source: '/news-details/unboxing-video',
+        destination: '/news/unboxing-video',
+        permanent: true,
+      },
+      {
+        source: '/news-details/lunch-and-learn',
+        destination: '/news/lunch-and-learn',
+        permanent: true,
+      },
+      {
+        source: '/news-details/big-builds-start-with-bigger-strength',
+        destination: '/news/big-builds-start-with-bigger-strength',
+        permanent: true,
+      },
+      {
+        source: '/news-details/iftar-2025',
+        destination: '/news/iftar-2025',
+        permanent: true,
+      },
+      {
+        source: '/news-details/exhibition',
+        destination: '/news/exhibition',
+        permanent: true,
+      },
+      {
+        source: '/news-details/heart-of-steel-egypt',
+        destination: '/news/heart-of-steel-egypt',
+        permanent: true,
+      },
+      {
+        source: '/news-details/5s-lunch-and-learn',
+        destination: '/news/5s-lunch-and-learn',
+        permanent: true,
+      },
+      {
+        source: '/news-details/cranes-video-post',
+        destination: '/news/cranes-video-post',
+        permanent: true,
+      },
+      {
+        source: '/news-details/your-structural-steel-expert',
+        destination: '/news/your-structural-steel-expert',
+        permanent: true,
+      },
+      {
+        source: '/news-details/ramadan-kareem-from-assent-steel',
+        destination: '/news/ramadan-kareem-from-assent-steel',
+        permanent: true,
+      },
+      {
+        source: '/news-details/steel-facts-may-2024',
+        destination: '/news/steel-facts-may-2024',
+        permanent: true,
+      },
+      {
+        source: '/news-details/engineering-marvel-hzi',
+        destination: '/news/engineering-marvel-hzi',
+        permanent: true,
+      },
+      {
+        source: '/news-details/engg-marvel-mbr',
+        destination: '/news/engg-marvel-mbr',
+        permanent: true,
+      },
+      {
+        source: '/news-details/2024-in-numbers',
+        destination: '/news/2024-in-numbers',
+        permanent: true,
+      },
+      {
+        source: '/news-details/3-5-m-manhours',
+        destination: '/news/3-5-m-manhours',
+        permanent: true,
+      },
+      {
+        source: '/news-details/5s-lunch-and-learn-feb-16',
+        destination: '/news/5s-lunch-and-learn-feb-16',
+        permanent: true,
+      },
+      {
+        source: '/news-details/aisc',
+        destination: '/news/aisc',
+        permanent: true,
+      },
+      {
+        source: '/news-details/aisc-certificate-recoginition-static-post',
+        destination: '/news/aisc-certificate-recoginition-static-post',
+        permanent: true,
+      },
+      {
+        source: '/news-details/all-donations-food-meal-groceries-ramadan-pack-from-hr',
+        destination: '/news/all-donations-food-meal-groceries-ramadan-pack-from-hr',
+        permanent: true,
+      },
+      {
+        source: '/news-details/asea-shaping-skills',
+        destination: '/news/asea-shaping-skills',
+        permanent: true,
+      },
+      {
+        source: '/news-details/asgt-audition-video-post',
+        destination: '/news/asgt-audition-video-post',
+        permanent: true,
+      },
+      {
+        source: '/news-details/ask-ai-recycling-data-from-hse-and-facilities',
+        destination: '/news/ask-ai-recycling-data-from-hse-and-facilities',
+        permanent: true,
+      },
+      {
+        source: '/news-details/assent-steel-16yrs',
+        destination: '/news/assent-steel-16yrs',
+        permanent: true,
+      },
+      {
+        source: '/news-details/assent-steel-facts-leed-platinum',
+        destination: '/news/assent-steel-facts-leed-platinum',
+        permanent: true,
+      },
+      {
+        source: '/news-details/assent-steel-is-every-shape-of-strength',
+        destination: '/news/assent-steel-is-every-shape-of-strength',
+        permanent: true,
+      },
+      {
+        source: '/news-details/assent-steel-is-the-epitome-of-planning',
+        destination: '/news/assent-steel-is-the-epitome-of-planning',
+        permanent: true,
+      },
+      {
+        source: '/news-details/bandsaw-machine-video',
+        destination: '/news/bandsaw-machine-video',
+        permanent: true,
+      },
+      {
+        source: '/news-details/before-using-any-mobile-scaffold',
+        destination: '/news/before-using-any-mobile-scaffold',
+        permanent: true,
+      },
+      {
+        source: '/news-details/blood-donation',
+        destination: '/news/blood-donation',
+        permanent: true,
+      },
+      {
+        source: '/news-details/british-safety-council-member',
+        destination: '/news/british-safety-council-member',
+        permanent: true,
+      },
+      {
+        source: '/news-details/building-complex-structures',
+        destination: '/news/building-complex-structures',
+        permanent: true,
+      },
+      {
+        source: '/news-details/building-futures-engineering-project-completed',
+        destination: '/news/building-futures-engineering-project-completed',
+        permanent: true,
+      },
+      {
+        source: '/news-details/cake-clash',
+        destination: '/news/cake-clash',
+        permanent: true,
+      },
+      {
+        source: '/news-details/certificate-of-appreciation-from-the-uae-food-bank',
+        destination: '/news/certificate-of-appreciation-from-the-uae-food-bank',
+        permanent: true,
+      },
+      {
+        source: '/news-details/christmas-card',
+        destination: '/news/christmas-card',
+        permanent: true,
+      },
+      {
+        source: '/news-details/client-lunch',
+        destination: '/news/client-lunch',
+        permanent: true,
+      },
+      {
+        source: '/projects-list/commercial-projects',
+        destination: '/projects/commercial',
+        permanent: true,
+      },
     ];
   },
 };

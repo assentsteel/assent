@@ -76,7 +76,7 @@ const NavTabsection = ({
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   };
 
-    const fadeInDown = {
+  const fadeInDown = {
     hidden: { opacity: 0, y: -20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   };
@@ -138,8 +138,8 @@ const NavTabsection = ({
                 onClick={() => setActiveTab((prev) => Math.max(prev - 1, 0))}
                 disabled={activeTab === 0}
                 className={`bg-white text-black border px-3 py-1 rounded-full w-[48px] h-[48px] hover:border-white hover:bg-secondary group transition flex items-center justify-center ${activeTab === 0
-                    ? "opacity-50 cursor-not-allowed hover:bg-[#dddddd]"
-                    : ""
+                  ? "opacity-50 cursor-not-allowed hover:bg-[#dddddd]"
+                  : ""
                   }`}
               >
                 <Image
@@ -163,8 +163,8 @@ const NavTabsection = ({
                 }
                 disabled={activeTab === tabs.length - 1}
                 className={`bg-white text-black border px-3 py-1 rounded-full w-[48px] h-[48px] hover:border-white hover:bg-secondary group transition flex items-center justify-center ${activeTab === tabs.length - 1
-                    ? "opacity-50 cursor-not-allowed hover:bg-[#dddddd]"
-                    : ""
+                  ? "opacity-50 cursor-not-allowed hover:bg-[#dddddd]"
+                  : ""
                   }`}
               >
                 <Image
@@ -273,15 +273,14 @@ const NavTabsection = ({
                 >
                   {tabs[index]}
 
-                          <Image
-                                              src={assets.greenarrow}
-                                              alt=""
-                                              width={11}
-                                              height={18}
-                                              className={`transition-transform duration-300 ${
-                      openAccordions[index] ? "rotate-90" : "rotate-[270deg]"
-                    }`}
-                                            />
+                  <Image
+                    src={assets.greenarrow}
+                    alt=""
+                    width={11}
+                    height={18}
+                    className={`transition-transform duration-300 ${openAccordions[index] ? "rotate-90" : "rotate-[270deg]"
+                      }`}
+                  />
 
                 </button>
 
