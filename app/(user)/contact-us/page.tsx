@@ -1,5 +1,6 @@
 import Index from "@/app/component/ContactUs/Index";
 import { Metadata } from "next";
+import Script from "next/script";
 
 export async function generateMetadata(): Promise<Metadata> {
   const response = await fetch(`${process.env.BASE_URL}/api/admin/contact`, { next: { revalidate: 60 } });
@@ -8,13 +9,13 @@ export async function generateMetadata(): Promise<Metadata> {
   const metadataTitle = data?.data?.metaTitle || "Assent";
   const metadataDescription =
     data?.data?.metaDescription || "Assent";
-    const ogImage = data?.data?.ogImage
-    const ogType = data?.data?.ogType || "website"
+  const ogImage = data?.data?.ogImage
+  const ogType = data?.data?.ogType || "website"
 
   return {
     title: metadataTitle,
     description: metadataDescription,
-      alternates: {
+    alternates: {
       canonical: "https://www.assentsteel.com/contact-us",
     },
     openGraph: {
@@ -41,9 +42,10 @@ export default async function Page() {
 
   return (
     <>
-    {/* Breadcrumb Schema */}
-      <script
+      {/* Breadcrumb Schema */}
+      <Script
         type="application/ld+json"
+        strategy="lazyOnload"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
@@ -72,7 +74,7 @@ export default async function Page() {
         }}
       />
 
-      <Index data={data.data}/>
+      <Index data={data.data} />
     </>
   );
 }

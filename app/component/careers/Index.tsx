@@ -5,9 +5,9 @@ import CareerText from "./sections/CareerText";
 import Openings from "./sections/Openings";
 import JoinTeam from "./sections/JoinTeam";
 import { Career } from '@/public/types/Common';
-import { JobSelectContextProvider } from '@/contexts/jobSelectionContext'; 
+import { JobSelectContextProvider } from '@/contexts/jobSelectionContext';
 
-const Index = async ({ data }: { data: Career }) => { 
+const Index = async ({ data }: { data: Career }) => {
   const breadcrumb = [
     { label: "Home", href: "/" },
     { label: "Careers", href: "" },
@@ -17,16 +17,15 @@ const Index = async ({ data }: { data: Career }) => {
   return (
     <JobSelectContextProvider>
 
-<HeroInner
+      <HeroInner
         imageSrc={data.banner}
         title={data.pageTitle}
         breadcrumbs={breadcrumb}
       />
-
-<TextByImg data={data}   />
-<CareerText  data={data} />
-<Openings   data={data}  />
-<JoinTeam  openings={data.thirdSection.items}/>
+      <TextByImg data={data} />
+      <CareerText data={data} />
+      <Openings data={data} />
+      <JoinTeam openings={data.thirdSection.items} />
 
     </JobSelectContextProvider>
   );
