@@ -1,7 +1,7 @@
 import Index from "@/app/component/BlogDetails/Index"
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
-import Script from "next/script";
+import Script from "next/script"
 
 const NO_INDEX_SLUGS = ["globalsurf-post-lourve", "global-surf"]
 
@@ -75,8 +75,8 @@ export default async function Page({
     <>
       {/* Article Schema */}
       <Script
+        id="blog-schema"
         type="application/ld+json"
-        strategy="lazyOnload"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",

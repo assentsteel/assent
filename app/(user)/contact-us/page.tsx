@@ -44,6 +44,7 @@ export default async function Page() {
     <>
       {/* Breadcrumb Schema */}
       <Script
+        id="contact-schema"
         type="application/ld+json"
         strategy="lazyOnload"
         dangerouslySetInnerHTML={{
