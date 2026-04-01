@@ -1,12 +1,12 @@
-import React from "react"; 
+import React from "react";
 
 import AccreditationsList from "./sections/AccreditationsList";
-import HeroInner from  "../common/Banner/HeroInner";
+import HeroInner from "../common/Banner/HeroInner";
 
 import { Awards } from '@/public/types/Common';
- 
 
-const Index = async ({ data }: { data: Awards }) => { 
+
+const Index = async ({ data }: { data: Awards }) => {
   const breadcrumb = [
     { label: "Home", href: "/" },
     { label: data.pageTitle, href: "" },
@@ -15,7 +15,7 @@ const Index = async ({ data }: { data: Awards }) => {
 
   return (
     <>
-<HeroInner          imageSrc={data.banner}
+      <HeroInner imageSrc={data.banner}
         title={data.pageTitle}
         breadcrumbs={breadcrumb}
       />
