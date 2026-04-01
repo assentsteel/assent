@@ -40,7 +40,7 @@ export const menuItems: MenuItem[] = [
         url: "/steel-fabrication-services",
       },
       {
-        title: "Blasting painting",
+        title: "Steel Blasting, Painting & Fire proofing",
         url: "/steel-blasting-painting-fire-proofing",
       },
       {

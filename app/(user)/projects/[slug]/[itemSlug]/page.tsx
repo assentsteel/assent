@@ -15,7 +15,7 @@ export async function generateMetadata({params}: {params: Promise<{slug: string,
     data?.data?.metaDescription || "Assent";
     const ogImage = data?.data?.ogImage
     const ogType = data?.data?.ogType || "website"
-     const canonicalUrl = `${process.env.BASE_URL}/projects/${slug}/${itemSlug}`;
+     const canonicalUrl = `${process.env.BASE_URL}projects/${slug}/${itemSlug}`;
 
   return {
     title: metadataTitle,

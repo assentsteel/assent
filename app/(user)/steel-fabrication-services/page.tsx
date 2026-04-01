@@ -16,7 +16,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: metadataTitle,
     description: metadataDescription,
       alternates: {
-      canonical: "https://www.assentsteel.com/steel-fabrication-servicess",
+      canonical: "https://www.assentsteel.com/steel-fabrication-services",
     },
     openGraph: {
       title: metadataTitle,

@@ -59,8 +59,8 @@ export async function generateMetadata({
   const ogImage =
     metaSource?.thumbnail || metaSource?.images?.[0];
   const canonicalUrl = categoryMatch
-    ? `${process.env.BASE_URL}/gallery/${slug}/${categorySlug}`
-    : `${process.env.BASE_URL}/gallery/${slug}`;
+    ? `${process.env.BASE_URL}gallery-details/${slug}/${categorySlug}`
+    : `${process.env.BASE_URL}gallery-details/${slug}`;
   return {
     title,
     description,
