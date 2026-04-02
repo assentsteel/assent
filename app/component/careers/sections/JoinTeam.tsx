@@ -126,8 +126,8 @@ const JoinTeam = ({ openings }: { openings: OpeningProps }) => {
           body: JSON.stringify({ ...data, file: fileData.url }),
         });
         if (formResponse.ok) {
-          const formdata = await formResponse.json();
-          alert(formdata.message);
+          // const formdata = await formResponse.json();
+          window.location.replace("/thank-you")
           setFileName("");
           reset();
         }
