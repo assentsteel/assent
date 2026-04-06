@@ -13,114 +13,116 @@ type GeneralEnquiryForm = z.infer<typeof generalEnquirySchema>
 
 const GeneralEnquiry = () => {
 
-    const {register,formState:{errors},handleSubmit,reset} = useForm<GeneralEnquiryForm>({
-        resolver:zodResolver(generalEnquirySchema)
-    })
-    const recaptcha = useRef<ReCAPTCHA>(null)
-    const [error,setError] = useState("")
+  const { register, formState: { errors }, handleSubmit, reset } = useForm<GeneralEnquiryForm>({
+    resolver: zodResolver(generalEnquirySchema)
+  })
+  const recaptcha = useRef<ReCAPTCHA>(null)
+  const [error, setError] = useState("")
 
-    const containerVariants = {
-        hidden: {},
-        show: {
-          transition: {
-            staggerChildren: 0.1,
-          },
+  const containerVariants = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const fadeUp = {
+    hidden: { opacity: 0, y: 20 },
+    show: {
+      opacity: 1, y: 0, transition: { duration: 0.5 }
+    },
+  };
+
+
+  const onSubmit = async (data: GeneralEnquiryForm) => {
+    console.log(data)
+    try {
+      const captchaValue = recaptcha?.current?.getValue()
+      if (!captchaValue) {
+        setError("Please verify yourself to continue")
+        return;
+      }
+      setError("")
+      const response = await fetch("/api/admin/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      };
-    
-      const fadeUp = {
-        hidden: { opacity: 0, y: 20 },
-        show: {
-          opacity: 1, y: 0, transition: { duration: 0.5 }},
-        };
+        body: JSON.stringify(data),
+      });
+      if (response.ok) {
+        // const data = await response.json();
+        reset()
+        window.location.replace("/thank-you")
+      } else {
+        alert("Something went wrong, try again")
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-
-        const onSubmit = async (data: GeneralEnquiryForm) => {
-          console.log(data)
-          try {
-            const captchaValue = recaptcha?.current?.getValue()
-            if (!captchaValue) {
-              setError("Please verify yourself to continue")
-              return;
-            }
-            setError("")
-            const response = await fetch("/api/admin/contact", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(data),
-            });
-            if (response.ok) {
-              const data = await response.json();
-              alert(data.message);
-              reset()
-            }else{
-              alert("Something went wrong, try again")
-            }
-          } catch (error) {
-            console.log(error);
-          }
-        };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-        <motion.div
-      className="grid grid-cols-1 lg:grid-cols-3 gap-x-4 lg:gap-x-6 xxl:gap-x-10 mb-5 lg:mb-[40px]"
-      variants={containerVariants}
-    >
-      {["Name", "Email ID", "Contact Number"].map((placeholder, i) => (
-        <motion.div
-          key={i}
-          className="relative w-full mb-2 md:mb-0 mt-2 md:mt-0"
-          variants={fadeUp}
-        >
-          <input
-            type={placeholder === "Email ID" ? "email" : "text"}
-            placeholder={placeholder}
-            {...register(placeholder.split(" ").join("").toLowerCase() as keyof z.infer<typeof generalEnquirySchema>)}
-            className="px-1 appearance-none bg-transparent border-0 border-b border-[#dcdcdc] focus:outline-none focus:ring-0 focus:border-black text-[#595959] text-xs py-2 pr-6 w-full placeholder:text-[#595959]"
-          />
-          {errors[placeholder.split(" ").join("").toLowerCase() as keyof z.infer<typeof generalEnquirySchema>] && (
-            <p className="text-red-500 text-xs mt-1">{errors[placeholder.split(" ").join("").toLowerCase() as keyof z.infer<typeof generalEnquirySchema>]?.message}</p>
-          )}
-        </motion.div>
-      ))}
-    </motion.div>
-
-    {/* Message */}
-    <motion.div
-      className="relative w-full mb-2 md:mb-0 mt-2 md:mt-0"
-      variants={fadeUp}
-    >
-      <textarea
-        placeholder="Message"
-        rows={6}
-        {...register("message")}
-        className=" placeholder:text-[#595959] w-full px-1 lg:py-2 pr-6 text-xs text-[#595959] bg-transparent border-0 border-b border-[#dcdcdc] focus:outline-none focus:ring-0 focus:border-black appearance-none"
-      />
-      {errors.message && (
-        <p className="text-red-500 text-xs mt-1">{errors.message?.message}</p>
-      )}
-    </motion.div>
-
-    <ReCAPTCHA sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""} ref={recaptcha} className='mt-5'/>
-
-    {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
-
-    <input type="hidden" {...register("type")} value="generalEnquiry" />
-
-    {/* Submit Button */}
-    <motion.div variants={fadeUp}>
-      <motion.button
-        className="mt-6 min-w-[173px] bg-[#0A2657] text-white text-[16px] font-[400] px-8 py-4 rounded-full shadow-md hover:bg-primary transition duration-300"
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        type="submit"
+      <motion.div
+        className="grid grid-cols-1 lg:grid-cols-3 gap-x-4 lg:gap-x-6 xxl:gap-x-10 mb-5 lg:mb-[40px]"
+        variants={containerVariants}
       >
-        SUBMIT
-      </motion.button>
-    </motion.div>
+        {["Name", "Email ID", "Contact Number"].map((placeholder, i) => (
+          <motion.div
+            key={i}
+            className="relative w-full mb-2 md:mb-0 mt-2 md:mt-0"
+            variants={fadeUp}
+          >
+            <input
+              type={placeholder === "Email ID" ? "email" : "text"}
+              placeholder={placeholder}
+              {...register(placeholder.split(" ").join("").toLowerCase() as keyof z.infer<typeof generalEnquirySchema>)}
+              className="px-1 appearance-none bg-transparent border-0 border-b border-[#dcdcdc] focus:outline-none focus:ring-0 focus:border-black text-[#595959] text-xs py-2 pr-6 w-full placeholder:text-[#595959]"
+            />
+            {errors[placeholder.split(" ").join("").toLowerCase() as keyof z.infer<typeof generalEnquirySchema>] && (
+              <p className="text-red-500 text-xs mt-1">{errors[placeholder.split(" ").join("").toLowerCase() as keyof z.infer<typeof generalEnquirySchema>]?.message}</p>
+            )}
+          </motion.div>
+        ))}
+      </motion.div>
+
+      {/* Message */}
+      <motion.div
+        className="relative w-full mb-2 md:mb-0 mt-2 md:mt-0"
+        variants={fadeUp}
+      >
+        <textarea
+          placeholder="Message"
+          rows={6}
+          {...register("message")}
+          className=" placeholder:text-[#595959] w-full px-1 lg:py-2 pr-6 text-xs text-[#595959] bg-transparent border-0 border-b border-[#dcdcdc] focus:outline-none focus:ring-0 focus:border-black appearance-none"
+        />
+        {errors.message && (
+          <p className="text-red-500 text-xs mt-1">{errors.message?.message}</p>
+        )}
+      </motion.div>
+
+      <ReCAPTCHA sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""} ref={recaptcha} className='mt-5' />
+
+      {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
+
+      <input type="hidden" {...register("type")} value="generalEnquiry" />
+
+      {/* Submit Button */}
+      <motion.div variants={fadeUp}>
+        <motion.button
+          className="mt-6 min-w-[173px] bg-[#0A2657] text-white text-[16px] font-[400] px-8 py-4 rounded-full shadow-md hover:bg-primary transition duration-300"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          type="submit"
+        >
+          SUBMIT
+        </motion.button>
+      </motion.div>
     </form>
   )
 }
