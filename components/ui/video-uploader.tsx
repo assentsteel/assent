@@ -94,6 +94,10 @@ export function VideoUploader({ value, onChange, className, deleteAfterUpload = 
       setIsUploadComplete(false);
       onChange("", undefined);
       alert("Video deleted successfully")
+    } else {
+      setLocalVideoUrl(null);
+      setIsUploadComplete(false);
+      onChange("", undefined);
     }
   };
 
