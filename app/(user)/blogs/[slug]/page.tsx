@@ -3,7 +3,7 @@ import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import Script from "next/script"
 
-const NO_INDEX_SLUGS = ["globalsurf-post-lourve", "global-surf"]
+const NO_INDEX_SLUGS = ["globalsurf-post-lourve", "global-surf","why-steel-erection-projects-get-delayed-how-to-avoid-it"]
 
 export async function generateMetadata({
   params,
