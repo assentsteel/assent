@@ -22,7 +22,7 @@ const blogsSchema = new mongoose.Schema({
             thumbnail: { type: String, required: true },
             link: { type: String },
             thumbnailAlt: { type: String, required: true },
-            images: { type: Array, required: true },
+            images: [],
             category: { type: String, required: true },
             createdAt: { type: Date, default: Date.now },
             date: { type: Date },
@@ -30,7 +30,7 @@ const blogsSchema = new mongoose.Schema({
             metaDescription: { type: String },
             ogType: { type: String },
             ogImage: { type: String },
-            schema: { type: String }
+            seoSchema:{type:String}
         }
     ]
 });
