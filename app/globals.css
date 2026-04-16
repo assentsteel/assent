@@ -638,10 +638,18 @@ margin-bottom: 15px;
 .blogcotentmn h3{
   @apply text-[20px] md:text-[22px] 2xl:text-[24px]  mb-3 lg:mb-4 mt-3 lg:mt-6 leading-[1.1875];
 }
+.blogcotentmn .h3{
+  @apply text-[20px] md:text-[22px] 2xl:text-[24px]  mb-3 lg:mb-4 mt-3 lg:mt-6 leading-[1.1875];
+}
  
 .blogcotentmn img{@apply my-4 lg:my-8;}
-.blogcotentmn ul li{ list-style: disc; font-size: 18px; margin-bottom: 0.5em;}
-.blogcotentmn ol li{ list-style: none; font-size: 18px; margin-bottom: 0.5em;}
+.blogcotentmn ul li{ list-style: disc; font-size: 18px; margin-bottom: 0.5em;margin-left: 1em;}
+.blogcotentmn ol{
+  list-style: decimal;padding-left: 1em;
+}
+.blogcotentmn ol li::marker{margin-right: 1em; padding-right: 1em;}
+.blogcotentmn ol li{  font-size: 18px; margin-bottom: 0.8em; padding-left: 0.3em;}
+.blogcotentmn ol li span{ @apply min-w-[15px]}
 .blogcotentmn ul {padding-left: 20px; margin-bottom: 15px;}
 .blogcotentmn h1 {
   @apply text-[28px] md:text-[32px] 2xl:text-[36px] mb-4 lg:mb-6 leading-[1.1875] mt-6 lg:mt-12 font-semibold;
