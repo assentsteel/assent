@@ -6,10 +6,10 @@ import Blogs from "@/app/models/Blogs";
 export async function POST(req: NextRequest) {
     try {
         await connectDB();
-        const { mainTitle, subTitle, slug, content, images, category, metaTitle, metaDescription, thumbnail, thumbnailAlt, coverImage, coverImageAlt, date, ogType, ogImage, link, schema } = await req.json();
+        const { mainTitle, subTitle, slug, content, images, category, metaTitle, metaDescription, thumbnail, thumbnailAlt, coverImage, coverImageAlt, date, ogType, ogImage, link,schema } = await req.json();
         const blogs = await Blogs.findOne({})
         if (blogs) {
-            blogs.blogs.push({ mainTitle, subTitle, slug, content, images, category, metaTitle, metaDescription, thumbnail, thumbnailAlt, coverImage, coverImageAlt, date, ogType, ogImage, link, schema })
+            blogs.blogs.push({ mainTitle, subTitle, slug, content, images, category, metaTitle, metaDescription, thumbnail, thumbnailAlt, coverImage, coverImageAlt, date, ogType, ogImage, link, seoSchema:schema })
             await blogs.save()
             return NextResponse.json({ message: "Blog added successfully" }, { status: 200 });
         }
@@ -32,7 +32,7 @@ export async function PATCH(req: NextRequest) {
         if (blogs) {
             blogs.blogs = blogs.blogs.map((blogs: { _id: string }) => {
                 if (blogs._id.toString() === id) {
-                    return { mainTitle, subTitle, slug, content, images, category, metaTitle, metaDescription, thumbnail, thumbnailAlt, date, ogType, ogImage, link, schema }
+                    return { mainTitle, subTitle, slug, content, images, category, metaTitle, metaDescription, thumbnail, thumbnailAlt, date, ogType, ogImage, link, seoSchema:schema }
                 }
                 return blogs
             })
