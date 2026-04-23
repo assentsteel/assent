@@ -645,13 +645,18 @@ margin-bottom: 15px;
 .blogcotentmn img{@apply my-4 lg:my-8;}
 .blogcotentmn ul li{ list-style: disc; font-size: 18px; margin-bottom: 0.5em;margin-left: 1em;}
 .blogcotentmn ol{
-  list-style: decimal;padding-left: 1em;
+  list-style: decimal;padding-left: 1.6em;
+  a{
+    &:hover{
+      @apply text-[#5BA646] transition-all duration-300;
+    }
+  }
 }
 
 .blogcotentmn ol li::marker{margin-right: 1em; padding-right: 1em;}
 .blogcotentmn ol li{  font-size: 18px; margin-bottom: 0.8em; padding-left: 0.3em;}
 .blogcotentmn ol li span{ @apply min-w-[15px]}
-.blogcotentmn ul {padding-left: 20px; margin-bottom: 15px;}
+.blogcotentmn ul {padding-left: 0px; margin-bottom: 15px;}
 .blogcotentmn h1 {
   @apply text-[28px] md:text-[32px] 2xl:text-[36px] mb-4 lg:mb-6 leading-[1.1875] mt-6 lg:mt-12 font-semibold;
 }
@@ -667,6 +672,7 @@ margin-bottom: 15px;
   padding-left: 28px;
   margin-bottom: 8px;
   list-style: none;
+  margin-left: 0;
 }
 
 .blogcotentmn ul.check-list li::before {
@@ -720,3 +726,8 @@ margin-bottom: 15px;
 
 
 
+@media (min-width: 992px) {
+  .blogcotentmn ul {
+    margin-inline-start: 0;
+  }
+}
