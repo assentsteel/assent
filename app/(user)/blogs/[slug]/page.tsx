@@ -5,6 +5,26 @@ import Script from "next/script"
 
 const NO_INDEX_SLUGS = ["globalsurf-post-lourve", "global-surf", "how-to-choose-a-steel-fabricator-in-the-uae-a-procurement-checklist","why-data-centre-projects-in-the-uae-rely-on-structural-steel-load-fire-and-emi-factors"]
 
+const parseSeoSchema = (schema?: string) => {
+  if (!schema) return null
+
+  try {
+    const trimmedSchema = schema.trim()
+
+    if (!trimmedSchema) return null
+
+    const scriptMatch = trimmedSchema.match(
+      /<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/i
+    )
+
+    const schemaContent = scriptMatch?.[1]?.trim() || trimmedSchema
+    return JSON.parse(schemaContent)
+  } catch (error) {
+    console.error("Invalid blog seoSchema JSON-LD", error)
+    return null
+  }
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -71,6 +91,8 @@ export default async function Page({
     notFound()
   }
 
+  const customSchema = parseSeoSchema(blog.seoSchema)
+
   return (
     <>
       {/* Article Schema */}
@@ -103,6 +125,16 @@ export default async function Page({
           }),
         }}
       />
+
+      {customSchema && (
+        <Script
+          id="blog-custom-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(customSchema),
+          }}
+        />
+      )}
 
       <Index data={blog} />
     </>

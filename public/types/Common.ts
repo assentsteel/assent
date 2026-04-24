@@ -154,6 +154,7 @@ export type Bogs = {
   metaDescription: string;
   _id: number;
   createdAt: string;
+  seoSchema?: string;
 }
 export type Blogs = {
   metaTitle: string;
@@ -215,6 +216,7 @@ export type Blogdetails = {
     subTitle: string;
     thumbnail: string;
     thumbnailAlt: string;
+    seoSchema?: string;
     _id: number;
   };
 };
