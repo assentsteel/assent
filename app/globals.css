@@ -641,6 +641,9 @@ margin-bottom: 15px;
 .blogcotentmn .h3{
   @apply text-[20px] md:text-[22px] 2xl:text-[24px]  mb-3 lg:mb-4 mt-3 lg:mt-6 leading-[1.1875];
 }
+.blogcotentmn h4{
+  @apply text-[1.2rem];
+}
  
 .blogcotentmn img{@apply my-4 lg:my-8;}
 .blogcotentmn ul li{ list-style: disc; font-size: 18px; margin-bottom: 0.5em;margin-left: 1em;}
