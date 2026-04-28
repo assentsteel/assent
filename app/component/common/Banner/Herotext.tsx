@@ -23,7 +23,7 @@ const Herotext: React.FC<HeroSectionProps> = ({ title, breadcrumbs, blogPage }) 
                             initial="hidden"
                             animate="visible"
                             exit="exit"
-                            className="text-xxl font-[600] text-territory mb-4 lg:mb-10 leading-[1]"
+                            className="text-xxl font-[600] text-territory mb-4 lg:mb-10 leading-[1.2]"
                         >
                             {title}
                         </motion.h1>

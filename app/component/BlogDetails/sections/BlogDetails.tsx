@@ -95,7 +95,6 @@ const BlogDetails = ({ data }: { data: Bogs }) => {
       <div className="container">
         <div className="flex flex-col lg:flex-row ">
           <div className={`lg:w-5/6 pr-4 lg:pr-6 xxl:pr-[135px] `}>
-            
             <div  >
               <div>
                 <motion.div
