@@ -2,26 +2,31 @@ import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
 import * as jose from "jose";
 
-// const BLOCKED_COUNTRIES = ["cn", "us", "sg"]; // China, USA, Singapore
+const BLOCKED_COUNTRIES = ["cn", "us", "sg"]; // China, USA, Singapore
 
-// function isBlocked(request: NextRequest): boolean {
-//   const country =
-//     request.headers.get("x-vercel-ip-country")?.toLowerCase() || "";
+function isBlocked(request: NextRequest): boolean {
+  const country =
+    request.headers.get("x-vercel-ip-country")?.toLowerCase() ?? "";
 
-//   return BLOCKED_COUNTRIES.includes(country);
-// }
+
+  return BLOCKED_COUNTRIES.includes(country);
+}
 
 export async function middleware(request: NextRequest) {
   const url = request.nextUrl.clone();
   const path = url.pathname;
 
-  // if (path.startsWith("/blocked")) {
-  //   return NextResponse.next();
-  // }
-  // // 🚫 GEO BLOCKING
-  // if (isBlocked(request)) {
-  //   return NextResponse.redirect(new URL("/blocked", request.url));
-  // }
+  if (path.startsWith("/api")) {
+    return NextResponse.next();
+  }
+
+  if (path.startsWith("/blocked")) {
+    return NextResponse.next();
+  }
+  // 🚫 GEO BLOCKING
+  if (isBlocked(request)) {
+    return NextResponse.redirect(new URL("/blocked", request.url));
+  }
 
   /* =================================
      🔥 CLEAN QUERY REDIRECTS (NEW)
@@ -108,7 +113,8 @@ export const config = {
     "/projects-plants",
     "/projects-oil-gas-industry",
     "/api/:path*",
-    "/ASe25Nt@dmin/:path*"
+    "/ASe25Nt@dmin/:path*",
+    "/((?!_next/static|_next/image|favicon.ico|api).*)"
   ],
 };
 
