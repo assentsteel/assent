@@ -1,8 +1,7 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
-import { MdOutlineArrowBack, MdOutlineBlock } from "react-icons/md";
+import {  MdOutlineBlock } from "react-icons/md";
 
 const BlockedPage = () => {
   return (
