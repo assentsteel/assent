@@ -3,7 +3,7 @@ import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import Script from "next/script"
 
-const NO_INDEX_SLUGS = ["globalsurf-post-lourve", "global-surf", "how-to-choose-a-steel-fabricator-in-the-uae-a-procurement-checklist","why-data-centre-projects-in-the-uae-rely-on-structural-steel-load-fire-and-emi-factors"]
+const NO_INDEX_SLUGS = ["globalsurf-post-lourve", "global-surf"]
 
 const parseSeoSchema = (schema?: string) => {
   if (!schema) return null
