@@ -38,6 +38,8 @@ export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
 
+
+
   const response = await fetch(`${process.env.BASE_URL}/api/admin/projects`, { next: { revalidate: 60 } });
   const data = await response.json();
   const categories = data.data.categories.map((item: { name: string; slug: string; }) => {
