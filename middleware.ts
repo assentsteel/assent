@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
 import * as jose from "jose";
 
-const BLOCKED_COUNTRIES = ["cn", "us", "sg"]; // China, USA, Singapore
+const BLOCKED_COUNTRIES = ["cn", "sg"]; // China, USA, Singapore
 
 function isBlocked(request: NextRequest): boolean {
   const country =
