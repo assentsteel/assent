@@ -141,13 +141,12 @@ const RegistrationForm = () => {
               body: JSON.stringify({ ...data, tradelicense: tradeLicenseData.url, vatregistration: vatRegistrationData.url }),
             });
             if (formResponse.ok) {
-              const data = await formResponse.json();
-              alert(data.message);
               reset()
               setTradelicenseFile(null);
               setVatregistrationFile(null);
               setTradelicenseFileName("");
               setVatregistrationFileName("");
+              window.location.replace("/thank-you")
             } else {
               alert("Something went wrong, try again")
             }

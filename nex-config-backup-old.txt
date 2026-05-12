@@ -31,13 +31,13 @@ const nextConfig: NextConfig = {
             value: "19",
           },
         ],
-        destination: "/projects/industrial-oil-gas",
+        destination: "/projects/industrial-oil-gas?",
         permanent: true,
       },
       {
         source: "/projects-oil-gas-industry",
         has: [{ type: "query", key: "sector" }],
-        destination: "/projects/industrial-oil-gas",
+        destination: "/projects/industrial-oil-gas?",
         permanent: true,
       },
       {
@@ -47,6 +47,11 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/news-detail/assent-hosts-visit-of-delegates-from-brazil-national-industry-confederation-cni",
+        destination: "/news",
+        permanent: true,
+      },
+      {
+        source: "/news-detail/assent-is-pleased-to-introduce-mr-karl-roberts-as-chief-business-development-advisor-for-their-north-america-operations",
         destination: "/news",
         permanent: true,
       },
@@ -766,134 +771,6 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
 
-      // -------- News Details new 301--------
-
-      {
-        source: "/news-details/eot-crane-post",
-        destination: "/news/eot-crane-post",
-        permanent: true,
-      },
-      {
-        source: "/news-details/mega-lucky-draw",
-        destination: "/news/mega-lucky-draw",
-        permanent: true,
-      },
-      {
-        source: "/news-details/project-award-usa-bechtel-and-kiewit",
-        destination: "/news/project-award-usa-bechtel-and-kiewit",
-        permanent: true,
-      },
-      {
-        source: "/news-details/steel-facts",
-        destination: "/news/steel-facts",
-        permanent: true,
-      },
-      {
-        source: "/news-details/quiz-time",
-        destination: "/news/quiz-time",
-        permanent: true,
-      },
-      {
-        source: "/news-details/icv-post",
-        destination: "/news/icv-post",
-        permanent: true,
-      },
-      {
-        source: "/news-details/team-building-workshop",
-        destination: "/news/team-building-workshop",
-        permanent: true,
-      },
-      {
-        source: "/news-details/precisionwelding",
-        destination: "/news/precisionwelding",
-        permanent: true,
-      },
-      {
-        source: "/news-details/voice-of-assent-steel",
-        destination: "/news/voice-of-assent-steel",
-        permanent: true,
-      },
-      {
-        source: "/news-details/triall-assembly",
-        destination: "/news/triall-assembly",
-        permanent: true,
-      },
-      {
-        source: "/news-details/excel-and-ppt-training",
-        destination: "/news/excel-and-ppt-training",
-        permanent: true,
-      },
-      {
-        source: "/news-details/new-year",
-        destination: "/news/new-year",
-        permanent: true,
-      },
-      {
-        source: "/news-details/lock-out-tag-out-loto",
-        destination: "/news/lock-out-tag-out-loto",
-        permanent: true,
-      },
-      {
-        source: "/news-details/safety-induction-video-tandem-lifting",
-        destination: "/news/safety-induction-video-tandem-lifting",
-        permanent: true,
-      },
-      {
-        source: "/news-details/painting",
-        destination: "/news/painting",
-        permanent: true,
-      },
-      {
-        source: "/news-details/westfield-project-post",
-        destination: "/news/westfield-project-post",
-        permanent: true,
-      },
-      {
-        source: "/news-details/wellness-month-video",
-        destination: "/news/wellness-month-video",
-        permanent: true,
-      },
-      {
-        source: "/news-details/voice-of-assent-steel-jan-2025",
-        destination: "/news/voice-of-assent-steel-jan-2025",
-        permanent: true,
-      },
-      {
-        source: "/news-details/eid-al-adha-greeting",
-        destination: "/news/eid-al-adha-greeting",
-        permanent: true,
-      },
-      {
-        source: "/news-details/tower-crane-x-4",
-        destination: "/news/tower-crane-x-4",
-        permanent: true,
-      },
-      {
-        source: "/news-details/fabrication-welder",
-        destination: "/news/fabrication-welder",
-        permanent: true,
-      },
-      {
-        source: "/news-details/eye-check-up-video-post",
-        destination: "/news/eye-check-up-video-post",
-        permanent: true,
-      },
-      {
-        source: "/news-details/from-the-sparks-of-fabrication",
-        destination: "/news/from-the-sparks-of-fabrication",
-        permanent: true,
-      },
-      {
-        source: "/news-details/hse-induction-video",
-        destination: "/news/hse-induction-video",
-        permanent: true,
-      },
-      {
-        source: "/news-details/lunch-and-learn",
-        destination: "/news/lunch-and-learn",
-        permanent: true,
-      },
-
       // -------- Press / Other --------
 
       {
@@ -1473,6 +1350,12 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/global-presence/structural-steel-expertise-for-uk-projects",
+        destination: "/global-presence/united-kingdom",
+        permanent: true,
+      },
+
+      {
         source: "/structural-steel-expertise-for-australian-projects",
         destination: "/global-presence/australia",
         permanent: true,
@@ -1515,12 +1398,12 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/news-details/dispatch-static-post",
-        destination: "/news/dispatch-static-post",
+        destination: "/news/dispatch-static-post ",
         permanent: true,
       },
       {
         source: "/index.php",
-        destination: "/",
+        destination: "/ ",
         permanent: true,
       },
       {
@@ -1530,12 +1413,27 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/news-details/quality-at-every-step",
-        destination: "/news/quality-at-every-step",
+        destination: "/news/quality-at-every-step ",
+        permanent: true,
+      },
+      {
+        source: "/news-details/dispatch-static-post",
+        destination: "/news/dispatch-static-post ",
+        permanent: true,
+      },
+      {
+        source: "/fabrication",
+        destination: "/steel-fabrication-services ",
+        permanent: true,
+      },
+      {
+        source: "/news-details/quality-at-every-step",
+        destination: "/news/quality-at-every-step ",
         permanent: true,
       },
       {
         source: "/ppe-exhibition-dec-2024",
-        destination: "/news/ppe-exhibition-dec-2024",
+        destination: "/news/ppe-exhibition-dec-2024 ",
         permanent: true,
       },
       {
@@ -1721,7 +1619,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/news/wearehiring-hr",
-        destination: "/news/we-are-hiring-hr",
+        destination: "/news/we-are-hiring-hr ",
         permanent: true,
       },
       {
@@ -1807,6 +1705,11 @@ const nextConfig: NextConfig = {
       {
         source: "/news-details/unboxing-video",
         destination: "/news/unboxing-video",
+        permanent: true,
+      },
+      {
+        source: "/news-details/lunch-and-learn",
+        destination: "/news/lunch-and-learn",
         permanent: true,
       },
       {

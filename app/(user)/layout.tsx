@@ -38,6 +38,8 @@ export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
 
+
+
   const response = await fetch(`${process.env.BASE_URL}/api/admin/projects`, { next: { revalidate: 60 } });
   const data = await response.json();
   const categories = data.data.categories.map((item: { name: string; slug: string; }) => {
@@ -54,54 +56,54 @@ export default async function RootLayout({
     <html lang="en">
 
       {tagData?.tag && <head>
-        
+
         {parse(tagData?.tag?.headerScript || "")}
         <script
-  type="application/ld+json"
-  dangerouslySetInnerHTML={{
-    __html: JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "Assent Steel",
-      "url": "https://www.assentsteel.com/",
-      "logo": "https://www.assentsteel.com/assets/img/logo.svg",
-      "description":
-        "ASSENT STEEL INDUSTRIES L.L.C is a Dubai-based structural steel fabrication and engineering company, delivering high-quality steel structures and turnkey construction solutions for landmark projects across the Middle East, GCC, Africa, and Southeast Asia.",
-      "sameAs": [
-        "https://www.linkedin.com/company/assentsteel/",
-        "https://www.facebook.com/assentsteel/",
-        "https://www.instagram.com/assentsteel/?hl=en",
-        "https://www.youtube.com/@assentsteel"
-      ],
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Dubai Industrial City",
-        "addressLocality": "Dubai",
-        "addressCountry": "United Arab Emirates",
-        "postalCode": "38436"
-      },
-      "telephone": "+971-4-2471200",
-      "email": ["info@assentsteel.com", "contactus@assentsteel.com"],
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 24.830749,
-        "longitude": 55.082948
-      },
-      "hasMap":
-        "https://www.google.com/maps?ll=24.830749,55.082948&z=17&t=m&hl=en&gl=IN&mapclient=embed&cid=4653444714486657600"
-    }),
-  }}
-/>
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              "name": "Assent Steel",
+              "url": "https://www.assentsteel.com/",
+              "logo": "https://www.assentsteel.com/assets/img/logo.svg",
+              "description":
+                "ASSENT STEEL INDUSTRIES L.L.C is a Dubai-based structural steel fabrication and engineering company, delivering high-quality steel structures and turnkey construction solutions for landmark projects across the Middle East, GCC, Africa, and Southeast Asia.",
+              "sameAs": [
+                "https://www.linkedin.com/company/assentsteel/",
+                "https://www.facebook.com/assentsteel/",
+                "https://www.instagram.com/assentsteel/?hl=en",
+                "https://www.youtube.com/@assentsteel"
+              ],
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Dubai Industrial City",
+                "addressLocality": "Dubai",
+                "addressCountry": "United Arab Emirates",
+                "postalCode": "38436"
+              },
+              "telephone": "+971-4-2471200",
+              "email": ["info@assentsteel.com", "contactus@assentsteel.com"],
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 24.830749,
+                "longitude": 55.082948
+              },
+              "hasMap":
+                "https://www.google.com/maps?ll=24.830749,55.082948&z=17&t=m&hl=en&gl=IN&mapclient=embed&cid=4653444714486657600"
+            }),
+          }}
+        />
 
-        </head>}
+      </head>}
       <body className={`${poppins.variable} font-poppins antialiased`}>
         <BreadcrumbSchema />
-      {tagData?.tag && <>{parse(tagData?.tag?.bodyScript || "")}</>}
-      <SearchProvider>
-     <Navbar categories={categories}/>
-        {children}
-        <Footer />
-      </SearchProvider>
+        {tagData?.tag && <>{parse(tagData?.tag?.bodyScript || "")}</>}
+        <SearchProvider>
+          <Navbar categories={categories} />
+          {children}
+          <Footer />
+        </SearchProvider>
       </body>
     </html>
   );

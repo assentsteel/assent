@@ -121,6 +121,10 @@ export function ImageUploader({ value, onChange, className, deleteAfterUpload = 
       setIsUploadComplete(false);
       onChange("", undefined);
       alert("Image deleted successfully")
+    } else {
+      setLocalImageUrl(null);
+      setIsUploadComplete(false);
+      onChange("", undefined);
     }
   };
 

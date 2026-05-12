@@ -101,6 +101,9 @@ export function FileUploader({
       setFileName("");
       onChange("", "");
       alert("File deleted successfully")
+    } else {
+      setFileName("");
+      onChange("", "");
     }
 
   };
