@@ -3,7 +3,11 @@ import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import Script from "next/script"
 
-const NO_INDEX_SLUGS = ["globalsurf-post-lourve", "global-surf"]
+const NO_INDEX_SLUGS = [
+  "globalsurf-post-lourve",
+  "global-surf",
+  "in-house-vs-outsourced-steel-blasting-and-painting-cost-quality-and-timeline-impact"
+]
 
 const parseSeoSchema = (schema?: string) => {
   if (!schema) return null
@@ -51,7 +55,9 @@ export async function generateMetadata({
 
     alternates: {
       canonical: canonicalUrl,
+      
     },
+
 
     robots: NO_INDEX_SLUGS.includes(slug)
       ? { index: false, follow: false }
