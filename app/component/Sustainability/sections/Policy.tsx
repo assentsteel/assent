@@ -122,6 +122,7 @@ const Policy = ({ data }: { data: Sustainability }) => {
                                 rounded-[5px] flex gap-[20px] justify-between items-center px-[20px] py-[12.5px] group hover:bg-secondary transition-all duration-300
                             "
                     >
+                      
                       {/* Short name */}
                       <p className="text-center text-sm text-territory group-hover:text-white font-medium transition-all duration-300">
                         ENV
