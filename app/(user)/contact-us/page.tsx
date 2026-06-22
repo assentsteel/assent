@@ -1,6 +1,7 @@
 import Index from "@/app/component/ContactUs/Index";
 import { Metadata } from "next";
 import Script from "next/script";
+import { Suspense } from "react";
 
 export async function generateMetadata(): Promise<Metadata> {
   const response = await fetch(`${process.env.BASE_URL}/api/admin/contact`, { next: { revalidate: 60 } });
@@ -75,7 +76,9 @@ export default async function Page() {
         }}
       />
 
-      <Index data={data.data} />
+      <Suspense fallback={null}>
+        <Index data={data.data} />
+      </Suspense>
     </>
   );
 }
