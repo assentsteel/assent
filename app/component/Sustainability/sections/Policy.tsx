@@ -111,10 +111,58 @@ const Policy = ({ data }: { data: Sustainability }) => {
                   >
                     <motion.p
                       variants={textItemsVariants}
-                      className="text-md uppercase text-[#595959] font-medium border-b inline-flex border-secondary pb-[10px] lg:pb-[25px] leading-none"
+                      className="text-md uppercase text-[#595959] font-medium border-b inline-flex border-secondary pb-[10px] lg:pb-[25px] leading-none mb-3 lg:mb-8"
                     >
                       {data.secondSection.firstTitle}
                     </motion.p>
+                    <div
+                      
+                      className=" 
+                                w-[134px] bg-white border border-secondary 
+                                rounded-[5px] flex gap-[20px] justify-between items-center px-[20px] py-[12.5px] group hover:bg-secondary transition-all duration-300
+                            "
+                    >
+                      {/* Short name */}
+                      <p className="text-center text-sm text-territory group-hover:text-white font-medium transition-all duration-300">
+                        ENV
+                      </p>
+
+                      {/* Actions */}
+                      <div className="flex justify-center gap-3">
+                        {/* Download icon */}
+                        <Link href="/assets/ASSENT_STEEL_ENV_SUS_POLICY.pdf" target="_blank" download>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="14"
+                            height="16"
+                            viewBox="0 0 14 16"
+                            fill="none"
+                            className="transition-all duration-300 group-hover:invert group-hover:brightness-0"
+                          >
+                            <path
+                              d="M1.6084 15H12.6084M7.1084 1V11.5M7.1084 11.5L10.3167 8.4375M7.1084 11.5L3.90007 8.4375"
+                              stroke="#1F1F1F"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                        </Link>
+
+                        {/* Eye icon */}
+                        <Image
+                          onClick={() => {
+                            setPdfFile("/assets/ASSENT_STEEL_ENV_SUS_POLICY.pdf");
+                            setIsOpen(true);
+                          }}
+                          src="/assets/img/icns/eye.png"
+                          alt="View"
+                          width={20}
+                          height={15}
+                          className="cursor-pointer group-hover:invert group-hover:brightness-0 transition-all duration-300"
+                        />
+                      </div>
+                    </div>
                   </motion.div>
 
                   <motion.div
