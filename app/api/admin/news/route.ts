@@ -1,6 +1,7 @@
 import connectDB from "@/lib/mongodb";
 import News from "@/app/models/News";
 import { NextRequest, NextResponse } from "next/server";
+import { revalidateTag } from "next/cache";
 
 
 export async function POST(req:NextRequest) {
@@ -11,6 +12,7 @@ export async function POST(req:NextRequest) {
         if(news){
             news.news.push({mainTitle,subTitle,slug,content,images,category,metaTitle,metaDescription,thumbnail,thumbnailAlt,coverImage,coverImageAlt,date,ogType,ogImage,link})
             await news.save()
+            revalidateTag("all-news");
             return NextResponse.json({message: "News added successfully"},{status: 200});
         }
         else{
@@ -39,6 +41,7 @@ export async function PATCH(req:NextRequest) {
                 return news
             })
             await news.save()
+            revalidateTag("all-news");
             return NextResponse.json({message: "News updated successfully"},{status: 200});
         }
         else{
@@ -96,6 +99,7 @@ export async function DELETE(req:NextRequest) {
             if(news){
                 news.news = news.news.filter((news:{_id:string}) => news._id.toString() !== id)
                 await news.save()
+                revalidateTag("all-news");
                 return NextResponse.json({message: "News deleted successfully"},{status: 200});
             }else{
                 return NextResponse.json({message: "Error in deleting news"},{status: 500});
