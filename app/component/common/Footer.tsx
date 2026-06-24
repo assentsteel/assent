@@ -270,7 +270,7 @@ const Footer = () => {
       >
         <div className="container text-left">
           <p className="text-xs text-white/50">
-            &copy; {new Date().getFullYear()} ASSENT STEEL. All rights reserved. | by <Link href={'https://www.globalsurf.ae'} target="_blank">Global Surf</Link>
+            &copy; {new Date().getFullYear()} ASSENT STEEL. All rights reserved. | by <Link href={'https://www.globalsurf.ae'} target="_blank">GS Digital</Link>
           </p>
         </div>
       </motion.div>
