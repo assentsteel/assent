@@ -1,5 +1,8 @@
+import { getHome } from "@/lib/services/home.service";
 import Index from "../component/home/Index";
 import { Metadata } from "next";
+import { getAllNews } from "@/lib/services/news.service";
+import { getAllProjects } from "@/lib/services/project.service";
  
  
 export async function generateMetadata(): Promise<Metadata> {
@@ -38,15 +41,16 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Home() {
  
-    const response = await fetch(`${process.env.BASE_URL}/api/admin/home`, { next: { revalidate: 60 } });
-    const newsResponse = await fetch(`${process.env.BASE_URL}/api/admin/news`, { next: { revalidate: 60 } });
-    const projResponse = await fetch(`${process.env.BASE_URL}/api/admin/projects`, { next: { revalidate: 60 } });
-    const data = await response.json();
-    const newsData = await newsResponse.json();
-    const projData = await projResponse.json();
+    // const response = await fetch(`${process.env.BASE_URL}/api/admin/home`, { next: { revalidate: 60 } });
+    // const newsResponse = await fetch(`${process.env.BASE_URL}/api/admin/news`, { next: { revalidate: 60 } });
+    // const projResponse = await fetch(`${process.env.BASE_URL}/api/admin/projects`, { next: { revalidate: 60 } });
+    // const data = await response.json();
+    const home = await getHome()
+    const newsData = await getAllNews();
+    const projData = await getAllProjects();
   return (
     <>
-     <Index data={data.data} newsData={newsData.data}  projData={projData.data}/>
+     <Index data={home} newsData={newsData}  projData={projData}/>
     </>
   );
 }
