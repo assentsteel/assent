@@ -10,7 +10,6 @@ import MediaSection from "./sections/MediaSection";
 import { Home,News,Projectswfull } from '@/public/types/Common';
 
 const Index = async ({ data,newsData,projData }: { data: Home,newsData: News , projData: Projectswfull }) => { 
-  console.log(projData);
   return (
     <>
       <HeroSection data={data}/>

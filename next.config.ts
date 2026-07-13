@@ -1984,6 +1984,11 @@ const nextConfig: NextConfig = {
         destination: "/projects/commercial",
         permanent: true,
       },
+      {
+        source: "/news/a-driven-by-presision-quality-commitment-to-structural-excellence",
+        destination: "/news/a-driven-by-precision-quality-commitment-to-structural-excellence",
+        permanent: true,
+      },
     ];
   },
 };
