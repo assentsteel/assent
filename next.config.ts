@@ -1989,6 +1989,106 @@ const nextConfig: NextConfig = {
         destination: "/news/a-driven-by-precision-quality-commitment-to-structural-excellence",
         permanent: true,
       },
+      {
+        source: "/services",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/news-details/wearehiring-hr",
+        destination: "/news",
+        permanent: true,
+      },
+      {
+        source: "/news-details/cyber-security-thursday",
+        destination: "/news",
+        permanent: true,
+      },
+      {
+        source: "/news-details/lunch-and-learn-march-2024",
+        destination: "/news",
+        permanent: true,
+      },
+      {
+        source: "/news-details/ramadan-greetings",
+        destination: "/news",
+        permanent: true,
+      },
+      {
+        source: "/news-details/world-day-for-safety-and-health-at-work-april-28",
+        destination: "/news",
+        permanent: true,
+      },
+      {
+        source: "/news-details/kiewit-canada-delivery",
+        destination: "/news",
+        permanent: true,
+      },
+      {
+        source: "/news-details/factory-static-post",
+        destination: "/news",
+        permanent: true,
+      },
+      {
+        source: "/files/All_Project_List.pdf",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/projects-details.php",
+        destination: "/projects",
+        permanent: true,
+      },
+      {
+        source: "/projects.php",
+        destination: "/projects",
+        permanent: true,
+      },
+      {
+        source: "/services-fabrication.php",
+        destination: "/steel-fabrication-services",
+        permanent: true,
+      },
+      {
+        source: "/gallery.php",
+        destination: "/gallery",
+        permanent: true,
+      },
+      {
+        source: "/about-us.php",
+        destination: "/about",
+        permanent: true,
+      },
+      {
+        source: "/form-vender-registration.php",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/news/cairo-office-team-building-ras-sedr",
+        destination: "/news",
+        permanent: true,
+      },
+      {
+        source: "/news/accuracy-driven-by-technology-backed-by-quality",
+        destination: "/news",
+        permanent: true,
+      },
+      {
+        source: "/news/assent-steel-annual-health-checkup-campaign-2025",
+        destination: "/news",
+        permanent: true,
+      },
+      {
+        source: "/news/uae-construction-project-feb-2026",
+        destination: "/news",
+        permanent: true,
+      },
+      {
+        source: "/news/oil-gas-project-germany",
+        destination: "/news",
+        permanent: true,
+      },
     ];
   },
 };
