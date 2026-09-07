@@ -5,6 +5,8 @@ export type About = {
   bannerAlt: string;
   metaTitle: string;
   metaDescription: string;
+  ogImage?: string;
+  ogType?: string;
   pageTitle: string;
   firstSection: {
     mainTitle: string;
@@ -85,37 +87,58 @@ export type textbyimg = {
     }
   ];
 };
-export type Gallery = [
-  {
+export type Gallery = {
+    _id: string;
     title: string;
     thumbnail: string;
     thumbnailAlt: string;
     slug: string;
     images: string[];
-  }
-];
+    categories: categories[];
+    metaTitle?: string;
+    metaDescription?: string;
+    ogType?: string;
+    ogImage?: string;
+    index?: number;
+  }[];
 export type Gallerydata = {
-  message: string;
-  success: boolean;
+  message?: string;
+  success?: boolean;
   data:
   | {
-    categories: categories[];
-    images: string[];
+    categories?: categories[];
+    images?: string[];
   }
   | [];
 };
 
 export type categories = {
+  _id?: string;
   title: string;
   thumbnail: string;
-  thumbnailAlt: string;
+  thumbnailAlt?: string;
+  altText?: string;
   slug: string;
   images: string[];
+  metaTitle?: string;
+  metaDescription?: string;
+  ogType?: string;
+  ogImage?: string;
+};
+
+export type GalleryMeta = {
+  metaTitle?: string;
+  metaDescription?: string;
+  pageTitle: string;
+  ogType?: string;
+  ogImage?: string;
 };
 
 export type News = {
   metaTitle: string;
   metaDescription: string;
+  ogImage?: string;
+  ogType?: string;
   pageTitle: string;
   banner: string;
   bannerAlt: string;
@@ -136,6 +159,9 @@ export type News = {
     createdAt: string;
     metaTitle: string;
     metaDescription: string;
+    ogImage?: string;
+    ogType?: string;
+    link?: string;
     _id: number;
     date: string;
   }[];
@@ -159,6 +185,8 @@ export type Bogs = {
 export type Blogs = {
   metaTitle: string;
   metaDescription: string;
+  ogImage?: string;
+  ogType?: string;
   pageTitle: string;
   banner: string;
   bannerAlt: string;
@@ -197,7 +225,7 @@ export type Newsdetails = {
     subTitle: string;
     thumbnail: string;
     thumbnailAlt: string;
-    link: string;
+    link?: string;
     _id: number;
   };
 };
@@ -226,6 +254,8 @@ export type Awards = {
   pageTitle: string;
   metaTitle: string;
   metaDescription: string;
+  ogImage?: string;
+  ogType?: string;
   awards: [
     {
       file: string;
@@ -240,6 +270,8 @@ export type Career = {
   bannerAlt: string;
   metaTitle: string;
   metaDescription: string;
+  ogImage?: string;
+  ogType?: string;
   pageTitle: string;
   firstSection: {
     title: string;
@@ -281,6 +313,8 @@ export type Contact = {
   bannerAlt: string;
   metaTitle: string;
   metaDescription: string;
+  ogImage?: string;
+  ogType?: string;
   pageTitle: string;
   firstSection: {
     title: string;
@@ -302,6 +336,8 @@ export type Team = {
   bannerAlt: string;
   metaTitle: string;
   metaDescription: string;
+  ogImage?: string;
+  ogType?: string;
   pageTitle: string;
   teamSection: {
     title: string;
@@ -322,6 +358,8 @@ export type Team = {
 export type Quality = {
   metaTitle: string;
   metaDescription: string;
+  ogImage?: string;
+  ogType?: string;
   pageTitle: string;
   firstSection: {
     mainTitle: string;
@@ -368,6 +406,8 @@ export type Quality = {
 export type Hse = {
   metaTitle: string;
   metaDescription: string;
+  ogImage?: string;
+  ogType?: string;
   pageTitle: string;
   firstSection: {
     title: string;
@@ -606,6 +646,8 @@ export type SecondIntro = {
 export type Engineering = {
   metaTitle: string;
   metaDescription: string;
+  ogImage?: string;
+  ogType?: string;
   pageTitle: string;
   firstSection: {
     title: string;
@@ -694,6 +736,8 @@ export type whychoose = {
 export type Fabrication = {
   metaTitle: string;
   metaDescription: string;
+  ogImage?: string;
+  ogType?: string;
   pageTitle: string;
   firstSection: {
     title: string;
@@ -781,6 +825,8 @@ export type Boxgd = {
 export type Blasting = {
   metaTitle: string;
   metaDescription: string;
+  ogImage?: string;
+  ogType?: string;
   pageTitle: string;
   firstSection: {
     title: string;
@@ -830,6 +876,8 @@ export type Blasting = {
 export type Services = {
   metaTitle: string;
   metaDescription: string;
+  ogImage?: string;
+  ogType?: string;
   pageTitle: string;
   firstSection: {
     title: string;
@@ -899,6 +947,8 @@ export type Partnerst = {
 export type GlobalPresence = {
   metaTitle: string;
   metaDescription: string;
+  ogImage?: string;
+  ogType?: string;
   pageTitle: string;
   banner: string;
   bannerAlt: string;
@@ -919,15 +969,13 @@ export type GlobalPresence = {
   };
   thirdSection: {
     title: string;
-    countries: [
-      {
+    countries: {
         title: string;
         image: string;
         imageAlt: string;
         slug: string;
         sections: [string];
-      }
-    ];
+      }[];
   };
 };
 export type GlobalReachtype = {
@@ -1215,8 +1263,7 @@ export type Globaltype = {
   ];
 };
 export type Projectsw = {
-  data: [
-    {
+  data: {
       banner: string;
       bannerAlt: string;
       pageTitle: string;
@@ -1236,8 +1283,7 @@ export type Projectsw = {
       images: [string];
       _id: string;
       thumbnail: string;
-    }
-  ];
+    }[];
 };
 export type Projectactaall = {
   data: [
@@ -1283,14 +1329,12 @@ export type Projectswfull = {
   pageTitle: string;
   sector: string;
   location: string;
-  categories: [
-    {
+  categories: {
       name: string;
       metaTitle: string;
       metaDescription: string;
       slug: string;
-      projects: [
-        {
+      projects: {
           _id: string;
           banner: string;
           bannerAlt: string;
@@ -1310,14 +1354,14 @@ export type Projectswfull = {
           metaTitle: string;
           metaDescription: string;
           images: [string];
-        }
-      ];
-    }
-  ];
+        }[];
+    }[];
 };
 export type Home = {
   metaTitle: string;
   metaDescription: string;
+  ogImage?: string;
+  ogType?: string;
   banner: string;
   bannerAlt: string;
   pageTitle: string;

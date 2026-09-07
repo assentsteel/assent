@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
 import Gallery from "@/app/models/Gallery";
 import { verifyAdmin } from "@/lib/verifyAdmin";
+import { revalidateTag } from "next/cache";
 
 
 export async function GET(request: NextRequest) {
@@ -65,6 +66,7 @@ export async function POST(request: NextRequest) {
                 }
                 toUpdateCategory.images = body.images;
                 await gallery.save();
+                revalidateTag("all-galleries")
                 return NextResponse.json({message:"Category updated successfully"}, { status: 200 });
             }
     } catch (error) {

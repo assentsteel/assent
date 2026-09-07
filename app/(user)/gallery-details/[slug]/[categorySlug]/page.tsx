@@ -1,29 +1,7 @@
 import Index from "@/app/component/GalleryDetails/Index";
- 
+
 import { Metadata } from "next";
-
-type GalleryCategory = {
-  _id: string;
-  title: string;
-  slug: string;
-  thumbnail?: string;
-  images?: string[];
-  metaTitle?: string;
-  metaDescription?: string;
-  ogType?: string;
-};
-
-type GalleryItem = {
-  _id: string;
-  title: string;
-  slug: string;
-  thumbnail?: string;
-  images?: string[];
-  categories?: GalleryCategory[];
-  metaTitle?: string;
-  metaDescription?: string;
-  ogType?: string;
-};
+import { getGalleryBySlug, getGalleryCategory } from "@/lib/services/gallery.service";
 
 
 export async function generateMetadata({
@@ -33,29 +11,16 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug, categorySlug } = await params;
 
-  const response = await fetch(
-    `${process.env.BASE_URL}/api/admin/gallery`,
-    { next: { revalidate: 60 } }
-  );
-
-  const data = await response.json();
-  const galleries = data?.data || [];
-
-  const galleryMatch = galleries.find(
-    (item: { slug: string }) => item.slug === slug
-  );
-
+  const galleryMatch = await getGalleryBySlug(slug);
   const categoryMatch = categorySlug
-    ? galleries
-        .flatMap((item: GalleryItem) => item.categories || [])
-        .find((cat: { slug: string }) => cat.slug === categorySlug)
+    ? await getGalleryCategory(slug, categorySlug)
     : null;
 
   const metaSource = categoryMatch || galleryMatch;
 
   const title = metaSource?.metaTitle || "Assent";
   const description = metaSource?.metaDescription || "Assent";
-  const ogType = metaSource?.ogType || "website";
+  const ogType = (metaSource?.ogType || "website") as "website";
   const ogImage =
     metaSource?.thumbnail || metaSource?.images?.[0];
   const canonicalUrl = categoryMatch
@@ -82,11 +47,10 @@ export async function generateMetadata({
 export default async function Home({params}: {params: Promise<{slug: string, categorySlug: string}>}) {
   const slug = (await params).slug;
   const categorySlug = (await params).categorySlug;
-  const response = await fetch(`${process.env.BASE_URL}/api/admin/gallery/inside?gallerySlug=${slug}&categorySlug=${categorySlug}`, { next: { revalidate: 60 } });
-  const data = await response.json(); 
+  const category = await getGalleryCategory(slug, categorySlug);
   return (
     <>
-    <Index data={data} slug={slug} categorySlug={categorySlug}/>
+    <Index data={{ data: category ?? [] }} slug={slug} categorySlug={categorySlug}/>
     </>
   );
 }

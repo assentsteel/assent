@@ -1,20 +1,20 @@
 
 import Index from "@/app/component/ProjectsDetails/Index"
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { getAllProjects } from "@/lib/services/project.service";
 
 export async function generateMetadata({params}: {params: Promise<{slug: string,itemSlug: string}>}): Promise<Metadata> {
   const slug = (await params).slug;
   const itemSlug = (await params).itemSlug;
-  const response = await fetch(`${process.env.BASE_URL}/api/admin/projects?categorySlug=${slug}&projectSlug=${itemSlug}`, { next: { revalidate: 60 } });
-  const data = await response.json();
+  const projectData = await getAllProjects();
+  const project = projectData.categories.find((item) => item.slug === slug)?.projects.find((item) => item.slug === itemSlug);
 
-  console.log(data)
-
-  const metadataTitle = data?.data?.metaTitle || "Assent";
+  const metadataTitle = project?.metaTitle || "Assent";
   const metadataDescription =
-    data?.data?.metaDescription || "Assent";
-    const ogImage = data?.data?.ogImage
-    const ogType = data?.data?.ogType || "website"
+    project?.metaDescription || "Assent";
+    const ogImage = ""
+    const ogType = "website" as const;
      const canonicalUrl = `${process.env.BASE_URL}projects/${slug}/${itemSlug}`;
 
   return {
@@ -44,12 +44,14 @@ export async function generateMetadata({params}: {params: Promise<{slug: string,
 export default async function Home({params}: {params: Promise<{slug: string,itemSlug: string}>}) {
   const slug = (await params).slug;
   const itemSlug = (await params).itemSlug;
-  const response = await fetch(`${process.env.BASE_URL}/api/admin/projects?categorySlug=${slug}&projectSlug=${itemSlug}`, { next: { revalidate: 60 } });
-  const data = await response.json(); 
-  console.log(data)
+  const projectData = await getAllProjects();
+  const project = projectData.categories.find((item) => item.slug === slug)?.projects.find((item) => item.slug === itemSlug);
+  if (!project) {
+    notFound();
+  }
   return (
     <>
-    <Index data={data.data}  categorySlug={slug} />
+    <Index data={project}  categorySlug={slug} />
     </>
   );
 }

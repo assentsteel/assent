@@ -4,6 +4,7 @@ import connectDB from "@/lib/mongodb";
 import Sector from "@/app/models/Sector";
 import Project from "@/app/models/Project";
 import { startSession } from "mongoose";
+import { revalidateTag } from "next/cache";
 
 export async function POST(request: NextRequest) {
     try {
@@ -17,6 +18,7 @@ export async function POST(request: NextRequest) {
         if(!createSector){
             return NextResponse.json({ message: "Failed creating sector" }, { status: 404 });
         }
+        revalidateTag("sector")
         return NextResponse.json({ message: "Sector created successfully",success:true }, { status: 201 });
     } catch (error) {
         console.log(error);
@@ -58,6 +60,7 @@ export async function PATCH(request: NextRequest) {
                 item.save();
             }
         })
+        revalidateTag("sector")
         return NextResponse.json({ message: "Sector updated successfully",success:true }, { status: 200 });
     } catch (error) {
         console.log(error);
@@ -89,6 +92,7 @@ export async function DELETE(request: NextRequest) {
                 return NextResponse.json({ message: "Failed deleting sector" }, { status: 404 });
             }
             session.commitTransaction();
+            revalidateTag("sector")
             return NextResponse.json({ message: "Sector deleted successfully",success:true }, { status: 200 });
         } catch (error) {
             console.log(error);

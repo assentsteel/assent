@@ -1,5 +1,7 @@
 import Index from "@/app/component/NewsDetails/Index";
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { getIndiNews } from "@/lib/services/news.service";
 
 
 const NO_INDEX_SLUGS = [
@@ -9,14 +11,13 @@ const NO_INDEX_SLUGS = [
 
 export async function generateMetadata({params}: {params: Promise<{slug: string}>}): Promise<Metadata> {
   const slug = (await params).slug;
-  const response = await fetch(`${process.env.BASE_URL}/api/admin/news?slug=${slug}`, { next: { revalidate: 60 } });
-  const data = await response.json();
+  const article = await getIndiNews(slug).catch(() => null);
 
-  const metadataTitle = data?.data?.metaTitle || "Assent";
+  const metadataTitle = article?.metaTitle || "Assent";
   const metadataDescription =
-    data?.data?.metaDescription || "Assent";
-    const ogImage = data?.data?.ogImage
-    const ogType = data?.data?.ogType || "website"
+    article?.metaDescription || "Assent";
+    const ogImage = article?.ogImage || ""
+    const ogType = (article?.ogType || "website") as "website";
     const canonicalUrl = `${process.env.BASE_URL}news/${slug}`;
 
   return {
@@ -48,9 +49,10 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
 }
 export default async function Home({params}: {params: Promise<{slug: string}>}) {
   const slug = (await params).slug;
-  const response = await fetch(`${process.env.BASE_URL}/api/admin/news?slug=${slug}`, { next: { revalidate: 60 } });
-  const data = await response.json();
-   const article = data.data;
+  const article = await getIndiNews(slug).catch(() => null);
+  if (!article) {
+    notFound();
+  }
    const ARTICLE_SCHEMA_SLUGS = [
   "engineering-marvels",
 ];
@@ -68,9 +70,9 @@ export default async function Home({params}: {params: Promise<{slug: string}>}) 
                 "@type": "WebPage",
                 "@id": `https://www.assentsteel.com/news/${slug}`,
               },
-              "headline": article.title,
-              "image": article.image,
-              "datePublished": article.publishedAt, // ISO format
+              "headline": article.mainTitle,
+              "image": article.thumbnail,
+              "datePublished": article.date, // ISO format
               "author": {
                 "@type": "Organization",
                 "name": "Assent Steel Industries",
@@ -99,9 +101,9 @@ export default async function Home({params}: {params: Promise<{slug: string}>}) 
               "@type": "WebPage",
               "@id": `https://www.assentsteel.com/news/${slug}`,
             },
-            "headline": article?.title,
-            "image": article?.image,
-            "datePublished": article?.publishedAt, // ISO format preferred
+            "headline": article.mainTitle,
+            "image": article.thumbnail,
+            "datePublished": article.date, // ISO format preferred
             "author": {
               "@type": "Organization",
               "name": "Assent Steel Industries",
@@ -118,7 +120,7 @@ export default async function Home({params}: {params: Promise<{slug: string}>}) 
         }}
       />
 
-    <Index data={data}  />
+    <Index data={{ data: article }}  />
     </>
   );
 }

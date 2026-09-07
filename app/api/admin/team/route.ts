@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
 import Team from "@/app/models/Team";
 import { verifyAdmin } from "@/lib/verifyAdmin";
+import { revalidateTag } from "next/cache";
 
 export async function PATCH(req:NextRequest) {
     try {
@@ -13,6 +14,7 @@ export async function PATCH(req:NextRequest) {
         const body = await req.json();
         const team = await Team.findOneAndUpdate({}, body, { upsert: true });
         if(team){
+            revalidateTag("team")
             return NextResponse.json({ message: "Details saved successfully" }, { status: 200 });
         }else{
             return NextResponse.json({ message: "Error saving  details" }, { status: 500 });

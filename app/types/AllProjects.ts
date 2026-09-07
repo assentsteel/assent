@@ -8,14 +8,12 @@ data:{
       pageTitle: string,
       sector: string,
       location: string,
-      categories: [
-        {
+      categories: {
           name: string,
           metaTitle: string,
           metaDescription: string,
           slug: string,
-          projects: [
-            {
+          projects: {
               _id: string,
               banner: string,
               bannerAlt: string,
@@ -37,9 +35,7 @@ data:{
               images: [
                 string
               ]
-            }
-          ]
-        }
-      ]
+            }[]
+        }[]
 }
 }

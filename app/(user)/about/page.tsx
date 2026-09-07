@@ -1,15 +1,15 @@
 import Index from "@/app/component/About";
 import { Metadata } from "next";
+import { getAbout } from "@/lib/services/about.service";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const response = await fetch(`${process.env.BASE_URL}/api/admin/about`, { next: { revalidate: 60 } });
-  const data = await response.json();
+  const data = await getAbout();
 
-  const metadataTitle = data?.data?.metaTitle || "Assent";
+  const metadataTitle = data?.metaTitle || "Assent";
   const metadataDescription =
-    data?.data?.metaDescription || "Assent";
-  const ogImage = data?.data?.ogImage
-  const ogType = data?.data?.ogType || "website"
+    data?.metaDescription || "Assent";
+  const ogImage = data?.ogImage || ""
+  const ogType = (data?.ogType || "website") as "website";
 
   return {
     title: metadataTitle,
@@ -37,11 +37,10 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Page() {
-  const response = await fetch(`${process.env.BASE_URL}/api/admin/about`, { next: { revalidate: 60 } });
-  const data = await response.json();
+  const data = await getAbout();
   return (
     <>
-      <Index data={data.data}/>
+      <Index data={data}/>
     </>
   );
 }

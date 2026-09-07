@@ -2,16 +2,16 @@ import Index from "@/app/component/ContactUs/Index";
 import { Metadata } from "next";
 import Script from "next/script";
 import { Suspense } from "react";
+import { getContact } from "@/lib/services/contact.service";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const response = await fetch(`${process.env.BASE_URL}/api/admin/contact`, { next: { revalidate: 60 } });
-  const data = await response.json();
+  const data = await getContact();
 
-  const metadataTitle = data?.data?.metaTitle || "Assent";
+  const metadataTitle = data?.metaTitle || "Assent";
   const metadataDescription =
-    data?.data?.metaDescription || "Assent";
-  const ogImage = data?.data?.ogImage
-  const ogType = data?.data?.ogType || "website"
+    data?.metaDescription || "Assent";
+  const ogImage = data?.ogImage || ""
+  const ogType = (data?.ogType || "website") as "website";
 
   return {
     title: metadataTitle,
@@ -38,8 +38,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Page() {
-  const response = await fetch(`${process.env.BASE_URL}/api/admin/contact`, { next: { revalidate: 60 } });
-  const data = await response.json();
+  const data = await getContact();
 
   return (
     <>
@@ -77,7 +76,7 @@ export default async function Page() {
       />
 
       <Suspense fallback={null}>
-        <Index data={data.data} />
+        <Index data={data} />
       </Suspense>
     </>
   );

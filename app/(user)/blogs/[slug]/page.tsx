@@ -2,6 +2,7 @@ import Index from "@/app/component/BlogDetails/Index"
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import Script from "next/script"
+import { getBlogBySlug } from "@/lib/services/blogs.service"
 
 const NO_INDEX_SLUGS = [
   "globalsurf-post-lourve",
@@ -37,15 +38,9 @@ export async function generateMetadata({
 
   const { slug } = await params
 
-  // const blog = blogData?.data?.[0]?.news?.find(
-  //   (item) => item.slug === slug
-  // )
+  const blog = await getBlogBySlug(slug)
 
-  const response = await fetch(`${process.env.BASE_URL}/api/admin/blogs?slug=${slug}`, { next: { revalidate: 60 } });
-  const data = await response.json();
-  const blog = data.data
-
-  if (!data) return {}
+  if (!blog) return {}
 
   const canonicalUrl = `https://www.assentsteel.com/blogs/${slug}`
 
@@ -89,9 +84,7 @@ export default async function Page({
 
   const { slug } = await params
 
-  const response = await fetch(`${process.env.BASE_URL}/api/admin/blogs?slug=${slug}`, { next: { revalidate: 60 } });
-  const data = await response.json();
-  const blog = data.data
+  const blog = await getBlogBySlug(slug)
 
   if (!blog) {
     notFound()

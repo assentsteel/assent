@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
 import Gallery from "@/app/models/Gallery";
 import { verifyAdmin } from "@/lib/verifyAdmin";
+import { revalidateTag } from "next/cache";
 
 export async function POST(request: NextRequest) {
     try {
@@ -24,7 +25,8 @@ export async function POST(request: NextRequest) {
       }));
   
       await Gallery.bulkWrite(bulkOps);
-  
+      revalidateTag("all-galleries")
+
       return NextResponse.json({ message: "Reordered successfully" }, { status: 200 });
     } catch (error) {
       console.error(error);

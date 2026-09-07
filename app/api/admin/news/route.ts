@@ -13,6 +13,7 @@ export async function POST(req:NextRequest) {
             news.news.push({mainTitle,subTitle,slug,content,images,category,metaTitle,metaDescription,thumbnail,thumbnailAlt,coverImage,coverImageAlt,date,ogType,ogImage,link})
             await news.save()
             revalidateTag("all-news");
+            revalidateTag("indi-news");
             return NextResponse.json({message: "News added successfully"},{status: 200});
         }
         else{
@@ -42,6 +43,7 @@ export async function PATCH(req:NextRequest) {
             })
             await news.save()
             revalidateTag("all-news");
+            revalidateTag("indi-news");
             return NextResponse.json({message: "News updated successfully"},{status: 200});
         }
         else{
@@ -100,6 +102,7 @@ export async function DELETE(req:NextRequest) {
                 news.news = news.news.filter((news:{_id:string}) => news._id.toString() !== id)
                 await news.save()
                 revalidateTag("all-news");
+                revalidateTag("indi-news");
                 return NextResponse.json({message: "News deleted successfully"},{status: 200});
             }else{
                 return NextResponse.json({message: "Error in deleting news"},{status: 500});

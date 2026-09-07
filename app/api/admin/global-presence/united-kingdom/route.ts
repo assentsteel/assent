@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
 import GlobalPresenceUnitedKingdom from "@/app/models/GlobalPresenceUnitedKingdom";
 import { verifyAdmin } from "@/lib/verifyAdmin";
+import { revalidateTag } from "next/cache";
 
 
 export async function GET() {
@@ -30,6 +31,7 @@ export async function PATCH(request: NextRequest) {
         if (!hse) {
             return NextResponse.json({ message: "GlobalPresenceUnitedKingdom not found" }, { status: 404 });
         }
+        revalidateTag("global-presence-united-kingdom")
         return NextResponse.json({data:hse,message:"GlobalPresenceUnitedKingdom updated successfully"}, { status: 200 });
     } catch (error) {
         console.log(error);

@@ -1,6 +1,7 @@
 import connectDB from "@/lib/mongodb";
 import Award from "@/app/models/Award";
 import { NextRequest, NextResponse } from "next/server";
+import { revalidateTag } from "next/cache";
 
 
 export async function POST(req:NextRequest) {
@@ -11,6 +12,7 @@ export async function POST(req:NextRequest) {
         if(awards){
             awards.awards.push({title,image,imageAlt,file})
             await awards.save()
+            revalidateTag("awards")
             return NextResponse.json({message: "Award added successfully"},{status: 200});
         }
         else{
@@ -37,6 +39,7 @@ export async function PATCH(req:NextRequest) {
                 return awards
             })
             await awards.save()
+            revalidateTag("awards")
             return NextResponse.json({message: "Award updated successfully"},{status: 200});
         }
         else{
@@ -74,6 +77,7 @@ export async function DELETE(req:NextRequest) {
             if(awards){
                 awards.awards = awards.awards.filter((awards:{_id:string}) => awards._id.toString() !== id)
                 await awards.save()
+                revalidateTag("awards")
                 return NextResponse.json({message: "Award deleted successfully"},{status: 200});
             }else{
                 return NextResponse.json({message: "Error in deleting award"},{status: 500});
