@@ -1,16 +1,16 @@
 
 import Index from "@/app/component/NewsList/Index";
 import { Metadata } from "next";
+import { getAllNews } from "@/lib/services/news.service";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const response = await fetch(`${process.env.BASE_URL}/api/admin/news`, { next: { revalidate: 60 } });
-  const data = await response.json();
+  const data = await getAllNews();
 
-  const metadataTitle = data?.data?.metaTitle || "Assent";
+  const metadataTitle = data?.metaTitle || "Assent";
   const metadataDescription =
-    data?.data?.metaDescription || "Assent";
-    const ogImage = data?.data?.ogImage
-    const ogType = data?.data?.ogType || "website"
+    data?.metaDescription || "Assent";
+    const ogImage = data?.ogImage || ""
+    const ogType = (data?.ogType || "website") as "website";
 
   return {
     title: metadataTitle,
@@ -36,12 +36,12 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
+
 export default async function Page() {
-  const response = await fetch(`${process.env.BASE_URL}/api/admin/news`, { next: { revalidate: 60 } });
-  const data = await response.json();
+  const data = await getAllNews();
   return (
     <>
-      <Index data={data.data}/>
+      <Index data={data}/>
     </>
   );
 }

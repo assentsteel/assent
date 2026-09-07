@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
 import mongoose from "mongoose";
 import Blogs from "@/app/models/Blogs";
+import { revalidateTag } from "next/cache";
 
 
 export async function GET() {
@@ -28,6 +29,7 @@ export async function POST(req: NextRequest) {
         if (blogs) {
             blogs.categories.push({ name });
             await blogs.save();
+            revalidateTag("all-blogs")
             return NextResponse.json({ message: "category added successfully" }, { status: 200 });
         } else {
             return NextResponse.json({ message: "Error adding category" }, { status: 500 });
@@ -57,6 +59,7 @@ export async function PATCH(req: NextRequest) {
                 category.name = name;
                 await blogs.save();
                 await session.commitTransaction();
+                revalidateTag("all-blogs")
                 return NextResponse.json({ message: "Category updated successfully" }, { status: 200 });
             } else {
                 await session.abortTransaction();
@@ -95,6 +98,7 @@ export async function DELETE(req: NextRequest) {
                 blogs.categories = blogs.categories.filter((category: { _id: string }) => category._id != id);
                 await blogs.save();
                 await session.commitTransaction();
+                revalidateTag("all-blogs")
                 return NextResponse.json({ message: "Category deleted successfully" }, { status: 200 });
             } else {
                 await session.abortTransaction();

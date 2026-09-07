@@ -1,18 +1,15 @@
 import Index from "@/app/component/Sustainability";
 
 import { Metadata } from "next";
+import { getSustainability } from "@/lib/services/sustainability.service";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const response = await fetch(
-    `${process.env.BASE_URL}/api/admin/sustainability`,
-    { next: { revalidate: 60 } }
-  );
-  const data = await response.json();
+  const data = await getSustainability();
 
-  const metadataTitle = data?.data?.metaTitle || "Assent";
-  const metadataDescription = data?.data?.metaDescription || "Assent";
-  const ogImage = data?.data?.ogImage
-  const ogType = data?.data?.ogType || "website"
+  const metadataTitle = data?.metaTitle || "Assent";
+  const metadataDescription = data?.metaDescription || "Assent";
+  const ogImage = ""
+  const ogType = "website" as const;
 
 return {
   title: metadataTitle,
@@ -39,14 +36,10 @@ return {
 }
 
 export default async function Page() {
-  const response = await fetch(
-    `${process.env.BASE_URL}/api/admin/sustainability`,
-    { next: { revalidate: 60 } }
-  );
-  const data = await response.json();
+  const data = await getSustainability();
   return (
     <>
-      <Index data={data.data} />
+      <Index data={data} />
     </>
   );
 }

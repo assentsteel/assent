@@ -6,14 +6,13 @@ import { getAllProjects } from "@/lib/services/project.service";
  
  
 export async function generateMetadata(): Promise<Metadata> {
-  const response = await fetch(`${process.env.BASE_URL}/api/admin/home`, { next: { revalidate: 60 } });
-  const data = await response.json();
+  const data = await getHome();
 
-  const metadataTitle = data?.data?.metaTitle || "Assent";
+  const metadataTitle = data?.metaTitle || "Assent";
   const metadataDescription =
-    data?.data?.metaDescription || "Assent";
-    const ogImage = data?.data?.ogImage
-    const ogType = data?.data?.ogType || "website" || "website"
+    data?.metaDescription || "Assent";
+    const ogImage = data?.ogImage || ""
+    const ogType = (data?.ogType || "website") as "website";
 
   return {
     title: metadataTitle,
@@ -40,11 +39,6 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Home() {
- 
-    // const response = await fetch(`${process.env.BASE_URL}/api/admin/home`, { next: { revalidate: 60 } });
-    // const newsResponse = await fetch(`${process.env.BASE_URL}/api/admin/news`, { next: { revalidate: 60 } });
-    // const projResponse = await fetch(`${process.env.BASE_URL}/api/admin/projects`, { next: { revalidate: 60 } });
-    // const data = await response.json();
     const home = await getHome()
     const newsData = await getAllNews();
     const projData = await getAllProjects();

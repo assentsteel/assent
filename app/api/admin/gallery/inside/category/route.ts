@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
 import Gallery from "@/app/models/Gallery";
 import { verifyAdmin } from "@/lib/verifyAdmin";
+import { revalidateTag } from "next/cache";
 
 
 export async function GET(request: NextRequest) {
@@ -42,6 +43,7 @@ export async function POST(request: NextRequest) {
         if(id){
             gallery.categories.push({title:body.name,slug:body.slug,thumbnail:body.thumbnail,altText:body.altText,images:[],metaTitle:body.metaTitle,metaDescription:body.metaDescription,ogType:body.ogType,ogImage:body.ogImage})
             await gallery.save();
+            revalidateTag("all-galleries")
             return NextResponse.json({message:"Gallery item updated successfully"}, { status: 200 });
         }
     } catch (error) {
@@ -77,6 +79,7 @@ export async function PATCH(request: NextRequest) {
         toUpdateCategory.ogType = body.ogType;
         toUpdateCategory.ogImage = body.ogImage;
         await gallery.save();
+        revalidateTag("all-galleries")
         return NextResponse.json({message:"Category updated successfully"}, { status: 200 });
     } catch (error) {
         console.log(error);
@@ -100,6 +103,7 @@ export async function DELETE(request: NextRequest) {
         }
         gallery.categories = gallery.categories.filter((item: { _id: string; })=>item._id.toString() !== id);
         await gallery.save();
+        revalidateTag("all-galleries")
         return NextResponse.json({message:"Category deleted successfully"}, { status: 200 });
     } catch (error) {
         console.log(error);

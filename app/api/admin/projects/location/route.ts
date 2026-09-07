@@ -4,6 +4,7 @@ import connectDB from "@/lib/mongodb";
 import Location from "@/app/models/Location";
 import Project from "@/app/models/Project";
 import { startSession } from "mongoose";
+import { revalidateTag } from "next/cache";
 
 export async function POST(request: NextRequest) {
     try {
@@ -17,6 +18,7 @@ export async function POST(request: NextRequest) {
         if(!createLocation){
             return NextResponse.json({ message: "Failed creating location" }, { status: 404 });
         }
+        revalidateTag("location")
         return NextResponse.json({ message: "Location created successfully",success:true }, { status: 201 });
     } catch (error) {
         console.log(error);
@@ -58,6 +60,7 @@ export async function PATCH(request: NextRequest) {
                 item.save();
             }
         })
+        revalidateTag("location")
         return NextResponse.json({ message: "Location updated successfully",success:true }, { status: 200 });
     } catch (error) {
         console.log(error);
@@ -89,6 +92,7 @@ export async function DELETE(request: NextRequest) {
                 return NextResponse.json({ message: "Failed deleting location" }, { status: 404 });
             }
             session.commitTransaction();
+            revalidateTag("location")
             return NextResponse.json({ message: "Location deleted successfully",success:true }, { status: 200 });
         } catch (error) {
             console.log(error);

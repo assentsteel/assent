@@ -4,6 +4,7 @@ import Contact from "@/app/models/Contact";
 import { verifyAdmin } from "@/lib/verifyAdmin";
 import Enquiry from "@/app/models/Enquiry";
 import {sendContactAction} from "@/lib/mail/contactAction"
+import { revalidateTag } from "next/cache";
 
 
 export async function PATCH(req:NextRequest) {
@@ -16,6 +17,7 @@ export async function PATCH(req:NextRequest) {
         const body = await req.json();
         const contact = await Contact.findOneAndUpdate({}, body, { upsert: true });
         if(contact){
+            revalidateTag("contact")
             return NextResponse.json({ message: "Details saved successfully" }, { status: 200 });
         }else{
             return NextResponse.json({ message: "Error saving  details" }, { status: 500 });

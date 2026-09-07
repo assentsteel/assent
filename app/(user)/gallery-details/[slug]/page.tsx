@@ -1,17 +1,16 @@
 import Index from "@/app/component/GalleryDetails/Index";
- 
+
 import { Metadata } from "next";
+import { getGalleryBySlug } from "@/lib/services/gallery.service";
 
 export async function generateMetadata({params}: {params: Promise<{slug: string}>}): Promise<Metadata> {
   const slug = (await params).slug;
-  const response = await fetch(`${process.env.BASE_URL}/api/admin/gallery`, { next: { revalidate: 60 } });
-  const data = await response.json();
+  const gallery = await getGalleryBySlug(slug);
 
-  const metadataTitle = data?.data?.find((item: {slug: string}) => item.slug === slug)?.metaTitle || "Assent";
-  const metadataDescription =
-    data?.data?.find((item: {slug: string}) => item.slug === slug)?.metaDescription || "Assent";
-    const ogImage = data?.data?.ogImage
-    const ogType = data?.data?.ogType || "website"
+  const metadataTitle = gallery?.metaTitle || "Assent";
+  const metadataDescription = gallery?.metaDescription || "Assent";
+    const ogImage = gallery?.ogImage || ""
+    const ogType = (gallery?.ogType || "website") as "website";
     const canonicalUrl = `${process.env.BASE_URL}gallery-details/${slug}`;
 
   return {
@@ -40,11 +39,10 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
 
 export default async function Home({params}: {params: Promise<{slug: string}>}) {
   const slug = (await params).slug;
-  const response = await fetch(`${process.env.BASE_URL}/api/admin/gallery?slug=${slug}`, { next: { revalidate: 60 } });
-  const data = await response.json(); 
+  const gallery = await getGalleryBySlug(slug);
   return (
     <>
-    <Index data={data} slug={slug}/>
+    <Index data={{ data: gallery ?? [] }} slug={slug}/>
     </>
   );
 }

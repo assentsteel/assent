@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import Project from "@/app/models/Project";
 import connectDB from "@/lib/mongodb";
 import mongoose from "mongoose";
+import { revalidateTag } from "next/cache";
 export async function POST(req: NextRequest) {
     const session = await mongoose.startSession()
     try {
@@ -19,6 +20,7 @@ export async function POST(req: NextRequest) {
         categoryProjects.projects = actualProjects
         await allProjects.save()
         session.commitTransaction()
+        revalidateTag("all-project")
         return NextResponse.json({ message: "Projects reordered successfully",success:true }, { status: 200 })
     } catch (error) {
         console.log(error)

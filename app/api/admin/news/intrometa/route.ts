@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
 import News from "@/app/models/News";
+import { revalidateTag } from "next/cache";
 
 export async function POST(req:NextRequest) {
     try {
@@ -14,6 +15,7 @@ export async function POST(req:NextRequest) {
             news.ogType = ogType;
             news.ogImage = ogImage;
             await news.save();
+            revalidateTag("all-news")
             return NextResponse.json({ message: "Details saved successfully" }, { status: 200 });
         }else{
             return NextResponse.json({ message: "Error saving  details" }, { status: 500 });

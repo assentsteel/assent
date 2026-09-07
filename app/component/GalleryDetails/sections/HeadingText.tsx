@@ -92,7 +92,7 @@ console.log(data);
               height={500}
               />
             </motion.div>
-          ))) : data?.data?.images?.length > 0 ? data?.data?.images?.map((image, index)=>(
+          ))) : (data?.data?.images?.length ?? 0) > 0 ? data?.data?.images?.map((image, index)=>(
 <motion.div
               key={index}
               className="mb-4 rounded-lg overflow-hidden group cursor-pointer"

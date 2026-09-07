@@ -1,6 +1,7 @@
 import connectDB from "@/lib/mongodb";
 import { NextRequest, NextResponse } from "next/server";
 import Blogs from "@/app/models/Blogs";
+import { revalidateTag } from "next/cache";
 
 
 export async function POST(req: NextRequest) {
@@ -11,6 +12,7 @@ export async function POST(req: NextRequest) {
         if (blogs) {
             blogs.blogs.push({ mainTitle, subTitle, slug, content, images, category, metaTitle, metaDescription, thumbnail, thumbnailAlt, coverImage, coverImageAlt, date, ogType, ogImage, link, seoSchema:schema })
             await blogs.save()
+            revalidateTag("all-blogs")
             return NextResponse.json({ message: "Blog added successfully" }, { status: 200 });
         }
         else {
@@ -37,6 +39,7 @@ export async function PATCH(req: NextRequest) {
                 return blogs
             })
             await blogs.save()
+            revalidateTag("all-blogs")
             return NextResponse.json({ message: "Blog updated successfully" }, { status: 200 });
         }
         else {
@@ -94,6 +97,7 @@ export async function DELETE(req: NextRequest) {
             if (blogs) {
                 blogs.blogs = blogs.blogs.filter((blogs: { _id: string }) => blogs._id.toString() !== id)
                 await blogs.save()
+                revalidateTag("all-blogs")
                 return NextResponse.json({ message: "Blogs deleted successfully" }, { status: 200 });
             } else {
                 return NextResponse.json({ message: "Error in deleting blogs" }, { status: 500 });

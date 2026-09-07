@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
 import Sustainability from "@/app/models/Sustainability";
 import { verifyAdmin } from "@/lib/verifyAdmin";
+import { revalidateTag } from "next/cache";
 
 export async function GET() {
   try {
@@ -44,6 +45,7 @@ export async function PATCH(request: NextRequest) {
         { status: 404 }
       );
     }
+    revalidateTag("sustainability")
     return NextResponse.json(
       { data: sustainability, message: "Sustainability updated successfully" },
       { status: 200 }

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
 import Engineering from "@/app/models/Engineering";
 import { verifyAdmin } from "@/lib/verifyAdmin";
+import { revalidateTag } from "next/cache";
 
 
 export async function GET() {
@@ -30,6 +31,7 @@ export async function PATCH(request: NextRequest) {
         if (!engineering) {
             return NextResponse.json({ message: "Engineering not found" }, { status: 404 });
         }
+        revalidateTag("engineering")
         return NextResponse.json({data:engineering,message:"Engineering updated successfully"}, { status: 200 });
     } catch (error) {
         console.log(error);

@@ -2,6 +2,7 @@ import { verifyAdmin } from "@/lib/verifyAdmin";
 import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
 import Project from "@/app/models/Project";
+import { revalidateTag } from "next/cache";
 
 export async function POST(request: NextRequest) {
     try {
@@ -17,6 +18,7 @@ export async function POST(request: NextRequest) {
         }
         project.categories.push({ name,metaTitle,metaDescription,slug });
         await project.save();
+        revalidateTag("all-project")
         return NextResponse.json({ message: "Category created successfully",success:true }, { status: 201 });
     } catch (error) {
         console.log(error);
@@ -76,6 +78,7 @@ export async function PATCH(request: NextRequest) {
         category.metaDescription = metaDescription;
         category.slug = slug;
         await project.save();
+        revalidateTag("all-project")
         return NextResponse.json({ message: "Category updated successfully",success:true }, { status: 200 });
     } catch (error) {
         console.log(error);
@@ -101,6 +104,7 @@ export async function DELETE(request: NextRequest) {
         }
         project.categories = project.categories.filter((category: { _id: string; }) => category._id != id);
         await project.save();
+        revalidateTag("all-project")
         return NextResponse.json({ message: "Category deleted successfully",success:true }, { status: 200 });
     } catch (error) {
         console.log(error);

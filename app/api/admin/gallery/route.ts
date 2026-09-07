@@ -1,6 +1,7 @@
 import connectDB from "@/lib/mongodb";
 import Gallery from "@/app/models/Gallery";
 import { NextRequest, NextResponse } from "next/server";
+import { revalidateTag } from "next/cache";
 
 
 export async function POST(req:NextRequest) {
@@ -12,6 +13,7 @@ export async function POST(req:NextRequest) {
             const {images} = await req.json();
             const gallery = await Gallery.findOneAndUpdate({_id:id},{images:images});
             if(gallery){
+                revalidateTag("all-galleries")
                 return NextResponse.json({message: "Item updated successfully",success:true},{status: 200});
             }
             else{
@@ -21,6 +23,7 @@ export async function POST(req:NextRequest) {
         const {title,thumbnail,thumbnailAlt,slug,itemMetaTitle,itemMetaDescription,itemOgType,itemOgImage} = await req.json();
         const gallery = await Gallery.create({title,thumbnail,thumbnailAlt,slug,metaTitle:itemMetaTitle,metaDescription:itemMetaDescription,ogType:itemOgType,ogImage:itemOgImage})
         if(gallery){
+            revalidateTag("all-galleries")
             return NextResponse.json({message: "Item added successfully",success:true},{status: 200});
         }
         else{
@@ -40,6 +43,7 @@ export async function PATCH(req:NextRequest) {
         const {title,thumbnail,thumbnailAlt,slug,itemMetaTitle,itemMetaDescription,itemOgType,itemOgImage} = await req.json();
         const gallery = await Gallery.findOneAndUpdate({_id:id},{title,thumbnail,thumbnailAlt,slug,metaTitle:itemMetaTitle,metaDescription:itemMetaDescription,ogType:itemOgType,ogImage:itemOgImage});
         if(gallery){
+            revalidateTag("all-galleries")
             return NextResponse.json({message: "Item updated successfully",success:true},{status: 200});
         }
         else{
@@ -94,6 +98,7 @@ export async function DELETE(req:NextRequest) {
         const id = searchParams.get("id");
         const gallery = await Gallery.findByIdAndDelete({_id:id});
         if(gallery){
+                revalidateTag("all-galleries")
                 return NextResponse.json({message: "Gallery deleted successfully",success:true},{status: 200});
             }else{
                 return NextResponse.json({message: "Error in deleting gallery",success:false},{status: 500});
