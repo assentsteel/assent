@@ -6,11 +6,11 @@ import { getFabrication } from "@/lib/services/fabrication.service";
 export async function generateMetadata(): Promise<Metadata> {
   const data = await getFabrication();
 
-  const metadataTitle = data?.metaTitle || "Assent";
+  const metadataTitle = data?.seo?.metaTitle || "Assent";
   const metadataDescription =
-    data?.metaDescription || "Assent";
-    const ogImage = data?.ogImage || ""
-    const ogType = (data?.ogType || "website") as "website";
+    data?.seo?.metaDescription || "Assent";
+    const ogImage = data?.seo?.ogImage || ""
+    const ogType = (data?.seo?.ogType || "website") as "website";
 
   return {
     title: metadataTitle,

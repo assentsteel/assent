@@ -1,12 +1,22 @@
 import { StaticImageData } from "next/image";
 
+export type Seo = {
+  metaTitle?: string;
+  metaDescription?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
+  ogType?: string;
+  twitterTitle?: string;
+  twitterDescription?: string;
+  twitterImage?: string;
+  schema?: string;
+};
+
 export type About = {
   banner: string;
   bannerAlt: string;
-  metaTitle: string;
-  metaDescription: string;
-  ogImage?: string;
-  ogType?: string;
+  seo?: Seo;
   pageTitle: string;
   firstSection: {
     mainTitle: string;
@@ -97,8 +107,14 @@ export type Gallery = {
     categories: categories[];
     metaTitle?: string;
     metaDescription?: string;
+    ogTitle?: string;
+    ogDescription?: string;
     ogType?: string;
     ogImage?: string;
+    twitterTitle?: string;
+    twitterDescription?: string;
+    twitterImage?: string;
+    schema?: string;
     index?: number;
   }[];
 export type Gallerydata = {
@@ -122,23 +138,41 @@ export type categories = {
   images: string[];
   metaTitle?: string;
   metaDescription?: string;
+  ogTitle?: string;
+  ogDescription?: string;
   ogType?: string;
   ogImage?: string;
+  twitterTitle?: string;
+  twitterDescription?: string;
+  twitterImage?: string;
+  schema?: string;
 };
 
 export type GalleryMeta = {
   metaTitle?: string;
   metaDescription?: string;
   pageTitle: string;
+  ogTitle?: string;
+  ogDescription?: string;
   ogType?: string;
   ogImage?: string;
+  twitterTitle?: string;
+  twitterDescription?: string;
+  twitterImage?: string;
+  schema?: string;
 };
 
 export type News = {
   metaTitle: string;
   metaDescription: string;
+  ogTitle?: string;
+  ogDescription?: string;
   ogImage?: string;
   ogType?: string;
+  twitterTitle?: string;
+  twitterDescription?: string;
+  twitterImage?: string;
+  schema?: string;
   pageTitle: string;
   banner: string;
   bannerAlt: string;
@@ -159,8 +193,14 @@ export type News = {
     createdAt: string;
     metaTitle: string;
     metaDescription: string;
+    ogTitle?: string;
+    ogDescription?: string;
     ogImage?: string;
     ogType?: string;
+    twitterTitle?: string;
+    twitterDescription?: string;
+    twitterImage?: string;
+    schema?: string;
     link?: string;
     _id: number;
     date: string;
@@ -178,6 +218,13 @@ export type Bogs = {
   date: string;
   metaTitle: string;
   metaDescription: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogType?: string;
+  ogImage?: string;
+  twitterTitle?: string;
+  twitterDescription?: string;
+  twitterImage?: string;
   _id: number;
   createdAt: string;
   seoSchema?: string;
@@ -185,8 +232,14 @@ export type Bogs = {
 export type Blogs = {
   metaTitle: string;
   metaDescription: string;
+  ogTitle?: string;
+  ogDescription?: string;
   ogImage?: string;
   ogType?: string;
+  twitterTitle?: string;
+  twitterDescription?: string;
+  twitterImage?: string;
+  schema?: string;
   pageTitle: string;
   banner: string;
   bannerAlt: string;
@@ -207,6 +260,14 @@ export type Blogs = {
     createdAt: string;
     metaTitle: string;
     metaDescription: string;
+    ogTitle?: string;
+    ogDescription?: string;
+    ogType?: string;
+    ogImage?: string;
+    twitterTitle?: string;
+    twitterDescription?: string;
+    twitterImage?: string;
+    seoSchema?: string;
     _id: number;
     date: string;
   }[];
@@ -254,8 +315,14 @@ export type Awards = {
   pageTitle: string;
   metaTitle: string;
   metaDescription: string;
+  ogTitle?: string;
+  ogDescription?: string;
   ogImage?: string;
   ogType?: string;
+  twitterTitle?: string;
+  twitterDescription?: string;
+  twitterImage?: string;
+  schema?: string;
   awards: [
     {
       file: string;
@@ -270,8 +337,14 @@ export type Career = {
   bannerAlt: string;
   metaTitle: string;
   metaDescription: string;
+  ogTitle?: string;
+  ogDescription?: string;
   ogImage?: string;
   ogType?: string;
+  twitterTitle?: string;
+  twitterDescription?: string;
+  twitterImage?: string;
+  schema?: string;
   pageTitle: string;
   firstSection: {
     title: string;
@@ -313,8 +386,14 @@ export type Contact = {
   bannerAlt: string;
   metaTitle: string;
   metaDescription: string;
+  ogTitle?: string;
+  ogDescription?: string;
   ogImage?: string;
   ogType?: string;
+  twitterTitle?: string;
+  twitterDescription?: string;
+  twitterImage?: string;
+  schema?: string;
   pageTitle: string;
   firstSection: {
     title: string;
@@ -336,8 +415,14 @@ export type Team = {
   bannerAlt: string;
   metaTitle: string;
   metaDescription: string;
+  ogTitle?: string;
+  ogDescription?: string;
   ogImage?: string;
   ogType?: string;
+  twitterTitle?: string;
+  twitterDescription?: string;
+  twitterImage?: string;
+  schema?: string;
   pageTitle: string;
   teamSection: {
     title: string;
@@ -358,8 +443,14 @@ export type Team = {
 export type Quality = {
   metaTitle: string;
   metaDescription: string;
+  ogTitle?: string;
+  ogDescription?: string;
   ogImage?: string;
   ogType?: string;
+  twitterTitle?: string;
+  twitterDescription?: string;
+  twitterImage?: string;
+  schema?: string;
   pageTitle: string;
   firstSection: {
     mainTitle: string;
@@ -406,8 +497,14 @@ export type Quality = {
 export type Hse = {
   metaTitle: string;
   metaDescription: string;
+  ogTitle?: string;
+  ogDescription?: string;
   ogImage?: string;
   ogType?: string;
+  twitterTitle?: string;
+  twitterDescription?: string;
+  twitterImage?: string;
+  schema?: string;
   pageTitle: string;
   firstSection: {
     title: string;
@@ -460,6 +557,14 @@ export type Hse = {
 export type Sustainability = {
   metaTitle: string;
   metaDescription: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
+  ogType?: string;
+  twitterTitle?: string;
+  twitterDescription?: string;
+  twitterImage?: string;
+  schema?: string;
   pageTitle: string;
   banner: string;
   bannerAlt: string;
@@ -644,10 +749,7 @@ export type SecondIntro = {
   secondDescription: string;
 };
 export type Engineering = {
-  metaTitle: string;
-  metaDescription: string;
-  ogImage?: string;
-  ogType?: string;
+  seo?: Seo;
   pageTitle: string;
   firstSection: {
     title: string;
@@ -734,10 +836,7 @@ export type whychoose = {
   ];
 };
 export type Fabrication = {
-  metaTitle: string;
-  metaDescription: string;
-  ogImage?: string;
-  ogType?: string;
+  seo?: Seo;
   pageTitle: string;
   firstSection: {
     title: string;
@@ -823,10 +922,7 @@ export type Boxgd = {
   ];
 };
 export type Blasting = {
-  metaTitle: string;
-  metaDescription: string;
-  ogImage?: string;
-  ogType?: string;
+  seo?: Seo;
   pageTitle: string;
   firstSection: {
     title: string;
@@ -874,10 +970,7 @@ export type Blasting = {
 };
 
 export type Services = {
-  metaTitle: string;
-  metaDescription: string;
-  ogImage?: string;
-  ogType?: string;
+  seo?: Seo;
   pageTitle: string;
   firstSection: {
     title: string;
@@ -945,10 +1038,7 @@ export type Partnerst = {
 
 
 export type GlobalPresence = {
-  metaTitle: string;
-  metaDescription: string;
-  ogImage?: string;
-  ogType?: string;
+  seo?: Seo;
   pageTitle: string;
   banner: string;
   bannerAlt: string;
@@ -1324,15 +1414,13 @@ export type Projectactaall = {
 export type Projectswfull = {
   banner: string;
   bannerAlt: string;
-  metaTitle: string;
-  metaDescription: string;
+  seo?: Seo;
   pageTitle: string;
   sector: string;
   location: string;
   categories: {
       name: string;
-      metaTitle: string;
-      metaDescription: string;
+      seo?: Seo;
       slug: string;
       projects: {
           _id: string;
@@ -1353,15 +1441,20 @@ export type Projectswfull = {
           thumbnailAlt: string;
           metaTitle: string;
           metaDescription: string;
+          ogTitle?: string;
+          ogDescription?: string;
+          ogType?: string;
+          ogImage?: string;
+          twitterTitle?: string;
+          twitterDescription?: string;
+          twitterImage?: string;
+          schema?: string;
           images: [string];
         }[];
     }[];
 };
 export type Home = {
-  metaTitle: string;
-  metaDescription: string;
-  ogImage?: string;
-  ogType?: string;
+  seo?: Seo;
   banner: string;
   bannerAlt: string;
   pageTitle: string;

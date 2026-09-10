@@ -1,19 +1,9 @@
 import mongoose from "mongoose";
+import seoSchema from "./Seo";
 
 const steelErectionSchema = new mongoose.Schema({
-    metaTitle:{
-        type:String,
-        required:true
-    },
-    metaDescription:{
-        type:String,
-        required:true
-    },
-    ogType:{
-        type:String
-    },
-    ogImage:{
-        type:String
+    seo: {
+        type: seoSchema,
     },
     pageTitle:{
         type:String,

@@ -13,19 +13,11 @@ const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
 import "react-quill-new/dist/quill.snow.css";
 import dynamic from "next/dynamic";
 import AdminItemContainer from "@/app/component/common/AdminItemContainer";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import SeoFields from "@/app/component/common/SeoFields";
+import { SeoFormValues } from "@/types/seo";
 
 interface GlobalPresenceFormProps {
-  metaTitle: string;
-  metaDescription: string;
-  ogType: string;
-  ogImage: string;
+  seo: SeoFormValues;
   banner: string;
   bannerAlt: string;
   pageTitle: string;
@@ -105,8 +97,7 @@ const GlobalPresencePage = () => {
         setValue("banner", data.data.banner);
         setValue("bannerAlt", data.data.bannerAlt);
         setValue("pageTitle", data.data.pageTitle);
-        setValue("metaTitle", data.data.metaTitle);
-        setValue("metaDescription", data.data.metaDescription);
+        setValue("seo", data.data.seo);
         setValue("firstSection", data.data.firstSection);
         setValue("secondSection", data.data.secondSection);
         setValue("secondSection.items", data.data.secondSection.items);
@@ -472,60 +463,7 @@ const GlobalPresencePage = () => {
           </div>
         </AdminItemContainer>
 
-        <div className="flex flex-col gap-2">
-          <Label className="font-bold">Meta Title</Label>
-          <Input
-            type="text"
-            placeholder="Meta Title"
-            {...register("metaTitle")}
-          />
-        </div>
-        <div className="flex flex-col gap-2">
-          <Label className="font-bold">Meta Description</Label>
-          <Input
-            type="text"
-            placeholder="Meta Description"
-            {...register("metaDescription")}
-          />
-        </div>
-
-        <div className="flex flex-col gap-2 w-1/2">
-          <Label className="font-bold">Og Type</Label>
-          <Controller
-            name={`ogType`}
-            control={control}
-            render={({ field }) => (
-              <Select
-                onValueChange={field.onChange}
-                value={field.value}
-                defaultValue="website"
-              >
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Select Style" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="website">website</SelectItem>
-                  <SelectItem value="article">article</SelectItem>
-                </SelectContent>
-              </Select>
-            )}
-          />
-        </div>
-
-        <div className="flex flex-col gap-2 w-1/2">
-          <Label className="font-bold">Og Image</Label>
-          <Controller
-            name={`ogImage`}
-            control={control}
-            render={({ field }) => (
-              <ImageUploader
-                value={field.value}
-                onChange={field.onChange}
-                isLogo
-              />
-            )}
-          />
-        </div>
+        <SeoFields<GlobalPresenceFormProps> control={control} register={register} errors={errors} />
 
         <div className="flex justify-center">
           <Button

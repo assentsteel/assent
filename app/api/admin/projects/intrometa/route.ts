@@ -1,18 +1,23 @@
 import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
-import GalleryMeta from "@/app/models/GalleryMeta";
+import Project from "@/app/models/Project";
+import { verifyAdmin } from "@/lib/verifyAdmin";
 import { revalidateTag } from "next/cache";
 
-export async function POST(req:NextRequest) {
+export async function POST(req: NextRequest) {
     try {
         await connectDB();
-        const { metaTitle, metaDescription, pageTitle,ogTitle,ogDescription,ogType,ogImage,twitterTitle,twitterDescription,twitterImage,schema } = await req.json();
-        const gallery = await GalleryMeta.findOneAndUpdate({}, { metaTitle, metaDescription, pageTitle,ogTitle,ogDescription,ogType,ogImage,twitterTitle,twitterDescription,twitterImage,schema },{upsert:true});
-        if(gallery){
-            revalidateTag("gallery-meta")
+        const isAdmin = await verifyAdmin(req);
+        if (!isAdmin) {
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
+        const { seo } = await req.json();
+        const project = await Project.findOneAndUpdate({}, { seo }, { upsert: true, new: true });
+        if (project) {
+            revalidateTag("all-project")
             return NextResponse.json({ message: "Details saved successfully" }, { status: 200 });
-        }else{
-            return NextResponse.json({ message: "Error saving  details" }, { status: 500 });
+        } else {
+            return NextResponse.json({ message: "Error saving details" }, { status: 500 });
         }
     } catch (error) {
         console.log("Error saving intro meta details", error);
@@ -23,10 +28,10 @@ export async function POST(req:NextRequest) {
 export async function GET() {
     try {
         await connectDB();
-        const gallery = await GalleryMeta.findOne({});
-        if(gallery){
-            return NextResponse.json({ success: true, data: gallery }, { status: 200 });
-        }else{
+        const project = await Project.findOne({});
+        if (project) {
+            return NextResponse.json({ success: true, data: project }, { status: 200 });
+        } else {
             return NextResponse.json({ success: false, message: "Error fetching details" }, { status: 500 });
         }
     } catch (error) {
@@ -34,7 +39,3 @@ export async function GET() {
         return NextResponse.json({ success: false, message: "Error fetching details" }, { status: 500 });
     }
 }
-
-
-
-    

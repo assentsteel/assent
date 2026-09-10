@@ -4,14 +4,38 @@ import Script from "next/script";
 import { Suspense } from "react";
 import { getContact } from "@/lib/services/contact.service";
 
+const parseSeoSchema = (schema?: string) => {
+  if (!schema) return null;
+
+  try {
+    const trimmedSchema = schema.trim();
+
+    if (!trimmedSchema) return null;
+
+    const scriptMatch = trimmedSchema.match(
+      /<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/i
+    );
+
+    const schemaContent = scriptMatch?.[1]?.trim() || trimmedSchema;
+    return JSON.parse(schemaContent);
+  } catch (error) {
+    console.error("Invalid contact seoSchema JSON-LD", error);
+    return null;
+  }
+};
+
 export async function generateMetadata(): Promise<Metadata> {
   const data = await getContact();
 
   const metadataTitle = data?.metaTitle || "Assent";
-  const metadataDescription =
-    data?.metaDescription || "Assent";
-  const ogImage = data?.ogImage || ""
+  const metadataDescription = data?.metaDescription || "Assent";
+  const ogTitle = data?.ogTitle || metadataTitle;
+  const ogDescription = data?.ogDescription || metadataDescription;
+  const ogImage = data?.ogImage || "";
   const ogType = (data?.ogType || "website") as "website";
+  const twitterTitle = data?.twitterTitle || metadataTitle;
+  const twitterDescription = data?.twitterDescription || metadataDescription;
+  const twitterImage = data?.twitterImage || ogImage;
 
   return {
     title: metadataTitle,
@@ -20,30 +44,32 @@ export async function generateMetadata(): Promise<Metadata> {
       canonical: "https://www.assentsteel.com/contact-us",
     },
     openGraph: {
-      title: metadataTitle,
-      description: metadataDescription,
+      title: ogTitle,
+      description: ogDescription,
       url: process.env.BASE_URL,
       siteName: "Assent",
-      images: [
-        {
-          url: ogImage,
-          width: 1200,
-          height: 630,
-          alt: metadataTitle,
-        },
-      ],
+      images: ogImage
+        ? [{ url: ogImage, width: 1200, height: 630, alt: ogTitle }]
+        : [],
       type: ogType,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: twitterTitle,
+      description: twitterDescription,
+      images: twitterImage ? [twitterImage] : [],
     },
   };
 }
 
 export default async function Page() {
   const data = await getContact();
+  const customSchema = parseSeoSchema(data?.schema);
 
   return (
     <>
       {/* Breadcrumb Schema */}
-      <Script
+      {/* <Script
         id="contact-schema"
         type="application/ld+json"
         strategy="lazyOnload"
@@ -73,7 +99,18 @@ export default async function Page() {
             ]
           }),
         }}
-      />
+      /> */}
+
+      {customSchema && (
+        <Script
+          id="contact-custom-schema"
+          type="application/ld+json"
+          strategy="lazyOnload"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(customSchema),
+          }}
+        />
+      )}
 
       <Suspense fallback={null}>
         <Index data={data} />

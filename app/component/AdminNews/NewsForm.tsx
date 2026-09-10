@@ -2,6 +2,7 @@
 
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import React, { useEffect, useState } from "react";
 import {
   Select,
@@ -34,8 +35,14 @@ interface NewsFormProps {
   coverImageAlt: string;
   metaTitle: string;
   metaDescription: string;
+  ogTitle: string;
+  ogDescription: string;
   ogType: string;
   ogImage: string;
+  twitterTitle: string;
+  twitterDescription: string;
+  twitterImage: string;
+  schema: string;
   images: string[];
   date: string;
 }
@@ -57,7 +64,6 @@ const NewsForm = ({ editMode }: { editMode?: boolean }) => {
 
   const handleAddNews = async (data: NewsFormProps) => {
     try {
-      console.log(data);
       const response = await fetch(
         editMode ? `/api/admin/news?id=${id}` : "/api/admin/news",
         {
@@ -92,12 +98,20 @@ const NewsForm = ({ editMode }: { editMode?: boolean }) => {
         setValue("coverImageAlt", data.data.coverImageAlt);
         setValue("metaTitle", data.data.metaTitle);
         setValue("metaDescription", data.data.metaDescription);
-        setValue("ogType", data.data.ogType);
-        setValue("ogImage", data.data.ogImage);
         setValue("images", data.data.images);
         const isoDate = new Date(data.data.date).toISOString().split("T")[0];
         setValue("date", isoDate);
         setImageUrls(data.data.images);
+        setValue("ogTitle", data.data.ogTitle);
+        setValue("ogDescription", data.data.ogDescription);
+        setValue("ogType", data.data.ogType);
+        setValue("ogImage", data.data.ogImage);
+        setValue("twitterTitle", data.data.twitterTitle);
+        setValue("twitterDescription", data.data.twitterDescription);
+        setValue("twitterImage", data.data.twitterImage);
+        setValue("schema", data.data.schema);
+        
+        
       } else {
         const data = await response.json();
         alert(data.message);
@@ -302,7 +316,7 @@ const NewsForm = ({ editMode }: { editMode?: boolean }) => {
               />
             </div>
             <div className="mt-4 grid grid-cols-3 gap-4">
-              {imageUrls.map((url, index) => (
+              {imageUrls?.map((url, index) => (
                 <div key={index} className="relative h-40">
                   <Image
                     src={url}
@@ -358,6 +372,14 @@ const NewsForm = ({ editMode }: { editMode?: boolean }) => {
               <Label>Meta Description</Label>
               <Input type="text" {...register("metaDescription")} />
             </div>
+            <div>
+              <Label>Og Title</Label>
+              <Input type="text" placeholder="Falls back to Meta Title if empty" {...register("ogTitle")} />
+            </div>
+            <div>
+              <Label>Og Description</Label>
+              <Input type="text" placeholder="Falls back to Meta Description if empty" {...register("ogDescription")} />
+            </div>
             <div className="flex flex-col gap-2 w-1/2">
               <Label className="font-bold">Og Type</Label>
               <Controller
@@ -393,6 +415,32 @@ const NewsForm = ({ editMode }: { editMode?: boolean }) => {
                   />
                 )}
               />
+            </div>
+
+            <div>
+              <Label>Twitter Title</Label>
+              <Input type="text" placeholder="Falls back to Meta Title if empty" {...register("twitterTitle")} />
+            </div>
+            <div>
+              <Label>Twitter Description</Label>
+              <Input type="text" placeholder="Falls back to Meta Description if empty" {...register("twitterDescription")} />
+            </div>
+            <div className="flex flex-col gap-2 w-1/2">
+              <Label className="font-bold">Twitter Image</Label>
+              <Controller
+                name={`twitterImage`}
+                control={control}
+                render={({ field }) => (
+                  <ImageUploader
+                    value={field.value}
+                    onChange={field.onChange}
+                  />
+                )}
+              />
+            </div>
+            <div>
+              <Label>Schema</Label>
+              <Textarea className="font-mono text-sm" rows={8} placeholder='{ "@context": "https://schema.org", "@type": "WebPage", ... }' {...register("schema")} />
             </div>
           </div>
         </div>

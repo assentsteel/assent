@@ -44,13 +44,20 @@ export async function generateMetadata({
 
   const canonicalUrl = `https://www.assentsteel.com/blogs/${slug}`
 
+  const ogTitle = blog.ogTitle || blog.metaTitle
+  const ogDescription = blog.ogDescription || blog.metaDescription
+  const ogImage = blog.ogImage || blog.thumbnail
+  const twitterTitle = blog.twitterTitle || blog.metaTitle
+  const twitterDescription = blog.twitterDescription || blog.metaDescription
+  const twitterImage = blog.twitterImage || ogImage
+
   return {
     title: blog.metaTitle,
     description: blog.metaDescription,
 
     alternates: {
       canonical: canonicalUrl,
-      
+
     },
 
 
@@ -59,19 +66,20 @@ export async function generateMetadata({
       : { index: true, follow: true },
 
     openGraph: {
-      title: blog.metaTitle,
-      description: blog.metaDescription,
+      title: ogTitle,
+      description: ogDescription,
       url: canonicalUrl,
       siteName: "Assent",
-      images: [
-        {
-          url: blog.thumbnail,
-          width: 1200,
-          height: 630,
-          alt: blog.mainTitle,
-        },
-      ],
-      type: "article",
+      images: ogImage
+        ? [{ url: ogImage, width: 1200, height: 630, alt: ogTitle }]
+        : [],
+      type: (blog.ogType || "article") as "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: twitterTitle,
+      description: twitterDescription,
+      images: twitterImage ? [twitterImage] : [],
     },
   }
 }

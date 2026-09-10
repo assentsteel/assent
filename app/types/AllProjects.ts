@@ -1,17 +1,17 @@
+import { Seo } from "@/public/types/Common";
+
 export type AllProjects = {
 data:{ 
     
       banner: string,
       bannerAlt: string,
-      metaTitle: string,
-      metaDescription: string,
+      seo?: Seo,
       pageTitle: string,
       sector: string,
       location: string,
       categories: {
           name: string,
-          metaTitle: string,
-          metaDescription: string,
+          seo?: Seo,
           slug: string,
           projects: {
               _id: string,
@@ -32,6 +32,14 @@ data:{
               thumbnailAlt: string,
               metaTitle: string,
               metaDescription: string,
+              ogTitle?: string,
+              ogDescription?: string,
+              ogType?: string,
+              ogImage?: string,
+              twitterTitle?: string,
+              twitterDescription?: string,
+              twitterImage?: string,
+              schema?: string,
               images: [
                 string
               ]

@@ -7,10 +7,10 @@ import { revalidateTag } from "next/cache";
 export async function POST(req:NextRequest) {
     try {
         await connectDB();
-        const {mainTitle,subTitle,slug,content,images,category,metaTitle,metaDescription,thumbnail,thumbnailAlt,coverImage,coverImageAlt,date,ogType,ogImage,link} = await req.json();
+        const {mainTitle,subTitle,slug,content,images,category,metaTitle,metaDescription,ogTitle,ogDescription,thumbnail,thumbnailAlt,coverImage,coverImageAlt,date,ogType,ogImage,twitterTitle,twitterDescription,twitterImage,schema,link} = await req.json();
         const news = await News.findOne({})
         if(news){
-            news.news.push({mainTitle,subTitle,slug,content,images,category,metaTitle,metaDescription,thumbnail,thumbnailAlt,coverImage,coverImageAlt,date,ogType,ogImage,link})
+            news.news.push({mainTitle,subTitle,slug,content,images,category,metaTitle,metaDescription,ogTitle,ogDescription,thumbnail,thumbnailAlt,coverImage,coverImageAlt,date,ogType,ogImage,twitterTitle,twitterDescription,twitterImage,schema,link})
             await news.save()
             revalidateTag("all-news");
             revalidateTag("indi-news");
@@ -30,14 +30,14 @@ export async function PATCH(req:NextRequest) {
         await connectDB();
         const {searchParams} = new URL(req.url);
         const id = searchParams.get("id");
-        const {mainTitle,subTitle,slug,content,images,category,metaTitle,metaDescription,thumbnail,thumbnailAlt,coverImage,coverImageAlt,date,ogType,ogImage, link} = await req.json();
+        const {mainTitle,subTitle,slug,content,images,category,metaTitle,metaDescription,ogTitle,ogDescription,thumbnail,thumbnailAlt,coverImage,coverImageAlt,date,ogType,ogImage,twitterTitle,twitterDescription,twitterImage,schema,link} = await req.json();
         console.log(date)
         const news = await News.findOne({});
         if(news){
             news.news = news.news.map((news:{_id:string}) => {
                 if(news._id.toString() === id){
                     console.log(date)
-                    return {mainTitle,subTitle,slug,content,images,category,metaTitle,metaDescription,thumbnail,thumbnailAlt,coverImage,coverImageAlt,date,ogType,ogImage,link}
+                    return {mainTitle,subTitle,slug,content,images,category,metaTitle,metaDescription,ogTitle,ogDescription,thumbnail,thumbnailAlt,coverImage,coverImageAlt,date,ogType,ogImage,twitterTitle,twitterDescription,twitterImage,schema,link}
                 }
                 return news
             })

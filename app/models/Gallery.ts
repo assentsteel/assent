@@ -28,8 +28,14 @@ const gallerySchema = new mongoose.Schema({
         images:[{type:String}],
         metaTitle:{type:String},
         metaDescription:{type:String},
+        ogTitle:{type:String},
+        ogDescription:{type:String},
         ogType:{type:String},
-        ogImage:{type:String}
+        ogImage:{type:String},
+        twitterTitle:{type:String},
+        twitterDescription:{type:String},
+        twitterImage:{type:String},
+        schema:{type:String}
     }],
     metaTitle: {
         type: String,
@@ -37,10 +43,28 @@ const gallerySchema = new mongoose.Schema({
     metaDescription: {
         type: String,
     },
+    ogTitle: {
+        type: String,
+    },
+    ogDescription: {
+        type: String,
+    },
     ogType: {
         type: String,
     },
     ogImage: {
+        type: String,
+    },
+    twitterTitle: {
+        type: String,
+    },
+    twitterDescription: {
+        type: String,
+    },
+    twitterImage: {
+        type: String,
+    },
+    schema: {
         type: String,
     },
     index: { type: Number, default: 0 },

@@ -6,14 +6,20 @@ import { revalidateTag } from "next/cache";
 export async function POST(req:NextRequest) {
     try {
         await connectDB();
-        const { metaTitle, metaDescription, pageTitle, ogType, ogImage } = await req.json();
+        const { metaTitle, metaDescription, pageTitle, ogTitle, ogDescription, ogType, ogImage, twitterTitle, twitterDescription, twitterImage, schema } = await req.json();
         const news = await News.findOne({});
         if(news){
             news.metaTitle = metaTitle;
             news.metaDescription = metaDescription;
             news.pageTitle = pageTitle;
+            news.ogTitle = ogTitle;
+            news.ogDescription = ogDescription;
             news.ogType = ogType;
             news.ogImage = ogImage;
+            news.twitterTitle = twitterTitle;
+            news.twitterDescription = twitterDescription;
+            news.twitterImage = twitterImage;
+            news.schema = schema;
             await news.save();
             revalidateTag("all-news")
             return NextResponse.json({ message: "Details saved successfully" }, { status: 200 });

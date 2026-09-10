@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import seoSchema from "./Seo";
 
 const aboutSchema = new mongoose.Schema({
     banner:{
@@ -8,19 +9,8 @@ const aboutSchema = new mongoose.Schema({
     bannerAlt:{
         type:String,
     },
-    metaTitle:{
-        type:String,
-        required:true
-    },
-    metaDescription:{
-        type:String,
-        required:true
-    },
-    ogType:{
-        type:String
-    },
-    ogImage:{
-        type:String
+    seo: {
+        type: seoSchema,
     },
     pageTitle:{
         type:String,
