@@ -33,8 +33,13 @@ interface BlogsFormProps {
     coverImageAlt: string;
     metaTitle: string;
     metaDescription: string;
+    ogTitle: string;
+    ogDescription: string;
     ogType: string;
     ogImage: string;
+    twitterTitle: string;
+    twitterDescription: string;
+    twitterImage: string;
     images: string[];
     date: string;
     schema: string;
@@ -93,8 +98,13 @@ const BlogsForm = ({ editMode }: { editMode?: boolean }) => {
                 setValue("coverImageAlt", data.data.coverImageAlt);
                 setValue("metaTitle", data.data.metaTitle);
                 setValue("metaDescription", data.data.metaDescription);
+                setValue("ogTitle", data.data.ogTitle);
+                setValue("ogDescription", data.data.ogDescription);
                 setValue("ogType", data.data.ogType);
                 setValue("ogImage", data.data.ogImage);
+                setValue("twitterTitle", data.data.twitterTitle);
+                setValue("twitterDescription", data.data.twitterDescription);
+                setValue("twitterImage", data.data.twitterImage);
                 setValue("images", data.data.images);
                 const isoDate = new Date(data.data.date).toISOString().split("T")[0];
                 setValue("date", isoDate);
@@ -357,6 +367,14 @@ const BlogsForm = ({ editMode }: { editMode?: boolean }) => {
                             <Label>Meta Description</Label>
                             <Input type="text" {...register("metaDescription")} />
                         </div>
+                        <div>
+                            <Label>Og Title</Label>
+                            <Input type="text" placeholder="Falls back to Meta Title if empty" {...register("ogTitle")} />
+                        </div>
+                        <div>
+                            <Label>Og Description</Label>
+                            <Input type="text" placeholder="Falls back to Meta Description if empty" {...register("ogDescription")} />
+                        </div>
                         <div className="flex flex-col gap-2 w-1/2">
                             <Label className="font-bold">Og Type</Label>
                             <Controller
@@ -384,6 +402,28 @@ const BlogsForm = ({ editMode }: { editMode?: boolean }) => {
                             <Label className="font-bold">Og Image</Label>
                             <Controller
                                 name={`ogImage`}
+                                control={control}
+                                render={({ field }) => (
+                                    <ImageUploader
+                                        value={field.value}
+                                        onChange={field.onChange}
+                                    />
+                                )}
+                            />
+                        </div>
+
+                        <div>
+                            <Label>Twitter Title</Label>
+                            <Input type="text" placeholder="Falls back to Meta Title if empty" {...register("twitterTitle")} />
+                        </div>
+                        <div>
+                            <Label>Twitter Description</Label>
+                            <Input type="text" placeholder="Falls back to Meta Description if empty" {...register("twitterDescription")} />
+                        </div>
+                        <div className="flex flex-col gap-2 w-1/2">
+                            <Label className="font-bold">Twitter Image</Label>
+                            <Controller
+                                name={`twitterImage`}
                                 control={control}
                                 render={({ field }) => (
                                     <ImageUploader

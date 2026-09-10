@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import seoSchema from "./Seo";
 
 const projectSchema = new mongoose.Schema({
     banner:{
@@ -7,11 +8,8 @@ const projectSchema = new mongoose.Schema({
     bannerAlt:{
         type:String,
     },
-    metaTitle:{
-        type:String,
-    },
-    metaDescription:{
-        type:String,
+    seo: {
+        type: seoSchema,
     },
     pageTitle:{
         type:String,
@@ -26,11 +24,8 @@ const projectSchema = new mongoose.Schema({
         name:{
             type:String,
         },
-        metaTitle:{
-            type:String,
-        },
-        metaDescription:{
-            type:String,
+        seo: {
+            type: seoSchema,
         },
         slug:{
             type:String,
@@ -87,10 +82,28 @@ const projectSchema = new mongoose.Schema({
             metaDescription:{
                 type:String,
             },
+            ogTitle:{
+                type:String
+            },
+            ogDescription:{
+                type:String
+            },
             ogType:{
                 type:String
             },
             ogImage:{
+                type:String
+            },
+            twitterTitle:{
+                type:String
+            },
+            twitterDescription:{
+                type:String
+            },
+            twitterImage:{
+                type:String
+            },
+            schema:{
                 type:String
             },
             images:[String],

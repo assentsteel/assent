@@ -5,11 +5,11 @@ import { getAbout } from "@/lib/services/about.service";
 export async function generateMetadata(): Promise<Metadata> {
   const data = await getAbout();
 
-  const metadataTitle = data?.metaTitle || "Assent";
+  const metadataTitle = data?.seo?.metaTitle || "Assent";
   const metadataDescription =
-    data?.metaDescription || "Assent";
-  const ogImage = data?.ogImage || ""
-  const ogType = (data?.ogType || "website") as "website";
+    data?.seo?.metaDescription || "Assent";
+  const ogImage = data?.seo?.ogImage || ""
+  const ogType = (data?.seo?.ogType || "website") as "website";
 
   return {
     title: metadataTitle,

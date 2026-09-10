@@ -1,15 +1,41 @@
 import Index from "@/app/component/Quality";
 
 import { Metadata } from "next";
+import Script from "next/script";
 import { getQuality } from "@/lib/services/quality.service";
+
+const parseSeoSchema = (schema?: string) => {
+  if (!schema) return null;
+
+  try {
+    const trimmedSchema = schema.trim();
+
+    if (!trimmedSchema) return null;
+
+    const scriptMatch = trimmedSchema.match(
+      /<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/i
+    );
+
+    const schemaContent = scriptMatch?.[1]?.trim() || trimmedSchema;
+    return JSON.parse(schemaContent);
+  } catch (error) {
+    console.error("Invalid quality seoSchema JSON-LD", error);
+    return null;
+  }
+};
 
 export async function generateMetadata(): Promise<Metadata> {
   const data = await getQuality();
 
   const metadataTitle = data?.metaTitle || "Assent";
   const metadataDescription = data?.metaDescription || "Assent";
-  const ogImage = data?.ogImage || ""
+  const ogTitle = data?.ogTitle || metadataTitle;
+  const ogDescription = data?.ogDescription || metadataDescription;
+  const ogImage = data?.ogImage || "";
   const ogType = (data?.ogType || "website") as "website";
+  const twitterTitle = data?.twitterTitle || metadataTitle;
+  const twitterDescription = data?.twitterDescription || metadataDescription;
+  const twitterImage = data?.twitterImage || ogImage;
 
 return {
   title: metadataTitle,
@@ -18,27 +44,38 @@ return {
     canonical: "https://www.assentsteel.com/quality",
   },
   openGraph: {
-    title: metadataTitle,
-    description: metadataDescription,
+    title: ogTitle,
+    description: ogDescription,
     url: process.env.BASE_URL,
     siteName: "Assent",
-    images: [
-      {
-        url: ogImage,
-        width: 1200,
-        height: 630,
-        alt: metadataTitle,
-      },
-    ],
+    images: ogImage
+      ? [{ url: ogImage, width: 1200, height: 630, alt: ogTitle }]
+      : [],
     type: ogType,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: twitterTitle,
+    description: twitterDescription,
+    images: twitterImage ? [twitterImage] : [],
   },
 };
 }
 
 export default async function Page() {
   const data = await getQuality();
+  const customSchema = parseSeoSchema(data?.schema);
   return (
     <>
+      {customSchema && (
+        <Script
+          id="quality-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(customSchema),
+          }}
+        />
+      )}
       <Index data={data} />
     </>
   );

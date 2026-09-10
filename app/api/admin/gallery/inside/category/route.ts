@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({message:"Gallery not found"}, { status: 404 });
         }
         if(id){
-            gallery.categories.push({title:body.name,slug:body.slug,thumbnail:body.thumbnail,altText:body.altText,images:[],metaTitle:body.metaTitle,metaDescription:body.metaDescription,ogType:body.ogType,ogImage:body.ogImage})
+            gallery.categories.push({title:body.name,slug:body.slug,thumbnail:body.thumbnail,altText:body.altText,images:[],metaTitle:body.metaTitle,metaDescription:body.metaDescription,ogTitle:body.ogTitle,ogDescription:body.ogDescription,ogType:body.ogType,ogImage:body.ogImage,twitterTitle:body.twitterTitle,twitterDescription:body.twitterDescription,twitterImage:body.twitterImage,schema:body.schema})
             await gallery.save();
             revalidateTag("all-galleries")
             return NextResponse.json({message:"Gallery item updated successfully"}, { status: 200 });
@@ -76,8 +76,14 @@ export async function PATCH(request: NextRequest) {
         toUpdateCategory.altText = body.altText;
         toUpdateCategory.metaTitle = body.metaTitle;
         toUpdateCategory.metaDescription = body.metaDescription;
+        toUpdateCategory.ogTitle = body.ogTitle;
+        toUpdateCategory.ogDescription = body.ogDescription;
         toUpdateCategory.ogType = body.ogType;
         toUpdateCategory.ogImage = body.ogImage;
+        toUpdateCategory.twitterTitle = body.twitterTitle;
+        toUpdateCategory.twitterDescription = body.twitterDescription;
+        toUpdateCategory.twitterImage = body.twitterImage;
+        toUpdateCategory.schema = body.schema;
         await gallery.save();
         revalidateTag("all-galleries")
         return NextResponse.json({message:"Category updated successfully"}, { status: 200 });

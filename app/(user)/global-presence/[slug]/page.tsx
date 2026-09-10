@@ -14,8 +14,10 @@ export async function generateMetadata({
 
   const data = await getGlobalPresenceCountry(slug);
 
-  const metadataTitle = data?.metaTitle || "Assent";
-  const metadataDescription = data?.metaDescription || "Assent";
+  const metadataTitle = data?.seo?.metaTitle || "Assent";
+  const metadataDescription = data?.seo?.metaDescription || "Assent";
+  const ogImage = data?.seo?.ogImage || "";
+  const ogType = (data?.seo?.ogType || "website") as "website";
   const canonicalUrl = `https://www.assentsteel.com/global-presence/${slug}`;
 
   return {
@@ -27,7 +29,10 @@ export async function generateMetadata({
       description: metadataDescription,
       url: process.env.BASE_URL,
       siteName: "Assent",
-      type: "website",
+      images: ogImage
+        ? [{ url: ogImage, width: 1200, height: 630, alt: metadataTitle }]
+        : [],
+      type: ogType,
     },
   };
 }

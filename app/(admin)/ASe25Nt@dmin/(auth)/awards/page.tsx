@@ -17,12 +17,18 @@ import { ImageUploader } from "@/components/ui/image-uploader";
 import { FileUploader } from "@/components/ui/file-uploader";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useForm, Controller } from "react-hook-form";
+import { Textarea } from "@/components/ui/textarea";
 
 
 export default function News() {
 
   const [metaTitle, setMetaTitle] = useState<string>("");
   const [metaDescription, setMetaDescription] = useState<string>("");
+  const [ogTitle, setOgTitle] = useState<string>("");
+  const [ogDescription, setOgDescription] = useState<string>("");
+  const [twitterTitle, setTwitterTitle] = useState<string>("");
+  const [twitterDescription, setTwitterDescription] = useState<string>("");
+  const [schema, setSchema] = useState<string>("");
   const [pageTitle, setPageTitle] = useState<string>("");
   const [title, setTitle] = useState<string>("");
   const [image, setImage] = useState<string>("");
@@ -69,8 +75,14 @@ export default function News() {
         setPageTitle(data.data.pageTitle);
         setBanner(data.data.banner);
         setBannerAlt(data.data.bannerAlt);
+        setOgTitle(data.data.ogTitle);
+        setOgDescription(data.data.ogDescription);
+        setTwitterTitle(data.data.twitterTitle);
+        setTwitterDescription(data.data.twitterDescription);
+        setSchema(data.data.schema);
         setValue("ogType",data.data.ogType);
         setValue("ogImage",data.data.ogImage);
+        setValue("twitterImage",data.data.twitterImage);
         setAwardList(data.data.awards);
       }else{
         const data = await response.json();
@@ -128,7 +140,7 @@ export default function News() {
     try {
       const response = await fetch("/api/admin/awards/intrometa",{
         method: "POST",
-        body: JSON.stringify({ metaTitle, metaDescription, pageTitle, banner, bannerAlt,ogType:getValues("ogType"),ogImage:getValues("ogImage") }),
+        body: JSON.stringify({ metaTitle, metaDescription, pageTitle, banner, bannerAlt,ogTitle,ogDescription,ogType:getValues("ogType"),ogImage:getValues("ogImage"),twitterTitle,twitterDescription,twitterImage:getValues("twitterImage"),schema }),
       });
       if(response.ok) {
         const data = await response.json();
@@ -178,6 +190,14 @@ export default function News() {
                                           <Label>Meta Description</Label>
                                           <Input type="text" value={metaDescription} onChange={(e) => setMetaDescription(e.target.value)} />
                                       </div>
+                                      <div>
+                                          <Label>Og Title</Label>
+                                          <Input type="text" placeholder="Falls back to Meta Title if empty" value={ogTitle} onChange={(e) => setOgTitle(e.target.value)} />
+                                      </div>
+                                      <div>
+                                          <Label>Og Description</Label>
+                                          <Input type="text" placeholder="Falls back to Meta Description if empty" value={ogDescription} onChange={(e) => setOgDescription(e.target.value)} />
+                                      </div>
                                       <div className='flex flex-col gap-2 w-1/2'>
                 <Label className='font-bold'>Og Type</Label>
                                                 <Controller
@@ -213,7 +233,7 @@ export default function News() {
                                                 <Controller
                                                     name={`ogImage`}
                                                     control={control}
-                                                    
+
                                                     render={({ field }) => (
                                                         <ImageUploader
                                                             value={field.value}
@@ -222,6 +242,33 @@ export default function News() {
                                                         />
                                                     )}
                                                 />
+                                            </div>
+
+                                            <div>
+                                                <Label>Twitter Title</Label>
+                                                <Input type="text" placeholder="Falls back to Meta Title if empty" value={twitterTitle} onChange={(e) => setTwitterTitle(e.target.value)} />
+                                            </div>
+                                            <div>
+                                                <Label>Twitter Description</Label>
+                                                <Input type="text" placeholder="Falls back to Meta Description if empty" value={twitterDescription} onChange={(e) => setTwitterDescription(e.target.value)} />
+                                            </div>
+                                            <div className='flex flex-col gap-2 w-1/2'>
+                                                <Label className='font-bold'>Twitter Image</Label>
+                                                <Controller
+                                                    name={`twitterImage`}
+                                                    control={control}
+                                                    render={({ field }) => (
+                                                        <ImageUploader
+                                                            value={field.value}
+                                                            onChange={field.onChange}
+                                                            isLogo
+                                                        />
+                                                    )}
+                                                />
+                                            </div>
+                                            <div>
+                                                <Label>Schema</Label>
+                                                <Textarea className="font-mono text-sm" rows={8} placeholder='{ "@context": "https://schema.org", "@type": "WebPage", ... }' value={schema} onChange={(e) => setSchema(e.target.value)} />
                                             </div>
                                   </div>
                               </div>

@@ -2,6 +2,7 @@
 
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { Textarea } from '@/components/ui/textarea'
 import React, { useEffect, useState } from 'react'
 import {
     Select,
@@ -47,8 +48,14 @@ interface ProjectFormProps {
     thumbnailAlt: string;
     metaTitle: string;
     metaDescription: string;
+    ogTitle:string;
+    ogDescription:string;
     ogType:string;
     ogImage:string;
+    twitterTitle:string;
+    twitterDescription:string;
+    twitterImage:string;
+    schema:string;
     images: string []
 }
 
@@ -101,8 +108,14 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                 setValue("thumbnailAlt", data.data.thumbnailAlt);
                 setValue("metaTitle", data.data.metaTitle);
                 setValue("metaDescription", data.data.metaDescription);
+                setValue("ogTitle", data.data.ogTitle);
+                setValue("ogDescription", data.data.ogDescription);
                 setValue("ogType", data.data.ogType);
                 setValue("ogImage", data.data.ogImage);
+                setValue("twitterTitle", data.data.twitterTitle);
+                setValue("twitterDescription", data.data.twitterDescription);
+                setValue("twitterImage", data.data.twitterImage);
+                setValue("schema", data.data.schema);
                 setValue("images", data.data.images);
                 setImageUrls(data.data.images);
             } else {
@@ -426,6 +439,14 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                             <Label>Meta Description</Label>
                             <Input type="text" {...register("metaDescription")} />
                         </div>
+                        <div>
+                            <Label>Og Title</Label>
+                            <Input type="text" placeholder="Falls back to Meta Title if empty" {...register("ogTitle")} />
+                        </div>
+                        <div>
+                            <Label>Og Description</Label>
+                            <Input type="text" placeholder="Falls back to Meta Description if empty" {...register("ogDescription")} />
+                        </div>
                         <div className='flex flex-col gap-2 w-1/2'>
                 <Label className='font-bold'>Og Type</Label>
                                                 <Controller
@@ -470,6 +491,33 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                                                         />
                                                     )}
                                                 />
+                                            </div>
+
+                                            <div>
+                                                <Label>Twitter Title</Label>
+                                                <Input type="text" placeholder="Falls back to Meta Title if empty" {...register("twitterTitle")} />
+                                            </div>
+                                            <div>
+                                                <Label>Twitter Description</Label>
+                                                <Input type="text" placeholder="Falls back to Meta Description if empty" {...register("twitterDescription")} />
+                                            </div>
+                                            <div className='flex flex-col gap-2 w-1/2'>
+                                                <Label className='font-bold'>Twitter Image</Label>
+                                                <Controller
+                                                    name={`twitterImage`}
+                                                    control={control}
+                                                    render={({ field }) => (
+                                                        <ImageUploader
+                                                            value={field.value}
+                                                            onChange={field.onChange}
+                                                            isLogo
+                                                        />
+                                                    )}
+                                                />
+                                            </div>
+                                            <div>
+                                                <Label>Schema</Label>
+                                                <Textarea className="font-mono text-sm" rows={8} placeholder='{ "@context": "https://schema.org", "@type": "WebPage", ... }' {...register("schema")} />
                                             </div>
                     </div>
                 </div>
