@@ -94,6 +94,23 @@ const steelErectionSchema = new mongoose.Schema({
                 required:true
             }
         }]
+    },
+    fifthSection:{
+        title:{
+            type:String
+        },
+        items:[
+            {
+                title:{
+                    type:String,
+                    required:true
+                },
+                description:{
+                    type:String,
+                    required:true
+                }
+            }
+        ]
     }
 })
 

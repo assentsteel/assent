@@ -228,6 +228,13 @@ export type Bogs = {
   _id: number;
   createdAt: string;
   seoSchema?: string;
+  faqSection?: {
+    title: string;
+    items: {
+      title: string;
+      description: string;
+    }[];
+  };
 }
 export type Blogs = {
   metaTitle: string;
@@ -916,6 +923,15 @@ export type Fabrication = {
       }
     ];
   };
+  seventhSection: {
+    title: string;
+    items: [
+      {
+        title: string;
+        description: string;
+      }
+    ];
+  };
 };
 export type Boxgd = {
   title: string;
@@ -976,6 +992,15 @@ export type Blasting = {
       }
     ];
   };
+  sixthSection: {
+    title: string;
+    items: [
+      {
+        title: string;
+        description: string;
+      }
+    ];
+  };
 };
 
 export type Services = {
@@ -1015,6 +1040,15 @@ export type Services = {
       {
         logo: string;
         logoAlt: string;
+        title: string;
+        description: string;
+      }
+    ];
+  };
+  fifthSection: {
+    title: string;
+    items: [
+      {
         title: string;
         description: string;
       }

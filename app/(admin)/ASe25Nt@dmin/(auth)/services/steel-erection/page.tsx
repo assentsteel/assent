@@ -53,6 +53,13 @@ interface SteelErectionFormProps {
             logo:string;
         }[]
     };
+    fifthSection: {
+        title: string;
+        items: {
+            title: string;
+            description: string;
+        }[]
+    };
 }
 
 const SteelErectionPage = () => {
@@ -74,6 +81,11 @@ const SteelErectionPage = () => {
     const { fields: fourthSectionItems, append: fourthSectionAppend, remove: fourthSectionRemove } = useFieldArray({
         control,
         name: "fourthSection.items"
+    });
+
+    const { fields: fifthSectionItems, append: fifthSectionAppend, remove: fifthSectionRemove } = useFieldArray({
+        control,
+        name: "fifthSection.items"
     });
 
 
@@ -107,6 +119,8 @@ const SteelErectionPage = () => {
                 setValue("thirdSection.items", data.data.thirdSection.items);
                 setValue("fourthSection", data.data.fourthSection);
                 setValue("fourthSection.items", data.data.fourthSection.items);
+                setValue("fifthSection", data.data.fifthSection);
+                setValue("fifthSection.items", data.data.fifthSection?.items);
             } else {
                 const data = await response.json();
                 alert(data.message);
@@ -465,7 +479,53 @@ const SteelErectionPage = () => {
 
                 </AdminItemContainer>
 
+                <AdminItemContainer>
+                    <Label main>Fifth Section (FAQ)</Label>
+                    <div className='p-5 rounded-md flex flex-col gap-2'>
+                        <div className='flex flex-col gap-1'>
+                            <Label className='font-bold'>Title</Label>
+                            <Input type='text' placeholder='Title' {...register("fifthSection.title", {
+                                required: "Title is required"
+                            })} />
+                            {errors.fifthSection?.title && <p className='text-red-500'>{errors.fifthSection?.title.message}</p>}
+                        </div>
 
+                        <div>
+                            <Label className='font-bold'>Items</Label>
+                            <div className='border p-2 rounded-md flex flex-col gap-5'>
+
+                                {fifthSectionItems.map((field, index) => (
+                                    <div key={field.id} className='flex flex-col gap-2 relative border-b p-2 pb-5 last:border-b-0'>
+                                        <div className='absolute top-2 right-2'>
+                                            <RiDeleteBinLine onClick={() => fifthSectionRemove(index)} className='cursor-pointer text-red-600' />
+                                        </div>
+
+                                        <div className='flex flex-col gap-2'>
+                                            <Label className='font-bold'>Question</Label>
+                                            <Input type='text' placeholder='Question' {...register(`fifthSection.items.${index}.title`, {
+                                                required: "Value is required"
+                                            })} />
+                                            {errors.fifthSection?.items?.[index]?.title && <p className='text-red-500'>{errors.fifthSection?.items?.[index]?.title.message}</p>}
+                                        </div>
+
+                                        <div className='flex flex-col gap-2'>
+                                            <Label className='font-bold'>Answer</Label>
+                                            <Textarea placeholder='Answer' {...register(`fifthSection.items.${index}.description`, {
+                                                required: "Value is required"
+                                            })} />
+                                            {errors.fifthSection?.items?.[index]?.description && <p className='text-red-500'>{errors.fifthSection?.items?.[index]?.description.message}</p>}
+                                        </div>
+                                    </div>
+                                ))}
+
+                                <div className='flex justify-end'>
+                                    <Button type='button' addItem onClick={() => fifthSectionAppend({ title: "", description: "" })}>Add Item</Button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </AdminItemContainer>
 
 
                 <SeoFields<SteelErectionFormProps> control={control} register={register} errors={errors} />

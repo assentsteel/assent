@@ -37,7 +37,7 @@ const Index = async ({ data }: { data: Engineering }) => {
       <SingleImageText data={data.fourthSection} maxwidth={'max-w-[68ch]'} textright={true} />
       <Packages data={data}    />
       <WhyChoose data={data.sixthSection} />
-      <Faq data={data.seventhSection} />
+      {data?.seventhSection?.title && <Faq data={data.seventhSection} />}
 
     </>
   );

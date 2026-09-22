@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 // import { assets } from "@/public/assets/assets";
 import MoreBlogs from "./MoreBlogs";
+import Faq from "../../common/Faq";
 gsap.registerPlugin(ScrollTrigger);
 // import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -91,53 +92,61 @@ const BlogDetails = ({ data }: { data: Bogs }) => {
     exit: { opacity: 0, x: -30, transition: { duration: 0.4 } },
   };
   return (
-    <section className="pb-[50px] md:pb-[70px] xl:pb-[100px] overflow-hidden relative ">
-      <div className="container">
-        <div className="flex flex-col lg:flex-row ">
-          <div className={`lg:w-5/6 pr-4 lg:pr-6 xxl:pr-[135px] `}>
-            <div  >
-              <div>
-                <motion.div
-                  variants={slideInLeft}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.3 }}
-                  exit="exit"
-                  className="flex justify-between items-center mt-4 md:mt-5 mb-4 md:mb-5"
-                >
-                  <div className="flex justify-between items-center  ">
-                    <p className="text-[13px] md:text-sm font-[500] text-territory">
-                      {new Date(data.createdAt).toLocaleDateString("en-US", {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric"
-                      })}
-                    </p>
-                  </div>
-                  {/* <div className="flex gap-5 lg:gap-10">
+    <>
+      <section className="pb-[50px] md:pb-[70px] xl:pb-[100px] overflow-hidden relative ">
+        <div className="container">
+          <div className="flex flex-col lg:flex-row lg:flex-wrap">
+            <div className={`lg:w-5/6 pr-4 lg:pr-6 xxl:pr-[135px] `}>
+              <div  >
+                <div>
+                  <motion.div
+                    variants={slideInLeft}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.3 }}
+                    exit="exit"
+                    className="flex justify-between items-center mt-4 md:mt-5 mb-4 md:mb-5"
+                  >
+                    <div className="flex justify-between items-center  ">
+                      <p className="text-[13px] md:text-sm font-[500] text-territory">
+                        {new Date(data.createdAt).toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric"
+                        })}
+                      </p>
+                    </div>
+                    {/* <div className="flex gap-5 lg:gap-10">
                       <Image src={assets.share} alt="" />
                       <Link href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(currentUrl)}`} target="_blank"><Image src={assets.linkedin} alt="" /></Link>
                     </div> */}
-                </motion.div>
-              </div>
-            
-              <div className="mbp10 blogcotentmn">
-                <div
-                  // variants={slideInTop}
-                  // initial="hidden"
-                  // whileInView="visible"
-                  // viewport={{ once: true, amount: 0.3 }}
-                  // exit="exit"
-                  dangerouslySetInnerHTML={{ __html: data.content }}
-                >
-
+                  </motion.div>
                 </div>
 
+                <div className="mbp10 blogcotentmn">
+                  <div
+                    // variants={slideInTop}
+                    // initial="hidden"
+                    // whileInView="visible"
+                    // viewport={{ once: true, amount: 0.3 }}
+                    // exit="exit"
+                    dangerouslySetInnerHTML={{ __html: data.content }}
+                  >
+
+                  </div>
+
+                </div>
               </div>
+
             </div>
 
-          </div> 
-            <div className="lg:w-1/6 ">
+            {data?.faqSection?.title && (
+              <div className="w-full lg:order-3">
+                <Faq data={data.faqSection} />
+              </div>
+            )}
+
+            <div className="lg:w-1/6 lg:order-2">
               <motion.div
                 variants={slideInTop}
                 initial="hidden"
@@ -154,10 +163,11 @@ const BlogDetails = ({ data }: { data: Bogs }) => {
                 <MoreBlogs data={blogsList} id={data._id} />
               </motion.div>
             </div>
-        
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+    </>
   );
 };
 

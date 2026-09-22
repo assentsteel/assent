@@ -59,6 +59,13 @@ interface BlastingFormProps {
             logo:string;
         }[]
     };
+    sixthSection: {
+        title: string;
+        items: {
+            title: string;
+            description: string;
+        }[]
+    };
 }
 
 const BlastingPage = () => {
@@ -75,6 +82,11 @@ const BlastingPage = () => {
     const { fields: fifthSectionItems, append: fifthSectionAppend, remove: fifthSectionRemove } = useFieldArray({
         control,
         name: "fifthSection.items"
+    });
+
+    const { fields: sixthSectionItems, append: sixthSectionAppend, remove: sixthSectionRemove } = useFieldArray({
+        control,
+        name: "sixthSection.items"
     });
 
 
@@ -108,6 +120,8 @@ const BlastingPage = () => {
                 setValue("fourthSection.items", data.data.fourthSection.items);
                 setValue("fifthSection", data.data.fifthSection);
                 setValue("fifthSection.items", data.data.fifthSection.items);
+                setValue("sixthSection", data.data.sixthSection);
+                setValue("sixthSection.items", data.data.sixthSection?.items);
             } else {
                 const data = await response.json();
                 alert(data.message);
@@ -529,7 +543,53 @@ const BlastingPage = () => {
                 </div>
                 </AdminItemContainer>
 
+                <AdminItemContainer>
+                    <Label main>Sixth Section (FAQ)</Label>
+                    <div className='p-5 rounded-md flex flex-col gap-2'>
+                        <div className='flex flex-col gap-1'>
+                            <Label className='font-bold'>Title</Label>
+                            <Input type='text' placeholder='Title' {...register("sixthSection.title", {
+                                required: "Title is required"
+                            })} />
+                            {errors.sixthSection?.title && <p className='text-red-500'>{errors.sixthSection?.title.message}</p>}
+                        </div>
 
+                        <div>
+                            <Label className='font-bold'>Items</Label>
+                            <div className='border p-2 rounded-md flex flex-col gap-5'>
+
+                                {sixthSectionItems.map((field, index) => (
+                                    <div key={field.id} className='flex flex-col gap-2 relative border-b p-2 pb-5 last:border-b-0'>
+                                        <div className='absolute top-2 right-2'>
+                                            <RiDeleteBinLine onClick={() => sixthSectionRemove(index)} className='cursor-pointer text-red-600' />
+                                        </div>
+
+                                        <div className='flex flex-col gap-2'>
+                                            <Label className='font-bold'>Question</Label>
+                                            <Input type='text' placeholder='Question' {...register(`sixthSection.items.${index}.title`, {
+                                                required: "Value is required"
+                                            })} />
+                                            {errors.sixthSection?.items?.[index]?.title && <p className='text-red-500'>{errors.sixthSection?.items?.[index]?.title.message}</p>}
+                                        </div>
+
+                                        <div className='flex flex-col gap-2'>
+                                            <Label className='font-bold'>Answer</Label>
+                                            <Textarea placeholder='Answer' {...register(`sixthSection.items.${index}.description`, {
+                                                required: "Value is required"
+                                            })} />
+                                            {errors.sixthSection?.items?.[index]?.description && <p className='text-red-500'>{errors.sixthSection?.items?.[index]?.description.message}</p>}
+                                        </div>
+                                    </div>
+                                ))}
+
+                                <div className='flex justify-end'>
+                                    <Button type='button' addItem onClick={() => sixthSectionAppend({ title: "", description: "" })}>Add Item</Button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </AdminItemContainer>
 
 
                 <SeoFields<BlastingFormProps> control={control} register={register} errors={errors} />
