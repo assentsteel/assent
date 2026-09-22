@@ -1,15 +1,13 @@
-import connectDB from "@/lib/mongodb";
-import Sitemap from "@/app/models/Sitemap";
+import { getSitemap } from "@/lib/services/sitemap.service";
 import { NextResponse } from "next/server";
 import fs from "fs/promises";
 import path from "path";
 
 export async function GET() {
   try {
-    await connectDB();
-    const sitemap = await Sitemap.findOne({});
-    if (sitemap?.content) {
-      return new NextResponse(sitemap.content, {
+    const content = await getSitemap();
+    if (content) {
+      return new NextResponse(content, {
         status: 200,
         headers: { "Content-Type": "application/xml" },
       });

@@ -2,6 +2,7 @@ import connectDB from "@/lib/mongodb";
 import Sitemap from "@/app/models/Sitemap";
 import { NextRequest, NextResponse } from "next/server";
 import { verifyAdmin } from "@/lib/verifyAdmin";
+import { revalidateTag } from "next/cache";
 
 export async function GET(request: NextRequest) {
   try {
@@ -61,6 +62,7 @@ export async function POST(request: NextRequest) {
       await Sitemap.create({ content, urlCount });
     }
 
+    revalidateTag("sitemap");
     return NextResponse.json({ message: "Sitemap uploaded successfully" }, { status: 200 });
   } catch (error) {
     console.log("Error uploading sitemap", error);
@@ -78,6 +80,7 @@ export async function DELETE(request: NextRequest) {
 
     await Sitemap.deleteMany({});
 
+    revalidateTag("sitemap");
     return NextResponse.json({ message: "Sitemap removed" }, { status: 200 });
   } catch (error) {
     console.log("Error removing sitemap", error);
