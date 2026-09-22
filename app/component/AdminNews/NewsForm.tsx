@@ -110,8 +110,8 @@ const NewsForm = ({ editMode }: { editMode?: boolean }) => {
         setValue("twitterDescription", data.data.twitterDescription);
         setValue("twitterImage", data.data.twitterImage);
         setValue("schema", data.data.schema);
-        
-        
+
+
       } else {
         const data = await response.json();
         alert(data.message);
@@ -271,14 +271,14 @@ const NewsForm = ({ editMode }: { editMode?: boolean }) => {
           )}
         </div>
 
-                    <div>
-              <Label className="">Post Link</Label>
-              <Input
-                type="text"
-                placeholder="Link"
-                {...register("link")}
-              />
-            </div>
+        <div>
+          <Label className="">Post Link</Label>
+          <Input
+            type="text"
+            placeholder="Link"
+            {...register("link")}
+          />
+        </div>
 
         <div className="grid grid-cols-1 gap-2">
           <div>
