@@ -8,6 +8,7 @@ import Boxgrid from "./sections/Boxgrid";
 import Packages from "./sections/Packages";
 import ProjectModels from "./sections/ProjectModels";
 import WhyChoose from "../common/WhyChoose";
+import Faq from "./sections/Faq";
 import { Engineering } from '@/public/types/Common'; 
 const Index = async ({ data }: { data: Engineering }) => { 
    
@@ -36,6 +37,7 @@ const Index = async ({ data }: { data: Engineering }) => {
       <SingleImageText data={data.fourthSection} maxwidth={'max-w-[68ch]'} textright={true} />
       <Packages data={data}    />
       <WhyChoose data={data.sixthSection} />
+      <Faq data={data.seventhSection} />
 
     </>
   );

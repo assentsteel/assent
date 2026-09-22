@@ -168,6 +168,23 @@ const EngineeringSchema = new mongoose.Schema({
                 }
             }
         ]
+    },
+    seventhSection:{
+        title:{
+            type:String
+        },
+        items:[
+            {
+                title:{
+                    type:String,
+                    required:true
+                },
+                description:{
+                    type:String,
+                    required:true
+                }
+            }
+        ]
     }
 })
 

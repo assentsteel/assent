@@ -822,6 +822,15 @@ export type Engineering = {
       }
     ];
   };
+  seventhSection: {
+    title: string;
+    items: [
+      {
+        title: string;
+        description: string;
+      }
+    ];
+  };
 };
 export type whychoose = {
   title: string;
