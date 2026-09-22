@@ -41,7 +41,16 @@ const blogsSchema = new mongoose.Schema({
             twitterTitle: { type: String },
             twitterDescription: { type: String },
             twitterImage: { type: String },
-            seoSchema:{type:String}
+            seoSchema:{type:String},
+            faqSection: {
+                title: { type: String },
+                items: [
+                    {
+                        title: { type: String, required: true },
+                        description: { type: String, required: true }
+                    }
+                ]
+            }
         }
     ]
 });

@@ -7,7 +7,8 @@ import Structure from "./sections/Structure";
 import NavTabsection from "./sections/NavTabsection";
 import WhyChoose from "../common/WhyChoose";
 import Boxgds from "../common/Boxgds";
-import { Fabrication } from '@/public/types/Common'; 
+import Faq from "../common/Faq";
+import { Fabrication } from '@/public/types/Common';
 const Index = async ({ data }: { data: Fabrication }) => {  
   const breadcrumb = [
     { label: "Home", href: "/" },
@@ -40,6 +41,7 @@ const Index = async ({ data }: { data: Fabrication }) => {
         data={data.fifthSection} />
       </section>
     <WhyChoose data={data.sixthSection} />
+    {data?.seventhSection?.title && <Faq data={data.seventhSection} />}
 
 
     </>

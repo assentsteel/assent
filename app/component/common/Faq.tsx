@@ -6,9 +6,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion, AnimatePresence } from "framer-motion";
 gsap.registerPlugin(ScrollTrigger);
 
-import { Engineering } from "@/public/types/Common";
+import { typefaq } from "@/public/types/Common";
 
-const Faq = ({ data }: { data: Engineering["seventhSection"] }) => {
+const Faq = ({ data }: { data: typefaq }) => {
 const [activeIndex, setActiveIndex] = useState(0);
   const containerRef = useRef(null);
 
@@ -47,8 +47,8 @@ const [activeIndex, setActiveIndex] = useState(0);
     },
   };
   return (
-    <section className="  pb90   overflow-hidden relative ">
-      <div className="container">
+    <section className="py-5 lg:py-10 overflow-hidden relative ">
+      <div className="">
         <div>
           <motion.div
             variants={textContainerVariants}

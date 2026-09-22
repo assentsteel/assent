@@ -10,13 +10,13 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, useFieldArray, Controller } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { useParams } from "next/navigation";
 import { ImageUploader } from "@/components/ui/image-uploader";
 import Image from "next/image";
-import { RiAiGenerateText } from "react-icons/ri";
+import { RiAiGenerateText, RiDeleteBinLine } from "react-icons/ri";
 import TinyEditor from "../TinyMce/TinyEditor";
 import { Textarea } from "@/components/ui/textarea";
 
@@ -43,6 +43,13 @@ interface BlogsFormProps {
     images: string[];
     date: string;
     schema: string;
+    faqSection: {
+        title: string;
+        items: {
+            title: string;
+            description: string;
+        }[];
+    };
 }
 
 const BlogsForm = ({ editMode }: { editMode?: boolean }) => {
@@ -59,6 +66,11 @@ const BlogsForm = ({ editMode }: { editMode?: boolean }) => {
         control,
         formState: { errors },
     } = useForm<BlogsFormProps>();
+
+    const { fields: faqItems, append: faqAppend, remove: faqRemove } = useFieldArray({
+        control,
+        name: "faqSection.items"
+    });
 
     const handleAddBlogs = async (data: BlogsFormProps) => {
         try {
@@ -109,6 +121,8 @@ const BlogsForm = ({ editMode }: { editMode?: boolean }) => {
                 const isoDate = new Date(data.data.date).toISOString().split("T")[0];
                 setValue("date", isoDate);
                 setImageUrls(data.data.images);
+                setValue("faqSection", data.data.faqSection);
+                setValue("faqSection.items", data.data.faqSection?.items);
             } else {
                 const data = await response.json();
                 alert(data.message);
@@ -352,6 +366,51 @@ const BlogsForm = ({ editMode }: { editMode?: boolean }) => {
                     {errors.content && (
                         <p className="text-red-500">{errors.content.message}</p>
                     )}
+                </div>
+
+                <div className="h-fit w-full p-2 border-2 border-gray-300 rounded-md mt-5 flex flex-col gap-2">
+                    <div className="flex justify-between border-b-2 pb-2">
+                        <Label className="text-sm ">FAQ Section</Label>
+                    </div>
+                    <div className="flex flex-col gap-1">
+                        <Label className="font-bold">Title</Label>
+                        <Input type="text" placeholder="Title" {...register("faqSection.title")} />
+                    </div>
+
+                    <div>
+                        <Label className="font-bold">Items</Label>
+                        <div className="border p-2 rounded-md flex flex-col gap-5">
+
+                            {faqItems.map((field, index) => (
+                                <div key={field.id} className="flex flex-col gap-2 relative border-b p-2 pb-5 last:border-b-0">
+                                    <div className="absolute top-2 right-2">
+                                        <RiDeleteBinLine onClick={() => faqRemove(index)} className="cursor-pointer text-red-600" />
+                                    </div>
+
+                                    <div className="flex flex-col gap-2">
+                                        <Label className="font-bold">Question</Label>
+                                        <Input type="text" placeholder="Question" {...register(`faqSection.items.${index}.title`, {
+                                            required: "Value is required"
+                                        })} />
+                                        {errors.faqSection?.items?.[index]?.title && <p className="text-red-500">{errors.faqSection?.items?.[index]?.title.message}</p>}
+                                    </div>
+
+                                    <div className="flex flex-col gap-2">
+                                        <Label className="font-bold">Answer</Label>
+                                        <Textarea placeholder="Answer" {...register(`faqSection.items.${index}.description`, {
+                                            required: "Value is required"
+                                        })} />
+                                        {errors.faqSection?.items?.[index]?.description && <p className="text-red-500">{errors.faqSection?.items?.[index]?.description.message}</p>}
+                                    </div>
+                                </div>
+                            ))}
+
+                            <div className="flex justify-end">
+                                <Button type="button" className="text-white" onClick={() => faqAppend({ title: "", description: "" })}>Add Item</Button>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
 
                 <div className="h-fit w-full p-2 border-2 border-gray-300 rounded-md mt-5">

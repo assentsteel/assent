@@ -169,8 +169,25 @@ const FabricationSchema = new mongoose.Schema({
                 required:true
             }
         }]
+    },
+    seventhSection:{
+        title:{
+            type:String
+        },
+        items:[
+            {
+                title:{
+                    type:String,
+                    required:true
+                },
+                description:{
+                    type:String,
+                    required:true
+                }
+            }
+        ]
     }
-    
+
 });
 
 export default mongoose.models.Fabrication || mongoose.model("Fabrication", FabricationSchema);

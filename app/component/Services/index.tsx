@@ -5,8 +5,9 @@ import ContentText from "./sections/ContentText";
 import HeadingText from "./sections/HeadingText";
 import SingleImageText from "../common/SingleImageText";
 import WhyChoose from "../common/WhyChoose";
+import Faq from "../common/Faq";
 
-import { Services } from '@/public/types/Common'; 
+import { Services } from '@/public/types/Common';
 const Index = async ({ data }: { data: Services }) => { 
   
   const breadcrumb = [
@@ -25,6 +26,7 @@ const Index = async ({ data }: { data: Services }) => {
       <HeadingText data={data} />
 
     <WhyChoose data={data.fourthSection} />
+    {data?.fifthSection?.title && <Faq data={data.fifthSection} />}
 
     </>
   );

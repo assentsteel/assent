@@ -96,6 +96,21 @@ const blastingSchema = new mongoose.Schema({
                 type:String
             }
         }]
+    },
+    sixthSection:{
+        title:{
+            type:String
+        },
+        items:[
+            {
+                title:{
+                    type:String
+                },
+                description:{
+                    type:String
+                }
+            }
+        ]
     }
 })
 
