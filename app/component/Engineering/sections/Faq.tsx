@@ -9,7 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 import { Engineering } from "@/public/types/Common";
 
 const Faq = ({ data }: { data: Engineering["seventhSection"] }) => {
-  const [activeIndex, setActiveIndex] = useState(0);
+const [activeIndex, setActiveIndex] = useState(0);
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -21,13 +21,12 @@ const Faq = ({ data }: { data: Engineering["seventhSection"] }) => {
         ease: "power3.out",
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top 60%",
+          start: "top 60%", // Starts when the top of the section is 85% in view
           toggleActions: "play none none none",
         },
       });
     }
   }, []);
-
   const textContainerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -47,9 +46,8 @@ const Faq = ({ data }: { data: Engineering["seventhSection"] }) => {
       transition: { duration: 0.5 },
     },
   };
-
   return (
-    <section className="pb90 overflow-hidden relative" ref={containerRef}>
+    <section className="  pb90   overflow-hidden relative ">
       <div className="container">
         <div>
           <motion.div
@@ -59,7 +57,7 @@ const Faq = ({ data }: { data: Engineering["seventhSection"] }) => {
             viewport={{ once: true, amount: 0.3 }}
           >
             <motion.h2
-              className="text-xl text-primary font-[600] leading-[1.2] mb-5 lg:mb-[60px]"
+              className={`text-xl  text-primary font-[600] leading-[1.2]  mb-5 lg:mb-[60px]`}
               custom="x"
               variants={textVariants}
             >
@@ -67,7 +65,7 @@ const Faq = ({ data }: { data: Engineering["seventhSection"] }) => {
             </motion.h2>
           </motion.div>
         </div>
-        <div>
+        <div className=" ">
           <div className="w-full mt-6 lg:mt-0">
             {data.items.map((da, index) => (
               <div
@@ -112,6 +110,7 @@ const Faq = ({ data }: { data: Engineering["seventhSection"] }) => {
                         </motion.div>
                       </div>
 
+                      {/* DESCRIPTION DROPDOWN */}
                       <AnimatePresence initial={false}>
                         {activeIndex === index && (
                           <motion.div
