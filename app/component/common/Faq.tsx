@@ -152,7 +152,7 @@ const [activeIndex, setActiveIndex] = useState(0);
                             }}
                             className="max-w-[105ch] text-territory text-sm font-[400] leading-[1.58] pr-6 overflow-hidden"
                           >
-                            <p>{da.description}</p>
+                            <p dangerouslySetInnerHTML={{__html:da.description}}></p>
                           </motion.div>
                         )}
                       </AnimatePresence>
