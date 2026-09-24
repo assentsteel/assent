@@ -47,7 +47,7 @@ const [activeIndex, setActiveIndex] = useState(0);
     },
   };
   return (
-    <section className="py-5 lg:py-10 overflow-hidden relative ">
+    <section className="py-5 lg:py-10 overflow-hidden relative container">
       <div className="">
         <div>
           <motion.div
