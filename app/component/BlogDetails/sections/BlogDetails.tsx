@@ -109,7 +109,7 @@ const BlogDetails = ({ data }: { data: Bogs }) => {
                   >
                     <div className="flex justify-between items-center  ">
                       <p className="text-[13px] md:text-sm font-[500] text-territory">
-                        {new Date(data.createdAt).toLocaleDateString("en-US", {
+                        {new Date(data.date ? data.date : data.createdAt).toLocaleDateString("en-US", {
                           year: "numeric",
                           month: "long",
                           day: "numeric"
