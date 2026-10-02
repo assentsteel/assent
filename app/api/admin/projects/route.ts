@@ -59,8 +59,6 @@ export async function PATCH(request: NextRequest) {
         revalidateTag("all-project")
         return NextResponse.json({ message: "Project updated successfully", success: true }, { status: 200 });
     } catch (error) {
-        const e = (error as any)?.errors?.["categories.0.projects.0.images"];
-        console.log(e?.reason?.stack ?? e?.stack ?? error);
         console.log(error);
         return NextResponse.json({ message: "Internal Server Error" }, { status: 500 });
     }
