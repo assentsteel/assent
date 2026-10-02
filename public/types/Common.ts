@@ -1491,7 +1491,7 @@ export type Projectswfull = {
           twitterTitle?: string;
           twitterDescription?: string;
           twitterImage?: string;
-          schema?: string;
+          schemaMarkup?: string;
           images: [string];
         }[];
     }[];

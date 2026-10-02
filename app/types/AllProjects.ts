@@ -39,7 +39,7 @@ data:{
               twitterTitle?: string,
               twitterDescription?: string,
               twitterImage?: string,
-              schema?: string,
+              schemaMarkup?: string,
               images: [
                 string
               ]
