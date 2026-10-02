@@ -55,7 +55,7 @@ interface ProjectFormProps {
     twitterTitle:string;
     twitterDescription:string;
     twitterImage:string;
-    schema:string;
+    schemaMarkup:string;
     images: string []
 }
 
@@ -115,7 +115,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                 setValue("twitterTitle", data.data.twitterTitle);
                 setValue("twitterDescription", data.data.twitterDescription);
                 setValue("twitterImage", data.data.twitterImage);
-                setValue("schema", data.data.schema);
+                setValue("schemaMarkup", data.data.schemaMarkup);
                 setValue("images", data.data.images);
                 setImageUrls(data.data.images);
             } else {
@@ -517,7 +517,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                                             </div>
                                             <div>
                                                 <Label>Schema</Label>
-                                                <Textarea className="font-mono text-sm" rows={8} placeholder='{ "@context": "https://schema.org", "@type": "WebPage", ... }' {...register("schema")} />
+                                                <Textarea className="font-mono text-sm" rows={8} placeholder='{ "@context": "https://schema.org", "@type": "WebPage", ... }' {...register("schemaMarkup")} />
                                             </div>
                     </div>
                 </div>

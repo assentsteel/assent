@@ -80,7 +80,7 @@ export default async function Home({params}: {params: Promise<{slug: string,item
   if (!project) {
     notFound();
   }
-  const customSchema = parseSeoSchema(project.schema);
+  const customSchema = parseSeoSchema(project.schemaMarkup);
   return (
     <>
     {customSchema && (

@@ -103,7 +103,10 @@ const projectSchema = new mongoose.Schema({
             twitterImage:{
                 type:String
             },
-            schema:{
+            // schema:{
+            //     type:String
+            // },
+            schemaMarkup:{
                 type:String
             },
             images:[String],

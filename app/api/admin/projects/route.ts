@@ -54,7 +54,7 @@ export async function PATCH(request: NextRequest) {
         if (!projectData) {
             return NextResponse.json({ message: "Project not found" }, { status: 404 });
         }
-        Object.assign(projectData, data);
+        projectData.set(data);
         await project.save();
         revalidateTag("all-project")
         return NextResponse.json({ message: "Project updated successfully", success: true }, { status: 200 });
@@ -123,7 +123,7 @@ export async function GET(request: NextRequest) {
                 return NextResponse.json({ message: "Project not found" }, { status: 404 });
             }
             return NextResponse.json({ data: projectData }, { status: 200 });
-        }else{
+        } else {
             return NextResponse.json({ data: project }, { status: 200 });
         }
     } catch (error) {

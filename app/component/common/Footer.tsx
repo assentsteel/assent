@@ -153,7 +153,7 @@ const Footer = () => {
           <motion.div variants={fadeIn} className=" ">
             <div className="flex md:flex-row flex-col gap-5 md:gap-[70px] justify-between border-t xl:border-t-0 xxl:border-t border-white/35 pt-8 xxl:pt-[50px] xxxl:pt-[61px] pb-5 lg:pb-0 items-center">
               <div className="flex xl:grid   flex-col xl:grid-cols-[50%_auto] gap-4 justify-between w-full">
-                <div className="flex md:flex-row flex-col gap-4 overflow-hidden pt-2 lg:pt-0 wst5 xl:border-t xl:pt-10 xxl:pt-0 border-t-0 xxl:border-t-0">
+                {/* <div className="flex md:flex-row flex-col gap-4 overflow-hidden pt-2 lg:pt-0 wst5 xl:border-t xl:pt-10 xxl:pt-0 border-t-0 xxl:border-t-0">
                   <Link
                     href="/assets/ASSENT_STEEL_INDUSTRIES_L.L.C.pdf"
                     target="_blank"
@@ -173,7 +173,7 @@ const Footer = () => {
                       PRE-QUALIFICATION
                     </motion.button>
                   </Link>
-                </div>
+                </div> */}
                 <div className="flex gap-2 md:gap-1 md:items-center flex-row xl:border-t xl:pt-10 xxl:border-t-0 xxl:pt-0">
                   <Image
                     src="/assets/img/icns/WEBSITE-FOOTER-LOGO.jpg"
