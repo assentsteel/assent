@@ -1,39 +1,36 @@
 User-agent: *
-Disallow: /wp-admin/
-Disallow: /wp-includes/
-Disallow: /cgi-bin/
-Disallow: /temp/
+
 Disallow: /search
-Disallow: /?s=
 Disallow: /*?s=
+Disallow: /*&s=
 Disallow: /*?search=
-Disallow: /*?filter=
-Disallow: /*?sort=
-Disallow: /*?utm_source=
-Disallow: /*?utm_medium=
-Disallow: /*?utm_campaign=
-Disallow: /*?fbclid=
-Disallow: /*?gclid=
-Allow: /wp-content/uploads/
-Allow: /*.js$
-Allow: /*.css$
+Disallow: /*&search=
 
 User-agent: GPTBot
-Disallow:
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
 
 User-agent: ChatGPT-User
-Disallow:
+Allow: /
 
 User-agent: Google-Extended
-Disallow:
+Allow: /
 
-User-agent: anthropic-ai
-Disallow:
+User-agent: ClaudeBot
+Allow: /
 
-User-agent: Claude-Web
-Disallow:
+User-agent: Claude-SearchBot
+Allow: /
 
-User-agent: bingbot
-Crawl-delay: 5
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
 
 Sitemap: https://www.assentsteel.com/sitemap.xml
