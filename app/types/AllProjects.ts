@@ -1,21 +1,19 @@
+import { Seo } from "@/public/types/Common";
+
 export type AllProjects = {
 data:{ 
     
       banner: string,
       bannerAlt: string,
-      metaTitle: string,
-      metaDescription: string,
+      seo?: Seo,
       pageTitle: string,
       sector: string,
       location: string,
-      categories: [
-        {
+      categories: {
           name: string,
-          metaTitle: string,
-          metaDescription: string,
+          seo?: Seo,
           slug: string,
-          projects: [
-            {
+          projects: {
               _id: string,
               banner: string,
               bannerAlt: string,
@@ -34,12 +32,18 @@ data:{
               thumbnailAlt: string,
               metaTitle: string,
               metaDescription: string,
+              ogTitle?: string,
+              ogDescription?: string,
+              ogType?: string,
+              ogImage?: string,
+              twitterTitle?: string,
+              twitterDescription?: string,
+              twitterImage?: string,
+              schemaMarkup?: string,
               images: [
                 string
               ]
-            }
-          ]
-        }
-      ]
+            }[]
+        }[]
 }
 }

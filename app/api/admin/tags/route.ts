@@ -3,6 +3,7 @@ import Tag from "@/app/models/Tags";
 import { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import { verifyAdmin } from "@/lib/verifyAdmin";
+import { revalidateTag } from "next/cache";
 
 export async function POST(request: NextRequest) {
     try {
@@ -18,9 +19,11 @@ export async function POST(request: NextRequest) {
             tag.headerScript = headerScript;
             tag.bodyScript = bodyScript;
             await tag.save();
+            revalidateTag("tag")
             return NextResponse.json({ message: "Tag updated successfully" }, { status: 200 });
         }else{
             await Tag.create({headerScript,bodyScript})
+            revalidateTag("tag")
             return NextResponse.json({ message: "Tag updated successfully" }, { status: 200 });
         }
     } catch (error) {

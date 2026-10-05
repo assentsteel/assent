@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
 import Quality from "@/app/models/Quality";
 import { verifyAdmin } from "@/lib/verifyAdmin";
+import { revalidateTag } from "next/cache";
 
 
 export async function GET() {
@@ -30,6 +31,7 @@ export async function PATCH(request: NextRequest) {
         if (!quality) {
             return NextResponse.json({ message: "Quality not found" }, { status: 404 });
         }
+        revalidateTag("quality")
         return NextResponse.json({data:quality,message:"Quality updated successfully"}, { status: 200 });
     } catch (error) {
         console.log(error);

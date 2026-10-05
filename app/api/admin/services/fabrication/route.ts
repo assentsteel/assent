@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
 import Fabrication from "@/app/models/Fabrication";
 import { verifyAdmin } from "@/lib/verifyAdmin";
+import { revalidateTag } from "next/cache";
 
 
 export async function GET() {
@@ -30,6 +31,7 @@ export async function PATCH(request: NextRequest) {
         if (!fabrication) {
             return NextResponse.json({ message: "Fabrication not found" }, { status: 404 });
         }
+        revalidateTag("fabrication")
         return NextResponse.json({data:fabrication,message:"Fabrication updated successfully"}, { status: 200 });
     } catch (error) {
         console.log(error);

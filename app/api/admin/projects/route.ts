@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { verifyAdmin } from "@/lib/verifyAdmin";
 import connectDB from "@/lib/mongodb";
 import Project from "@/app/models/Project";
+import { revalidateTag } from "next/cache";
 
 export async function POST(request: NextRequest) {
     try {
@@ -23,6 +24,7 @@ export async function POST(request: NextRequest) {
         }
         category.projects.push(data);
         await project.save();
+        revalidateTag("all-project")
         return NextResponse.json({ message: "Project added successfully", success: true }, { status: 200 });
     } catch (error) {
         console.log(error);
@@ -52,8 +54,9 @@ export async function PATCH(request: NextRequest) {
         if (!projectData) {
             return NextResponse.json({ message: "Project not found" }, { status: 404 });
         }
-        Object.assign(projectData, data);
+        projectData.set(data);
         await project.save();
+        revalidateTag("all-project")
         return NextResponse.json({ message: "Project updated successfully", success: true }, { status: 200 });
     } catch (error) {
         console.log(error);
@@ -80,6 +83,7 @@ export async function DELETE(request: NextRequest) {
         }
         category.projects = category.projects.filter((project: { _id: string; }) => project._id.toString() !== projectId);
         await project.save();
+        revalidateTag("all-project")
         return NextResponse.json({ message: "Project deleted successfully", success: true }, { status: 200 });
     } catch (error) {
         console.log(error);
@@ -119,7 +123,7 @@ export async function GET(request: NextRequest) {
                 return NextResponse.json({ message: "Project not found" }, { status: 404 });
             }
             return NextResponse.json({ data: projectData }, { status: 200 });
-        }else{
+        } else {
             return NextResponse.json({ data: project }, { status: 200 });
         }
     } catch (error) {

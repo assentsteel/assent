@@ -1,17 +1,9 @@
 import mongoose from "mongoose";
+import seoSchema from "./Seo";
 
 const blastingSchema = new mongoose.Schema({
-    metaTitle:{
-        type:String
-    },
-    metaDescription:{
-        type:String
-    },
-    ogType:{
-        type:String
-    },
-    ogImage:{
-        type:String
+    seo: {
+        type: seoSchema,
     },
     pageTitle:{
         type:String
@@ -104,6 +96,21 @@ const blastingSchema = new mongoose.Schema({
                 type:String
             }
         }]
+    },
+    sixthSection:{
+        title:{
+            type:String
+        },
+        items:[
+            {
+                title:{
+                    type:String
+                },
+                description:{
+                    type:String
+                }
+            }
+        ]
     }
 })
 

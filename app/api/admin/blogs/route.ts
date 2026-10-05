@@ -1,16 +1,18 @@
 import connectDB from "@/lib/mongodb";
 import { NextRequest, NextResponse } from "next/server";
 import Blogs from "@/app/models/Blogs";
+import { revalidateTag } from "next/cache";
 
 
 export async function POST(req: NextRequest) {
     try {
         await connectDB();
-        const { mainTitle, subTitle, slug, content, images, category, metaTitle, metaDescription, thumbnail, thumbnailAlt, coverImage, coverImageAlt, date, ogType, ogImage, link,schema } = await req.json();
+        const { mainTitle, subTitle, slug, content, images, category, metaTitle, metaDescription, ogTitle, ogDescription, thumbnail, thumbnailAlt, coverImage, coverImageAlt, date, ogType, ogImage, twitterTitle, twitterDescription, twitterImage, link,schema, faqSection } = await req.json();
         const blogs = await Blogs.findOne({})
         if (blogs) {
-            blogs.blogs.push({ mainTitle, subTitle, slug, content, images, category, metaTitle, metaDescription, thumbnail, thumbnailAlt, coverImage, coverImageAlt, date, ogType, ogImage, link, seoSchema:schema })
+            blogs.blogs.push({ mainTitle, subTitle, slug, content, images, category, metaTitle, metaDescription, ogTitle, ogDescription, thumbnail, thumbnailAlt, coverImage, coverImageAlt, date, ogType, ogImage, twitterTitle, twitterDescription, twitterImage, link, seoSchema:schema, faqSection })
             await blogs.save()
+            revalidateTag("all-blogs")
             return NextResponse.json({ message: "Blog added successfully" }, { status: 200 });
         }
         else {
@@ -27,16 +29,17 @@ export async function PATCH(req: NextRequest) {
         await connectDB();
         const { searchParams } = new URL(req.url);
         const id = searchParams.get("id");
-        const { mainTitle, subTitle, slug, content, images, category, metaTitle, metaDescription, thumbnail, thumbnailAlt, date, ogType, ogImage, link, schema } = await req.json();
+        const { mainTitle, subTitle, slug, content, images, category, metaTitle, metaDescription, ogTitle, ogDescription, thumbnail, thumbnailAlt, date, ogType, ogImage, twitterTitle, twitterDescription, twitterImage, link, schema, faqSection } = await req.json();
         const blogs = await Blogs.findOne({});
         if (blogs) {
             blogs.blogs = blogs.blogs.map((blogs: { _id: string }) => {
                 if (blogs._id.toString() === id) {
-                    return { mainTitle, subTitle, slug, content, images, category, metaTitle, metaDescription, thumbnail, thumbnailAlt, date, ogType, ogImage, link, seoSchema:schema }
+                    return { mainTitle, subTitle, slug, content, images, category, metaTitle, metaDescription, ogTitle, ogDescription, thumbnail, thumbnailAlt, date, ogType, ogImage, twitterTitle, twitterDescription, twitterImage, link, seoSchema:schema, faqSection }
                 }
                 return blogs
             })
             await blogs.save()
+            revalidateTag("all-blogs")
             return NextResponse.json({ message: "Blog updated successfully" }, { status: 200 });
         }
         else {
@@ -94,6 +97,7 @@ export async function DELETE(req: NextRequest) {
             if (blogs) {
                 blogs.blogs = blogs.blogs.filter((blogs: { _id: string }) => blogs._id.toString() !== id)
                 await blogs.save()
+                revalidateTag("all-blogs")
                 return NextResponse.json({ message: "Blogs deleted successfully" }, { status: 200 });
             } else {
                 return NextResponse.json({ message: "Error in deleting blogs" }, { status: 500 });

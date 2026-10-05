@@ -2,6 +2,8 @@
 // Types mirror the backend API response exactly.
 // Used across all global presence pages (usa, europe, africa, united-kingdom, australia)
 
+import { Seo } from "@/public/types/Common";
+
 export type GPFirstSection = {
   title: string;
   description: string; // HTML string from backend
@@ -159,8 +161,7 @@ export type GPTwelfthSection = {
 
 export type GlobalPresencePageData = {
   _id: string;
-  metaTitle: string;
-  metaDescription: string;
+  seo?: Seo;
   pageTitle: string;
   firstSection: GPFirstSection;
   secondSection: GPSecondSection;

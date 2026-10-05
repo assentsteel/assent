@@ -7,10 +7,28 @@ const hseSchema = new mongoose.Schema({
   metaDescription: {
     type: String,
   },
+  ogTitle: {
+    type: String,
+  },
+  ogDescription: {
+    type: String,
+  },
   ogType: {
     type: String,
   },
   ogImage: {
+    type: String,
+  },
+  twitterTitle: {
+    type: String,
+  },
+  twitterDescription: {
+    type: String,
+  },
+  twitterImage: {
+    type: String,
+  },
+  schema: {
     type: String,
   },
   pageTitle: {

@@ -93,6 +93,7 @@
 
 
 import { Schema, model, models, Model } from "mongoose";
+import seoSchema from "./Seo";
 
 /* ───────────────────────────── */
 /* TypeScript Interfaces (SAFE)  */
@@ -110,11 +111,21 @@ export interface ICountry {
   sections?:{ type: Schema.Types.Mixed };
 }
 
-export interface IGlobalPresence {
+export interface ISeo {
   metaTitle?: string;
   metaDescription?: string;
-  ogType?: string;
+  ogTitle?: string;
+  ogDescription?: string;
   ogImage?: string;
+  ogType?: string;
+  twitterTitle?: string;
+  twitterDescription?: string;
+  twitterImage?: string;
+  schema?: string;
+}
+
+export interface IGlobalPresence {
+  seo?: ISeo;
   banner?: string;
   bannerAlt?: string;
   pageTitle?: string;
@@ -145,10 +156,9 @@ export interface IGlobalPresence {
 /* ───────────────────────────── */
 
 const globalPresenceSchema = new Schema({
-  metaTitle: { type: String },
-  metaDescription: { type: String },
-  ogType: { type: String },
-  ogImage: { type: String },
+  seo: {
+    type: seoSchema,
+  },
   banner: { type: String },
   bannerAlt: { type: String },
   pageTitle: { type: String },

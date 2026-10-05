@@ -6,6 +6,8 @@ import Footer from "../component/common/Footer";
 import BreadcrumbSchema from "../component/home/BreadcrumbSchema";
 import { SearchProvider } from "@/contexts/searchContext";
 import parse from 'html-react-parser'
+import { getAllProjects } from "@/lib/services/project.service";
+import { getTag } from "@/lib/services/tags.service";
 
 
 const poppins = Poppins({
@@ -40,17 +42,15 @@ export default async function RootLayout({
 
 
 
-  const response = await fetch(`${process.env.BASE_URL}/api/admin/projects`, { next: { revalidate: 60 } });
-  const data = await response.json();
-  const categories = data.data.categories.map((item: { name: string; slug: string; }) => {
+  const projectData = await getAllProjects();
+  const categories = projectData.categories.map((item: { name: string; slug: string; }) => {
     return {
       name: item.name,
       slug: item.slug,
     }
   });
 
-  const tagResponse = await fetch(`${process.env.BASE_URL}/api/admin/tags`);
-  const tagData = await tagResponse.json();
+  const tagData = { tag: await getTag() };
 
   return (
     <html lang="en">

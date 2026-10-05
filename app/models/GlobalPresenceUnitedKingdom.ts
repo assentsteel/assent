@@ -1,17 +1,9 @@
 import mongoose from "mongoose";
+import seoSchema from "./Seo";
 
 const GlobalPresenceUnitedKingdomSchema = new mongoose.Schema({
-    metaTitle:{
-        type:String,
-    },
-    metaDescription:{
-        type:String,
-    },
-    ogType:{
-        type:String
-    },
-    ogImage:{
-        type:String
+    seo: {
+        type: seoSchema,
     },
     firstSection:{
         title:{

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
 import SteelErection from "@/app/models/SteelErection";
 import { verifyAdmin } from "@/lib/verifyAdmin";
+import { revalidateTag } from "next/cache";
 
 
 export async function GET() {
@@ -30,6 +31,7 @@ export async function PATCH(request: NextRequest) {
         if (!steelErection) {
             return NextResponse.json({ message: "Steel Erection not found" }, { status: 404 });
         }
+        revalidateTag("steel-erection")
         return NextResponse.json({data:steelErection,message:"Steel Erection updated successfully"}, { status: 200 });
     } catch (error) {
         console.log(error);

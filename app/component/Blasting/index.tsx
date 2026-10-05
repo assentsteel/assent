@@ -6,6 +6,7 @@ import IntroBold from "../common/IntroBold";
 import TextByImg from "../About/sections/TextByImg";
 import Boxgds from "../common/Boxgds";
 import WhyChoose from "../common/WhyChoose";
+import Faq from "../common/Faq";
 
 import { Blasting } from '@/public/types/Common';
 const Index = async ({ data }: { data: Blasting }) => {
@@ -33,6 +34,7 @@ const Index = async ({ data }: { data: Blasting }) => {
         data={data.fourthSection} />
       </section>
     <WhyChoose data={data.fifthSection} />
+    {data?.sixthSection?.title && <Faq data={data.sixthSection} />}
     </>
   );
 }

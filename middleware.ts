@@ -112,7 +112,6 @@ export const config = {
   matcher: [
     "/projects-plants",
     "/projects-oil-gas-industry",
-    "/api/:path*",
     "/ASe25Nt@dmin/:path*",
     "/((?!_next/static|_next/image|favicon.ico|api).*)"
   ],

@@ -15,6 +15,7 @@ import {
     DialogClose,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { useRouter } from "next/navigation";
 import { Controller, useForm } from "react-hook-form";
 import { ImageUploader } from "@/components/ui/image-uploader";
@@ -28,6 +29,11 @@ export default function News() {
     const [categoryList, setCategoryList] = useState<{ _id: string; name: string }[]>([]);
     const [metaTitle, setMetaTitle] = useState<string>("");
     const [metaDescription, setMetaDescription] = useState<string>("");
+    const [ogTitle, setOgTitle] = useState<string>("");
+    const [ogDescription, setOgDescription] = useState<string>("");
+    const [twitterTitle, setTwitterTitle] = useState<string>("");
+    const [twitterDescription, setTwitterDescription] = useState<string>("");
+    const [schema, setSchema] = useState<string>("");
     const [pageTitle, setPageTitle] = useState<string>("");
     const router = useRouter();
     const [search, setSearch] = useState("");
@@ -92,8 +98,14 @@ export default function News() {
                 setMetaTitle(data.data.metaTitle);
                 setMetaDescription(data.data.metaDescription);
                 setPageTitle(data.data.pageTitle);
+                setOgTitle(data.data.ogTitle);
+                setOgDescription(data.data.ogDescription);
+                setTwitterTitle(data.data.twitterTitle);
+                setTwitterDescription(data.data.twitterDescription);
+                setSchema(data.data.schema);
                 setValue("ogType", data.data.ogType);
                 setValue("ogImage", data.data.ogImage);
+                setValue("twitterImage", data.data.twitterImage);
             } else {
                 const data = await response.json();
                 alert(data.message);
@@ -167,8 +179,14 @@ export default function News() {
                     metaTitle,
                     metaDescription,
                     pageTitle,
+                    ogTitle,
+                    ogDescription,
                     ogType: getValues("ogType"),
                     ogImage: getValues("ogImage"),
+                    twitterTitle,
+                    twitterDescription,
+                    twitterImage: getValues("twitterImage"),
+                    schema,
                 }),
             });
             if (response.ok) {
@@ -217,6 +235,14 @@ export default function News() {
                         <Label>Meta Description</Label>
                         <Input type="text" value={metaDescription} onChange={(e) => setMetaDescription(e.target.value)} />
                     </div>
+                    <div>
+                        <Label>Og Title</Label>
+                        <Input type="text" placeholder="Falls back to Meta Title if empty" value={ogTitle} onChange={(e) => setOgTitle(e.target.value)} />
+                    </div>
+                    <div>
+                        <Label>Og Description</Label>
+                        <Input type="text" placeholder="Falls back to Meta Description if empty" value={ogDescription} onChange={(e) => setOgDescription(e.target.value)} />
+                    </div>
                     <div className="flex flex-col gap-2 w-1/2">
                         <Label className="font-bold">Og Type</Label>
                         <Controller
@@ -243,6 +269,27 @@ export default function News() {
                             control={control}
                             render={({ field }) => <ImageUploader value={field.value} onChange={field.onChange} />}
                         />
+                    </div>
+
+                    <div>
+                        <Label>Twitter Title</Label>
+                        <Input type="text" placeholder="Falls back to Meta Title if empty" value={twitterTitle} onChange={(e) => setTwitterTitle(e.target.value)} />
+                    </div>
+                    <div>
+                        <Label>Twitter Description</Label>
+                        <Input type="text" placeholder="Falls back to Meta Description if empty" value={twitterDescription} onChange={(e) => setTwitterDescription(e.target.value)} />
+                    </div>
+                    <div className="flex flex-col gap-2 w-1/2">
+                        <Label className="font-bold">Twitter Image</Label>
+                        <Controller
+                            name={`twitterImage`}
+                            control={control}
+                            render={({ field }) => <ImageUploader value={field.value} onChange={field.onChange} />}
+                        />
+                    </div>
+                    <div>
+                        <Label>Schema</Label>
+                        <Textarea className="font-mono text-sm" rows={8} placeholder='{ "@context": "https://schema.org", "@type": "WebPage", ... }' value={schema} onChange={(e) => setSchema(e.target.value)} />
                     </div>
                 </div>
             </div>

@@ -18,21 +18,33 @@ import { arrayMove, SortableContext, verticalListSortingStrategy } from '@dnd-ki
 import ItemCard from './ItemCard'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Controller, useForm } from "react-hook-form";
+import { Textarea } from '@/components/ui/textarea';
 
 const AdminGallery = () => {
 
     const [title, setTitle] = useState("");
     const [thumbnail, setThumbnail] = useState("");
     const [thumbnailAlt, setThumbnailAlt] = useState("");
-    const [items, setItems] = useState<{ _id: string; title: string; thumbnail: string; thumbnailAlt: string,slug:string,metaTitle:string,metaDescription:string;ogType:string;ogImage:string; }[]>([]);
+    const [items, setItems] = useState<{ _id: string; title: string; thumbnail: string; thumbnailAlt: string,slug:string,metaTitle:string,metaDescription:string;ogTitle:string;ogDescription:string;ogType:string;ogImage:string;twitterTitle:string;twitterDescription:string;twitterImage:string;schema:string; }[]>([]);
     const [slug, setSlug] = useState<string>("")
       const [metaTitle, setMetaTitle] = useState<string>("");
       const [metaDescription, setMetaDescription] = useState<string>("");
+      const [ogTitle, setOgTitle] = useState<string>("");
+      const [ogDescription, setOgDescription] = useState<string>("");
+      const [twitterTitle, setTwitterTitle] = useState<string>("");
+      const [twitterDescription, setTwitterDescription] = useState<string>("");
+      const [schema, setSchema] = useState<string>("");
       const [pageTitle, setPageTitle] = useState<string>("");
       const [itemMetaTitle, setItemMetaTitle] = useState<string>("");
       const [itemMetaDescription, setItemMetaDescription] = useState<string>("");
+      const [itemOgTitle, setItemOgTitle] = useState<string>("");
+      const [itemOgDescription, setItemOgDescription] = useState<string>("");
       const [itemOgType, setItemOgType] = useState<string>("");
       const [itemOgImage, setItemOgImage] = useState<string>("");
+      const [itemTwitterTitle, setItemTwitterTitle] = useState<string>("");
+      const [itemTwitterDescription, setItemTwitterDescription] = useState<string>("");
+      const [itemTwitterImage, setItemTwitterImage] = useState<string>("");
+      const [itemSchema, setItemSchema] = useState<string>("");
       const [reorderMode, setReorderMode] = useState(false);
 
 
@@ -45,7 +57,7 @@ const AdminGallery = () => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ title, thumbnail, thumbnailAlt,slug,itemMetaTitle,itemMetaDescription,itemOgType,itemOgImage }),
+                body: JSON.stringify({ title, thumbnail, thumbnailAlt,slug,itemMetaTitle,itemMetaDescription,itemOgTitle,itemOgDescription,itemOgType,itemOgImage,itemTwitterTitle,itemTwitterDescription,itemTwitterImage,itemSchema }),
             });
             const data = await res.json();
             if (data.success) {
@@ -71,7 +83,7 @@ const AdminGallery = () => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ title, thumbnail, thumbnailAlt,slug,itemMetaTitle,itemMetaDescription,itemOgType,itemOgImage }),
+                body: JSON.stringify({ title, thumbnail, thumbnailAlt,slug,itemMetaTitle,itemMetaDescription,itemOgTitle,itemOgDescription,itemOgType,itemOgImage,itemTwitterTitle,itemTwitterDescription,itemTwitterImage,itemSchema }),
             });
             const data = await res.json();
             if (data.success) {
@@ -130,8 +142,14 @@ const AdminGallery = () => {
             setMetaTitle(data.data.metaTitle);
             setMetaDescription(data.data.metaDescription);
             setPageTitle(data.data.pageTitle);
+            setOgTitle(data.data.ogTitle);
+            setOgDescription(data.data.ogDescription);
+            setTwitterTitle(data.data.twitterTitle);
+            setTwitterDescription(data.data.twitterDescription);
+            setSchema(data.data.schema);
             setValue("ogType",data.data.ogType);
             setValue("ogImage",data.data.ogImage);
+            setValue("twitterImage",data.data.twitterImage);
           }else{
             const data = await response.json();
             alert(data.message);
@@ -146,7 +164,7 @@ const AdminGallery = () => {
         try {
           const response = await fetch("/api/admin/gallery/intrometa",{
             method: "POST",
-            body: JSON.stringify({ metaTitle, metaDescription, pageTitle,ogType:getValues("ogType"),ogImage:getValues("ogImage") }),
+            body: JSON.stringify({ metaTitle, metaDescription, pageTitle,ogTitle,ogDescription,ogType:getValues("ogType"),ogImage:getValues("ogImage"),twitterTitle,twitterDescription,twitterImage:getValues("twitterImage"),schema }),
           });
           if(response.ok) {
             const data = await response.json();
@@ -237,6 +255,14 @@ const AdminGallery = () => {
                                                       <Label>Meta Description</Label>
                                                       <Input type="text" defaultValue={metaDescription} onChange={(e) => setMetaDescription(e.target.value)} />
                                                   </div>
+                                                  <div>
+                                                      <Label>Og Title</Label>
+                                                      <Input type="text" placeholder="Falls back to Meta Title if empty" defaultValue={ogTitle} onChange={(e) => setOgTitle(e.target.value)} />
+                                                  </div>
+                                                  <div>
+                                                      <Label>Og Description</Label>
+                                                      <Input type="text" placeholder="Falls back to Meta Description if empty" defaultValue={ogDescription} onChange={(e) => setOgDescription(e.target.value)} />
+                                                  </div>
                                                   <div className='flex flex-col gap-2 w-1/2'>
                 <Label className='font-bold'>Og Type</Label>
                                                 <Controller
@@ -272,7 +298,7 @@ const AdminGallery = () => {
                                                 <Controller
                                                     name={`ogImage`}
                                                     control={control}
-                                                    
+
                                                     render={({ field }) => (
                                                         <ImageUploader
                                                             value={field.value}
@@ -280,6 +306,32 @@ const AdminGallery = () => {
                                                         />
                                                     )}
                                                 />
+                                            </div>
+
+                                            <div>
+                                                <Label>Twitter Title</Label>
+                                                <Input type="text" placeholder="Falls back to Meta Title if empty" defaultValue={twitterTitle} onChange={(e) => setTwitterTitle(e.target.value)} />
+                                            </div>
+                                            <div>
+                                                <Label>Twitter Description</Label>
+                                                <Input type="text" placeholder="Falls back to Meta Description if empty" defaultValue={twitterDescription} onChange={(e) => setTwitterDescription(e.target.value)} />
+                                            </div>
+                                            <div className='flex flex-col gap-2 w-1/2'>
+                                                <Label className='font-bold'>Twitter Image</Label>
+                                                <Controller
+                                                    name={`twitterImage`}
+                                                    control={control}
+                                                    render={({ field }) => (
+                                                        <ImageUploader
+                                                            value={field.value}
+                                                            onChange={field.onChange}
+                                                        />
+                                                    )}
+                                                />
+                                            </div>
+                                            <div>
+                                                <Label>Schema</Label>
+                                                <Textarea className="font-mono text-sm" rows={8} placeholder='{ "@context": "https://schema.org", "@type": "WebPage", ... }' defaultValue={schema} onChange={(e) => setSchema(e.target.value)} />
                                             </div>
                                               </div>
                                           </div>
@@ -334,10 +386,18 @@ const AdminGallery = () => {
                                         <Label>Meta Description</Label>
                                         <Input type="text" placeholder="Meta Description" value={itemMetaDescription} onChange={(e) => setItemMetaDescription(e.target.value)} />
                                     </div>
+                                    <div>
+                                        <Label>Og Title</Label>
+                                        <Input type="text" placeholder="Falls back to Meta Title if empty" value={itemOgTitle} onChange={(e) => setItemOgTitle(e.target.value)} />
+                                    </div>
+                                    <div>
+                                        <Label>Og Description</Label>
+                                        <Input type="text" placeholder="Falls back to Meta Description if empty" value={itemOgDescription} onChange={(e) => setItemOgDescription(e.target.value)} />
+                                    </div>
 
                                     <div className='flex flex-col gap-2 w-1/2'>
                 <Label className='font-bold'>Og Type</Label>
-                                                
+
                                                         <Select
                                                             onValueChange={setItemOgType}
                                                             value={itemOgType}
@@ -362,13 +422,33 @@ const AdminGallery = () => {
 
                                             <div className='flex flex-col gap-2 w-1/2'>
                                                 <Label className='font-bold'>Og Image</Label>
-                                                
+
                                                         <ImageUploader
                                                             value={itemOgImage}
                                                             onChange={setItemOgImage}
                                                         />
-                                                    
+
                                             </div>
+
+                                    <div>
+                                        <Label>Twitter Title</Label>
+                                        <Input type="text" placeholder="Falls back to Meta Title if empty" value={itemTwitterTitle} onChange={(e) => setItemTwitterTitle(e.target.value)} />
+                                    </div>
+                                    <div>
+                                        <Label>Twitter Description</Label>
+                                        <Input type="text" placeholder="Falls back to Meta Description if empty" value={itemTwitterDescription} onChange={(e) => setItemTwitterDescription(e.target.value)} />
+                                    </div>
+                                    <div className='flex flex-col gap-2 w-1/2'>
+                                        <Label className='font-bold'>Twitter Image</Label>
+                                        <ImageUploader
+                                            value={itemTwitterImage}
+                                            onChange={setItemTwitterImage}
+                                        />
+                                    </div>
+                                    <div>
+                                        <Label>Schema</Label>
+                                        <Textarea className="font-mono text-sm" rows={8} placeholder='{ "@context": "https://schema.org", "@type": "WebPage", ... }' value={itemSchema} onChange={(e) => setItemSchema(e.target.value)} />
+                                    </div>
 
                                 </div>
                             </DialogHeader>
@@ -397,7 +477,7 @@ const AdminGallery = () => {
                             </div>
                             <div className="flex items-center gap-10">
                                 <Dialog>
-                                    <DialogTrigger className="" onClick={() => { setTitle(item.title); setThumbnail(item.thumbnail); setThumbnailAlt(item.thumbnailAlt);setSlug(item.slug);setItemMetaTitle(item.metaTitle);setItemMetaDescription(item.metaDescription);setItemOgType(item.ogType);setItemOgImage(item.ogImage) }}><MdEdit className="cursor-pointer text-md" /></DialogTrigger>
+                                    <DialogTrigger className="" onClick={() => { setTitle(item.title); setThumbnail(item.thumbnail); setThumbnailAlt(item.thumbnailAlt);setSlug(item.slug);setItemMetaTitle(item.metaTitle);setItemMetaDescription(item.metaDescription);setItemOgTitle(item.ogTitle);setItemOgDescription(item.ogDescription);setItemOgType(item.ogType);setItemOgImage(item.ogImage);setItemTwitterTitle(item.twitterTitle);setItemTwitterDescription(item.twitterDescription);setItemTwitterImage(item.twitterImage);setItemSchema(item.schema) }}><MdEdit className="cursor-pointer text-md" /></DialogTrigger>
                                     <DialogContent className="h-[600px] overflow-auto">
                                         <DialogHeader>
                                             <DialogTitle>Edit Item</DialogTitle>
@@ -433,10 +513,18 @@ const AdminGallery = () => {
                                                     <Label>Meta Description</Label>
                                                     <Input type="text" placeholder="Meta Description" value={itemMetaDescription} onChange={(e) => setItemMetaDescription(e.target.value)} />
                                                 </div>
+                                                <div>
+                                                    <Label>Og Title</Label>
+                                                    <Input type="text" placeholder="Falls back to Meta Title if empty" value={itemOgTitle} onChange={(e) => setItemOgTitle(e.target.value)} />
+                                                </div>
+                                                <div>
+                                                    <Label>Og Description</Label>
+                                                    <Input type="text" placeholder="Falls back to Meta Description if empty" value={itemOgDescription} onChange={(e) => setItemOgDescription(e.target.value)} />
+                                                </div>
 
                                                 <div className='flex flex-col gap-2 w-1/2'>
                 <Label className='font-bold'>Og Type</Label>
-                                                
+
                                                         <Select
                                                             onValueChange={setItemOgType}
                                                             value={itemOgType}
@@ -461,13 +549,33 @@ const AdminGallery = () => {
 
                                             <div className='flex flex-col gap-2 w-1/2'>
                                                 <Label className='font-bold'>Og Image</Label>
-                                                
+
                                                         <ImageUploader
                                                             value={itemOgImage}
                                                             onChange={setItemOgImage}
                                                         />
-                                                    
+
                                             </div>
+
+                                                <div>
+                                                    <Label>Twitter Title</Label>
+                                                    <Input type="text" placeholder="Falls back to Meta Title if empty" value={itemTwitterTitle} onChange={(e) => setItemTwitterTitle(e.target.value)} />
+                                                </div>
+                                                <div>
+                                                    <Label>Twitter Description</Label>
+                                                    <Input type="text" placeholder="Falls back to Meta Description if empty" value={itemTwitterDescription} onChange={(e) => setItemTwitterDescription(e.target.value)} />
+                                                </div>
+                                                <div className='flex flex-col gap-2 w-1/2'>
+                                                    <Label className='font-bold'>Twitter Image</Label>
+                                                    <ImageUploader
+                                                        value={itemTwitterImage}
+                                                        onChange={setItemTwitterImage}
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <Label>Schema</Label>
+                                                    <Textarea className="font-mono text-sm" rows={8} placeholder='{ "@context": "https://schema.org", "@type": "WebPage", ... }' value={itemSchema} onChange={(e) => setItemSchema(e.target.value)} />
+                                                </div>
 
                                             </div>
                                         </DialogHeader>

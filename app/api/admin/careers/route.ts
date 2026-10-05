@@ -4,6 +4,7 @@ import Career from "@/app/models/Career";
 import { verifyAdmin } from "@/lib/verifyAdmin";
 import CareerRequest from "@/app/models/CareerRequest";
 import {sendContactAction} from "@/lib/mail/contactAction"
+import { revalidateTag } from "next/cache";
 
 export async function PATCH(req:NextRequest) {
     try {
@@ -15,6 +16,7 @@ export async function PATCH(req:NextRequest) {
         }
         const career = await Career.findOneAndUpdate({}, body, { upsert: true });
         if(career){
+            revalidateTag("career")
             return NextResponse.json({ message: "Details saved successfully" }, { status: 200 });
         }else{
             return NextResponse.json({ message: "Error saving  details" }, { status: 500 });

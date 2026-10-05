@@ -7,12 +7,13 @@ import { revalidateTag } from "next/cache";
 export async function POST(req:NextRequest) {
     try {
         await connectDB();
-        const {mainTitle,subTitle,slug,content,images,category,metaTitle,metaDescription,thumbnail,thumbnailAlt,coverImage,coverImageAlt,date,ogType,ogImage,link} = await req.json();
+        const {mainTitle,subTitle,slug,content,images,category,metaTitle,metaDescription,ogTitle,ogDescription,thumbnail,thumbnailAlt,coverImage,coverImageAlt,date,ogType,ogImage,twitterTitle,twitterDescription,twitterImage,schema,link} = await req.json();
         const news = await News.findOne({})
         if(news){
-            news.news.push({mainTitle,subTitle,slug,content,images,category,metaTitle,metaDescription,thumbnail,thumbnailAlt,coverImage,coverImageAlt,date,ogType,ogImage,link})
+            news.news.push({mainTitle,subTitle,slug,content,images,category,metaTitle,metaDescription,ogTitle,ogDescription,thumbnail,thumbnailAlt,coverImage,coverImageAlt,date,ogType,ogImage,twitterTitle,twitterDescription,twitterImage,schema,link})
             await news.save()
             revalidateTag("all-news");
+            revalidateTag("indi-news");
             return NextResponse.json({message: "News added successfully"},{status: 200});
         }
         else{
@@ -29,19 +30,20 @@ export async function PATCH(req:NextRequest) {
         await connectDB();
         const {searchParams} = new URL(req.url);
         const id = searchParams.get("id");
-        const {mainTitle,subTitle,slug,content,images,category,metaTitle,metaDescription,thumbnail,thumbnailAlt,coverImage,coverImageAlt,date,ogType,ogImage, link} = await req.json();
+        const {mainTitle,subTitle,slug,content,images,category,metaTitle,metaDescription,ogTitle,ogDescription,thumbnail,thumbnailAlt,coverImage,coverImageAlt,date,ogType,ogImage,twitterTitle,twitterDescription,twitterImage,schema,link} = await req.json();
         console.log(date)
         const news = await News.findOne({});
         if(news){
             news.news = news.news.map((news:{_id:string}) => {
                 if(news._id.toString() === id){
                     console.log(date)
-                    return {mainTitle,subTitle,slug,content,images,category,metaTitle,metaDescription,thumbnail,thumbnailAlt,coverImage,coverImageAlt,date,ogType,ogImage,link}
+                    return {mainTitle,subTitle,slug,content,images,category,metaTitle,metaDescription,ogTitle,ogDescription,thumbnail,thumbnailAlt,coverImage,coverImageAlt,date,ogType,ogImage,twitterTitle,twitterDescription,twitterImage,schema,link}
                 }
                 return news
             })
             await news.save()
             revalidateTag("all-news");
+            revalidateTag("indi-news");
             return NextResponse.json({message: "News updated successfully"},{status: 200});
         }
         else{
@@ -100,6 +102,7 @@ export async function DELETE(req:NextRequest) {
                 news.news = news.news.filter((news:{_id:string}) => news._id.toString() !== id)
                 await news.save()
                 revalidateTag("all-news");
+                revalidateTag("indi-news");
                 return NextResponse.json({message: "News deleted successfully"},{status: 200});
             }else{
                 return NextResponse.json({message: "Error in deleting news"},{status: 500});

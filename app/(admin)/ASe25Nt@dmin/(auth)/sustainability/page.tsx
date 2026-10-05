@@ -20,8 +20,14 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 interface SustainabilityFormProps {
   metaTitle: string;
   metaDescription: string;
+  ogTitle: string;
+  ogDescription: string;
   ogType: string;
   ogImage: string;
+  twitterTitle: string;
+  twitterDescription: string;
+  twitterImage: string;
+  schema: string;
   banner: string;
   bannerAlt: string;
   pageTitle: string;
@@ -161,6 +167,14 @@ const SustainabilityPage = () => {
         setValue("pageTitle", data.data.pageTitle);
         setValue("metaTitle", data.data.metaTitle);
         setValue("metaDescription", data.data.metaDescription);
+        setValue("ogTitle", data.data.ogTitle);
+        setValue("ogDescription", data.data.ogDescription);
+        setValue("ogType", data.data.ogType);
+        setValue("ogImage", data.data.ogImage);
+        setValue("twitterTitle", data.data.twitterTitle);
+        setValue("twitterDescription", data.data.twitterDescription);
+        setValue("twitterImage", data.data.twitterImage);
+        setValue("schema", data.data.schema);
         setValue("firstSection", data.data.firstSection);
         setValue("firstSection.items", data.data.firstSection.items);
         setValue("secondSection", data.data.secondSection);
@@ -1010,6 +1024,22 @@ const SustainabilityPage = () => {
             {...register("metaDescription")}
           />
         </div>
+        <div className="flex flex-col gap-2">
+          <Label className="font-bold">Og Title</Label>
+          <Input
+            type="text"
+            placeholder="Falls back to Meta Title if empty"
+            {...register("ogTitle")}
+          />
+        </div>
+        <div className="flex flex-col gap-2">
+          <Label className="font-bold">Og Description</Label>
+          <Input
+            type="text"
+            placeholder="Falls back to Meta Description if empty"
+            {...register("ogDescription")}
+          />
+        </div>
 
         <div className='flex flex-col gap-2 w-1/2'>
                 <Label className='font-bold'>Og Type</Label>
@@ -1046,7 +1076,7 @@ const SustainabilityPage = () => {
                                                 <Controller
                                                     name={`ogImage`}
                                                     control={control}
-                                                    
+
                                                     render={({ field }) => (
                                                         <ImageUploader
                                                             value={field.value}
@@ -1056,6 +1086,41 @@ const SustainabilityPage = () => {
                                                     )}
                                                 />
                                             </div>
+
+        <div className="flex flex-col gap-2">
+          <Label className="font-bold">Twitter Title</Label>
+          <Input
+            type="text"
+            placeholder="Falls back to Meta Title if empty"
+            {...register("twitterTitle")}
+          />
+        </div>
+        <div className="flex flex-col gap-2">
+          <Label className="font-bold">Twitter Description</Label>
+          <Input
+            type="text"
+            placeholder="Falls back to Meta Description if empty"
+            {...register("twitterDescription")}
+          />
+        </div>
+        <div className='flex flex-col gap-2 w-1/2'>
+                                                <Label className='font-bold'>Twitter Image</Label>
+                                                <Controller
+                                                    name={`twitterImage`}
+                                                    control={control}
+                                                    render={({ field }) => (
+                                                        <ImageUploader
+                                                            value={field.value}
+                                                            onChange={field.onChange}
+                                                            isLogo
+                                                        />
+                                                    )}
+                                                />
+                                            </div>
+        <div className="flex flex-col gap-2">
+          <Label className="font-bold">Schema</Label>
+          <Textarea className="font-mono text-sm" rows={8} placeholder='{ "@context": "https://schema.org", "@type": "WebPage", ... }' {...register("schema")} />
+        </div>
 
         <div className="flex justify-center">
           <Button

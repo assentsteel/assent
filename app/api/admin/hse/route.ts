@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
 import HSE from "@/app/models/Hse";
 import { verifyAdmin } from "@/lib/verifyAdmin";
+import { revalidateTag } from "next/cache";
 
 
 export async function GET() {
@@ -30,6 +31,7 @@ export async function PATCH(request: NextRequest) {
         if (!hse) {
             return NextResponse.json({ message: "HSE not found" }, { status: 404 });
         }
+        revalidateTag("hse")
         return NextResponse.json({data:hse,message:"HSE updated successfully"}, { status: 200 });
     } catch (error) {
         console.log(error);

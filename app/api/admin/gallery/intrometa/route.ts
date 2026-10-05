@@ -1,13 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
 import GalleryMeta from "@/app/models/GalleryMeta";
+import { revalidateTag } from "next/cache";
 
 export async function POST(req:NextRequest) {
     try {
         await connectDB();
-        const { metaTitle, metaDescription, pageTitle,ogType,ogImage } = await req.json();
-        const gallery = await GalleryMeta.findOneAndUpdate({}, { metaTitle, metaDescription, pageTitle,ogType,ogImage },{upsert:true});
+        const { metaTitle, metaDescription, pageTitle,ogTitle,ogDescription,ogType,ogImage,twitterTitle,twitterDescription,twitterImage,schema } = await req.json();
+        const gallery = await GalleryMeta.findOneAndUpdate({}, { metaTitle, metaDescription, pageTitle,ogTitle,ogDescription,ogType,ogImage,twitterTitle,twitterDescription,twitterImage,schema },{upsert:true});
         if(gallery){
+            revalidateTag("gallery-meta")
             return NextResponse.json({ message: "Details saved successfully" }, { status: 200 });
         }else{
             return NextResponse.json({ message: "Error saving  details" }, { status: 500 });

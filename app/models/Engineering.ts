@@ -1,17 +1,9 @@
 import mongoose from "mongoose";
+import seoSchema from "./Seo";
 
 const EngineeringSchema = new mongoose.Schema({
-    metaTitle:{
-        type:String
-    },
-    metaDescription:{
-        type:String
-    },
-    ogType:{
-        type:String
-    },
-    ogImage:{
-        type:String
+    seo: {
+        type: seoSchema,
     },
     pageTitle:{
         type:String,
@@ -171,6 +163,23 @@ const EngineeringSchema = new mongoose.Schema({
                     required:true
                 },
                 logo:{
+                    type:String,
+                    required:true
+                }
+            }
+        ]
+    },
+    seventhSection:{
+        title:{
+            type:String
+        },
+        items:[
+            {
+                title:{
+                    type:String,
+                    required:true
+                },
+                description:{
                     type:String,
                     required:true
                 }

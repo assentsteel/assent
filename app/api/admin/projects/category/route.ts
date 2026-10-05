@@ -2,10 +2,11 @@ import { verifyAdmin } from "@/lib/verifyAdmin";
 import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
 import Project from "@/app/models/Project";
+import { revalidateTag } from "next/cache";
 
 export async function POST(request: NextRequest) {
     try {
-        const {name,metaTitle,metaDescription,slug} = await request.json();
+        const {name,seo,slug} = await request.json();
         const isAdmin = await verifyAdmin(request);
         if (!isAdmin) {
             return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
@@ -15,8 +16,9 @@ export async function POST(request: NextRequest) {
         if(!project){
             return NextResponse.json({ message: "Projects not found" }, { status: 404 });
         }
-        project.categories.push({ name,metaTitle,metaDescription,slug });
+        project.categories.push({ name,seo,slug });
         await project.save();
+        revalidateTag("all-project")
         return NextResponse.json({ message: "Category created successfully",success:true }, { status: 201 });
     } catch (error) {
         console.log(error);
@@ -57,7 +59,7 @@ export async function GET(request: NextRequest) {
 export async function PATCH(request: NextRequest) {
     try {
     const id = request.nextUrl.searchParams.get("id");
-    const {name,metaTitle,metaDescription,slug} = await request.json();
+    const {name,seo,slug} = await request.json();
         const isAdmin = await verifyAdmin(request);
         if (!isAdmin) {
             return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
@@ -72,10 +74,10 @@ export async function PATCH(request: NextRequest) {
             return NextResponse.json({ message: "Category not found" }, { status: 404 });
         }
         category.name = name;
-        category.metaTitle = metaTitle;
-        category.metaDescription = metaDescription;
+        category.seo = seo;
         category.slug = slug;
         await project.save();
+        revalidateTag("all-project")
         return NextResponse.json({ message: "Category updated successfully",success:true }, { status: 200 });
     } catch (error) {
         console.log(error);
@@ -101,6 +103,7 @@ export async function DELETE(request: NextRequest) {
         }
         project.categories = project.categories.filter((category: { _id: string; }) => category._id != id);
         await project.save();
+        revalidateTag("all-project")
         return NextResponse.json({ message: "Category deleted successfully",success:true }, { status: 200 });
     } catch (error) {
         console.log(error);

@@ -8,6 +8,13 @@ import { Textarea } from '@/components/ui/textarea'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import AdminItemContainer from '@/app/component/common/AdminItemContainer'
+import { FiUploadCloud, FiCheckCircle, FiXCircle, FiX, FiFileText } from 'react-icons/fi'
+
+interface SitemapInfo {
+    updatedAt: string;
+    urlCount: number;
+    content: string;
+}
 
 interface FormValues {
     headerScript: string;
@@ -29,6 +36,13 @@ const Settings = () => {
     const [toEmailRegistration, setToEmailRegistration] = useState("")
     const [toEmailDownload, setToEmailDownload] = useState("")
     const [toEmailCareer, setToEmailCareer] = useState("")
+
+    const [sitemapFile, setSitemapFile] = useState<File | null>(null)
+    const [sitemapUploading, setSitemapUploading] = useState(false)
+    const [sitemapRemoving, setSitemapRemoving] = useState(false)
+    const [sitemapStatus, setSitemapStatus] = useState<{ type: "success" | "error"; message: string } | null>(null)
+    const [sitemapInfo, setSitemapInfo] = useState<SitemapInfo | null>(null)
+    const [loadingSitemapInfo, setLoadingSitemapInfo] = useState(true)
 
     const onSubmit = async (data: FormValues | FormValues2) => {
         try {
@@ -101,9 +115,97 @@ const Settings = () => {
         }
     }
 
+    const fetchSitemapInfo = async () => {
+        setLoadingSitemapInfo(true)
+        try {
+            const response = await fetch(`/api/admin/sitemap`);
+            if (response.ok) {
+                const data = await response.json();
+                setSitemapInfo(data.data ?? null);
+            } else {
+                setSitemapInfo(null);
+            }
+        } catch (error) {
+            console.log("Error in fetching sitemap info", error);
+            setSitemapInfo(null);
+        } finally {
+            setLoadingSitemapInfo(false)
+        }
+    }
+
+    const handleSitemapFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const selected = e.target.files?.[0] ?? null;
+        setSitemapStatus(null);
+
+        if (selected && !selected.name.endsWith(".xml")) {
+            setSitemapStatus({ type: "error", message: "File must be a .xml file" });
+            setSitemapFile(null);
+            return;
+        }
+        setSitemapFile(selected);
+    }
+
+    const handleSitemapUpload = async () => {
+        if (!sitemapFile) return;
+
+        setSitemapUploading(true);
+        setSitemapStatus(null);
+
+        try {
+            const formData = new FormData();
+            formData.append("file", sitemapFile);
+
+            const response = await fetch(`/api/admin/sitemap`, {
+                method: "POST",
+                body: formData,
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                setSitemapStatus({ type: "success", message: data.message ?? "Sitemap uploaded successfully" });
+                setSitemapFile(null);
+                fetchSitemapInfo();
+            } else {
+                setSitemapStatus({ type: "error", message: data.message ?? "Upload failed" });
+            }
+        } catch (error) {
+            console.log("Error in uploading sitemap", error);
+            setSitemapStatus({ type: "error", message: "Upload failed. Please try again." });
+        } finally {
+            setSitemapUploading(false);
+        }
+    }
+
+    const handleSitemapRemove = async () => {
+        setSitemapRemoving(true);
+        setSitemapStatus(null);
+
+        try {
+            const response = await fetch(`/api/admin/sitemap`, {
+                method: "DELETE",
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                setSitemapInfo(null);
+                setSitemapStatus({ type: "success", message: data.message ?? "Sitemap removed" });
+            } else {
+                setSitemapStatus({ type: "error", message: data.message ?? "Failed to remove sitemap" });
+            }
+        } catch (error) {
+            console.log("Error in removing sitemap", error);
+            setSitemapStatus({ type: "error", message: "Failed to remove sitemap. Please try again." });
+        } finally {
+            setSitemapRemoving(false);
+        }
+    }
+
     useEffect(() => {
         fetchTag();
         fetchEmails();
+        fetchSitemapInfo();
     }, []);
 
     const checkCurrentPassword = async () => {
@@ -249,6 +351,82 @@ const Settings = () => {
                 </div>
             </AdminItemContainer>
 
+            <AdminItemContainer>
+                <Label main>Sitemap</Label>
+
+                <div className="flex flex-col gap-3 rounded-md p-5">
+                    {loadingSitemapInfo ? (
+                        <p className="text-sm text-gray-500">Loading...</p>
+                    ) : sitemapInfo ? (
+                        <div className="relative flex flex-col gap-3 rounded-md border border-black/20 p-4">
+                            <button
+                                type="button"
+                                onClick={handleSitemapRemove}
+                                disabled={sitemapRemoving}
+                                className="absolute right-3 top-3 cursor-pointer text-gray-500 hover:text-red-600 disabled:opacity-50"
+                                aria-label="Remove sitemap"
+                            >
+                                <FiX className="text-xl" />
+                            </button>
+
+                            <div className="flex items-center gap-3">
+                                <FiFileText className="flex-shrink-0 text-2xl text-gray-500" />
+                                <div className="flex flex-col">
+                                    <span className="text-sm font-bold">sitemap.xml</span>
+                                    <span className="text-xs text-gray-500">
+                                        {sitemapInfo.urlCount} URLs · Updated{" "}
+                                        {new Date(sitemapInfo.updatedAt).toLocaleString()}
+                                    </span>
+                                </div>
+                            </div>
+
+                            <a
+                                href="/sitemap.xml"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-fit text-sm text-blue-600 underline"
+                            >
+                                View live sitemap
+                            </a>
+                        </div>
+                    ) : (
+                        <>
+                            <div className="flex flex-col items-center justify-center gap-2 rounded-md border border-dashed border-black/20 p-6">
+                                <FiUploadCloud className="text-3xl text-gray-400" />
+                                <input
+                                    type="file"
+                                    accept=".xml"
+                                    onChange={handleSitemapFileChange}
+                                    className="text-sm"
+                                />
+                                {sitemapFile && (
+                                    <p className="text-sm text-gray-600">Selected: {sitemapFile.name}</p>
+                                )}
+                            </div>
+
+                            <div className="flex justify-end">
+                                <Button
+                                    type="button"
+                                    className="text-white"
+                                    disabled={!sitemapFile || sitemapUploading}
+                                    onClick={handleSitemapUpload}
+                                >
+                                    {sitemapUploading ? "Uploading..." : "Upload Sitemap"}
+                                </Button>
+                            </div>
+                        </>
+                    )}
+
+                    {sitemapStatus && (
+                        <div
+                            className={`flex items-center gap-2 text-sm ${sitemapStatus.type === "success" ? "text-green-600" : "text-red-500"}`}
+                        >
+                            {sitemapStatus.type === "success" ? <FiCheckCircle /> : <FiXCircle />}
+                            <p>{sitemapStatus.message}</p>
+                        </div>
+                    )}
+                </div>
+            </AdminItemContainer>
 
         </div>
     )

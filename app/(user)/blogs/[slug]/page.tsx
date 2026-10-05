@@ -2,6 +2,7 @@ import Index from "@/app/component/BlogDetails/Index"
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import Script from "next/script"
+import { getBlogBySlug } from "@/lib/services/blogs.service"
 
 const NO_INDEX_SLUGS = [
   "globalsurf-post-lourve",
@@ -37,17 +38,18 @@ export async function generateMetadata({
 
   const { slug } = await params
 
-  // const blog = blogData?.data?.[0]?.news?.find(
-  //   (item) => item.slug === slug
-  // )
+  const blog = await getBlogBySlug(slug)
 
-  const response = await fetch(`${process.env.BASE_URL}/api/admin/blogs?slug=${slug}`, { next: { revalidate: 60 } });
-  const data = await response.json();
-  const blog = data.data
-
-  if (!data) return {}
+  if (!blog) return {}
 
   const canonicalUrl = `https://www.assentsteel.com/blogs/${slug}`
+
+  const ogTitle = blog.ogTitle || blog.metaTitle
+  const ogDescription = blog.ogDescription || blog.metaDescription
+  const ogImage = blog.ogImage || blog.thumbnail
+  const twitterTitle = blog.twitterTitle || blog.metaTitle
+  const twitterDescription = blog.twitterDescription || blog.metaDescription
+  const twitterImage = blog.twitterImage || ogImage
 
   return {
     title: blog.metaTitle,
@@ -55,7 +57,7 @@ export async function generateMetadata({
 
     alternates: {
       canonical: canonicalUrl,
-      
+
     },
 
 
@@ -64,19 +66,20 @@ export async function generateMetadata({
       : { index: true, follow: true },
 
     openGraph: {
-      title: blog.metaTitle,
-      description: blog.metaDescription,
+      title: ogTitle,
+      description: ogDescription,
       url: canonicalUrl,
       siteName: "Assent",
-      images: [
-        {
-          url: blog.thumbnail,
-          width: 1200,
-          height: 630,
-          alt: blog.mainTitle,
-        },
-      ],
-      type: "article",
+      images: ogImage
+        ? [{ url: ogImage, width: 1200, height: 630, alt: ogTitle }]
+        : [],
+      type: (blog.ogType || "article") as "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: twitterTitle,
+      description: twitterDescription,
+      images: twitterImage ? [twitterImage] : [],
     },
   }
 }
@@ -89,9 +92,7 @@ export default async function Page({
 
   const { slug } = await params
 
-  const response = await fetch(`${process.env.BASE_URL}/api/admin/blogs?slug=${slug}`, { next: { revalidate: 60 } });
-  const data = await response.json();
-  const blog = data.data
+  const blog = await getBlogBySlug(slug)
 
   if (!blog) {
     notFound()
