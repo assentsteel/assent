@@ -1,42 +1,25 @@
 "use client";
 
 import { useState } from "react";
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls,Html,useGLTF } from "@react-three/drei";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import { assets } from "@/public/assets/assets";
-import {   Engineering } from '@/public/types/Common';   
-import { Suspense } from "react";
-import { GLTF } from "three-stdlib";
-import { useMemo } from "react";
-import { SkeletonUtils } from "three-stdlib";
+import { Engineering } from '@/public/types/Common';
 
+// Loaded client-side only: keeps three.js / @react-three/fiber out of the
+// server render and this route's initial JS bundle (SEO/perf fix — the GLTF
+// viewer never produces indexable content anyway, so it costs nothing to
+// defer it until after hydration).
+const ModelCanvas = dynamic(() => import("./ModelCanvas"), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-full flex items-center justify-center">
+      <div className="w-6 h-6 border-2 border-black border-t-transparent rounded-full animate-spin" />
+    </div>
+  ),
+});
 
-const Loader = () => {
-
-  return (
-    <Html center>
-      <div className="flex flex-col items-center gap-2">
-        <div className="w-6 h-6 border-2 border-black border-t-transparent rounded-full animate-spin" />
-      </div>
-    </Html>
-  );
-};
-
-const ModelViewer = ({ url, ...props }:{ url: string; position: number[]; scale: number; key: string; }) => {
-  const gltf = useGLTF(url) as GLTF;
-
-  // ✅ clone scene safely
-  const scene = useMemo(
-    () => SkeletonUtils.clone(gltf.scene),
-    [gltf.scene]
-  );
-
-  return <primitive object={scene} {...props} />;
-};
- 
-
-    const ProjectModels = ({ data }: { data: Engineering}) => {   
+    const ProjectModels = ({ data }: { data: Engineering}) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const selectedItem = data.thirdSection.items[activeIndex];
 
@@ -52,21 +35,7 @@ const ModelViewer = ({ url, ...props }:{ url: string; position: number[]; scale:
 
   const renderViewer = () => {
     if (selectedItem.style === "3d-file") {
-      return (
-        <Canvas camera={{ position: [0, 1, 15] }}>
-          <ambientLight intensity={1} />
-          <directionalLight position={[5, 5, 5]} />
-          <OrbitControls enableZoom={true} />
-          <Suspense fallback={<Loader />}>
-          <ModelViewer
-            url={selectedItem.threeDFile}
-            position={[0, 0, 0]}
-            scale={0.3}
-            key={selectedItem.threeDFile}
-          />
-          </Suspense>
-        </Canvas>
-      );
+      return <ModelCanvas url={selectedItem.threeDFile} />;
     } else if (selectedItem.style === "image") {
       return (
         <div className="w-full h-full flex items-center justify-center">
