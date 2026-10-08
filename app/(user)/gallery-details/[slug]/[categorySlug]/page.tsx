@@ -60,6 +60,7 @@ export async function generateMetadata({
     openGraph: {
       title: ogTitle,
       description: ogDescription,
+      url: canonicalUrl,
       type: ogType,
       siteName: "Assent",
       images: ogImage
