@@ -27,7 +27,7 @@ export async function generateMetadata({
     openGraph: {
       title: metadataTitle,
       description: metadataDescription,
-      url: process.env.BASE_URL,
+      url: canonicalUrl,
       siteName: "Assent",
       images: ogImage
         ? [{ url: ogImage, width: 1200, height: 630, alt: metadataTitle }]

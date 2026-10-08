@@ -46,7 +46,7 @@ return {
   openGraph: {
     title: ogTitle,
     description: ogDescription,
-    url: process.env.BASE_URL,
+    url: "https://www.assentsteel.com/sustainability",
     siteName: "Assent",
     images: ogImage
       ? [{ url: ogImage, width: 1200, height: 630, alt: ogTitle }]
