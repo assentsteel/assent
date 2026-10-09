@@ -12,6 +12,7 @@ import { Projectswfull } from "@/public/types/Common";
 interface Filters {
     name: string;
     _id: string;
+    category?: string;
 }
 
 export const getAllProjects = unstable_cache(

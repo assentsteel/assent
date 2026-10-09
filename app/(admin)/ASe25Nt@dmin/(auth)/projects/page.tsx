@@ -5,6 +5,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, Dialog
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { MdEdit } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
 import { IoMdExit } from "react-icons/io";
@@ -75,12 +76,13 @@ const ProjectsPage = () => {
     } = useForm<SeoOnlyFormValues>({ defaultValues: emptySeoForm });
 
     const [sector, setSector] = useState<string>("");
+    const [sectorCategory, setSectorCategory] = useState<string>("");
     const [location, setLocation] = useState<string>("");
     const [oldSectorName, setOldSectorName] = useState<string>("");
     const [oldLocationName, setOldLocationName] = useState<string>("");
 
     const [categories, setCategories] = useState<{ _id: string; name: string; seo?: SeoFormValues; slug: string }[]>([]);
-    const [sectors, setSectors] = useState<{ _id: string; name: string }[]>([]);
+    const [sectors, setSectors] = useState<{ _id: string; name: string; category?: string }[]>([]);
     const [locations, setLocations] = useState<{ _id: string; name: string }[]>([]);
 
     useEffect(() => {
@@ -211,12 +213,13 @@ const ProjectsPage = () => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ sector }),
+                body: JSON.stringify({ sector, category: sectorCategory }),
             });
             const data = await res.json();
             if (data.success) {
                 alert(data.message);
                 setSector("");
+                setSectorCategory("");
                 fetchSectors();
             }
         } catch (error) {
@@ -232,13 +235,14 @@ const ProjectsPage = () => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ sector,oldSectorName }),
+                body: JSON.stringify({ sector,oldSectorName,category: sectorCategory }),
             });
             const data = await res.json();
             if (data.success) {
                 alert(data.message);
                 setSector("");
                 setOldSectorName("");
+                setSectorCategory("");
                 fetchSectors();
             }
         } catch (error) {
@@ -471,7 +475,7 @@ const ProjectsPage = () => {
                 <div className='flex items-center gap-2 justify-between'>
                     <h2 className='text-md font-semibold'>Sector</h2>
                     <Dialog>
-                        <DialogTrigger className="bg-primary text-white px-2 py-1 rounded-md" onClick={() => {setSector("");}}>Add Sector</DialogTrigger>
+                        <DialogTrigger className="bg-primary text-white px-2 py-1 rounded-md" onClick={() => {setSector("");setSectorCategory("");}}>Add Sector</DialogTrigger>
                         <DialogContent className="">
                             <DialogHeader>
                                 <DialogTitle>Add Sector</DialogTitle>
@@ -480,6 +484,21 @@ const ProjectsPage = () => {
                                     <div>
                                         <Label>Name</Label>
                                         <Input type="text" placeholder="Title" value={sector} onChange={(e) => setSector(e.target.value)} />
+                                    </div>
+
+                                    <div className='flex flex-col gap-2'>
+                                        <Label>Category</Label>
+                                        <Select onValueChange={(val) => setSectorCategory(val === "none" ? "" : val)} value={sectorCategory || "none"}>
+                                            <SelectTrigger className="w-full">
+                                                <SelectValue placeholder="Select Category" />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                <SelectItem value="none">No specific category (show on all pages)</SelectItem>
+                                                {categories.map((c) => (
+                                                    <SelectItem key={c._id} value={c.slug}>{c.name}</SelectItem>
+                                                ))}
+                                            </SelectContent>
+                                        </Select>
                                     </div>
 
                                 </div>
@@ -494,10 +513,15 @@ const ProjectsPage = () => {
                         <div className='flex items-center justify-between border p-2 rounded-md' key={index}>
                             <div>
                                 <p className="text-[16px]">{sector.name}</p>
+                                {sector.category && (
+                                    <p className="text-xs text-territory">
+                                        {categories.find((c) => c.slug === sector.category)?.name ?? sector.category}
+                                    </p>
+                                )}
                             </div>
                             <div className="flex items-center gap-10">
                                 <Dialog>
-                                    <DialogTrigger className="" onClick={() => { setSector(sector.name);setOldSectorName(sector.name); }}><MdEdit className="cursor-pointer text-md" /></DialogTrigger>
+                                    <DialogTrigger className="" onClick={() => { setSector(sector.name);setOldSectorName(sector.name);setSectorCategory(sector.category || ""); }}><MdEdit className="cursor-pointer text-md" /></DialogTrigger>
                                     <DialogContent className="">
                                         <DialogHeader>
                                             <DialogTitle>Edit Sector</DialogTitle>
@@ -506,6 +530,21 @@ const ProjectsPage = () => {
                                                 <div>
                                                     <Label>Name</Label>
                                                     <Input type="text" placeholder="Title" defaultValue={sector.name} onChange={(e) => setSector(e.target.value)} />
+                                                </div>
+
+                                                <div className='flex flex-col gap-2'>
+                                                    <Label>Category</Label>
+                                                    <Select onValueChange={(val) => setSectorCategory(val === "none" ? "" : val)} value={sectorCategory || "none"}>
+                                                        <SelectTrigger className="w-full">
+                                                            <SelectValue placeholder="Select Category" />
+                                                        </SelectTrigger>
+                                                        <SelectContent>
+                                                            <SelectItem value="none">No specific category (show on all pages)</SelectItem>
+                                                            {categories.map((c) => (
+                                                                <SelectItem key={c._id} value={c.slug}>{c.name}</SelectItem>
+                                                            ))}
+                                                        </SelectContent>
+                                                    </Select>
                                                 </div>
 
                                             </div>
