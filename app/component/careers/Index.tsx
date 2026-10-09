@@ -24,7 +24,7 @@ const Index = async ({ data }: { data: Career }) => {
       />
       <TextByImg data={data} />
       <CareerText data={data} />
-      <Openings data={data} />
+      {/* <Openings data={data} /> */}
       <JoinTeam openings={data.thirdSection.items} />
 
     </JobSelectContextProvider>

@@ -8,13 +8,13 @@ import { revalidateTag } from "next/cache";
 
 export async function POST(request: NextRequest) {
     try {
-        const {sector} = await request.json();
+        const {sector,category} = await request.json();
         const isAdmin = await verifyAdmin(request);
         if (!isAdmin) {
             return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
         }
         await connectDB();
-        const createSector = await Sector.create({name:sector});
+        const createSector = await Sector.create({name:sector,category});
         if(!createSector){
             return NextResponse.json({ message: "Failed creating sector" }, { status: 404 });
         }
@@ -43,13 +43,13 @@ export async function GET() {
 export async function PATCH(request: NextRequest) {
     try {
     const id = request.nextUrl.searchParams.get("id");
-    const {sector,oldSectorName} = await request.json();
+    const {sector,oldSectorName,category} = await request.json();
         const isAdmin = await verifyAdmin(request);
         if (!isAdmin) {
             return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
         }
         await connectDB();
-        const editSector = await Sector.findByIdAndUpdate({_id:id},{$set:{name:sector}});
+        const editSector = await Sector.findByIdAndUpdate({_id:id},{$set:{name:sector,category}});
         if(!editSector){
             return NextResponse.json({ message: "Failed editing sector" }, { status: 404 });
         }

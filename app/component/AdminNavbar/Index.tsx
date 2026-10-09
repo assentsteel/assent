@@ -9,6 +9,7 @@ import {
   EnvelopeIcon,
   BriefcaseIcon,
   GlobeAltIcon,
+  ArrowDownTrayIcon,
 } from "@heroicons/react/24/outline";
 import {
   AwardIcon,
@@ -117,6 +118,7 @@ const AdminNavbar = () => {
       href: "/ASe25Nt@dmin/sustainability",
       icon: LeafIcon,
     },
+    { name: "File Downloads", href: "/ASe25Nt@dmin/file-downloads", icon: ArrowDownTrayIcon },
     { name: "Settings", href: "/ASe25Nt@dmin/settings", icon: Settings },
   ];
 

@@ -83,6 +83,12 @@ export default async function Home({ params }: { params: Promise<{ slug: string 
     const title = category?.name;
     const customSchema = parseSeoSchema(category?.seo?.schema);
 
+    // Sectors explicitly tagged for this category only; if none have been
+    // tagged, fall back to the full list (keeps every other category page
+    // showing everything, unchanged).
+    const categorySectors = sectorData.filter((s) => s.category === slug);
+    const filteredSectorData = categorySectors.length > 0 ? categorySectors : sectorData;
+
     return (
         <>
             {customSchema && (
@@ -94,7 +100,7 @@ export default async function Home({ params }: { params: Promise<{ slug: string 
                     }}
                 />
             )}
-            <Index data={{ data: category?.projects ?? [] }} slug={slug} locationData={locationData} sectorData={sectorData} title={title ?? ""} />
+            <Index data={{ data: category?.projects ?? [] }} slug={slug} locationData={locationData} sectorData={filteredSectorData} title={title ?? ""} />
         </>
     );
 }
