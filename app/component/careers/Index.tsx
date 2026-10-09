@@ -2,7 +2,7 @@ import React from "react";
 import HeroInner from "../common/Banner/HeroInner";
 import TextByImg from "./sections/TextByImg";
 import CareerText from "./sections/CareerText";
-import Openings from "./sections/Openings";
+// import Openings from "./sections/Openings";
 import JoinTeam from "./sections/JoinTeam";
 import { Career } from '@/public/types/Common';
 import { JobSelectContextProvider } from '@/contexts/jobSelectionContext';
