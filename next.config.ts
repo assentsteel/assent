@@ -2089,6 +2089,11 @@ const nextConfig: NextConfig = {
         destination: "/news",
         permanent: true,
       },
+      {
+        source: "/index",
+        destination: "/",
+        permanent: true,
+      },
     ];
   },
 };
