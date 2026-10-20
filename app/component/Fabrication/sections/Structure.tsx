@@ -7,7 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperType } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
-import { assets } from "@/public/assets/assets";
+import greenarrow from "@/public/assets/img/icons/greenarrow.svg";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import dynamic from "next/dynamic";
@@ -131,7 +131,7 @@ import { useSearchContext } from "@/contexts/searchContext";
                                   className="bg-white text-black px-3 py-1 border border-[#595959] rounded-full w-[48px] h-[48px] hover:bg-secondary group transition flex items-center justify-center"
                                 >
                                   <Image
-                                    src={assets.greenarrow}
+                                    src={greenarrow}
                                     alt=""
                                     width={11}
                                     height={18}
@@ -150,7 +150,7 @@ import { useSearchContext } from "@/contexts/searchContext";
                                   className="bg-white text-black px-3 py-1 border border-[#595959] rounded-full w-[48px] h-[48px] hover:bg-secondary group transition flex items-center justify-center"
                                 >
                                   <Image
-                                    src={assets.greenarrow}
+                                    src={greenarrow}
                                     alt=""
                                     width={11}
                                     height={18}
