@@ -3,8 +3,9 @@
 import { useState } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import { assets } from "@/public/assets/assets";
+import greenarrow from "@/public/assets/img/icons/greenarrow.svg";
 import { Engineering } from '@/public/types/Common';
+import ErrorBoundary from "../../common/ErrorBoundary";
 
 // Loaded client-side only: keeps three.js / @react-three/fiber out of the
 // server render and this route's initial JS bundle (SEO/perf fix — the GLTF
@@ -35,7 +36,17 @@ const ModelCanvas = dynamic(() => import("./ModelCanvas"), {
 
   const renderViewer = () => {
     if (selectedItem.style === "3d-file") {
-      return <ModelCanvas url={selectedItem.threeDFile} />;
+      return (
+        <ErrorBoundary
+          fallback={
+            <div className="w-full h-full flex items-center justify-center text-sm text-territory text-center px-4">
+              3D model unavailable right now.
+            </div>
+          }
+        >
+          <ModelCanvas url={selectedItem.threeDFile} />
+        </ErrorBoundary>
+      );
     } else if (selectedItem.style === "image") {
       return (
         <div className="w-full h-full flex items-center justify-center">
@@ -75,7 +86,7 @@ const ModelCanvas = dynamic(() => import("./ModelCanvas"), {
                 className="bg-white border text-black px-3 py-1 rounded-full w-[48px] h-[48px] hover:bg-secondary group transition flex items-center justify-center"
               >
                 <Image
-                  src={assets.greenarrow}
+                  src={greenarrow}
                   alt=""
                   width={11}
                   height={18}
@@ -112,7 +123,7 @@ const ModelCanvas = dynamic(() => import("./ModelCanvas"), {
                 className="bg-white border text-black px-3 py-1 rounded-full w-[48px] h-[48px] hover:bg-secondary group transition flex items-center justify-center"
               >
                 <Image
-                  src={assets.greenarrow}
+                  src={greenarrow}
                   alt=""
                   width={11}
                   height={18}
