@@ -64,33 +64,29 @@ export default async function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
+              "@id": "https://www.assentsteel.com/#localbusiness",
               "name": "Assent Steel",
               "url": "https://www.assentsteel.com/",
-              "logo": "https://www.assentsteel.com/assets/img/logo.svg",
-              "description":
-                "ASSENT STEEL INDUSTRIES L.L.C is a Dubai-based structural steel fabrication and engineering company, delivering high-quality steel structures and turnkey construction solutions for landmark projects across the Middle East, GCC, Africa, and Southeast Asia.",
-              "sameAs": [
-                "https://www.linkedin.com/company/assentsteel/",
-                "https://www.facebook.com/assentsteel/",
-                "https://www.instagram.com/assentsteel/?hl=en",
-                "https://www.youtube.com/@assentsteel"
-              ],
+              "image": "https://www.assentsteel.com/assets/img/logo.svg",
+              "telephone": "+971-4-247-1200",
+              "email": "info@assentsteel.com",
               "address": {
                 "@type": "PostalAddress",
-                "streetAddress": "Dubai Industrial City",
+                "streetAddress": "Saih Shuaib 4, Dubai Industrial City",
+                "postOfficeBoxNumber": "38436",
                 "addressLocality": "Dubai",
-                "addressCountry": "United Arab Emirates",
-                "postalCode": "38436"
+                "addressRegion": "Dubai",
+                "addressCountry": "AE"
               },
-              "telephone": "+971-4-2471200",
-              "email": ["info@assentsteel.com", "contactus@assentsteel.com"],
               "geo": {
                 "@type": "GeoCoordinates",
                 "latitude": 24.830749,
                 "longitude": 55.082948
               },
-              "hasMap":
-                "https://www.google.com/maps?ll=24.830749,55.082948&z=17&t=m&hl=en&gl=IN&mapclient=embed&cid=4653444714486657600"
+              "hasMap": "https://www.google.com/maps?cid=4653444714486657600",
+              "parentOrganization": {
+                "@id": "https://www.assentsteel.com/#organization"
+              }
             }),
           }}
         />
