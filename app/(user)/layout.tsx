@@ -8,6 +8,7 @@ import { SearchProvider } from "@/contexts/searchContext";
 import parse from 'html-react-parser'
 import { getAllProjects } from "@/lib/services/project.service";
 import { getTag } from "@/lib/services/tags.service";
+import Script from "next/script";
 
 
 const poppins = Poppins({
@@ -51,19 +52,76 @@ export default async function RootLayout({
   });
 
   const tagData = { tag: await getTag() };
-
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://www.assentsteel.com/#organization",
+  name: "Assent Steel",
+  legalName: "ASSENT STEEL INDUSTRIES L.L.C",
+  url: "https://www.assentsteel.com/",
+  logo: "https://www.assentsteel.com/assets/img/logo.svg",
+  description:
+    "Dubai-based structural steel company providing steel engineering, fabrication, blasting, painting, fireproofing and erection services since 2008.",
+  foundingDate: "2008",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Saih Shuaib 4, Dubai Industrial City",
+    postOfficeBoxNumber: "38436",
+    addressLocality: "Dubai",
+    addressRegion: "Dubai",
+    addressCountry: "AE",
+  },
+  telephone: "+971-4-247-1200",
+  email: "info@assentsteel.com",
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "sales",
+    telephone: "+971-4-247-1200",
+    email: "contactus@assentsteel.com",
+  },
+  sameAs: [
+    "https://www.linkedin.com/company/assentsteel/",
+    "https://www.facebook.com/assentsteel/",
+    "https://www.instagram.com/assentsteel/",
+    "https://www.youtube.com/@assentsteel",
+  ],
+};
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://www.assentsteel.com/#website",
+    url: "https://www.assentsteel.com/",
+    name: "Assent Steel",
+    publisher: {
+      "@id": "https://www.assentsteel.com/#organization",
+    },
+  };
   return (
     <html lang="en">
-
-      {tagData?.tag && <head>
+      <head><Script id="gtm" strategy="afterInteractive">
+        {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TG4NRJR');`}
+      </Script></head>
+      {/* {tagData?.tag && <head>
 
         {parse(tagData?.tag?.headerScript || "")}
        
-
-      </head>}
+        
+      </head>} */}
       <body className={`${poppins.variable} font-poppins antialiased`}>
-        <BreadcrumbSchema />
+        {/* <BreadcrumbSchema /> */}
         {tagData?.tag && <>{parse(tagData?.tag?.bodyScript || "")}</>}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
         <SearchProvider>
           <Navbar categories={categories} />
           {children}
