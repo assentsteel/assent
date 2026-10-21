@@ -3,7 +3,6 @@ import { Poppins } from "next/font/google";
 import "../globals.css";
 import Navbar from "../component/common/NavBars/Navbar";
 import Footer from "../component/common/Footer";
-import BreadcrumbSchema from "../component/home/BreadcrumbSchema";
 import { SearchProvider } from "@/contexts/searchContext";
 import parse from 'html-react-parser'
 import { getAllProjects } from "@/lib/services/project.service";
@@ -112,7 +111,6 @@ const organizationSchema = {
         
       </head>} */}
       <body className={`${poppins.variable} font-poppins antialiased`}>
-        {/* <BreadcrumbSchema /> */}
         {tagData?.tag && <>{parse(tagData?.tag?.bodyScript || "")}</>}
         <script
           type="application/ld+json"
