@@ -20,7 +20,7 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: {
       title: metadataTitle,
       description: metadataDescription,
-      url: process.env.BASE_URL,
+      url: "https://www.assentsteel.com/global-presence",
       siteName: "Assent",
       images: [
         {

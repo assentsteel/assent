@@ -48,7 +48,7 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
     openGraph: {
       title: ogTitle,
       description: ogDescription,
-      url: process.env.BASE_URL,
+      url: canonicalUrl,
       siteName: "Assent",
       images: ogImage
         ? [{ url: ogImage, width: 1200, height: 630, alt: ogTitle }]

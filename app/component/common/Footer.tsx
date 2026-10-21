@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -9,6 +10,7 @@ import {
   FaYoutube,
 } from "react-icons/fa6";
 import ScrollToTop from "./ScrollToTop";
+import DownloadModal from "./DownloadModal";
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -29,7 +31,10 @@ const scaleUp = {
 };
 
 const Footer = () => {
+  const [downloadTarget, setDownloadTarget] = useState<{ url: string; label: string } | null>(null);
+
   return (
+    <>
     <motion.footer
       initial="hidden"
       whileInView="visible"
@@ -153,27 +158,34 @@ const Footer = () => {
           <motion.div variants={fadeIn} className=" ">
             <div className="flex md:flex-row flex-col gap-5 md:gap-[70px] justify-between border-t xl:border-t-0 xxl:border-t border-white/35 pt-8 xxl:pt-[50px] xxxl:pt-[61px] pb-5 lg:pb-0 items-center">
               <div className="flex xl:grid   flex-col xl:grid-cols-[50%_auto] gap-4 justify-between w-full">
-                {/* <div className="flex md:flex-row flex-col gap-4 overflow-hidden pt-2 lg:pt-0 wst5 xl:border-t xl:pt-10 xxl:pt-0 border-t-0 xxl:border-t-0">
-                  <Link
-                    href="/assets/ASSENT_STEEL_INDUSTRIES_L.L.C.pdf"
-                    target="_blank"
+                <div className="flex md:flex-row flex-col gap-4 overflow-hidden pt-2 lg:pt-0 wst5 xl:border-t xl:pt-10 xxl:pt-0 border-t-0 xxl:border-t-0">
+                  <motion.button
+                    type="button"
+                    variants={scaleUp}
+                    onClick={() =>
+                      setDownloadTarget({
+                        url: "/assets/ASSENT_STEEL_INDUSTRIES_L.L.C.pdf",
+                        label: "Brochure",
+                      })
+                    }
+                    className="border border-secondary py-2 px-4 rounded-full hover:bg-secondary hover:text-primary h-[40px] md:h-[58px] transition-all ease-in-out duration-500"
                   >
-                    <motion.button
-                      variants={scaleUp}
-                      className="border border-secondary py-2 px-4 rounded-full hover:bg-secondary hover:text-primary h-[40px] md:h-[58px] transition-all ease-in-out duration-500"
-                    >
-                      DOWNLOAD BROCHURE
-                    </motion.button>
-                  </Link>
-                  <Link href="/assets/PQD-final-2_compressed.pdf" target="_blank">
-                    <motion.button
-                      variants={scaleUp}
-                      className="border border-secondary py-2 px-4 rounded-full hover:bg-secondary hover:text-primary h-[40px] md:h-[58px] transition-all ease-in-out duration-500"
-                    >
-                      PRE-QUALIFICATION
-                    </motion.button>
-                  </Link>
-                </div> */}
+                    DOWNLOAD BROCHURE
+                  </motion.button>
+                  <motion.button
+                    type="button"
+                    variants={scaleUp}
+                    onClick={() =>
+                      setDownloadTarget({
+                        url: "/assets/PQD-final-2_compressed.pdf",
+                        label: "Pre-Qualification",
+                      })
+                    }
+                    className="border border-secondary py-2 px-4 rounded-full hover:bg-secondary hover:text-primary h-[40px] md:h-[58px] transition-all ease-in-out duration-500"
+                  >
+                    PRE-QUALIFICATION
+                  </motion.button>
+                </div>
                 <div className="flex gap-2 md:gap-1 md:items-center flex-row xl:border-t xl:pt-10 xxl:border-t-0 xxl:pt-0">
                   <Image
                     src="/assets/img/icns/WEBSITE-FOOTER-LOGO.jpg"
@@ -275,6 +287,13 @@ const Footer = () => {
         </div>
       </motion.div>
     </motion.footer>
+    <DownloadModal
+      isOpen={downloadTarget !== null}
+      onClose={() => setDownloadTarget(null)}
+      fileUrl={downloadTarget?.url ?? ""}
+      fileLabel={downloadTarget?.label ?? ""}
+    />
+    </>
   );
 };
 

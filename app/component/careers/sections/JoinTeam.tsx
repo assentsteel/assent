@@ -142,7 +142,7 @@ const JoinTeam = ({ openings }: { openings: OpeningProps }) => {
   }, [jobSelect]);
 
   return (
-    <section className="py-[50px] md:py-[70px] xl:py-[100px]   overflow-hidden relative " id="wantToJoin">
+    <section className="py-[50px] md:py-[70px] xl:py-[100px]   overflow-hidden relative border-t" id="wantToJoin">
       <div className="container">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
