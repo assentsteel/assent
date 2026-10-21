@@ -77,12 +77,34 @@ export default async function Page() {
     breadcrumb: { "@id": "https://www.assentsteel.com/contact-us#breadcrumb" },
     mainEntity: { "@id": "https://www.assentsteel.com/#localbusiness" },
   };
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": "https://www.assentsteel.com/contact-us#breadcrumb",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://www.assentsteel.com/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Contact Us",
+        item: "https://www.assentsteel.com/contact-us",
+      },
+    ],
+  };
   return (
     <>
-    
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(contactPageSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       {/* Breadcrumb Schema */}
       {/* <Script
