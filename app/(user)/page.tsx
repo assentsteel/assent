@@ -4,50 +4,6 @@ import { Metadata } from "next";
 import { getAllNews } from "@/lib/services/news.service";
 import { getAllProjects } from "@/lib/services/project.service";
  
-const organizationSchema = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "@id": "https://www.assentsteel.com/#organization",
-  name: "Assent Steel",
-  legalName: "ASSENT STEEL INDUSTRIES L.L.C",
-  url: "https://www.assentsteel.com/",
-  logo: "https://www.assentsteel.com/assets/img/logo.svg",
-  description:
-    "Dubai-based structural steel company providing steel engineering, fabrication, blasting, painting, fireproofing and erection services since 2008.",
-  foundingDate: "2008",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "Saih Shuaib 4, Dubai Industrial City",
-    postOfficeBoxNumber: "38436",
-    addressLocality: "Dubai",
-    addressRegion: "Dubai",
-    addressCountry: "AE",
-  },
-  telephone: "+971-4-247-1200",
-  email: "info@assentsteel.com",
-  contactPoint: {
-    "@type": "ContactPoint",
-    contactType: "sales",
-    telephone: "+971-4-247-1200",
-    email: "contactus@assentsteel.com",
-  },
-  sameAs: [
-    "https://www.linkedin.com/company/assentsteel/",
-    "https://www.facebook.com/assentsteel/",
-    "https://www.instagram.com/assentsteel/",
-    "https://www.youtube.com/@assentsteel",
-  ],
-};
-const websiteSchema = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "@id": "https://www.assentsteel.com/#website",
-  url: "https://www.assentsteel.com/",
-  name: "Assent Steel",
-  publisher: {
-    "@id": "https://www.assentsteel.com/#organization",
-  },
-};
 
 export async function generateMetadata(): Promise<Metadata> {
   const data = await getHome();
@@ -119,14 +75,6 @@ export default async function Home() {
             }
           }),
         }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
       />
      <Index data={home} newsData={newsData}  projData={projData}/>
     </>
