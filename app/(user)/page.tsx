@@ -38,43 +38,31 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "@id": "https://www.assentsteel.com/#breadcrumb",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: "https://www.assentsteel.com/",
+    },
+  ],
+};
 export default async function Home() {
     const home = await getHome()
     const newsData = await getAllNews();
     const projData = await getAllProjects();
   return (
     <>
+      
+     
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "LocalBusiness",
-            "@id": "https://www.assentsteel.com/#localbusiness",
-            "name": "Assent Steel",
-            "url": "https://www.assentsteel.com/",
-            "image": "https://www.assentsteel.com/assets/img/logo.svg",
-            "telephone": "+971-4-247-1200",
-            "email": "info@assentsteel.com",
-            "address": {
-              "@type": "PostalAddress",
-              "streetAddress": "Saih Shuaib 4, Dubai Industrial City",
-              "postOfficeBoxNumber": "38436",
-              "addressLocality": "Dubai",
-              "addressRegion": "Dubai",
-              "addressCountry": "AE"
-            },
-            "geo": {
-              "@type": "GeoCoordinates",
-              "latitude": 24.830749,
-              "longitude": 55.082948
-            },
-            "hasMap": "https://www.google.com/maps?cid=4653444714486657600",
-            "parentOrganization": {
-              "@id": "https://www.assentsteel.com/#organization"
-            }
-          }),
-        }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
      <Index data={home} newsData={newsData}  projData={projData}/>
     </>

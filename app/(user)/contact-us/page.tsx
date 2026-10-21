@@ -65,9 +65,47 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function Page() {
   const data = await getContact();
   const customSchema = parseSeoSchema(data?.schema);
-
+  const contactPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "@id": "https://www.assentsteel.com/contact-us#webpage",
+    url: "https://www.assentsteel.com/contact-us",
+    name: "Connect with Assent Steel | UAE Steel Industry Experts",
+    description:
+      "Contact ASSENT Steel’s corporate head office in Dubai for steel engineering, fabrication, and project enquiries.",
+    isPartOf: { "@id": "https://www.assentsteel.com/#website" },
+    breadcrumb: { "@id": "https://www.assentsteel.com/contact-us#breadcrumb" },
+    mainEntity: { "@id": "https://www.assentsteel.com/#localbusiness" },
+  };
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": "https://www.assentsteel.com/contact-us#breadcrumb",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://www.assentsteel.com/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Contact Us",
+        item: "https://www.assentsteel.com/contact-us",
+      },
+    ],
+  };
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactPageSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       {/* Breadcrumb Schema */}
       {/* <Script
         id="contact-schema"
