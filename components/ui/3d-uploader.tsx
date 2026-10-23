@@ -5,7 +5,6 @@ import { useDropzone } from "react-dropzone";
 import { File, X, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "./button";
-import { uploadToDropbox } from "@/lib/connectDropbox";
 
 interface ThreeDUploaderProps {
   value?: string;
@@ -51,23 +50,22 @@ export function ThreeDUploader({
         setIsUploading(true);
         setError(null);
 
-        // const formData = new FormData();
-        // formData.append("file", file);
-        // formData.append("fileType", "file");
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("fileType", "file");
 
-        // const response = await fetch("/api/admin/upload", {
-        //   method: "POST",
-        //   body: formData,
-        // });
+        const response = await fetch("/api/admin/upload", {
+          method: "POST",
+          body: formData,
+        });
 
-        // if (response.status !== 200) {
-        //   alert("Upload failed");
-        //   return;
-        // }
+        if (response.status !== 200) {
+          alert("Upload failed");
+          return;
+        }
 
-        // const data = await response.json();
-        const filePath = `/uploads/file/${Date.now()}${file.name}`;
-        const uploadResult = await uploadToDropbox(file, filePath);
+        const data = await response.json();
+        const uploadResult = data.url as string;
         setFileName(file.name);
         onChange(uploadResult, file.name);
       } catch (err) {

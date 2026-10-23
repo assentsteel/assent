@@ -5,7 +5,6 @@ import { useDropzone } from "react-dropzone";
 import { Upload, X, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "./button";
-import { uploadToDropbox } from "@/lib/connectDropbox";
 
 interface VideoUploaderProps {
   value?: string;
@@ -34,23 +33,22 @@ export function VideoUploader({ value, onChange, className, deleteAfterUpload = 
         setError(null);
         setIsUploadComplete(false);
 
-        // const formData = new FormData();
-        // formData.append("file", file);
-        // formData.append("fileType", "video");
-        // const response = await fetch("/api/admin/upload", {
-        //   method: "POST",
-        //   body: formData,
-        // });
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("fileType", "video");
+        const response = await fetch("/api/admin/upload", {
+          method: "POST",
+          body: formData,
+        });
 
-        // if (response.status !== 200) {
-        //   setLocalVideoUrl(null);
-        //   alert("Upload failed");
-        //   return;
-        // }
+        if (response.status !== 200) {
+          setLocalVideoUrl(null);
+          alert("Upload failed");
+          return;
+        }
 
-        // const data = await response.json();
-        const filePath = `/uploads/video/${Date.now()}${file.name}`;
-        const uploadResult = await uploadToDropbox(file, filePath);
+        const data = await response.json();
+        const uploadResult = data.url as string;
         setLocalVideoUrl(uploadResult);
         onChange(uploadResult, file);
         setIsUploadComplete(true);
