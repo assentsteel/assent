@@ -4,7 +4,7 @@ import { Metadata } from "next";
 import { getAllNews } from "@/lib/services/news.service";
 import { getAllProjects } from "@/lib/services/project.service";
  
- 
+
 export async function generateMetadata(): Promise<Metadata> {
   const data = await getHome();
 
@@ -38,12 +38,32 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "@id": "https://www.assentsteel.com/#breadcrumb",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: "https://www.assentsteel.com/",
+    },
+  ],
+};
 export default async function Home() {
     const home = await getHome()
     const newsData = await getAllNews();
     const projData = await getAllProjects();
   return (
     <>
+      
+     
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
      <Index data={home} newsData={newsData}  projData={projData}/>
     </>
   );

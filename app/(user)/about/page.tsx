@@ -35,11 +35,56 @@ export async function generateMetadata(): Promise<Metadata> {
     },
   };
 }
+const aboutPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "@id": "https://www.assentsteel.com/about#webpage",
+  url: "https://www.assentsteel.com/about",
+  name: "About Us | Steel Manufacturer in UAE | Assent Steel",
+  description:
+    "Assent is a Dubai-based steel manufacturing company delivering dependable manufacturing, supply & installation solutions with consistent quality.",
+  isPartOf: {
+    "@id": "https://www.assentsteel.com/#website",
+  },
+  breadcrumb: {
+    "@id": "https://www.assentsteel.com/about#breadcrumb",
+  },
+  mainEntity: {
+    "@id": "https://www.assentsteel.com/#organization",
+  },
+};
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "@id": "https://www.assentsteel.com/about#breadcrumb",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: "https://www.assentsteel.com/",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "About Us",
+      item: "https://www.assentsteel.com/about",
+    },
+  ],
+};
 
 export default async function Page() {
   const data = await getAbout();
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutPageSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Index data={data}/>
     </>
   );

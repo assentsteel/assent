@@ -3,11 +3,11 @@ import { Poppins } from "next/font/google";
 import "../globals.css";
 import Navbar from "../component/common/NavBars/Navbar";
 import Footer from "../component/common/Footer";
-import BreadcrumbSchema from "../component/home/BreadcrumbSchema";
 import { SearchProvider } from "@/contexts/searchContext";
 import parse from 'html-react-parser'
 import { getAllProjects } from "@/lib/services/project.service";
 import { getTag } from "@/lib/services/tags.service";
+
 
 
 const poppins = Poppins({
@@ -51,54 +51,67 @@ export default async function RootLayout({
   });
 
   const tagData = { tag: await getTag() };
-
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://www.assentsteel.com/#organization",
+  name: "Assent Steel",
+  legalName: "ASSENT STEEL INDUSTRIES L.L.C",
+  url: "https://www.assentsteel.com/",
+  logo: "https://www.assentsteel.com/assets/img/logo.svg",
+  description:
+    "Dubai-based structural steel company providing steel engineering, fabrication, blasting, painting, fireproofing and erection services since 2008.",
+  foundingDate: "2008",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Saih Shuaib 4, Dubai Industrial City",
+    postOfficeBoxNumber: "38436",
+    addressLocality: "Dubai",
+    addressRegion: "Dubai",
+    addressCountry: "AE",
+  },
+  telephone: "+971-4-247-1200",
+  email: "info@assentsteel.com",
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "sales",
+    telephone: "+971-4-247-1200",
+    email: "contactus@assentsteel.com",
+  },
+  sameAs: [
+    "https://www.linkedin.com/company/assentsteel/",
+    "https://www.facebook.com/assentsteel/",
+    "https://www.instagram.com/assentsteel/",
+    "https://www.youtube.com/@assentsteel",
+  ],
+};
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://www.assentsteel.com/#website",
+    url: "https://www.assentsteel.com/",
+    name: "Assent Steel",
+    publisher: {
+      "@id": "https://www.assentsteel.com/#organization",
+    },
+  };
   return (
     <html lang="en">
-
       {tagData?.tag && <head>
 
         {parse(tagData?.tag?.headerScript || "")}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "LocalBusiness",
-              "name": "Assent Steel",
-              "url": "https://www.assentsteel.com/",
-              "logo": "https://www.assentsteel.com/assets/img/logo.svg",
-              "description":
-                "ASSENT STEEL INDUSTRIES L.L.C is a Dubai-based structural steel fabrication and engineering company, delivering high-quality steel structures and turnkey construction solutions for landmark projects across the Middle East, GCC, Africa, and Southeast Asia.",
-              "sameAs": [
-                "https://www.linkedin.com/company/assentsteel/",
-                "https://www.facebook.com/assentsteel/",
-                "https://www.instagram.com/assentsteel/?hl=en",
-                "https://www.youtube.com/@assentsteel"
-              ],
-              "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "Dubai Industrial City",
-                "addressLocality": "Dubai",
-                "addressCountry": "United Arab Emirates",
-                "postalCode": "38436"
-              },
-              "telephone": "+971-4-2471200",
-              "email": ["info@assentsteel.com", "contactus@assentsteel.com"],
-              "geo": {
-                "@type": "GeoCoordinates",
-                "latitude": 24.830749,
-                "longitude": 55.082948
-              },
-              "hasMap":
-                "https://www.google.com/maps?ll=24.830749,55.082948&z=17&t=m&hl=en&gl=IN&mapclient=embed&cid=4653444714486657600"
-            }),
-          }}
-        />
-
+       
       </head>}
       <body className={`${poppins.variable} font-poppins antialiased`}>
-        <BreadcrumbSchema />
         {tagData?.tag && <>{parse(tagData?.tag?.bodyScript || "")}</>}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
         <SearchProvider>
           <Navbar categories={categories} />
           {children}
