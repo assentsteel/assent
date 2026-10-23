@@ -60,6 +60,7 @@ export function ImageUploader({ value, onChange, className, deleteAfterUpload = 
             });
           }
 
+          
         } else {
           const formData = new FormData();
           formData.append("file", file);
