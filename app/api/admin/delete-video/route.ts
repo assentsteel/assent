@@ -1,7 +1,12 @@
 import { getDropboxInstance } from "@/lib/connectDropbox";
+import { verifyAdmin } from "@/lib/verifyAdmin";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
+    const isAdmin = await verifyAdmin(request);
+    if (!isAdmin) {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
     try {
         const { url } = await request.json();
         const dropbox = await getDropboxInstance();
