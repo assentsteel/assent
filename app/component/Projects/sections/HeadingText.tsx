@@ -13,9 +13,10 @@ import { useParams } from "next/navigation";
 
  import { Projectsw } from '@/public/types/Common';
 
- const HeadingText = ({ data, categoryslug,locationData,sectorData }: { data: Projectsw,categoryslug: string,locationData: { name: string; }[],sectorData: { name: string; }[] }) => { 
+ const HeadingText = ({ data, categoryslug,locationData,sectorData }: { data: Projectsw,categoryslug: string,locationData: { name: string; }[],sectorData: { name: string; }[] }) => {
   console.log(data)
   const params = useParams();
+  const showSectorFilter = categoryslug !== "data-centres";
   // const dropdowns = [
   //   {
   //     label: "Country",
@@ -204,6 +205,7 @@ const handleLoadMore = () => {
                   </div>
 
 
+                  {showSectorFilter && (
                   <div className="relative w-full my-3 lg:my-0">
                     <Listbox
                       value={selectedValues[1].value}
@@ -239,6 +241,7 @@ const handleLoadMore = () => {
                       </div>
                     </Listbox>
                   </div>
+                  )}
 
 
                 <div className="relative w-full flex items-center mb-2 md:mb-0 mt-2 md:mt-0">
