@@ -49,7 +49,7 @@ import { useParams } from "next/navigation";
 
 const [selectedValues, setSelectedValues] = useState<{ value: string; label: string; }[]>([
   { value: "All countries", label: "All countries" },
-  { value: "Sector", label: "Sector" },
+  { value: "All sectors", label: "All sectors" },
   { value: "", label: "" },
 ]); 
 interface ProjectItem {
@@ -124,7 +124,7 @@ const applyFilters = (filters: { value: string; label: string }[]) => {
       ? item.location?.toLowerCase() === country.value.toLowerCase()
       : true;
 
-    const matchSector = sector.value != "Sector"
+    const matchSector = sector.value != "All sectors"
       ? item.sector?.toLowerCase() === sector.value.toLowerCase()
       : true;
 
@@ -143,7 +143,7 @@ const clearFilters = () => {
   setFilteredResults(data.data);
   setSelectedValues([
     { value: "All countries", label: "All countries" },
-    { value: "Sector", label: "Sector" },
+    { value: "All sectors", label: "All sectors" },
     { value: "", label: "" },
   ]);
   setSearch({value:"",label:""})
@@ -181,6 +181,22 @@ const handleLoadMore = () => {
                           </span>
                         </Listbox.Button>
                         <Listbox.Options className="absolute z-10 left-0 w-full bg-white border mt-1 shadow-lg rounded-md max-md:h-[200px] overflow-auto">
+                          <Listbox.Option
+                            key="all-countries"
+                            value="All countries"
+                            className={({ active, selected }) =>
+                              `cursor-pointer select-none px-4 py-2 text-xs uppercase text-primary ${
+                                active ? "bg-secondary text-white" : ""
+                              } ${selected ? "font-semibold" : ""}`
+                            }
+                          >
+                            {({ selected }) => (
+                              <span className="flex items-center justify-between">
+                                All countries
+                                {selected && <CheckIcon className="w-4 h-4 ml-2 text-white" />}
+                              </span>
+                            )}
+                          </Listbox.Option>
                           {locationData.map((option) => (
                             <Listbox.Option
                               key={option.name}
@@ -219,6 +235,22 @@ const handleLoadMore = () => {
                           </span>
                         </Listbox.Button>
                         <Listbox.Options className="absolute z-10 left-0 w-full bg-white border mt-1 shadow-lg rounded-md max-md:h-[200px] overflow-auto">
+                          <Listbox.Option
+                            key="all-sectors"
+                            value="All sectors"
+                            className={({ active, selected }) =>
+                              `cursor-pointer select-none px-4 py-2 text-xs uppercase text-primary ${
+                                active ? "bg-secondary text-white" : ""
+                              } ${selected ? "font-semibold" : ""}`
+                            }
+                          >
+                            {({ selected }) => (
+                              <span className="flex items-center justify-between">
+                                All sectors
+                                {selected && <CheckIcon className="w-4 h-4 ml-2 text-white" />}
+                              </span>
+                            )}
+                          </Listbox.Option>
                           {sectorData.map((option) => (
                             <Listbox.Option
                               key={option.name}
