@@ -172,7 +172,7 @@ export type News = {
   twitterTitle?: string;
   twitterDescription?: string;
   twitterImage?: string;
-  schema?: string;
+  schemaMarkup?: string;
   pageTitle: string;
   banner: string;
   bannerAlt: string;
@@ -200,7 +200,7 @@ export type News = {
     twitterTitle?: string;
     twitterDescription?: string;
     twitterImage?: string;
-    schema?: string;
+    schemaMarkup?: string;
     link?: string;
     _id: number;
     date: string;

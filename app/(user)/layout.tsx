@@ -97,11 +97,11 @@ export default async function RootLayout({
 //   };
   return (
     <html lang="en">
-      {tagData?.tag && <head>
+      {/* {tagData?.tag && <head>
 
         {parse(tagData?.tag?.headerScript || "")}
        
-      </head>}
+      </head>} */}
       <body className={`${poppins.variable} font-poppins antialiased`}>
         {tagData?.tag && <>{parse(tagData?.tag?.bodyScript || "")}</>}
         {/* <script
