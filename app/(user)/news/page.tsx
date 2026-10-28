@@ -65,7 +65,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Page() {
   const data = await getAllNews();
-  const customSchema = parseSeoSchema(data?.schema);
+  const customSchema = parseSeoSchema(data?.schemaMarkup);
   return (
     <>
       {customSchema && (

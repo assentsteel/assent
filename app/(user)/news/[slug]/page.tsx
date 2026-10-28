@@ -80,7 +80,7 @@ export default async function Home({params}: {params: Promise<{slug: string}>}) 
    const ARTICLE_SCHEMA_SLUGS = [
   "engineering-marvels",
 ];
-  const customSchema = parseSeoSchema(article.schema);
+  const customSchema = parseSeoSchema(article.schemaMarkup);
   return (
     <>
     {/* Article Schema */}

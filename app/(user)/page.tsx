@@ -3,7 +3,26 @@ import Index from "../component/home/Index";
 import { Metadata } from "next";
 import { getAllNews } from "@/lib/services/news.service";
 import { getAllProjects } from "@/lib/services/project.service";
- 
+
+const parseSeoSchema = (schema?: string) => {
+  if (!schema) return null;
+
+  try {
+    const trimmedSchema = schema.trim();
+
+    if (!trimmedSchema) return null;
+
+    const scriptMatch = trimmedSchema.match(
+      /<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/i
+    );
+
+    const schemaContent = scriptMatch?.[1]?.trim() || trimmedSchema;
+    return JSON.parse(schemaContent);
+  } catch (error) {
+    console.error("Invalid home seoSchema JSON-LD", error);
+    return null;
+  }
+};
 
 export async function generateMetadata(): Promise<Metadata> {
   const data = await getHome();
@@ -39,31 +58,19 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "@id": "https://www.assentsteel.com/#breadcrumb",
-  itemListElement: [
-    {
-      "@type": "ListItem",
-      position: 1,
-      name: "Home",
-      item: "https://www.assentsteel.com/",
-    },
-  ],
-};
 export default async function Home() {
     const home = await getHome()
     const newsData = await getAllNews();
     const projData = await getAllProjects();
+    const customSchema = parseSeoSchema(home?.seo?.schema);
   return (
     <>
-      
-     
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
+      {customSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(customSchema) }}
+        />
+      )}
      <Index data={home} newsData={newsData}  projData={projData}/>
     </>
   );

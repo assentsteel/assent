@@ -10,7 +10,7 @@ const newsSchema = new mongoose.Schema({
     twitterTitle:{ type: String },
     twitterDescription:{ type: String },
     twitterImage:{ type: String },
-    schema:{ type: String },
+    schemaMarkup:{ type: String },
     banner:{ type: String },
     bannerAlt:{ type: String},
     pageTitle:{ type: String, required: true },
@@ -41,7 +41,7 @@ const newsSchema = new mongoose.Schema({
             twitterTitle: { type: String },
             twitterDescription: { type: String },
             twitterImage: { type: String },
-            schema: { type: String },
+            schemaMarkup: { type: String },
         }
     ]
 });

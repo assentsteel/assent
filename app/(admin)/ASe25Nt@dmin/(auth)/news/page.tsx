@@ -33,7 +33,7 @@ export default function News() {
     const [ogDescription, setOgDescription] = useState<string>("");
     const [twitterTitle, setTwitterTitle] = useState<string>("");
     const [twitterDescription, setTwitterDescription] = useState<string>("");
-    const [schema, setSchema] = useState<string>("");
+    const [schemaMarkup, setSchemaMarkup] = useState<string>("");
     const [pageTitle, setPageTitle] = useState<string>("");
     const router = useRouter();
     const [search, setSearch] = useState("");
@@ -102,7 +102,7 @@ export default function News() {
                 setOgDescription(data.data.ogDescription);
                 setTwitterTitle(data.data.twitterTitle);
                 setTwitterDescription(data.data.twitterDescription);
-                setSchema(data.data.schema);
+                setSchemaMarkup(data.data.schemaMarkup);
                 setValue("ogType", data.data.ogType);
                 setValue("ogImage", data.data.ogImage);
                 setValue("twitterImage", data.data.twitterImage);
@@ -186,7 +186,7 @@ export default function News() {
                     twitterTitle,
                     twitterDescription,
                     twitterImage: getValues("twitterImage"),
-                    schema,
+                    schemaMarkup,
                 }),
             });
             if (response.ok) {
@@ -289,7 +289,7 @@ export default function News() {
                     </div>
                     <div>
                         <Label>Schema</Label>
-                        <Textarea className="font-mono text-sm" rows={8} placeholder='{ "@context": "https://schema.org", "@type": "WebPage", ... }' value={schema} onChange={(e) => setSchema(e.target.value)} />
+                        <Textarea className="font-mono text-sm" rows={8} placeholder='{ "@context": "https://schema.org", "@type": "WebPage", ... }' value={schemaMarkup} onChange={(e) => setSchemaMarkup(e.target.value)} />
                     </div>
                 </div>
             </div>

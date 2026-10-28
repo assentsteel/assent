@@ -3,6 +3,26 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { getGlobalPresenceCountries, getGlobalPresenceCountry } from "@/lib/services/global-presence.service";
 
+const parseSeoSchema = (schema?: string) => {
+  if (!schema) return null;
+
+  try {
+    const trimmedSchema = schema.trim();
+
+    if (!trimmedSchema) return null;
+
+    const scriptMatch = trimmedSchema.match(
+      /<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/i
+    );
+
+    const schemaContent = scriptMatch?.[1]?.trim() || trimmedSchema;
+    return JSON.parse(schemaContent);
+  } catch (error) {
+    console.error("Invalid global presence country seoSchema JSON-LD", error);
+    return null;
+  }
+};
+
 // ─── Metadata ─────────────────────────────────────────────────────────────────
 
 export async function generateMetadata({
@@ -54,5 +74,17 @@ export default async function Page({
 
   if (!data) notFound();
 
-  return <AustralianProjects data={data} />;
+  const customSchema = parseSeoSchema(data?.seo?.schema);
+
+  return (
+    <>
+      {customSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(customSchema) }}
+        />
+      )}
+      <AustralianProjects data={data} />
+    </>
+  );
 }
