@@ -35,13 +35,17 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: metadataTitle,
     description: metadataDescription,
+    robots: {
+      index: true,
+      follow: true,
+    },
       alternates: {
-      canonical: "https://www.assentsteel.com/steel-engineering-services",
+      canonical: "https://www.assentsteel.com/structural-steel-engineering-services",
     },
     openGraph: {
       title: metadataTitle,
       description: metadataDescription,
-      url: "https://www.assentsteel.com/steel-engineering-services",
+      url: "https://www.assentsteel.com/structural-steel-engineering-services",
       siteName: "Assent",
       images: [
         {
