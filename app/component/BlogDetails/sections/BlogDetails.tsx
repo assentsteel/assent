@@ -137,14 +137,14 @@ const BlogDetails = ({ data }: { data: Bogs }) => {
 
                 </div>
               </div>
-
+              {data?.faqSection?.title && (
+                <div className="w-full lg:order-3">
+                  <Faq data={data.faqSection} />
+                </div>
+              )}
             </div>
 
-            {data?.faqSection?.title && (
-              <div className="w-full lg:order-3">
-                <Faq data={data.faqSection} />
-              </div>
-            )}
+            
 
             <div className="lg:w-1/6 lg:order-2">
               <motion.div
