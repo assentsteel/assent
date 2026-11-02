@@ -33,7 +33,7 @@ export const menuItems: MenuItem[] = [
     children: [
       {
         title: "Engineering ",
-        url: "/steel-engineering-services",
+        url: "/structural-steel-engineering-services",
       },
       {
         title: "Fabrication",
