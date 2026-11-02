@@ -1383,6 +1383,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/steel-engineering-services",
+        destination: "/structural-steel-engineering-services",
+        permanent: true,
+      },
+      {
         source: "/services-fabrication",
         destination: "/steel-fabrication-services",
         permanent: true,

@@ -108,7 +108,7 @@ const Footer = () => {
               </ul>
               <ul className="space-y-2 grid lg:grid-cols-1 ">
                 {[
-                  { label: "Engineering", href: "/steel-engineering-services" },
+                    { label: "Engineering", href: "/structural-steel-engineering-services" },
                   { label: "Fabrication", href: "/steel-fabrication-services" },
                   { label: "Blasting Painting", href: "/steel-blasting-painting-fire-proofing" },
                   { label: "Steel Erection", href: "/steel-erection-services" },
