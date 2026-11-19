@@ -402,6 +402,7 @@ export type Contact = {
   twitterImage?: string;
   schema?: string;
   pageTitle: string;
+  h1Title?: string;
   firstSection: {
     title: string;
     items: [

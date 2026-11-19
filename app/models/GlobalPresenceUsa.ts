@@ -5,6 +5,9 @@ const GlobalPresenceUsaSchema = new mongoose.Schema({
     seo: {
         type: seoSchema,
     },
+    h1Title:{
+        type:String,
+    },
     firstSection:{
         title:{
             type:String,

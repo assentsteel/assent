@@ -18,6 +18,7 @@ import { SeoFormValues } from "@/types/seo";
 
 export interface GlobalPresenceAfrica {
   seo: SeoFormValues;
+  h1Title?: string;
 
   firstSection?: {
     title?: string;
@@ -264,6 +265,7 @@ const GlobalPresenceAfricaPage = () => {
       if (response.ok) {
         const data = await response.json();
         setValue("seo", data.data.seo);
+        setValue("h1Title", data.data.h1Title);
         setValue("firstSection", data.data.firstSection);
         setValue("secondSection", data.data.secondSection);
         setValue("secondSection.items", data.data.secondSection.items);
@@ -305,6 +307,10 @@ const GlobalPresenceAfricaPage = () => {
         className="flex flex-col gap-5"
         onSubmit={handleSubmit(handleAddGlobalPresenceAfrica)}
       >
+        <div className="flex flex-col gap-2">
+          <Label className="font-bold">H1 Title</Label>
+          <Input type="text" placeholder="H1 Title (hidden, for SEO)" {...register("h1Title")} />
+        </div>
 
         <AdminItemContainer>
           <Label main>First Section</Label>
