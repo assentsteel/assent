@@ -20,7 +20,6 @@ import Morepjts from "./sections/Morepjts";
     // { label: `${data && data.data.sector}`, href: "#" },
   ];
 
-  console.log(data, "fv")
 
   return (
     <>
@@ -29,6 +28,7 @@ import Morepjts from "./sections/Morepjts";
         imageSrc={data.banner}
         title={data.pageTitle}
         breadcrumbs={breadcrumb}
+        projectTitle={data.title}
       />
       <Specs data={data} />
       <Slidethumb data={data} />
