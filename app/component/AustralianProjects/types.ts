@@ -163,6 +163,7 @@ export type GlobalPresencePageData = {
   _id: string;
   seo?: Seo;
   pageTitle: string;
+  h1Title?: string;
   firstSection: GPFirstSection;
   secondSection: GPSecondSection;
   thirdSection: GPThirdSection;

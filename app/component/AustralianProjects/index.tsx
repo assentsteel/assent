@@ -102,6 +102,7 @@ import type { GlobalPresencePageData } from "./types";
 const AustralianProjects = ({ data }: { data: GlobalPresencePageData }) => {
   return (
     <>
+      {data.h1Title && <h1 className="sr-only">{data.h1Title}</h1>}
       <IntrosectionBold data={data.firstSection} />
       <FirstSection data={data.firstSection} />
       <GlobalReachprojects bgcolor="bg-primary" data={data.secondSection} />

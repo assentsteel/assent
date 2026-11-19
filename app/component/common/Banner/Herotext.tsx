@@ -17,17 +17,19 @@ const Herotext: React.FC<HeroSectionProps> = ({ title, breadcrumbs, blogPage }) 
         <section className={`overflow-hidden relative ${blogPage ? 'pt-[30px] md:pt-[70px] xl:pt-[80px] xxl:pt-[100px] pb-0     ' : 'py-[30px] md:py-[70px] xl:py-[80px] xxl:py-[100px]   '}`}>
             <div className="container">
                 <div className=" ">
-                    {pathName !== "/steel-blasting-painting-fire-proofing" && (
-                        <motion.h1
-                            variants={slideInLeft}
-                            initial="hidden"
-                            animate="visible"
-                            exit="exit"
-                            className="text-xxl font-[600] text-territory mb-4 lg:mb-10 leading-[1.2]"
-                        >
-                            {title}
-                        </motion.h1>
-                    )}
+                    <motion.h1
+                        variants={slideInLeft}
+                        initial="hidden"
+                        animate="visible"
+                        exit="exit"
+                        className={
+                            pathName === "/steel-blasting-painting-fire-proofing"
+                                ? "sr-only"
+                                : "text-xxl font-[600] text-territory mb-4 lg:mb-10 leading-[1.2]"
+                        }
+                    >
+                        {title}
+                    </motion.h1>
                     <motion.ul
                         className="flex items-center flex-wrap gap-2 "
                         variants={slideInTop}

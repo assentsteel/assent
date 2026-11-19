@@ -19,6 +19,7 @@ const Index = async ({ data }: { data: Contact }) => {
         imageSrc={data.banner}
         title={data.pageTitle}
         breadcrumbs={breadcrumb}
+        seoTitle={data.h1Title}
       />
 
 <TextByImg data={data} />

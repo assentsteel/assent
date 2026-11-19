@@ -27,6 +27,7 @@ interface ContactFormProps {
     banner: string;
     bannerAlt: string;
     pageTitle: string;
+    h1Title: string;
 
     firstSection:{
         title:string;
@@ -78,6 +79,7 @@ const ContactPage = () => {
                 setValue("banner", data.data.banner);
                 setValue("bannerAlt", data.data.bannerAlt);
                 setValue("pageTitle", data.data.pageTitle);
+                setValue("h1Title", data.data.h1Title);
                 setValue("metaTitle", data.data.metaTitle);
                 setValue("metaDescription", data.data.metaDescription);
                 setValue("ogTitle", data.data.ogTitle);
@@ -136,6 +138,10 @@ const ContactPage = () => {
                     <div>
                         <Label className='font-bold'>Page Title</Label>
                         <Input type='text' placeholder='Page Title' {...register("pageTitle")} />
+                    </div>
+                    <div>
+                        <Label className='font-bold'>H1 Title</Label>
+                        <Input type='text' placeholder='H1 Title (hidden, for SEO)' {...register("h1Title")} />
                     </div>
                 </div>
 

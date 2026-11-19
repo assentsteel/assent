@@ -173,9 +173,13 @@ interface HeroSectionProps {
     title: string;
     breadcrumbs: { label: string; href: string }[];
     projectTitle?: string;
+    // When provided, `title` renders as a plain (visible) div instead of the
+    // h1, and this renders as a hidden (sr-only) h1 instead — lets a page
+    // show one heading visually while giving search engines different h1 text.
+    seoTitle?: string;
 }
 
-const HeroInner: React.FC<HeroSectionProps> = ({ imageSrc, title, breadcrumbs,projectTitle }) => {
+const HeroInner: React.FC<HeroSectionProps> = ({ imageSrc, title, breadcrumbs,projectTitle,seoTitle }) => {
     console.log(breadcrumbs, "bred");
     const pathname = usePathname();
 
@@ -246,24 +250,36 @@ const HeroInner: React.FC<HeroSectionProps> = ({ imageSrc, title, breadcrumbs,pr
                     variants={containerVariants}
                     className="absolute inset-0 flex flex-col justify-end items-start text-left z-[2] container"
                 >
-                    <motion.h1
-                        variants={textVariants}
-                        className={
-                            pathname.startsWith("/projects/")
-                                ? "sr-only"
-                                : "text-white text-xxl leading-none font-[600] mb-5 lg:mb-9"
-                        }
-                    >
-                        <span>
-                            {pathname === "/about" ||
-                            pathname === "/our-team" ||
-                            pathname === "/awards-and-accreditations"
-                                ? ""
-                                : pathname.startsWith("/projects/")
-                                ? projectTitle
-                                : title}
-                        </span>
-                    </motion.h1>
+                    {seoTitle ? (
+                        <>
+                            <h1 className="sr-only">{seoTitle}</h1>
+                            <motion.h2
+                                variants={textVariants}
+                                className="text-white text-xxl leading-none font-[600] mb-5 lg:mb-9"
+                            >
+                                <span>{title}</span>
+                            </motion.h2>
+                        </>
+                    ) : (
+                        <motion.h1
+                            variants={textVariants}
+                            className={
+                                pathname.startsWith("/projects/")
+                                    ? "sr-only"
+                                    : "text-white text-xxl leading-none font-[600] mb-5 lg:mb-9"
+                            }
+                        >
+                            <span>
+                                {pathname === "/about" ||
+                                pathname === "/our-team" ||
+                                pathname === "/awards-and-accreditations"
+                                    ? ""
+                                    : pathname.startsWith("/projects/")
+                                    ? projectTitle
+                                    : title}
+                            </span>
+                        </motion.h1>
+                    )}
                 </motion.div>
                 
             </div>

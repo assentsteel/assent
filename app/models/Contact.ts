@@ -14,6 +14,7 @@ const contactSchema = new mongoose.Schema({
     banner: String,
     bannerAlt: String,
     pageTitle: String,
+    h1Title: String,
     firstSection: {
         title: String,
         items: [{
