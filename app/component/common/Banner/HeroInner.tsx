@@ -172,9 +172,10 @@ interface HeroSectionProps {
     imageSrc: string;
     title: string;
     breadcrumbs: { label: string; href: string }[];
+    projectTitle?: string;
 }
 
-const HeroInner: React.FC<HeroSectionProps> = ({ imageSrc, title, breadcrumbs }) => {
+const HeroInner: React.FC<HeroSectionProps> = ({ imageSrc, title, breadcrumbs,projectTitle }) => {
     console.log(breadcrumbs, "bred");
     const pathname = usePathname();
 
@@ -245,17 +246,26 @@ const HeroInner: React.FC<HeroSectionProps> = ({ imageSrc, title, breadcrumbs })
                     variants={containerVariants}
                     className="absolute inset-0 flex flex-col justify-end items-start text-left z-[2] container"
                 >
-                    <motion.h1 variants={textVariants} className="text-white text-xxl leading-none font-[600] mb-5 lg:mb-9">
+                    <motion.h1
+                        variants={textVariants}
+                        className={
+                            pathname.startsWith("/projects/")
+                                ? "sr-only"
+                                : "text-white text-xxl leading-none font-[600] mb-5 lg:mb-9"
+                        }
+                    >
                         <span>
                             {pathname === "/about" ||
                             pathname === "/our-team" ||
-                            pathname === "/awards-and-accreditations" ||
-                            pathname.startsWith("/projects/")
+                            pathname === "/awards-and-accreditations"
                                 ? ""
-                                : title && title}
+                                : pathname.startsWith("/projects/")
+                                ? projectTitle
+                                : title}
                         </span>
                     </motion.h1>
                 </motion.div>
+                
             </div>
 
             {/* ✅ BREADCRUMB BELOW IMAGE (10px GAP) */}

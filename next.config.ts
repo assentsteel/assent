@@ -2099,6 +2099,11 @@ const nextConfig: NextConfig = {
         destination: "/",
         permanent: true,
       },
+      {
+        source: "/news/www.assentsteel.com",
+        destination: "/",
+        permanent: true,
+      },
     ];
   },
 };
